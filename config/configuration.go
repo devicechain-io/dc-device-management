@@ -4,7 +4,7 @@
  * Proprietary and confidential.
  */
 
-package main
+package config
 
 import (
 	"fmt"
@@ -20,13 +20,26 @@ type DeviceManagementConfiguration struct {
 	Nested NestedConfiguration
 }
 
+// Resource provider
+type ResourceProvider struct {
+}
+
+// Creates the default device management configuration
+func NewDeviceManagementConfiguration() *DeviceManagementConfiguration {
+	return &DeviceManagementConfiguration{
+		Nested: NestedConfiguration{
+			Test: "test",
+		},
+	}
+}
+
 // Get instance configuration CRs that should be created in tooling
-func GetInstanceConfigurationResources() ([]config.ConfigurationResource, error) {
+func (ResourceProvider) GetConfigurationResources() ([]config.ConfigurationResource, error) {
 	resources := make([]config.ConfigurationResource, 0)
 
 	name := "device-management-default"
 	msconfig := NewDeviceManagementConfiguration()
-	content, err := config.GenerateMicroserviceConfig(name, msconfig)
+	content, err := config.GenerateMicroserviceConfig(name, "device-management", "devicechain.io/devicemanagament:v0.0.0", msconfig)
 	if err != nil {
 		return nil, err
 	}
@@ -37,13 +50,4 @@ func GetInstanceConfigurationResources() ([]config.ConfigurationResource, error)
 
 	resources = append(resources, dcmdefault)
 	return resources, nil
-}
-
-// Creates the default device management configuration
-func NewDeviceManagementConfiguration() *DeviceManagementConfiguration {
-	return &DeviceManagementConfiguration{
-		Nested: NestedConfiguration{
-			Test: "test",
-		},
-	}
 }
