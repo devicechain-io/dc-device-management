@@ -1,11 +1,24 @@
+VERSION ?= 0.0.1
+BUILDDIR ?= $(CURDIR)/build
+FUNCTIONAL_AREA ?= device-management
+
 .PHONY: build
 build:
-	go build -o build/service .
+	go build -o $(BUILDDIR)/service .
 
 .PHONY: vendor
 vendor:
-	go mod vendor -v
+	go mod vendor
 
-# Full build inside a docker container for a clean release build
-docker-build: vendor
-	docker build -t devicechain-io/devicemanagement . -f docker/Dockerfile
+clean:
+	rm -rf $(BUILDDIR)/*
+
+# Build a docker image based on the build target
+.PHONY: docker-build
+docker-build: vendor build
+	docker build -t devicechain-io/${FUNCTIONAL_AREA}:${VERSION} . -f docker/Dockerfile
+
+# Run the docker image
+.PHONY: docker-run
+docker-run: docker-build
+	docker run -it --env DC_INSTANCE_ID=dc1 --env DC_TENANT_MICROSERVICE_ID=tms-tenant1-devicemanagement devicechain-io/${FUNCTIONAL_AREA}:${VERSION}

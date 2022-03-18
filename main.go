@@ -8,7 +8,6 @@ package main
 
 import (
 	"github.com/devicechain-io/dc-microservice/core"
-	"github.com/rs/zerolog/log"
 )
 
 func main() {
@@ -19,8 +18,5 @@ func main() {
 		Terminator:  core.NewNoOpLifecycleCallback(),
 	}
 	ms := core.NewMicroservice("device-management", callbacks)
-	err := ms.Run()
-	if err != nil {
-		log.Error().Err(err).Msg("Unable to start microservice")
-	}
+	ms.Run()
 }

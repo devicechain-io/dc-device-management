@@ -6,12 +6,6 @@
 
 package config
 
-import (
-	"fmt"
-
-	"github.com/devicechain-io/dc-microservice/config"
-)
-
 type NestedConfiguration struct {
 	Test string
 }
@@ -31,23 +25,4 @@ func NewDeviceManagementConfiguration() *DeviceManagementConfiguration {
 			Test: "test",
 		},
 	}
-}
-
-// Get instance configuration CRs that should be created in tooling
-func (ResourceProvider) GetConfigurationResources() ([]config.ConfigurationResource, error) {
-	resources := make([]config.ConfigurationResource, 0)
-
-	name := "device-management-default"
-	msconfig := NewDeviceManagementConfiguration()
-	content, err := config.GenerateMicroserviceConfig(name, "device-management", "devicechain.io/devicemanagament:v0.0.0", msconfig)
-	if err != nil {
-		return nil, err
-	}
-	dcmdefault := config.ConfigurationResource{
-		Name:    fmt.Sprintf("%s_%s", "core.devicechain.io", name),
-		Content: content,
-	}
-
-	resources = append(resources, dcmdefault)
-	return resources, nil
 }
