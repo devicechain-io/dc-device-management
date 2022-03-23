@@ -21,7 +21,7 @@ func (ResourceProvider) GetConfigurationResources() ([]gen.ConfigurationResource
 
 	name := "device-management-default"
 	msconfig := config.NewDeviceManagementConfiguration()
-	content, err := gen.GenerateMicroserviceConfig(name, "device-management", "devicechain.io/devicemanagament:v0.0.0", msconfig)
+	content, err := gen.GenerateMicroserviceConfig(name, "device-management", "devicechain-io/device-management:0.0.1", msconfig)
 	if err != nil {
 		return nil, err
 	}

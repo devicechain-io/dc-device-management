@@ -6,6 +6,10 @@ FUNCTIONAL_AREA ?= device-management
 build:
 	go build -o $(BUILDDIR)/service .
 
+.PHONY: build-stripped
+build-stripped:
+	go build -ldflags '-s -w' -o $(BUILDDIR)/service .
+
 .PHONY: vendor
 vendor:
 	go mod vendor
@@ -15,7 +19,7 @@ clean:
 
 # Build a docker image based on the build target
 .PHONY: docker-build
-docker-build: vendor build
+docker-build: vendor build-stripped
 	docker build -t devicechain-io/${FUNCTIONAL_AREA}:${VERSION} . -f docker/Dockerfile
 
 # Run the docker image
