@@ -9,6 +9,7 @@ package main
 import (
 	"context"
 
+	"github.com/devicechain-io/dc-devicemanagement/model"
 	"github.com/devicechain-io/dc-microservice/core"
 	"github.com/devicechain-io/dc-microservice/rdb"
 )
@@ -45,7 +46,7 @@ func main() {
 func afterMicroserviceInitialized(ctx context.Context) error {
 	// Create and initialize rdb manager.
 	callbacks := core.NewNoOpLifecycleCallbacks()
-	RdbManager = rdb.NewRdbManager(Microservice, callbacks)
+	RdbManager = rdb.NewRdbManager(Microservice, callbacks, model.Migrations)
 	return RdbManager.Initialize(context.Background())
 }
 
