@@ -8,24 +8,10 @@ package model
 
 import (
 	gormigrate "github.com/go-gormigrate/gormigrate/v2"
-	"gorm.io/gorm"
 )
 
 var (
 	Migrations = []*gormigrate.Migration{
-		{
-			ID: "20220322151200",
-			Migrate: func(tx *gorm.DB) error {
-				type Device struct {
-					gorm.Model
-					Name string
-				}
-
-				return tx.AutoMigrate(&Device{})
-			},
-			Rollback: func(tx *gorm.DB) error {
-				return tx.Migrator().DropTable("devices")
-			},
-		},
+		NewInitialSchema(),
 	}
 )
