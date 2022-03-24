@@ -6,6 +6,7 @@ require (
 	github.com/devicechain-io/dc-k8s v0.0.0
 	github.com/devicechain-io/dc-microservice v0.0.0
 	github.com/go-gormigrate/gormigrate/v2 v2.0.0
+	github.com/graphql-go/graphql v0.8.0
 	gorm.io/gorm v1.23.3
 )
 

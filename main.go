@@ -9,14 +9,17 @@ package main
 import (
 	"context"
 
+	schema "github.com/devicechain-io/dc-devicemanagement/graphql"
 	"github.com/devicechain-io/dc-devicemanagement/model"
 	"github.com/devicechain-io/dc-microservice/core"
+	"github.com/devicechain-io/dc-microservice/graphql"
 	"github.com/devicechain-io/dc-microservice/rdb"
 )
 
 var (
-	Microservice *core.Microservice
-	RdbManager   *rdb.RdbManager
+	Microservice   *core.Microservice
+	RdbManager     *rdb.RdbManager
+	GraphQLManager *graphql.GraphQLManager
 )
 
 func main() {
@@ -45,22 +48,65 @@ func main() {
 // Called after microservice has been initialized.
 func afterMicroserviceInitialized(ctx context.Context) error {
 	// Create and initialize rdb manager.
-	callbacks := core.NewNoOpLifecycleCallbacks()
-	RdbManager = rdb.NewRdbManager(Microservice, callbacks, model.Migrations)
-	return RdbManager.Initialize(context.Background())
+	rdbcb := core.NewNoOpLifecycleCallbacks()
+	RdbManager = rdb.NewRdbManager(Microservice, rdbcb, model.Migrations)
+	err := RdbManager.Initialize(ctx)
+	if err != nil {
+		return err
+	}
+
+	// Create and initialize graphql manager.
+	gqlcb := core.NewNoOpLifecycleCallbacks()
+	GraphQLManager = graphql.NewGraphQLManager(Microservice, gqlcb, schema.NewSchemaConfig())
+	err = GraphQLManager.Initialize(ctx)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 // Called after microservice has been started.
 func afterMicroserviceStarted(ctx context.Context) error {
-	return RdbManager.Start(context.Background())
+	err := RdbManager.Start(ctx)
+	if err != nil {
+		return err
+	}
+
+	err = GraphQLManager.Start(ctx)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 // Called before microservice has been stopped.
 func beforeMicroserviceStopped(ctx context.Context) error {
-	return RdbManager.Stop(context.Background())
+	err := GraphQLManager.Stop(ctx)
+	if err != nil {
+		return err
+	}
+
+	err = RdbManager.Stop(ctx)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 // Called before microservice has been terminated.
 func beforeMicroserviceTerminated(ctx context.Context) error {
-	return RdbManager.Terminate(context.Background())
+	err := GraphQLManager.Terminate(ctx)
+	if err != nil {
+		return err
+	}
+
+	err = RdbManager.Terminate(ctx)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
