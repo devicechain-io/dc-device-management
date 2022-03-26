@@ -1,0 +1,25 @@
+
+# Represents a type or class of devices
+type DeviceType implements Model & TokenReference & NamedEntity & BrandedEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+}
+
+# Contains queries executed against model.
+type Query {
+    deviceType(id: ID!): DeviceType!
+}
+
+schema {
+    query: Query
+}

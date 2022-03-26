@@ -8,18 +8,22 @@ package main
 
 import (
 	"context"
+	"fmt"
 
-	schema "github.com/devicechain-io/dc-devicemanagement/graphql"
+	gql "github.com/graph-gophers/graphql-go"
+	"github.com/rs/zerolog/log"
+
+	"github.com/devicechain-io/dc-devicemanagement/graphql"
 	"github.com/devicechain-io/dc-devicemanagement/model"
 	"github.com/devicechain-io/dc-microservice/core"
-	"github.com/devicechain-io/dc-microservice/graphql"
+	gqlcore "github.com/devicechain-io/dc-microservice/graphql"
 	"github.com/devicechain-io/dc-microservice/rdb"
 )
 
 var (
 	Microservice   *core.Microservice
 	RdbManager     *rdb.RdbManager
-	GraphQLManager *graphql.GraphQLManager
+	GraphQLManager *gqlcore.GraphQLManager
 )
 
 func main() {
@@ -57,7 +61,11 @@ func afterMicroserviceInitialized(ctx context.Context) error {
 
 	// Create and initialize graphql manager.
 	gqlcb := core.NewNoOpLifecycleCallbacks()
-	GraphQLManager = graphql.NewGraphQLManager(Microservice, gqlcb, schema.NewSchemaConfig())
+
+	schema := gqlcore.CommonTypes + graphql.SchemaContent
+	log.Info().Msg(fmt.Sprintf("Using schema:\n\n%s\n\n", schema))
+	parsed := gql.MustParseSchema(schema, &graphql.QueryResolver{})
+	GraphQLManager = gqlcore.NewGraphQLManager(Microservice, gqlcb, *parsed)
 	err = GraphQLManager.Initialize(ctx)
 	if err != nil {
 		return err

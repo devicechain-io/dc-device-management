@@ -6,7 +6,8 @@ require (
 	github.com/devicechain-io/dc-k8s v0.0.0
 	github.com/devicechain-io/dc-microservice v0.0.0
 	github.com/go-gormigrate/gormigrate/v2 v2.0.0
-	github.com/graphql-go/graphql v0.8.0
+	github.com/graph-gophers/graphql-go v1.3.0
+	github.com/rs/zerolog v1.26.1
 	gorm.io/gorm v1.23.3
 )
 
@@ -39,8 +40,8 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/olekukonko/tablewriter v0.0.5 // indirect
+	github.com/opentracing/opentracing-go v1.1.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/rs/zerolog v1.26.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	golang.org/x/crypto v0.0.0-20220321153916-2c7772ba3064 // indirect
 	golang.org/x/net v0.0.0-20211209124913-491a49abca63 // indirect
