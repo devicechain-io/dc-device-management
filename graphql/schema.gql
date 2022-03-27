@@ -15,11 +15,31 @@ type DeviceType implements Model & TokenReference & NamedEntity & BrandedEntity 
     borderColor: String
 }
 
+# Data required to create a device type.
+input DeviceTypeCreateRequest {
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+}
+
 # Contains queries executed against model.
 type Query {
+    # Find a device type by unique id.
     deviceType(id: ID!): DeviceType!
+}
+
+# Contains mutations executed against model.
+type Mutation {
+    # Create a new device type.
+    createDeviceType(value: DeviceTypeCreateRequest): DeviceType!
 }
 
 schema {
     query: Query
+    mutation: Mutation
 }

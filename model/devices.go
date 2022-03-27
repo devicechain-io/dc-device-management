@@ -21,6 +21,18 @@ type DeviceType struct {
 	Devices []Device
 }
 
+// Data required to create a device type.
+type DeviceTypeCreateRequest struct {
+	Token           string
+	Name            *string
+	Description     *string
+	ImageUrl        *string
+	Icon            *string
+	BackgroundColor *string
+	ForegroundColor *string
+	BorderColor     *string
+}
+
 // Represents a device.
 type Device struct {
 	gorm.Model

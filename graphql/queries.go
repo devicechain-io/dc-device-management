@@ -9,15 +9,15 @@ package graphql
 import (
 	"context"
 	_ "embed"
+	"fmt"
 	"time"
 
 	"github.com/devicechain-io/dc-devicemanagement/model"
 	"github.com/devicechain-io/dc-microservice/rdb"
 	gql "github.com/graph-gophers/graphql-go"
+	"github.com/rs/zerolog/log"
 	"gorm.io/gorm"
 )
-
-type QueryResolver struct{}
 
 var devicetype = &model.DeviceType{
 	Model: gorm.Model{
@@ -41,9 +41,12 @@ var devicetype = &model.DeviceType{
 	},
 }
 
-func (r *QueryResolver) DeviceType(ctx context.Context, args struct {
+func (r *SchemaResolver) DeviceType(ctx context.Context, args struct {
 	Id gql.ID
 }) (*DeviceTypeResolver, error) {
+	rdbmgr := r.GetRdbManager(ctx)
+	log.Info().Msg(fmt.Sprintf("RDB MANAGER FOR: %v", rdbmgr.Microservice.FunctionalArea))
+
 	dt := &DeviceTypeResolver{
 		d: devicetype,
 	}

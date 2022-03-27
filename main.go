@@ -8,10 +8,8 @@ package main
 
 import (
 	"context"
-	"fmt"
 
 	gql "github.com/graph-gophers/graphql-go"
-	"github.com/rs/zerolog/log"
 
 	"github.com/devicechain-io/dc-devicemanagement/graphql"
 	"github.com/devicechain-io/dc-devicemanagement/model"
@@ -63,9 +61,8 @@ func afterMicroserviceInitialized(ctx context.Context) error {
 	gqlcb := core.NewNoOpLifecycleCallbacks()
 
 	schema := gqlcore.CommonTypes + graphql.SchemaContent
-	log.Info().Msg(fmt.Sprintf("Using schema:\n\n%s\n\n", schema))
-	parsed := gql.MustParseSchema(schema, &graphql.QueryResolver{})
-	GraphQLManager = gqlcore.NewGraphQLManager(Microservice, gqlcb, *parsed)
+	parsed := gql.MustParseSchema(schema, &graphql.SchemaResolver{})
+	GraphQLManager = gqlcore.NewGraphQLManager(Microservice, gqlcb, *parsed, RdbManager)
 	err = GraphQLManager.Initialize(ctx)
 	if err != nil {
 		return err
