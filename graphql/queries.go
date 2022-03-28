@@ -9,13 +9,11 @@ package graphql
 import (
 	"context"
 	_ "embed"
-	"fmt"
 	"time"
 
 	"github.com/devicechain-io/dc-devicemanagement/model"
 	"github.com/devicechain-io/dc-microservice/rdb"
 	gql "github.com/graph-gophers/graphql-go"
-	"github.com/rs/zerolog/log"
 	"gorm.io/gorm"
 )
 
@@ -44,8 +42,7 @@ var devicetype = &model.DeviceType{
 func (r *SchemaResolver) DeviceType(ctx context.Context, args struct {
 	Id gql.ID
 }) (*DeviceTypeResolver, error) {
-	rdbmgr := r.GetRdbManager(ctx)
-	log.Info().Msg(fmt.Sprintf("RDB MANAGER FOR: %v", rdbmgr.Microservice.FunctionalArea))
+	//rdbmgr := r.GetRdbManager(ctx)
 
 	dt := &DeviceTypeResolver{
 		d: devicetype,
