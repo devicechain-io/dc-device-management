@@ -16,7 +16,7 @@ import (
 )
 
 type DeviceTypeResolver struct {
-	d *model.DeviceType
+	d model.DeviceType
 }
 
 func (r *DeviceTypeResolver) Id() gql.ID {

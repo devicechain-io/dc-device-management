@@ -27,10 +27,20 @@ input DeviceTypeCreateRequest {
     borderColor: String
 }
 
+# Criteria used when searching for device types.
+input DeviceTypeSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
 # Contains queries executed against model.
 type Query {
     # Find a device type by unique id.
     deviceType(id: ID!): DeviceType!
+    # Find a device type by unique token.
+    deviceTypeByToken(token: String!): DeviceType!
+    # List devices that meet criteria.
+    deviceTypes(criteria: DeviceTypeSearchCriteria!): [DeviceType!]!
 }
 
 # Contains mutations executed against model.

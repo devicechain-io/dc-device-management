@@ -21,6 +21,11 @@ type DeviceType struct {
 	Devices []Device
 }
 
+// Represents a device type.
+type DeviceTypeSearchCriteria struct {
+	rdb.Pagination
+}
+
 // Data required to create a device type.
 type DeviceTypeCreateRequest struct {
 	Token           string

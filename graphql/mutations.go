@@ -17,13 +17,20 @@ func (r *SchemaResolver) CreateDeviceType(ctx context.Context, args struct {
 	Value *model.DeviceTypeCreateRequest
 }) (*DeviceTypeResolver, error) {
 	rdbmgr := r.GetRdbManager(ctx)
-	created := &model.DeviceType{
+	created := model.DeviceType{
 		TokenReference: rdb.TokenReference{
 			Token: args.Value.Token,
 		},
 		NamedEntity: rdb.NamedEntity{
 			Name:        rdb.NullStrOf(*args.Value.Name),
 			Description: rdb.NullStrOf(*args.Value.Description),
+		},
+		BrandedEntity: rdb.BrandedEntity{
+			ImageUrl:        rdb.NullStrOf(*args.Value.ImageUrl),
+			Icon:            rdb.NullStrOf(*args.Value.Icon),
+			BackgroundColor: rdb.NullStrOf(*args.Value.BackgroundColor),
+			ForegroundColor: rdb.NullStrOf(*args.Value.ForegroundColor),
+			BorderColor:     rdb.NullStrOf(*args.Value.BorderColor),
 		},
 	}
 	result := rdbmgr.Database.Create(created)
