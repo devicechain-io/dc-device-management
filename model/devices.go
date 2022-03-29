@@ -21,7 +21,7 @@ type DeviceType struct {
 	Devices []Device
 }
 
-// Represents a device type.
+// Search criteria for locating device types.
 type DeviceTypeSearchCriteria struct {
 	rdb.Pagination
 }
@@ -46,6 +46,20 @@ type Device struct {
 
 	DeviceTypeId int
 	DeviceType   DeviceType
+}
+
+// Data required to create a device.
+type DeviceCreateRequest struct {
+	Token           string
+	Name            *string
+	Description     *string
+	DeviceTypeToken string
+}
+
+// Search criteria for locating devices.
+type DeviceSearchCriteria struct {
+	rdb.Pagination
+	DeviceTypeToken *string
 }
 
 // Metadata indicating a relationship between devices.
