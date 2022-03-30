@@ -1,4 +1,4 @@
-module github.com/devicechain-io/dc-devicemanagement
+module github.com/devicechain-io/dc-device-management
 
 go 1.17
 

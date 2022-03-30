@@ -21,8 +21,3 @@ clean:
 .PHONY: docker-build
 docker-build: vendor build-stripped
 	docker build -t devicechain-io/${FUNCTIONAL_AREA}:${VERSION} . -f docker/Dockerfile
-
-# Run the docker image
-.PHONY: docker-run
-docker-run: docker-build
-	docker run -it --env DC_INSTANCE_ID=dc1 --env DC_TENANT_MICROSERVICE_ID=tms-tenant1-devicemanagement devicechain-io/${FUNCTIONAL_AREA}:${VERSION}

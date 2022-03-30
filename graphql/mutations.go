@@ -10,7 +10,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/devicechain-io/dc-devicemanagement/model"
+	"github.com/devicechain-io/dc-device-management/model"
 	"github.com/devicechain-io/dc-microservice/rdb"
 	"github.com/rs/zerolog/log"
 )

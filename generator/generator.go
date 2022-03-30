@@ -9,7 +9,7 @@ package generator
 import (
 	"fmt"
 
-	"github.com/devicechain-io/dc-devicemanagement/config"
+	"github.com/devicechain-io/dc-device-management/config"
 	gen "github.com/devicechain-io/dc-k8s/generators"
 )
 

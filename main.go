@@ -11,8 +11,8 @@ import (
 
 	gql "github.com/graph-gophers/graphql-go"
 
-	"github.com/devicechain-io/dc-devicemanagement/graphql"
-	"github.com/devicechain-io/dc-devicemanagement/model"
+	"github.com/devicechain-io/dc-device-management/graphql"
+	"github.com/devicechain-io/dc-device-management/model"
 	"github.com/devicechain-io/dc-microservice/core"
 	gqlcore "github.com/devicechain-io/dc-microservice/graphql"
 	"github.com/devicechain-io/dc-microservice/rdb"

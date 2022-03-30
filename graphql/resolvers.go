@@ -10,7 +10,7 @@ import (
 	_ "embed"
 	"fmt"
 
-	"github.com/devicechain-io/dc-devicemanagement/model"
+	"github.com/devicechain-io/dc-device-management/model"
 	util "github.com/devicechain-io/dc-microservice/graphql"
 	gql "github.com/graph-gophers/graphql-go"
 )

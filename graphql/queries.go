@@ -10,7 +10,7 @@ import (
 	"context"
 	_ "embed"
 
-	"github.com/devicechain-io/dc-devicemanagement/model"
+	"github.com/devicechain-io/dc-device-management/model"
 )
 
 // Find device type by unique id.
