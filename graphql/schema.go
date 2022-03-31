@@ -10,7 +10,7 @@ import (
 	"context"
 	_ "embed"
 
-	msg "github.com/devicechain-io/dc-microservice/graphql"
+	gqlcore "github.com/devicechain-io/dc-microservice/graphql"
 	"github.com/devicechain-io/dc-microservice/rdb"
 )
 
@@ -20,5 +20,5 @@ var SchemaContent string
 type SchemaResolver struct{}
 
 func (s *SchemaResolver) GetRdbManager(ctx context.Context) *rdb.RdbManager {
-	return ctx.Value(msg.ContextRdbKey).(*rdb.RdbManager)
+	return ctx.Value(gqlcore.ContextRdbKey).(*rdb.RdbManager)
 }

@@ -14,10 +14,6 @@ type DeviceManagementConfiguration struct {
 	Nested NestedConfiguration
 }
 
-// Resource provider
-type ResourceProvider struct {
-}
-
 // Creates the default device management configuration
 func NewDeviceManagementConfiguration() *DeviceManagementConfiguration {
 	return &DeviceManagementConfiguration{
