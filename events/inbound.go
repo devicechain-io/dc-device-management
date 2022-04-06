@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"io"
 
+	esproto "github.com/devicechain-io/dc-event-sources/proto"
 	"github.com/devicechain-io/dc-microservice/core"
 	"github.com/rs/zerolog/log"
 	"github.com/segmentio/kafka-go"
@@ -39,8 +40,13 @@ func NewInboundEventsProcessor(ms *core.Microservice, reader *kafka.Reader,
 }
 
 // Process an inbound message.
-func (iproc *InboundEventsProcessor) ProcessMessage(msg kafka.Message) {
-	log.Info().Msg(fmt.Sprintf("Processing message: %+v", msg))
+func (iproc *InboundEventsProcessor) ProcessMessage(msg kafka.Message) error {
+	event, payload, err := esproto.UnmarshalEvent(msg.Value)
+	if err != nil {
+		return err
+	}
+	log.Info().Msg(fmt.Sprintf("Received event %+v with paylaod %+v", event, payload))
+	return nil
 }
 
 // Initialize component.
