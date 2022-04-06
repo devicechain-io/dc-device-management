@@ -3,11 +3,13 @@ module github.com/devicechain-io/dc-device-management
 go 1.17
 
 require (
+	github.com/devicechain-io/dc-event-sources v0.0.0
 	github.com/devicechain-io/dc-k8s v0.0.0
 	github.com/devicechain-io/dc-microservice v0.0.0
 	github.com/go-gormigrate/gormigrate/v2 v2.0.0
 	github.com/graph-gophers/graphql-go v1.3.0
 	github.com/rs/zerolog v1.26.1
+	github.com/segmentio/kafka-go v0.4.30
 	gorm.io/gorm v1.23.3
 )
 
@@ -38,6 +40,7 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
+	github.com/klauspost/compress v1.14.2 // indirect
 	github.com/liggitt/tabwriter v0.0.0-20181228230101-89fcab3d43de // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
@@ -46,6 +49,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/olekukonko/tablewriter v0.0.5 // indirect
 	github.com/opentracing/opentracing-go v1.1.0 // indirect
+	github.com/pierrec/lz4/v4 v4.1.14 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	golang.org/x/crypto v0.0.0-20220321153916-2c7772ba3064 // indirect
@@ -73,6 +77,8 @@ require (
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.1 // indirect
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
+
+replace github.com/devicechain-io/dc-event-sources v0.0.0 => ../dc-event-sources
 
 replace github.com/devicechain-io/dc-k8s v0.0.0 => ../dc-k8s
 
