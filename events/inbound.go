@@ -40,12 +40,14 @@ func NewInboundEventsProcessor(ms *core.Microservice, reader *kafka.Reader,
 }
 
 // Process an inbound message.
-func (iproc *InboundEventsProcessor) ProcessMessage(msg kafka.Message) error {
+func (iproc *InboundEventsProcessor) ProcessInboundEvent(msg kafka.Message) error {
 	event, payload, err := esproto.UnmarshalEvent(msg.Value)
 	if err != nil {
 		return err
 	}
-	log.Info().Msg(fmt.Sprintf("Received event %+v with paylaod %+v", event, payload))
+	if log.Debug().Enabled() {
+		log.Debug().Msg(fmt.Sprintf("Received event %+v with payload %+v", event, payload))
+	}
 	return nil
 }
 
@@ -69,11 +71,15 @@ func (iproc *InboundEventsProcessor) ExecuteStart(ctx context.Context) error {
 	go func() {
 		for {
 			msg, err := iproc.InboundEventsReader.ReadMessage(ctx)
-			if err != nil && errors.Is(err, io.EOF) {
-				log.Error().Err(err).Msg("detected eof on inbound events stream")
-				return
+			if err != nil {
+				if errors.Is(err, io.EOF) {
+					log.Info().Msg("Detected EOF on inbound events stream")
+					return
+				} else {
+					log.Error().Err(err).Msg("error reading inbound event message")
+				}
 			}
-			iproc.ProcessMessage(msg)
+			iproc.ProcessInboundEvent(msg)
 		}
 	}()
 	return nil
