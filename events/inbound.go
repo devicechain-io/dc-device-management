@@ -41,12 +41,12 @@ func NewInboundEventsProcessor(ms *core.Microservice, reader *kafka.Reader,
 
 // Process an inbound message.
 func (iproc *InboundEventsProcessor) ProcessInboundEvent(msg kafka.Message) error {
-	event, payload, err := esproto.UnmarshalEvent(msg.Value)
+	event, err := esproto.UnmarshalUnresolvedEvent(msg.Value)
 	if err != nil {
 		return err
 	}
 	if log.Debug().Enabled() {
-		log.Debug().Msg(fmt.Sprintf("Received event %+v with payload %+v", event, payload))
+		log.Debug().Msg(fmt.Sprintf("Received event %+v", event))
 	}
 	return nil
 }
