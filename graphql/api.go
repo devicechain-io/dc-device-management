@@ -35,5 +35,5 @@ func (api *Api) DeviceTypeByToken(token string) (*model.DeviceType, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &rez.m, nil
+	return &rez.M, nil
 }

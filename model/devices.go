@@ -11,6 +11,18 @@ import (
 	"gorm.io/gorm"
 )
 
+// Data required to create a device type.
+type DeviceTypeCreateRequest struct {
+	Token           string
+	Name            *string
+	Description     *string
+	ImageUrl        *string
+	Icon            *string
+	BackgroundColor *string
+	ForegroundColor *string
+	BorderColor     *string
+}
+
 // Represents a device type.
 type DeviceType struct {
 	gorm.Model
@@ -26,8 +38,74 @@ type DeviceTypeSearchCriteria struct {
 	rdb.Pagination
 }
 
-// Data required to create a device type.
-type DeviceTypeCreateRequest struct {
+// Data required to create a device.
+type DeviceCreateRequest struct {
+	Token           string
+	Name            *string
+	Description     *string
+	DeviceTypeToken string
+}
+
+// Represents a device.
+type Device struct {
+	gorm.Model
+	rdb.TokenReference
+	rdb.NamedEntity
+
+	DeviceTypeId int
+	DeviceType   *DeviceType
+}
+
+// Search criteria for locating devices.
+type DeviceSearchCriteria struct {
+	rdb.Pagination
+	DeviceTypeToken *string
+}
+
+// Data required to create a device relationship type.
+type DeviceRelationshipTypeCreateRequest struct {
+	Token       string
+	Name        *string
+	Description *string
+}
+
+// Metadata indicating a relationship between devices.
+type DeviceRelationshipType struct {
+	gorm.Model
+	rdb.TokenReference
+	rdb.NamedEntity
+}
+
+// Search criteria for locating device relationship types.
+type DeviceRelationshipTypeSearchCriteria struct {
+	rdb.Pagination
+}
+
+// Data required to create a device relationship.
+type DeviceRelationshipCreateRequest struct {
+	SourceDevice     string
+	TargetDevice     string
+	RelationshipType string
+}
+
+// Captures a relationship between devices.
+type DeviceRelationship struct {
+	gorm.Model
+	SourceDeviceId     int
+	SourceDevice       Device
+	TargetDeviceId     int
+	TargetDevice       Device
+	RelationshipTypeId int
+	RelationshipType   DeviceRelationshipType
+}
+
+// Search criteria for locating device relationships.
+type DeviceRelationshipSearchCriteria struct {
+	rdb.Pagination
+}
+
+// Data required to create a device group.
+type DeviceGroupCreateRequest struct {
 	Token           string
 	Name            *string
 	Description     *string
@@ -38,49 +116,6 @@ type DeviceTypeCreateRequest struct {
 	BorderColor     *string
 }
 
-// Represents a device.
-type Device struct {
-	gorm.Model
-	rdb.TokenReference
-	rdb.NamedEntity
-
-	DeviceTypeId int
-	DeviceType   DeviceType
-}
-
-// Data required to create a device.
-type DeviceCreateRequest struct {
-	Token           string
-	Name            *string
-	Description     *string
-	DeviceTypeToken string
-}
-
-// Search criteria for locating devices.
-type DeviceSearchCriteria struct {
-	rdb.Pagination
-	DeviceTypeToken *string
-}
-
-// Metadata indicating a relationship between devices.
-type DeviceRelationshipType struct {
-	gorm.Model
-	rdb.TokenReference
-	rdb.NamedEntity
-}
-
-// Captures a relationship between devices.
-type DeviceRelationship struct {
-	gorm.Model
-
-	SourceDeviceId     int
-	SourceDevice       Device
-	TargetDeviceId     int
-	TargetDevice       Device
-	RelationshipTypeId int
-	RelationshipType   DeviceRelationshipType
-}
-
 // Represents a group of devices.
 type DeviceGroup struct {
 	gorm.Model
@@ -89,40 +124,49 @@ type DeviceGroup struct {
 	rdb.BrandedEntity
 }
 
-// Role of device within a group.
-type DeviceGroupRole struct {
+// Search criteria for locating device groups.
+type DeviceGroupSearchCriteria struct {
+	rdb.Pagination
+}
+
+// Data required to create a device group relationship type.
+type DeviceGroupRelationshipTypeCreateRequest struct {
+	Token       string
+	Name        *string
+	Description *string
+}
+
+// Metadata indicating a relationship between device and group.
+type DeviceGroupRelationshipType struct {
 	gorm.Model
 	rdb.TokenReference
 	rdb.NamedEntity
+}
+
+// Search criteria for locating device groups relationship types.
+type DeviceGroupRelationshipTypeSearchCriteria struct {
+	rdb.Pagination
+}
+
+// Data required to create a device group relationship.
+type DeviceGroupRelationshipCreateRequest struct {
+	DeviceGroup      string
+	Device           string
+	RelationshipType string
 }
 
 // Represents a device-to-group relationship.
 type DeviceGroupRelationship struct {
 	gorm.Model
-
-	DeviceGroupId     int
-	DeviceGroup       DeviceGroup
-	DeviceId          int
-	Device            Device
-	DeviceGroupRoleId int
-	DeviceGroupRole   DeviceGroupRole
+	DeviceGroupId      int
+	DeviceGroup        DeviceGroup
+	DeviceId           int
+	Device             Device
+	RelationshipTypeId int
+	RelationshipType   DeviceGroupRelationshipType
 }
 
-// Role of subgroup within a group.
-type DeviceSubroupRole struct {
-	gorm.Model
-	rdb.TokenReference
-	rdb.NamedEntity
-}
-
-// Represents a subgroup-to-group relationship.
-type DeviceSubgroupRelationship struct {
-	gorm.Model
-
-	DeviceGroupId       int
-	DeviceGroup         DeviceGroup
-	SubgroupId          int
-	Subgroup            DeviceGroup
-	DeviceSubroupRoleId int
-	DeviceSubroupRole   DeviceSubroupRole
+// Search criteria for locating device groups relationships.
+type DeviceGroupRelationshipSearchCriteria struct {
+	rdb.Pagination
 }

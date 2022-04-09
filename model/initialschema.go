@@ -23,7 +23,6 @@ func NewInitialSchema() *gormigrate.Migration {
 				rdb.TokenReference
 				rdb.NamedEntity
 				rdb.BrandedEntity
-
 				Devices []Device
 			}
 
@@ -32,7 +31,6 @@ func NewInitialSchema() *gormigrate.Migration {
 				gorm.Model
 				rdb.TokenReference
 				rdb.NamedEntity
-
 				DeviceTypeId int
 				DeviceType   DeviceType
 			}
@@ -47,7 +45,6 @@ func NewInitialSchema() *gormigrate.Migration {
 			// Captures a relationship between devices.
 			type DeviceRelationship struct {
 				gorm.Model
-
 				SourceDeviceId     int
 				SourceDevice       Device
 				TargetDeviceId     int
@@ -64,8 +61,8 @@ func NewInitialSchema() *gormigrate.Migration {
 				rdb.BrandedEntity
 			}
 
-			// Role of device within a group.
-			type DeviceGroupRole struct {
+			// Metadata indicating a relationship between device and group.
+			type DeviceGroupRelationshipType struct {
 				gorm.Model
 				rdb.TokenReference
 				rdb.NamedEntity
@@ -74,43 +71,43 @@ func NewInitialSchema() *gormigrate.Migration {
 			// Represents a device-to-group relationship.
 			type DeviceGroupRelationship struct {
 				gorm.Model
-
-				DeviceGroupId     int
-				DeviceGroup       DeviceGroup
-				DeviceId          int
-				Device            Device
-				DeviceGroupRoleId int
-				DeviceGroupRole   DeviceGroupRole
+				DeviceGroupId      int
+				DeviceGroup        DeviceGroup
+				DeviceId           int
+				Device             Device
+				RelationshipTypeId int
+				RelationshipType   DeviceGroupRelationshipType
 			}
 
-			// Role of subgroup within a group.
-			type DeviceSubroupRole struct {
-				gorm.Model
-				rdb.TokenReference
-				rdb.NamedEntity
-			}
-
-			// Represents a subgroup-to-group relationship.
-			type DeviceSubgroupRelationship struct {
-				gorm.Model
-
-				DeviceGroupId       int
-				DeviceGroup         DeviceGroup
-				SubgroupId          int
-				Subgroup            DeviceGroup
-				DeviceSubroupRoleId int
-				DeviceSubroupRole   DeviceSubroupRole
-			}
-
-			return tx.AutoMigrate(&Device{}, &DeviceType{}, &DeviceRelationshipType{}, &DeviceRelationship{}, &DeviceGroup{},
-				&DeviceGroupRole{}, &DeviceGroupRelationship{}, &DeviceSubroupRole{}, &DeviceSubgroupRelationship{})
+			return tx.AutoMigrate(&Device{}, &DeviceType{}, &DeviceRelationshipType{}, &DeviceRelationship{},
+				&DeviceGroup{}, &DeviceGroupRelationshipType{}, &DeviceGroupRelationship{})
 		},
 		Rollback: func(tx *gorm.DB) error {
-			err := tx.Migrator().DropTable("devices")
+			err := tx.Migrator().DropTable("device_types")
 			if err != nil {
 				return err
 			}
 			err = tx.Migrator().DropTable("devices")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("device_relationship_types")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("device_relationships")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("device_groups")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("device_group_relationship_types")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("device_group_relationships")
 			if err != nil {
 				return err
 			}

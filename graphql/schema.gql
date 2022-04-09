@@ -60,6 +60,54 @@ input DeviceSearchCriteria {
     deviceTypeToken: String
 }
 
+# Represents a type of relation between devices.
+type DeviceRelationshipType implements Model & TokenReference & NamedEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+}
+
+# Data required to create a device relationship type.
+input DeviceRelationshipTypeCreateRequest {
+    token: String!
+    name: String
+    description: String
+}
+
+# Criteria used when searching for device relationship types.
+input DeviceRelationshipTypeSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Represents a relationship between devices.
+type DeviceRelationship implements Model {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    sourceDevice: Device!
+    targetDevice: Device!
+    relationshipType: DeviceRelationshipType!
+}
+
+# Data required to create a device relationship.
+input DeviceRelationshipCreateRequest {
+    sourceDevice: String!
+    targetDevice: String!
+    relationshipType: String!
+}
+
+# Criteria used when searching for device relationships.
+input DeviceRelationshipSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
 # Contains queries executed against model.
 type Query {
     # Find a device type by unique id.
@@ -74,6 +122,16 @@ type Query {
     deviceByToken(token: String!): Device!
     # List devices that meet criteria.
     devices(criteria: DeviceSearchCriteria!): [Device!]!
+    # Find a device relationship type by unique id.
+    deviceRelationshipType(id: ID!): DeviceRelationshipType!
+    # Find a device relationship type by unique token.
+    deviceRelationshipTypeByToken(token: String!): DeviceRelationshipType!
+    # List device relationship types that meet criteria.
+    deviceRelationshipTypes(criteria: DeviceRelationshipTypeSearchCriteria!): [DeviceRelationshipType!]!
+    # Find a device relationship by unique id.
+    deviceRelationship(id: ID!): DeviceRelationship!
+    # List device relationships that meet criteria.
+    deviceRelationships(criteria: DeviceRelationshipSearchCriteria!): [DeviceRelationship!]!
 }
 
 # Contains mutations executed against model.
@@ -81,11 +139,17 @@ type Mutation {
     # Create a new device type.
     createDeviceType(value: DeviceTypeCreateRequest): DeviceType!
     # Update an existing device type.
-    updateDeviceType(id: ID!, value: DeviceTypeCreateRequest): DeviceType!
+    updateDeviceType(token: String!, value: DeviceTypeCreateRequest): DeviceType!
     # Create a new device.
     createDevice(value: DeviceCreateRequest): Device!
     # Update an existing device.
-    updateDevice(id: ID!, value: DeviceCreateRequest): Device!
+    updateDevice(token: String!, value: DeviceCreateRequest): Device!
+    # Create a new device relationship type.
+    createDeviceRelationshipType(value: DeviceRelationshipTypeCreateRequest): DeviceRelationshipType!
+    # Update an existing device relationship type.
+    updateDeviceRelationshipType(token: String!, value: DeviceRelationshipTypeCreateRequest): DeviceRelationshipType!
+    # Create a new device relationship.
+    createDeviceRelationship(value: DeviceRelationshipCreateRequest): DeviceRelationship!
 }
 
 schema {
