@@ -1,3 +1,6 @@
+#
+# Device Management GraphQL Schema
+#
 
 # Represents a type or class of devices
 type DeviceType implements Model & TokenReference & NamedEntity & BrandedEntity {
@@ -108,13 +111,122 @@ input DeviceRelationshipSearchCriteria {
     pageSize: Int!
 }
 
+# Represents a type or class of assets
+type AssetType implements Model & TokenReference & NamedEntity & BrandedEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+}
+
+# Data required to create an asset type.
+input AssetTypeCreateRequest {
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+}
+
+# Criteria used when searching for asset types.
+input AssetTypeSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Represents an asset instance
+type Asset implements Model & TokenReference & NamedEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    assetType: AssetType!
+}
+
+# Data required to create an asset.
+input AssetCreateRequest {
+    token: String!
+    name: String
+    description: String
+    assetTypeToken: String!
+}
+
+# Criteria used when searching for assets.
+input AssetSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+    assetTypeToken: String
+}
+
+# Represents a type of relation between assets.
+type AssetRelationshipType implements Model & TokenReference & NamedEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+}
+
+# Data required to create an asset relationship type.
+input AssetRelationshipTypeCreateRequest {
+    token: String!
+    name: String
+    description: String
+}
+
+# Criteria used when searching for asset relationship types.
+input AssetRelationshipTypeSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Represents a relationship between assets.
+type AssetRelationship implements Model {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    sourceAsset: Asset!
+    targetAsset: Asset!
+    relationshipType: AssetRelationshipType!
+}
+
+# Data required to create an asset relationship.
+input AssetRelationshipCreateRequest {
+    sourceAsset: String!
+    targetAsset: String!
+    relationshipType: String!
+}
+
+# Criteria used when searching for asset relationships.
+input AssetRelationshipSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
 # Contains queries executed against model.
 type Query {
     # Find a device type by unique id.
     deviceType(id: ID!): DeviceType!
     # Find a device type by unique token.
     deviceTypeByToken(token: String!): DeviceType!
-    # List devices that meet criteria.
+    # List device types that meet criteria.
     deviceTypes(criteria: DeviceTypeSearchCriteria!): [DeviceType!]!
     # Find a device by unique id.
     device(id: ID!): Device!
@@ -132,6 +244,29 @@ type Query {
     deviceRelationship(id: ID!): DeviceRelationship!
     # List device relationships that meet criteria.
     deviceRelationships(criteria: DeviceRelationshipSearchCriteria!): [DeviceRelationship!]!
+
+    # Find an asset type by unique id.
+    assetType(id: ID!): AssetType!
+    # Find an asset type by unique token.
+    assetTypeByToken(token: String!): AssetType!
+    # List asset types that meet criteria.
+    assetTypes(criteria: AssetTypeSearchCriteria!): [AssetType!]!
+    # Find an asset by unique id.
+    asset(id: ID!): Asset!
+    # Find a device by unique token.
+    assetByToken(token: String!): Asset!
+    # List assets that meet criteria.
+    assets(criteria: AssetSearchCriteria!): [Asset!]!
+    # Find an asset relationship type by unique id.
+    assetRelationshipType(id: ID!): AssetRelationshipType!
+    # Find an asset relationship type by unique token.
+    assetRelationshipTypeByToken(token: String!): AssetRelationshipType!
+    # List asset relationship types that meet criteria.
+    assetRelationshipTypes(criteria: AssetRelationshipTypeSearchCriteria!): [AssetRelationshipType!]!
+    # Find an asset relationship by unique id.
+    assetRelationship(id: ID!): AssetRelationship!
+    # List asset relationships that meet criteria.
+    assetRelationships(criteria: AssetRelationshipSearchCriteria!): [AssetRelationship!]!
 }
 
 # Contains mutations executed against model.
@@ -150,6 +285,20 @@ type Mutation {
     updateDeviceRelationshipType(token: String!, value: DeviceRelationshipTypeCreateRequest): DeviceRelationshipType!
     # Create a new device relationship.
     createDeviceRelationship(value: DeviceRelationshipCreateRequest): DeviceRelationship!
+    # Create a new asset type.
+    createAssetType(value: AssetTypeCreateRequest): AssetType!
+    # Update an existing asset type.
+    updateAssetType(token: String!, value: AssetTypeCreateRequest): AssetType!
+    # Create a new asset.
+    createAsset(value: AssetCreateRequest): Asset!
+    # Update an existing asset.
+    updateAsset(token: String!, value: AssetCreateRequest): Asset!
+    # Create a new asset relationship type.
+    createAssetRelationshipType(value: AssetRelationshipTypeCreateRequest): AssetRelationshipType!
+    # Update an existing asset relationship type.
+    updateAssetRelationshipType(token: String!, value: AssetRelationshipTypeCreateRequest): AssetRelationshipType!
+    # Create a new asset relationship.
+    createAssetRelationship(value: AssetRelationshipCreateRequest): AssetRelationship!
 }
 
 schema {

@@ -79,8 +79,74 @@ func NewInitialSchema() *gormigrate.Migration {
 				RelationshipType   DeviceGroupRelationshipType
 			}
 
+			// Represents an asset type.
+			type AssetType struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+				rdb.BrandedEntity
+
+				Assets []Asset
+			}
+
+			// Represents an asset.
+			type Asset struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+
+				AssetTypeId int
+				AssetType   *AssetType
+			}
+
+			// Metadata indicating a relationship between assets.
+			type AssetRelationshipType struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+			}
+
+			// Captures a relationship between assets.
+			type AssetRelationship struct {
+				gorm.Model
+				SourceAssetId      int
+				SourceAsset        Asset
+				TargetAssetId      int
+				TargetAsset        Asset
+				RelationshipTypeId int
+				RelationshipType   AssetRelationshipType
+			}
+
+			// Represents a group of assets.
+			type AssetGroup struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+				rdb.BrandedEntity
+			}
+
+			// Metadata indicating a relationship between asset and group.
+			type AssetGroupRelationshipType struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+			}
+
+			// Represents a asset-to-group relationship.
+			type AssetGroupRelationship struct {
+				gorm.Model
+				AssetGroupId       int
+				AssetGroup         AssetGroup
+				AssetId            int
+				Asset              Asset
+				RelationshipTypeId int
+				RelationshipType   AssetGroupRelationshipType
+			}
+
 			return tx.AutoMigrate(&Device{}, &DeviceType{}, &DeviceRelationshipType{}, &DeviceRelationship{},
-				&DeviceGroup{}, &DeviceGroupRelationshipType{}, &DeviceGroupRelationship{})
+				&DeviceGroup{}, &DeviceGroupRelationshipType{}, &DeviceGroupRelationship{}, &AssetType{},
+				&Asset{}, &AssetRelationshipType{}, &AssetRelationship{}, &AssetGroup{}, &AssetGroupRelationshipType{},
+				&AssetGroupRelationship{})
 		},
 		Rollback: func(tx *gorm.DB) error {
 			err := tx.Migrator().DropTable("device_types")
