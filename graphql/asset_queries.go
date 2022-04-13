@@ -373,3 +373,46 @@ func (r *SchemaResolver) AssetGroupRelationshipTypes(ctx context.Context, args s
 
 	return resolvers, nil
 }
+
+// Find asset group relationship by unique id.
+func (r *SchemaResolver) AssetGroupRelationship(ctx context.Context, args struct {
+	Id string
+}) (*AssetGroupRelationshipResolver, error) {
+	found := model.AssetGroupRelationship{}
+	rdbmgr := r.GetRdbManager(ctx)
+	result := rdbmgr.Database.First(&found, args.Id)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	dt := &AssetGroupRelationshipResolver{
+		M: found,
+		S: r,
+		C: ctx,
+	}
+	return dt, nil
+}
+
+// List all asset group relationships that match the given criteria.
+func (r *SchemaResolver) AssetGroupRelationships(ctx context.Context, args struct {
+	Criteria model.AssetGroupRelationshipSearchCriteria
+}) ([]*AssetGroupRelationshipResolver, error) {
+	list := make([]model.AssetGroupRelationship, 0)
+	rdbmgr := r.GetRdbManager(ctx)
+	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize)).Find(&list)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	resolvers := make([]*AssetGroupRelationshipResolver, 0)
+	for _, current := range list {
+		resolvers = append(resolvers,
+			&AssetGroupRelationshipResolver{
+				M: current,
+				S: r,
+				C: ctx,
+			})
+	}
+
+	return resolvers, nil
+}

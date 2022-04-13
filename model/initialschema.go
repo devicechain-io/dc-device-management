@@ -23,6 +23,8 @@ func NewInitialSchema() *gormigrate.Migration {
 				rdb.TokenReference
 				rdb.NamedEntity
 				rdb.BrandedEntity
+				rdb.MetadataEntity
+
 				Devices []Device
 			}
 
@@ -31,8 +33,10 @@ func NewInitialSchema() *gormigrate.Migration {
 				gorm.Model
 				rdb.TokenReference
 				rdb.NamedEntity
+				rdb.MetadataEntity
+
 				DeviceTypeId int
-				DeviceType   DeviceType
+				DeviceType   *DeviceType
 			}
 
 			// Metadata indicating a relationship between devices.
@@ -40,11 +44,13 @@ func NewInitialSchema() *gormigrate.Migration {
 				gorm.Model
 				rdb.TokenReference
 				rdb.NamedEntity
+				rdb.MetadataEntity
 			}
 
 			// Captures a relationship between devices.
 			type DeviceRelationship struct {
 				gorm.Model
+				rdb.MetadataEntity
 				SourceDeviceId     int
 				SourceDevice       Device
 				TargetDeviceId     int
@@ -59,6 +65,7 @@ func NewInitialSchema() *gormigrate.Migration {
 				rdb.TokenReference
 				rdb.NamedEntity
 				rdb.BrandedEntity
+				rdb.MetadataEntity
 			}
 
 			// Metadata indicating a relationship between device and group.
@@ -66,11 +73,13 @@ func NewInitialSchema() *gormigrate.Migration {
 				gorm.Model
 				rdb.TokenReference
 				rdb.NamedEntity
+				rdb.MetadataEntity
 			}
 
 			// Represents a device-to-group relationship.
 			type DeviceGroupRelationship struct {
 				gorm.Model
+				rdb.MetadataEntity
 				DeviceGroupId      int
 				DeviceGroup        DeviceGroup
 				DeviceId           int
@@ -85,6 +94,7 @@ func NewInitialSchema() *gormigrate.Migration {
 				rdb.TokenReference
 				rdb.NamedEntity
 				rdb.BrandedEntity
+				rdb.MetadataEntity
 
 				Assets []Asset
 			}
@@ -94,6 +104,7 @@ func NewInitialSchema() *gormigrate.Migration {
 				gorm.Model
 				rdb.TokenReference
 				rdb.NamedEntity
+				rdb.MetadataEntity
 
 				AssetTypeId int
 				AssetType   *AssetType
@@ -104,11 +115,13 @@ func NewInitialSchema() *gormigrate.Migration {
 				gorm.Model
 				rdb.TokenReference
 				rdb.NamedEntity
+				rdb.MetadataEntity
 			}
 
 			// Captures a relationship between assets.
 			type AssetRelationship struct {
 				gorm.Model
+				rdb.MetadataEntity
 				SourceAssetId      int
 				SourceAsset        Asset
 				TargetAssetId      int
@@ -123,6 +136,7 @@ func NewInitialSchema() *gormigrate.Migration {
 				rdb.TokenReference
 				rdb.NamedEntity
 				rdb.BrandedEntity
+				rdb.MetadataEntity
 			}
 
 			// Metadata indicating a relationship between asset and group.
@@ -130,17 +144,18 @@ func NewInitialSchema() *gormigrate.Migration {
 				gorm.Model
 				rdb.TokenReference
 				rdb.NamedEntity
+				rdb.MetadataEntity
 			}
 
 			// Represents a asset-to-group relationship.
 			type AssetGroupRelationship struct {
 				gorm.Model
+				rdb.MetadataEntity
 				AssetGroupId       int
 				AssetGroup         AssetGroup
 				AssetId            int
 				Asset              Asset
 				RelationshipTypeId int
-				RelationshipType   AssetGroupRelationshipType
 			}
 
 			return tx.AutoMigrate(&Device{}, &DeviceType{}, &DeviceRelationshipType{}, &DeviceRelationship{},
@@ -174,6 +189,34 @@ func NewInitialSchema() *gormigrate.Migration {
 				return err
 			}
 			err = tx.Migrator().DropTable("device_group_relationships")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("asset_types")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("assets")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("asset_relationship_types")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("asset_relationships")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("asset_groups")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("asset_group_relationship_types")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("asset_group_relationships")
 			if err != nil {
 				return err
 			}

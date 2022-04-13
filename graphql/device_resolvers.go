@@ -74,6 +74,10 @@ func (r *DeviceTypeResolver) BorderColor() *string {
 	return util.NullStr(r.M.BorderColor)
 }
 
+func (r *DeviceTypeResolver) Metadata() *string {
+	return util.MetadataStr(r.M.Metadata)
+}
+
 // ---------------
 // Device resolver
 // ---------------
@@ -110,6 +114,10 @@ func (r *DeviceResolver) Name() *string {
 
 func (r *DeviceResolver) Description() *string {
 	return util.NullStr(r.M.Description)
+}
+
+func (r *DeviceResolver) Metadata() *string {
+	return util.MetadataStr(r.M.Metadata)
 }
 
 func (r *DeviceResolver) DeviceType() *DeviceTypeResolver {
@@ -166,6 +174,10 @@ func (r *DeviceRelationshipTypeResolver) Description() *string {
 	return util.NullStr(r.M.Description)
 }
 
+func (r *DeviceRelationshipTypeResolver) Metadata() *string {
+	return util.MetadataStr(r.M.Metadata)
+}
+
 // ----------------------------
 // Device relationship resolver
 // ----------------------------
@@ -190,6 +202,10 @@ func (r *DeviceRelationshipResolver) UpdatedAt() *string {
 
 func (r *DeviceRelationshipResolver) DeletedAt() *string {
 	return util.FormatTime(r.M.DeletedAt.Time)
+}
+
+func (r *DeviceRelationshipResolver) Metadata() *string {
+	return util.MetadataStr(r.M.Metadata)
 }
 
 func (r *DeviceRelationshipResolver) SourceDevice() *DeviceResolver {
@@ -274,6 +290,10 @@ func (r *DeviceGroupResolver) BorderColor() *string {
 	return util.NullStr(r.M.BorderColor)
 }
 
+func (r *DeviceGroupResolver) Metadata() *string {
+	return util.MetadataStr(r.M.Metadata)
+}
+
 // ---------------------------------------
 // Device group relationship type resolver
 // ---------------------------------------
@@ -310,4 +330,62 @@ func (r *DeviceGroupRelationshipTypeResolver) Name() *string {
 
 func (r *DeviceGroupRelationshipTypeResolver) Description() *string {
 	return util.NullStr(r.M.Description)
+}
+
+func (r *DeviceGroupRelationshipTypeResolver) Metadata() *string {
+	return util.MetadataStr(r.M.Metadata)
+}
+
+// ----------------------------------
+// Device group relationship resolver
+// ----------------------------------
+
+type DeviceGroupRelationshipResolver struct {
+	M model.DeviceGroupRelationship
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *DeviceGroupRelationshipResolver) Id() gql.ID {
+	return gql.ID(fmt.Sprint(r.M.ID))
+}
+
+func (r *DeviceGroupRelationshipResolver) CreatedAt() *string {
+	return util.FormatTime(r.M.CreatedAt)
+}
+
+func (r *DeviceGroupRelationshipResolver) UpdatedAt() *string {
+	return util.FormatTime(r.M.UpdatedAt)
+}
+
+func (r *DeviceGroupRelationshipResolver) DeletedAt() *string {
+	return util.FormatTime(r.M.DeletedAt.Time)
+}
+
+func (r *DeviceGroupRelationshipResolver) Metadata() *string {
+	return util.MetadataStr(r.M.Metadata)
+}
+
+func (r *DeviceGroupRelationshipResolver) DeviceGroup() *DeviceGroupResolver {
+	return &DeviceGroupResolver{
+		M: r.M.DeviceGroup,
+		S: r.S,
+		C: r.C,
+	}
+}
+
+func (r *DeviceGroupRelationshipResolver) Device() *DeviceResolver {
+	return &DeviceResolver{
+		M: r.M.Device,
+		S: r.S,
+		C: r.C,
+	}
+}
+
+func (r *DeviceGroupRelationshipResolver) RelationshipType() *DeviceGroupRelationshipTypeResolver {
+	return &DeviceGroupRelationshipTypeResolver{
+		M: r.M.RelationshipType,
+		S: r.S,
+		C: r.C,
+	}
 }

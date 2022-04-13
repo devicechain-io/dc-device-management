@@ -21,6 +21,7 @@ type AssetTypeCreateRequest struct {
 	BackgroundColor *string
 	ForegroundColor *string
 	BorderColor     *string
+	Metadata        *string
 }
 
 // Represents an asset type.
@@ -29,6 +30,7 @@ type AssetType struct {
 	rdb.TokenReference
 	rdb.NamedEntity
 	rdb.BrandedEntity
+	rdb.MetadataEntity
 
 	Assets []Asset
 }
@@ -44,6 +46,7 @@ type AssetCreateRequest struct {
 	Name           *string
 	Description    *string
 	AssetTypeToken string
+	Metadata       *string
 }
 
 // Represents an asset.
@@ -51,6 +54,7 @@ type Asset struct {
 	gorm.Model
 	rdb.TokenReference
 	rdb.NamedEntity
+	rdb.MetadataEntity
 
 	AssetTypeId int
 	AssetType   *AssetType
@@ -67,6 +71,7 @@ type AssetRelationshipTypeCreateRequest struct {
 	Token       string
 	Name        *string
 	Description *string
+	Metadata    *string
 }
 
 // Metadata indicating a relationship between assets.
@@ -74,6 +79,7 @@ type AssetRelationshipType struct {
 	gorm.Model
 	rdb.TokenReference
 	rdb.NamedEntity
+	rdb.MetadataEntity
 }
 
 // Search criteria for locating asset relationship types.
@@ -86,11 +92,13 @@ type AssetRelationshipCreateRequest struct {
 	SourceAsset      string
 	TargetAsset      string
 	RelationshipType string
+	Metadata         *string
 }
 
 // Captures a relationship between assets.
 type AssetRelationship struct {
 	gorm.Model
+	rdb.MetadataEntity
 	SourceAssetId      int
 	SourceAsset        Asset
 	TargetAssetId      int
@@ -114,6 +122,7 @@ type AssetGroupCreateRequest struct {
 	BackgroundColor *string
 	ForegroundColor *string
 	BorderColor     *string
+	Metadata        *string
 }
 
 // Represents a group of assets.
@@ -122,6 +131,7 @@ type AssetGroup struct {
 	rdb.TokenReference
 	rdb.NamedEntity
 	rdb.BrandedEntity
+	rdb.MetadataEntity
 }
 
 // Search criteria for locating asset groups.
@@ -134,6 +144,7 @@ type AssetGroupRelationshipTypeCreateRequest struct {
 	Token       string
 	Name        *string
 	Description *string
+	Metadata    *string
 }
 
 // Metadata indicating a relationship between asset and group.
@@ -141,6 +152,7 @@ type AssetGroupRelationshipType struct {
 	gorm.Model
 	rdb.TokenReference
 	rdb.NamedEntity
+	rdb.MetadataEntity
 }
 
 // Search criteria for locating asset groups relationship types.
@@ -153,11 +165,13 @@ type AssetGroupRelationshipCreateRequest struct {
 	DeviceGroup      string
 	Device           string
 	RelationshipType string
+	Metadata         *string
 }
 
 // Represents a asset-to-group relationship.
 type AssetGroupRelationship struct {
 	gorm.Model
+	rdb.MetadataEntity
 	AssetGroupId       int
 	AssetGroup         AssetGroup
 	AssetId            int

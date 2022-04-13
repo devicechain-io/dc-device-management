@@ -33,6 +33,9 @@ func (r *SchemaResolver) CreateDeviceType(ctx context.Context, args struct {
 			ForegroundColor: rdb.NullStrOf(args.Value.ForegroundColor),
 			BorderColor:     rdb.NullStrOf(args.Value.BorderColor),
 		},
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(args.Value.Metadata),
+		},
 	}
 	result := rdbmgr.Database.Create(&created)
 	if result.Error != nil {
@@ -67,6 +70,7 @@ func (r *SchemaResolver) UpdateDeviceType(ctx context.Context, args struct {
 	upd.BackgroundColor = rdb.NullStrOf(args.Value.BackgroundColor)
 	upd.ForegroundColor = rdb.NullStrOf(args.Value.ForegroundColor)
 	upd.BorderColor = rdb.NullStrOf(args.Value.BorderColor)
+	upd.Metadata = rdb.MetadataStrOf(args.Value.Metadata)
 
 	result := rdbmgr.Database.Save(&upd)
 	if result.Error != nil {
@@ -99,6 +103,9 @@ func (r *SchemaResolver) CreateDevice(ctx context.Context, args struct {
 			Name:        rdb.NullStrOf(args.Value.Name),
 			Description: rdb.NullStrOf(args.Value.Description),
 		},
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(args.Value.Metadata),
+		},
 		DeviceType: &dtr.M,
 	}
 	result := rdbmgr.Database.Create(&created)
@@ -130,6 +137,7 @@ func (r *SchemaResolver) UpdateDevice(ctx context.Context, args struct {
 	upd.Token = args.Value.Token
 	upd.Name = rdb.NullStrOf(args.Value.Name)
 	upd.Description = rdb.NullStrOf(args.Value.Description)
+	upd.Metadata = rdb.MetadataStrOf(args.Value.Metadata)
 
 	// Update device type if changed.
 	if args.Value.DeviceTypeToken != upd.DeviceType.Token {
@@ -166,6 +174,9 @@ func (r *SchemaResolver) CreateDeviceRelationshipType(ctx context.Context, args 
 			Name:        rdb.NullStrOf(args.Value.Name),
 			Description: rdb.NullStrOf(args.Value.Description),
 		},
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(args.Value.Metadata),
+		},
 	}
 	result := rdbmgr.Database.Create(&created)
 	if result.Error != nil {
@@ -195,6 +206,7 @@ func (r *SchemaResolver) UpdateDeviceRelationshipType(ctx context.Context, args 
 	upd.Token = args.Value.Token
 	upd.Name = rdb.NullStrOf(args.Value.Name)
 	upd.Description = rdb.NullStrOf(args.Value.Description)
+	upd.Metadata = rdb.MetadataStrOf(args.Value.Metadata)
 
 	result := rdbmgr.Database.Save(&upd)
 	if result.Error != nil {
@@ -233,6 +245,9 @@ func (r *SchemaResolver) CreateDeviceRelationship(ctx context.Context, args stru
 		SourceDevice:     source.M,
 		TargetDevice:     target.M,
 		RelationshipType: rtype.M,
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(args.Value.Metadata),
+		},
 	}
 	result := rdbmgr.Database.Create(&created)
 	if result.Error != nil {
@@ -266,6 +281,9 @@ func (r *SchemaResolver) CreateDeviceGroup(ctx context.Context, args struct {
 			BackgroundColor: rdb.NullStrOf(args.Value.BackgroundColor),
 			ForegroundColor: rdb.NullStrOf(args.Value.ForegroundColor),
 			BorderColor:     rdb.NullStrOf(args.Value.BorderColor),
+		},
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(args.Value.Metadata),
 		},
 	}
 	result := rdbmgr.Database.Create(&created)
@@ -301,6 +319,7 @@ func (r *SchemaResolver) UpdateDeviceGroup(ctx context.Context, args struct {
 	upd.BackgroundColor = rdb.NullStrOf(args.Value.BackgroundColor)
 	upd.ForegroundColor = rdb.NullStrOf(args.Value.ForegroundColor)
 	upd.BorderColor = rdb.NullStrOf(args.Value.BorderColor)
+	upd.Metadata = rdb.MetadataStrOf(args.Value.Metadata)
 
 	result := rdbmgr.Database.Save(&upd)
 	if result.Error != nil {
@@ -327,6 +346,9 @@ func (r *SchemaResolver) CreateDeviceGroupRelationshipType(ctx context.Context, 
 		NamedEntity: rdb.NamedEntity{
 			Name:        rdb.NullStrOf(args.Value.Name),
 			Description: rdb.NullStrOf(args.Value.Description),
+		},
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(args.Value.Metadata),
 		},
 	}
 	result := rdbmgr.Database.Create(&created)
@@ -357,6 +379,7 @@ func (r *SchemaResolver) UpdateDeviceGroupRelationshipType(ctx context.Context, 
 	upd.Token = args.Value.Token
 	upd.Name = rdb.NullStrOf(args.Value.Name)
 	upd.Description = rdb.NullStrOf(args.Value.Description)
+	upd.Metadata = rdb.MetadataStrOf(args.Value.Metadata)
 
 	result := rdbmgr.Database.Save(&upd)
 	if result.Error != nil {

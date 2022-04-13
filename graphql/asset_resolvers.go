@@ -74,6 +74,10 @@ func (r *AssetTypeResolver) BorderColor() *string {
 	return util.NullStr(r.M.BorderColor)
 }
 
+func (r *AssetTypeResolver) Metadata() *string {
+	return util.MetadataStr(r.M.Metadata)
+}
+
 // --------------
 // Asset resolver
 // --------------
@@ -110,6 +114,10 @@ func (r *AssetResolver) Name() *string {
 
 func (r *AssetResolver) Description() *string {
 	return util.NullStr(r.M.Description)
+}
+
+func (r *AssetResolver) Metadata() *string {
+	return util.MetadataStr(r.M.Metadata)
 }
 
 func (r *AssetResolver) AssetType() *AssetTypeResolver {
@@ -166,6 +174,10 @@ func (r *AssetRelationshipTypeResolver) Description() *string {
 	return util.NullStr(r.M.Description)
 }
 
+func (r *AssetRelationshipTypeResolver) Metadata() *string {
+	return util.MetadataStr(r.M.Metadata)
+}
+
 // ---------------------------
 // Asset relationship resolver
 // ---------------------------
@@ -190,6 +202,10 @@ func (r *AssetRelationshipResolver) UpdatedAt() *string {
 
 func (r *AssetRelationshipResolver) DeletedAt() *string {
 	return util.FormatTime(r.M.DeletedAt.Time)
+}
+
+func (r *AssetRelationshipResolver) Metadata() *string {
+	return util.MetadataStr(r.M.Metadata)
 }
 
 func (r *AssetRelationshipResolver) SourceAsset() *AssetResolver {
@@ -274,6 +290,10 @@ func (r *AssetGroupResolver) BorderColor() *string {
 	return util.NullStr(r.M.BorderColor)
 }
 
+func (r *AssetGroupResolver) Metadata() *string {
+	return util.MetadataStr(r.M.Metadata)
+}
+
 // --------------------------------------
 // Asset group relationship type resolver
 // --------------------------------------
@@ -310,4 +330,62 @@ func (r *AssetGroupRelationshipTypeResolver) Name() *string {
 
 func (r *AssetGroupRelationshipTypeResolver) Description() *string {
 	return util.NullStr(r.M.Description)
+}
+
+func (r *AssetGroupRelationshipTypeResolver) Metadata() *string {
+	return util.MetadataStr(r.M.Metadata)
+}
+
+// ---------------------------------
+// Asset group relationship resolver
+// ---------------------------------
+
+type AssetGroupRelationshipResolver struct {
+	M model.AssetGroupRelationship
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *AssetGroupRelationshipResolver) Id() gql.ID {
+	return gql.ID(fmt.Sprint(r.M.ID))
+}
+
+func (r *AssetGroupRelationshipResolver) CreatedAt() *string {
+	return util.FormatTime(r.M.CreatedAt)
+}
+
+func (r *AssetGroupRelationshipResolver) UpdatedAt() *string {
+	return util.FormatTime(r.M.UpdatedAt)
+}
+
+func (r *AssetGroupRelationshipResolver) DeletedAt() *string {
+	return util.FormatTime(r.M.DeletedAt.Time)
+}
+
+func (r *AssetGroupRelationshipResolver) Metadata() *string {
+	return util.MetadataStr(r.M.Metadata)
+}
+
+func (r *AssetGroupRelationshipResolver) AssetGroup() *AssetGroupResolver {
+	return &AssetGroupResolver{
+		M: r.M.AssetGroup,
+		S: r.S,
+		C: r.C,
+	}
+}
+
+func (r *AssetGroupRelationshipResolver) Asset() *AssetResolver {
+	return &AssetResolver{
+		M: r.M.Asset,
+		S: r.S,
+		C: r.C,
+	}
+}
+
+func (r *AssetGroupRelationshipResolver) RelationshipType() *AssetGroupRelationshipTypeResolver {
+	return &AssetGroupRelationshipTypeResolver{
+		M: r.M.RelationshipType,
+		S: r.S,
+		C: r.C,
+	}
 }

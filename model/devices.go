@@ -21,6 +21,7 @@ type DeviceTypeCreateRequest struct {
 	BackgroundColor *string
 	ForegroundColor *string
 	BorderColor     *string
+	Metadata        *string
 }
 
 // Represents a device type.
@@ -29,6 +30,7 @@ type DeviceType struct {
 	rdb.TokenReference
 	rdb.NamedEntity
 	rdb.BrandedEntity
+	rdb.MetadataEntity
 
 	Devices []Device
 }
@@ -44,6 +46,7 @@ type DeviceCreateRequest struct {
 	Name            *string
 	Description     *string
 	DeviceTypeToken string
+	Metadata        *string
 }
 
 // Represents a device.
@@ -51,6 +54,7 @@ type Device struct {
 	gorm.Model
 	rdb.TokenReference
 	rdb.NamedEntity
+	rdb.MetadataEntity
 
 	DeviceTypeId int
 	DeviceType   *DeviceType
@@ -67,6 +71,7 @@ type DeviceRelationshipTypeCreateRequest struct {
 	Token       string
 	Name        *string
 	Description *string
+	Metadata    *string
 }
 
 // Metadata indicating a relationship between devices.
@@ -74,6 +79,7 @@ type DeviceRelationshipType struct {
 	gorm.Model
 	rdb.TokenReference
 	rdb.NamedEntity
+	rdb.MetadataEntity
 }
 
 // Search criteria for locating device relationship types.
@@ -86,11 +92,13 @@ type DeviceRelationshipCreateRequest struct {
 	SourceDevice     string
 	TargetDevice     string
 	RelationshipType string
+	Metadata         *string
 }
 
 // Captures a relationship between devices.
 type DeviceRelationship struct {
 	gorm.Model
+	rdb.MetadataEntity
 	SourceDeviceId     int
 	SourceDevice       Device
 	TargetDeviceId     int
@@ -114,6 +122,7 @@ type DeviceGroupCreateRequest struct {
 	BackgroundColor *string
 	ForegroundColor *string
 	BorderColor     *string
+	Metadata        *string
 }
 
 // Represents a group of devices.
@@ -122,6 +131,7 @@ type DeviceGroup struct {
 	rdb.TokenReference
 	rdb.NamedEntity
 	rdb.BrandedEntity
+	rdb.MetadataEntity
 }
 
 // Search criteria for locating device groups.
@@ -134,6 +144,7 @@ type DeviceGroupRelationshipTypeCreateRequest struct {
 	Token       string
 	Name        *string
 	Description *string
+	Metadata    *string
 }
 
 // Metadata indicating a relationship between device and group.
@@ -141,6 +152,7 @@ type DeviceGroupRelationshipType struct {
 	gorm.Model
 	rdb.TokenReference
 	rdb.NamedEntity
+	rdb.MetadataEntity
 }
 
 // Search criteria for locating device groups relationship types.
@@ -153,11 +165,13 @@ type DeviceGroupRelationshipCreateRequest struct {
 	DeviceGroup      string
 	Device           string
 	RelationshipType string
+	Metadata         *string
 }
 
 // Represents a device-to-group relationship.
 type DeviceGroupRelationship struct {
 	gorm.Model
+	rdb.MetadataEntity
 	DeviceGroupId      int
 	DeviceGroup        DeviceGroup
 	DeviceId           int

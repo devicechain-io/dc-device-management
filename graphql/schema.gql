@@ -3,7 +3,7 @@
 #
 
 # Represents a type or class of devices
-type DeviceType implements Model & TokenReference & NamedEntity & BrandedEntity {
+type DeviceType implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
     id: ID!
     created_at: String
     updated_at: String
@@ -16,6 +16,7 @@ type DeviceType implements Model & TokenReference & NamedEntity & BrandedEntity 
     backgroundColor: String
     foregroundColor: String
     borderColor: String
+    metadata: String
 }
 
 # Data required to create a device type.
@@ -28,6 +29,7 @@ input DeviceTypeCreateRequest {
     backgroundColor: String
     foregroundColor: String
     borderColor: String
+    metadata: String
 }
 
 # Criteria used when searching for device types.
@@ -37,7 +39,7 @@ input DeviceTypeSearchCriteria {
 }
 
 # Represents a device instance
-type Device implements Model & TokenReference & NamedEntity {
+type Device implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
     created_at: String
     updated_at: String
@@ -46,6 +48,7 @@ type Device implements Model & TokenReference & NamedEntity {
     name: String
     description: String
     deviceType: DeviceType!
+    metadata: String
 }
 
 # Data required to create a device.
@@ -54,6 +57,7 @@ input DeviceCreateRequest {
     name: String
     description: String
     deviceTypeToken: String!
+    metadata: String
 }
 
 # Criteria used when searching for devices.
@@ -64,7 +68,7 @@ input DeviceSearchCriteria {
 }
 
 # Represents a type of relation between devices.
-type DeviceRelationshipType implements Model & TokenReference & NamedEntity {
+type DeviceRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
     created_at: String
     updated_at: String
@@ -72,6 +76,7 @@ type DeviceRelationshipType implements Model & TokenReference & NamedEntity {
     token: String!
     name: String
     description: String
+    metadata: String
 }
 
 # Data required to create a device relationship type.
@@ -79,6 +84,7 @@ input DeviceRelationshipTypeCreateRequest {
     token: String!
     name: String
     description: String
+    metadata: String
 }
 
 # Criteria used when searching for device relationship types.
@@ -88,7 +94,7 @@ input DeviceRelationshipTypeSearchCriteria {
 }
 
 # Represents a relationship between devices.
-type DeviceRelationship implements Model {
+type DeviceRelationship implements Model & MetadataEntity {
     id: ID!
     created_at: String
     updated_at: String
@@ -96,6 +102,7 @@ type DeviceRelationship implements Model {
     sourceDevice: Device!
     targetDevice: Device!
     relationshipType: DeviceRelationshipType!
+    metadata: String
 }
 
 # Data required to create a device relationship.
@@ -103,6 +110,7 @@ input DeviceRelationshipCreateRequest {
     sourceDevice: String!
     targetDevice: String!
     relationshipType: String!
+    metadata: String
 }
 
 # Criteria used when searching for device relationships.
@@ -111,8 +119,8 @@ input DeviceRelationshipSearchCriteria {
     pageSize: Int!
 }
 
-# Represents a type or class of assets
-type AssetType implements Model & TokenReference & NamedEntity & BrandedEntity {
+# Represents a group of related devices.
+type DeviceGroup implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
     id: ID!
     created_at: String
     updated_at: String
@@ -125,6 +133,95 @@ type AssetType implements Model & TokenReference & NamedEntity & BrandedEntity {
     backgroundColor: String
     foregroundColor: String
     borderColor: String
+    metadata: String
+}
+
+# Data required to create a device group.
+input DeviceGroupCreateRequest {
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+    metadata: String
+}
+
+# Criteria used when searching for device groups.
+input DeviceGroupSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Represents a type of relation between a device and a device group.
+type DeviceGroupRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    metadata: String
+}
+
+# Data required to create a device group relationship type.
+input DeviceGroupRelationshipTypeCreateRequest {
+    token: String!
+    name: String
+    description: String
+    metadata: String
+}
+
+# Criteria used when searching for device group relationship types.
+input DeviceGroupRelationshipTypeSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Represents a relationship between a device and a group.
+type DeviceGroupRelationship implements Model {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    deviceGroup: DeviceGroup!
+    device: Device!
+    relationshipType: DeviceGroupRelationshipType!
+    metadata: String
+}
+
+# Data required to create a device group relationship.
+input DeviceGroupRelationshipCreateRequest {
+    deviceGroup: String!
+    device: String!
+    relationshipType: String!
+    metadata: String
+}
+
+# Criteria used when searching for device group relationships.
+input DeviceGroupRelationshipSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Represents a type or class of assets
+type AssetType implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+    metadata: String
 }
 
 # Data required to create an asset type.
@@ -137,6 +234,7 @@ input AssetTypeCreateRequest {
     backgroundColor: String
     foregroundColor: String
     borderColor: String
+    metadata: String
 }
 
 # Criteria used when searching for asset types.
@@ -146,7 +244,7 @@ input AssetTypeSearchCriteria {
 }
 
 # Represents an asset instance
-type Asset implements Model & TokenReference & NamedEntity {
+type Asset implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
     created_at: String
     updated_at: String
@@ -155,6 +253,7 @@ type Asset implements Model & TokenReference & NamedEntity {
     name: String
     description: String
     assetType: AssetType!
+    metadata: String
 }
 
 # Data required to create an asset.
@@ -163,6 +262,7 @@ input AssetCreateRequest {
     name: String
     description: String
     assetTypeToken: String!
+    metadata: String
 }
 
 # Criteria used when searching for assets.
@@ -173,7 +273,7 @@ input AssetSearchCriteria {
 }
 
 # Represents a type of relation between assets.
-type AssetRelationshipType implements Model & TokenReference & NamedEntity {
+type AssetRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
     created_at: String
     updated_at: String
@@ -181,6 +281,7 @@ type AssetRelationshipType implements Model & TokenReference & NamedEntity {
     token: String!
     name: String
     description: String
+    metadata: String
 }
 
 # Data required to create an asset relationship type.
@@ -188,6 +289,7 @@ input AssetRelationshipTypeCreateRequest {
     token: String!
     name: String
     description: String
+    metadata: String
 }
 
 # Criteria used when searching for asset relationship types.
@@ -205,6 +307,7 @@ type AssetRelationship implements Model {
     sourceAsset: Asset!
     targetAsset: Asset!
     relationshipType: AssetRelationshipType!
+    metadata: String
 }
 
 # Data required to create an asset relationship.
@@ -212,10 +315,99 @@ input AssetRelationshipCreateRequest {
     sourceAsset: String!
     targetAsset: String!
     relationshipType: String!
+    metadata: String
 }
 
 # Criteria used when searching for asset relationships.
 input AssetRelationshipSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Represents a group of related assets.
+type AssetGroup implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+    metadata: String
+}
+
+# Data required to create an asset group.
+input AssetGroupCreateRequest {
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+    metadata: String
+}
+
+# Criteria used when searching for asset groups.
+input AssetGroupSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Represents a type of relation between an asset and an asset group.
+type AssetGroupRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    metadata: String
+}
+
+# Data required to create an asset group relationship type.
+input AssetGroupRelationshipTypeCreateRequest {
+    token: String!
+    name: String
+    description: String
+    metadata: String
+}
+
+# Criteria used when searching for asset group relationship types.
+input AssetGroupRelationshipTypeSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Represents a relationship between an asset and an asset.
+type AssetGroupRelationship implements Model {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    assetGroup: AssetGroup!
+    asset: Asset!
+    relationshipType: AssetGroupRelationshipType!
+    metadata: String
+}
+
+# Data required to create an asset group relationship.
+input AssetGroupRelationshipCreateRequest {
+    assetGroup: String!
+    asset: String!
+    relationshipType: String!
+    metadata: String
+}
+
+# Criteria used when searching for asset group relationships.
+input AssetGroupRelationshipSearchCriteria {
     pageNumber: Int!
     pageSize: Int!
 }
@@ -244,6 +436,22 @@ type Query {
     deviceRelationship(id: ID!): DeviceRelationship!
     # List device relationships that meet criteria.
     deviceRelationships(criteria: DeviceRelationshipSearchCriteria!): [DeviceRelationship!]!
+    # Find a device group by unique id.
+    deviceGroup(id: ID!): DeviceGroup!
+    # Find a device group by unique token.
+    deviceGroupByToken(token: String!): DeviceGroup!
+    # List device groups that meet criteria.
+    deviceGroups(criteria: DeviceGroupSearchCriteria!): [DeviceGroup!]!
+    # Find a device group relationship type by unique id.
+    deviceGroupRelationshipType(id: ID!): DeviceGroupRelationshipType!
+    # Find a device group relationship type by unique id.
+    deviceGroupRelationshipTypeByToken(token: String!): DeviceGroupRelationshipType!
+    # List device group relationship types that meet criteria.
+    deviceGroupRelationshipTypes(criteria: DeviceGroupRelationshipTypeSearchCriteria!): [DeviceGroupRelationshipType!]!
+    # Find a device group relationship by unique id.
+    deviceGroupRelationship(id: ID!): DeviceGroupRelationship!
+    # List device group relationships that meet criteria.
+    deviceGroupRelationships(criteria: DeviceGroupRelationshipSearchCriteria!): [DeviceGroupRelationship!]!
 
     # Find an asset type by unique id.
     assetType(id: ID!): AssetType!
@@ -267,6 +475,22 @@ type Query {
     assetRelationship(id: ID!): AssetRelationship!
     # List asset relationships that meet criteria.
     assetRelationships(criteria: AssetRelationshipSearchCriteria!): [AssetRelationship!]!
+    # Find an asset group by unique id.
+    assetGroup(id: ID!): AssetGroup!
+    # Find an asset group by unique token.
+    assetGroupByToken(token: String!): AssetGroup!
+    # List asset groups that meet criteria.
+    assetGroups(criteria: AssetGroupSearchCriteria!): [AssetGroup!]!
+    # Find an asset group relationship type by unique id.
+    assetGroupRelationshipType(id: ID!): AssetGroupRelationshipType!
+    # Find an asset group relationship type by unique id.
+    assetGroupRelationshipTypeByToken(token: String!): AssetGroupRelationshipType!
+    # List asset group relationship types that meet criteria.
+    assetGroupRelationshipTypes(criteria: AssetGroupRelationshipTypeSearchCriteria!): [AssetGroupRelationshipType!]!
+    # Find an asset group relationship by unique id.
+    assetGroupRelationship(id: ID!): AssetGroupRelationship!
+    # List asset group relationships that meet criteria.
+    assetGroupRelationships(criteria: AssetGroupRelationshipSearchCriteria!): [AssetGroupRelationship!]!
 }
 
 # Contains mutations executed against model.
@@ -285,6 +509,7 @@ type Mutation {
     updateDeviceRelationshipType(token: String!, value: DeviceRelationshipTypeCreateRequest): DeviceRelationshipType!
     # Create a new device relationship.
     createDeviceRelationship(value: DeviceRelationshipCreateRequest): DeviceRelationship!
+
     # Create a new asset type.
     createAssetType(value: AssetTypeCreateRequest): AssetType!
     # Update an existing asset type.

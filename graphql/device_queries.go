@@ -373,3 +373,46 @@ func (r *SchemaResolver) DeviceGroupRelationshipTypes(ctx context.Context, args 
 
 	return resolvers, nil
 }
+
+// Find device group relationship by unique id.
+func (r *SchemaResolver) DeviceGroupRelationship(ctx context.Context, args struct {
+	Id string
+}) (*DeviceGroupRelationshipResolver, error) {
+	found := model.DeviceGroupRelationship{}
+	rdbmgr := r.GetRdbManager(ctx)
+	result := rdbmgr.Database.First(&found, args.Id)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	dt := &DeviceGroupRelationshipResolver{
+		M: found,
+		S: r,
+		C: ctx,
+	}
+	return dt, nil
+}
+
+// List all device group relationships that match the given criteria.
+func (r *SchemaResolver) DeviceGroupRelationships(ctx context.Context, args struct {
+	Criteria model.DeviceGroupRelationshipSearchCriteria
+}) ([]*DeviceGroupRelationshipResolver, error) {
+	list := make([]model.DeviceGroupRelationship, 0)
+	rdbmgr := r.GetRdbManager(ctx)
+	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize)).Find(&list)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	resolvers := make([]*DeviceGroupRelationshipResolver, 0)
+	for _, current := range list {
+		resolvers = append(resolvers,
+			&DeviceGroupRelationshipResolver{
+				M: current,
+				S: r,
+				C: ctx,
+			})
+	}
+
+	return resolvers, nil
+}

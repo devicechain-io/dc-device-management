@@ -33,6 +33,9 @@ func (r *SchemaResolver) CreateAssetType(ctx context.Context, args struct {
 			ForegroundColor: rdb.NullStrOf(args.Value.ForegroundColor),
 			BorderColor:     rdb.NullStrOf(args.Value.BorderColor),
 		},
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(args.Value.Metadata),
+		},
 	}
 	result := rdbmgr.Database.Create(&created)
 	if result.Error != nil {
@@ -67,6 +70,7 @@ func (r *SchemaResolver) UpdateAssetType(ctx context.Context, args struct {
 	upd.BackgroundColor = rdb.NullStrOf(args.Value.BackgroundColor)
 	upd.ForegroundColor = rdb.NullStrOf(args.Value.ForegroundColor)
 	upd.BorderColor = rdb.NullStrOf(args.Value.BorderColor)
+	upd.Metadata = rdb.MetadataStrOf(args.Value.Metadata)
 
 	result := rdbmgr.Database.Save(&upd)
 	if result.Error != nil {
@@ -99,6 +103,9 @@ func (r *SchemaResolver) CreateAsset(ctx context.Context, args struct {
 			Name:        rdb.NullStrOf(args.Value.Name),
 			Description: rdb.NullStrOf(args.Value.Description),
 		},
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(args.Value.Metadata),
+		},
 		AssetType: &found.M,
 	}
 	result := rdbmgr.Database.Create(&created)
@@ -130,6 +137,7 @@ func (r *SchemaResolver) UpdateAsset(ctx context.Context, args struct {
 	upd.Token = args.Value.Token
 	upd.Name = rdb.NullStrOf(args.Value.Name)
 	upd.Description = rdb.NullStrOf(args.Value.Description)
+	upd.Metadata = rdb.MetadataStrOf(args.Value.Metadata)
 
 	// Update asset type if changed.
 	if args.Value.AssetTypeToken != upd.AssetType.Token {
@@ -166,6 +174,9 @@ func (r *SchemaResolver) CreateAssetRelationshipType(ctx context.Context, args s
 			Name:        rdb.NullStrOf(args.Value.Name),
 			Description: rdb.NullStrOf(args.Value.Description),
 		},
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(args.Value.Metadata),
+		},
 	}
 	result := rdbmgr.Database.Create(&created)
 	if result.Error != nil {
@@ -195,6 +206,7 @@ func (r *SchemaResolver) UpdateAssetRelationshipType(ctx context.Context, args s
 	upd.Token = args.Value.Token
 	upd.Name = rdb.NullStrOf(args.Value.Name)
 	upd.Description = rdb.NullStrOf(args.Value.Description)
+	upd.Metadata = rdb.MetadataStrOf(args.Value.Metadata)
 
 	result := rdbmgr.Database.Save(&upd)
 	if result.Error != nil {
@@ -233,6 +245,9 @@ func (r *SchemaResolver) CreateAssetRelationship(ctx context.Context, args struc
 		SourceAsset:      source.M,
 		TargetAsset:      target.M,
 		RelationshipType: rtype.M,
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(args.Value.Metadata),
+		},
 	}
 	result := rdbmgr.Database.Create(&created)
 	if result.Error != nil {
@@ -266,6 +281,9 @@ func (r *SchemaResolver) CreateAssetGroup(ctx context.Context, args struct {
 			BackgroundColor: rdb.NullStrOf(args.Value.BackgroundColor),
 			ForegroundColor: rdb.NullStrOf(args.Value.ForegroundColor),
 			BorderColor:     rdb.NullStrOf(args.Value.BorderColor),
+		},
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(args.Value.Metadata),
 		},
 	}
 	result := rdbmgr.Database.Create(&created)
@@ -301,6 +319,7 @@ func (r *SchemaResolver) UpdateAssetGroup(ctx context.Context, args struct {
 	upd.BackgroundColor = rdb.NullStrOf(args.Value.BackgroundColor)
 	upd.ForegroundColor = rdb.NullStrOf(args.Value.ForegroundColor)
 	upd.BorderColor = rdb.NullStrOf(args.Value.BorderColor)
+	upd.Metadata = rdb.MetadataStrOf(args.Value.Metadata)
 
 	result := rdbmgr.Database.Save(&upd)
 	if result.Error != nil {
@@ -327,6 +346,9 @@ func (r *SchemaResolver) CreateAssetGroupRelationshipType(ctx context.Context, a
 		NamedEntity: rdb.NamedEntity{
 			Name:        rdb.NullStrOf(args.Value.Name),
 			Description: rdb.NullStrOf(args.Value.Description),
+		},
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(args.Value.Metadata),
 		},
 	}
 	result := rdbmgr.Database.Create(&created)
@@ -357,6 +379,7 @@ func (r *SchemaResolver) UpdateAssetGroupRelationshipType(ctx context.Context, a
 	upd.Token = args.Value.Token
 	upd.Name = rdb.NullStrOf(args.Value.Name)
 	upd.Description = rdb.NullStrOf(args.Value.Description)
+	upd.Metadata = rdb.MetadataStrOf(args.Value.Metadata)
 
 	result := rdbmgr.Database.Save(&upd)
 	if result.Error != nil {
