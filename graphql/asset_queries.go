@@ -11,6 +11,7 @@ import (
 	_ "embed"
 
 	"github.com/devicechain-io/dc-device-management/model"
+	"github.com/devicechain-io/dc-microservice/rdb"
 )
 
 // Find asset type by unique id.
@@ -57,7 +58,8 @@ func (r *SchemaResolver) AssetTypes(ctx context.Context, args struct {
 }) ([]*AssetTypeResolver, error) {
 	list := make([]model.AssetType, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize)).Find(&list)
+	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
+	result = result.Find(&list)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -119,7 +121,7 @@ func (r *SchemaResolver) Assets(ctx context.Context, args struct {
 }) ([]*AssetResolver, error) {
 	list := make([]model.Asset, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Debug().Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize))
+	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
 	if args.Criteria.AssetTypeToken != nil {
 		result = result.Joins("AssetType").Where("asset_type_id = (?)",
 			rdbmgr.Database.Model(&model.AssetType{}).Select("id").Where("token = ?", args.Criteria.AssetTypeToken)).Find(&list)
@@ -187,7 +189,8 @@ func (r *SchemaResolver) AssetRelationshipTypes(ctx context.Context, args struct
 }) ([]*AssetRelationshipTypeResolver, error) {
 	list := make([]model.AssetRelationshipType, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize)).Find(&list)
+	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
+	result = result.Find(&list)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -230,7 +233,7 @@ func (r *SchemaResolver) AssetRelationships(ctx context.Context, args struct {
 }) ([]*AssetRelationshipResolver, error) {
 	list := make([]model.AssetRelationship, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize))
+	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
 	result = result.Joins("SourceAsset").Joins("TargetAsset").Joins("RelationshipType")
 	result = result.Find(&list)
 	if result.Error != nil {
@@ -294,7 +297,8 @@ func (r *SchemaResolver) AssetGroups(ctx context.Context, args struct {
 }) ([]*AssetGroupResolver, error) {
 	list := make([]model.AssetGroup, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize)).Find(&list)
+	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
+	result = result.Find(&list)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -356,7 +360,8 @@ func (r *SchemaResolver) AssetGroupRelationshipTypes(ctx context.Context, args s
 }) ([]*AssetGroupRelationshipTypeResolver, error) {
 	list := make([]model.AssetGroupRelationshipType, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize)).Find(&list)
+	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
+	result = result.Find(&list)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -399,7 +404,7 @@ func (r *SchemaResolver) AssetGroupRelationships(ctx context.Context, args struc
 }) ([]*AssetGroupRelationshipResolver, error) {
 	list := make([]model.AssetGroupRelationship, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize))
+	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
 	result = result.Joins("AssetGroup").Joins("Asset").Joins("RelationshipType")
 	result = result.Find(&list)
 	if result.Error != nil {

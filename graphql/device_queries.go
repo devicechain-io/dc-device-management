@@ -11,6 +11,7 @@ import (
 	_ "embed"
 
 	"github.com/devicechain-io/dc-device-management/model"
+	rdb "github.com/devicechain-io/dc-microservice/rdb"
 )
 
 // Find device type by unique id.
@@ -57,7 +58,8 @@ func (r *SchemaResolver) DeviceTypes(ctx context.Context, args struct {
 }) ([]*DeviceTypeResolver, error) {
 	list := make([]model.DeviceType, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize)).Find(&list)
+	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
+	result = result.Find(&list)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -119,7 +121,7 @@ func (r *SchemaResolver) Devices(ctx context.Context, args struct {
 }) ([]*DeviceResolver, error) {
 	list := make([]model.Device, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Debug().Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize))
+	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
 	if args.Criteria.DeviceTypeToken != nil {
 		result = result.Joins("DeviceType").Where("device_type_id = (?)",
 			rdbmgr.Database.Model(&model.DeviceType{}).Select("id").Where("token = ?", args.Criteria.DeviceTypeToken)).Find(&list)
@@ -187,7 +189,8 @@ func (r *SchemaResolver) DeviceRelationshipTypes(ctx context.Context, args struc
 }) ([]*DeviceRelationshipTypeResolver, error) {
 	list := make([]model.DeviceRelationshipType, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize)).Find(&list)
+	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
+	result = result.Find(&list)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -230,7 +233,7 @@ func (r *SchemaResolver) DeviceRelationships(ctx context.Context, args struct {
 }) ([]*DeviceRelationshipResolver, error) {
 	list := make([]model.DeviceRelationship, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize))
+	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
 	result = result.Joins("SourceDevice").Joins("TargetDevice").Joins("RelationshipType")
 	result = result.Find(&list)
 	if result.Error != nil {
@@ -294,7 +297,8 @@ func (r *SchemaResolver) DeviceGroups(ctx context.Context, args struct {
 }) ([]*DeviceGroupResolver, error) {
 	list := make([]model.DeviceGroup, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize)).Find(&list)
+	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
+	result = result.Find(&list)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -356,7 +360,8 @@ func (r *SchemaResolver) DeviceGroupRelationshipTypes(ctx context.Context, args 
 }) ([]*DeviceGroupRelationshipTypeResolver, error) {
 	list := make([]model.DeviceGroupRelationshipType, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize)).Find(&list)
+	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
+	result = result.Find(&list)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -399,7 +404,7 @@ func (r *SchemaResolver) DeviceGroupRelationships(ctx context.Context, args stru
 }) ([]*DeviceGroupRelationshipResolver, error) {
 	list := make([]model.DeviceGroupRelationship, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize))
+	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
 	result = result.Joins("DeviceGroup").Joins("Device").Joins("RelationshipType")
 	result = result.Find(&list)
 	if result.Error != nil {
