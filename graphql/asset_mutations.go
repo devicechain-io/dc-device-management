@@ -393,3 +393,44 @@ func (r *SchemaResolver) UpdateAssetGroupRelationshipType(ctx context.Context, a
 	}
 	return dt, nil
 }
+
+// Create a new asset group relationship.
+func (r *SchemaResolver) CreateAssetGroupRelationship(ctx context.Context, args struct {
+	Value *model.AssetGroupRelationshipCreateRequest
+}) (*AssetGroupRelationshipResolver, error) {
+	rdbmgr := r.GetRdbManager(ctx)
+
+	// Look up token references.
+	source, err := r.AssetGroupByToken(ctx, struct{ Token string }{Token: args.Value.AssetGroup})
+	if err != nil {
+		return nil, err
+	}
+	target, err := r.AssetByToken(ctx, struct{ Token string }{Token: args.Value.Asset})
+	if err != nil {
+		return nil, err
+	}
+	rtype, err := r.AssetGroupRelationshipTypeByToken(ctx, struct{ Token string }{Token: args.Value.RelationshipType})
+	if err != nil {
+		return nil, err
+	}
+
+	created := model.AssetGroupRelationship{
+		AssetGroup:       source.M,
+		Asset:            target.M,
+		RelationshipType: rtype.M,
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(args.Value.Metadata),
+		},
+	}
+	result := rdbmgr.Database.Create(&created)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	dt := &AssetGroupRelationshipResolver{
+		M: created,
+		S: r,
+		C: ctx,
+	}
+	return dt, nil
+}

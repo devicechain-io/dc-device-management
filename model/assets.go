@@ -162,8 +162,8 @@ type AssetGroupRelationshipTypeSearchCriteria struct {
 
 // Data required to create an asset group relationship.
 type AssetGroupRelationshipCreateRequest struct {
-	DeviceGroup      string
-	Device           string
+	AssetGroup       string
+	Asset            string
 	RelationshipType string
 	Metadata         *string
 }

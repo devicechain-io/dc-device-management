@@ -393,3 +393,44 @@ func (r *SchemaResolver) UpdateDeviceGroupRelationshipType(ctx context.Context, 
 	}
 	return dt, nil
 }
+
+// Create a new device group relationship.
+func (r *SchemaResolver) CreateDeviceGroupRelationship(ctx context.Context, args struct {
+	Value *model.DeviceGroupRelationshipCreateRequest
+}) (*DeviceGroupRelationshipResolver, error) {
+	rdbmgr := r.GetRdbManager(ctx)
+
+	// Look up token references.
+	source, err := r.DeviceGroupByToken(ctx, struct{ Token string }{Token: args.Value.DeviceGroup})
+	if err != nil {
+		return nil, err
+	}
+	target, err := r.DeviceByToken(ctx, struct{ Token string }{Token: args.Value.Device})
+	if err != nil {
+		return nil, err
+	}
+	rtype, err := r.DeviceGroupRelationshipTypeByToken(ctx, struct{ Token string }{Token: args.Value.RelationshipType})
+	if err != nil {
+		return nil, err
+	}
+
+	created := model.DeviceGroupRelationship{
+		DeviceGroup:      source.M,
+		Device:           target.M,
+		RelationshipType: rtype.M,
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(args.Value.Metadata),
+		},
+	}
+	result := rdbmgr.Database.Create(&created)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	dt := &DeviceGroupRelationshipResolver{
+		M: created,
+		S: r,
+		C: ctx,
+	}
+	return dt, nil
+}

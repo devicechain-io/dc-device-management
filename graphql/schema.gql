@@ -509,6 +509,16 @@ type Mutation {
     updateDeviceRelationshipType(token: String!, value: DeviceRelationshipTypeCreateRequest): DeviceRelationshipType!
     # Create a new device relationship.
     createDeviceRelationship(value: DeviceRelationshipCreateRequest): DeviceRelationship!
+    # Create a new device group.
+    createDeviceGroup(value: DeviceGroupCreateRequest): DeviceGroup!
+    # Update an existing device group.
+    updateDeviceGroup(token: String!, value: DeviceGroupCreateRequest): DeviceGroup!
+    # Create a new device group relationship type.
+    createDeviceGroupRelationshipType(value: DeviceGroupRelationshipTypeCreateRequest): DeviceGroupRelationshipType!
+    # Update an existing device group relationship type.
+    updateDeviceGroupRelationshipType(token: String!, value: DeviceGroupRelationshipTypeCreateRequest): DeviceGroupRelationshipType!
+    # Create a new device group relationship.
+    createDeviceGroupRelationship(value: DeviceGroupRelationshipCreateRequest): DeviceGroupRelationship!
 
     # Create a new asset type.
     createAssetType(value: AssetTypeCreateRequest): AssetType!
@@ -524,6 +534,16 @@ type Mutation {
     updateAssetRelationshipType(token: String!, value: AssetRelationshipTypeCreateRequest): AssetRelationshipType!
     # Create a new asset relationship.
     createAssetRelationship(value: AssetRelationshipCreateRequest): AssetRelationship!
+    # Create a new asset group.
+    createAssetGroup(value: AssetGroupCreateRequest): AssetGroup!
+    # Update an existing asset group.
+    updateAssetGroup(token: String!, value: AssetGroupCreateRequest): AssetGroup!
+    # Create a new asset group relationship type.
+    createAssetGroupRelationshipType(value: AssetGroupRelationshipTypeCreateRequest): AssetGroupRelationshipType!
+    # Update an existing asset group relationship type.
+    updateAssetGroupRelationshipType(token: String!, value: AssetGroupRelationshipTypeCreateRequest): AssetGroupRelationshipType!
+    # Create a new asset group relationship.
+    createAssetGroupRelationship(value: AssetGroupRelationshipCreateRequest): AssetGroupRelationship!
 }
 
 schema {

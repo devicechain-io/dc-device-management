@@ -399,7 +399,9 @@ func (r *SchemaResolver) AssetGroupRelationships(ctx context.Context, args struc
 }) ([]*AssetGroupRelationshipResolver, error) {
 	list := make([]model.AssetGroupRelationship, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize)).Find(&list)
+	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize))
+	result = result.Joins("AssetGroup").Joins("Asset").Joins("RelationshipType")
+	result = result.Find(&list)
 	if result.Error != nil {
 		return nil, result.Error
 	}

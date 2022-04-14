@@ -211,7 +211,7 @@ func (r *SchemaResolver) DeviceRelationship(ctx context.Context, args struct {
 }) (*DeviceRelationshipResolver, error) {
 	found := model.DeviceRelationship{}
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.First(&found, args.Id)
+	result := rdbmgr.Database.Joins("SourceDevice").Joins("TargetDevice").Joins("RelationshipType").First(&found, args.Id)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -399,7 +399,9 @@ func (r *SchemaResolver) DeviceGroupRelationships(ctx context.Context, args stru
 }) ([]*DeviceGroupRelationshipResolver, error) {
 	list := make([]model.DeviceGroupRelationship, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize)).Find(&list)
+	result := rdbmgr.Database.Limit(int(args.Criteria.PageSize)).Offset(int(args.Criteria.PageNumber) * int(args.Criteria.PageSize))
+	result = result.Joins("DeviceGroup").Joins("Device").Joins("RelationshipType")
+	result = result.Find(&list)
 	if result.Error != nil {
 		return nil, result.Error
 	}
