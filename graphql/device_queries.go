@@ -12,6 +12,7 @@ import (
 
 	"github.com/devicechain-io/dc-device-management/model"
 	rdb "github.com/devicechain-io/dc-microservice/rdb"
+	"gorm.io/gorm"
 )
 
 // Find device type by unique id.
@@ -55,26 +56,27 @@ func (r *SchemaResolver) DeviceTypeByToken(ctx context.Context, args struct {
 // List all device types that match the given criteria.
 func (r *SchemaResolver) DeviceTypes(ctx context.Context, args struct {
 	Criteria model.DeviceTypeSearchCriteria
-}) ([]*DeviceTypeResolver, error) {
-	list := make([]model.DeviceType, 0)
+}) (*DeviceTypeSearchResultsResolver, error) {
+	results := make([]model.DeviceType, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
-	result = result.Find(&list)
-	if result.Error != nil {
-		return nil, result.Error
+	db, pag := rdbmgr.ListOf(&model.DeviceType{}, nil, args.Criteria.Pagination)
+	db.Find(&results)
+	if db.Error != nil {
+		return nil, db.Error
 	}
 
-	resolvers := make([]*DeviceTypeResolver, 0)
-	for _, current := range list {
-		resolvers = append(resolvers,
-			&DeviceTypeResolver{
-				M: current,
-				S: r,
-				C: ctx,
-			})
+	// Wrap as search results.
+	found := model.DeviceTypeSearchResults{
+		Results:    results,
+		Pagination: pag,
 	}
 
-	return resolvers, nil
+	// Return as resolver.
+	return &DeviceTypeSearchResultsResolver{
+		M: found,
+		S: r,
+		C: ctx,
+	}, nil
 }
 
 // Find device by unique id.
@@ -118,31 +120,36 @@ func (r *SchemaResolver) DeviceByToken(ctx context.Context, args struct {
 // List all devices that match the given criteria.
 func (r *SchemaResolver) Devices(ctx context.Context, args struct {
 	Criteria model.DeviceSearchCriteria
-}) ([]*DeviceResolver, error) {
-	list := make([]model.Device, 0)
+}) (*DeviceSearchResultsResolver, error) {
+	results := make([]model.Device, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
-	if args.Criteria.DeviceTypeToken != nil {
-		result = result.Joins("DeviceType").Where("device_type_id = (?)",
-			rdbmgr.Database.Model(&model.DeviceType{}).Select("id").Where("token = ?", args.Criteria.DeviceTypeToken)).Find(&list)
-	} else {
-		result = result.Joins("DeviceType").Find(&list)
-	}
-	if result.Error != nil {
-		return nil, result.Error
-	}
-
-	resolvers := make([]*DeviceResolver, 0)
-	for _, current := range list {
-		resolvers = append(resolvers,
-			&DeviceResolver{
-				M: current,
-				S: r,
-				C: ctx,
-			})
+	db, pag := rdbmgr.ListOf(
+		&model.Device{},
+		func(result *gorm.DB) *gorm.DB {
+			if args.Criteria.DeviceTypeToken != nil {
+				return result.Joins("DeviceType").Where("device_type_id = (?)",
+					rdbmgr.Database.Model(&model.DeviceType{}).Select("id").Where("token = ?", args.Criteria.DeviceTypeToken))
+			} else {
+				return result.Joins("DeviceType")
+			}
+		}, args.Criteria.Pagination)
+	db.Find(&results)
+	if db.Error != nil {
+		return nil, db.Error
 	}
 
-	return resolvers, nil
+	// Wrap as search results.
+	found := model.DeviceSearchResults{
+		Results:    results,
+		Pagination: pag,
+	}
+
+	// Return as resolver.
+	return &DeviceSearchResultsResolver{
+		M: found,
+		S: r,
+		C: ctx,
+	}, nil
 }
 
 // Find device relationship type by unique id.

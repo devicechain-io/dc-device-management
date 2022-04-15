@@ -78,6 +78,37 @@ func (r *DeviceTypeResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
 }
 
+// -----------------------------------
+// Device type search results resolver
+// -----------------------------------
+
+type DeviceTypeSearchResultsResolver struct {
+	M model.DeviceTypeSearchResults
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *DeviceTypeSearchResultsResolver) Results() []*DeviceTypeResolver {
+	resolvers := make([]*DeviceTypeResolver, 0)
+	for _, current := range r.M.Results {
+		resolvers = append(resolvers,
+			&DeviceTypeResolver{
+				M: current,
+				S: r.S,
+				C: r.C,
+			})
+	}
+	return resolvers
+}
+
+func (r *DeviceTypeSearchResultsResolver) Pagination() *SearchResultsPaginationResolver {
+	return &SearchResultsPaginationResolver{
+		M: r.M.Pagination,
+		S: r.S,
+		C: r.C,
+	}
+}
+
 // ---------------
 // Device resolver
 // ---------------
@@ -133,6 +164,37 @@ func (r *DeviceResolver) DeviceType() *DeviceTypeResolver {
 			return nil
 		}
 		return rez
+	}
+}
+
+// ------------------------------
+// Device search results resolver
+// ------------------------------
+
+type DeviceSearchResultsResolver struct {
+	M model.DeviceSearchResults
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *DeviceSearchResultsResolver) Results() []*DeviceResolver {
+	resolvers := make([]*DeviceResolver, 0)
+	for _, current := range r.M.Results {
+		resolvers = append(resolvers,
+			&DeviceResolver{
+				M: current,
+				S: r.S,
+				C: r.C,
+			})
+	}
+	return resolvers
+}
+
+func (r *DeviceSearchResultsResolver) Pagination() *SearchResultsPaginationResolver {
+	return &SearchResultsPaginationResolver{
+		M: r.M.Pagination,
+		S: r.S,
+		C: r.C,
 	}
 }
 

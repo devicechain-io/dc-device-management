@@ -38,6 +38,12 @@ input DeviceTypeSearchCriteria {
     pageSize: Int!
 }
 
+# Search results returned from device type query.
+type DeviceTypeSearchResults {
+    results: [DeviceType!]!
+    pagination: SearchResultsPagination!
+}
+
 # Represents a device instance
 type Device implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
@@ -65,6 +71,12 @@ input DeviceSearchCriteria {
     pageNumber: Int!
     pageSize: Int!
     deviceTypeToken: String
+}
+
+# Search results returned from device query.
+type DeviceSearchResults {
+    results: [Device!]!
+    pagination: SearchResultsPagination!
 }
 
 # Represents a type of relation between devices.
@@ -419,13 +431,13 @@ type Query {
     # Find a device type by unique token.
     deviceTypeByToken(token: String!): DeviceType!
     # List device types that meet criteria.
-    deviceTypes(criteria: DeviceTypeSearchCriteria!): [DeviceType!]!
+    deviceTypes(criteria: DeviceTypeSearchCriteria!): DeviceTypeSearchResults!
     # Find a device by unique id.
     device(id: ID!): Device!
     # Find a device by unique token.
     deviceByToken(token: String!): Device!
     # List devices that meet criteria.
-    devices(criteria: DeviceSearchCriteria!): [Device!]!
+    devices(criteria: DeviceSearchCriteria!): DeviceSearchResults!
     # Find a device relationship type by unique id.
     deviceRelationshipType(id: ID!): DeviceRelationshipType!
     # Find a device relationship type by unique token.

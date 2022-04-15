@@ -40,6 +40,12 @@ type DeviceTypeSearchCriteria struct {
 	rdb.Pagination
 }
 
+// Results for device type search.
+type DeviceTypeSearchResults struct {
+	Results    []DeviceType
+	Pagination rdb.SearchResultsPagination
+}
+
 // Data required to create a device.
 type DeviceCreateRequest struct {
 	Token           string
@@ -64,6 +70,12 @@ type Device struct {
 type DeviceSearchCriteria struct {
 	rdb.Pagination
 	DeviceTypeToken *string
+}
+
+// Results for device search.
+type DeviceSearchResults struct {
+	Results    []Device
+	Pagination rdb.SearchResultsPagination
 }
 
 // Data required to create a device relationship type.
