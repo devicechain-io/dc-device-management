@@ -9,7 +9,6 @@ package events
 import (
 	"fmt"
 
-	"github.com/devicechain-io/dc-device-management/graphql"
 	"github.com/devicechain-io/dc-device-management/model"
 	esmodel "github.com/devicechain-io/dc-event-sources/model"
 	"github.com/rs/zerolog/log"
@@ -18,14 +17,14 @@ import (
 // Worker used to resolve event entities.
 type EventResolver struct {
 	WorkerId         int
-	Api              graphql.Api
+	Api              model.Api
 	UnresolvedEvents <-chan esmodel.UnresolvedEvent
 	Resolved         func(*model.ResolvedEvent)
 	Failed           func(esmodel.UnresolvedEvent, error)
 }
 
 // Create a new event resolver.
-func NewEventResolver(workerId int, api graphql.Api,
+func NewEventResolver(workerId int, api model.Api,
 	unrez <-chan esmodel.UnresolvedEvent,
 	resolved func(*model.ResolvedEvent),
 	failed func(esmodel.UnresolvedEvent, error)) *EventResolver {

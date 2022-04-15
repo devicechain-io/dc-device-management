@@ -9,6 +9,7 @@ package graphql
 import (
 	"context"
 	_ "embed"
+	"strconv"
 
 	"github.com/devicechain-io/dc-device-management/model"
 	"gorm.io/gorm"
@@ -18,15 +19,18 @@ import (
 func (r *SchemaResolver) DeviceType(ctx context.Context, args struct {
 	Id string
 }) (*DeviceTypeResolver, error) {
-	found := model.DeviceType{}
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.First(&found, args.Id)
-	if result.Error != nil {
-		return nil, result.Error
+	id, err := strconv.ParseUint(args.Id, 0, 64)
+	if err != nil {
+		return nil, err
+	}
+	found, err := model.NewApi(rdbmgr).DeviceTypeById(uint(id))
+	if err != nil {
+		return nil, err
 	}
 
 	dt := &DeviceTypeResolver{
-		M: found,
+		M: *found,
 		S: r,
 		C: ctx,
 	}
@@ -37,15 +41,14 @@ func (r *SchemaResolver) DeviceType(ctx context.Context, args struct {
 func (r *SchemaResolver) DeviceTypeByToken(ctx context.Context, args struct {
 	Token string
 }) (*DeviceTypeResolver, error) {
-	found := model.DeviceType{}
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.First(&found, "token = ?", args.Token)
-	if result.Error != nil {
-		return nil, result.Error
+	found, err := model.NewApi(rdbmgr).DeviceTypeByToken(args.Token)
+	if err != nil {
+		return nil, err
 	}
 
 	dt := &DeviceTypeResolver{
-		M: found,
+		M: *found,
 		S: r,
 		C: ctx,
 	}
@@ -56,23 +59,15 @@ func (r *SchemaResolver) DeviceTypeByToken(ctx context.Context, args struct {
 func (r *SchemaResolver) DeviceTypes(ctx context.Context, args struct {
 	Criteria model.DeviceTypeSearchCriteria
 }) (*DeviceTypeSearchResultsResolver, error) {
-	results := make([]model.DeviceType, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	db, pag := rdbmgr.ListOf(&model.DeviceType{}, nil, args.Criteria.Pagination)
-	db.Find(&results)
-	if db.Error != nil {
-		return nil, db.Error
-	}
-
-	// Wrap as search results.
-	found := model.DeviceTypeSearchResults{
-		Results:    results,
-		Pagination: pag,
+	found, err := model.NewApi(rdbmgr).DeviceTypes(args.Criteria)
+	if err != nil {
+		return nil, err
 	}
 
 	// Return as resolver.
 	return &DeviceTypeSearchResultsResolver{
-		M: found,
+		M: *found,
 		S: r,
 		C: ctx,
 	}, nil
@@ -82,15 +77,18 @@ func (r *SchemaResolver) DeviceTypes(ctx context.Context, args struct {
 func (r *SchemaResolver) Device(ctx context.Context, args struct {
 	Id string
 }) (*DeviceResolver, error) {
-	found := model.Device{}
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Joins("DeviceType").First(&found, args.Id)
-	if result.Error != nil {
-		return nil, result.Error
+	id, err := strconv.ParseUint(args.Id, 0, 64)
+	if err != nil {
+		return nil, err
+	}
+	found, err := model.NewApi(rdbmgr).DeviceById(uint(id))
+	if err != nil {
+		return nil, err
 	}
 
 	dt := &DeviceResolver{
-		M: found,
+		M: *found,
 		S: r,
 		C: ctx,
 	}
@@ -101,15 +99,14 @@ func (r *SchemaResolver) Device(ctx context.Context, args struct {
 func (r *SchemaResolver) DeviceByToken(ctx context.Context, args struct {
 	Token string
 }) (*DeviceResolver, error) {
-	found := model.Device{}
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Joins("DeviceType").First(&found, "\"devices\".token = ?", args.Token)
-	if result.Error != nil {
-		return nil, result.Error
+	found, err := model.NewApi(rdbmgr).DeviceByToken(args.Token)
+	if err != nil {
+		return nil, err
 	}
 
 	dt := &DeviceResolver{
-		M: found,
+		M: *found,
 		S: r,
 		C: ctx,
 	}
@@ -120,32 +117,15 @@ func (r *SchemaResolver) DeviceByToken(ctx context.Context, args struct {
 func (r *SchemaResolver) Devices(ctx context.Context, args struct {
 	Criteria model.DeviceSearchCriteria
 }) (*DeviceSearchResultsResolver, error) {
-	results := make([]model.Device, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	db, pag := rdbmgr.ListOf(
-		&model.Device{},
-		func(result *gorm.DB) *gorm.DB {
-			if args.Criteria.DeviceTypeToken != nil {
-				return result.Joins("DeviceType").Where("device_type_id = (?)",
-					rdbmgr.Database.Model(&model.DeviceType{}).Select("id").Where("token = ?", args.Criteria.DeviceTypeToken))
-			} else {
-				return result.Joins("DeviceType")
-			}
-		}, args.Criteria.Pagination)
-	db.Find(&results)
-	if db.Error != nil {
-		return nil, db.Error
-	}
-
-	// Wrap as search results.
-	found := model.DeviceSearchResults{
-		Results:    results,
-		Pagination: pag,
+	found, err := model.NewApi(rdbmgr).Devices(args.Criteria)
+	if err != nil {
+		return nil, err
 	}
 
 	// Return as resolver.
 	return &DeviceSearchResultsResolver{
-		M: found,
+		M: *found,
 		S: r,
 		C: ctx,
 	}, nil
