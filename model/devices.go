@@ -99,6 +99,12 @@ type DeviceRelationshipTypeSearchCriteria struct {
 	rdb.Pagination
 }
 
+// Results for device relationship type search.
+type DeviceRelationshipTypeSearchResults struct {
+	Results    []DeviceRelationshipType
+	Pagination rdb.SearchResultsPagination
+}
+
 // Data required to create a device relationship.
 type DeviceRelationshipCreateRequest struct {
 	SourceDevice     string
@@ -122,6 +128,12 @@ type DeviceRelationship struct {
 // Search criteria for locating device relationships.
 type DeviceRelationshipSearchCriteria struct {
 	rdb.Pagination
+}
+
+// Results for device relationship search.
+type DeviceRelationshipSearchResults struct {
+	Results    []DeviceRelationship
+	Pagination rdb.SearchResultsPagination
 }
 
 // Data required to create a device group.
@@ -151,6 +163,12 @@ type DeviceGroupSearchCriteria struct {
 	rdb.Pagination
 }
 
+// Results for device group search.
+type DeviceGroupSearchResults struct {
+	Results    []DeviceGroup
+	Pagination rdb.SearchResultsPagination
+}
+
 // Data required to create a device group relationship type.
 type DeviceGroupRelationshipTypeCreateRequest struct {
 	Token       string
@@ -170,6 +188,12 @@ type DeviceGroupRelationshipType struct {
 // Search criteria for locating device groups relationship types.
 type DeviceGroupRelationshipTypeSearchCriteria struct {
 	rdb.Pagination
+}
+
+// Results for device group search.
+type DeviceGroupRelationshipTypeSearchResults struct {
+	Results    []DeviceGroupRelationshipType
+	Pagination rdb.SearchResultsPagination
 }
 
 // Data required to create a device group relationship.
@@ -195,4 +219,10 @@ type DeviceGroupRelationship struct {
 // Search criteria for locating device groups relationships.
 type DeviceGroupRelationshipSearchCriteria struct {
 	rdb.Pagination
+}
+
+// Results for device group relationship search.
+type DeviceGroupRelationshipSearchResults struct {
+	Results    []DeviceGroupRelationship
+	Pagination rdb.SearchResultsPagination
 }

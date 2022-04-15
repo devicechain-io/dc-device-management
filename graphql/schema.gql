@@ -105,6 +105,12 @@ input DeviceRelationshipTypeSearchCriteria {
     pageSize: Int!
 }
 
+# Search results returned from device relationship type query.
+type DeviceRelationshipTypeSearchResults {
+    results: [DeviceRelationshipType!]!
+    pagination: SearchResultsPagination!
+}
+
 # Represents a relationship between devices.
 type DeviceRelationship implements Model & MetadataEntity {
     id: ID!
@@ -129,6 +135,12 @@ input DeviceRelationshipCreateRequest {
 input DeviceRelationshipSearchCriteria {
     pageNumber: Int!
     pageSize: Int!
+}
+
+# Search results returned from device relationship query.
+type DeviceRelationshipSearchResults {
+    results: [DeviceRelationship!]!
+    pagination: SearchResultsPagination!
 }
 
 # Represents a group of related devices.
@@ -167,6 +179,12 @@ input DeviceGroupSearchCriteria {
     pageSize: Int!
 }
 
+# Search results returned from device group query.
+type DeviceGroupSearchResults {
+    results: [DeviceGroup!]!
+    pagination: SearchResultsPagination!
+}
+
 # Represents a type of relation between a device and a device group.
 type DeviceGroupRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
@@ -193,6 +211,12 @@ input DeviceGroupRelationshipTypeSearchCriteria {
     pageSize: Int!
 }
 
+# Search results returned from device group relationship type query.
+type DeviceGroupRelationshipTypeSearchResults {
+    results: [DeviceGroupRelationshipType!]!
+    pagination: SearchResultsPagination!
+}
+
 # Represents a relationship between a device and a group.
 type DeviceGroupRelationship implements Model {
     id: ID!
@@ -217,6 +241,12 @@ input DeviceGroupRelationshipCreateRequest {
 input DeviceGroupRelationshipSearchCriteria {
     pageNumber: Int!
     pageSize: Int!
+}
+
+# Search results returned from device group relationship query.
+type DeviceGroupRelationshipSearchResults {
+    results: [DeviceGroupRelationship!]!
+    pagination: SearchResultsPagination!
 }
 
 # Represents a type or class of assets
@@ -255,6 +285,12 @@ input AssetTypeSearchCriteria {
     pageSize: Int!
 }
 
+# Search results returned from asset types query.
+type AssetTypeSearchResults {
+    results: [AssetType!]!
+    pagination: SearchResultsPagination!
+}
+
 # Represents an asset instance
 type Asset implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
@@ -284,6 +320,12 @@ input AssetSearchCriteria {
     assetTypeToken: String
 }
 
+# Search results returned from assets query.
+type AssetSearchResults {
+    results: [Asset!]!
+    pagination: SearchResultsPagination!
+}
+
 # Represents a type of relation between assets.
 type AssetRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
@@ -310,6 +352,12 @@ input AssetRelationshipTypeSearchCriteria {
     pageSize: Int!
 }
 
+# Search results returned from asset relationship types query.
+type AssetRelationshipTypeSearchResults {
+    results: [AssetRelationshipType!]!
+    pagination: SearchResultsPagination!
+}
+
 # Represents a relationship between assets.
 type AssetRelationship implements Model {
     id: ID!
@@ -334,6 +382,12 @@ input AssetRelationshipCreateRequest {
 input AssetRelationshipSearchCriteria {
     pageNumber: Int!
     pageSize: Int!
+}
+
+# Search results returned from asset relationships query.
+type AssetRelationshipSearchResults {
+    results: [AssetRelationship!]!
+    pagination: SearchResultsPagination!
 }
 
 # Represents a group of related assets.
@@ -372,6 +426,12 @@ input AssetGroupSearchCriteria {
     pageSize: Int!
 }
 
+# Search results returned from asset groups query.
+type AssetGroupSearchResults {
+    results: [AssetGroup!]!
+    pagination: SearchResultsPagination!
+}
+
 # Represents a type of relation between an asset and an asset group.
 type AssetGroupRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
@@ -396,6 +456,12 @@ input AssetGroupRelationshipTypeCreateRequest {
 input AssetGroupRelationshipTypeSearchCriteria {
     pageNumber: Int!
     pageSize: Int!
+}
+
+# Search results returned from asset group relationship types query.
+type AssetGroupRelationshipTypeSearchResults {
+    results: [AssetGroupRelationshipType!]!
+    pagination: SearchResultsPagination!
 }
 
 # Represents a relationship between an asset and an asset.
@@ -424,6 +490,12 @@ input AssetGroupRelationshipSearchCriteria {
     pageSize: Int!
 }
 
+# Search results returned from asset group relationships query.
+type AssetGroupRelationshipSearchResults {
+    results: [AssetGroupRelationship!]!
+    pagination: SearchResultsPagination!
+}
+
 # Contains queries executed against model.
 type Query {
     # Find a device type by unique id.
@@ -443,66 +515,66 @@ type Query {
     # Find a device relationship type by unique token.
     deviceRelationshipTypeByToken(token: String!): DeviceRelationshipType!
     # List device relationship types that meet criteria.
-    deviceRelationshipTypes(criteria: DeviceRelationshipTypeSearchCriteria!): [DeviceRelationshipType!]!
+    deviceRelationshipTypes(criteria: DeviceRelationshipTypeSearchCriteria!): DeviceRelationshipTypeSearchResults!
     # Find a device relationship by unique id.
     deviceRelationship(id: ID!): DeviceRelationship!
     # List device relationships that meet criteria.
-    deviceRelationships(criteria: DeviceRelationshipSearchCriteria!): [DeviceRelationship!]!
+    deviceRelationships(criteria: DeviceRelationshipSearchCriteria!): DeviceRelationshipSearchResults!
     # Find a device group by unique id.
     deviceGroup(id: ID!): DeviceGroup!
     # Find a device group by unique token.
     deviceGroupByToken(token: String!): DeviceGroup!
     # List device groups that meet criteria.
-    deviceGroups(criteria: DeviceGroupSearchCriteria!): [DeviceGroup!]!
+    deviceGroups(criteria: DeviceGroupSearchCriteria!): DeviceGroupSearchResults!
     # Find a device group relationship type by unique id.
     deviceGroupRelationshipType(id: ID!): DeviceGroupRelationshipType!
     # Find a device group relationship type by unique id.
     deviceGroupRelationshipTypeByToken(token: String!): DeviceGroupRelationshipType!
     # List device group relationship types that meet criteria.
-    deviceGroupRelationshipTypes(criteria: DeviceGroupRelationshipTypeSearchCriteria!): [DeviceGroupRelationshipType!]!
+    deviceGroupRelationshipTypes(criteria: DeviceGroupRelationshipTypeSearchCriteria!): DeviceGroupRelationshipTypeSearchResults!
     # Find a device group relationship by unique id.
     deviceGroupRelationship(id: ID!): DeviceGroupRelationship!
     # List device group relationships that meet criteria.
-    deviceGroupRelationships(criteria: DeviceGroupRelationshipSearchCriteria!): [DeviceGroupRelationship!]!
+    deviceGroupRelationships(criteria: DeviceGroupRelationshipSearchCriteria!): DeviceGroupRelationshipSearchResults!
 
     # Find an asset type by unique id.
     assetType(id: ID!): AssetType!
     # Find an asset type by unique token.
     assetTypeByToken(token: String!): AssetType!
     # List asset types that meet criteria.
-    assetTypes(criteria: AssetTypeSearchCriteria!): [AssetType!]!
+    assetTypes(criteria: AssetTypeSearchCriteria!): AssetTypeSearchResults!
     # Find an asset by unique id.
     asset(id: ID!): Asset!
     # Find a device by unique token.
     assetByToken(token: String!): Asset!
     # List assets that meet criteria.
-    assets(criteria: AssetSearchCriteria!): [Asset!]!
+    assets(criteria: AssetSearchCriteria!): AssetSearchResults!
     # Find an asset relationship type by unique id.
     assetRelationshipType(id: ID!): AssetRelationshipType!
     # Find an asset relationship type by unique token.
     assetRelationshipTypeByToken(token: String!): AssetRelationshipType!
     # List asset relationship types that meet criteria.
-    assetRelationshipTypes(criteria: AssetRelationshipTypeSearchCriteria!): [AssetRelationshipType!]!
+    assetRelationshipTypes(criteria: AssetRelationshipTypeSearchCriteria!): AssetRelationshipTypeSearchResults!
     # Find an asset relationship by unique id.
     assetRelationship(id: ID!): AssetRelationship!
     # List asset relationships that meet criteria.
-    assetRelationships(criteria: AssetRelationshipSearchCriteria!): [AssetRelationship!]!
+    assetRelationships(criteria: AssetRelationshipSearchCriteria!): AssetRelationshipSearchResults!
     # Find an asset group by unique id.
     assetGroup(id: ID!): AssetGroup!
     # Find an asset group by unique token.
     assetGroupByToken(token: String!): AssetGroup!
     # List asset groups that meet criteria.
-    assetGroups(criteria: AssetGroupSearchCriteria!): [AssetGroup!]!
+    assetGroups(criteria: AssetGroupSearchCriteria!): AssetGroupSearchResults!
     # Find an asset group relationship type by unique id.
     assetGroupRelationshipType(id: ID!): AssetGroupRelationshipType!
     # Find an asset group relationship type by unique id.
     assetGroupRelationshipTypeByToken(token: String!): AssetGroupRelationshipType!
     # List asset group relationship types that meet criteria.
-    assetGroupRelationshipTypes(criteria: AssetGroupRelationshipTypeSearchCriteria!): [AssetGroupRelationshipType!]!
+    assetGroupRelationshipTypes(criteria: AssetGroupRelationshipTypeSearchCriteria!): AssetGroupRelationshipTypeSearchResults!
     # Find an asset group relationship by unique id.
     assetGroupRelationship(id: ID!): AssetGroupRelationship!
     # List asset group relationships that meet criteria.
-    assetGroupRelationships(criteria: AssetGroupRelationshipSearchCriteria!): [AssetGroupRelationship!]!
+    assetGroupRelationships(criteria: AssetGroupRelationshipSearchCriteria!): AssetGroupRelationshipSearchResults!
 }
 
 # Contains mutations executed against model.

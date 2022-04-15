@@ -240,6 +240,37 @@ func (r *DeviceRelationshipTypeResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
 }
 
+// ------------------------------------------------
+// Device relationship type search results resolver
+// ------------------------------------------------
+
+type DeviceRelationshipTypeSearchResultsResolver struct {
+	M model.DeviceRelationshipTypeSearchResults
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *DeviceRelationshipTypeSearchResultsResolver) Results() []*DeviceRelationshipTypeResolver {
+	resolvers := make([]*DeviceRelationshipTypeResolver, 0)
+	for _, current := range r.M.Results {
+		resolvers = append(resolvers,
+			&DeviceRelationshipTypeResolver{
+				M: current,
+				S: r.S,
+				C: r.C,
+			})
+	}
+	return resolvers
+}
+
+func (r *DeviceRelationshipTypeSearchResultsResolver) Pagination() *SearchResultsPaginationResolver {
+	return &SearchResultsPaginationResolver{
+		M: r.M.Pagination,
+		S: r.S,
+		C: r.C,
+	}
+}
+
 // ----------------------------
 // Device relationship resolver
 // ----------------------------
@@ -289,6 +320,37 @@ func (r *DeviceRelationshipResolver) TargetDevice() *DeviceResolver {
 func (r *DeviceRelationshipResolver) RelationshipType() *DeviceRelationshipTypeResolver {
 	return &DeviceRelationshipTypeResolver{
 		M: r.M.RelationshipType,
+		S: r.S,
+		C: r.C,
+	}
+}
+
+// -------------------------------------------
+// Device relationship search results resolver
+// -------------------------------------------
+
+type DeviceRelationshipSearchResultsResolver struct {
+	M model.DeviceRelationshipSearchResults
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *DeviceRelationshipSearchResultsResolver) Results() []*DeviceRelationshipResolver {
+	resolvers := make([]*DeviceRelationshipResolver, 0)
+	for _, current := range r.M.Results {
+		resolvers = append(resolvers,
+			&DeviceRelationshipResolver{
+				M: current,
+				S: r.S,
+				C: r.C,
+			})
+	}
+	return resolvers
+}
+
+func (r *DeviceRelationshipSearchResultsResolver) Pagination() *SearchResultsPaginationResolver {
+	return &SearchResultsPaginationResolver{
+		M: r.M.Pagination,
 		S: r.S,
 		C: r.C,
 	}
@@ -356,6 +418,37 @@ func (r *DeviceGroupResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
 }
 
+// ------------------------------------
+// Device group search results resolver
+// ------------------------------------
+
+type DeviceGroupSearchResultsResolver struct {
+	M model.DeviceGroupSearchResults
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *DeviceGroupSearchResultsResolver) Results() []*DeviceGroupResolver {
+	resolvers := make([]*DeviceGroupResolver, 0)
+	for _, current := range r.M.Results {
+		resolvers = append(resolvers,
+			&DeviceGroupResolver{
+				M: current,
+				S: r.S,
+				C: r.C,
+			})
+	}
+	return resolvers
+}
+
+func (r *DeviceGroupSearchResultsResolver) Pagination() *SearchResultsPaginationResolver {
+	return &SearchResultsPaginationResolver{
+		M: r.M.Pagination,
+		S: r.S,
+		C: r.C,
+	}
+}
+
 // ---------------------------------------
 // Device group relationship type resolver
 // ---------------------------------------
@@ -396,6 +489,37 @@ func (r *DeviceGroupRelationshipTypeResolver) Description() *string {
 
 func (r *DeviceGroupRelationshipTypeResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
+}
+
+// -----------------------------------------------
+// Device group relationship type results resolver
+// -----------------------------------------------
+
+type DeviceGroupRelationshipTypeSearchResultsResolver struct {
+	M model.DeviceGroupRelationshipTypeSearchResults
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *DeviceGroupRelationshipTypeSearchResultsResolver) Results() []*DeviceGroupRelationshipTypeResolver {
+	resolvers := make([]*DeviceGroupRelationshipTypeResolver, 0)
+	for _, current := range r.M.Results {
+		resolvers = append(resolvers,
+			&DeviceGroupRelationshipTypeResolver{
+				M: current,
+				S: r.S,
+				C: r.C,
+			})
+	}
+	return resolvers
+}
+
+func (r *DeviceGroupRelationshipTypeSearchResultsResolver) Pagination() *SearchResultsPaginationResolver {
+	return &SearchResultsPaginationResolver{
+		M: r.M.Pagination,
+		S: r.S,
+		C: r.C,
+	}
 }
 
 // ----------------------------------
@@ -447,6 +571,37 @@ func (r *DeviceGroupRelationshipResolver) Device() *DeviceResolver {
 func (r *DeviceGroupRelationshipResolver) RelationshipType() *DeviceGroupRelationshipTypeResolver {
 	return &DeviceGroupRelationshipTypeResolver{
 		M: r.M.RelationshipType,
+		S: r.S,
+		C: r.C,
+	}
+}
+
+// ------------------------------------------
+// Device group relationship results resolver
+// ------------------------------------------
+
+type DeviceGroupRelationshipSearchResultsResolver struct {
+	M model.DeviceGroupRelationshipSearchResults
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *DeviceGroupRelationshipSearchResultsResolver) Results() []*DeviceGroupRelationshipResolver {
+	resolvers := make([]*DeviceGroupRelationshipResolver, 0)
+	for _, current := range r.M.Results {
+		resolvers = append(resolvers,
+			&DeviceGroupRelationshipResolver{
+				M: current,
+				S: r.S,
+				C: r.C,
+			})
+	}
+	return resolvers
+}
+
+func (r *DeviceGroupRelationshipSearchResultsResolver) Pagination() *SearchResultsPaginationResolver {
+	return &SearchResultsPaginationResolver{
+		M: r.M.Pagination,
 		S: r.S,
 		C: r.C,
 	}

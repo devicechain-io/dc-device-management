@@ -78,6 +78,37 @@ func (r *AssetTypeResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
 }
 
+// ----------------------------------
+// Asset type search results resolver
+// ----------------------------------
+
+type AssetTypeSearchResultsResolver struct {
+	M model.AssetTypeSearchResults
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *AssetTypeSearchResultsResolver) Results() []*AssetTypeResolver {
+	resolvers := make([]*AssetTypeResolver, 0)
+	for _, current := range r.M.Results {
+		resolvers = append(resolvers,
+			&AssetTypeResolver{
+				M: current,
+				S: r.S,
+				C: r.C,
+			})
+	}
+	return resolvers
+}
+
+func (r *AssetTypeSearchResultsResolver) Pagination() *SearchResultsPaginationResolver {
+	return &SearchResultsPaginationResolver{
+		M: r.M.Pagination,
+		S: r.S,
+		C: r.C,
+	}
+}
+
 // --------------
 // Asset resolver
 // --------------
@@ -136,6 +167,37 @@ func (r *AssetResolver) AssetType() *AssetTypeResolver {
 	}
 }
 
+// -----------------------------
+// Asset search results resolver
+// -----------------------------
+
+type AssetSearchResultsResolver struct {
+	M model.AssetSearchResults
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *AssetSearchResultsResolver) Results() []*AssetResolver {
+	resolvers := make([]*AssetResolver, 0)
+	for _, current := range r.M.Results {
+		resolvers = append(resolvers,
+			&AssetResolver{
+				M: current,
+				S: r.S,
+				C: r.C,
+			})
+	}
+	return resolvers
+}
+
+func (r *AssetSearchResultsResolver) Pagination() *SearchResultsPaginationResolver {
+	return &SearchResultsPaginationResolver{
+		M: r.M.Pagination,
+		S: r.S,
+		C: r.C,
+	}
+}
+
 // --------------------------------
 // Asset relationship type resolver
 // --------------------------------
@@ -176,6 +238,37 @@ func (r *AssetRelationshipTypeResolver) Description() *string {
 
 func (r *AssetRelationshipTypeResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
+}
+
+// -----------------------------------------------
+// Asset relationship type search results resolver
+// -----------------------------------------------
+
+type AssetRelationshipTypeSearchResultsResolver struct {
+	M model.AssetRelationshipTypeSearchResults
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *AssetRelationshipTypeSearchResultsResolver) Results() []*AssetRelationshipTypeResolver {
+	resolvers := make([]*AssetRelationshipTypeResolver, 0)
+	for _, current := range r.M.Results {
+		resolvers = append(resolvers,
+			&AssetRelationshipTypeResolver{
+				M: current,
+				S: r.S,
+				C: r.C,
+			})
+	}
+	return resolvers
+}
+
+func (r *AssetRelationshipTypeSearchResultsResolver) Pagination() *SearchResultsPaginationResolver {
+	return &SearchResultsPaginationResolver{
+		M: r.M.Pagination,
+		S: r.S,
+		C: r.C,
+	}
 }
 
 // ---------------------------
@@ -227,6 +320,37 @@ func (r *AssetRelationshipResolver) TargetAsset() *AssetResolver {
 func (r *AssetRelationshipResolver) RelationshipType() *AssetRelationshipTypeResolver {
 	return &AssetRelationshipTypeResolver{
 		M: r.M.RelationshipType,
+		S: r.S,
+		C: r.C,
+	}
+}
+
+// ------------------------------------------
+// Asset relationship search results resolver
+// ------------------------------------------
+
+type AssetRelationshipSearchResultsResolver struct {
+	M model.AssetRelationshipSearchResults
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *AssetRelationshipSearchResultsResolver) Results() []*AssetRelationshipResolver {
+	resolvers := make([]*AssetRelationshipResolver, 0)
+	for _, current := range r.M.Results {
+		resolvers = append(resolvers,
+			&AssetRelationshipResolver{
+				M: current,
+				S: r.S,
+				C: r.C,
+			})
+	}
+	return resolvers
+}
+
+func (r *AssetRelationshipSearchResultsResolver) Pagination() *SearchResultsPaginationResolver {
+	return &SearchResultsPaginationResolver{
+		M: r.M.Pagination,
 		S: r.S,
 		C: r.C,
 	}
@@ -294,6 +418,37 @@ func (r *AssetGroupResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
 }
 
+// -----------------------------------
+// Asset group search results resolver
+// -----------------------------------
+
+type AssetGroupSearchResultsResolver struct {
+	M model.AssetGroupSearchResults
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *AssetGroupSearchResultsResolver) Results() []*AssetGroupResolver {
+	resolvers := make([]*AssetGroupResolver, 0)
+	for _, current := range r.M.Results {
+		resolvers = append(resolvers,
+			&AssetGroupResolver{
+				M: current,
+				S: r.S,
+				C: r.C,
+			})
+	}
+	return resolvers
+}
+
+func (r *AssetGroupSearchResultsResolver) Pagination() *SearchResultsPaginationResolver {
+	return &SearchResultsPaginationResolver{
+		M: r.M.Pagination,
+		S: r.S,
+		C: r.C,
+	}
+}
+
 // --------------------------------------
 // Asset group relationship type resolver
 // --------------------------------------
@@ -334,6 +489,37 @@ func (r *AssetGroupRelationshipTypeResolver) Description() *string {
 
 func (r *AssetGroupRelationshipTypeResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
+}
+
+// -----------------------------------------------------
+// Asset group relationship type search results resolver
+// -----------------------------------------------------
+
+type AssetGroupRelationshipTypeSearchResultsResolver struct {
+	M model.AssetGroupRelationshipTypeSearchResults
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *AssetGroupRelationshipTypeSearchResultsResolver) Results() []*AssetGroupRelationshipTypeResolver {
+	resolvers := make([]*AssetGroupRelationshipTypeResolver, 0)
+	for _, current := range r.M.Results {
+		resolvers = append(resolvers,
+			&AssetGroupRelationshipTypeResolver{
+				M: current,
+				S: r.S,
+				C: r.C,
+			})
+	}
+	return resolvers
+}
+
+func (r *AssetGroupRelationshipTypeSearchResultsResolver) Pagination() *SearchResultsPaginationResolver {
+	return &SearchResultsPaginationResolver{
+		M: r.M.Pagination,
+		S: r.S,
+		C: r.C,
+	}
 }
 
 // ---------------------------------
@@ -385,6 +571,37 @@ func (r *AssetGroupRelationshipResolver) Asset() *AssetResolver {
 func (r *AssetGroupRelationshipResolver) RelationshipType() *AssetGroupRelationshipTypeResolver {
 	return &AssetGroupRelationshipTypeResolver{
 		M: r.M.RelationshipType,
+		S: r.S,
+		C: r.C,
+	}
+}
+
+// ------------------------------------------------
+// Asset group relationship search results resolver
+// ------------------------------------------------
+
+type AssetGroupRelationshipSearchResultsResolver struct {
+	M model.AssetGroupRelationshipSearchResults
+	S *SchemaResolver
+	C context.Context
+}
+
+func (r *AssetGroupRelationshipSearchResultsResolver) Results() []*AssetGroupRelationshipResolver {
+	resolvers := make([]*AssetGroupRelationshipResolver, 0)
+	for _, current := range r.M.Results {
+		resolvers = append(resolvers,
+			&AssetGroupRelationshipResolver{
+				M: current,
+				S: r.S,
+				C: r.C,
+			})
+	}
+	return resolvers
+}
+
+func (r *AssetGroupRelationshipSearchResultsResolver) Pagination() *SearchResultsPaginationResolver {
+	return &SearchResultsPaginationResolver{
+		M: r.M.Pagination,
 		S: r.S,
 		C: r.C,
 	}

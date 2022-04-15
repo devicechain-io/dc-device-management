@@ -11,7 +11,7 @@ import (
 	_ "embed"
 
 	"github.com/devicechain-io/dc-device-management/model"
-	"github.com/devicechain-io/dc-microservice/rdb"
+	"gorm.io/gorm"
 )
 
 // Find asset type by unique id.
@@ -55,26 +55,27 @@ func (r *SchemaResolver) AssetTypeByToken(ctx context.Context, args struct {
 // List all asset types that match the given criteria.
 func (r *SchemaResolver) AssetTypes(ctx context.Context, args struct {
 	Criteria model.AssetTypeSearchCriteria
-}) ([]*AssetTypeResolver, error) {
-	list := make([]model.AssetType, 0)
+}) (*AssetTypeSearchResultsResolver, error) {
+	results := make([]model.AssetType, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
-	result = result.Find(&list)
-	if result.Error != nil {
-		return nil, result.Error
+	db, pag := rdbmgr.ListOf(&model.AssetType{}, nil, args.Criteria.Pagination)
+	db.Find(&results)
+	if db.Error != nil {
+		return nil, db.Error
 	}
 
-	resolvers := make([]*AssetTypeResolver, 0)
-	for _, current := range list {
-		resolvers = append(resolvers,
-			&AssetTypeResolver{
-				M: current,
-				S: r,
-				C: ctx,
-			})
+	// Wrap as search results.
+	found := model.AssetTypeSearchResults{
+		Results:    results,
+		Pagination: pag,
 	}
 
-	return resolvers, nil
+	// Return as resolver.
+	return &AssetTypeSearchResultsResolver{
+		M: found,
+		S: r,
+		C: ctx,
+	}, nil
 }
 
 // Find asset by unique id.
@@ -118,31 +119,36 @@ func (r *SchemaResolver) AssetByToken(ctx context.Context, args struct {
 // List all assets that match the given criteria.
 func (r *SchemaResolver) Assets(ctx context.Context, args struct {
 	Criteria model.AssetSearchCriteria
-}) ([]*AssetResolver, error) {
-	list := make([]model.Asset, 0)
+}) (*AssetSearchResultsResolver, error) {
+	results := make([]model.Asset, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
-	if args.Criteria.AssetTypeToken != nil {
-		result = result.Joins("AssetType").Where("asset_type_id = (?)",
-			rdbmgr.Database.Model(&model.AssetType{}).Select("id").Where("token = ?", args.Criteria.AssetTypeToken)).Find(&list)
-	} else {
-		result = result.Joins("AssetType").Find(&list)
-	}
-	if result.Error != nil {
-		return nil, result.Error
-	}
-
-	resolvers := make([]*AssetResolver, 0)
-	for _, current := range list {
-		resolvers = append(resolvers,
-			&AssetResolver{
-				M: current,
-				S: r,
-				C: ctx,
-			})
+	db, pag := rdbmgr.ListOf(
+		&model.Device{},
+		func(result *gorm.DB) *gorm.DB {
+			if args.Criteria.AssetTypeToken != nil {
+				return result.Joins("AssetType").Where("asset_type_id = (?)",
+					rdbmgr.Database.Model(&model.AssetType{}).Select("id").Where("token = ?", args.Criteria.AssetTypeToken)).Find(&results)
+			} else {
+				return result.Joins("AssetType").Find(&results)
+			}
+		}, args.Criteria.Pagination)
+	db.Find(&results)
+	if db.Error != nil {
+		return nil, db.Error
 	}
 
-	return resolvers, nil
+	// Wrap as search results.
+	found := model.AssetSearchResults{
+		Results:    results,
+		Pagination: pag,
+	}
+
+	// Return as resolver.
+	return &AssetSearchResultsResolver{
+		M: found,
+		S: r,
+		C: ctx,
+	}, nil
 }
 
 // Find asset relationship type by unique id.
@@ -186,26 +192,27 @@ func (r *SchemaResolver) AssetRelationshipTypeByToken(ctx context.Context, args 
 // List all asset relationship types that match the given criteria.
 func (r *SchemaResolver) AssetRelationshipTypes(ctx context.Context, args struct {
 	Criteria model.AssetRelationshipTypeSearchCriteria
-}) ([]*AssetRelationshipTypeResolver, error) {
-	list := make([]model.AssetRelationshipType, 0)
+}) (*AssetRelationshipTypeSearchResultsResolver, error) {
+	results := make([]model.AssetRelationshipType, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
-	result = result.Find(&list)
-	if result.Error != nil {
-		return nil, result.Error
+	db, pag := rdbmgr.ListOf(&model.AssetRelationshipType{}, nil, args.Criteria.Pagination)
+	db.Find(&results)
+	if db.Error != nil {
+		return nil, db.Error
 	}
 
-	resolvers := make([]*AssetRelationshipTypeResolver, 0)
-	for _, current := range list {
-		resolvers = append(resolvers,
-			&AssetRelationshipTypeResolver{
-				M: current,
-				S: r,
-				C: ctx,
-			})
+	// Wrap as search results.
+	found := model.AssetRelationshipTypeSearchResults{
+		Results:    results,
+		Pagination: pag,
 	}
 
-	return resolvers, nil
+	// Return as resolver.
+	return &AssetRelationshipTypeSearchResultsResolver{
+		M: found,
+		S: r,
+		C: ctx,
+	}, nil
 }
 
 // Find asset relationship by unique id.
@@ -230,27 +237,29 @@ func (r *SchemaResolver) AssetRelationship(ctx context.Context, args struct {
 // List all asset relationships that match the given criteria.
 func (r *SchemaResolver) AssetRelationships(ctx context.Context, args struct {
 	Criteria model.AssetRelationshipSearchCriteria
-}) ([]*AssetRelationshipResolver, error) {
-	list := make([]model.AssetRelationship, 0)
+}) (*AssetRelationshipSearchResultsResolver, error) {
+	results := make([]model.AssetRelationship, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
-	result = result.Joins("SourceAsset").Joins("TargetAsset").Joins("RelationshipType")
-	result = result.Find(&list)
-	if result.Error != nil {
-		return nil, result.Error
+	db, pag := rdbmgr.ListOf(&model.AssetRelationship{}, func(db *gorm.DB) *gorm.DB {
+		return db.Preload("SourceAsset").Preload("TargetAsset").Preload("RelationshipType")
+	}, args.Criteria.Pagination)
+	db.Find(&results)
+	if db.Error != nil {
+		return nil, db.Error
 	}
 
-	resolvers := make([]*AssetRelationshipResolver, 0)
-	for _, current := range list {
-		resolvers = append(resolvers,
-			&AssetRelationshipResolver{
-				M: current,
-				S: r,
-				C: ctx,
-			})
+	// Wrap as search results.
+	found := model.AssetRelationshipSearchResults{
+		Results:    results,
+		Pagination: pag,
 	}
 
-	return resolvers, nil
+	// Return as resolver.
+	return &AssetRelationshipSearchResultsResolver{
+		M: found,
+		S: r,
+		C: ctx,
+	}, nil
 }
 
 // Find asset group by unique id.
@@ -294,26 +303,27 @@ func (r *SchemaResolver) AssetGroupByToken(ctx context.Context, args struct {
 // List all asset groups that match the given criteria.
 func (r *SchemaResolver) AssetGroups(ctx context.Context, args struct {
 	Criteria model.AssetGroupSearchCriteria
-}) ([]*AssetGroupResolver, error) {
-	list := make([]model.AssetGroup, 0)
+}) (*AssetGroupSearchResultsResolver, error) {
+	results := make([]model.AssetGroup, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
-	result = result.Find(&list)
-	if result.Error != nil {
-		return nil, result.Error
+	db, pag := rdbmgr.ListOf(&model.AssetGroup{}, nil, args.Criteria.Pagination)
+	db.Find(&results)
+	if db.Error != nil {
+		return nil, db.Error
 	}
 
-	resolvers := make([]*AssetGroupResolver, 0)
-	for _, current := range list {
-		resolvers = append(resolvers,
-			&AssetGroupResolver{
-				M: current,
-				S: r,
-				C: ctx,
-			})
+	// Wrap as search results.
+	found := model.AssetGroupSearchResults{
+		Results:    results,
+		Pagination: pag,
 	}
 
-	return resolvers, nil
+	// Return as resolver.
+	return &AssetGroupSearchResultsResolver{
+		M: found,
+		S: r,
+		C: ctx,
+	}, nil
 }
 
 // Find asset group relationship type by unique id.
@@ -357,26 +367,27 @@ func (r *SchemaResolver) AssetGroupRelationshipTypeByToken(ctx context.Context, 
 // List all asset group relationship types that match the given criteria.
 func (r *SchemaResolver) AssetGroupRelationshipTypes(ctx context.Context, args struct {
 	Criteria model.AssetGroupRelationshipTypeSearchCriteria
-}) ([]*AssetGroupRelationshipTypeResolver, error) {
-	list := make([]model.AssetGroupRelationshipType, 0)
+}) (*AssetGroupRelationshipTypeSearchResultsResolver, error) {
+	results := make([]model.AssetGroupRelationshipType, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
-	result = result.Find(&list)
-	if result.Error != nil {
-		return nil, result.Error
+	db, pag := rdbmgr.ListOf(&model.AssetGroupRelationshipType{}, nil, args.Criteria.Pagination)
+	db.Find(&results)
+	if db.Error != nil {
+		return nil, db.Error
 	}
 
-	resolvers := make([]*AssetGroupRelationshipTypeResolver, 0)
-	for _, current := range list {
-		resolvers = append(resolvers,
-			&AssetGroupRelationshipTypeResolver{
-				M: current,
-				S: r,
-				C: ctx,
-			})
+	// Wrap as search results.
+	found := model.AssetGroupRelationshipTypeSearchResults{
+		Results:    results,
+		Pagination: pag,
 	}
 
-	return resolvers, nil
+	// Return as resolver.
+	return &AssetGroupRelationshipTypeSearchResultsResolver{
+		M: found,
+		S: r,
+		C: ctx,
+	}, nil
 }
 
 // Find asset group relationship by unique id.
@@ -401,25 +412,27 @@ func (r *SchemaResolver) AssetGroupRelationship(ctx context.Context, args struct
 // List all asset group relationships that match the given criteria.
 func (r *SchemaResolver) AssetGroupRelationships(ctx context.Context, args struct {
 	Criteria model.AssetGroupRelationshipSearchCriteria
-}) ([]*AssetGroupRelationshipResolver, error) {
-	list := make([]model.AssetGroupRelationship, 0)
+}) (*AssetGroupRelationshipSearchResultsResolver, error) {
+	results := make([]model.AssetGroupRelationship, 0)
 	rdbmgr := r.GetRdbManager(ctx)
-	result := rdbmgr.Database.Scopes(rdb.Paginate(args.Criteria.Pagination))
-	result = result.Joins("AssetGroup").Joins("Asset").Joins("RelationshipType")
-	result = result.Find(&list)
-	if result.Error != nil {
-		return nil, result.Error
+	db, pag := rdbmgr.ListOf(&model.AssetGroupRelationship{}, func(db *gorm.DB) *gorm.DB {
+		return db.Preload("AssetGroup").Preload("Asset").Preload("RelationshipType")
+	}, args.Criteria.Pagination)
+	db.Find(&results)
+	if db.Error != nil {
+		return nil, db.Error
 	}
 
-	resolvers := make([]*AssetGroupRelationshipResolver, 0)
-	for _, current := range list {
-		resolvers = append(resolvers,
-			&AssetGroupRelationshipResolver{
-				M: current,
-				S: r,
-				C: ctx,
-			})
+	// Wrap as search results.
+	found := model.AssetGroupRelationshipSearchResults{
+		Results:    results,
+		Pagination: pag,
 	}
 
-	return resolvers, nil
+	// Return as resolver.
+	return &AssetGroupRelationshipSearchResultsResolver{
+		M: found,
+		S: r,
+		C: ctx,
+	}, nil
 }

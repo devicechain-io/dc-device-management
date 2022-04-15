@@ -40,6 +40,12 @@ type AssetTypeSearchCriteria struct {
 	rdb.Pagination
 }
 
+// Results for asset type search.
+type AssetTypeSearchResults struct {
+	Results    []AssetType
+	Pagination rdb.SearchResultsPagination
+}
+
 // Data required to create an asset.
 type AssetCreateRequest struct {
 	Token          string
@@ -66,6 +72,12 @@ type AssetSearchCriteria struct {
 	AssetTypeToken *string
 }
 
+// Results for asset search.
+type AssetSearchResults struct {
+	Results    []Asset
+	Pagination rdb.SearchResultsPagination
+}
+
 // Data required to create an asset relationship type.
 type AssetRelationshipTypeCreateRequest struct {
 	Token       string
@@ -85,6 +97,12 @@ type AssetRelationshipType struct {
 // Search criteria for locating asset relationship types.
 type AssetRelationshipTypeSearchCriteria struct {
 	rdb.Pagination
+}
+
+// Results for asset relationship type search.
+type AssetRelationshipTypeSearchResults struct {
+	Results    []AssetRelationshipType
+	Pagination rdb.SearchResultsPagination
 }
 
 // Data required to create an asset relationship.
@@ -110,6 +128,12 @@ type AssetRelationship struct {
 // Search criteria for locating asset relationships.
 type AssetRelationshipSearchCriteria struct {
 	rdb.Pagination
+}
+
+// Results for asset relationship search.
+type AssetRelationshipSearchResults struct {
+	Results    []AssetRelationship
+	Pagination rdb.SearchResultsPagination
 }
 
 // Data required to create an asset group.
@@ -139,6 +163,12 @@ type AssetGroupSearchCriteria struct {
 	rdb.Pagination
 }
 
+// Results for asset group search.
+type AssetGroupSearchResults struct {
+	Results    []AssetGroup
+	Pagination rdb.SearchResultsPagination
+}
+
 // Data required to create an asset group relationship type.
 type AssetGroupRelationshipTypeCreateRequest struct {
 	Token       string
@@ -155,9 +185,15 @@ type AssetGroupRelationshipType struct {
 	rdb.MetadataEntity
 }
 
-// Search criteria for locating asset groups relationship types.
+// Search criteria for locating asset group relationship types.
 type AssetGroupRelationshipTypeSearchCriteria struct {
 	rdb.Pagination
+}
+
+// Results for asset group relationship type search.
+type AssetGroupRelationshipTypeSearchResults struct {
+	Results    []AssetGroupRelationshipType
+	Pagination rdb.SearchResultsPagination
 }
 
 // Data required to create an asset group relationship.
@@ -183,4 +219,10 @@ type AssetGroupRelationship struct {
 // Search criteria for locating asset group relationships.
 type AssetGroupRelationshipSearchCriteria struct {
 	rdb.Pagination
+}
+
+// Results for asset group relationship search.
+type AssetGroupRelationshipSearchResults struct {
+	Results    []AssetGroupRelationship
+	Pagination rdb.SearchResultsPagination
 }
