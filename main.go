@@ -107,6 +107,9 @@ func afterMicroserviceInitialized(ctx context.Context) error {
 		return err
 	}
 
+	// Create RDB caches.
+	model.InitializeCaches(RdbManager)
+
 	// Create and initialize kafka manager.
 	KakfaManager = kcore.NewKafkaManager(Microservice, core.NewNoOpLifecycleCallbacks(), createKafkaComponents)
 	err = KakfaManager.Initialize(ctx)

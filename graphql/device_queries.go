@@ -9,9 +9,12 @@ package graphql
 import (
 	"context"
 	_ "embed"
+	"fmt"
 	"strconv"
+	"time"
 
 	"github.com/devicechain-io/dc-device-management/model"
+	"github.com/rs/zerolog/log"
 	"gorm.io/gorm"
 )
 
@@ -24,10 +27,14 @@ func (r *SchemaResolver) DeviceType(ctx context.Context, args struct {
 	if err != nil {
 		return nil, err
 	}
+
+	start := time.Now()
 	found, err := model.NewApi(rdbmgr).DeviceTypeById(uint(id))
 	if err != nil {
 		return nil, err
 	}
+	duration := time.Since(start)
+	log.Info().Msg(fmt.Sprintf("Device by id call took: %v", duration))
 
 	dt := &DeviceTypeResolver{
 		M: *found,

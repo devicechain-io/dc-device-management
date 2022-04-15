@@ -7,7 +7,13 @@
 package model
 
 import (
+	"context"
+	"fmt"
+	"time"
+
 	"github.com/devicechain-io/dc-microservice/rdb"
+	"github.com/go-redis/cache/v8"
+	"github.com/rs/zerolog/log"
 	"gorm.io/gorm"
 )
 
@@ -24,11 +30,28 @@ func NewApi(rdb *rdb.RdbManager) *Api {
 
 // Get device type by id.
 func (api *Api) DeviceTypeById(id uint) (*DeviceType, error) {
+	// Load from cache if available.
+	strid := fmt.Sprintf("%d", id)
 	found := &DeviceType{}
+	idcache := api.RDB.GetRedisCache(CACHE_NAME_DEVICE_TYPE_BY_ID)
+	idcache.Get(context.Background(), strid, func(cache *cache.Cache, key string) {
+		cache.Get(context.Background(), key, &found)
+	})
+	if found != nil {
+		return found, nil
+	}
+
+	// Otherwise search in database.
+	log.Info().Msg("Loading device type by id from database.")
 	result := api.RDB.Database.First(found, id)
 	if result.Error != nil {
 		return nil, result.Error
 	}
+
+	// Add to cache.
+	tokencache := api.RDB.GetRedisCache(CACHE_NAME_DEVICE_TYPE_BY_TOKEN)
+	idcache.Set(context.Background(), fmt.Sprintf("%d", id), found, time.Minute)
+	tokencache.Set(context.Background(), found.Token, found, time.Minute)
 	return found, nil
 }
 
