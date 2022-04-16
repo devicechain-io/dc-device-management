@@ -158,10 +158,155 @@ func NewInitialSchema() *gormigrate.Migration {
 				RelationshipTypeId int
 			}
 
+			// Represents a customer type.
+			type CustomerType struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+				rdb.BrandedEntity
+				rdb.MetadataEntity
+
+				Customers []Customer
+			}
+
+			// Represents a customer.
+			type Customer struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+				rdb.MetadataEntity
+
+				CustomerTypeId int
+				CustomerType   *CustomerType
+			}
+
+			// Metadata indicating a relationship between customers.
+			type CustomerRelationshipType struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+				rdb.MetadataEntity
+			}
+
+			// Captures a relationship between customers.
+			type CustomerRelationship struct {
+				gorm.Model
+				rdb.MetadataEntity
+				SourceCustomerId   int
+				SourceCustomer     Customer
+				TargetCustomerId   int
+				TargetCustomer     Customer
+				RelationshipTypeId int
+				RelationshipType   CustomerRelationshipType
+			}
+
+			// Represents a group of customers.
+			type CustomerGroup struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+				rdb.BrandedEntity
+				rdb.MetadataEntity
+			}
+
+			// Metadata indicating a relationship between customer and group.
+			type CustomerGroupRelationshipType struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+				rdb.MetadataEntity
+			}
+
+			// Represents a customer-to-group relationship.
+			type CustomerGroupRelationship struct {
+				gorm.Model
+				rdb.MetadataEntity
+				CustomerGroupId    int
+				CustomerGroup      CustomerGroup
+				CustomerId         int
+				Customer           Customer
+				RelationshipTypeId int
+				RelationshipType   CustomerGroupRelationshipType
+			}
+
+			// Represents an area type.
+			type AreaType struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+				rdb.BrandedEntity
+				rdb.MetadataEntity
+
+				Areas []Area
+			}
+
+			// Represents an area.
+			type Area struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+				rdb.MetadataEntity
+
+				AreaTypeId int
+				AreaType   *AreaType
+			}
+
+			// Metadata indicating a relationship between areas.
+			type AreaRelationshipType struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+				rdb.MetadataEntity
+			}
+
+			// Captures a relationship between areas.
+			type AreaRelationship struct {
+				gorm.Model
+				rdb.MetadataEntity
+				SourceAreaId       int
+				SourceArea         Area
+				TargetAreaId       int
+				TargetArea         Area
+				RelationshipTypeId int
+				RelationshipType   AreaRelationshipType
+			}
+
+			// Represents a group of areas.
+			type AreaGroup struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+				rdb.BrandedEntity
+				rdb.MetadataEntity
+			}
+
+			// Metadata indicating a relationship between area and group.
+			type AreaGroupRelationshipType struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+				rdb.MetadataEntity
+			}
+
+			// Represents a area-to-group relationship.
+			type AreaGroupRelationship struct {
+				gorm.Model
+				rdb.MetadataEntity
+				AreaGroupId        int
+				AreaGroup          AreaGroup
+				AreaId             int
+				Area               Area
+				RelationshipTypeId int
+				RelationshipType   AreaGroupRelationshipType
+			}
+
 			return tx.AutoMigrate(&Device{}, &DeviceType{}, &DeviceRelationshipType{}, &DeviceRelationship{},
 				&DeviceGroup{}, &DeviceGroupRelationshipType{}, &DeviceGroupRelationship{}, &AssetType{},
 				&Asset{}, &AssetRelationshipType{}, &AssetRelationship{}, &AssetGroup{}, &AssetGroupRelationshipType{},
-				&AssetGroupRelationship{})
+				&AssetGroupRelationship{}, &CustomerType{}, &Customer{}, &CustomerRelationshipType{},
+				&CustomerRelationship{}, &CustomerGroup{}, &CustomerGroupRelationshipType{}, &CustomerGroupRelationship{},
+				&AreaType{}, &Area{}, &AreaRelationshipType{}, &AreaRelationship{}, &AreaGroup{},
+				&AreaGroupRelationshipType{}, &AreaGroupRelationship{})
 		},
 		Rollback: func(tx *gorm.DB) error {
 			err := tx.Migrator().DropTable("device_types")
@@ -217,6 +362,62 @@ func NewInitialSchema() *gormigrate.Migration {
 				return err
 			}
 			err = tx.Migrator().DropTable("asset_group_relationships")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("customer_types")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("customer")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("customer_relationship_types")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("customer_relationships")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("customer_groups")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("customer_group_relationship_types")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("customer_group_relationships")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("area_types")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("area")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("area_relationship_types")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("area_relationships")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("area_groups")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("area_group_relationship_types")
+			if err != nil {
+				return err
+			}
+			err = tx.Migrator().DropTable("area_group_relationships")
 			if err != nil {
 				return err
 			}

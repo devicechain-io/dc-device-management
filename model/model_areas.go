@@ -1,0 +1,228 @@
+/**
+ * Copyright ©2022 DeviceChain - All Rights Reserved.
+ * Unauthorized copying of this file, via any medium is strictly prohibited.
+ * Proprietary and confidential.
+ */
+
+package model
+
+import (
+	"github.com/devicechain-io/dc-microservice/rdb"
+	"gorm.io/gorm"
+)
+
+// Data required to create an area type.
+type AreaTypeCreateRequest struct {
+	Token           string
+	Name            *string
+	Description     *string
+	ImageUrl        *string
+	Icon            *string
+	BackgroundColor *string
+	ForegroundColor *string
+	BorderColor     *string
+	Metadata        *string
+}
+
+// Represents an area type.
+type AreaType struct {
+	gorm.Model
+	rdb.TokenReference
+	rdb.NamedEntity
+	rdb.BrandedEntity
+	rdb.MetadataEntity
+
+	Areas []Area
+}
+
+// Search criteria for locating area types.
+type AreaTypeSearchCriteria struct {
+	rdb.Pagination
+}
+
+// Results for area type search.
+type AreaTypeSearchResults struct {
+	Results    []AreaType
+	Pagination rdb.SearchResultsPagination
+}
+
+// Data required to create an area.
+type AreaCreateRequest struct {
+	Token         string
+	Name          *string
+	Description   *string
+	AreaTypeToken string
+	Metadata      *string
+}
+
+// Represents an area.
+type Area struct {
+	gorm.Model
+	rdb.TokenReference
+	rdb.NamedEntity
+	rdb.MetadataEntity
+
+	AreaTypeId int
+	AreaType   *AreaType
+}
+
+// Search criteria for locating areas.
+type AreaSearchCriteria struct {
+	rdb.Pagination
+	AreaTypeToken *string
+}
+
+// Results for area search.
+type AreaSearchResults struct {
+	Results    []Area
+	Pagination rdb.SearchResultsPagination
+}
+
+// Data required to create a area relationship type.
+type AreaRelationshipTypeCreateRequest struct {
+	Token       string
+	Name        *string
+	Description *string
+	Metadata    *string
+}
+
+// Metadata indicating a relationship between areas.
+type AreaRelationshipType struct {
+	gorm.Model
+	rdb.TokenReference
+	rdb.NamedEntity
+	rdb.MetadataEntity
+}
+
+// Search criteria for locating area relationship types.
+type AreaRelationshipTypeSearchCriteria struct {
+	rdb.Pagination
+}
+
+// Results for area relationship type search.
+type AreaRelationshipTypeSearchResults struct {
+	Results    []AreaRelationshipType
+	Pagination rdb.SearchResultsPagination
+}
+
+// Data required to create a area relationship.
+type AreaRelationshipCreateRequest struct {
+	SourceArea       string
+	TargetArea       string
+	RelationshipType string
+	Metadata         *string
+}
+
+// Captures a relationship between areas.
+type AreaRelationship struct {
+	gorm.Model
+	rdb.MetadataEntity
+	SourceAreaId       int
+	SourceArea         Area
+	TargetAreaId       int
+	TargetArea         Area
+	RelationshipTypeId int
+	RelationshipType   AreaRelationshipType
+}
+
+// Search criteria for locating area relationships.
+type AreaRelationshipSearchCriteria struct {
+	rdb.Pagination
+}
+
+// Results for area relationship search.
+type AreaRelationshipSearchResults struct {
+	Results    []AreaRelationship
+	Pagination rdb.SearchResultsPagination
+}
+
+// Data required to create an area group.
+type AreaGroupCreateRequest struct {
+	Token           string
+	Name            *string
+	Description     *string
+	ImageUrl        *string
+	Icon            *string
+	BackgroundColor *string
+	ForegroundColor *string
+	BorderColor     *string
+	Metadata        *string
+}
+
+// Represents a group of areas.
+type AreaGroup struct {
+	gorm.Model
+	rdb.TokenReference
+	rdb.NamedEntity
+	rdb.BrandedEntity
+	rdb.MetadataEntity
+}
+
+// Search criteria for locating area groups.
+type AreaGroupSearchCriteria struct {
+	rdb.Pagination
+}
+
+// Results for area group search.
+type AreaGroupSearchResults struct {
+	Results    []AreaGroup
+	Pagination rdb.SearchResultsPagination
+}
+
+// Data required to create a area group relationship type.
+type AreaGroupRelationshipTypeCreateRequest struct {
+	Token       string
+	Name        *string
+	Description *string
+	Metadata    *string
+}
+
+// Metadata indicating a relationship between area and group.
+type AreaGroupRelationshipType struct {
+	gorm.Model
+	rdb.TokenReference
+	rdb.NamedEntity
+	rdb.MetadataEntity
+}
+
+// Search criteria for locating area groups relationship types.
+type AreaGroupRelationshipTypeSearchCriteria struct {
+	rdb.Pagination
+}
+
+// Results for area group search.
+type AreaGroupRelationshipTypeSearchResults struct {
+	Results    []AreaGroupRelationshipType
+	Pagination rdb.SearchResultsPagination
+}
+
+// Data required to create a area group relationship.
+type AreaGroupRelationshipCreateRequest struct {
+	AreaGroup        string
+	Area             string
+	RelationshipType string
+	Metadata         *string
+}
+
+// Represents a area-to-group relationship.
+type AreaGroupRelationship struct {
+	gorm.Model
+	rdb.MetadataEntity
+	AreaGroupId        int
+	AreaGroup          AreaGroup
+	AreaId             int
+	Area               Area
+	RelationshipTypeId int
+	RelationshipType   AreaGroupRelationshipType
+}
+
+// Search criteria for locating area groups relationships.
+type AreaGroupRelationshipSearchCriteria struct {
+	rdb.Pagination
+}
+
+// Results for area group relationship search.
+type AreaGroupRelationshipSearchResults struct {
+	Results    []AreaGroupRelationship
+	Pagination rdb.SearchResultsPagination
+}
