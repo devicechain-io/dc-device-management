@@ -580,29 +580,29 @@ type Query {
 # Contains mutations executed against model.
 type Mutation {
     # Create a new device type.
-    createDeviceType(value: DeviceTypeCreateRequest): DeviceType!
+    createDeviceType(request: DeviceTypeCreateRequest): DeviceType!
     # Update an existing device type.
-    updateDeviceType(token: String!, value: DeviceTypeCreateRequest): DeviceType!
+    updateDeviceType(token: String!, request: DeviceTypeCreateRequest): DeviceType!
     # Create a new device.
-    createDevice(value: DeviceCreateRequest): Device!
+    createDevice(request: DeviceCreateRequest): Device!
     # Update an existing device.
-    updateDevice(token: String!, value: DeviceCreateRequest): Device!
+    updateDevice(token: String!, request: DeviceCreateRequest): Device!
     # Create a new device relationship type.
-    createDeviceRelationshipType(value: DeviceRelationshipTypeCreateRequest): DeviceRelationshipType!
+    createDeviceRelationshipType(request: DeviceRelationshipTypeCreateRequest): DeviceRelationshipType!
     # Update an existing device relationship type.
-    updateDeviceRelationshipType(token: String!, value: DeviceRelationshipTypeCreateRequest): DeviceRelationshipType!
+    updateDeviceRelationshipType(token: String!, request: DeviceRelationshipTypeCreateRequest): DeviceRelationshipType!
     # Create a new device relationship.
-    createDeviceRelationship(value: DeviceRelationshipCreateRequest): DeviceRelationship!
+    createDeviceRelationship(request: DeviceRelationshipCreateRequest): DeviceRelationship!
     # Create a new device group.
-    createDeviceGroup(value: DeviceGroupCreateRequest): DeviceGroup!
+    createDeviceGroup(request: DeviceGroupCreateRequest): DeviceGroup!
     # Update an existing device group.
-    updateDeviceGroup(token: String!, value: DeviceGroupCreateRequest): DeviceGroup!
+    updateDeviceGroup(token: String!, request: DeviceGroupCreateRequest): DeviceGroup!
     # Create a new device group relationship type.
-    createDeviceGroupRelationshipType(value: DeviceGroupRelationshipTypeCreateRequest): DeviceGroupRelationshipType!
+    createDeviceGroupRelationshipType(request: DeviceGroupRelationshipTypeCreateRequest): DeviceGroupRelationshipType!
     # Update an existing device group relationship type.
-    updateDeviceGroupRelationshipType(token: String!, value: DeviceGroupRelationshipTypeCreateRequest): DeviceGroupRelationshipType!
+    updateDeviceGroupRelationshipType(token: String!, request: DeviceGroupRelationshipTypeCreateRequest): DeviceGroupRelationshipType!
     # Create a new device group relationship.
-    createDeviceGroupRelationship(value: DeviceGroupRelationshipCreateRequest): DeviceGroupRelationship!
+    createDeviceGroupRelationship(request: DeviceGroupRelationshipCreateRequest): DeviceGroupRelationship!
 
     # Create a new asset type.
     createAssetType(value: AssetTypeCreateRequest): AssetType!

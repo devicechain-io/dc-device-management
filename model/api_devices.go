@@ -9,8 +9,62 @@ package model
 import (
 	"context"
 
+	"github.com/devicechain-io/dc-microservice/rdb"
 	"gorm.io/gorm"
 )
+
+// Create a new device type.
+func (api *Api) CreateDeviceType(ctx context.Context, request *DeviceTypeCreateRequest) (*DeviceType, error) {
+	created := &DeviceType{
+		TokenReference: rdb.TokenReference{
+			Token: request.Token,
+		},
+		NamedEntity: rdb.NamedEntity{
+			Name:        rdb.NullStrOf(request.Name),
+			Description: rdb.NullStrOf(request.Description),
+		},
+		BrandedEntity: rdb.BrandedEntity{
+			ImageUrl:        rdb.NullStrOf(request.ImageUrl),
+			Icon:            rdb.NullStrOf(request.Icon),
+			BackgroundColor: rdb.NullStrOf(request.BackgroundColor),
+			ForegroundColor: rdb.NullStrOf(request.ForegroundColor),
+			BorderColor:     rdb.NullStrOf(request.BorderColor),
+		},
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(request.Metadata),
+		},
+	}
+	result := api.RDB.Database.Create(created)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return created, nil
+}
+
+// Update an existing device type.
+func (api *Api) UpdateDeviceType(ctx context.Context, token string,
+	request *DeviceTypeCreateRequest) (*DeviceType, error) {
+	found, err := api.DeviceTypeByToken(ctx, request.Token)
+	if err != nil {
+		return nil, err
+	}
+
+	found.Token = request.Token
+	found.Name = rdb.NullStrOf(request.Name)
+	found.Description = rdb.NullStrOf(request.Description)
+	found.ImageUrl = rdb.NullStrOf(request.ImageUrl)
+	found.Icon = rdb.NullStrOf(request.Icon)
+	found.BackgroundColor = rdb.NullStrOf(request.BackgroundColor)
+	found.ForegroundColor = rdb.NullStrOf(request.ForegroundColor)
+	found.BorderColor = rdb.NullStrOf(request.BorderColor)
+	found.Metadata = rdb.MetadataStrOf(request.Metadata)
+
+	result := api.RDB.Database.Save(found)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return found, nil
+}
 
 // Get device type by id.
 func (api *Api) DeviceTypeById(ctx context.Context, id uint) (*DeviceType, error) {
@@ -48,10 +102,68 @@ func (api *Api) DeviceTypes(ctx context.Context, criteria DeviceTypeSearchCriter
 	}, nil
 }
 
+// Create a new device.
+func (api *Api) CreateDevice(ctx context.Context, request *DeviceCreateRequest) (*Device, error) {
+	dtr, err := api.DeviceTypeByToken(ctx, request.DeviceTypeToken)
+	if err != nil {
+		return nil, err
+	}
+
+	created := &Device{
+		TokenReference: rdb.TokenReference{
+			Token: request.Token,
+		},
+		NamedEntity: rdb.NamedEntity{
+			Name:        rdb.NullStrOf(request.Name),
+			Description: rdb.NullStrOf(request.Description),
+		},
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(request.Metadata),
+		},
+		DeviceType: dtr,
+	}
+	result := api.RDB.Database.Create(created)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return created, nil
+}
+
+// Update an existing device.
+func (api *Api) UpdateDevice(ctx context.Context, token string, request *DeviceCreateRequest) (*Device, error) {
+	updated, err := api.DeviceByToken(ctx, request.Token)
+	if err != nil {
+		return nil, err
+	}
+
+	// Update fields that changed.
+	updated.Token = request.Token
+	updated.Name = rdb.NullStrOf(request.Name)
+	updated.Description = rdb.NullStrOf(request.Description)
+	updated.Metadata = rdb.MetadataStrOf(request.Metadata)
+
+	// Update device type if changed.
+	if request.DeviceTypeToken != updated.DeviceType.Token {
+		dtr, err := api.DeviceTypeByToken(ctx, request.DeviceTypeToken)
+		if err != nil {
+			return nil, err
+		}
+		updated.DeviceType = dtr
+	}
+
+	result := api.RDB.Database.Save(updated)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return updated, nil
+}
+
 // Get device by id.
 func (api *Api) DeviceById(ctx context.Context, id uint) (*Device, error) {
 	found := &Device{}
-	result := api.RDB.Database.First(found, id)
+	result := api.RDB.Database
+	result = result.Preload("DeviceType")
+	result = result.First(found, id)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -61,7 +173,9 @@ func (api *Api) DeviceById(ctx context.Context, id uint) (*Device, error) {
 // Get device by token.
 func (api *Api) DeviceByToken(ctx context.Context, token string) (*Device, error) {
 	found := &Device{}
-	result := api.RDB.Database.First(&found, "token = ?", token)
+	result := api.RDB.Database
+	result = result.Preload("DeviceType")
+	result = result.First(&found, "token = ?", token)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -88,6 +202,47 @@ func (api *Api) Devices(ctx context.Context, criteria DeviceSearchCriteria) (*De
 		Results:    results,
 		Pagination: pag,
 	}, nil
+}
+
+// Create a new device relationship type.
+func (api *Api) CreateDeviceRelationshipType(ctx context.Context, request *DeviceRelationshipTypeCreateRequest) (*DeviceRelationshipType, error) {
+	created := &DeviceRelationshipType{
+		TokenReference: rdb.TokenReference{
+			Token: request.Token,
+		},
+		NamedEntity: rdb.NamedEntity{
+			Name:        rdb.NullStrOf(request.Name),
+			Description: rdb.NullStrOf(request.Description),
+		},
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(request.Metadata),
+		},
+	}
+	result := api.RDB.Database.Create(created)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return created, nil
+}
+
+// Update an existing device relationship type.
+func (api *Api) UpdateDeviceRelationshipType(ctx context.Context, token string,
+	request *DeviceRelationshipTypeCreateRequest) (*DeviceRelationshipType, error) {
+	updated, err := api.DeviceRelationshipTypeByToken(ctx, request.Token)
+	if err != nil {
+		return nil, err
+	}
+
+	updated.Token = request.Token
+	updated.Name = rdb.NullStrOf(request.Name)
+	updated.Description = rdb.NullStrOf(request.Description)
+	updated.Metadata = rdb.MetadataStrOf(request.Metadata)
+
+	result := api.RDB.Database.Save(updated)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return updated, nil
 }
 
 // Get device relationship type by id.
@@ -127,6 +282,37 @@ func (api *Api) DeviceRelationshipTypes(ctx context.Context,
 	}, nil
 }
 
+// Create a new device relationship.
+func (api *Api) CreateDeviceRelationship(ctx context.Context, request *DeviceRelationshipCreateRequest) (*DeviceRelationship, error) {
+	// Look up token references.
+	source, err := api.DeviceByToken(ctx, request.SourceDevice)
+	if err != nil {
+		return nil, err
+	}
+	target, err := api.DeviceByToken(ctx, request.TargetDevice)
+	if err != nil {
+		return nil, err
+	}
+	rtype, err := api.DeviceRelationshipTypeByToken(ctx, request.RelationshipType)
+	if err != nil {
+		return nil, err
+	}
+
+	created := &DeviceRelationship{
+		SourceDevice:     *source,
+		TargetDevice:     *target,
+		RelationshipType: *rtype,
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(request.Metadata),
+		},
+	}
+	result := api.RDB.Database.Create(created)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return created, nil
+}
+
 // Get device relationship by id.
 func (api *Api) DeviceRelationshipById(ctx context.Context, id uint) (*DeviceRelationship, error) {
 	found := &DeviceRelationship{}
@@ -155,6 +341,59 @@ func (api *Api) DeviceRelationships(ctx context.Context,
 		Results:    results,
 		Pagination: pag,
 	}, nil
+}
+
+// Create a new device group.
+func (api *Api) CreateDeviceGroup(ctx context.Context, request *DeviceGroupCreateRequest) (*DeviceGroup, error) {
+	created := &DeviceGroup{
+		TokenReference: rdb.TokenReference{
+			Token: request.Token,
+		},
+		NamedEntity: rdb.NamedEntity{
+			Name:        rdb.NullStrOf(request.Name),
+			Description: rdb.NullStrOf(request.Description),
+		},
+		BrandedEntity: rdb.BrandedEntity{
+			ImageUrl:        rdb.NullStrOf(request.ImageUrl),
+			Icon:            rdb.NullStrOf(request.Icon),
+			BackgroundColor: rdb.NullStrOf(request.BackgroundColor),
+			ForegroundColor: rdb.NullStrOf(request.ForegroundColor),
+			BorderColor:     rdb.NullStrOf(request.BorderColor),
+		},
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(request.Metadata),
+		},
+	}
+	result := api.RDB.Database.Create(created)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return created, nil
+}
+
+// Update an existing device type.
+func (api *Api) UpdateDeviceGroup(ctx context.Context, token string,
+	request *DeviceGroupCreateRequest) (*DeviceGroup, error) {
+	updated, err := api.DeviceGroupByToken(ctx, request.Token)
+	if err != nil {
+		return nil, err
+	}
+
+	updated.Token = request.Token
+	updated.Name = rdb.NullStrOf(request.Name)
+	updated.Description = rdb.NullStrOf(request.Description)
+	updated.ImageUrl = rdb.NullStrOf(request.ImageUrl)
+	updated.Icon = rdb.NullStrOf(request.Icon)
+	updated.BackgroundColor = rdb.NullStrOf(request.BackgroundColor)
+	updated.ForegroundColor = rdb.NullStrOf(request.ForegroundColor)
+	updated.BorderColor = rdb.NullStrOf(request.BorderColor)
+	updated.Metadata = rdb.MetadataStrOf(request.Metadata)
+
+	result := api.RDB.Database.Save(updated)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return updated, nil
 }
 
 // Get device group by id.
@@ -193,6 +432,48 @@ func (api *Api) DeviceGroups(ctx context.Context, criteria DeviceGroupSearchCrit
 	}, nil
 }
 
+// Create a new device group relationship type.
+func (api *Api) CreateDeviceGroupRelationshipType(ctx context.Context,
+	request *DeviceGroupRelationshipTypeCreateRequest) (*DeviceGroupRelationshipType, error) {
+	created := &DeviceGroupRelationshipType{
+		TokenReference: rdb.TokenReference{
+			Token: request.Token,
+		},
+		NamedEntity: rdb.NamedEntity{
+			Name:        rdb.NullStrOf(request.Name),
+			Description: rdb.NullStrOf(request.Description),
+		},
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(request.Metadata),
+		},
+	}
+	result := api.RDB.Database.Create(created)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return created, nil
+}
+
+// Update an existing device group relationship type.
+func (api *Api) UpdateDeviceGroupRelationshipType(ctx context.Context, token string,
+	request *DeviceGroupRelationshipTypeCreateRequest) (*DeviceGroupRelationshipType, error) {
+	updated, err := api.DeviceGroupRelationshipTypeByToken(ctx, request.Token)
+	if err != nil {
+		return nil, err
+	}
+
+	updated.Token = request.Token
+	updated.Name = rdb.NullStrOf(request.Name)
+	updated.Description = rdb.NullStrOf(request.Description)
+	updated.Metadata = rdb.MetadataStrOf(request.Metadata)
+
+	result := api.RDB.Database.Save(updated)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return updated, nil
+}
+
 // Get device group relationship type by id.
 func (api *Api) DeviceGroupRelationshipTypeById(ctx context.Context, id uint) (*DeviceGroupRelationshipType, error) {
 	found := &DeviceGroupRelationshipType{}
@@ -228,6 +509,39 @@ func (api *Api) DeviceGroupRelationshipTypes(ctx context.Context,
 		Results:    results,
 		Pagination: pag,
 	}, nil
+}
+
+// Create a new device group relationship.
+func (api *Api) CreateDeviceGroupRelationship(ctx context.Context,
+	request *DeviceGroupRelationshipCreateRequest) (*DeviceGroupRelationship, error) {
+
+	// Look up token references.
+	source, err := api.DeviceGroupByToken(ctx, request.DeviceGroup)
+	if err != nil {
+		return nil, err
+	}
+	target, err := api.DeviceByToken(ctx, request.Device)
+	if err != nil {
+		return nil, err
+	}
+	rtype, err := api.DeviceGroupRelationshipTypeByToken(ctx, request.RelationshipType)
+	if err != nil {
+		return nil, err
+	}
+
+	created := &DeviceGroupRelationship{
+		DeviceGroup:      *source,
+		Device:           *target,
+		RelationshipType: *rtype,
+		MetadataEntity: rdb.MetadataEntity{
+			Metadata: rdb.MetadataStrOf(request.Metadata),
+		},
+	}
+	result := api.RDB.Database.Create(created)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return created, nil
 }
 
 // Get device group relationship by id.
