@@ -605,29 +605,29 @@ type Mutation {
     createDeviceGroupRelationship(request: DeviceGroupRelationshipCreateRequest): DeviceGroupRelationship!
 
     # Create a new asset type.
-    createAssetType(value: AssetTypeCreateRequest): AssetType!
+    createAssetType(request: AssetTypeCreateRequest): AssetType!
     # Update an existing asset type.
-    updateAssetType(token: String!, value: AssetTypeCreateRequest): AssetType!
+    updateAssetType(token: String!, request: AssetTypeCreateRequest): AssetType!
     # Create a new asset.
-    createAsset(value: AssetCreateRequest): Asset!
+    createAsset(request: AssetCreateRequest): Asset!
     # Update an existing asset.
-    updateAsset(token: String!, value: AssetCreateRequest): Asset!
+    updateAsset(token: String!, request: AssetCreateRequest): Asset!
     # Create a new asset relationship type.
-    createAssetRelationshipType(value: AssetRelationshipTypeCreateRequest): AssetRelationshipType!
+    createAssetRelationshipType(request: AssetRelationshipTypeCreateRequest): AssetRelationshipType!
     # Update an existing asset relationship type.
-    updateAssetRelationshipType(token: String!, value: AssetRelationshipTypeCreateRequest): AssetRelationshipType!
+    updateAssetRelationshipType(token: String!, request: AssetRelationshipTypeCreateRequest): AssetRelationshipType!
     # Create a new asset relationship.
-    createAssetRelationship(value: AssetRelationshipCreateRequest): AssetRelationship!
+    createAssetRelationship(request: AssetRelationshipCreateRequest): AssetRelationship!
     # Create a new asset group.
-    createAssetGroup(value: AssetGroupCreateRequest): AssetGroup!
+    createAssetGroup(request: AssetGroupCreateRequest): AssetGroup!
     # Update an existing asset group.
-    updateAssetGroup(token: String!, value: AssetGroupCreateRequest): AssetGroup!
+    updateAssetGroup(token: String!, request: AssetGroupCreateRequest): AssetGroup!
     # Create a new asset group relationship type.
-    createAssetGroupRelationshipType(value: AssetGroupRelationshipTypeCreateRequest): AssetGroupRelationshipType!
+    createAssetGroupRelationshipType(request: AssetGroupRelationshipTypeCreateRequest): AssetGroupRelationshipType!
     # Update an existing asset group relationship type.
-    updateAssetGroupRelationshipType(token: String!, value: AssetGroupRelationshipTypeCreateRequest): AssetGroupRelationshipType!
+    updateAssetGroupRelationshipType(token: String!, request: AssetGroupRelationshipTypeCreateRequest): AssetGroupRelationshipType!
     # Create a new asset group relationship.
-    createAssetGroupRelationship(value: AssetGroupRelationshipCreateRequest): AssetGroupRelationship!
+    createAssetGroupRelationship(request: AssetGroupRelationshipCreateRequest): AssetGroupRelationship!
 }
 
 schema {
