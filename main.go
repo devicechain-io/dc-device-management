@@ -32,6 +32,9 @@ var (
 	GraphQLManager *gqlcore.GraphQLManager
 	KakfaManager   *kcore.KafkaManager
 
+	Api       *model.Api
+	CachedApi *model.CachedApi
+
 	InboundEventsReader    *kafka.Reader
 	InboundEventsProcessor *events.InboundEventsProcessor
 )
@@ -110,6 +113,10 @@ func afterMicroserviceInitialized(ctx context.Context) error {
 	// Create RDB caches.
 	model.InitializeCaches(RdbManager)
 
+	// Wrap api around rdb manager.
+	Api = model.NewApi(RdbManager)
+	CachedApi = model.NewCachedApi(Api)
+
 	// Create and initialize kafka manager.
 	KakfaManager = kcore.NewKafkaManager(Microservice, core.NewNoOpLifecycleCallbacks(), createKafkaComponents)
 	err = KakfaManager.Initialize(ctx)
@@ -118,7 +125,10 @@ func afterMicroserviceInitialized(ctx context.Context) error {
 	}
 
 	// Map of providers that will be injected into graphql http context.
-	providers := map[gqlcore.ContextKey]interface{}{gqlcore.ContextRdbKey: RdbManager}
+	providers := map[gqlcore.ContextKey]interface{}{
+		gqlcore.ContextRdbKey: RdbManager,
+		gqlcore.ContextApiKey: Api,
+	}
 
 	// Create and initialize graphql manager.
 	gqlcb := core.NewNoOpLifecycleCallbacks()

@@ -7,6 +7,7 @@
 package events
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/devicechain-io/dc-device-management/model"
@@ -39,7 +40,7 @@ func NewEventResolver(workerId int, api model.Api,
 
 // Execute logic to resolve event.
 func (rez *EventResolver) ResolveEvent(unrez esmodel.UnresolvedEvent) (*model.ResolvedEvent, error) {
-	rez.Api.DeviceTypeByToken(unrez.Device)
+	rez.Api.DeviceTypeByToken(context.Background(), unrez.Device)
 	return nil, nil
 }
 
