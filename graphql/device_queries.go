@@ -9,12 +9,9 @@ package graphql
 import (
 	"context"
 	_ "embed"
-	"fmt"
 	"strconv"
-	"time"
 
 	"github.com/devicechain-io/dc-device-management/model"
-	"github.com/rs/zerolog/log"
 )
 
 // Find device type by unique id.
@@ -27,13 +24,10 @@ func (r *SchemaResolver) DeviceType(ctx context.Context, args struct {
 		return nil, err
 	}
 
-	start := time.Now()
 	found, err := api.DeviceTypeById(ctx, uint(id))
 	if err != nil {
 		return nil, err
 	}
-	duration := time.Since(start)
-	log.Info().Msg(fmt.Sprintf("Device by id call took: %v", duration))
 
 	dt := &DeviceTypeResolver{
 		M: *found,
