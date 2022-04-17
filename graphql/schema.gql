@@ -496,6 +496,500 @@ type AssetGroupRelationshipSearchResults {
     pagination: SearchResultsPagination!
 }
 
+# Represents a type or class of customers
+type CustomerType implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+    metadata: String
+}
+
+# Data required to create a customer type.
+input CustomerTypeCreateRequest {
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+    metadata: String
+}
+
+# Criteria used when searching for customer types.
+input CustomerTypeSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Search results returned from customer type query.
+type CustomerTypeSearchResults {
+    results: [CustomerType!]!
+    pagination: SearchResultsPagination!
+}
+
+# Represents a customer instance
+type Customer implements Model & TokenReference & NamedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    customerType: CustomerType!
+    metadata: String
+}
+
+# Data required to create a customer.
+input CustomerCreateRequest {
+    token: String!
+    name: String
+    description: String
+    customerTypeToken: String!
+    metadata: String
+}
+
+# Criteria used when searching for customers.
+input CustomerSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+    customerTypeToken: String
+}
+
+# Search results returned from customer query.
+type CustomerSearchResults {
+    results: [Customer!]!
+    pagination: SearchResultsPagination!
+}
+
+# Represents a type of relation between customers.
+type CustomerRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    metadata: String
+}
+
+# Data required to create a customer relationship type.
+input CustomerRelationshipTypeCreateRequest {
+    token: String!
+    name: String
+    description: String
+    metadata: String
+}
+
+# Criteria used when searching for customer relationship types.
+input CustomerRelationshipTypeSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Search results returned from customer relationship type query.
+type CustomerRelationshipTypeSearchResults {
+    results: [CustomerRelationshipType!]!
+    pagination: SearchResultsPagination!
+}
+
+# Represents a relationship between customers.
+type CustomerRelationship implements Model & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    sourceCustomer: Customer!
+    targetCustomer: Customer!
+    relationshipType: CustomerRelationshipType!
+    metadata: String
+}
+
+# Data required to create a customer relationship.
+input CustomerRelationshipCreateRequest {
+    sourceCustomer: String!
+    targetCustomer: String!
+    relationshipType: String!
+    metadata: String
+}
+
+# Criteria used when searching for customer relationships.
+input CustomerRelationshipSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Search results returned from customer relationship query.
+type CustomerRelationshipSearchResults {
+    results: [CustomerRelationship!]!
+    pagination: SearchResultsPagination!
+}
+
+# Represents a group of related customers.
+type CustomerGroup implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+    metadata: String
+}
+
+# Data required to create a customer group.
+input CustomerGroupCreateRequest {
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+    metadata: String
+}
+
+# Criteria used when searching for customer groups.
+input CustomerGroupSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Search results returned from customer group query.
+type CustomerGroupSearchResults {
+    results: [CustomerGroup!]!
+    pagination: SearchResultsPagination!
+}
+
+# Represents a type of relation between a customer and a customer group.
+type CustomerGroupRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    metadata: String
+}
+
+# Data required to create a customer group relationship type.
+input CustomerGroupRelationshipTypeCreateRequest {
+    token: String!
+    name: String
+    description: String
+    metadata: String
+}
+
+# Criteria used when searching for customer group relationship types.
+input CustomerGroupRelationshipTypeSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Search results returned from customer group relationship type query.
+type CustomerGroupRelationshipTypeSearchResults {
+    results: [CustomerGroupRelationshipType!]!
+    pagination: SearchResultsPagination!
+}
+
+# Represents a relationship between a customer and a group.
+type CustomerGroupRelationship implements Model {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    customerGroup: CustomerGroup!
+    customer: Customer!
+    relationshipType: CustomerGroupRelationshipType!
+    metadata: String
+}
+
+# Data required to create a customer group relationship.
+input CustomerGroupRelationshipCreateRequest {
+    customerGroup: String!
+    customer: String!
+    relationshipType: String!
+    metadata: String
+}
+
+# Criteria used when searching for customer group relationships.
+input CustomerGroupRelationshipSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Search results returned from customer group relationship query.
+type CustomerGroupRelationshipSearchResults {
+    results: [CustomerGroupRelationship!]!
+    pagination: SearchResultsPagination!
+}
+
+# Represents a type or class of areas
+type AreaType implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+    metadata: String
+}
+
+# Data required to create an area type.
+input AreaTypeCreateRequest {
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+    metadata: String
+}
+
+# Criteria used when searching for area types.
+input AreaTypeSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Search results returned from area types query.
+type AreaTypeSearchResults {
+    results: [AreaType!]!
+    pagination: SearchResultsPagination!
+}
+
+# Represents an area instance
+type Area implements Model & TokenReference & NamedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    areaType: AreaType!
+    metadata: String
+}
+
+# Data required to create an area.
+input AreaCreateRequest {
+    token: String!
+    name: String
+    description: String
+    areaTypeToken: String!
+    metadata: String
+}
+
+# Criteria used when searching for areas.
+input AreaSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+    areaTypeToken: String
+}
+
+# Search results returned from areas query.
+type AreaSearchResults {
+    results: [Area!]!
+    pagination: SearchResultsPagination!
+}
+
+# Represents a type of relation between areas.
+type AreaRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    metadata: String
+}
+
+# Data required to create an area relationship type.
+input AreaRelationshipTypeCreateRequest {
+    token: String!
+    name: String
+    description: String
+    metadata: String
+}
+
+# Criteria used when searching for area relationship types.
+input AreaRelationshipTypeSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Search results returned from area relationship types query.
+type AreaRelationshipTypeSearchResults {
+    results: [AreaRelationshipType!]!
+    pagination: SearchResultsPagination!
+}
+
+# Represents a relationship between areas.
+type AreaRelationship implements Model {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    sourceArea: Area!
+    targetArea: Area!
+    relationshipType: AreaRelationshipType!
+    metadata: String
+}
+
+# Data required to create an area relationship.
+input AreaRelationshipCreateRequest {
+    sourceArea: String!
+    targetArea: String!
+    relationshipType: String!
+    metadata: String
+}
+
+# Criteria used when searching for area relationships.
+input AreaRelationshipSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Search results returned from area relationships query.
+type AreaRelationshipSearchResults {
+    results: [AreaRelationship!]!
+    pagination: SearchResultsPagination!
+}
+
+# Represents a group of related areas.
+type AreaGroup implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+    metadata: String
+}
+
+# Data required to create an area group.
+input AreaGroupCreateRequest {
+    token: String!
+    name: String
+    description: String
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+    metadata: String
+}
+
+# Criteria used when searching for area groups.
+input AreaGroupSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Search results returned from area groups query.
+type AreaGroupSearchResults {
+    results: [AreaGroup!]!
+    pagination: SearchResultsPagination!
+}
+
+# Represents a type of relation between an area and an area group.
+type AreaGroupRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    metadata: String
+}
+
+# Data required to create an area group relationship type.
+input AreaGroupRelationshipTypeCreateRequest {
+    token: String!
+    name: String
+    description: String
+    metadata: String
+}
+
+# Criteria used when searching for area group relationship types.
+input AreaGroupRelationshipTypeSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Search results returned from area group relationship types query.
+type AreaGroupRelationshipTypeSearchResults {
+    results: [AreaGroupRelationshipType!]!
+    pagination: SearchResultsPagination!
+}
+
+# Represents a relationship between an area and an area.
+type AreaGroupRelationship implements Model {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    areaGroup: AreaGroup!
+    area: Area!
+    relationshipType: AreaGroupRelationshipType!
+    metadata: String
+}
+
+# Data required to create an area group relationship.
+input AreaGroupRelationshipCreateRequest {
+    areaGroup: String!
+    area: String!
+    relationshipType: String!
+    metadata: String
+}
+
+# Criteria used when searching for area group relationships.
+input AreaGroupRelationshipSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Search results returned from area group relationships query.
+type AreaGroupRelationshipSearchResults {
+    results: [AreaGroupRelationship!]!
+    pagination: SearchResultsPagination!
+}
+
 # Contains queries executed against model.
 type Query {
     # Find a device type by unique id.
@@ -575,6 +1069,85 @@ type Query {
     assetGroupRelationship(id: ID!): AssetGroupRelationship!
     # List asset group relationships that meet criteria.
     assetGroupRelationships(criteria: AssetGroupRelationshipSearchCriteria!): AssetGroupRelationshipSearchResults!
+
+    # Find a customer type by unique id.
+    customerType(id: ID!): CustomerType!
+    # Find a customer type by unique token.
+    customerTypeByToken(token: String!): CustomerType!
+    # List customer types that meet criteria.
+    customerTypes(criteria: CustomerTypeSearchCriteria!): CustomerTypeSearchResults!
+    # Find a customer by unique id.
+    customer(id: ID!): Customer!
+    # Find a customer by unique token.
+    customerByToken(token: String!): Customer!
+    # List customers that meet criteria.
+    customers(criteria: CustomerSearchCriteria!): CustomerSearchResults!
+    # Find a customer relationship type by unique id.
+    customerRelationshipType(id: ID!): CustomerRelationshipType!
+    # Find a customer relationship type by unique token.
+    customerRelationshipTypeByToken(token: String!): CustomerRelationshipType!
+    # List customer relationship types that meet criteria.
+    customerRelationshipTypes(criteria: CustomerRelationshipTypeSearchCriteria!): CustomerRelationshipTypeSearchResults!
+    # Find a customer relationship by unique id.
+    customerRelationship(id: ID!): CustomerRelationship!
+    # List customer relationships that meet criteria.
+    customerRelationships(criteria: CustomerRelationshipSearchCriteria!): CustomerRelationshipSearchResults!
+    # Find a customer group by unique id.
+    customerGroup(id: ID!): CustomerGroup!
+    # Find a customer group by unique token.
+    customerGroupByToken(token: String!): CustomerGroup!
+    # List customer groups that meet criteria.
+    customerGroups(criteria: CustomerGroupSearchCriteria!): CustomerGroupSearchResults!
+    # Find a customer group relationship type by unique id.
+    customerGroupRelationshipType(id: ID!): CustomerGroupRelationshipType!
+    # Find a customer group relationship type by unique id.
+    customerGroupRelationshipTypeByToken(token: String!): CustomerGroupRelationshipType!
+    # List customer group relationship types that meet criteria.
+    customerGroupRelationshipTypes(criteria: CustomerGroupRelationshipTypeSearchCriteria!): CustomerGroupRelationshipTypeSearchResults!
+    # Find a customer group relationship by unique id.
+    customerGroupRelationship(id: ID!): CustomerGroupRelationship!
+    # List customer group relationships that meet criteria.
+    customerGroupRelationships(criteria: CustomerGroupRelationshipSearchCriteria!): CustomerGroupRelationshipSearchResults!
+
+
+    # Find an area type by unique id.
+    areaType(id: ID!): AreaType!
+    # Find an area type by unique token.
+    areaTypeByToken(token: String!): AreaType!
+    # List area types that meet criteria.
+    areaTypes(criteria: AreaTypeSearchCriteria!): AreaTypeSearchResults!
+    # Find an area by unique id.
+    area(id: ID!): Area!
+    # Find a device by unique token.
+    areaByToken(token: String!): Area!
+    # List areas that meet criteria.
+    areas(criteria: AreaSearchCriteria!): AreaSearchResults!
+    # Find an area relationship type by unique id.
+    areaRelationshipType(id: ID!): AreaRelationshipType!
+    # Find an area relationship type by unique token.
+    areaRelationshipTypeByToken(token: String!): AreaRelationshipType!
+    # List area relationship types that meet criteria.
+    areaRelationshipTypes(criteria: AreaRelationshipTypeSearchCriteria!): AreaRelationshipTypeSearchResults!
+    # Find an area relationship by unique id.
+    areaRelationship(id: ID!): AreaRelationship!
+    # List area relationships that meet criteria.
+    areaRelationships(criteria: AreaRelationshipSearchCriteria!): AreaRelationshipSearchResults!
+    # Find an area group by unique id.
+    areaGroup(id: ID!): AreaGroup!
+    # Find an area group by unique token.
+    areaGroupByToken(token: String!): AreaGroup!
+    # List area groups that meet criteria.
+    areaGroups(criteria: AreaGroupSearchCriteria!): AreaGroupSearchResults!
+    # Find an area group relationship type by unique id.
+    areaGroupRelationshipType(id: ID!): AreaGroupRelationshipType!
+    # Find an area group relationship type by unique id.
+    areaGroupRelationshipTypeByToken(token: String!): AreaGroupRelationshipType!
+    # List area group relationship types that meet criteria.
+    areaGroupRelationshipTypes(criteria: AreaGroupRelationshipTypeSearchCriteria!): AreaGroupRelationshipTypeSearchResults!
+    # Find an area group relationship by unique id.
+    areaGroupRelationship(id: ID!): AreaGroupRelationship!
+    # List area group relationships that meet criteria.
+    areaGroupRelationships(criteria: AreaGroupRelationshipSearchCriteria!): AreaGroupRelationshipSearchResults!
 }
 
 # Contains mutations executed against model.
@@ -628,6 +1201,56 @@ type Mutation {
     updateAssetGroupRelationshipType(token: String!, request: AssetGroupRelationshipTypeCreateRequest): AssetGroupRelationshipType!
     # Create a new asset group relationship.
     createAssetGroupRelationship(request: AssetGroupRelationshipCreateRequest): AssetGroupRelationship!
+
+    # Create a new customer type.
+    createCustomerType(request: CustomerTypeCreateRequest): CustomerType!
+    # Update an existing customer type.
+    updateCustomerType(token: String!, request: CustomerTypeCreateRequest): CustomerType!
+    # Create a new customer.
+    createCustomer(request: CustomerCreateRequest): Customer!
+    # Update an existing customer.
+    updateCustomer(token: String!, request: CustomerCreateRequest): Customer!
+    # Create a new customer relationship type.
+    createCustomerRelationshipType(request: CustomerRelationshipTypeCreateRequest): CustomerRelationshipType!
+    # Update an existing customer relationship type.
+    updateCustomerRelationshipType(token: String!, request: CustomerRelationshipTypeCreateRequest): CustomerRelationshipType!
+    # Create a new customer relationship.
+    createCustomerRelationship(request: CustomerRelationshipCreateRequest): CustomerRelationship!
+    # Create a new customer group.
+    createCustomerGroup(request: CustomerGroupCreateRequest): CustomerGroup!
+    # Update an existing customer group.
+    updateCustomerGroup(token: String!, request: CustomerGroupCreateRequest): CustomerGroup!
+    # Create a new customer group relationship type.
+    createCustomerGroupRelationshipType(request: CustomerGroupRelationshipTypeCreateRequest): CustomerGroupRelationshipType!
+    # Update an existing customer group relationship type.
+    updateCustomerGroupRelationshipType(token: String!, request: CustomerGroupRelationshipTypeCreateRequest): CustomerGroupRelationshipType!
+    # Create a new customer group relationship.
+    createCustomerGroupRelationship(request: CustomerGroupRelationshipCreateRequest): CustomerGroupRelationship!
+
+    # Create a new area type.
+    createAreaType(request: AreaTypeCreateRequest): AreaType!
+    # Update an existing area type.
+    updateAreaType(token: String!, request: AreaTypeCreateRequest): AreaType!
+    # Create a new area.
+    createArea(request: AreaCreateRequest): Area!
+    # Update an existing area.
+    updateArea(token: String!, request: AreaCreateRequest): Area!
+    # Create a new area relationship type.
+    createAreaRelationshipType(request: AreaRelationshipTypeCreateRequest): AreaRelationshipType!
+    # Update an existing area relationship type.
+    updateAreaRelationshipType(token: String!, request: AreaRelationshipTypeCreateRequest): AreaRelationshipType!
+    # Create a new area relationship.
+    createAreaRelationship(request: AreaRelationshipCreateRequest): AreaRelationship!
+    # Create a new area group.
+    createAreaGroup(request: AreaGroupCreateRequest): AreaGroup!
+    # Update an existing area group.
+    updateAreaGroup(token: String!, request: AreaGroupCreateRequest): AreaGroup!
+    # Create a new area group relationship type.
+    createAreaGroupRelationshipType(request: AreaGroupRelationshipTypeCreateRequest): AreaGroupRelationshipType!
+    # Update an existing area group relationship type.
+    updateAreaGroupRelationshipType(token: String!, request: AreaGroupRelationshipTypeCreateRequest): AreaGroupRelationshipType!
+    # Create a new area group relationship.
+    createAreaGroupRelationship(request: AreaGroupRelationshipCreateRequest): AreaGroupRelationship!
 }
 
 schema {
