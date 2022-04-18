@@ -990,6 +990,99 @@ type AreaGroupRelationshipSearchResults {
     pagination: SearchResultsPagination!
 }
 
+# Represents a type of relation between an area and an area group.
+type AreaGroupRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    metadata: String
+}
+
+# Data required to create a device assignment status.
+input DeviceAssignmentStatusCreateRequest {
+    token: String!
+    name: String
+    description: String
+    metadata: String
+}
+
+# Represents a status that may be associated with a device assignment.
+type DeviceAssignmentStatus implements Model & TokenReference & NamedEntity & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    name: String
+    description: String
+    metadata: String
+}
+
+# Criteria used when searching for device assignment statuses.
+input DeviceAssignmentStatusSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Search results returned from device assignment statuses query.
+type DeviceAssignmentStatusSearchResults {
+    results: [DeviceAssignmentStatus!]!
+    pagination: SearchResultsPagination!
+}
+
+# Data required to create a device assignment.
+input DeviceAssignmentCreateRequest {
+    token: String!
+    metadata: String
+    active: Boolean
+    device: String!
+    deviceGroup: String
+    asset: String
+    assetGroup: String
+    customer: String
+    customerGroup: String
+    area: String
+    areaGroup: String
+    deviceAssignmentStatus: String
+}
+
+# Represents a status that may be associated with a device assignment.
+type DeviceAssignment implements Model & TokenReference & MetadataEntity {
+    id: ID!
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    token: String!
+    metadata: String
+    active: Boolean!
+
+    device: Device!
+    deviceGroup: DeviceGroup
+    asset: Asset
+    assetGroup: AssetGroup
+    customer: Customer
+    customerGroup: CustomerGroup
+    area: Area
+    areaGroup: AreaGroup
+    deviceAssignmentStatus: DeviceAssignmentStatus
+}
+
+# Criteria used when searching for device assignments.
+input DeviceAssignmentSearchCriteria {
+    pageNumber: Int!
+    pageSize: Int!
+}
+
+# Search results returned from device assignments query.
+type DeviceAssignmentSearchResults {
+    results: [DeviceAssignment!]!
+    pagination: SearchResultsPagination!
+}
+
 # Contains queries executed against model.
 type Query {
     # Find a device type by unique id.
@@ -1148,6 +1241,19 @@ type Query {
     areaGroupRelationship(id: ID!): AreaGroupRelationship!
     # List area group relationships that meet criteria.
     areaGroupRelationships(criteria: AreaGroupRelationshipSearchCriteria!): AreaGroupRelationshipSearchResults!
+
+    # Find a device assignment status by unique id.
+    deviceAssignmentStatus(id: ID!): DeviceAssignmentStatus!
+    # Find a device assignment status by unique token.
+    deviceAssignmentStatusByToken(token: String!): DeviceAssignmentStatus!
+    # List device assignment statuses that meet criteria.
+    deviceAssignmentStatuses(criteria: DeviceAssignmentStatusSearchCriteria!): DeviceAssignmentStatusSearchResults!
+    # Find a device assignment by unique id.
+    deviceAssignment(id: ID!): DeviceAssignment!
+    # Find a device assignment by unique token.
+    deviceAssignmentByToken(token: String!): DeviceAssignment!
+    # List device assignments that meet criteria.
+    deviceAssignments(criteria: DeviceAssignmentSearchCriteria!): DeviceAssignmentSearchResults!
 }
 
 # Contains mutations executed against model.
@@ -1251,6 +1357,15 @@ type Mutation {
     updateAreaGroupRelationshipType(token: String!, request: AreaGroupRelationshipTypeCreateRequest): AreaGroupRelationshipType!
     # Create a new area group relationship.
     createAreaGroupRelationship(request: AreaGroupRelationshipCreateRequest): AreaGroupRelationship!
+
+    # Create a new device assignment status.
+    createDeviceAssignmentStatus(request: DeviceAssignmentStatusCreateRequest): DeviceAssignmentStatus!
+    # Update an existing device assignment status.
+    updateDeviceAssignmentStatus(token: String!, request: DeviceAssignmentStatusCreateRequest): DeviceAssignmentStatus!
+    # Create a new device assignment.
+    createDeviceAssignment(request: DeviceAssignmentCreateRequest): DeviceAssignment!
+    # Update an existing device assignment.
+    updateDeviceAssignment(token: String!, request: DeviceAssignmentCreateRequest): DeviceAssignment!
 }
 
 schema {

@@ -35,8 +35,10 @@ func NewInitialSchema() *gormigrate.Migration {
 				rdb.NamedEntity
 				rdb.MetadataEntity
 
-				DeviceTypeId int
+				DeviceTypeId *uint
 				DeviceType   *DeviceType
+
+				Assignments []DeviceAssignment
 			}
 
 			// Metadata indicating a relationship between devices.
@@ -300,11 +302,50 @@ func NewInitialSchema() *gormigrate.Migration {
 				RelationshipType   AreaGroupRelationshipType
 			}
 
+			// Metadata indicating a relationship between devices.
+			type DeviceAssignmentStatus struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.NamedEntity
+				rdb.MetadataEntity
+			}
+
+			// Provides context for device.
+			type DeviceAssignment struct {
+				gorm.Model
+				rdb.TokenReference
+				rdb.MetadataEntity
+				DeviceId                 uint
+				Device                   Device
+				DeviceGroupId            *uint
+				DeviceGroup              DeviceGroup
+				AssetId                  *uint
+				Asset                    Asset
+				AssetGroupId             *uint
+				AssetGroup               AssetGroup
+				CustomerId               *uint
+				Customer                 Customer
+				CustomerGroupId          *uint
+				CustomerGroup            CustomerGroup
+				AreaId                   *uint
+				Area                     Area
+				AreaGroupId              *uint
+				AreaGroup                AreaGroup
+				DeviceAssignmentStatusId *uint
+				DeviceAssignmentStatus   DeviceAssignmentStatus
+				Active                   bool
+			}
+
 			return tx.AutoMigrate(&Device{}, &DeviceType{}, &DeviceRelationshipType{}, &DeviceRelationship{},
-				&DeviceGroup{}, &DeviceGroupRelationshipType{}, &DeviceGroupRelationship{}, &AssetType{},
-				&Asset{}, &AssetRelationshipType{}, &AssetRelationship{}, &AssetGroup{}, &AssetGroupRelationshipType{},
-				&AssetGroupRelationship{}, &CustomerType{}, &Customer{}, &CustomerRelationshipType{},
+				&DeviceGroup{}, &DeviceGroupRelationshipType{}, &DeviceGroupRelationship{},
+				&DeviceAssignmentStatus{}, &DeviceAssignment{},
+
+				&AssetType{}, &Asset{}, &AssetRelationshipType{}, &AssetRelationship{}, &AssetGroup{},
+				&AssetGroupRelationshipType{}, &AssetGroupRelationship{},
+
+				&CustomerType{}, &Customer{}, &CustomerRelationshipType{},
 				&CustomerRelationship{}, &CustomerGroup{}, &CustomerGroupRelationshipType{}, &CustomerGroupRelationship{},
+
 				&AreaType{}, &Area{}, &AreaRelationshipType{}, &AreaRelationship{}, &AreaGroup{},
 				&AreaGroupRelationshipType{}, &AreaGroupRelationship{})
 		},

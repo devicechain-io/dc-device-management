@@ -62,8 +62,10 @@ type Device struct {
 	rdb.NamedEntity
 	rdb.MetadataEntity
 
-	DeviceTypeId int
+	DeviceTypeId *uint
 	DeviceType   *DeviceType
+
+	Assignments []DeviceAssignment
 }
 
 // Search criteria for locating devices.
