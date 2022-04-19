@@ -8,6 +8,7 @@ package events
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -46,7 +47,10 @@ func (iproc *InboundEventsProcessor) ProcessInboundEvent(msg kafka.Message) erro
 		return err
 	}
 	if log.Debug().Enabled() {
-		log.Debug().Msg(fmt.Sprintf("Received event %+v", event))
+		jevent, err := json.MarshalIndent(event, "", "  ")
+		if err == nil {
+			log.Debug().Msg(fmt.Sprintf("Received %s event:\n%s", event.EventType.String(), jevent))
+		}
 	}
 	return nil
 }
@@ -79,7 +83,10 @@ func (iproc *InboundEventsProcessor) ExecuteStart(ctx context.Context) error {
 					log.Error().Err(err).Msg("error reading inbound event message")
 				}
 			}
-			iproc.ProcessInboundEvent(msg)
+			err = iproc.ProcessInboundEvent(msg)
+			if err != nil {
+				log.Error().Err(err).Msg("error processing inbound event")
+			}
 		}
 	}()
 	return nil

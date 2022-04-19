@@ -6,19 +6,19 @@
 
 package config
 
-type NestedConfiguration struct {
-	Test string
-}
+import (
+	"github.com/devicechain-io/dc-microservice/config"
+)
 
 type DeviceManagementConfiguration struct {
-	Nested NestedConfiguration
+	RdbConfiguration config.MicroserviceRdbConfiguration
 }
 
 // Creates the default device management configuration
 func NewDeviceManagementConfiguration() *DeviceManagementConfiguration {
 	return &DeviceManagementConfiguration{
-		Nested: NestedConfiguration{
-			Test: "test",
+		RdbConfiguration: config.MicroserviceRdbConfiguration{
+			SqlDebug: true,
 		},
 	}
 }
