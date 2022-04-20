@@ -54,6 +54,7 @@ type Device implements Model & TokenReference & NamedEntity & MetadataEntity {
     name: String
     description: String
     deviceType: DeviceType!
+    activeAssignments: [DeviceAssignment!]!
     metadata: String
 }
 
@@ -70,7 +71,7 @@ input DeviceCreateRequest {
 input DeviceSearchCriteria {
     pageNumber: Int!
     pageSize: Int!
-    deviceTypeToken: String
+    deviceType: String
 }
 
 # Search results returned from device query.
@@ -1254,6 +1255,8 @@ type Query {
     deviceAssignmentByToken(token: String!): DeviceAssignment!
     # List device assignments that meet criteria.
     deviceAssignments(criteria: DeviceAssignmentSearchCriteria!): DeviceAssignmentSearchResults!
+    # List all device assignments for device with given id.
+    activeDeviceAssignmentsForDevice(id: ID!): [DeviceAssignment!]!
 }
 
 # Contains mutations executed against model.

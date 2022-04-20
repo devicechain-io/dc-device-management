@@ -186,9 +186,9 @@ func (api *Api) DeviceByToken(ctx context.Context, token string) (*Device, error
 func (api *Api) Devices(ctx context.Context, criteria DeviceSearchCriteria) (*DeviceSearchResults, error) {
 	results := make([]Device, 0)
 	db, pag := api.RDB.ListOf(&Device{}, func(result *gorm.DB) *gorm.DB {
-		if criteria.DeviceTypeToken != nil {
+		if criteria.DeviceType != nil {
 			result = result.Where("device_type_id = (?)",
-				api.RDB.Database.Model(&DeviceType{}).Select("id").Where("token = ?", criteria.DeviceTypeToken))
+				api.RDB.Database.Model(&DeviceType{}).Select("id").Where("token = ?", criteria.DeviceType))
 		}
 		return result.Preload("DeviceType")
 	}, criteria.Pagination)

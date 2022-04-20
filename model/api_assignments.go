@@ -238,6 +238,14 @@ func (api *Api) DeviceAssignments(ctx context.Context,
 	criteria DeviceAssignmentSearchCriteria) (*DeviceAssignmentSearchResults, error) {
 	results := make([]DeviceAssignment, 0)
 	db, pag := api.RDB.ListOf(&DeviceAssignment{}, func(db *gorm.DB) *gorm.DB {
+		if criteria.Device != nil {
+			db = db.Where("device_id = (?)",
+				api.RDB.Database.Model(&Device{}).Select("id").Where("token = ?", criteria.Device))
+		}
+		if criteria.DeviceGroup != nil {
+			db = db.Where("device_group_id = (?)",
+				api.RDB.Database.Model(&DeviceGroup{}).Select("id").Where("token = ?", criteria.DeviceGroup))
+		}
 		db = db.Preload("Device").Preload("DeviceGroup").Preload("Asset").Preload("AssetGroup")
 		db = db.Preload("Customer").Preload("CustomerGroup").Preload("Area").Preload("AreaGroup")
 		return db
@@ -252,4 +260,20 @@ func (api *Api) DeviceAssignments(ctx context.Context,
 		Results:    results,
 		Pagination: pag,
 	}, nil
+}
+
+// Get all device assignments for the given device id.
+func (api *Api) DeviceAssignmentsForDevice(ctx context.Context, id uint) ([]DeviceAssignment, error) {
+	results := make([]DeviceAssignment, 0)
+	db, _ := api.RDB.ListOf(&DeviceAssignment{}, func(db *gorm.DB) *gorm.DB {
+		db = db.Where(&DeviceAssignment{DeviceId: id}).Where(&DeviceAssignment{Active: true})
+		db = db.Preload("Device").Preload("DeviceGroup").Preload("Asset").Preload("AssetGroup")
+		db = db.Preload("Customer").Preload("CustomerGroup").Preload("Area").Preload("AreaGroup")
+		return db
+	}, rdb.Pagination{PageNumber: 1, PageSize: 0})
+	db.Find(&results)
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	return results, nil
 }

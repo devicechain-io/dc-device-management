@@ -13,6 +13,7 @@ import (
 	"fmt"
 	"io"
 
+	"github.com/devicechain-io/dc-event-sources/model"
 	esproto "github.com/devicechain-io/dc-event-sources/proto"
 	"github.com/devicechain-io/dc-microservice/core"
 	"github.com/rs/zerolog/log"
@@ -40,6 +41,16 @@ func NewInboundEventsProcessor(ms *core.Microservice, reader *kafka.Reader,
 	return iproc
 }
 
+// Handle a new assignment event.
+func (iproc *InboundEventsProcessor) HandleNewAssignmentEvent(event *model.UnresolvedEvent) error {
+	return nil
+}
+
+// Handle a location event.
+func (iproc *InboundEventsProcessor) HandleLocationEvent(event *model.UnresolvedEvent) error {
+	return nil
+}
+
 // Process an inbound message.
 func (iproc *InboundEventsProcessor) ProcessInboundEvent(msg kafka.Message) error {
 	event, err := esproto.UnmarshalUnresolvedEvent(msg.Value)
@@ -51,6 +62,13 @@ func (iproc *InboundEventsProcessor) ProcessInboundEvent(msg kafka.Message) erro
 		if err == nil {
 			log.Debug().Msg(fmt.Sprintf("Received %s event:\n%s", event.EventType.String(), jevent))
 		}
+	}
+
+	switch event.EventType {
+	case model.NewAssignment:
+		return iproc.HandleNewAssignmentEvent(event)
+	case model.Location:
+		return iproc.HandleLocationEvent(event)
 	}
 	return nil
 }

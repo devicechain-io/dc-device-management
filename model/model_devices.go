@@ -71,7 +71,7 @@ type Device struct {
 // Search criteria for locating devices.
 type DeviceSearchCriteria struct {
 	rdb.Pagination
-	DeviceTypeToken *string
+	DeviceType *string
 }
 
 // Results for device search.

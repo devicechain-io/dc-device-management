@@ -167,6 +167,14 @@ func (r *DeviceResolver) DeviceType() *DeviceTypeResolver {
 	}
 }
 
+func (r *DeviceResolver) ActiveAssignments() []*DeviceAssignmentResolver {
+	rez, err := r.S.ActiveDeviceAssignmentsForDevice(r.C, struct{ Id string }{Id: fmt.Sprintf("%d", r.M.ID)})
+	if err != nil {
+		return nil
+	}
+	return rez
+}
+
 // ------------------------------
 // Device search results resolver
 // ------------------------------

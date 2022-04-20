@@ -131,3 +131,31 @@ func (r *SchemaResolver) DeviceAssignments(ctx context.Context, args struct {
 		C: ctx,
 	}, nil
 }
+
+// List all active device assignments for device with given id.
+func (r *SchemaResolver) ActiveDeviceAssignmentsForDevice(ctx context.Context, args struct {
+	Id string
+}) ([]*DeviceAssignmentResolver, error) {
+	api := r.GetApi(ctx)
+	id, err := strconv.ParseUint(args.Id, 0, 64)
+	if err != nil {
+		return nil, err
+	}
+
+	found, err := api.DeviceAssignmentsForDevice(ctx, uint(id))
+	if err != nil {
+		return nil, err
+	}
+
+	// Return as resolver.
+	resolvers := make([]*DeviceAssignmentResolver, 0)
+	for _, current := range found {
+		resolvers = append(resolvers,
+			&DeviceAssignmentResolver{
+				M: current,
+				S: r,
+				C: ctx,
+			})
+	}
+	return resolvers, nil
+}

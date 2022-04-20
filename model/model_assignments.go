@@ -83,6 +83,8 @@ type DeviceAssignment struct {
 // Search criteria for locating device assignments.
 type DeviceAssignmentSearchCriteria struct {
 	rdb.Pagination
+	Device      *string
+	DeviceGroup *string
 }
 
 // Results for device assignment search.
