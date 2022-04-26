@@ -142,7 +142,7 @@ func (r *SchemaResolver) ActiveDeviceAssignmentsForDevice(ctx context.Context, a
 		return nil, err
 	}
 
-	found, err := api.DeviceAssignmentsForDevice(ctx, uint(id))
+	found, err := api.ActiveDeviceAssignmentsForDevice(ctx, uint(id))
 	if err != nil {
 		return nil, err
 	}

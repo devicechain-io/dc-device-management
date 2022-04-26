@@ -1,0 +1,25 @@
+syntax="proto3";
+
+option go_package = "/proto";
+
+package io.devicechain.devicemanagement;
+
+/**
+ * Enumeration of failure reasons.
+ */
+enum FailureReason {
+    Unknown = 0; // Failed for unknown reason
+    Invalid = 1; // Event was not able to be parsed
+    ApiCallFailed = 2; // API call required for resolution failed
+    DeviceNotFound = 3; // Device token could not be resolved to a device
+    NoActiveDeviceAssignments = 4; // Device had no active assignments
+}
+
+/**
+ * Event that could not be processed.
+ */
+message PFailedEvent {
+    FailureReason reason = 1;
+    string message = 2;
+    bytes payload = 3;
+}

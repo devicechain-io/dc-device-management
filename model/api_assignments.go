@@ -263,7 +263,7 @@ func (api *Api) DeviceAssignments(ctx context.Context,
 }
 
 // Get all device assignments for the given device id.
-func (api *Api) DeviceAssignmentsForDevice(ctx context.Context, id uint) ([]DeviceAssignment, error) {
+func (api *Api) ActiveDeviceAssignmentsForDevice(ctx context.Context, id uint) ([]DeviceAssignment, error) {
 	results := make([]DeviceAssignment, 0)
 	db, _ := api.RDB.ListOf(&DeviceAssignment{}, func(db *gorm.DB) *gorm.DB {
 		db = db.Where(&DeviceAssignment{DeviceId: id}).Where(&DeviceAssignment{Active: true})

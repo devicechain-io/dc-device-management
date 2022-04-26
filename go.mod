@@ -8,9 +8,12 @@ require (
 	github.com/devicechain-io/dc-microservice v0.0.0
 	github.com/go-gormigrate/gormigrate/v2 v2.0.0
 	github.com/go-redis/cache/v8 v8.4.3
+	github.com/google/uuid v1.3.0
 	github.com/graph-gophers/graphql-go v1.3.0
 	github.com/rs/zerolog v1.26.1
 	github.com/segmentio/kafka-go v0.4.30
+	github.com/stretchr/testify v1.7.1
+	google.golang.org/protobuf v1.27.1
 	gorm.io/gorm v1.23.3
 )
 
@@ -59,11 +62,13 @@ require (
 	github.com/opentracing/opentracing-go v1.1.0 // indirect
 	github.com/pierrec/lz4/v4 v4.1.14 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/prometheus/client_golang v1.12.1 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.32.1 // indirect
 	github.com/prometheus/procfs v0.7.3 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/stretchr/objx v0.2.0 // indirect
 	github.com/vmihailenco/go-tinylfu v0.2.2 // indirect
 	github.com/vmihailenco/msgpack/v5 v5.3.4 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
@@ -77,7 +82,6 @@ require (
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/time v0.0.0-20210723032227-1f47c861a9ac // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/protobuf v1.27.1 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect

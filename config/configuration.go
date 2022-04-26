@@ -10,6 +10,10 @@ import (
 	"github.com/devicechain-io/dc-microservice/config"
 )
 
+const (
+	KAFKA_TOPIC_FAILED_EVENTS = "failed-events"
+)
+
 type DeviceManagementConfiguration struct {
 	RdbConfiguration config.MicroserviceRdbConfiguration
 }

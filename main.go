@@ -9,9 +9,9 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"time"
 
 	gql "github.com/graph-gophers/graphql-go"
-	"github.com/segmentio/kafka-go"
 
 	"github.com/devicechain-io/dc-device-management/config"
 	"github.com/devicechain-io/dc-device-management/events"
@@ -35,8 +35,9 @@ var (
 	Api       *model.Api
 	CachedApi *model.CachedApi
 
-	InboundEventsReader    *kafka.Reader
+	InboundEventsReader    kcore.KafkaReader
 	InboundEventsProcessor *events.InboundEventsProcessor
+	FailedEventsWriter     kcore.KafkaWriter
 )
 
 func main() {
@@ -84,13 +85,23 @@ func createKafkaComponents(kmgr *kcore.KafkaManager) error {
 	}
 	InboundEventsReader = ievents
 
+	// Add and initialize failed events writer.
+	fevents, err := kmgr.NewWriter(
+		kmgr.NewScopedTopic(config.KAFKA_TOPIC_FAILED_EVENTS),
+		100, 100*time.Millisecond)
+	if err != nil {
+		return err
+	}
+	FailedEventsWriter = fevents
+
 	// Add and initialize inbound events processor.
 	InboundEventsProcessor = events.NewInboundEventsProcessor(Microservice, InboundEventsReader,
-		core.NewNoOpLifecycleCallbacks())
+		FailedEventsWriter, core.NewNoOpLifecycleCallbacks(), Api)
 	err = InboundEventsProcessor.Initialize(context.Background())
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
