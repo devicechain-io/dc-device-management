@@ -239,6 +239,7 @@ func (iproc *InboundEventsProcessor) Stop(ctx context.Context) error {
 // Lifecycle callback that runs shutdown logic.
 func (iproc *InboundEventsProcessor) ExecuteStop(context.Context) error {
 	close(iproc.messages)
+	close(iproc.resolved)
 	close(iproc.failed)
 	return nil
 }
