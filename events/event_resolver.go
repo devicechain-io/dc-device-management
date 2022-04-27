@@ -146,7 +146,18 @@ func (rez *EventResolver) HandleStandardEvents(ctx context.Context,
 	if len(assns) == 0 {
 		return nil, uint(proto.FailureReason_NoActiveDeviceAssignments), fmt.Errorf("no active assignments found for device: %s", device.Token)
 	}
-	return nil, 0, nil
+
+	// Create separate merged event for each assignment.
+	results := make([]EventResolutionResults, 0)
+	for _, assn := range assns {
+		result, err := rez.MergeAssignmentToResolveEvent(device, &assn, event)
+		if err != nil {
+			return nil, uint(proto.FailureReason_ApiCallFailed), err
+		}
+		results = append(results, *result)
+	}
+
+	return results, 0, nil
 }
 
 // Route event to handlers based on event type.

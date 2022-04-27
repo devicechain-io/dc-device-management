@@ -13,25 +13,25 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-type WorkerTestSuite struct {
+type EventResolverTestSuite struct {
 	suite.Suite
 }
 
 // Perform common setup tasks.
-func (suite *WorkerTestSuite) SetupTest() {
+func (suite *EventResolverTestSuite) SetupTest() {
 }
 
 // Test 1
-func (suite *WorkerTestSuite) Test1() {
+func (suite *EventResolverTestSuite) Test1() {
 	assert.Equal(suite.T(), 1, 1)
 }
 
 // Test 2
-func (suite *WorkerTestSuite) Test2() {
+func (suite *EventResolverTestSuite) Test2() {
 	assert.Equal(suite.T(), 2, 2)
 }
 
 // Run all tests.
 func TestWorkerTestSuite(t *testing.T) {
-	suite.Run(t, new(WorkerTestSuite))
+	suite.Run(t, new(EventResolverTestSuite))
 }

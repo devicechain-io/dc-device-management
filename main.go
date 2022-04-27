@@ -95,7 +95,7 @@ func createKafkaComponents(kmgr *kcore.KafkaManager) error {
 	FailedEventsWriter = fevents
 
 	// Add and initialize inbound events processor.
-	InboundEventsProcessor = events.NewInboundEventsProcessor(Microservice, InboundEventsReader,
+	InboundEventsProcessor = events.NewInboundEventsProcessor(Microservice, InboundEventsReader, nil,
 		FailedEventsWriter, core.NewNoOpLifecycleCallbacks(), Api)
 	err = InboundEventsProcessor.Initialize(context.Background())
 	if err != nil {

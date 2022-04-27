@@ -23,3 +23,24 @@ message PFailedEvent {
     string message = 2;
     bytes payload = 3;
 }
+
+/**
+ * Event that was successfully resolved.
+ */
+ message PResolvedEvent {
+	string source = 1;
+	optional string alt_id = 2;
+	uint64 device_id = 3;
+	optional uint64 device_group_id = 4;
+	optional uint64 assignment_id = 5;
+	optional uint64 customer_id = 6;
+	optional uint64 customer_group_id = 7;
+	optional uint64 area_id = 8;
+	optional uint64 area_group_id = 9;
+	optional uint64 asset_id = 10;
+	optional uint64 asset_group_id = 11;
+    string occurred_time = 12;
+    string processed_time = 13;
+    int64 event_type = 14;
+    bytes payload = 15;
+}

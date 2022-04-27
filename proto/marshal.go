@@ -46,3 +46,36 @@ func UnmarshalFailedEvent(encoded []byte) (*model.FailedEvent, error) {
 
 	return event, nil
 }
+
+// Marshal a resolved event to protobuf bytes.
+func MarshalResolvedEvent(event *model.ResolvedEvent) ([]byte, error) {
+	// Encode protobuf event.
+	dgid := uint64(*event.DeviceGroupId)
+	aid := uint64(*event.AssetId)
+	agid := uint64(*event.AssetGroupId)
+	cid := uint64(*event.CustomerId)
+	cgid := uint64(*event.CustomerGroupId)
+	arid := uint64(*event.AreaId)
+	argid := uint64(*event.AreaGroupId)
+	pbevent := &PResolvedEvent{
+		Source:          event.Source,
+		AltId:           event.AltId,
+		EventType:       int64(event.EventType),
+		DeviceId:        uint64(event.DeviceId),
+		DeviceGroupId:   &dgid,
+		AssetId:         &aid,
+		AssetGroupId:    &agid,
+		CustomerId:      &cid,
+		CustomerGroupId: &cgid,
+		AreaId:          &arid,
+		AreaGroupId:     &argid,
+	}
+
+	// Marshal event to bytes.
+	bytes, err := proto.Marshal(pbevent)
+	if err != nil {
+		return nil, err
+	}
+
+	return bytes, nil
+}

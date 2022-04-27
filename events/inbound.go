@@ -24,30 +24,36 @@ import (
 )
 
 const (
-	EVENT_RESOLVER_COUNT = 5   // Number of event resolvers running in parallel
-	KAFKA_BACKLOG_SIZE   = 100 // Number of Kafka messages that can be read and waiting to be processed
+	EVENT_RESOLVER_COUNT        = 5   // Number of event resolvers running in parallel
+	KAFKA_BACKLOG_SIZE          = 100 // Number of Kafka messages that can be read and waiting to be processed
+	FAILED_EVENT_BACKLOG_SIZE   = 100 // Number of failed events that can be waiting to push to kafka
+	RESOLVED_EVENT_BACKLOG_SIZE = 100 // Number of resolved events that can be waiting to push to kafka
 )
 
 type InboundEventsProcessor struct {
-	Microservice        *core.Microservice
-	InboundEventsReader kcore.KafkaReader
-	FailedEventsWriter  kcore.KafkaWriter
-	Api                 dmodel.DeviceManagementApi
+	Microservice         *core.Microservice
+	InboundEventsReader  kcore.KafkaReader
+	ResolvedEventsWriter kcore.KafkaWriter
+	FailedEventsWriter   kcore.KafkaWriter
+	Api                  dmodel.DeviceManagementApi
 
 	messages  chan kafka.Message
+	failed    chan dmodel.FailedEvent
+	resolved  chan dmodel.ResolvedEvent
 	resolvers []*EventResolver
 
 	lifecycle core.LifecycleManager
 }
 
 // Create a new inbound events processor.
-func NewInboundEventsProcessor(ms *core.Microservice, inbound kcore.KafkaReader, failed kcore.KafkaWriter,
-	callbacks core.LifecycleCallbacks, api dmodel.DeviceManagementApi) *InboundEventsProcessor {
+func NewInboundEventsProcessor(ms *core.Microservice, inbound kcore.KafkaReader, resolved kcore.KafkaWriter,
+	failed kcore.KafkaWriter, callbacks core.LifecycleCallbacks, api dmodel.DeviceManagementApi) *InboundEventsProcessor {
 	iproc := &InboundEventsProcessor{
-		Microservice:        ms,
-		InboundEventsReader: inbound,
-		FailedEventsWriter:  failed,
-		Api:                 api,
+		Microservice:         ms,
+		InboundEventsReader:  inbound,
+		ResolvedEventsWriter: resolved,
+		FailedEventsWriter:   failed,
+		Api:                  api,
 	}
 
 	// Create lifecycle manager.
@@ -57,35 +63,39 @@ func NewInboundEventsProcessor(ms *core.Microservice, inbound kcore.KafkaReader,
 }
 
 // Handle case where event failed to process.
-func (iproc *InboundEventsProcessor) HandleFailedEvent(ctx context.Context, reason uint, payload []byte, err error) error {
-	failed := &dmodel.FailedEvent{
-		Reason:  reason,
-		Message: err.Error(),
-		Payload: payload,
-	}
+func (iproc *InboundEventsProcessor) ProcessFailedEvent(ctx context.Context) bool {
+	failed, more := <-iproc.failed
+	log.Debug().Msg(fmt.Sprintf("received failed event: %s", failed.Message))
+	if more {
+		// Marshal event message to protobuf.
+		bytes, err := proto.MarshalFailedEvent(&failed)
+		if err != nil {
+			log.Error().Err(err).Msg("unable to marshal event to protobuf")
+		}
 
-	// Marshal event message to protobuf.
-	bytes, err := proto.MarshalFailedEvent(failed)
-	if err != nil {
-		log.Error().Err(err).Msg("unable to marshal event to protobuf")
+		// Create and deliver message.
+		msg := kafka.Message{
+			Key:   []byte(strconv.FormatInt(int64(failed.Reason), 10)),
+			Value: bytes,
+		}
+		err = iproc.FailedEventsWriter.WriteMessages(ctx, msg)
+		if err != nil {
+			log.Error().Err(err).Msg("unable to send failed event message to kafka")
+		}
+		return false
+	} else {
+		return true
 	}
-
-	// Create and deliver message.
-	msg := kafka.Message{
-		Key:   []byte(strconv.FormatInt(int64(reason), 10)),
-		Value: bytes,
-	}
-	err = iproc.FailedEventsWriter.WriteMessages(ctx, msg)
-	if err != nil {
-		log.Error().Err(err).Msg("unable to send failed event message to kafka")
-	}
-	return err
 }
 
 // Called when a message can not be unmarshaled to an event.
-func (iproc *InboundEventsProcessor) OnInvalidEventMessage(msg kafka.Message) {
-	iproc.HandleFailedEvent(context.Background(), uint(proto.FailureReason_Invalid),
-		msg.Value, errors.New("message could not be parsed"))
+func (iproc *InboundEventsProcessor) OnInvalidEvent(msg kafka.Message) {
+	failed := dmodel.FailedEvent{
+		Reason:  uint(proto.FailureReason_Invalid),
+		Message: "message could not be parsed",
+		Payload: msg.Value,
+	}
+	iproc.failed <- failed
 }
 
 // Called when an event can not be resolved.
@@ -95,17 +105,43 @@ func (iproc *InboundEventsProcessor) onUnresolvedEvent(reason uint, unrez esmode
 	if err != nil {
 		log.Error().Err(err).Msg("unable to marshal unresolved event to protobuf")
 	} else {
-		iproc.HandleFailedEvent(context.Background(), reason, bytes, rezerr)
+		failed := dmodel.FailedEvent{
+			Reason:  reason,
+			Message: rezerr.Error(),
+			Payload: bytes,
+		}
+		iproc.failed <- failed
+	}
+}
+
+// Handle case where event was successfully resolved.
+func (iproc *InboundEventsProcessor) ProcessResolvedEvent(ctx context.Context) bool {
+	resolved, more := <-iproc.resolved
+	if more {
+		bytes, err := proto.MarshalResolvedEvent(&resolved)
+		if err != nil {
+			log.Error().Err(err).Msg("unable to marshal event to protobuf")
+		}
+
+		msg := kafka.Message{
+			Key:   []byte(strconv.FormatInt(int64(resolved.DeviceId), 10)),
+			Value: bytes,
+		}
+		err = iproc.ResolvedEventsWriter.WriteMessages(ctx, msg)
+		if err != nil {
+			log.Error().Err(err).Msg("unable to send failed event message to kafka")
+		}
+		return false
+	} else {
+		return true
 	}
 }
 
 // Called when an event is successfully resolved.
-func (iproc *InboundEventsProcessor) OnResolvedEvent([]EventResolutionResults) {
-}
-
-// Process an inbound message.
-func (iproc *InboundEventsProcessor) ProcessInboundEvent(msg kafka.Message) {
-	iproc.messages <- msg
+func (iproc *InboundEventsProcessor) OnResolvedEvent(events []EventResolutionResults) {
+	for _, event := range events {
+		iproc.resolved <- *event.Resolved
+	}
 }
 
 // Initialize pool of workers for resolving events.
@@ -115,10 +151,16 @@ func (iproc *InboundEventsProcessor) initializeEventResolvers(ctx context.Contex
 	iproc.resolvers = make([]*EventResolver, 0)
 	for w := 1; w <= EVENT_RESOLVER_COUNT; w++ {
 		resolver := NewEventResolver(w, iproc.Api, iproc.messages,
-			iproc.OnInvalidEventMessage, iproc.OnResolvedEvent, iproc.onUnresolvedEvent)
+			iproc.OnInvalidEvent, iproc.OnResolvedEvent, iproc.onUnresolvedEvent)
 		iproc.resolvers = append(iproc.resolvers, resolver)
 		go resolver.Process(ctx)
 	}
+}
+
+// Initialize outbound processing.
+func (iproc *InboundEventsProcessor) initializeOutboundProcessing(ctx context.Context) {
+	iproc.failed = make(chan dmodel.FailedEvent, FAILED_EVENT_BACKLOG_SIZE)
+	iproc.resolved = make(chan dmodel.ResolvedEvent, RESOLVED_EVENT_BACKLOG_SIZE)
 }
 
 // Initialize component.
@@ -130,6 +172,9 @@ func (iproc *InboundEventsProcessor) Initialize(ctx context.Context) error {
 func (iproc *InboundEventsProcessor) ExecuteInitialize(ctx context.Context) error {
 	// Initialize pool of event resolvers.
 	iproc.initializeEventResolvers(ctx)
+
+	// Initialize outbound processing channels.
+	iproc.initializeOutboundProcessing(ctx)
 	return nil
 }
 
@@ -148,13 +193,33 @@ func (iproc *InboundEventsProcessor) ProcessMessage(ctx context.Context) bool {
 		} else {
 			log.Error().Err(err).Msg("error reading inbound event message")
 		}
+	} else {
+		iproc.messages <- msg
 	}
-	iproc.messages <- msg
 	return false
 }
 
 // Lifecycle callback that runs startup logic.
 func (iproc *InboundEventsProcessor) ExecuteStart(ctx context.Context) error {
+	// Processing loop for failed events.
+	go func() {
+		for {
+			eof := iproc.ProcessFailedEvent(ctx)
+			if eof {
+				break
+			}
+		}
+	}()
+	// Processing loop for resolved events.
+	go func() {
+		for {
+			eof := iproc.ProcessResolvedEvent(ctx)
+			if eof {
+				break
+			}
+		}
+	}()
+	// Processing loop for inbound messages.
 	go func() {
 		for {
 			eof := iproc.ProcessMessage(ctx)
@@ -173,6 +238,8 @@ func (iproc *InboundEventsProcessor) Stop(ctx context.Context) error {
 
 // Lifecycle callback that runs shutdown logic.
 func (iproc *InboundEventsProcessor) ExecuteStop(context.Context) error {
+	close(iproc.messages)
+	close(iproc.failed)
 	return nil
 }
 
@@ -183,6 +250,5 @@ func (iproc *InboundEventsProcessor) Terminate(ctx context.Context) error {
 
 // Lifecycle callback that runs termination logic.
 func (iproc *InboundEventsProcessor) ExecuteTerminate(context.Context) error {
-	close(iproc.messages)
 	return nil
 }
