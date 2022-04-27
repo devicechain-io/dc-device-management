@@ -114,13 +114,13 @@ func (rez *EventResolver) CreateNewAssignment(ctx context.Context,
 // Handle a new assignment event.
 func (rez *EventResolver) HandleNewAssignmentEvent(ctx context.Context,
 	device *model.Device, event *esmodel.UnresolvedEvent) ([]EventResolutionResults, uint, error) {
-	assncreate, ok := event.Payload.(esmodel.NewAssignmentPayload)
+	assncreate, ok := event.Payload.(*esmodel.NewAssignmentPayload)
 	if !ok {
 		return nil, uint(proto.FailureReason_Invalid), errors.New("new assignment payload was not of expected type")
 	}
 
 	// Create new device assignment from the event payload.
-	created, reason, err := rez.CreateNewAssignment(ctx, device, assncreate)
+	created, reason, err := rez.CreateNewAssignment(ctx, device, *assncreate)
 	if err != nil {
 		return nil, reason, errors.New("could not create device assignment")
 	}

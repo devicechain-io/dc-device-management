@@ -121,15 +121,15 @@ func (iproc *InboundEventsProcessor) ProcessResolvedEvent(ctx context.Context) b
 		bytes, err := proto.MarshalResolvedEvent(&resolved)
 		if err != nil {
 			log.Error().Err(err).Msg("unable to marshal event to protobuf")
-		}
-
-		msg := kafka.Message{
-			Key:   []byte(strconv.FormatInt(int64(resolved.DeviceId), 10)),
-			Value: bytes,
-		}
-		err = iproc.ResolvedEventsWriter.WriteMessages(ctx, msg)
-		if err != nil {
-			log.Error().Err(err).Msg("unable to send failed event message to kafka")
+		} else {
+			msg := kafka.Message{
+				Key:   []byte(strconv.FormatInt(int64(resolved.DeviceId), 10)),
+				Value: bytes,
+			}
+			err = iproc.ResolvedEventsWriter.WriteMessages(ctx, msg)
+			if err != nil {
+				log.Error().Err(err).Msg("unable to send failed event message to kafka")
+			}
 		}
 		return false
 	} else {

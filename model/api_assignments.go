@@ -108,7 +108,7 @@ func (api *Api) CreateDeviceAssignment(ctx context.Context, request *DeviceAssig
 	if err != nil {
 		return nil, err
 	}
-	created.Device = *device
+	created.DeviceId = device.ID
 
 	// Associate device group if provided.
 	if request.DeviceGroup != nil {
@@ -116,7 +116,7 @@ func (api *Api) CreateDeviceAssignment(ctx context.Context, request *DeviceAssig
 		if err != nil {
 			return nil, err
 		}
-		created.DeviceGroup = dgroup
+		created.DeviceGroupId = &dgroup.ID
 	}
 
 	// Associate asset if provided.
@@ -125,7 +125,7 @@ func (api *Api) CreateDeviceAssignment(ctx context.Context, request *DeviceAssig
 		if err != nil {
 			return nil, err
 		}
-		created.Asset = asset
+		created.AssetId = &asset.ID
 	}
 
 	// Associate asset group if provided.
@@ -134,7 +134,7 @@ func (api *Api) CreateDeviceAssignment(ctx context.Context, request *DeviceAssig
 		if err != nil {
 			return nil, err
 		}
-		created.AssetGroup = agroup
+		created.AssetGroupId = &agroup.ID
 	}
 
 	// Associate customer if provided.
@@ -143,7 +143,7 @@ func (api *Api) CreateDeviceAssignment(ctx context.Context, request *DeviceAssig
 		if err != nil {
 			return nil, err
 		}
-		created.Customer = customer
+		created.CustomerId = &customer.ID
 	}
 
 	// Associate customer group if provided.
@@ -152,7 +152,7 @@ func (api *Api) CreateDeviceAssignment(ctx context.Context, request *DeviceAssig
 		if err != nil {
 			return nil, err
 		}
-		created.CustomerGroup = cgroup
+		created.CustomerGroupId = &cgroup.ID
 	}
 
 	// Associate area if provided.
@@ -161,7 +161,7 @@ func (api *Api) CreateDeviceAssignment(ctx context.Context, request *DeviceAssig
 		if err != nil {
 			return nil, err
 		}
-		created.Area = area
+		created.AreaId = &area.ID
 	}
 
 	// Associate area group if provided.
@@ -170,7 +170,7 @@ func (api *Api) CreateDeviceAssignment(ctx context.Context, request *DeviceAssig
 		if err != nil {
 			return nil, err
 		}
-		created.AreaGroup = agroup
+		created.AreaGroupId = &agroup.ID
 	}
 
 	// Set active flag.

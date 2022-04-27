@@ -8,6 +8,7 @@ package events
 
 import (
 	"context"
+	"errors"
 	"io"
 	"testing"
 	"time"
@@ -55,6 +56,17 @@ func (suite *InboundEventsProcessorTestSuite) SetupTest() {
 }
 
 // Test processing loop termination on EOF.
+func (suite *InboundEventsProcessorTestSuite) TestLifecycle() {
+	suite.Inbound.Mock.On("ReadMessage", mock.Anything).Return(kafka.Message{}, io.EOF)
+	err := suite.IP.Start(context.Background())
+	assert.Nil(suite.T(), err)
+	err = suite.IP.Stop(context.Background())
+	assert.Nil(suite.T(), err)
+	err = suite.IP.Terminate(context.Background())
+	assert.Nil(suite.T(), err)
+}
+
+// Test processing loop termination on EOF.
 func (suite *InboundEventsProcessorTestSuite) TestProcessingLoopEof() {
 	suite.Inbound.Mock.On("ReadMessage", mock.Anything).Return(kafka.Message{}, io.EOF)
 
@@ -90,6 +102,28 @@ func (suite *InboundEventsProcessorTestSuite) TestInvalidEvent() {
 
 	// Verify a message was written to failed messages writer.
 	suite.Failed.AssertCalled(suite.T(), "WriteMessages", mock.Anything, mock.Anything)
+}
+
+// Build a new assignment event.
+func buildNewAssignmentEvent() *model.UnresolvedEvent {
+	dgroup := "Primary"
+	asset := "CAR-123"
+	agroup := "Cars"
+	assn := &model.NewAssignmentPayload{
+		DeactivateExisting: false,
+		DeviceGroup:        &dgroup,
+		Asset:              &asset,
+		AssetGroup:         &agroup,
+	}
+	altid := "alternateId"
+	event := &model.UnresolvedEvent{
+		Source:    "mysource",
+		AltId:     &altid,
+		Device:    "TEST-123",
+		EventType: model.NewAssignment,
+		Payload:   assn,
+	}
+	return event
 }
 
 // Build a location event.
@@ -137,7 +171,7 @@ func buildDevice() *dmodel.Device {
 }
 
 // Build a device assignment.
-func buildAssignments() []dmodel.DeviceAssignment {
+func buildAssignment() *dmodel.DeviceAssignment {
 	dgrp := uint(2)
 	asset := uint(3)
 	agrp := uint(4)
@@ -163,9 +197,64 @@ func buildAssignments() []dmodel.DeviceAssignment {
 		AreaId:          &area,
 		AreaGroupId:     &argrp,
 	}
+	return assn
+}
+
+// Build an array of device assignments.
+func buildAssignments() []dmodel.DeviceAssignment {
+	assn := buildAssignment()
 	result := make([]dmodel.DeviceAssignment, 0)
 	result = append(result, *assn)
 	return result
+}
+
+// Test valid location event.
+func (suite *InboundEventsProcessorTestSuite) TestUnresolvableLocationEvent() {
+	loc := buildLocationEvent()
+	bytes, err := esproto.MarshalUnresolvedEvent(loc)
+	assert.Nil(suite.T(), err)
+
+	// Assuming invalid binary message format..
+	key := []byte(loc.Device)
+	msg := kafka.Message{Key: key, Value: bytes}
+
+	// Emulate kafka read/write.
+	suite.Inbound.Mock.On("ReadMessage", mock.Anything).Return(msg, nil)
+	suite.Failed.Mock.On("WriteMessages", mock.Anything, mock.Anything).Return(nil)
+	suite.API.Mock.On("DeviceByToken", mock.Anything, mock.Anything).Return(&dmodel.Device{}, errors.New("fot found"))
+
+	// Send message and wait for event to be processed by resolver.
+	ctx := context.Background()
+	suite.IP.ProcessMessage(ctx)
+	suite.IP.ProcessFailedEvent(ctx)
+
+	// Verify a message was written to failed messages writer.
+	suite.Failed.AssertCalled(suite.T(), "WriteMessages", mock.Anything, mock.Anything)
+}
+
+// Test valid new assignment event.
+func (suite *InboundEventsProcessorTestSuite) TestValidNewAssignmentEvent() {
+	nassn := buildNewAssignmentEvent()
+	bytes, err := esproto.MarshalUnresolvedEvent(nassn)
+	assert.Nil(suite.T(), err)
+
+	// Assuming invalid binary message format..
+	key := []byte(nassn.Device)
+	msg := kafka.Message{Key: key, Value: bytes}
+
+	// Emulate kafka read/write.
+	suite.Inbound.Mock.On("ReadMessage", mock.Anything).Return(msg, nil)
+	suite.Resolved.Mock.On("WriteMessages", mock.Anything, mock.Anything).Return(nil)
+	suite.API.Mock.On("DeviceByToken", mock.Anything, mock.Anything).Return(buildDevice(), nil)
+	suite.API.Mock.On("CreateDeviceAssignment", mock.Anything, mock.Anything).Return(buildAssignment(), nil)
+
+	// Send message and wait for event to be processed by resolver.
+	ctx := context.Background()
+	suite.IP.ProcessMessage(ctx)
+	suite.IP.ProcessResolvedEvent(ctx)
+
+	// Verify a message was written to failed messages writer.
+	suite.Resolved.AssertCalled(suite.T(), "WriteMessages", mock.Anything, mock.Anything)
 }
 
 // Test valid location event.

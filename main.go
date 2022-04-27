@@ -37,6 +37,7 @@ var (
 
 	InboundEventsReader    kcore.KafkaReader
 	InboundEventsProcessor *events.InboundEventsProcessor
+	ResolvedEventsWriter   kcore.KafkaWriter
 	FailedEventsWriter     kcore.KafkaWriter
 )
 
@@ -85,6 +86,15 @@ func createKafkaComponents(kmgr *kcore.KafkaManager) error {
 	}
 	InboundEventsReader = ievents
 
+	// Add and initialize resolved events writer.
+	revents, err := kmgr.NewWriter(
+		kmgr.NewScopedTopic(config.KAFKA_TOPIC_RESOLVED_EVENTS),
+		100, 100*time.Millisecond)
+	if err != nil {
+		return err
+	}
+	ResolvedEventsWriter = revents
+
 	// Add and initialize failed events writer.
 	fevents, err := kmgr.NewWriter(
 		kmgr.NewScopedTopic(config.KAFKA_TOPIC_FAILED_EVENTS),
@@ -95,8 +105,8 @@ func createKafkaComponents(kmgr *kcore.KafkaManager) error {
 	FailedEventsWriter = fevents
 
 	// Add and initialize inbound events processor.
-	InboundEventsProcessor = events.NewInboundEventsProcessor(Microservice, InboundEventsReader, nil,
-		FailedEventsWriter, core.NewNoOpLifecycleCallbacks(), Api)
+	InboundEventsProcessor = events.NewInboundEventsProcessor(Microservice, InboundEventsReader,
+		ResolvedEventsWriter, FailedEventsWriter, core.NewNoOpLifecycleCallbacks(), Api)
 	err = InboundEventsProcessor.Initialize(context.Background())
 	if err != nil {
 		return err

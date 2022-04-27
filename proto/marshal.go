@@ -8,6 +8,7 @@ package proto
 
 import (
 	"github.com/devicechain-io/dc-device-management/model"
+	util "github.com/devicechain-io/dc-microservice/proto"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -50,25 +51,18 @@ func UnmarshalFailedEvent(encoded []byte) (*model.FailedEvent, error) {
 // Marshal a resolved event to protobuf bytes.
 func MarshalResolvedEvent(event *model.ResolvedEvent) ([]byte, error) {
 	// Encode protobuf event.
-	dgid := uint64(*event.DeviceGroupId)
-	aid := uint64(*event.AssetId)
-	agid := uint64(*event.AssetGroupId)
-	cid := uint64(*event.CustomerId)
-	cgid := uint64(*event.CustomerGroupId)
-	arid := uint64(*event.AreaId)
-	argid := uint64(*event.AreaGroupId)
 	pbevent := &PResolvedEvent{
 		Source:          event.Source,
 		AltId:           event.AltId,
 		EventType:       int64(event.EventType),
 		DeviceId:        uint64(event.DeviceId),
-		DeviceGroupId:   &dgid,
-		AssetId:         &aid,
-		AssetGroupId:    &agid,
-		CustomerId:      &cid,
-		CustomerGroupId: &cgid,
-		AreaId:          &arid,
-		AreaGroupId:     &argid,
+		DeviceGroupId:   util.NullUint64Of(event.DeviceGroupId),
+		AssetId:         util.NullUint64Of(event.AssetId),
+		AssetGroupId:    util.NullUint64Of(event.AssetGroupId),
+		CustomerId:      util.NullUint64Of(event.CustomerId),
+		CustomerGroupId: util.NullUint64Of(event.CustomerGroupId),
+		AreaId:          util.NullUint64Of(event.AreaId),
+		AreaGroupId:     util.NullUint64Of(event.AreaGroupId),
 	}
 
 	// Marshal event to bytes.

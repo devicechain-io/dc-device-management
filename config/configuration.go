@@ -11,7 +11,8 @@ import (
 )
 
 const (
-	KAFKA_TOPIC_FAILED_EVENTS = "failed-events"
+	KAFKA_TOPIC_FAILED_EVENTS   = "failed-events"
+	KAFKA_TOPIC_RESOLVED_EVENTS = "resolved-events"
 )
 
 type DeviceManagementConfiguration struct {
