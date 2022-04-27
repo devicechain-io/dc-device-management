@@ -9,7 +9,6 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"time"
 
 	gql "github.com/graph-gophers/graphql-go"
 
@@ -87,18 +86,14 @@ func createKafkaComponents(kmgr *kcore.KafkaManager) error {
 	InboundEventsReader = ievents
 
 	// Add and initialize resolved events writer.
-	revents, err := kmgr.NewWriter(
-		kmgr.NewScopedTopic(config.KAFKA_TOPIC_RESOLVED_EVENTS),
-		100, 100*time.Millisecond)
+	revents, err := kmgr.NewWriter(kmgr.NewScopedTopic(config.KAFKA_TOPIC_RESOLVED_EVENTS))
 	if err != nil {
 		return err
 	}
 	ResolvedEventsWriter = revents
 
 	// Add and initialize failed events writer.
-	fevents, err := kmgr.NewWriter(
-		kmgr.NewScopedTopic(config.KAFKA_TOPIC_FAILED_EVENTS),
-		100, 100*time.Millisecond)
+	fevents, err := kmgr.NewWriter(kmgr.NewScopedTopic(config.KAFKA_TOPIC_FAILED_EVENTS))
 	if err != nil {
 		return err
 	}
