@@ -127,14 +127,19 @@ func buildNewAssignmentEvent() *model.UnresolvedEvent {
 }
 
 // Build a location event.
-func buildLocationEvent() *model.UnresolvedEvent {
+func buildLocationsEvent() *model.UnresolvedEvent {
 	lat := "33.7490"
 	lon := "-84.3880"
 	ele := "738"
-	loc := &model.LocationPayload{
+	entry := model.LocationEntry{
 		Latitude:  &lat,
 		Longitude: &lon,
 		Elevation: &ele,
+	}
+	entries := make([]model.LocationEntry, 0)
+	entries = append(entries, entry)
+	loc := &model.LocationsPayload{
+		Entries: entries,
 	}
 	altid := "alternateId"
 	event := &model.UnresolvedEvent{
@@ -209,8 +214,8 @@ func buildAssignments() []dmodel.DeviceAssignment {
 }
 
 // Test valid location event.
-func (suite *InboundEventsProcessorTestSuite) TestUnresolvableLocationEvent() {
-	loc := buildLocationEvent()
+func (suite *InboundEventsProcessorTestSuite) TestUnresolvableLocationsEvent() {
+	loc := buildLocationsEvent()
 	bytes, err := esproto.MarshalUnresolvedEvent(loc)
 	assert.Nil(suite.T(), err)
 
@@ -258,8 +263,8 @@ func (suite *InboundEventsProcessorTestSuite) TestValidNewAssignmentEvent() {
 }
 
 // Test valid location event.
-func (suite *InboundEventsProcessorTestSuite) TestValidLocationEvent() {
-	loc := buildLocationEvent()
+func (suite *InboundEventsProcessorTestSuite) TestValidLocationsEvent() {
+	loc := buildLocationsEvent()
 	bytes, err := esproto.MarshalUnresolvedEvent(loc)
 	assert.Nil(suite.T(), err)
 
