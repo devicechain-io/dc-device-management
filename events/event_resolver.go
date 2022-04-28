@@ -62,7 +62,7 @@ func (rez *EventResolver) MergeAssignmentToResolveEvent(device *model.Device, as
 	resolved := &model.ResolvedEvent{
 		Source:          event.Source,
 		AltId:           event.AltId,
-		AssignmentId:    &assn.ID,
+		AssignmentId:    assn.ID,
 		DeviceId:        device.ID,
 		DeviceGroupId:   assn.DeviceGroupId,
 		AssetId:         assn.AssetId,
@@ -135,7 +135,7 @@ func (rez *EventResolver) HandleNewAssignmentEvent(ctx context.Context,
 }
 
 // Create resolved events by looking up device assignment info and merging it into other event data.
-func (rez *EventResolver) HandleStandardEvents(ctx context.Context,
+func (rez *EventResolver) HandleStandardEvent(ctx context.Context,
 	device *model.Device, event *esmodel.UnresolvedEvent) ([]EventResolutionResults, uint, error) {
 	// Look up active assignments for device.
 	assns, err := rez.Api.ActiveDeviceAssignmentsForDevice(ctx, device.ID)
@@ -167,7 +167,7 @@ func (rez *EventResolver) HandleEvent(ctx context.Context,
 	case esmodel.NewAssignment:
 		return rez.HandleNewAssignmentEvent(ctx, device, unresolved)
 	case esmodel.Location, esmodel.Measurement, esmodel.Alert:
-		return rez.HandleStandardEvents(ctx, device, unresolved)
+		return rez.HandleStandardEvent(ctx, device, unresolved)
 	default:
 		return nil, uint(proto.FailureReason_Invalid), fmt.Errorf("unhandled event type: %s", unresolved.EventType.String())
 	}

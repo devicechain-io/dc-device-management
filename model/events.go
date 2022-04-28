@@ -17,8 +17,8 @@ type ResolvedEvent struct {
 	Source          string
 	AltId           *string
 	DeviceId        uint
+	AssignmentId    uint
 	DeviceGroupId   *uint
-	AssignmentId    *uint
 	CustomerId      *uint
 	CustomerGroupId *uint
 	AreaId          *uint

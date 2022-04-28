@@ -8,6 +8,7 @@ package proto
 
 import (
 	"github.com/devicechain-io/dc-device-management/model"
+	esproto "github.com/devicechain-io/dc-event-sources/proto"
 	util "github.com/devicechain-io/dc-microservice/proto"
 	"google.golang.org/protobuf/proto"
 )
@@ -50,11 +51,17 @@ func UnmarshalFailedEvent(encoded []byte) (*model.FailedEvent, error) {
 
 // Marshal a resolved event to protobuf bytes.
 func MarshalResolvedEvent(event *model.ResolvedEvent) ([]byte, error) {
+	// Encode payload.
+	pybytes, err := esproto.MarshalPayloadForEventType(event.EventType, event.Payload)
+	if err != nil {
+		return nil, err
+	}
+
 	// Encode protobuf event.
 	pbevent := &PResolvedEvent{
 		Source:          event.Source,
 		AltId:           event.AltId,
-		EventType:       int64(event.EventType),
+		AssignmentId:    uint64(event.AssignmentId),
 		DeviceId:        uint64(event.DeviceId),
 		DeviceGroupId:   util.NullUint64Of(event.DeviceGroupId),
 		AssetId:         util.NullUint64Of(event.AssetId),
@@ -63,6 +70,8 @@ func MarshalResolvedEvent(event *model.ResolvedEvent) ([]byte, error) {
 		CustomerGroupId: util.NullUint64Of(event.CustomerGroupId),
 		AreaId:          util.NullUint64Of(event.AreaId),
 		AreaGroupId:     util.NullUint64Of(event.AreaGroupId),
+		EventType:       int64(event.EventType),
+		Payload:         pybytes,
 	}
 
 	// Marshal event to bytes.
