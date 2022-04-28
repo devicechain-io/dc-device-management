@@ -126,7 +126,7 @@ func buildNewAssignmentEvent() *model.UnresolvedEvent {
 	return event
 }
 
-// Build a location event.
+// Build a locations event.
 func buildLocationsEvent() *model.UnresolvedEvent {
 	lat := "33.7490"
 	lon := "-84.3880"
@@ -148,6 +148,55 @@ func buildLocationsEvent() *model.UnresolvedEvent {
 		Device:    "TEST-123",
 		EventType: model.Location,
 		Payload:   loc,
+	}
+	return event
+}
+
+// Build a measurements event.
+func buildMeasurementsEvent() *model.UnresolvedEvent {
+	mxs := make(map[string]string, 0)
+	mxs["temp.inDegreesCelcius"] = "101.5"
+	mxs["speed.inMilesPerHour"] = "77.5"
+
+	entry := model.MeasurementsEntry{
+		Measurements: mxs,
+	}
+	entries := make([]model.MeasurementsEntry, 0)
+	entries = append(entries, entry)
+	mxpayload := &model.MeasurementsPayload{
+		Entries: entries,
+	}
+	altid := "alternateId"
+	event := &model.UnresolvedEvent{
+		Source:    "mysource",
+		AltId:     &altid,
+		Device:    "TEST-123",
+		EventType: model.Measurement,
+		Payload:   mxpayload,
+	}
+	return event
+}
+
+// Build an alerts event.
+func buildAlertsEvent() *model.UnresolvedEvent {
+	entry := model.AlertEntry{
+		Type:    "engine.overheat",
+		Level:   10,
+		Message: "engine is overheating",
+		Source:  "coolant-monitor",
+	}
+	entries := make([]model.AlertEntry, 0)
+	entries = append(entries, entry)
+	mxpayload := &model.AlertsPayload{
+		Entries: entries,
+	}
+	altid := "alternateId"
+	event := &model.UnresolvedEvent{
+		Source:    "mysource",
+		AltId:     &altid,
+		Device:    "TEST-123",
+		EventType: model.Alert,
+		Payload:   mxpayload,
 	}
 	return event
 }
@@ -262,16 +311,8 @@ func (suite *InboundEventsProcessorTestSuite) TestValidNewAssignmentEvent() {
 	suite.Resolved.AssertCalled(suite.T(), "WriteMessages", mock.Anything, mock.Anything)
 }
 
-// Test valid location event.
-func (suite *InboundEventsProcessorTestSuite) TestValidLocationsEvent() {
-	loc := buildLocationsEvent()
-	bytes, err := esproto.MarshalUnresolvedEvent(loc)
-	assert.Nil(suite.T(), err)
-
-	// Assuming invalid binary message format..
-	key := []byte(loc.Device)
-	msg := kafka.Message{Key: key, Value: bytes}
-
+// Test valid event flow for a given message.
+func (suite *InboundEventsProcessorTestSuite) SuccessEventFlowFor(msg kafka.Message) {
 	// Emulate kafka read/write.
 	suite.Inbound.Mock.On("ReadMessage", mock.Anything).Return(msg, nil)
 	suite.Resolved.Mock.On("WriteMessages", mock.Anything, mock.Anything).Return(nil)
@@ -285,6 +326,45 @@ func (suite *InboundEventsProcessorTestSuite) TestValidLocationsEvent() {
 
 	// Verify a message was written to failed messages writer.
 	suite.Resolved.AssertCalled(suite.T(), "WriteMessages", mock.Anything, mock.Anything)
+}
+
+// Test valid location event.
+func (suite *InboundEventsProcessorTestSuite) TestValidLocationsEvent() {
+	loc := buildLocationsEvent()
+	bytes, err := esproto.MarshalUnresolvedEvent(loc)
+	assert.Nil(suite.T(), err)
+
+	// Assuming invalid binary message format..
+	key := []byte(loc.Device)
+	msg := kafka.Message{Key: key, Value: bytes}
+
+	suite.SuccessEventFlowFor(msg)
+}
+
+// Test valid measurements event.
+func (suite *InboundEventsProcessorTestSuite) TestValidMeasurementsEvent() {
+	mxs := buildMeasurementsEvent()
+	bytes, err := esproto.MarshalUnresolvedEvent(mxs)
+	assert.Nil(suite.T(), err)
+
+	// Assuming invalid binary message format..
+	key := []byte(mxs.Device)
+	msg := kafka.Message{Key: key, Value: bytes}
+
+	suite.SuccessEventFlowFor(msg)
+}
+
+// Test valid alerts event.
+func (suite *InboundEventsProcessorTestSuite) TestValidAlertsEvent() {
+	alerts := buildAlertsEvent()
+	bytes, err := esproto.MarshalUnresolvedEvent(alerts)
+	assert.Nil(suite.T(), err)
+
+	// Assuming invalid binary message format..
+	key := []byte(alerts.Device)
+	msg := kafka.Message{Key: key, Value: bytes}
+
+	suite.SuccessEventFlowFor(msg)
 }
 
 // Run all tests.
