@@ -286,20 +286,13 @@ func (suite *InboundEventsProcessorTestSuite) TestUnresolvableLocationsEvent() {
 	suite.Failed.AssertCalled(suite.T(), "WriteMessages", mock.Anything, mock.Anything)
 }
 
-// Test valid new assignment event.
-func (suite *InboundEventsProcessorTestSuite) TestValidNewAssignmentEvent() {
-	nassn := buildNewAssignmentEvent()
-	bytes, err := esproto.MarshalUnresolvedEvent(nassn)
-	assert.Nil(suite.T(), err)
-
-	// Assuming invalid binary message format..
-	key := []byte(nassn.Device)
-	msg := kafka.Message{Key: key, Value: bytes}
-
+// Test valid event flow for a given message.
+func (suite *InboundEventsProcessorTestSuite) SuccessEventFlowFor(msg kafka.Message) {
 	// Emulate kafka read/write.
 	suite.Inbound.Mock.On("ReadMessage", mock.Anything).Return(msg, nil)
 	suite.Resolved.Mock.On("WriteMessages", mock.Anything, mock.Anything).Return(nil)
 	suite.API.Mock.On("DeviceByToken", mock.Anything, mock.Anything).Return(buildDevice(), nil)
+	suite.API.Mock.On("ActiveDeviceAssignmentsForDevice", mock.Anything, mock.Anything).Return(buildAssignments(), nil)
 	suite.API.Mock.On("CreateDeviceAssignment", mock.Anything, mock.Anything).Return(buildAssignment(), nil)
 
 	// Send message and wait for event to be processed by resolver.
@@ -311,21 +304,16 @@ func (suite *InboundEventsProcessorTestSuite) TestValidNewAssignmentEvent() {
 	suite.Resolved.AssertCalled(suite.T(), "WriteMessages", mock.Anything, mock.Anything)
 }
 
-// Test valid event flow for a given message.
-func (suite *InboundEventsProcessorTestSuite) SuccessEventFlowFor(msg kafka.Message) {
-	// Emulate kafka read/write.
-	suite.Inbound.Mock.On("ReadMessage", mock.Anything).Return(msg, nil)
-	suite.Resolved.Mock.On("WriteMessages", mock.Anything, mock.Anything).Return(nil)
-	suite.API.Mock.On("DeviceByToken", mock.Anything, mock.Anything).Return(buildDevice(), nil)
-	suite.API.Mock.On("ActiveDeviceAssignmentsForDevice", mock.Anything, mock.Anything).Return(buildAssignments(), nil)
+// Test valid new assignment event.
+func (suite *InboundEventsProcessorTestSuite) TestValidNewAssignmentEvent() {
+	nassn := buildNewAssignmentEvent()
+	bytes, err := esproto.MarshalUnresolvedEvent(nassn)
+	assert.Nil(suite.T(), err)
 
-	// Send message and wait for event to be processed by resolver.
-	ctx := context.Background()
-	suite.IP.ProcessMessage(ctx)
-	suite.IP.ProcessResolvedEvent(ctx)
-
-	// Verify a message was written to failed messages writer.
-	suite.Resolved.AssertCalled(suite.T(), "WriteMessages", mock.Anything, mock.Anything)
+	// Assuming invalid binary message format..
+	key := []byte(nassn.Device)
+	msg := kafka.Message{Key: key, Value: bytes}
+	suite.SuccessEventFlowFor(msg)
 }
 
 // Test valid location event.
@@ -337,7 +325,6 @@ func (suite *InboundEventsProcessorTestSuite) TestValidLocationsEvent() {
 	// Assuming invalid binary message format..
 	key := []byte(loc.Device)
 	msg := kafka.Message{Key: key, Value: bytes}
-
 	suite.SuccessEventFlowFor(msg)
 }
 
@@ -350,7 +337,6 @@ func (suite *InboundEventsProcessorTestSuite) TestValidMeasurementsEvent() {
 	// Assuming invalid binary message format..
 	key := []byte(mxs.Device)
 	msg := kafka.Message{Key: key, Value: bytes}
-
 	suite.SuccessEventFlowFor(msg)
 }
 
@@ -363,7 +349,6 @@ func (suite *InboundEventsProcessorTestSuite) TestValidAlertsEvent() {
 	// Assuming invalid binary message format..
 	key := []byte(alerts.Device)
 	msg := kafka.Message{Key: key, Value: bytes}
-
 	suite.SuccessEventFlowFor(msg)
 }
 
