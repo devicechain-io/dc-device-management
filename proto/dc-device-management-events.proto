@@ -30,8 +30,8 @@ message PFailedEvent {
  message PResolvedEvent {
 	string source = 1;
 	optional string alt_id = 2;
-	uint64 device_id = 3;
-    uint64 assignment_id = 4;
+    uint64 device_id = 3;
+	uint64 assignment_id = 4;
 	optional uint64 device_group_id = 5;
 	optional uint64 customer_id = 6;
 	optional uint64 customer_group_id = 7;
