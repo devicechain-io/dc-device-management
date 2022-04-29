@@ -4,7 +4,7 @@
  * Proprietary and confidential.
  */
 
-package events
+package processor
 
 import (
 	"testing"
