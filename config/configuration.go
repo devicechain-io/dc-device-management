@@ -16,13 +16,13 @@ const (
 )
 
 type DeviceManagementConfiguration struct {
-	RdbConfiguration config.MicroserviceRdbConfiguration
+	RdbConfiguration config.MicroserviceDatastoreConfiguration
 }
 
 // Creates the default device management configuration
 func NewDeviceManagementConfiguration() *DeviceManagementConfiguration {
 	return &DeviceManagementConfiguration{
-		RdbConfiguration: config.MicroserviceRdbConfiguration{
+		RdbConfiguration: config.MicroserviceDatastoreConfiguration{
 			SqlDebug: true,
 		},
 	}
