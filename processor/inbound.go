@@ -89,13 +89,10 @@ func (iproc *InboundEventsProcessor) ProcessFailedEvent(ctx context.Context) boo
 }
 
 // Called when a message can not be unmarshaled to an event.
-func (iproc *InboundEventsProcessor) OnInvalidEvent(msg kafka.Message) {
-	failed := dmodel.FailedEvent{
-		Reason:  uint(proto.FailureReason_Invalid),
-		Message: "message could not be parsed",
-		Payload: msg.Value,
-	}
-	iproc.failed <- failed
+func (iproc *InboundEventsProcessor) OnInvalidEvent(err error, msg kafka.Message) {
+	failed := dmodel.NewFailedEvent(uint(proto.FailureReason_Invalid), iproc.Microservice.FunctionalArea,
+		"message could not be parsed", err, msg.Value)
+	iproc.failed <- *failed
 }
 
 // Called when an event can not be resolved.
@@ -105,12 +102,9 @@ func (iproc *InboundEventsProcessor) onUnresolvedEvent(reason uint, unrez esmode
 	if err != nil {
 		log.Error().Err(err).Msg("unable to marshal unresolved event to protobuf")
 	} else {
-		failed := dmodel.FailedEvent{
-			Reason:  reason,
-			Message: rezerr.Error(),
-			Payload: bytes,
-		}
-		iproc.failed <- failed
+		failed := dmodel.NewFailedEvent(reason, iproc.Microservice.FunctionalArea,
+			"event could not be resolved", rezerr, bytes)
+		iproc.failed <- *failed
 	}
 }
 
@@ -120,7 +114,7 @@ func (iproc *InboundEventsProcessor) ProcessResolvedEvent(ctx context.Context) b
 	if more {
 		bytes, err := proto.MarshalResolvedEvent(&resolved)
 		if err != nil {
-			log.Error().Err(err).Msg("unable to marshal event to protobuf")
+			log.Error().Err(err).Msg("unable to marshal resolved event to protobuf")
 		} else {
 			msg := kafka.Message{
 				Key:   []byte(strconv.FormatInt(int64(resolved.DeviceId), 10)),

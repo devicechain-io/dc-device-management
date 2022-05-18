@@ -20,8 +20,10 @@ enum FailureReason {
  */
 message PFailedEvent {
     FailureReason reason = 1;
-    string message = 2;
-    bytes payload = 3;
+    string service = 2;
+    string message = 3;
+    string error = 4;
+    bytes payload = 5;
 }
 
 /**
@@ -43,4 +45,77 @@ message PFailedEvent {
     string processed_time = 13;
     int64 event_type = 14;
     bytes payload = 15;
+}
+
+/**
+ * Payload for resolved device assignment request.
+ */
+ message PResolvedNewAssignmentPayload {
+	uint64 assignment_id = 1;
+    optional uint64 device_group = 2;
+    optional uint64 asset = 3;
+    optional uint64 asset_group = 4;
+    optional uint64 customer = 5;
+    optional uint64 customer_group = 6;
+    optional uint64 area = 7;
+    optional uint64 area_group = 8;
+}
+
+/**
+ * Single location entry for a location payload.
+ */
+ message PResolvedLocationEntry {
+    optional string latitude = 1;
+    optional string longitude = 2;
+    optional string elevation = 3;
+    optional string occurred_time = 4;
+}
+
+/**
+ * Payload for a location event.
+ */
+message PResolvedLocationsPayload {
+    repeated PResolvedLocationEntry entries = 1;
+}
+
+/**
+ * Single measurement entry for a measurement payload.
+ */
+ message PResolvedMeasurementEntry {
+    string name = 1;
+    string value = 2;
+    optional uint64 classifier = 3;
+}
+
+/**
+ * Single measurement entry for a measurement payload.
+ */
+message PResolvedMeasurementsEntry {
+    repeated PResolvedMeasurementEntry measurements = 1;
+    optional string occurred_time = 2;
+}
+
+/**
+ * Payload for a measurement event.
+ */
+message PResolvedMeasurementsPayload {
+    repeated PResolvedMeasurementsEntry entries = 1;
+}
+
+/**
+ * Single alert entry for an alerts payload.
+ */
+message PResolvedAlertEntry {
+    string type = 1;
+    uint32 level = 2;
+    string message = 3;
+    string source = 4;
+    optional string occurred_time = 5;
+}
+
+/**
+ * Payload for an alert event.
+ */
+message PResolvedAlertsPayload {
+    repeated PResolvedAlertEntry entries = 1;
 }

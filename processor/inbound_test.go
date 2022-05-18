@@ -109,7 +109,7 @@ func buildNewAssignmentEvent() *model.UnresolvedEvent {
 	dgroup := "Primary"
 	asset := "CAR-123"
 	agroup := "Cars"
-	assn := &model.NewAssignmentPayload{
+	assn := &model.UnresolvedNewAssignmentPayload{
 		DeactivateExisting: false,
 		DeviceGroup:        &dgroup,
 		Asset:              &asset,
@@ -131,14 +131,14 @@ func buildLocationsEvent() *model.UnresolvedEvent {
 	lat := "33.7490"
 	lon := "-84.3880"
 	ele := "738"
-	entry := model.LocationEntry{
+	entry := model.UnresolvedLocationEntry{
 		Latitude:  &lat,
 		Longitude: &lon,
 		Elevation: &ele,
 	}
-	entries := make([]model.LocationEntry, 0)
+	entries := make([]model.UnresolvedLocationEntry, 0)
 	entries = append(entries, entry)
-	loc := &model.LocationsPayload{
+	loc := &model.UnresolvedLocationsPayload{
 		Entries: entries,
 	}
 	altid := "alternateId"
@@ -158,12 +158,12 @@ func buildMeasurementsEvent() *model.UnresolvedEvent {
 	mxs["temp.inDegreesCelcius"] = "101.5"
 	mxs["speed.inMilesPerHour"] = "77.5"
 
-	entry := model.MeasurementsEntry{
+	entry := model.UnresolvedMeasurementsEntry{
 		Measurements: mxs,
 	}
-	entries := make([]model.MeasurementsEntry, 0)
+	entries := make([]model.UnresolvedMeasurementsEntry, 0)
 	entries = append(entries, entry)
-	mxpayload := &model.MeasurementsPayload{
+	mxpayload := &model.UnresolvedMeasurementsPayload{
 		Entries: entries,
 	}
 	altid := "alternateId"
@@ -179,15 +179,15 @@ func buildMeasurementsEvent() *model.UnresolvedEvent {
 
 // Build an alerts event.
 func buildAlertsEvent() *model.UnresolvedEvent {
-	entry := model.AlertEntry{
+	entry := model.UnresolvedAlertEntry{
 		Type:    "engine.overheat",
 		Level:   10,
 		Message: "engine is overheating",
 		Source:  "coolant-monitor",
 	}
-	entries := make([]model.AlertEntry, 0)
+	entries := make([]model.UnresolvedAlertEntry, 0)
 	entries = append(entries, entry)
-	mxpayload := &model.AlertsPayload{
+	mxpayload := &model.UnresolvedAlertsPayload{
 		Entries: entries,
 	}
 	altid := "alternateId"
@@ -275,7 +275,7 @@ func (suite *InboundEventsProcessorTestSuite) TestUnresolvableLocationsEvent() {
 	// Emulate kafka read/write.
 	suite.Inbound.Mock.On("ReadMessage", mock.Anything).Return(msg, nil)
 	suite.Failed.Mock.On("WriteMessages", mock.Anything, mock.Anything).Return(nil)
-	suite.API.Mock.On("DeviceByToken", mock.Anything, mock.Anything).Return(&dmodel.Device{}, errors.New("fot found"))
+	suite.API.Mock.On("DeviceByToken", mock.Anything, mock.Anything).Return(&dmodel.Device{}, errors.New("not found"))
 
 	// Send message and wait for event to be processed by resolver.
 	ctx := context.Background()
@@ -300,7 +300,7 @@ func (suite *InboundEventsProcessorTestSuite) SuccessEventFlowFor(msg kafka.Mess
 	suite.IP.ProcessMessage(ctx)
 	suite.IP.ProcessResolvedEvent(ctx)
 
-	// Verify a message was written to failed messages writer.
+	// Verify a message was written to resolved messages writer.
 	suite.Resolved.AssertCalled(suite.T(), "WriteMessages", mock.Anything, mock.Anything)
 }
 
@@ -310,7 +310,6 @@ func (suite *InboundEventsProcessorTestSuite) TestValidNewAssignmentEvent() {
 	bytes, err := esproto.MarshalUnresolvedEvent(nassn)
 	assert.Nil(suite.T(), err)
 
-	// Assuming invalid binary message format..
 	key := []byte(nassn.Device)
 	msg := kafka.Message{Key: key, Value: bytes}
 	suite.SuccessEventFlowFor(msg)
@@ -322,7 +321,6 @@ func (suite *InboundEventsProcessorTestSuite) TestValidLocationsEvent() {
 	bytes, err := esproto.MarshalUnresolvedEvent(loc)
 	assert.Nil(suite.T(), err)
 
-	// Assuming invalid binary message format..
 	key := []byte(loc.Device)
 	msg := kafka.Message{Key: key, Value: bytes}
 	suite.SuccessEventFlowFor(msg)
@@ -334,7 +332,6 @@ func (suite *InboundEventsProcessorTestSuite) TestValidMeasurementsEvent() {
 	bytes, err := esproto.MarshalUnresolvedEvent(mxs)
 	assert.Nil(suite.T(), err)
 
-	// Assuming invalid binary message format..
 	key := []byte(mxs.Device)
 	msg := kafka.Message{Key: key, Value: bytes}
 	suite.SuccessEventFlowFor(msg)
@@ -346,7 +343,6 @@ func (suite *InboundEventsProcessorTestSuite) TestValidAlertsEvent() {
 	bytes, err := esproto.MarshalUnresolvedEvent(alerts)
 	assert.Nil(suite.T(), err)
 
-	// Assuming invalid binary message format..
 	key := []byte(alerts.Device)
 	msg := kafka.Message{Key: key, Value: bytes}
 	suite.SuccessEventFlowFor(msg)
