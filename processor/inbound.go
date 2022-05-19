@@ -79,9 +79,7 @@ func (iproc *InboundEventsProcessor) ProcessFailedEvent(ctx context.Context) boo
 			Value: bytes,
 		}
 		err = iproc.FailedEventsWriter.WriteMessages(ctx, msg)
-		if err != nil {
-			log.Error().Err(err).Msg("unable to send failed event message to kafka")
-		}
+		iproc.FailedEventsWriter.HandleResponse(err)
 		return false
 	} else {
 		return true
@@ -96,7 +94,7 @@ func (iproc *InboundEventsProcessor) OnInvalidEvent(err error, msg kafka.Message
 }
 
 // Called when an event can not be resolved.
-func (iproc *InboundEventsProcessor) onUnresolvedEvent(reason uint, unrez esmodel.UnresolvedEvent, rezerr error) {
+func (iproc *InboundEventsProcessor) OnUnresolvedEvent(reason uint, unrez esmodel.UnresolvedEvent, rezerr error) {
 	// Marshal event message to protobuf.
 	bytes, err := esproto.MarshalUnresolvedEvent(&unrez)
 	if err != nil {
@@ -121,9 +119,7 @@ func (iproc *InboundEventsProcessor) ProcessResolvedEvent(ctx context.Context) b
 				Value: bytes,
 			}
 			err = iproc.ResolvedEventsWriter.WriteMessages(ctx, msg)
-			if err != nil {
-				log.Error().Err(err).Msg("unable to send failed event message to kafka")
-			}
+			iproc.ResolvedEventsWriter.HandleResponse(err)
 		}
 		return false
 	} else {
@@ -145,7 +141,7 @@ func (iproc *InboundEventsProcessor) initializeEventResolvers(ctx context.Contex
 	iproc.resolvers = make([]*EventResolver, 0)
 	for w := 1; w <= EVENT_RESOLVER_COUNT; w++ {
 		resolver := NewEventResolver(w, iproc.Api, iproc.messages,
-			iproc.OnInvalidEvent, iproc.OnResolvedEvent, iproc.onUnresolvedEvent)
+			iproc.OnInvalidEvent, iproc.OnResolvedEvent, iproc.OnUnresolvedEvent)
 		iproc.resolvers = append(iproc.resolvers, resolver)
 		go resolver.Process(ctx)
 	}
@@ -185,7 +181,7 @@ func (iproc *InboundEventsProcessor) ProcessMessage(ctx context.Context) bool {
 			log.Info().Msg("Detected EOF on inbound events stream")
 			return true
 		} else {
-			log.Error().Err(err).Msg("error reading inbound event message")
+			iproc.InboundEventsReader.HandleResponse(err)
 		}
 	} else {
 		iproc.messages <- msg
