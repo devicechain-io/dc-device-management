@@ -2,12 +2,58 @@
 # Device Management GraphQL Schema
 #
 
+# Base elements in gorm RDB model.
+interface Model {
+    id: ID!
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
+}
+
+# Entity referenced by unique token.
+interface TokenReference {
+    token: String!
+}
+
+# Entity that provides human-readable name-description.
+interface NamedEntity {
+    name: String
+    description: String
+}
+
+# Entity that provides branding information.
+interface BrandedEntity {
+    imageUrl: String
+    icon: String
+    backgroundColor: String
+    foregroundColor: String
+    borderColor: String
+}
+
+# Entity that provides metadata.
+interface MetadataEntity {
+    metadata: String
+}
+
+# Information for paged result sets.
+interface Pagination {
+    pageNumber: Int
+    pageSize: Int
+}
+
+# Pagination info for search results.
+interface SearchResultsPagination {
+	pageStart: Int
+	pageEnd: Int
+	totalRecords: Int
+}
+
 # Represents a type or class of devices
 type DeviceType implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -47,9 +93,9 @@ type DeviceTypeSearchResults {
 # Represents a device instance
 type Device implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -83,9 +129,9 @@ type DeviceSearchResults {
 # Represents a type of relation between devices.
 type DeviceRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -115,9 +161,9 @@ type DeviceRelationshipTypeSearchResults {
 # Represents a relationship between devices.
 type DeviceRelationship implements Model & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     sourceDevice: Device!
     targetDevice: Device!
     relationshipType: DeviceRelationshipType!
@@ -147,9 +193,9 @@ type DeviceRelationshipSearchResults {
 # Represents a group of related devices.
 type DeviceGroup implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -189,9 +235,9 @@ type DeviceGroupSearchResults {
 # Represents a type of relation between a device and a device group.
 type DeviceGroupRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -221,9 +267,9 @@ type DeviceGroupRelationshipTypeSearchResults {
 # Represents a relationship between a device and a group.
 type DeviceGroupRelationship implements Model {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     deviceGroup: DeviceGroup!
     device: Device!
     relationshipType: DeviceGroupRelationshipType!
@@ -253,9 +299,9 @@ type DeviceGroupRelationshipSearchResults {
 # Represents a type or class of assets
 type AssetType implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -295,9 +341,9 @@ type AssetTypeSearchResults {
 # Represents an asset instance
 type Asset implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -330,9 +376,9 @@ type AssetSearchResults {
 # Represents a type of relation between assets.
 type AssetRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -362,9 +408,9 @@ type AssetRelationshipTypeSearchResults {
 # Represents a relationship between assets.
 type AssetRelationship implements Model {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     sourceAsset: Asset!
     targetAsset: Asset!
     relationshipType: AssetRelationshipType!
@@ -394,9 +440,9 @@ type AssetRelationshipSearchResults {
 # Represents a group of related assets.
 type AssetGroup implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -436,9 +482,9 @@ type AssetGroupSearchResults {
 # Represents a type of relation between an asset and an asset group.
 type AssetGroupRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -468,9 +514,9 @@ type AssetGroupRelationshipTypeSearchResults {
 # Represents a relationship between an asset and an asset.
 type AssetGroupRelationship implements Model {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     assetGroup: AssetGroup!
     asset: Asset!
     relationshipType: AssetGroupRelationshipType!
@@ -500,9 +546,9 @@ type AssetGroupRelationshipSearchResults {
 # Represents a type or class of customers
 type CustomerType implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -542,9 +588,9 @@ type CustomerTypeSearchResults {
 # Represents a customer instance
 type Customer implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -577,9 +623,9 @@ type CustomerSearchResults {
 # Represents a type of relation between customers.
 type CustomerRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -609,9 +655,9 @@ type CustomerRelationshipTypeSearchResults {
 # Represents a relationship between customers.
 type CustomerRelationship implements Model & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     sourceCustomer: Customer!
     targetCustomer: Customer!
     relationshipType: CustomerRelationshipType!
@@ -641,9 +687,9 @@ type CustomerRelationshipSearchResults {
 # Represents a group of related customers.
 type CustomerGroup implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -683,9 +729,9 @@ type CustomerGroupSearchResults {
 # Represents a type of relation between a customer and a customer group.
 type CustomerGroupRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -715,9 +761,9 @@ type CustomerGroupRelationshipTypeSearchResults {
 # Represents a relationship between a customer and a group.
 type CustomerGroupRelationship implements Model {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     customerGroup: CustomerGroup!
     customer: Customer!
     relationshipType: CustomerGroupRelationshipType!
@@ -747,9 +793,9 @@ type CustomerGroupRelationshipSearchResults {
 # Represents a type or class of areas
 type AreaType implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -789,9 +835,9 @@ type AreaTypeSearchResults {
 # Represents an area instance
 type Area implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -824,9 +870,9 @@ type AreaSearchResults {
 # Represents a type of relation between areas.
 type AreaRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -856,9 +902,9 @@ type AreaRelationshipTypeSearchResults {
 # Represents a relationship between areas.
 type AreaRelationship implements Model {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     sourceArea: Area!
     targetArea: Area!
     relationshipType: AreaRelationshipType!
@@ -888,9 +934,9 @@ type AreaRelationshipSearchResults {
 # Represents a group of related areas.
 type AreaGroup implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -930,9 +976,9 @@ type AreaGroupSearchResults {
 # Represents a type of relation between an area and an area group.
 type AreaGroupRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -962,9 +1008,9 @@ type AreaGroupRelationshipTypeSearchResults {
 # Represents a relationship between an area and an area.
 type AreaGroupRelationship implements Model {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     areaGroup: AreaGroup!
     area: Area!
     relationshipType: AreaGroupRelationshipType!
@@ -991,18 +1037,6 @@ type AreaGroupRelationshipSearchResults {
     pagination: SearchResultsPagination!
 }
 
-# Represents a type of relation between an area and an area group.
-type AreaGroupRelationshipType implements Model & TokenReference & NamedEntity & MetadataEntity {
-    id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
-    token: String!
-    name: String
-    description: String
-    metadata: String
-}
-
 # Data required to create a device assignment status.
 input DeviceAssignmentStatusCreateRequest {
     token: String!
@@ -1014,9 +1048,9 @@ input DeviceAssignmentStatusCreateRequest {
 # Represents a status that may be associated with a device assignment.
 type DeviceAssignmentStatus implements Model & TokenReference & NamedEntity & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     name: String
     description: String
@@ -1054,9 +1088,9 @@ input DeviceAssignmentCreateRequest {
 # Represents a status that may be associated with a device assignment.
 type DeviceAssignment implements Model & TokenReference & MetadataEntity {
     id: ID!
-    created_at: String
-    updated_at: String
-    deleted_at: String
+    createdAt: String
+    updatedAt: String
+    deletedAt: String
     token: String!
     metadata: String
     active: Boolean!
