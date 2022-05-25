@@ -219,7 +219,7 @@ func buildDevice() *dmodel.Device {
 			Name:        rdb.NullStrOf(&name),
 			Description: rdb.NullStrOf(&desc),
 		},
-		DeviceTypeId: &dtype,
+		DeviceTypeId: dtype,
 	}
 	return device
 }

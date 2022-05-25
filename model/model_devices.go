@@ -62,7 +62,7 @@ type Device struct {
 	rdb.NamedEntity
 	rdb.MetadataEntity
 
-	DeviceTypeId *uint
+	DeviceTypeId uint
 	DeviceType   *DeviceType
 
 	Assignments []DeviceAssignment
@@ -119,11 +119,11 @@ type DeviceRelationshipCreateRequest struct {
 type DeviceRelationship struct {
 	gorm.Model
 	rdb.MetadataEntity
-	SourceDeviceId     int
+	SourceDeviceId     uint
 	SourceDevice       Device
-	TargetDeviceId     int
+	TargetDeviceId     uint
 	TargetDevice       Device
-	RelationshipTypeId int
+	RelationshipTypeId uint
 	RelationshipType   DeviceRelationshipType
 }
 
@@ -210,11 +210,11 @@ type DeviceGroupRelationshipCreateRequest struct {
 type DeviceGroupRelationship struct {
 	gorm.Model
 	rdb.MetadataEntity
-	DeviceGroupId      int
+	DeviceGroupId      uint
 	DeviceGroup        DeviceGroup
-	DeviceId           int
+	DeviceId           uint
 	Device             Device
-	RelationshipTypeId int
+	RelationshipTypeId uint
 	RelationshipType   DeviceGroupRelationshipType
 }
 

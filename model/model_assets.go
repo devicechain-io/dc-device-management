@@ -62,7 +62,7 @@ type Asset struct {
 	rdb.NamedEntity
 	rdb.MetadataEntity
 
-	AssetTypeId int
+	AssetTypeId uint
 	AssetType   *AssetType
 }
 
@@ -117,11 +117,11 @@ type AssetRelationshipCreateRequest struct {
 type AssetRelationship struct {
 	gorm.Model
 	rdb.MetadataEntity
-	SourceAssetId      int
+	SourceAssetId      uint
 	SourceAsset        Asset
-	TargetAssetId      int
+	TargetAssetId      uint
 	TargetAsset        Asset
-	RelationshipTypeId int
+	RelationshipTypeId uint
 	RelationshipType   AssetRelationshipType
 }
 
@@ -208,11 +208,11 @@ type AssetGroupRelationshipCreateRequest struct {
 type AssetGroupRelationship struct {
 	gorm.Model
 	rdb.MetadataEntity
-	AssetGroupId       int
+	AssetGroupId       uint
 	AssetGroup         AssetGroup
-	AssetId            int
+	AssetId            uint
 	Asset              Asset
-	RelationshipTypeId int
+	RelationshipTypeId uint
 	RelationshipType   AssetGroupRelationshipType
 }
 

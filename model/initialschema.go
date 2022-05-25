@@ -35,7 +35,7 @@ func NewInitialSchema() *gormigrate.Migration {
 				rdb.NamedEntity
 				rdb.MetadataEntity
 
-				DeviceTypeId *uint
+				DeviceTypeId uint
 				DeviceType   *DeviceType
 
 				Assignments []DeviceAssignment
@@ -53,11 +53,11 @@ func NewInitialSchema() *gormigrate.Migration {
 			type DeviceRelationship struct {
 				gorm.Model
 				rdb.MetadataEntity
-				SourceDeviceId     int
+				SourceDeviceId     uint
 				SourceDevice       Device
-				TargetDeviceId     int
+				TargetDeviceId     uint
 				TargetDevice       Device
-				RelationshipTypeId int
+				RelationshipTypeId uint
 				RelationshipType   DeviceRelationshipType
 			}
 
@@ -82,11 +82,11 @@ func NewInitialSchema() *gormigrate.Migration {
 			type DeviceGroupRelationship struct {
 				gorm.Model
 				rdb.MetadataEntity
-				DeviceGroupId      int
+				DeviceGroupId      uint
 				DeviceGroup        DeviceGroup
-				DeviceId           int
+				DeviceId           uint
 				Device             Device
-				RelationshipTypeId int
+				RelationshipTypeId uint
 				RelationshipType   DeviceGroupRelationshipType
 			}
 
@@ -108,7 +108,7 @@ func NewInitialSchema() *gormigrate.Migration {
 				rdb.NamedEntity
 				rdb.MetadataEntity
 
-				AssetTypeId int
+				AssetTypeId uint
 				AssetType   *AssetType
 			}
 
@@ -124,11 +124,11 @@ func NewInitialSchema() *gormigrate.Migration {
 			type AssetRelationship struct {
 				gorm.Model
 				rdb.MetadataEntity
-				SourceAssetId      int
+				SourceAssetId      uint
 				SourceAsset        Asset
-				TargetAssetId      int
+				TargetAssetId      uint
 				TargetAsset        Asset
-				RelationshipTypeId int
+				RelationshipTypeId uint
 				RelationshipType   AssetRelationshipType
 			}
 
@@ -153,11 +153,11 @@ func NewInitialSchema() *gormigrate.Migration {
 			type AssetGroupRelationship struct {
 				gorm.Model
 				rdb.MetadataEntity
-				AssetGroupId       int
+				AssetGroupId       uint
 				AssetGroup         AssetGroup
-				AssetId            int
+				AssetId            uint
 				Asset              Asset
-				RelationshipTypeId int
+				RelationshipTypeId uint
 			}
 
 			// Represents a customer type.
@@ -178,7 +178,7 @@ func NewInitialSchema() *gormigrate.Migration {
 				rdb.NamedEntity
 				rdb.MetadataEntity
 
-				CustomerTypeId int
+				CustomerTypeId uint
 				CustomerType   *CustomerType
 			}
 
@@ -194,11 +194,11 @@ func NewInitialSchema() *gormigrate.Migration {
 			type CustomerRelationship struct {
 				gorm.Model
 				rdb.MetadataEntity
-				SourceCustomerId   int
+				SourceCustomerId   uint
 				SourceCustomer     Customer
-				TargetCustomerId   int
+				TargetCustomerId   uint
 				TargetCustomer     Customer
-				RelationshipTypeId int
+				RelationshipTypeId uint
 				RelationshipType   CustomerRelationshipType
 			}
 
@@ -223,11 +223,11 @@ func NewInitialSchema() *gormigrate.Migration {
 			type CustomerGroupRelationship struct {
 				gorm.Model
 				rdb.MetadataEntity
-				CustomerGroupId    int
+				CustomerGroupId    uint
 				CustomerGroup      CustomerGroup
-				CustomerId         int
+				CustomerId         uint
 				Customer           Customer
-				RelationshipTypeId int
+				RelationshipTypeId uint
 				RelationshipType   CustomerGroupRelationshipType
 			}
 
@@ -249,7 +249,7 @@ func NewInitialSchema() *gormigrate.Migration {
 				rdb.NamedEntity
 				rdb.MetadataEntity
 
-				AreaTypeId int
+				AreaTypeId uint
 				AreaType   *AreaType
 			}
 
@@ -265,11 +265,11 @@ func NewInitialSchema() *gormigrate.Migration {
 			type AreaRelationship struct {
 				gorm.Model
 				rdb.MetadataEntity
-				SourceAreaId       int
+				SourceAreaId       uint
 				SourceArea         Area
-				TargetAreaId       int
+				TargetAreaId       uint
 				TargetArea         Area
-				RelationshipTypeId int
+				RelationshipTypeId uint
 				RelationshipType   AreaRelationshipType
 			}
 
@@ -294,11 +294,11 @@ func NewInitialSchema() *gormigrate.Migration {
 			type AreaGroupRelationship struct {
 				gorm.Model
 				rdb.MetadataEntity
-				AreaGroupId        int
+				AreaGroupId        uint
 				AreaGroup          AreaGroup
-				AreaId             int
+				AreaId             uint
 				Area               Area
-				RelationshipTypeId int
+				RelationshipTypeId uint
 				RelationshipType   AreaGroupRelationshipType
 			}
 

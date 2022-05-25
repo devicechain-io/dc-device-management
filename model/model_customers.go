@@ -62,7 +62,7 @@ type Customer struct {
 	rdb.NamedEntity
 	rdb.MetadataEntity
 
-	CustomerTypeId int
+	CustomerTypeId uint
 	CustomerType   *CustomerType
 }
 
@@ -117,11 +117,11 @@ type CustomerRelationshipCreateRequest struct {
 type CustomerRelationship struct {
 	gorm.Model
 	rdb.MetadataEntity
-	SourceCustomerId   int
+	SourceCustomerId   uint
 	SourceCustomer     Customer
-	TargetCustomerId   int
+	TargetCustomerId   uint
 	TargetCustomer     Customer
-	RelationshipTypeId int
+	RelationshipTypeId uint
 	RelationshipType   CustomerRelationshipType
 }
 
@@ -208,11 +208,11 @@ type CustomerGroupRelationshipCreateRequest struct {
 type CustomerGroupRelationship struct {
 	gorm.Model
 	rdb.MetadataEntity
-	CustomerGroupId    int
+	CustomerGroupId    uint
 	CustomerGroup      CustomerGroup
-	CustomerId         int
+	CustomerId         uint
 	Customer           Customer
-	RelationshipTypeId int
+	RelationshipTypeId uint
 	RelationshipType   CustomerGroupRelationshipType
 }
 

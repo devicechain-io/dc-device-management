@@ -62,7 +62,7 @@ type Area struct {
 	rdb.NamedEntity
 	rdb.MetadataEntity
 
-	AreaTypeId int
+	AreaTypeId uint
 	AreaType   *AreaType
 }
 
@@ -117,11 +117,11 @@ type AreaRelationshipCreateRequest struct {
 type AreaRelationship struct {
 	gorm.Model
 	rdb.MetadataEntity
-	SourceAreaId       int
+	SourceAreaId       uint
 	SourceArea         Area
-	TargetAreaId       int
+	TargetAreaId       uint
 	TargetArea         Area
-	RelationshipTypeId int
+	RelationshipTypeId uint
 	RelationshipType   AreaRelationshipType
 }
 
@@ -208,11 +208,11 @@ type AreaGroupRelationshipCreateRequest struct {
 type AreaGroupRelationship struct {
 	gorm.Model
 	rdb.MetadataEntity
-	AreaGroupId        int
+	AreaGroupId        uint
 	AreaGroup          AreaGroup
-	AreaId             int
+	AreaId             uint
 	Area               Area
-	RelationshipTypeId int
+	RelationshipTypeId uint
 	RelationshipType   AreaGroupRelationshipType
 }
 
