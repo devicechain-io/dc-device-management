@@ -35,14 +35,8 @@ interface MetadataEntity {
     metadata: String
 }
 
-# Information for paged result sets.
-interface Pagination {
-    pageNumber: Int
-    pageSize: Int
-}
-
 # Pagination info for search results.
-interface SearchResultsPagination {
+type SearchResultsPagination {
 	pageStart: Int
 	pageEnd: Int
 	totalRecords: Int

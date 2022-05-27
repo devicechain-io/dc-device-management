@@ -8,22 +8,12 @@
 // in the device management API.
 package gqlclient
 
-//go:generate go run github.com/Khan/genqlient@v0.4.0
-
 import (
 	"context"
 
 	"github.com/Khan/genqlient/graphql"
 	"github.com/devicechain-io/dc-device-management/model"
 )
-
-// TEMP: genqlient doesn't handle pointers yet.
-func blank(val *string) string {
-	if val == nil {
-		return ""
-	}
-	return *val
-}
 
 // Assure that a device type exists.
 func AssureDeviceType(
@@ -79,4 +69,59 @@ func ListDeviceTypes(
 	pageSize int,
 ) (*listDeviceTypesResponse, error) {
 	return listDeviceTypes(ctx, client, pageNumber, pageSize)
+}
+
+// Assure that a device exists.
+func AssureDevice(
+	ctx context.Context,
+	client graphql.Client,
+	request model.DeviceCreateRequest,
+) (*getDeviceByTokenResponse, *createDeviceResponse, error) {
+	gresp, err := GetDeviceByToken(ctx, client, request.Token)
+	if err == nil {
+		return gresp, nil, nil
+	}
+	cresp, err := CreateDevice(ctx, client, request)
+	if err != nil {
+		return nil, nil, err
+	}
+	return nil, cresp, nil
+}
+
+// Create a new device.
+func CreateDevice(
+	ctx context.Context,
+	client graphql.Client,
+	request model.DeviceCreateRequest,
+) (*createDeviceResponse, error) {
+	return createDevice(ctx, client, request.Token, request.DeviceTypeToken,
+		blank(request.Name), blank(request.Description), blank(request.Metadata))
+}
+
+// Get a device by id.
+func GetDeviceById(
+	ctx context.Context,
+	client graphql.Client,
+	id string,
+) (*getDeviceByIdResponse, error) {
+	return getDeviceById(ctx, client, id)
+}
+
+// Get a device by token.
+func GetDeviceByToken(
+	ctx context.Context,
+	client graphql.Client,
+	token string,
+) (*getDeviceByTokenResponse, error) {
+	return getDeviceByToken(ctx, client, token)
+}
+
+// List devices based on criteria.
+func ListDevices(
+	ctx context.Context,
+	client graphql.Client,
+	pageNumber int,
+	pageSize int,
+) (*listDevicesResponse, error) {
+	return listDevices(ctx, client, pageNumber, pageSize)
 }

@@ -1,6 +1,6 @@
 schema: ../graphql/schema.graphql
 operations:
-- ./genqlient.graphql
+- ./genqlient-devices.graphql
 generated: generated.go
 package: gqlclient
 bindings:
