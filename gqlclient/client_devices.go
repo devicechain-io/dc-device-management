@@ -197,3 +197,140 @@ func ListDeviceRelationships(
 ) (*listDeviceRelationshipsResponse, error) {
 	return listDeviceRelationships(ctx, client, pageNumber, pageSize)
 }
+
+// Assure that a device group exists.
+func AssureDeviceGroup(
+	ctx context.Context,
+	client graphql.Client,
+	request model.DeviceGroupCreateRequest,
+) (*getDeviceGroupByTokenResponse, *createDeviceGroupResponse, error) {
+	gresp, err := GetDeviceGroupByToken(ctx, client, request.Token)
+	if err == nil {
+		return gresp, nil, nil
+	}
+	cresp, err := CreateDeviceGroup(ctx, client, request)
+	if err != nil {
+		return nil, nil, err
+	}
+	return nil, cresp, nil
+}
+
+// Create a new device group.
+func CreateDeviceGroup(
+	ctx context.Context,
+	client graphql.Client,
+	request model.DeviceGroupCreateRequest,
+) (*createDeviceGroupResponse, error) {
+	return createDeviceGroup(ctx, client, request.Token, blank(request.Name), blank(request.Description),
+		blank(request.ImageUrl), blank(request.Icon), blank(request.BackgroundColor), blank(request.ForegroundColor),
+		blank(request.BorderColor), blank(request.Metadata))
+}
+
+// Get a device group by token.
+func GetDeviceGroupByToken(
+	ctx context.Context,
+	client graphql.Client,
+	token string,
+) (*getDeviceGroupByTokenResponse, error) {
+	return getDeviceGroupByToken(ctx, client, token)
+}
+
+// List device groups based on criteria.
+func ListDeviceGroups(
+	ctx context.Context,
+	client graphql.Client,
+	pageNumber int,
+	pageSize int,
+) (*listDeviceGroupsResponse, error) {
+	return listDeviceGroups(ctx, client, pageNumber, pageSize)
+}
+
+// Assure that a device group relationship type exists.
+func AssureDeviceGroupRelationshipType(
+	ctx context.Context,
+	client graphql.Client,
+	request model.DeviceGroupRelationshipTypeCreateRequest,
+) (*getDeviceGroupRelationshipTypeByTokenResponse, *createDeviceGroupRelationshipTypeResponse, error) {
+	gresp, err := GetDeviceGroupRelationshipTypeByToken(ctx, client, request.Token)
+	if err == nil {
+		return gresp, nil, nil
+	}
+	cresp, err := CreateDeviceGroupRelationshipType(ctx, client, request)
+	if err != nil {
+		return nil, nil, err
+	}
+	return nil, cresp, nil
+}
+
+// Create a new device group relationship type.
+func CreateDeviceGroupRelationshipType(
+	ctx context.Context,
+	client graphql.Client,
+	request model.DeviceGroupRelationshipTypeCreateRequest,
+) (*createDeviceGroupRelationshipTypeResponse, error) {
+	return createDeviceGroupRelationshipType(ctx, client, request.Token, blank(request.Name), blank(request.Description), blank(request.Metadata))
+}
+
+// Get a device group relationship type by token.
+func GetDeviceGroupRelationshipTypeByToken(
+	ctx context.Context,
+	client graphql.Client,
+	token string,
+) (*getDeviceGroupRelationshipTypeByTokenResponse, error) {
+	return getDeviceGroupRelationshipTypeByToken(ctx, client, token)
+}
+
+// List device group relationship types based on criteria.
+func ListDeviceGroupRelationshipTypes(
+	ctx context.Context,
+	client graphql.Client,
+	pageNumber int,
+	pageSize int,
+) (*listDeviceGroupRelationshipTypesResponse, error) {
+	return listDeviceGroupRelationshipTypes(ctx, client, pageNumber, pageSize)
+}
+
+// Assure that a device group relationship exists.
+func AssureDeviceGroupRelationship(
+	ctx context.Context,
+	client graphql.Client,
+	request model.DeviceGroupRelationshipCreateRequest,
+) (*getDeviceGroupRelationshipByTokenResponse, *createDeviceGroupRelationshipResponse, error) {
+	gresp, err := GetDeviceGroupRelationshipByToken(ctx, client, request.Token)
+	if err == nil {
+		return gresp, nil, nil
+	}
+	cresp, err := CreateDeviceGroupRelationship(ctx, client, request)
+	if err != nil {
+		return nil, nil, err
+	}
+	return nil, cresp, nil
+}
+
+// Create a new device group relationship.
+func CreateDeviceGroupRelationship(
+	ctx context.Context,
+	client graphql.Client,
+	request model.DeviceGroupRelationshipCreateRequest,
+) (*createDeviceGroupRelationshipResponse, error) {
+	return createDeviceGroupRelationship(ctx, client, request.Token, request.DeviceGroup, request.Device, request.RelationshipType)
+}
+
+// Get a device group relationship by token.
+func GetDeviceGroupRelationshipByToken(
+	ctx context.Context,
+	client graphql.Client,
+	token string,
+) (*getDeviceGroupRelationshipByTokenResponse, error) {
+	return getDeviceGroupRelationshipByToken(ctx, client, token)
+}
+
+// List device group relationships based on criteria.
+func ListDeviceGroupRelationships(
+	ctx context.Context,
+	client graphql.Client,
+	pageNumber int,
+	pageSize int,
+) (*listDeviceGroupRelationshipsResponse, error) {
+	return listDeviceGroupRelationships(ctx, client, pageNumber, pageSize)
+}

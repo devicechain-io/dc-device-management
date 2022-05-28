@@ -8,6 +8,88 @@ import (
 	"github.com/Khan/genqlient/graphql"
 )
 
+// __createDeviceGroupInput is used internally by genqlient
+type __createDeviceGroupInput struct {
+	Token           string `json:"token"`
+	Name            string `json:"name"`
+	Description     string `json:"description"`
+	ImageUrl        string `json:"imageUrl"`
+	Icon            string `json:"icon"`
+	BackgroundColor string `json:"backgroundColor"`
+	ForegroundColor string `json:"foregroundColor"`
+	BorderColor     string `json:"borderColor"`
+	Metadata        string `json:"metadata"`
+}
+
+// GetToken returns __createDeviceGroupInput.Token, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupInput) GetToken() string { return v.Token }
+
+// GetName returns __createDeviceGroupInput.Name, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupInput) GetName() string { return v.Name }
+
+// GetDescription returns __createDeviceGroupInput.Description, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupInput) GetDescription() string { return v.Description }
+
+// GetImageUrl returns __createDeviceGroupInput.ImageUrl, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupInput) GetImageUrl() string { return v.ImageUrl }
+
+// GetIcon returns __createDeviceGroupInput.Icon, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupInput) GetIcon() string { return v.Icon }
+
+// GetBackgroundColor returns __createDeviceGroupInput.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupInput) GetBackgroundColor() string { return v.BackgroundColor }
+
+// GetForegroundColor returns __createDeviceGroupInput.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupInput) GetForegroundColor() string { return v.ForegroundColor }
+
+// GetBorderColor returns __createDeviceGroupInput.BorderColor, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupInput) GetBorderColor() string { return v.BorderColor }
+
+// GetMetadata returns __createDeviceGroupInput.Metadata, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupInput) GetMetadata() string { return v.Metadata }
+
+// __createDeviceGroupRelationshipInput is used internally by genqlient
+type __createDeviceGroupRelationshipInput struct {
+	Token            string `json:"token"`
+	DeviceGroup      string `json:"deviceGroup"`
+	Device           string `json:"device"`
+	RelationshipType string `json:"relationshipType"`
+}
+
+// GetToken returns __createDeviceGroupRelationshipInput.Token, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupRelationshipInput) GetToken() string { return v.Token }
+
+// GetDeviceGroup returns __createDeviceGroupRelationshipInput.DeviceGroup, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupRelationshipInput) GetDeviceGroup() string { return v.DeviceGroup }
+
+// GetDevice returns __createDeviceGroupRelationshipInput.Device, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupRelationshipInput) GetDevice() string { return v.Device }
+
+// GetRelationshipType returns __createDeviceGroupRelationshipInput.RelationshipType, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupRelationshipInput) GetRelationshipType() string {
+	return v.RelationshipType
+}
+
+// __createDeviceGroupRelationshipTypeInput is used internally by genqlient
+type __createDeviceGroupRelationshipTypeInput struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Metadata    string `json:"metadata"`
+}
+
+// GetToken returns __createDeviceGroupRelationshipTypeInput.Token, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupRelationshipTypeInput) GetToken() string { return v.Token }
+
+// GetName returns __createDeviceGroupRelationshipTypeInput.Name, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupRelationshipTypeInput) GetName() string { return v.Name }
+
+// GetDescription returns __createDeviceGroupRelationshipTypeInput.Description, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupRelationshipTypeInput) GetDescription() string { return v.Description }
+
+// GetMetadata returns __createDeviceGroupRelationshipTypeInput.Metadata, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupRelationshipTypeInput) GetMetadata() string { return v.Metadata }
+
 // __createDeviceInput is used internally by genqlient
 type __createDeviceInput struct {
 	Token           string `json:"token"`
@@ -120,6 +202,30 @@ type __getDeviceByTokenInput struct {
 // GetToken returns __getDeviceByTokenInput.Token, and is useful for accessing the field via an interface.
 func (v *__getDeviceByTokenInput) GetToken() string { return v.Token }
 
+// __getDeviceGroupByTokenInput is used internally by genqlient
+type __getDeviceGroupByTokenInput struct {
+	Token string `json:"token"`
+}
+
+// GetToken returns __getDeviceGroupByTokenInput.Token, and is useful for accessing the field via an interface.
+func (v *__getDeviceGroupByTokenInput) GetToken() string { return v.Token }
+
+// __getDeviceGroupRelationshipByTokenInput is used internally by genqlient
+type __getDeviceGroupRelationshipByTokenInput struct {
+	Token string `json:"token"`
+}
+
+// GetToken returns __getDeviceGroupRelationshipByTokenInput.Token, and is useful for accessing the field via an interface.
+func (v *__getDeviceGroupRelationshipByTokenInput) GetToken() string { return v.Token }
+
+// __getDeviceGroupRelationshipTypeByTokenInput is used internally by genqlient
+type __getDeviceGroupRelationshipTypeByTokenInput struct {
+	Token string `json:"token"`
+}
+
+// GetToken returns __getDeviceGroupRelationshipTypeByTokenInput.Token, and is useful for accessing the field via an interface.
+func (v *__getDeviceGroupRelationshipTypeByTokenInput) GetToken() string { return v.Token }
+
 // __getDeviceRelationshipByTokenInput is used internally by genqlient
 type __getDeviceRelationshipByTokenInput struct {
 	Token string `json:"token"`
@@ -143,6 +249,42 @@ type __getDeviceTypeByTokenInput struct {
 
 // GetToken returns __getDeviceTypeByTokenInput.Token, and is useful for accessing the field via an interface.
 func (v *__getDeviceTypeByTokenInput) GetToken() string { return v.Token }
+
+// __listDeviceGroupRelationshipTypesInput is used internally by genqlient
+type __listDeviceGroupRelationshipTypesInput struct {
+	PageNumber int `json:"pageNumber"`
+	PageSize   int `json:"pageSize"`
+}
+
+// GetPageNumber returns __listDeviceGroupRelationshipTypesInput.PageNumber, and is useful for accessing the field via an interface.
+func (v *__listDeviceGroupRelationshipTypesInput) GetPageNumber() int { return v.PageNumber }
+
+// GetPageSize returns __listDeviceGroupRelationshipTypesInput.PageSize, and is useful for accessing the field via an interface.
+func (v *__listDeviceGroupRelationshipTypesInput) GetPageSize() int { return v.PageSize }
+
+// __listDeviceGroupRelationshipsInput is used internally by genqlient
+type __listDeviceGroupRelationshipsInput struct {
+	PageNumber int `json:"pageNumber"`
+	PageSize   int `json:"pageSize"`
+}
+
+// GetPageNumber returns __listDeviceGroupRelationshipsInput.PageNumber, and is useful for accessing the field via an interface.
+func (v *__listDeviceGroupRelationshipsInput) GetPageNumber() int { return v.PageNumber }
+
+// GetPageSize returns __listDeviceGroupRelationshipsInput.PageSize, and is useful for accessing the field via an interface.
+func (v *__listDeviceGroupRelationshipsInput) GetPageSize() int { return v.PageSize }
+
+// __listDeviceGroupsInput is used internally by genqlient
+type __listDeviceGroupsInput struct {
+	PageNumber int `json:"pageNumber"`
+	PageSize   int `json:"pageSize"`
+}
+
+// GetPageNumber returns __listDeviceGroupsInput.PageNumber, and is useful for accessing the field via an interface.
+func (v *__listDeviceGroupsInput) GetPageNumber() int { return v.PageNumber }
+
+// GetPageSize returns __listDeviceGroupsInput.PageSize, and is useful for accessing the field via an interface.
+func (v *__listDeviceGroupsInput) GetPageSize() int { return v.PageSize }
 
 // __listDeviceRelationshipTypesInput is used internally by genqlient
 type __listDeviceRelationshipTypesInput struct {
@@ -203,6 +345,78 @@ func (v *createDeviceCreateDevice) GetId() string { return v.Id }
 
 // GetToken returns createDeviceCreateDevice.Token, and is useful for accessing the field via an interface.
 func (v *createDeviceCreateDevice) GetToken() string { return v.Token }
+
+// createDeviceGroupCreateDeviceGroup includes the requested fields of the GraphQL type DeviceGroup.
+type createDeviceGroupCreateDeviceGroup struct {
+	Id    string `json:"id"`
+	Token string `json:"token"`
+}
+
+// GetId returns createDeviceGroupCreateDeviceGroup.Id, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupCreateDeviceGroup) GetId() string { return v.Id }
+
+// GetToken returns createDeviceGroupCreateDeviceGroup.Token, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupCreateDeviceGroup) GetToken() string { return v.Token }
+
+// createDeviceGroupRelationshipCreateDeviceGroupRelationship includes the requested fields of the GraphQL type DeviceGroupRelationship.
+type createDeviceGroupRelationshipCreateDeviceGroupRelationship struct {
+	Id    string `json:"id"`
+	Token string `json:"token"`
+}
+
+// GetId returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.Id, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetId() string { return v.Id }
+
+// GetToken returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.Token, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetToken() string {
+	return v.Token
+}
+
+// createDeviceGroupRelationshipResponse is returned by createDeviceGroupRelationship on success.
+type createDeviceGroupRelationshipResponse struct {
+	CreateDeviceGroupRelationship createDeviceGroupRelationshipCreateDeviceGroupRelationship `json:"createDeviceGroupRelationship"`
+}
+
+// GetCreateDeviceGroupRelationship returns createDeviceGroupRelationshipResponse.CreateDeviceGroupRelationship, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipResponse) GetCreateDeviceGroupRelationship() createDeviceGroupRelationshipCreateDeviceGroupRelationship {
+	return v.CreateDeviceGroupRelationship
+}
+
+// createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType includes the requested fields of the GraphQL type DeviceGroupRelationshipType.
+type createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType struct {
+	Id    string `json:"id"`
+	Token string `json:"token"`
+}
+
+// GetId returns createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType.Id, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType) GetId() string {
+	return v.Id
+}
+
+// GetToken returns createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType) GetToken() string {
+	return v.Token
+}
+
+// createDeviceGroupRelationshipTypeResponse is returned by createDeviceGroupRelationshipType on success.
+type createDeviceGroupRelationshipTypeResponse struct {
+	CreateDeviceGroupRelationshipType createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType `json:"createDeviceGroupRelationshipType"`
+}
+
+// GetCreateDeviceGroupRelationshipType returns createDeviceGroupRelationshipTypeResponse.CreateDeviceGroupRelationshipType, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipTypeResponse) GetCreateDeviceGroupRelationshipType() createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType {
+	return v.CreateDeviceGroupRelationshipType
+}
+
+// createDeviceGroupResponse is returned by createDeviceGroup on success.
+type createDeviceGroupResponse struct {
+	CreateDeviceGroup createDeviceGroupCreateDeviceGroup `json:"createDeviceGroup"`
+}
+
+// GetCreateDeviceGroup returns createDeviceGroupResponse.CreateDeviceGroup, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupResponse) GetCreateDeviceGroup() createDeviceGroupCreateDeviceGroup {
+	return v.CreateDeviceGroup
+}
 
 // createDeviceRelationshipCreateDeviceRelationship includes the requested fields of the GraphQL type DeviceRelationship.
 type createDeviceRelationshipCreateDeviceRelationship struct {
@@ -360,6 +574,282 @@ type getDeviceByTokenResponse struct {
 // GetDeviceByToken returns getDeviceByTokenResponse.DeviceByToken, and is useful for accessing the field via an interface.
 func (v *getDeviceByTokenResponse) GetDeviceByToken() getDeviceByTokenDeviceByTokenDevice {
 	return v.DeviceByToken
+}
+
+// getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup includes the requested fields of the GraphQL type DeviceGroup.
+type getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup struct {
+	Id              string `json:"id"`
+	CreatedAt       string `json:"createdAt"`
+	UpdatedAt       string `json:"updatedAt"`
+	DeletedAt       string `json:"deletedAt"`
+	Token           string `json:"token"`
+	Name            string `json:"name"`
+	Description     string `json:"description"`
+	ImageUrl        string `json:"imageUrl"`
+	Icon            string `json:"icon"`
+	BackgroundColor string `json:"backgroundColor"`
+	ForegroundColor string `json:"foregroundColor"`
+	BorderColor     string `json:"borderColor"`
+	Metadata        string `json:"metadata"`
+}
+
+// GetId returns getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup.Id, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup) GetId() string { return v.Id }
+
+// GetCreatedAt returns getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup.CreatedAt, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup) GetCreatedAt() string {
+	return v.CreatedAt
+}
+
+// GetUpdatedAt returns getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup) GetUpdatedAt() string {
+	return v.UpdatedAt
+}
+
+// GetDeletedAt returns getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup.DeletedAt, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup) GetDeletedAt() string {
+	return v.DeletedAt
+}
+
+// GetToken returns getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup.Token, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup) GetToken() string { return v.Token }
+
+// GetName returns getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup.Name, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup) GetName() string { return v.Name }
+
+// GetDescription returns getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup.Description, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup) GetDescription() string {
+	return v.Description
+}
+
+// GetImageUrl returns getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup.ImageUrl, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup) GetImageUrl() string { return v.ImageUrl }
+
+// GetIcon returns getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup.Icon, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup) GetIcon() string { return v.Icon }
+
+// GetBackgroundColor returns getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup) GetBackgroundColor() string {
+	return v.BackgroundColor
+}
+
+// GetForegroundColor returns getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup) GetForegroundColor() string {
+	return v.ForegroundColor
+}
+
+// GetBorderColor returns getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup.BorderColor, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup) GetBorderColor() string {
+	return v.BorderColor
+}
+
+// GetMetadata returns getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup.Metadata, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup) GetMetadata() string { return v.Metadata }
+
+// getDeviceGroupByTokenResponse is returned by getDeviceGroupByToken on success.
+type getDeviceGroupByTokenResponse struct {
+	DeviceGroupByToken getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup `json:"deviceGroupByToken"`
+}
+
+// GetDeviceGroupByToken returns getDeviceGroupByTokenResponse.DeviceGroupByToken, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupByTokenResponse) GetDeviceGroupByToken() getDeviceGroupByTokenDeviceGroupByTokenDeviceGroup {
+	return v.DeviceGroupByToken
+}
+
+// getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship includes the requested fields of the GraphQL type DeviceGroupRelationship.
+type getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship struct {
+	Id               string                                                                                                                            `json:"id"`
+	CreatedAt        string                                                                                                                            `json:"createdAt"`
+	UpdatedAt        string                                                                                                                            `json:"updatedAt"`
+	DeletedAt        string                                                                                                                            `json:"deletedAt"`
+	Token            string                                                                                                                            `json:"token"`
+	DeviceGroup      getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDeviceGroup                                 `json:"deviceGroup"`
+	Device           getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDevice                                      `json:"device"`
+	RelationshipType getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType `json:"relationshipType"`
+	Metadata         string                                                                                                                            `json:"metadata"`
+}
+
+// GetId returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship.Id, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship) GetId() string {
+	return v.Id
+}
+
+// GetCreatedAt returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship) GetCreatedAt() string {
+	return v.CreatedAt
+}
+
+// GetUpdatedAt returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship) GetUpdatedAt() string {
+	return v.UpdatedAt
+}
+
+// GetDeletedAt returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship) GetDeletedAt() string {
+	return v.DeletedAt
+}
+
+// GetToken returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship.Token, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship) GetToken() string {
+	return v.Token
+}
+
+// GetDeviceGroup returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship.DeviceGroup, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship) GetDeviceGroup() getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDeviceGroup {
+	return v.DeviceGroup
+}
+
+// GetDevice returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship.Device, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship) GetDevice() getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDevice {
+	return v.Device
+}
+
+// GetRelationshipType returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship) GetRelationshipType() getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType {
+	return v.RelationshipType
+}
+
+// GetMetadata returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship) GetMetadata() string {
+	return v.Metadata
+}
+
+// getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDevice includes the requested fields of the GraphQL type Device.
+type getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDevice struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDevice.Token, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDevice) GetToken() string {
+	return v.Token
+}
+
+// GetName returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDevice.Name, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDevice) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDevice.Description, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDevice) GetDescription() string {
+	return v.Description
+}
+
+// getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDeviceGroup includes the requested fields of the GraphQL type DeviceGroup.
+type getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDeviceGroup struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDeviceGroup.Token, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDeviceGroup) GetToken() string {
+	return v.Token
+}
+
+// GetName returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDeviceGroup.Name, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDeviceGroup) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDeviceGroup.Description, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipDeviceGroup) GetDescription() string {
+	return v.Description
+}
+
+// getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType includes the requested fields of the GraphQL type DeviceGroupRelationshipType.
+type getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetToken() string {
+	return v.Token
+}
+
+// GetName returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetDescription() string {
+	return v.Description
+}
+
+// getDeviceGroupRelationshipByTokenResponse is returned by getDeviceGroupRelationshipByToken on success.
+type getDeviceGroupRelationshipByTokenResponse struct {
+	DeviceGroupRelationshipByToken getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship `json:"deviceGroupRelationshipByToken"`
+}
+
+// GetDeviceGroupRelationshipByToken returns getDeviceGroupRelationshipByTokenResponse.DeviceGroupRelationshipByToken, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipByTokenResponse) GetDeviceGroupRelationshipByToken() getDeviceGroupRelationshipByTokenDeviceGroupRelationshipByTokenDeviceGroupRelationship {
+	return v.DeviceGroupRelationshipByToken
+}
+
+// getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType includes the requested fields of the GraphQL type DeviceGroupRelationshipType.
+type getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType struct {
+	Id          string `json:"id"`
+	CreatedAt   string `json:"createdAt"`
+	UpdatedAt   string `json:"updatedAt"`
+	DeletedAt   string `json:"deletedAt"`
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Metadata    string `json:"metadata"`
+}
+
+// GetId returns getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType.Id, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType) GetId() string {
+	return v.Id
+}
+
+// GetCreatedAt returns getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType) GetCreatedAt() string {
+	return v.CreatedAt
+}
+
+// GetUpdatedAt returns getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType) GetUpdatedAt() string {
+	return v.UpdatedAt
+}
+
+// GetDeletedAt returns getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType) GetDeletedAt() string {
+	return v.DeletedAt
+}
+
+// GetToken returns getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType) GetToken() string {
+	return v.Token
+}
+
+// GetName returns getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType) GetDescription() string {
+	return v.Description
+}
+
+// GetMetadata returns getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType) GetMetadata() string {
+	return v.Metadata
+}
+
+// getDeviceGroupRelationshipTypeByTokenResponse is returned by getDeviceGroupRelationshipTypeByToken on success.
+type getDeviceGroupRelationshipTypeByTokenResponse struct {
+	DeviceGroupRelationshipTypeByToken getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType `json:"deviceGroupRelationshipTypeByToken"`
+}
+
+// GetDeviceGroupRelationshipTypeByToken returns getDeviceGroupRelationshipTypeByTokenResponse.DeviceGroupRelationshipTypeByToken, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipTypeByTokenResponse) GetDeviceGroupRelationshipTypeByToken() getDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipTypeByTokenDeviceGroupRelationshipType {
+	return v.DeviceGroupRelationshipTypeByToken
 }
 
 // getDeviceRelationshipByTokenDeviceRelationshipByTokenDeviceRelationship includes the requested fields of the GraphQL type DeviceRelationship.
@@ -630,6 +1120,408 @@ type getDeviceTypeByTokenResponse struct {
 // GetDeviceTypeByToken returns getDeviceTypeByTokenResponse.DeviceTypeByToken, and is useful for accessing the field via an interface.
 func (v *getDeviceTypeByTokenResponse) GetDeviceTypeByToken() getDeviceTypeByTokenDeviceTypeByTokenDeviceType {
 	return v.DeviceTypeByToken
+}
+
+// listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResults includes the requested fields of the GraphQL type DeviceGroupRelationshipTypeSearchResults.
+type listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResults struct {
+	Results    []listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType `json:"results"`
+	Pagination listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination                           `json:"pagination"`
+}
+
+// GetResults returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResults.Results, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResults) GetResults() []listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType {
+	return v.Results
+}
+
+// GetPagination returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResults.Pagination, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResults) GetPagination() listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination {
+	return v.Pagination
+}
+
+// listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
+type listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination struct {
+	PageStart    int `json:"pageStart"`
+	PageEnd      int `json:"pageEnd"`
+	TotalRecords int `json:"totalRecords"`
+}
+
+// GetPageStart returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination) GetPageStart() int {
+	return v.PageStart
+}
+
+// GetPageEnd returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination) GetPageEnd() int {
+	return v.PageEnd
+}
+
+// GetTotalRecords returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination) GetTotalRecords() int {
+	return v.TotalRecords
+}
+
+// listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType includes the requested fields of the GraphQL type DeviceGroupRelationshipType.
+type listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType struct {
+	Id          string `json:"id"`
+	CreatedAt   string `json:"createdAt"`
+	UpdatedAt   string `json:"updatedAt"`
+	DeletedAt   string `json:"deletedAt"`
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Metadata    string `json:"metadata"`
+}
+
+// GetId returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.Id, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetId() string {
+	return v.Id
+}
+
+// GetCreatedAt returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetCreatedAt() string {
+	return v.CreatedAt
+}
+
+// GetUpdatedAt returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetUpdatedAt() string {
+	return v.UpdatedAt
+}
+
+// GetDeletedAt returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetDeletedAt() string {
+	return v.DeletedAt
+}
+
+// GetToken returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetToken() string {
+	return v.Token
+}
+
+// GetName returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetDescription() string {
+	return v.Description
+}
+
+// GetMetadata returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetMetadata() string {
+	return v.Metadata
+}
+
+// listDeviceGroupRelationshipTypesResponse is returned by listDeviceGroupRelationshipTypes on success.
+type listDeviceGroupRelationshipTypesResponse struct {
+	DeviceGroupRelationshipTypes listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResults `json:"deviceGroupRelationshipTypes"`
+}
+
+// GetDeviceGroupRelationshipTypes returns listDeviceGroupRelationshipTypesResponse.DeviceGroupRelationshipTypes, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipTypesResponse) GetDeviceGroupRelationshipTypes() listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResults {
+	return v.DeviceGroupRelationshipTypes
+}
+
+// listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResults includes the requested fields of the GraphQL type DeviceGroupRelationshipSearchResults.
+type listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResults struct {
+	Results    []listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship `json:"results"`
+	Pagination listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination                       `json:"pagination"`
+}
+
+// GetResults returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResults.Results, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResults) GetResults() []listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship {
+	return v.Results
+}
+
+// GetPagination returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResults.Pagination, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResults) GetPagination() listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination {
+	return v.Pagination
+}
+
+// listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
+type listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination struct {
+	PageStart    int `json:"pageStart"`
+	PageEnd      int `json:"pageEnd"`
+	TotalRecords int `json:"totalRecords"`
+}
+
+// GetPageStart returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination) GetPageStart() int {
+	return v.PageStart
+}
+
+// GetPageEnd returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination) GetPageEnd() int {
+	return v.PageEnd
+}
+
+// GetTotalRecords returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination) GetTotalRecords() int {
+	return v.TotalRecords
+}
+
+// listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship includes the requested fields of the GraphQL type DeviceGroupRelationship.
+type listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship struct {
+	Id               string                                                                                                                                                            `json:"id"`
+	CreatedAt        string                                                                                                                                                            `json:"createdAt"`
+	UpdatedAt        string                                                                                                                                                            `json:"updatedAt"`
+	DeletedAt        string                                                                                                                                                            `json:"deletedAt"`
+	Token            string                                                                                                                                                            `json:"token"`
+	DeviceGroup      listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup                                 `json:"deviceGroup"`
+	Device           listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice                                      `json:"device"`
+	RelationshipType listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType `json:"relationshipType"`
+	Metadata         string                                                                                                                                                            `json:"metadata"`
+}
+
+// GetId returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.Id, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetId() string {
+	return v.Id
+}
+
+// GetCreatedAt returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetCreatedAt() string {
+	return v.CreatedAt
+}
+
+// GetUpdatedAt returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetUpdatedAt() string {
+	return v.UpdatedAt
+}
+
+// GetDeletedAt returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetDeletedAt() string {
+	return v.DeletedAt
+}
+
+// GetToken returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.Token, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetToken() string {
+	return v.Token
+}
+
+// GetDeviceGroup returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.DeviceGroup, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetDeviceGroup() listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup {
+	return v.DeviceGroup
+}
+
+// GetDevice returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.Device, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetDevice() listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice {
+	return v.Device
+}
+
+// GetRelationshipType returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetRelationshipType() listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType {
+	return v.RelationshipType
+}
+
+// GetMetadata returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetMetadata() string {
+	return v.Metadata
+}
+
+// listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice includes the requested fields of the GraphQL type Device.
+type listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice.Token, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice) GetToken() string {
+	return v.Token
+}
+
+// GetName returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice.Name, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice.Description, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice) GetDescription() string {
+	return v.Description
+}
+
+// listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup includes the requested fields of the GraphQL type DeviceGroup.
+type listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup.Token, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup) GetToken() string {
+	return v.Token
+}
+
+// GetName returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup.Name, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup.Description, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup) GetDescription() string {
+	return v.Description
+}
+
+// listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType includes the requested fields of the GraphQL type DeviceGroupRelationshipType.
+type listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetToken() string {
+	return v.Token
+}
+
+// GetName returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetDescription() string {
+	return v.Description
+}
+
+// listDeviceGroupRelationshipsResponse is returned by listDeviceGroupRelationships on success.
+type listDeviceGroupRelationshipsResponse struct {
+	DeviceGroupRelationships listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResults `json:"deviceGroupRelationships"`
+}
+
+// GetDeviceGroupRelationships returns listDeviceGroupRelationshipsResponse.DeviceGroupRelationships, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsResponse) GetDeviceGroupRelationships() listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResults {
+	return v.DeviceGroupRelationships
+}
+
+// listDeviceGroupsDeviceGroupsDeviceGroupSearchResults includes the requested fields of the GraphQL type DeviceGroupSearchResults.
+type listDeviceGroupsDeviceGroupsDeviceGroupSearchResults struct {
+	Results    []listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup `json:"results"`
+	Pagination listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination           `json:"pagination"`
+}
+
+// GetResults returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResults.Results, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResults) GetResults() []listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup {
+	return v.Results
+}
+
+// GetPagination returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResults.Pagination, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResults) GetPagination() listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination {
+	return v.Pagination
+}
+
+// listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
+type listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination struct {
+	PageStart    int `json:"pageStart"`
+	PageEnd      int `json:"pageEnd"`
+	TotalRecords int `json:"totalRecords"`
+}
+
+// GetPageStart returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination) GetPageStart() int {
+	return v.PageStart
+}
+
+// GetPageEnd returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination) GetPageEnd() int {
+	return v.PageEnd
+}
+
+// GetTotalRecords returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination) GetTotalRecords() int {
+	return v.TotalRecords
+}
+
+// listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup includes the requested fields of the GraphQL type DeviceGroup.
+type listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup struct {
+	Id              string `json:"id"`
+	CreatedAt       string `json:"createdAt"`
+	UpdatedAt       string `json:"updatedAt"`
+	DeletedAt       string `json:"deletedAt"`
+	Token           string `json:"token"`
+	Name            string `json:"name"`
+	Description     string `json:"description"`
+	ImageUrl        string `json:"imageUrl"`
+	Icon            string `json:"icon"`
+	BackgroundColor string `json:"backgroundColor"`
+	ForegroundColor string `json:"foregroundColor"`
+	BorderColor     string `json:"borderColor"`
+	Metadata        string `json:"metadata"`
+}
+
+// GetId returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.Id, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetId() string {
+	return v.Id
+}
+
+// GetCreatedAt returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.CreatedAt, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetCreatedAt() string {
+	return v.CreatedAt
+}
+
+// GetUpdatedAt returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetUpdatedAt() string {
+	return v.UpdatedAt
+}
+
+// GetDeletedAt returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.DeletedAt, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetDeletedAt() string {
+	return v.DeletedAt
+}
+
+// GetToken returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.Token, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetToken() string {
+	return v.Token
+}
+
+// GetName returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.Name, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.Description, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetDescription() string {
+	return v.Description
+}
+
+// GetImageUrl returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.ImageUrl, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetImageUrl() string {
+	return v.ImageUrl
+}
+
+// GetIcon returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.Icon, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetIcon() string {
+	return v.Icon
+}
+
+// GetBackgroundColor returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetBackgroundColor() string {
+	return v.BackgroundColor
+}
+
+// GetForegroundColor returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetForegroundColor() string {
+	return v.ForegroundColor
+}
+
+// GetBorderColor returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.BorderColor, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetBorderColor() string {
+	return v.BorderColor
+}
+
+// GetMetadata returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.Metadata, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetMetadata() string {
+	return v.Metadata
+}
+
+// listDeviceGroupsResponse is returned by listDeviceGroups on success.
+type listDeviceGroupsResponse struct {
+	DeviceGroups listDeviceGroupsDeviceGroupsDeviceGroupSearchResults `json:"deviceGroups"`
+}
+
+// GetDeviceGroups returns listDeviceGroupsResponse.DeviceGroups, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupsResponse) GetDeviceGroups() listDeviceGroupsDeviceGroupsDeviceGroupSearchResults {
+	return v.DeviceGroups
 }
 
 // listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResults includes the requested fields of the GraphQL type DeviceRelationshipTypeSearchResults.
@@ -1177,6 +2069,121 @@ mutation createDevice ($token: String!, $deviceTypeToken: String!, $name: String
 	return &retval, err
 }
 
+// Create device group and return identifiers.
+func createDeviceGroup(
+	ctx context.Context,
+	client graphql.Client,
+	token string,
+	name string,
+	description string,
+	imageUrl string,
+	icon string,
+	backgroundColor string,
+	foregroundColor string,
+	borderColor string,
+	metadata string,
+) (*createDeviceGroupResponse, error) {
+	__input := __createDeviceGroupInput{
+		Token:           token,
+		Name:            name,
+		Description:     description,
+		ImageUrl:        imageUrl,
+		Icon:            icon,
+		BackgroundColor: backgroundColor,
+		ForegroundColor: foregroundColor,
+		BorderColor:     borderColor,
+		Metadata:        metadata,
+	}
+	var err error
+
+	var retval createDeviceGroupResponse
+	err = client.MakeRequest(
+		ctx,
+		"createDeviceGroup",
+		`
+mutation createDeviceGroup ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
+	createDeviceGroup(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
+		id
+		token
+	}
+}
+`,
+		&retval,
+		&__input,
+	)
+	return &retval, err
+}
+
+// Create device group relationship and return identifiers.
+func createDeviceGroupRelationship(
+	ctx context.Context,
+	client graphql.Client,
+	token string,
+	deviceGroup string,
+	device string,
+	relationshipType string,
+) (*createDeviceGroupRelationshipResponse, error) {
+	__input := __createDeviceGroupRelationshipInput{
+		Token:            token,
+		DeviceGroup:      deviceGroup,
+		Device:           device,
+		RelationshipType: relationshipType,
+	}
+	var err error
+
+	var retval createDeviceGroupRelationshipResponse
+	err = client.MakeRequest(
+		ctx,
+		"createDeviceGroupRelationship",
+		`
+mutation createDeviceGroupRelationship ($token: String!, $deviceGroup: String!, $device: String!, $relationshipType: String!) {
+	createDeviceGroupRelationship(request: {token:$token,deviceGroup:$deviceGroup,device:$device,relationshipType:$relationshipType}) {
+		id
+		token
+	}
+}
+`,
+		&retval,
+		&__input,
+	)
+	return &retval, err
+}
+
+// Create device group relationship type and return identifiers.
+func createDeviceGroupRelationshipType(
+	ctx context.Context,
+	client graphql.Client,
+	token string,
+	name string,
+	description string,
+	metadata string,
+) (*createDeviceGroupRelationshipTypeResponse, error) {
+	__input := __createDeviceGroupRelationshipTypeInput{
+		Token:       token,
+		Name:        name,
+		Description: description,
+		Metadata:    metadata,
+	}
+	var err error
+
+	var retval createDeviceGroupRelationshipTypeResponse
+	err = client.MakeRequest(
+		ctx,
+		"createDeviceGroupRelationshipType",
+		`
+mutation createDeviceGroupRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
+	createDeviceGroupRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
+		id
+		token
+	}
+}
+`,
+		&retval,
+		&__input,
+	)
+	return &retval, err
+}
+
 // Create device relationship and return identifiers.
 func createDeviceRelationship(
 	ctx context.Context,
@@ -1335,6 +2342,129 @@ query getDeviceByToken ($token: String!) {
 	return &retval, err
 }
 
+// Get device group by unique token.
+func getDeviceGroupByToken(
+	ctx context.Context,
+	client graphql.Client,
+	token string,
+) (*getDeviceGroupByTokenResponse, error) {
+	__input := __getDeviceGroupByTokenInput{
+		Token: token,
+	}
+	var err error
+
+	var retval getDeviceGroupByTokenResponse
+	err = client.MakeRequest(
+		ctx,
+		"getDeviceGroupByToken",
+		`
+query getDeviceGroupByToken ($token: String!) {
+	deviceGroupByToken(token: $token) {
+		id
+		createdAt
+		updatedAt
+		deletedAt
+		token
+		name
+		description
+		imageUrl
+		icon
+		backgroundColor
+		foregroundColor
+		borderColor
+		metadata
+	}
+}
+`,
+		&retval,
+		&__input,
+	)
+	return &retval, err
+}
+
+// Get device group relationship by unique token.
+func getDeviceGroupRelationshipByToken(
+	ctx context.Context,
+	client graphql.Client,
+	token string,
+) (*getDeviceGroupRelationshipByTokenResponse, error) {
+	__input := __getDeviceGroupRelationshipByTokenInput{
+		Token: token,
+	}
+	var err error
+
+	var retval getDeviceGroupRelationshipByTokenResponse
+	err = client.MakeRequest(
+		ctx,
+		"getDeviceGroupRelationshipByToken",
+		`
+query getDeviceGroupRelationshipByToken ($token: String!) {
+	deviceGroupRelationshipByToken(token: $token) {
+		id
+		createdAt
+		updatedAt
+		deletedAt
+		token
+		deviceGroup {
+			token
+			name
+			description
+		}
+		device {
+			token
+			name
+			description
+		}
+		relationshipType {
+			token
+			name
+			description
+		}
+		metadata
+	}
+}
+`,
+		&retval,
+		&__input,
+	)
+	return &retval, err
+}
+
+// Get device group relationship type by unique token.
+func getDeviceGroupRelationshipTypeByToken(
+	ctx context.Context,
+	client graphql.Client,
+	token string,
+) (*getDeviceGroupRelationshipTypeByTokenResponse, error) {
+	__input := __getDeviceGroupRelationshipTypeByTokenInput{
+		Token: token,
+	}
+	var err error
+
+	var retval getDeviceGroupRelationshipTypeByTokenResponse
+	err = client.MakeRequest(
+		ctx,
+		"getDeviceGroupRelationshipTypeByToken",
+		`
+query getDeviceGroupRelationshipTypeByToken ($token: String!) {
+	deviceGroupRelationshipTypeByToken(token: $token) {
+		id
+		createdAt
+		updatedAt
+		deletedAt
+		token
+		name
+		description
+		metadata
+	}
+}
+`,
+		&retval,
+		&__input,
+	)
+	return &retval, err
+}
+
 // Get device relationship by unique token.
 func getDeviceRelationshipByToken(
 	ctx context.Context,
@@ -1458,6 +2588,156 @@ query getDeviceTypeByToken ($token: String!) {
 	return &retval, err
 }
 
+// List device group relationship types that match criteria.
+func listDeviceGroupRelationshipTypes(
+	ctx context.Context,
+	client graphql.Client,
+	pageNumber int,
+	pageSize int,
+) (*listDeviceGroupRelationshipTypesResponse, error) {
+	__input := __listDeviceGroupRelationshipTypesInput{
+		PageNumber: pageNumber,
+		PageSize:   pageSize,
+	}
+	var err error
+
+	var retval listDeviceGroupRelationshipTypesResponse
+	err = client.MakeRequest(
+		ctx,
+		"listDeviceGroupRelationshipTypes",
+		`
+query listDeviceGroupRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
+	deviceGroupRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
+		results {
+			id
+			createdAt
+			updatedAt
+			deletedAt
+			token
+			name
+			description
+			metadata
+		}
+		pagination {
+			pageStart
+			pageEnd
+			totalRecords
+		}
+	}
+}
+`,
+		&retval,
+		&__input,
+	)
+	return &retval, err
+}
+
+// List device group relationships that match criteria.
+func listDeviceGroupRelationships(
+	ctx context.Context,
+	client graphql.Client,
+	pageNumber int,
+	pageSize int,
+) (*listDeviceGroupRelationshipsResponse, error) {
+	__input := __listDeviceGroupRelationshipsInput{
+		PageNumber: pageNumber,
+		PageSize:   pageSize,
+	}
+	var err error
+
+	var retval listDeviceGroupRelationshipsResponse
+	err = client.MakeRequest(
+		ctx,
+		"listDeviceGroupRelationships",
+		`
+query listDeviceGroupRelationships ($pageNumber: Int!, $pageSize: Int!) {
+	deviceGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
+		results {
+			id
+			createdAt
+			updatedAt
+			deletedAt
+			token
+			deviceGroup {
+				token
+				name
+				description
+			}
+			device {
+				token
+				name
+				description
+			}
+			relationshipType {
+				token
+				name
+				description
+			}
+			metadata
+		}
+		pagination {
+			pageStart
+			pageEnd
+			totalRecords
+		}
+	}
+}
+`,
+		&retval,
+		&__input,
+	)
+	return &retval, err
+}
+
+// List device groups that match criteria.
+func listDeviceGroups(
+	ctx context.Context,
+	client graphql.Client,
+	pageNumber int,
+	pageSize int,
+) (*listDeviceGroupsResponse, error) {
+	__input := __listDeviceGroupsInput{
+		PageNumber: pageNumber,
+		PageSize:   pageSize,
+	}
+	var err error
+
+	var retval listDeviceGroupsResponse
+	err = client.MakeRequest(
+		ctx,
+		"listDeviceGroups",
+		`
+query listDeviceGroups ($pageNumber: Int!, $pageSize: Int!) {
+	deviceGroups(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
+		results {
+			id
+			createdAt
+			updatedAt
+			deletedAt
+			token
+			name
+			description
+			imageUrl
+			icon
+			backgroundColor
+			foregroundColor
+			borderColor
+			metadata
+		}
+		pagination {
+			pageStart
+			pageEnd
+			totalRecords
+		}
+	}
+}
+`,
+		&retval,
+		&__input,
+	)
+	return &retval, err
+}
+
 // List device relationship types that match criteria.
 func listDeviceRelationshipTypes(
 	ctx context.Context,
@@ -1502,7 +2782,7 @@ query listDeviceRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	return &retval, err
 }
 
-// List device relationship types that match criteria.
+// List device relationships that match criteria.
 func listDeviceRelationships(
 	ctx context.Context,
 	client graphql.Client,

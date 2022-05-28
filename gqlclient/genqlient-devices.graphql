@@ -217,7 +217,7 @@ query getDeviceRelationshipByToken($token: String!) {
   }
 }
 
-# List device relationship types that match criteria.
+# List device relationships that match criteria.
 query listDeviceRelationships($pageNumber: Int!, $pageSize: Int!) {
   deviceRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
@@ -228,6 +228,194 @@ query listDeviceRelationships($pageNumber: Int!, $pageSize: Int!) {
         description
       }
       targetDevice {
+        token
+        name
+        description
+      }
+      relationshipType {
+        token
+        name
+        description
+      }
+      metadata
+    }
+    pagination {
+      pageStart
+      pageEnd
+      totalRecords
+    }
+  }
+}
+
+# Create device group and return identifiers.
+mutation createDeviceGroup($token: String!, $name: String, $description: String, 
+  $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
+  createDeviceGroup(request: { 
+    token: $token,
+    name: $name,
+    description: $description,
+    imageUrl: $imageUrl,
+    icon: $icon,
+    backgroundColor: $backgroundColor,
+    foregroundColor: $foregroundColor,
+    borderColor: $borderColor,
+    metadata: $metadata
+  }) {
+    id
+    token
+  }
+}
+
+# Get device group by unique token.
+query getDeviceGroupByToken($token: String!) {
+  deviceGroupByToken(token: $token) {
+    id
+    createdAt
+    updatedAt
+    deletedAt
+    token
+    name
+    description
+    imageUrl
+    icon
+    backgroundColor
+    foregroundColor
+    borderColor
+    metadata
+  }
+}
+
+# List device groups that match criteria.
+query listDeviceGroups($pageNumber: Int!, $pageSize: Int!) {
+  deviceGroups(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+    results {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      token
+      name
+      description
+      imageUrl
+      icon
+      backgroundColor
+      foregroundColor
+      borderColor
+      metadata
+    }
+    pagination {
+      pageStart
+      pageEnd
+      totalRecords
+    }
+  }
+}
+
+# Create device group relationship type and return identifiers.
+mutation createDeviceGroupRelationshipType($token: String!, $name: String, $description: String, $metadata: String) {
+  createDeviceGroupRelationshipType(request: { 
+    token: $token,
+    name: $name,
+    description: $description,
+    metadata: $metadata
+  }) {
+    id
+    token
+  }
+}
+
+# Get device group relationship type by unique token.
+query getDeviceGroupRelationshipTypeByToken($token: String!) {
+  deviceGroupRelationshipTypeByToken(token: $token) {
+    id
+    createdAt
+    updatedAt
+    deletedAt
+    token
+    name
+    description
+    metadata
+  }
+}
+
+# List device group relationship types that match criteria.
+query listDeviceGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
+  deviceGroupRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+    results {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      token
+      name
+      description
+      metadata
+    }
+    pagination {
+      pageStart
+      pageEnd
+      totalRecords
+    }
+  }
+}
+
+# Create device group relationship and return identifiers.
+mutation createDeviceGroupRelationship($token: String!, $deviceGroup: String!, $device: String!, $relationshipType: String!) {
+  createDeviceGroupRelationship(
+    request: {
+      token: $token,
+      deviceGroup: $deviceGroup,
+      device: $device,
+      relationshipType: $relationshipType
+    }
+  ) {
+    id
+    token
+  }
+}
+
+# Get device group relationship by unique token.
+query getDeviceGroupRelationshipByToken($token: String!) {
+  deviceGroupRelationshipByToken(token: $token) {
+    id
+    createdAt
+    updatedAt
+    deletedAt
+    token
+    deviceGroup {
+      token
+      name
+      description
+    }
+    device {
+      token
+      name
+      description
+    }
+    relationshipType {
+      token
+      name
+      description
+    }
+    metadata
+  }
+}
+
+# List device group relationships that match criteria.
+query listDeviceGroupRelationships($pageNumber: Int!, $pageSize: Int!) {
+  deviceGroupRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+    results {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      token
+      deviceGroup {
+        token
+        name
+        description
+      }
+      device {
         token
         name
         description
