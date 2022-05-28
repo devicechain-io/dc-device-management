@@ -299,6 +299,9 @@ func (api *Api) CreateDeviceRelationship(ctx context.Context, request *DeviceRel
 	}
 
 	created := &DeviceRelationship{
+		TokenReference: rdb.TokenReference{
+			Token: request.Token,
+		},
 		SourceDevice:     *source,
 		TargetDevice:     *target,
 		RelationshipType: *rtype,
@@ -319,6 +322,18 @@ func (api *Api) DeviceRelationshipById(ctx context.Context, id uint) (*DeviceRel
 	result := api.RDB.Database
 	result = result.Preload("SourceDevice").Preload("TargetDevice").Preload("RelationshipType")
 	result = result.First(&found, id)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return found, nil
+}
+
+// Get device relationship by token.
+func (api *Api) DeviceRelationshipByToken(ctx context.Context, token string) (*DeviceRelationship, error) {
+	found := &DeviceRelationship{}
+	result := api.RDB.Database
+	result = result.Preload("SourceDevice").Preload("TargetDevice").Preload("RelationshipType")
+	result = result.First(&found, "token = ?", token)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -530,6 +545,9 @@ func (api *Api) CreateDeviceGroupRelationship(ctx context.Context,
 	}
 
 	created := &DeviceGroupRelationship{
+		TokenReference: rdb.TokenReference{
+			Token: request.Token,
+		},
 		DeviceGroup:      *source,
 		Device:           *target,
 		RelationshipType: *rtype,
@@ -550,6 +568,18 @@ func (api *Api) DeviceGroupRelationshipById(ctx context.Context, id uint) (*Devi
 	result := api.RDB.Database
 	result = result.Preload("DeviceGroup").Preload("Device").Preload("RelationshipType")
 	result = result.First(&found, id)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return found, nil
+}
+
+// Get device group relationship by token.
+func (api *Api) DeviceGroupRelationshipByToken(ctx context.Context, token string) (*DeviceGroupRelationship, error) {
+	found := &DeviceGroupRelationship{}
+	result := api.RDB.Database
+	result = result.Preload("DeviceGroup").Preload("Device").Preload("RelationshipType")
+	result = result.First(&found, "token = ?", token)
 	if result.Error != nil {
 		return nil, result.Error
 	}

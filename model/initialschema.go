@@ -52,6 +52,7 @@ func NewInitialSchema() *gormigrate.Migration {
 			// Captures a relationship between devices.
 			type DeviceRelationship struct {
 				gorm.Model
+				rdb.TokenReference
 				rdb.MetadataEntity
 				SourceDeviceId     uint
 				SourceDevice       Device
@@ -81,6 +82,7 @@ func NewInitialSchema() *gormigrate.Migration {
 			// Represents a device-to-group relationship.
 			type DeviceGroupRelationship struct {
 				gorm.Model
+				rdb.TokenReference
 				rdb.MetadataEntity
 				DeviceGroupId      uint
 				DeviceGroup        DeviceGroup
@@ -123,6 +125,7 @@ func NewInitialSchema() *gormigrate.Migration {
 			// Captures a relationship between assets.
 			type AssetRelationship struct {
 				gorm.Model
+				rdb.TokenReference
 				rdb.MetadataEntity
 				SourceAssetId      uint
 				SourceAsset        Asset
@@ -152,6 +155,7 @@ func NewInitialSchema() *gormigrate.Migration {
 			// Represents a asset-to-group relationship.
 			type AssetGroupRelationship struct {
 				gorm.Model
+				rdb.TokenReference
 				rdb.MetadataEntity
 				AssetGroupId       uint
 				AssetGroup         AssetGroup
@@ -193,6 +197,7 @@ func NewInitialSchema() *gormigrate.Migration {
 			// Captures a relationship between customers.
 			type CustomerRelationship struct {
 				gorm.Model
+				rdb.TokenReference
 				rdb.MetadataEntity
 				SourceCustomerId   uint
 				SourceCustomer     Customer
@@ -222,6 +227,7 @@ func NewInitialSchema() *gormigrate.Migration {
 			// Represents a customer-to-group relationship.
 			type CustomerGroupRelationship struct {
 				gorm.Model
+				rdb.TokenReference
 				rdb.MetadataEntity
 				CustomerGroupId    uint
 				CustomerGroup      CustomerGroup
@@ -264,6 +270,7 @@ func NewInitialSchema() *gormigrate.Migration {
 			// Captures a relationship between areas.
 			type AreaRelationship struct {
 				gorm.Model
+				rdb.TokenReference
 				rdb.MetadataEntity
 				SourceAreaId       uint
 				SourceArea         Area
@@ -293,6 +300,7 @@ func NewInitialSchema() *gormigrate.Migration {
 			// Represents a area-to-group relationship.
 			type AreaGroupRelationship struct {
 				gorm.Model
+				rdb.TokenReference
 				rdb.MetadataEntity
 				AreaGroupId        uint
 				AreaGroup          AreaGroup

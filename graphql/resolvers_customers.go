@@ -297,6 +297,10 @@ func (r *CustomerRelationshipResolver) DeletedAt() *string {
 	return util.FormatTime(r.M.DeletedAt.Time)
 }
 
+func (r *CustomerRelationshipResolver) Token() string {
+	return r.M.Token
+}
+
 func (r *CustomerRelationshipResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
 }
@@ -546,6 +550,10 @@ func (r *CustomerGroupRelationshipResolver) UpdatedAt() *string {
 
 func (r *CustomerGroupRelationshipResolver) DeletedAt() *string {
 	return util.FormatTime(r.M.DeletedAt.Time)
+}
+
+func (r *CustomerGroupRelationshipResolver) Token() string {
+	return r.M.Token
 }
 
 func (r *CustomerGroupRelationshipResolver) Metadata() *string {

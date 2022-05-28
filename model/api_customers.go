@@ -299,6 +299,9 @@ func (api *Api) CreateCustomerRelationship(ctx context.Context, request *Custome
 	}
 
 	created := &CustomerRelationship{
+		TokenReference: rdb.TokenReference{
+			Token: request.Token,
+		},
 		SourceCustomer:   *source,
 		TargetCustomer:   *target,
 		RelationshipType: *rtype,
@@ -319,6 +322,18 @@ func (api *Api) CustomerRelationshipById(ctx context.Context, id uint) (*Custome
 	result := api.RDB.Database
 	result = result.Preload("SourceCustomer").Preload("TargetCustomer").Preload("RelationshipType")
 	result = result.First(&found, id)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return found, nil
+}
+
+// Get customer relationship by token.
+func (api *Api) CustomerRelationshipByToken(ctx context.Context, token string) (*CustomerRelationship, error) {
+	found := &CustomerRelationship{}
+	result := api.RDB.Database
+	result = result.Preload("SourceCustomer").Preload("TargetCustomer").Preload("RelationshipType")
+	result = result.First(&found, "token = ?", token)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -530,6 +545,9 @@ func (api *Api) CreateCustomerGroupRelationship(ctx context.Context,
 	}
 
 	created := &CustomerGroupRelationship{
+		TokenReference: rdb.TokenReference{
+			Token: request.Token,
+		},
 		CustomerGroup:    *source,
 		Customer:         *target,
 		RelationshipType: *rtype,
@@ -550,6 +568,18 @@ func (api *Api) CustomerGroupRelationshipById(ctx context.Context, id uint) (*Cu
 	result := api.RDB.Database
 	result = result.Preload("CustomerGroup").Preload("Customer").Preload("RelationshipType")
 	result = result.First(&found, id)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return found, nil
+}
+
+// Get customer group relationship by token.
+func (api *Api) CustomerGroupRelationshipByToken(ctx context.Context, token string) (*CustomerGroupRelationship, error) {
+	found := &CustomerGroupRelationship{}
+	result := api.RDB.Database
+	result = result.Preload("CustomerGroup").Preload("Customer").Preload("RelationshipType")
+	result = result.First(&found, "token = ?", token)
 	if result.Error != nil {
 		return nil, result.Error
 	}

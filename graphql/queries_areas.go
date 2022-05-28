@@ -211,6 +211,24 @@ func (r *SchemaResolver) AreaRelationship(ctx context.Context, args struct {
 	return dt, nil
 }
 
+// Find area relationship by unique token.
+func (r *SchemaResolver) AreaRelationshipByToken(ctx context.Context, args struct {
+	Token string
+}) (*AreaRelationshipResolver, error) {
+	api := r.GetApi(ctx)
+	found, err := api.AreaRelationshipByToken(ctx, args.Token)
+	if err != nil {
+		return nil, err
+	}
+
+	dt := &AreaRelationshipResolver{
+		M: *found,
+		S: r,
+		C: ctx,
+	}
+	return dt, nil
+}
+
 // List all area relationships that match the given criteria.
 func (r *SchemaResolver) AreaRelationships(ctx context.Context, args struct {
 	Criteria model.AreaRelationshipSearchCriteria
@@ -355,6 +373,24 @@ func (r *SchemaResolver) AreaGroupRelationship(ctx context.Context, args struct 
 		return nil, err
 	}
 	found, err := api.AreaGroupRelationshipById(ctx, uint(id))
+	if err != nil {
+		return nil, err
+	}
+
+	dt := &AreaGroupRelationshipResolver{
+		M: *found,
+		S: r,
+		C: ctx,
+	}
+	return dt, nil
+}
+
+// Find area group relationship by unique token.
+func (r *SchemaResolver) AreaGroupRelationshipByToken(ctx context.Context, args struct {
+	Token string
+}) (*AreaGroupRelationshipResolver, error) {
+	api := r.GetApi(ctx)
+	found, err := api.AreaGroupRelationshipByToken(ctx, args.Token)
 	if err != nil {
 		return nil, err
 	}

@@ -299,6 +299,9 @@ func (api *Api) CreateAssetRelationship(ctx context.Context, request *AssetRelat
 	}
 
 	created := &AssetRelationship{
+		TokenReference: rdb.TokenReference{
+			Token: request.Token,
+		},
 		SourceAsset:      *source,
 		TargetAsset:      *target,
 		RelationshipType: *rtype,
@@ -319,6 +322,18 @@ func (api *Api) AssetRelationshipById(ctx context.Context, id uint) (*AssetRelat
 	result := api.RDB.Database
 	result = result.Preload("SourceAsset").Preload("TargetAsset").Preload("RelationshipType")
 	result = result.First(&found, id)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return found, nil
+}
+
+// Get asset relationship by token.
+func (api *Api) AssetRelationshipByToken(ctx context.Context, token string) (*AssetRelationship, error) {
+	found := &AssetRelationship{}
+	result := api.RDB.Database
+	result = result.Preload("SourceAsset").Preload("TargetAsset").Preload("RelationshipType")
+	result = result.First(&found, "token = ?", token)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -530,6 +545,9 @@ func (api *Api) CreateAssetGroupRelationship(ctx context.Context,
 	}
 
 	created := &AssetGroupRelationship{
+		TokenReference: rdb.TokenReference{
+			Token: request.Token,
+		},
 		AssetGroup:       *source,
 		Asset:            *target,
 		RelationshipType: *rtype,
@@ -550,6 +568,18 @@ func (api *Api) AssetGroupRelationshipById(ctx context.Context, id uint) (*Asset
 	result := api.RDB.Database
 	result = result.Preload("AssetGroup").Preload("Asset").Preload("RelationshipType")
 	result = result.First(&found, id)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return found, nil
+}
+
+// Get asset group relationship by token.
+func (api *Api) AssetGroupRelationshipByToken(ctx context.Context, token string) (*AssetGroupRelationship, error) {
+	found := &AssetGroupRelationship{}
+	result := api.RDB.Database
+	result = result.Preload("AssetGroup").Preload("Asset").Preload("RelationshipType")
+	result = result.First(&found, "token = ?", token)
 	if result.Error != nil {
 		return nil, result.Error
 	}

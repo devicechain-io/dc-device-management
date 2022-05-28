@@ -211,6 +211,24 @@ func (r *SchemaResolver) CustomerRelationship(ctx context.Context, args struct {
 	return dt, nil
 }
 
+// Find customer relationship by unique token.
+func (r *SchemaResolver) CustomerRelationshipByToken(ctx context.Context, args struct {
+	Token string
+}) (*CustomerRelationshipResolver, error) {
+	api := r.GetApi(ctx)
+	found, err := api.CustomerRelationshipByToken(ctx, args.Token)
+	if err != nil {
+		return nil, err
+	}
+
+	dt := &CustomerRelationshipResolver{
+		M: *found,
+		S: r,
+		C: ctx,
+	}
+	return dt, nil
+}
+
 // List all customer relationships that match the given criteria.
 func (r *SchemaResolver) CustomerRelationships(ctx context.Context, args struct {
 	Criteria model.CustomerRelationshipSearchCriteria
@@ -355,6 +373,24 @@ func (r *SchemaResolver) CustomerGroupRelationship(ctx context.Context, args str
 		return nil, err
 	}
 	found, err := api.CustomerGroupRelationshipById(ctx, uint(id))
+	if err != nil {
+		return nil, err
+	}
+
+	dt := &CustomerGroupRelationshipResolver{
+		M: *found,
+		S: r,
+		C: ctx,
+	}
+	return dt, nil
+}
+
+// Find customer group relationship by unique token.
+func (r *SchemaResolver) CustomerGroupRelationshipByToken(ctx context.Context, args struct {
+	Token string
+}) (*CustomerGroupRelationshipResolver, error) {
+	api := r.GetApi(ctx)
+	found, err := api.CustomerGroupRelationshipByToken(ctx, args.Token)
 	if err != nil {
 		return nil, err
 	}

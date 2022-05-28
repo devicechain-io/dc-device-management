@@ -297,6 +297,10 @@ func (r *AreaRelationshipResolver) DeletedAt() *string {
 	return util.FormatTime(r.M.DeletedAt.Time)
 }
 
+func (r *AreaRelationshipResolver) Token() string {
+	return r.M.Token
+}
+
 func (r *AreaRelationshipResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
 }
@@ -546,6 +550,10 @@ func (r *AreaGroupRelationshipResolver) UpdatedAt() *string {
 
 func (r *AreaGroupRelationshipResolver) DeletedAt() *string {
 	return util.FormatTime(r.M.DeletedAt.Time)
+}
+
+func (r *AreaGroupRelationshipResolver) Token() string {
+	return r.M.Token
 }
 
 func (r *AreaGroupRelationshipResolver) Metadata() *string {

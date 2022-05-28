@@ -158,6 +158,7 @@ type DeviceRelationship implements Model & MetadataEntity {
     createdAt: String
     updatedAt: String
     deletedAt: String
+    token: String!
     sourceDevice: Device!
     targetDevice: Device!
     relationshipType: DeviceRelationshipType!
@@ -166,6 +167,7 @@ type DeviceRelationship implements Model & MetadataEntity {
 
 # Data required to create a device relationship.
 input DeviceRelationshipCreateRequest {
+    token: String!
     sourceDevice: String!
     targetDevice: String!
     relationshipType: String!
@@ -264,6 +266,7 @@ type DeviceGroupRelationship implements Model {
     createdAt: String
     updatedAt: String
     deletedAt: String
+    token: String!
     deviceGroup: DeviceGroup!
     device: Device!
     relationshipType: DeviceGroupRelationshipType!
@@ -272,6 +275,7 @@ type DeviceGroupRelationship implements Model {
 
 # Data required to create a device group relationship.
 input DeviceGroupRelationshipCreateRequest {
+    token: String!
     deviceGroup: String!
     device: String!
     relationshipType: String!
@@ -405,6 +409,7 @@ type AssetRelationship implements Model {
     createdAt: String
     updatedAt: String
     deletedAt: String
+    token: String!
     sourceAsset: Asset!
     targetAsset: Asset!
     relationshipType: AssetRelationshipType!
@@ -413,6 +418,7 @@ type AssetRelationship implements Model {
 
 # Data required to create an asset relationship.
 input AssetRelationshipCreateRequest {
+    token: String!
     sourceAsset: String!
     targetAsset: String!
     relationshipType: String!
@@ -511,6 +517,7 @@ type AssetGroupRelationship implements Model {
     createdAt: String
     updatedAt: String
     deletedAt: String
+    token: String!
     assetGroup: AssetGroup!
     asset: Asset!
     relationshipType: AssetGroupRelationshipType!
@@ -519,6 +526,7 @@ type AssetGroupRelationship implements Model {
 
 # Data required to create an asset group relationship.
 input AssetGroupRelationshipCreateRequest {
+    token: String!
     assetGroup: String!
     asset: String!
     relationshipType: String!
@@ -652,6 +660,7 @@ type CustomerRelationship implements Model & MetadataEntity {
     createdAt: String
     updatedAt: String
     deletedAt: String
+    token: String!
     sourceCustomer: Customer!
     targetCustomer: Customer!
     relationshipType: CustomerRelationshipType!
@@ -660,6 +669,7 @@ type CustomerRelationship implements Model & MetadataEntity {
 
 # Data required to create a customer relationship.
 input CustomerRelationshipCreateRequest {
+    token: String!
     sourceCustomer: String!
     targetCustomer: String!
     relationshipType: String!
@@ -758,6 +768,7 @@ type CustomerGroupRelationship implements Model {
     createdAt: String
     updatedAt: String
     deletedAt: String
+    token: String!
     customerGroup: CustomerGroup!
     customer: Customer!
     relationshipType: CustomerGroupRelationshipType!
@@ -766,6 +777,7 @@ type CustomerGroupRelationship implements Model {
 
 # Data required to create a customer group relationship.
 input CustomerGroupRelationshipCreateRequest {
+    token: String!
     customerGroup: String!
     customer: String!
     relationshipType: String!
@@ -899,6 +911,7 @@ type AreaRelationship implements Model {
     createdAt: String
     updatedAt: String
     deletedAt: String
+    token: String!
     sourceArea: Area!
     targetArea: Area!
     relationshipType: AreaRelationshipType!
@@ -907,6 +920,7 @@ type AreaRelationship implements Model {
 
 # Data required to create an area relationship.
 input AreaRelationshipCreateRequest {
+    token: String!
     sourceArea: String!
     targetArea: String!
     relationshipType: String!
@@ -1005,6 +1019,7 @@ type AreaGroupRelationship implements Model {
     createdAt: String
     updatedAt: String
     deletedAt: String
+    token: String!
     areaGroup: AreaGroup!
     area: Area!
     relationshipType: AreaGroupRelationshipType!
@@ -1013,6 +1028,7 @@ type AreaGroupRelationship implements Model {
 
 # Data required to create an area group relationship.
 input AreaGroupRelationshipCreateRequest {
+    token: String!
     areaGroup: String!
     area: String!
     relationshipType: String!
@@ -1134,6 +1150,8 @@ type Query {
     deviceRelationshipTypes(criteria: DeviceRelationshipTypeSearchCriteria!): DeviceRelationshipTypeSearchResults!
     # Find a device relationship by unique id.
     deviceRelationship(id: ID!): DeviceRelationship!
+    # Find a device relationship by unique token.
+    deviceRelationshipByToken(token: String!): DeviceRelationship!
     # List device relationships that meet criteria.
     deviceRelationships(criteria: DeviceRelationshipSearchCriteria!): DeviceRelationshipSearchResults!
     # Find a device group by unique id.
@@ -1144,12 +1162,14 @@ type Query {
     deviceGroups(criteria: DeviceGroupSearchCriteria!): DeviceGroupSearchResults!
     # Find a device group relationship type by unique id.
     deviceGroupRelationshipType(id: ID!): DeviceGroupRelationshipType!
-    # Find a device group relationship type by unique id.
+    # Find a device group relationship type by unique token.
     deviceGroupRelationshipTypeByToken(token: String!): DeviceGroupRelationshipType!
     # List device group relationship types that meet criteria.
     deviceGroupRelationshipTypes(criteria: DeviceGroupRelationshipTypeSearchCriteria!): DeviceGroupRelationshipTypeSearchResults!
     # Find a device group relationship by unique id.
     deviceGroupRelationship(id: ID!): DeviceGroupRelationship!
+    # Find a device group relationship by unique token.
+    deviceGroupRelationshipByToken(token: String!): DeviceGroupRelationship!
     # List device group relationships that meet criteria.
     deviceGroupRelationships(criteria: DeviceGroupRelationshipSearchCriteria!): DeviceGroupRelationshipSearchResults!
 
@@ -1173,6 +1193,8 @@ type Query {
     assetRelationshipTypes(criteria: AssetRelationshipTypeSearchCriteria!): AssetRelationshipTypeSearchResults!
     # Find an asset relationship by unique id.
     assetRelationship(id: ID!): AssetRelationship!
+    # Find an asset relationship by unique token.
+    assetRelationshipByToken(token: String!): AssetRelationship!
     # List asset relationships that meet criteria.
     assetRelationships(criteria: AssetRelationshipSearchCriteria!): AssetRelationshipSearchResults!
     # Find an asset group by unique id.
@@ -1183,12 +1205,14 @@ type Query {
     assetGroups(criteria: AssetGroupSearchCriteria!): AssetGroupSearchResults!
     # Find an asset group relationship type by unique id.
     assetGroupRelationshipType(id: ID!): AssetGroupRelationshipType!
-    # Find an asset group relationship type by unique id.
+    # Find an asset group relationship type by unique token.
     assetGroupRelationshipTypeByToken(token: String!): AssetGroupRelationshipType!
     # List asset group relationship types that meet criteria.
     assetGroupRelationshipTypes(criteria: AssetGroupRelationshipTypeSearchCriteria!): AssetGroupRelationshipTypeSearchResults!
     # Find an asset group relationship by unique id.
     assetGroupRelationship(id: ID!): AssetGroupRelationship!
+    # Find an asset group relationship type by unique token.
+    assetGroupRelationshipByToken(token: String!): AssetGroupRelationship!
     # List asset group relationships that meet criteria.
     assetGroupRelationships(criteria: AssetGroupRelationshipSearchCriteria!): AssetGroupRelationshipSearchResults!
 
@@ -1212,6 +1236,8 @@ type Query {
     customerRelationshipTypes(criteria: CustomerRelationshipTypeSearchCriteria!): CustomerRelationshipTypeSearchResults!
     # Find a customer relationship by unique id.
     customerRelationship(id: ID!): CustomerRelationship!
+    # Find a customer relationship by unique token.
+    customerRelationshipByToken(token: String!): CustomerRelationship!
     # List customer relationships that meet criteria.
     customerRelationships(criteria: CustomerRelationshipSearchCriteria!): CustomerRelationshipSearchResults!
     # Find a customer group by unique id.
@@ -1222,15 +1248,16 @@ type Query {
     customerGroups(criteria: CustomerGroupSearchCriteria!): CustomerGroupSearchResults!
     # Find a customer group relationship type by unique id.
     customerGroupRelationshipType(id: ID!): CustomerGroupRelationshipType!
-    # Find a customer group relationship type by unique id.
+    # Find a customer group relationship type by unique token.
     customerGroupRelationshipTypeByToken(token: String!): CustomerGroupRelationshipType!
     # List customer group relationship types that meet criteria.
     customerGroupRelationshipTypes(criteria: CustomerGroupRelationshipTypeSearchCriteria!): CustomerGroupRelationshipTypeSearchResults!
     # Find a customer group relationship by unique id.
     customerGroupRelationship(id: ID!): CustomerGroupRelationship!
+    # Find a customer group relationship by unique token.
+    customerGroupRelationshipByToken(token: String!): CustomerGroupRelationship!
     # List customer group relationships that meet criteria.
     customerGroupRelationships(criteria: CustomerGroupRelationshipSearchCriteria!): CustomerGroupRelationshipSearchResults!
-
 
     # Find an area type by unique id.
     areaType(id: ID!): AreaType!
@@ -1252,6 +1279,8 @@ type Query {
     areaRelationshipTypes(criteria: AreaRelationshipTypeSearchCriteria!): AreaRelationshipTypeSearchResults!
     # Find an area relationship by unique id.
     areaRelationship(id: ID!): AreaRelationship!
+    # Find an area relationship type by unique token.
+    areaRelationshipByToken(token: String!): AreaRelationship!
     # List area relationships that meet criteria.
     areaRelationships(criteria: AreaRelationshipSearchCriteria!): AreaRelationshipSearchResults!
     # Find an area group by unique id.
@@ -1262,12 +1291,14 @@ type Query {
     areaGroups(criteria: AreaGroupSearchCriteria!): AreaGroupSearchResults!
     # Find an area group relationship type by unique id.
     areaGroupRelationshipType(id: ID!): AreaGroupRelationshipType!
-    # Find an area group relationship type by unique id.
+    # Find an area group relationship type by unique token.
     areaGroupRelationshipTypeByToken(token: String!): AreaGroupRelationshipType!
     # List area group relationship types that meet criteria.
     areaGroupRelationshipTypes(criteria: AreaGroupRelationshipTypeSearchCriteria!): AreaGroupRelationshipTypeSearchResults!
     # Find an area group relationship by unique id.
     areaGroupRelationship(id: ID!): AreaGroupRelationship!
+    # Find an area group relationship by unique token.
+    areaGroupRelationshipByToken(token: String!): AreaGroupRelationship!
     # List area group relationships that meet criteria.
     areaGroupRelationships(criteria: AreaGroupRelationshipSearchCriteria!): AreaGroupRelationshipSearchResults!
 

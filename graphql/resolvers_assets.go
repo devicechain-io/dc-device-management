@@ -297,6 +297,10 @@ func (r *AssetRelationshipResolver) DeletedAt() *string {
 	return util.FormatTime(r.M.DeletedAt.Time)
 }
 
+func (r *AssetRelationshipResolver) Token() string {
+	return r.M.Token
+}
+
 func (r *AssetRelationshipResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
 }
@@ -546,6 +550,10 @@ func (r *AssetGroupRelationshipResolver) UpdatedAt() *string {
 
 func (r *AssetGroupRelationshipResolver) DeletedAt() *string {
 	return util.FormatTime(r.M.DeletedAt.Time)
+}
+
+func (r *AssetGroupRelationshipResolver) Token() string {
+	return r.M.Token
 }
 
 func (r *AssetGroupRelationshipResolver) Metadata() *string {

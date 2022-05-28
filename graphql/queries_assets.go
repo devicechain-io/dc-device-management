@@ -211,6 +211,24 @@ func (r *SchemaResolver) AssetRelationship(ctx context.Context, args struct {
 	return dt, nil
 }
 
+// Find asset relationship by unique token.
+func (r *SchemaResolver) AssetRelationshipByToken(ctx context.Context, args struct {
+	Token string
+}) (*AssetRelationshipResolver, error) {
+	api := r.GetApi(ctx)
+	found, err := api.AssetRelationshipByToken(ctx, args.Token)
+	if err != nil {
+		return nil, err
+	}
+
+	dt := &AssetRelationshipResolver{
+		M: *found,
+		S: r,
+		C: ctx,
+	}
+	return dt, nil
+}
+
 // List all asset relationships that match the given criteria.
 func (r *SchemaResolver) AssetRelationships(ctx context.Context, args struct {
 	Criteria model.AssetRelationshipSearchCriteria
@@ -355,6 +373,24 @@ func (r *SchemaResolver) AssetGroupRelationship(ctx context.Context, args struct
 		return nil, err
 	}
 	found, err := api.AssetGroupRelationshipById(ctx, uint(id))
+	if err != nil {
+		return nil, err
+	}
+
+	dt := &AssetGroupRelationshipResolver{
+		M: *found,
+		S: r,
+		C: ctx,
+	}
+	return dt, nil
+}
+
+// Find asset group relationship by unique token.
+func (r *SchemaResolver) AssetGroupRelationshipByToken(ctx context.Context, args struct {
+	Token string
+}) (*AssetGroupRelationshipResolver, error) {
+	api := r.GetApi(ctx)
+	found, err := api.AssetGroupRelationshipByToken(ctx, args.Token)
 	if err != nil {
 		return nil, err
 	}

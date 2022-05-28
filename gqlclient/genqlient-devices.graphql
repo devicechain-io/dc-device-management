@@ -17,25 +17,6 @@ mutation createDeviceType($token: String!, $name: String, $description: String,
   }
 }
 
-# Get device type by unique internal id.
-query getDeviceTypeById($id: ID!) {
-  deviceType(id: $id) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    imageUrl
-    icon
-    backgroundColor
-    foregroundColor
-    borderColor
-    metadata
-  }
-}
-
 # Get device type by unique token.
 query getDeviceTypeByToken($token: String!) {
   deviceTypeByToken(token: $token) {
@@ -95,29 +76,6 @@ mutation createDevice($token: String!, $deviceTypeToken: String!, $name: String,
   }
 }
 
-# Get device by unique internal id.
-query getDeviceById($id: ID!) {
-  device(id: $id) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    deviceType {
-      token
-      name
-      description
-    }
-    activeAssignments {
-      id
-      token
-    }
-    metadata
-  }
-}
-
 # Get device by unique token.
 query getDeviceByToken($token: String!) {
   deviceByToken(token: $token) {
@@ -134,7 +92,6 @@ query getDeviceByToken($token: String!) {
       description
     }
     activeAssignments {
-      id
       token
     }
     metadata
@@ -158,8 +115,127 @@ query listDevices($pageNumber: Int!, $pageSize: Int!) {
         description
       }
       activeAssignments {
-        id
         token
+      }
+      metadata
+    }
+    pagination {
+      pageStart
+      pageEnd
+      totalRecords
+    }
+  }
+}
+
+# Create device relationship type and return identifiers.
+mutation createDeviceRelationshipType($token: String!, $name: String, $description: String, $metadata: String) {
+  createDeviceRelationshipType(request: { 
+    token: $token,
+    name: $name,
+    description: $description,
+    metadata: $metadata
+  }) {
+    id
+    token
+  }
+}
+
+# Get device relationship type by unique token.
+query getDeviceRelationshipTypeByToken($token: String!) {
+  deviceRelationshipTypeByToken(token: $token) {
+    id
+    createdAt
+    updatedAt
+    deletedAt
+    token
+    name
+    description
+    metadata
+  }
+}
+
+# List device relationship types that match criteria.
+query listDeviceRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
+  deviceRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+    results {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      token
+      name
+      description
+      metadata
+    }
+    pagination {
+      pageStart
+      pageEnd
+      totalRecords
+    }
+  }
+}
+
+# Create device relationship and return identifiers.
+mutation createDeviceRelationship($token: String!, $sourceDevice: String!, $targetDevice: String!, $relationshipType: String!) {
+  createDeviceRelationship(
+    request: {
+      token: $token,
+      sourceDevice: $sourceDevice
+      targetDevice: $targetDevice
+      relationshipType: $relationshipType
+    }
+  ) {
+    id
+    token
+  }
+}
+
+# Get device relationship by unique token.
+query getDeviceRelationshipByToken($token: String!) {
+  deviceRelationshipByToken(token: $token) {
+    id
+    createdAt
+    updatedAt
+    deletedAt
+    token
+    sourceDevice {
+      token
+      name
+      description
+    }
+    targetDevice {
+      token
+      name
+      description
+    }
+    relationshipType {
+      token
+      name
+      description
+    }
+    metadata
+  }
+}
+
+# List device relationship types that match criteria.
+query listDeviceRelationships($pageNumber: Int!, $pageSize: Int!) {
+  deviceRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+    results {
+      id
+      sourceDevice {
+        token
+        name
+        description
+      }
+      targetDevice {
+        token
+        name
+        description
+      }
+      relationshipType {
+        token
+        name
+        description
       }
       metadata
     }

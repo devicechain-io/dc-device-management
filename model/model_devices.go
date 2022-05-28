@@ -109,6 +109,7 @@ type DeviceRelationshipTypeSearchResults struct {
 
 // Data required to create a device relationship.
 type DeviceRelationshipCreateRequest struct {
+	Token            string
 	SourceDevice     string
 	TargetDevice     string
 	RelationshipType string
@@ -118,6 +119,7 @@ type DeviceRelationshipCreateRequest struct {
 // Captures a relationship between devices.
 type DeviceRelationship struct {
 	gorm.Model
+	rdb.TokenReference
 	rdb.MetadataEntity
 	SourceDeviceId     uint
 	SourceDevice       Device
@@ -200,6 +202,7 @@ type DeviceGroupRelationshipTypeSearchResults struct {
 
 // Data required to create a device group relationship.
 type DeviceGroupRelationshipCreateRequest struct {
+	Token            string
 	DeviceGroup      string
 	Device           string
 	RelationshipType string
@@ -209,6 +212,7 @@ type DeviceGroupRelationshipCreateRequest struct {
 // Represents a device-to-group relationship.
 type DeviceGroupRelationship struct {
 	gorm.Model
+	rdb.TokenReference
 	rdb.MetadataEntity
 	DeviceGroupId      uint
 	DeviceGroup        DeviceGroup

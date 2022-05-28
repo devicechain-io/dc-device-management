@@ -211,6 +211,24 @@ func (r *SchemaResolver) DeviceRelationship(ctx context.Context, args struct {
 	return dt, nil
 }
 
+// Find device relationship by unique token.
+func (r *SchemaResolver) DeviceRelationshipByToken(ctx context.Context, args struct {
+	Token string
+}) (*DeviceRelationshipResolver, error) {
+	api := r.GetApi(ctx)
+	found, err := api.DeviceRelationshipByToken(ctx, args.Token)
+	if err != nil {
+		return nil, err
+	}
+
+	dt := &DeviceRelationshipResolver{
+		M: *found,
+		S: r,
+		C: ctx,
+	}
+	return dt, nil
+}
+
 // List all device relationships that match the given criteria.
 func (r *SchemaResolver) DeviceRelationships(ctx context.Context, args struct {
 	Criteria model.DeviceRelationshipSearchCriteria
@@ -355,6 +373,24 @@ func (r *SchemaResolver) DeviceGroupRelationship(ctx context.Context, args struc
 		return nil, err
 	}
 	found, err := api.DeviceGroupRelationshipById(ctx, uint(id))
+	if err != nil {
+		return nil, err
+	}
+
+	dt := &DeviceGroupRelationshipResolver{
+		M: *found,
+		S: r,
+		C: ctx,
+	}
+	return dt, nil
+}
+
+// Find device group relationship by unique token.
+func (r *SchemaResolver) DeviceGroupRelationshipByToken(ctx context.Context, args struct {
+	Token string
+}) (*DeviceGroupRelationshipResolver, error) {
+	api := r.GetApi(ctx)
+	found, err := api.DeviceGroupRelationshipByToken(ctx, args.Token)
 	if err != nil {
 		return nil, err
 	}

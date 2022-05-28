@@ -299,6 +299,9 @@ func (api *Api) CreateAreaRelationship(ctx context.Context, request *AreaRelatio
 	}
 
 	created := &AreaRelationship{
+		TokenReference: rdb.TokenReference{
+			Token: request.Token,
+		},
 		SourceArea:       *source,
 		TargetArea:       *target,
 		RelationshipType: *rtype,
@@ -319,6 +322,18 @@ func (api *Api) AreaRelationshipById(ctx context.Context, id uint) (*AreaRelatio
 	result := api.RDB.Database
 	result = result.Preload("SourceArea").Preload("TargetArea").Preload("RelationshipType")
 	result = result.First(&found, id)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return found, nil
+}
+
+// Get area relationship by token.
+func (api *Api) AreaRelationshipByToken(ctx context.Context, token string) (*AreaRelationship, error) {
+	found := &AreaRelationship{}
+	result := api.RDB.Database
+	result = result.Preload("SourceArea").Preload("TargetArea").Preload("RelationshipType")
+	result = result.First(&found, "token = ?", token)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -530,6 +545,9 @@ func (api *Api) CreateAreaGroupRelationship(ctx context.Context,
 	}
 
 	created := &AreaGroupRelationship{
+		TokenReference: rdb.TokenReference{
+			Token: request.Token,
+		},
 		AreaGroup:        *source,
 		Area:             *target,
 		RelationshipType: *rtype,
@@ -550,6 +568,18 @@ func (api *Api) AreaGroupRelationshipById(ctx context.Context, id uint) (*AreaGr
 	result := api.RDB.Database
 	result = result.Preload("AreaGroup").Preload("Area").Preload("RelationshipType")
 	result = result.First(&found, id)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return found, nil
+}
+
+// Get area group relationship by token.
+func (api *Api) AreaGroupRelationshipByToken(ctx context.Context, token string) (*AreaGroupRelationship, error) {
+	found := &AreaGroupRelationship{}
+	result := api.RDB.Database
+	result = result.Preload("AreaGroup").Preload("Area").Preload("RelationshipType")
+	result = result.First(&found, "token = ?", token)
 	if result.Error != nil {
 		return nil, result.Error
 	}

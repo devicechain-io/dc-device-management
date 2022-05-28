@@ -305,6 +305,10 @@ func (r *DeviceRelationshipResolver) DeletedAt() *string {
 	return util.FormatTime(r.M.DeletedAt.Time)
 }
 
+func (r *DeviceRelationshipResolver) Token() string {
+	return r.M.Token
+}
+
 func (r *DeviceRelationshipResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
 }
@@ -554,6 +558,10 @@ func (r *DeviceGroupRelationshipResolver) UpdatedAt() *string {
 
 func (r *DeviceGroupRelationshipResolver) DeletedAt() *string {
 	return util.FormatTime(r.M.DeletedAt.Time)
+}
+
+func (r *DeviceGroupRelationshipResolver) Token() string {
+	return r.M.Token
 }
 
 func (r *DeviceGroupRelationshipResolver) Metadata() *string {

@@ -107,6 +107,7 @@ type AreaRelationshipTypeSearchResults struct {
 
 // Data required to create a area relationship.
 type AreaRelationshipCreateRequest struct {
+	Token            string
 	SourceArea       string
 	TargetArea       string
 	RelationshipType string
@@ -116,6 +117,7 @@ type AreaRelationshipCreateRequest struct {
 // Captures a relationship between areas.
 type AreaRelationship struct {
 	gorm.Model
+	rdb.TokenReference
 	rdb.MetadataEntity
 	SourceAreaId       uint
 	SourceArea         Area
@@ -198,6 +200,7 @@ type AreaGroupRelationshipTypeSearchResults struct {
 
 // Data required to create a area group relationship.
 type AreaGroupRelationshipCreateRequest struct {
+	Token            string
 	AreaGroup        string
 	Area             string
 	RelationshipType string
@@ -207,6 +210,7 @@ type AreaGroupRelationshipCreateRequest struct {
 // Represents a area-to-group relationship.
 type AreaGroupRelationship struct {
 	gorm.Model
+	rdb.TokenReference
 	rdb.MetadataEntity
 	AreaGroupId        uint
 	AreaGroup          AreaGroup
