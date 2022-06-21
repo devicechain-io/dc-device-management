@@ -159,11 +159,15 @@ func (r *CustomerResolver) CustomerType() *CustomerTypeResolver {
 			C: r.C,
 		}
 	} else {
-		rez, err := r.S.CustomerType(r.C, struct{ Id string }{Id: fmt.Sprintf("%d", r.M.CustomerTypeId)})
+		ids := []string{fmt.Sprintf("%d", r.M.CustomerTypeId)}
+		matches, err := r.S.CustomerTypesById(r.C, struct{ Ids []string }{Ids: ids})
 		if err != nil {
 			return nil
 		}
-		return rez
+		if len(matches) == 0 {
+			return nil
+		}
+		return matches[0]
 	}
 }
 

@@ -37,14 +37,14 @@ type MockApi struct {
 	mock.Mock
 }
 
-func (api *MockApi) DeviceTypeById(ctx context.Context, id uint) (*model.DeviceType, error) {
+func (api *MockApi) DeviceTypesById(ctx context.Context, ids []uint) ([]*model.DeviceType, error) {
 	args := api.Mock.Called()
-	return args.Get(0).(*model.DeviceType), args.Error(1)
+	return args.Get(0).([]*model.DeviceType), args.Error(1)
 }
 
-func (api *MockApi) DeviceTypeByToken(ctx context.Context, token string) (*model.DeviceType, error) {
+func (api *MockApi) DeviceTypesByToken(ctx context.Context, tokens []string) ([]*model.DeviceType, error) {
 	args := api.Mock.Called()
-	return args.Get(0).(*model.DeviceType), args.Error(1)
+	return args.Get(0).([]*model.DeviceType), args.Error(1)
 }
 
 func (api *MockApi) DeviceTypes(ctx context.Context, criteria model.DeviceTypeSearchCriteria) (*model.DeviceTypeSearchResults, error) {
@@ -52,14 +52,14 @@ func (api *MockApi) DeviceTypes(ctx context.Context, criteria model.DeviceTypeSe
 	return args.Get(0).(*model.DeviceTypeSearchResults), args.Error(1)
 }
 
-func (api *MockApi) DeviceById(ctx context.Context, id uint) (*model.Device, error) {
+func (api *MockApi) DevicesById(ctx context.Context, ids []uint) ([]*model.Device, error) {
 	args := api.Mock.Called()
-	return args.Get(0).(*model.Device), args.Error(1)
+	return args.Get(0).([]*model.Device), args.Error(1)
 }
 
-func (api *MockApi) DeviceByToken(ctx context.Context, token string) (*model.Device, error) {
+func (api *MockApi) DevicesByToken(ctx context.Context, tokens []string) ([]*model.Device, error) {
 	args := api.Mock.Called()
-	return args.Get(0).(*model.Device), args.Error(1)
+	return args.Get(0).([]*model.Device), args.Error(1)
 }
 
 func (api *MockApi) Devices(ctx context.Context, criteria model.DeviceSearchCriteria) (*model.DeviceSearchResults, error) {

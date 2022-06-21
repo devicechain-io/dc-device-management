@@ -9,50 +9,57 @@ package graphql
 import (
 	"context"
 	_ "embed"
-	"strconv"
 
 	"github.com/devicechain-io/dc-device-management/model"
 )
 
-// Find asset type by unique id.
-func (r *SchemaResolver) AssetType(ctx context.Context, args struct {
-	Id string
-}) (*AssetTypeResolver, error) {
+// Find asset types by unique id.
+func (r *SchemaResolver) AssetTypesById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*AssetTypeResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
 
-	found, err := api.AssetTypeById(ctx, uint(id))
+	found, err := api.AssetTypesById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AssetTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AssetTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &AssetTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find asset type by unique token.
-func (r *SchemaResolver) AssetTypeByToken(ctx context.Context, args struct {
-	Token string
-}) (*AssetTypeResolver, error) {
+// Find asset types by unique token.
+func (r *SchemaResolver) AssetTypesByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*AssetTypeResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.AssetTypeByToken(ctx, args.Token)
+	found, err := api.AssetTypesByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AssetTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AssetTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &AssetTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all asset types that match the given criteria.
@@ -73,44 +80,52 @@ func (r *SchemaResolver) AssetTypes(ctx context.Context, args struct {
 	}, nil
 }
 
-// Find asset by unique id.
-func (r *SchemaResolver) Asset(ctx context.Context, args struct {
-	Id string
-}) (*AssetResolver, error) {
+// Find assets by unique id.
+func (r *SchemaResolver) AssetsById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*AssetResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.AssetById(ctx, uint(id))
+	found, err := api.AssetsById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AssetResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AssetResolver, 0)
+	for _, dt := range found {
+		dtr := &AssetResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find asset by unique token.
-func (r *SchemaResolver) AssetByToken(ctx context.Context, args struct {
-	Token string
-}) (*AssetResolver, error) {
+// Find assets by unique token.
+func (r *SchemaResolver) AssetsByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*AssetResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.AssetByToken(ctx, args.Token)
+	found, err := api.AssetsByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AssetResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AssetResolver, 0)
+	for _, dt := range found {
+		dtr := &AssetResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all assets that match the given criteria.
@@ -131,44 +146,52 @@ func (r *SchemaResolver) Assets(ctx context.Context, args struct {
 	}, nil
 }
 
-// Find asset relationship type by unique id.
-func (r *SchemaResolver) AssetRelationshipType(ctx context.Context, args struct {
-	Id string
-}) (*AssetRelationshipTypeResolver, error) {
+// Find asset relationship types by unique id.
+func (r *SchemaResolver) AssetRelationshipTypesById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*AssetRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.AssetRelationshipTypeById(ctx, uint(id))
+	found, err := api.AssetRelationshipTypesById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AssetRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AssetRelationshipTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &AssetRelationshipTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find asset relationship type by unique token.
-func (r *SchemaResolver) AssetRelationshipTypeByToken(ctx context.Context, args struct {
-	Token string
-}) (*AssetRelationshipTypeResolver, error) {
+// Find asset relationship types by unique token.
+func (r *SchemaResolver) AssetRelationshipTypesByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*AssetRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.AssetRelationshipTypeByToken(ctx, args.Token)
+	found, err := api.AssetRelationshipTypesByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AssetRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AssetRelationshipTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &AssetRelationshipTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all asset relationship types that match the given criteria.
@@ -189,44 +212,52 @@ func (r *SchemaResolver) AssetRelationshipTypes(ctx context.Context, args struct
 	}, nil
 }
 
-// Find asset relationship by unique id.
-func (r *SchemaResolver) AssetRelationship(ctx context.Context, args struct {
-	Id string
-}) (*AssetRelationshipResolver, error) {
+// Find asset relationships by unique id.
+func (r *SchemaResolver) AssetRelationshipsById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*AssetRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.AssetRelationshipById(ctx, uint(id))
+	found, err := api.AssetRelationshipsById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AssetRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AssetRelationshipResolver, 0)
+	for _, dt := range found {
+		dtr := &AssetRelationshipResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find asset relationship by unique token.
-func (r *SchemaResolver) AssetRelationshipByToken(ctx context.Context, args struct {
-	Token string
-}) (*AssetRelationshipResolver, error) {
+// Find asset relationships by unique token.
+func (r *SchemaResolver) AssetRelationshipsByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*AssetRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.AssetRelationshipByToken(ctx, args.Token)
+	found, err := api.AssetRelationshipsByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AssetRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AssetRelationshipResolver, 0)
+	for _, dt := range found {
+		dtr := &AssetRelationshipResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all asset relationships that match the given criteria.
@@ -247,44 +278,52 @@ func (r *SchemaResolver) AssetRelationships(ctx context.Context, args struct {
 	}, nil
 }
 
-// Find asset group by unique id.
-func (r *SchemaResolver) AssetGroup(ctx context.Context, args struct {
-	Id string
-}) (*AssetGroupResolver, error) {
+// Find asset groups by unique id.
+func (r *SchemaResolver) AssetGroupsById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*AssetGroupResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.AssetGroupById(ctx, uint(id))
+	found, err := api.AssetGroupsById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AssetGroupResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AssetGroupResolver, 0)
+	for _, dt := range found {
+		dtr := &AssetGroupResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find asset group by unique token.
-func (r *SchemaResolver) AssetGroupByToken(ctx context.Context, args struct {
-	Token string
-}) (*AssetGroupResolver, error) {
+// Find asset groups by unique token.
+func (r *SchemaResolver) AssetGroupsByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*AssetGroupResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.AssetGroupByToken(ctx, args.Token)
+	found, err := api.AssetGroupsByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AssetGroupResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AssetGroupResolver, 0)
+	for _, dt := range found {
+		dtr := &AssetGroupResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all asset groups that match the given criteria.
@@ -305,44 +344,52 @@ func (r *SchemaResolver) AssetGroups(ctx context.Context, args struct {
 	}, nil
 }
 
-// Find asset group relationship type by unique id.
-func (r *SchemaResolver) AssetGroupRelationshipType(ctx context.Context, args struct {
-	Id string
-}) (*AssetGroupRelationshipTypeResolver, error) {
+// Find asset group relationship types by unique id.
+func (r *SchemaResolver) AssetGroupRelationshipTypesById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*AssetGroupRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.AssetGroupRelationshipTypeById(ctx, uint(id))
+	found, err := api.AssetGroupRelationshipTypesById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AssetGroupRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AssetGroupRelationshipTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &AssetGroupRelationshipTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find asset group relationship type by unique token.
-func (r *SchemaResolver) AssetGroupRelationshipTypeByToken(ctx context.Context, args struct {
-	Token string
-}) (*AssetGroupRelationshipTypeResolver, error) {
+// Find asset group relationship types by unique token.
+func (r *SchemaResolver) AssetGroupRelationshipTypesByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*AssetGroupRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.AssetGroupRelationshipTypeByToken(ctx, args.Token)
+	found, err := api.AssetGroupRelationshipTypesByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AssetGroupRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AssetGroupRelationshipTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &AssetGroupRelationshipTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all asset group relationship types that match the given criteria.
@@ -363,44 +410,52 @@ func (r *SchemaResolver) AssetGroupRelationshipTypes(ctx context.Context, args s
 	}, nil
 }
 
-// Find asset group relationship by unique id.
-func (r *SchemaResolver) AssetGroupRelationship(ctx context.Context, args struct {
-	Id string
-}) (*AssetGroupRelationshipResolver, error) {
+// Find asset group relationships by unique id.
+func (r *SchemaResolver) AssetGroupRelationshipsById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*AssetGroupRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.AssetGroupRelationshipById(ctx, uint(id))
+	found, err := api.AssetGroupRelationshipsById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AssetGroupRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AssetGroupRelationshipResolver, 0)
+	for _, dt := range found {
+		dtr := &AssetGroupRelationshipResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find asset group relationship by unique token.
-func (r *SchemaResolver) AssetGroupRelationshipByToken(ctx context.Context, args struct {
-	Token string
-}) (*AssetGroupRelationshipResolver, error) {
+// Find asset group relationships by unique token.
+func (r *SchemaResolver) AssetGroupRelationshipsByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*AssetGroupRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.AssetGroupRelationshipByToken(ctx, args.Token)
+	found, err := api.AssetGroupRelationshipsByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AssetGroupRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AssetGroupRelationshipResolver, 0)
+	for _, dt := range found {
+		dtr := &AssetGroupRelationshipResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all asset group relationships that match the given criteria.

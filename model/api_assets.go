@@ -44,11 +44,15 @@ func (api *Api) CreateAssetType(ctx context.Context, request *AssetTypeCreateReq
 // Update an existing asset type.
 func (api *Api) UpdateAssetType(ctx context.Context, token string,
 	request *AssetTypeCreateRequest) (*AssetType, error) {
-	found, err := api.AssetTypeByToken(ctx, request.Token)
+	matches, err := api.AssetTypesByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
+	found := matches[0]
 	found.Token = request.Token
 	found.Name = rdb.NullStrOf(request.Name)
 	found.Description = rdb.NullStrOf(request.Description)
@@ -66,20 +70,20 @@ func (api *Api) UpdateAssetType(ctx context.Context, token string,
 	return found, nil
 }
 
-// Get asset type by id.
-func (api *Api) AssetTypeById(ctx context.Context, id uint) (*AssetType, error) {
-	found := &AssetType{}
-	result := api.RDB.Database.First(&found, id)
+// Get asset types by id.
+func (api *Api) AssetTypesById(ctx context.Context, ids []uint) ([]*AssetType, error) {
+	found := make([]*AssetType, 0)
+	result := api.RDB.Database.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get asset type by token.
-func (api *Api) AssetTypeByToken(ctx context.Context, token string) (*AssetType, error) {
-	found := &AssetType{}
-	result := api.RDB.Database.First(&found, "token = ?", token)
+// Get asset types by token.
+func (api *Api) AssetTypesByToken(ctx context.Context, tokens []string) ([]*AssetType, error) {
+	found := make([]*AssetType, 0)
+	result := api.RDB.Database.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -104,9 +108,12 @@ func (api *Api) AssetTypes(ctx context.Context, criteria AssetTypeSearchCriteria
 
 // Create a new asset.
 func (api *Api) CreateAsset(ctx context.Context, request *AssetCreateRequest) (*Asset, error) {
-	dtr, err := api.AssetTypeByToken(ctx, request.AssetTypeToken)
+	matches, err := api.AssetTypesByToken(ctx, []string{request.AssetTypeToken})
 	if err != nil {
 		return nil, err
+	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
 	}
 
 	created := &Asset{
@@ -120,7 +127,7 @@ func (api *Api) CreateAsset(ctx context.Context, request *AssetCreateRequest) (*
 		MetadataEntity: rdb.MetadataEntity{
 			Metadata: rdb.MetadataStrOf(request.Metadata),
 		},
-		AssetType: dtr,
+		AssetType: matches[0],
 	}
 	result := api.RDB.Database.Create(created)
 	if result.Error != nil {
@@ -131,12 +138,16 @@ func (api *Api) CreateAsset(ctx context.Context, request *AssetCreateRequest) (*
 
 // Update an existing asset.
 func (api *Api) UpdateAsset(ctx context.Context, token string, request *AssetCreateRequest) (*Asset, error) {
-	updated, err := api.AssetByToken(ctx, request.Token)
+	matches, err := api.AssetsByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
 	// Update fields that changed.
+	updated := matches[0]
 	updated.Token = request.Token
 	updated.Name = rdb.NullStrOf(request.Name)
 	updated.Description = rdb.NullStrOf(request.Description)
@@ -144,11 +155,14 @@ func (api *Api) UpdateAsset(ctx context.Context, token string, request *AssetCre
 
 	// Update asset type if changed.
 	if request.AssetTypeToken != updated.AssetType.Token {
-		dtr, err := api.AssetTypeByToken(ctx, request.AssetTypeToken)
+		matches, err := api.AssetTypesByToken(ctx, []string{request.AssetTypeToken})
 		if err != nil {
 			return nil, err
 		}
-		updated.AssetType = dtr
+		if len(matches) == 0 {
+			return nil, gorm.ErrRecordNotFound
+		}
+		updated.AssetType = matches[0]
 	}
 
 	result := api.RDB.Database.Save(updated)
@@ -158,24 +172,24 @@ func (api *Api) UpdateAsset(ctx context.Context, token string, request *AssetCre
 	return updated, nil
 }
 
-// Get asset by id.
-func (api *Api) AssetById(ctx context.Context, id uint) (*Asset, error) {
-	found := &Asset{}
+// Get assets by id.
+func (api *Api) AssetsById(ctx context.Context, ids []uint) ([]*Asset, error) {
+	found := make([]*Asset, 0)
 	result := api.RDB.Database
 	result = result.Preload("AssetType")
-	result = result.First(found, id)
+	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get asset by token.
-func (api *Api) AssetByToken(ctx context.Context, token string) (*Asset, error) {
-	found := &Asset{}
+// Get assets by token.
+func (api *Api) AssetsByToken(ctx context.Context, tokens []string) ([]*Asset, error) {
+	found := make([]*Asset, 0)
 	result := api.RDB.Database
 	result = result.Preload("AssetType")
-	result = result.First(&found, "token = ?", token)
+	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -228,11 +242,15 @@ func (api *Api) CreateAssetRelationshipType(ctx context.Context, request *AssetR
 // Update an existing asset relationship type.
 func (api *Api) UpdateAssetRelationshipType(ctx context.Context, token string,
 	request *AssetRelationshipTypeCreateRequest) (*AssetRelationshipType, error) {
-	updated, err := api.AssetRelationshipTypeByToken(ctx, request.Token)
+	matches, err := api.AssetRelationshipTypesByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
+	updated := matches[0]
 	updated.Token = request.Token
 	updated.Name = rdb.NullStrOf(request.Name)
 	updated.Description = rdb.NullStrOf(request.Description)
@@ -245,20 +263,20 @@ func (api *Api) UpdateAssetRelationshipType(ctx context.Context, token string,
 	return updated, nil
 }
 
-// Get asset relationship type by id.
-func (api *Api) AssetRelationshipTypeById(ctx context.Context, id uint) (*AssetRelationshipType, error) {
-	found := &AssetRelationshipType{}
-	result := api.RDB.Database.First(&found, id)
+// Get asset relationship types by id.
+func (api *Api) AssetRelationshipTypesById(ctx context.Context, ids []uint) ([]*AssetRelationshipType, error) {
+	found := make([]*AssetRelationshipType, 0)
+	result := api.RDB.Database.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get asset relationship type by token.
-func (api *Api) AssetRelationshipTypeByToken(ctx context.Context, token string) (*AssetRelationshipType, error) {
-	found := &AssetRelationshipType{}
-	result := api.RDB.Database.First(&found, "token = ?", token)
+// Get asset relationship types by token.
+func (api *Api) AssetRelationshipTypesByToken(ctx context.Context, tokens []string) ([]*AssetRelationshipType, error) {
+	found := make([]*AssetRelationshipType, 0)
+	result := api.RDB.Database.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -282,29 +300,42 @@ func (api *Api) AssetRelationshipTypes(ctx context.Context,
 	}, nil
 }
 
+// Create map by token from list of assets.
+func assetByTokenMap(vals []*Asset) map[string]*Asset {
+	results := make(map[string]*Asset)
+	for _, val := range vals {
+		results[val.Token] = val
+	}
+	return results
+}
+
 // Create a new asset relationship.
 func (api *Api) CreateAssetRelationship(ctx context.Context, request *AssetRelationshipCreateRequest) (*AssetRelationship, error) {
 	// Look up token references.
-	source, err := api.AssetByToken(ctx, request.SourceAsset)
+	amatches, err := api.AssetsByToken(ctx, []string{request.SourceAsset, request.TargetAsset})
 	if err != nil {
 		return nil, err
 	}
-	target, err := api.AssetByToken(ctx, request.TargetAsset)
+	if len(amatches) != 2 {
+		return nil, gorm.ErrRecordNotFound
+	}
+	mmap := assetByTokenMap(amatches)
+
+	artmatches, err := api.AssetRelationshipTypesByToken(ctx, []string{request.RelationshipType})
 	if err != nil {
 		return nil, err
 	}
-	rtype, err := api.AssetRelationshipTypeByToken(ctx, request.RelationshipType)
-	if err != nil {
-		return nil, err
+	if len(artmatches) == 0 {
+		return nil, gorm.ErrRecordNotFound
 	}
 
 	created := &AssetRelationship{
 		TokenReference: rdb.TokenReference{
 			Token: request.Token,
 		},
-		SourceAsset:      *source,
-		TargetAsset:      *target,
-		RelationshipType: *rtype,
+		SourceAsset:      *mmap[request.SourceAsset],
+		TargetAsset:      *mmap[request.TargetAsset],
+		RelationshipType: *artmatches[0],
 		MetadataEntity: rdb.MetadataEntity{
 			Metadata: rdb.MetadataStrOf(request.Metadata),
 		},
@@ -316,24 +347,24 @@ func (api *Api) CreateAssetRelationship(ctx context.Context, request *AssetRelat
 	return created, nil
 }
 
-// Get asset relationship by id.
-func (api *Api) AssetRelationshipById(ctx context.Context, id uint) (*AssetRelationship, error) {
-	found := &AssetRelationship{}
+// Get asset relationships by id.
+func (api *Api) AssetRelationshipsById(ctx context.Context, ids []uint) ([]*AssetRelationship, error) {
+	found := make([]*AssetRelationship, 0)
 	result := api.RDB.Database
 	result = result.Preload("SourceAsset").Preload("TargetAsset").Preload("RelationshipType")
-	result = result.First(&found, id)
+	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get asset relationship by token.
-func (api *Api) AssetRelationshipByToken(ctx context.Context, token string) (*AssetRelationship, error) {
-	found := &AssetRelationship{}
+// Get asset relationships by token.
+func (api *Api) AssetRelationshipsByToken(ctx context.Context, tokens []string) ([]*AssetRelationship, error) {
+	found := make([]*AssetRelationship, 0)
 	result := api.RDB.Database
 	result = result.Preload("SourceAsset").Preload("TargetAsset").Preload("RelationshipType")
-	result = result.First(&found, "token = ?", token)
+	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -389,11 +420,15 @@ func (api *Api) CreateAssetGroup(ctx context.Context, request *AssetGroupCreateR
 // Update an existing asset type.
 func (api *Api) UpdateAssetGroup(ctx context.Context, token string,
 	request *AssetGroupCreateRequest) (*AssetGroup, error) {
-	updated, err := api.AssetGroupByToken(ctx, request.Token)
+	matches, err := api.AssetGroupsByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
+	updated := matches[0]
 	updated.Token = request.Token
 	updated.Name = rdb.NullStrOf(request.Name)
 	updated.Description = rdb.NullStrOf(request.Description)
@@ -411,20 +446,20 @@ func (api *Api) UpdateAssetGroup(ctx context.Context, token string,
 	return updated, nil
 }
 
-// Get asset group by id.
-func (api *Api) AssetGroupById(ctx context.Context, id uint) (*AssetGroup, error) {
-	found := &AssetGroup{}
-	result := api.RDB.Database.First(&found, id)
+// Get asset groups by id.
+func (api *Api) AssetGroupsById(ctx context.Context, ids []uint) ([]*AssetGroup, error) {
+	found := make([]*AssetGroup, 0)
+	result := api.RDB.Database.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get asset group by token.
-func (api *Api) AssetGroupByToken(ctx context.Context, token string) (*AssetGroup, error) {
-	found := &AssetGroup{}
-	result := api.RDB.Database.First(&found, "token = ?", token)
+// Get asset groups by token.
+func (api *Api) AssetGroupsByToken(ctx context.Context, tokens []string) ([]*AssetGroup, error) {
+	found := make([]*AssetGroup, 0)
+	result := api.RDB.Database.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -472,11 +507,15 @@ func (api *Api) CreateAssetGroupRelationshipType(ctx context.Context,
 // Update an existing asset group relationship type.
 func (api *Api) UpdateAssetGroupRelationshipType(ctx context.Context, token string,
 	request *AssetGroupRelationshipTypeCreateRequest) (*AssetGroupRelationshipType, error) {
-	updated, err := api.AssetGroupRelationshipTypeByToken(ctx, request.Token)
+	matches, err := api.AssetGroupRelationshipTypesByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
+	updated := matches[0]
 	updated.Token = request.Token
 	updated.Name = rdb.NullStrOf(request.Name)
 	updated.Description = rdb.NullStrOf(request.Description)
@@ -489,20 +528,20 @@ func (api *Api) UpdateAssetGroupRelationshipType(ctx context.Context, token stri
 	return updated, nil
 }
 
-// Get asset group relationship type by id.
-func (api *Api) AssetGroupRelationshipTypeById(ctx context.Context, id uint) (*AssetGroupRelationshipType, error) {
-	found := &AssetGroupRelationshipType{}
-	result := api.RDB.Database.First(&found, id)
+// Get asset group relationship types by id.
+func (api *Api) AssetGroupRelationshipTypesById(ctx context.Context, ids []uint) ([]*AssetGroupRelationshipType, error) {
+	found := make([]*AssetGroupRelationshipType, 0)
+	result := api.RDB.Database.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get asset group relationship type by token.
-func (api *Api) AssetGroupRelationshipTypeByToken(ctx context.Context, token string) (*AssetGroupRelationshipType, error) {
-	found := &AssetGroupRelationshipType{}
-	result := api.RDB.Database.First(&found, "token = ?", token)
+// Get asset group relationship types by token.
+func (api *Api) AssetGroupRelationshipTypesByToken(ctx context.Context, tokens []string) ([]*AssetGroupRelationshipType, error) {
+	found := make([]*AssetGroupRelationshipType, 0)
+	result := api.RDB.Database.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -531,26 +570,35 @@ func (api *Api) CreateAssetGroupRelationship(ctx context.Context,
 	request *AssetGroupRelationshipCreateRequest) (*AssetGroupRelationship, error) {
 
 	// Look up token references.
-	source, err := api.AssetGroupByToken(ctx, request.AssetGroup)
+	agmatches, err := api.AssetGroupsByToken(ctx, []string{request.AssetGroup})
 	if err != nil {
 		return nil, err
 	}
-	target, err := api.AssetByToken(ctx, request.Asset)
+	if len(agmatches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
+	amatches, err := api.AssetsByToken(ctx, []string{request.Asset})
 	if err != nil {
 		return nil, err
 	}
-	rtype, err := api.AssetGroupRelationshipTypeByToken(ctx, request.RelationshipType)
+	if len(amatches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
+	agrmatches, err := api.AssetGroupRelationshipTypesByToken(ctx, []string{request.RelationshipType})
 	if err != nil {
 		return nil, err
+	}
+	if len(agrmatches) == 0 {
+		return nil, gorm.ErrRecordNotFound
 	}
 
 	created := &AssetGroupRelationship{
 		TokenReference: rdb.TokenReference{
 			Token: request.Token,
 		},
-		AssetGroup:       *source,
-		Asset:            *target,
-		RelationshipType: *rtype,
+		AssetGroup:       *agmatches[0],
+		Asset:            *amatches[0],
+		RelationshipType: *agrmatches[0],
 		MetadataEntity: rdb.MetadataEntity{
 			Metadata: rdb.MetadataStrOf(request.Metadata),
 		},
@@ -562,24 +610,24 @@ func (api *Api) CreateAssetGroupRelationship(ctx context.Context,
 	return created, nil
 }
 
-// Get asset group relationship by id.
-func (api *Api) AssetGroupRelationshipById(ctx context.Context, id uint) (*AssetGroupRelationship, error) {
-	found := &AssetGroupRelationship{}
+// Get asset group relationships by id.
+func (api *Api) AssetGroupRelationshipsById(ctx context.Context, ids []uint) ([]*AssetGroupRelationship, error) {
+	found := make([]*AssetGroupRelationship, 0)
 	result := api.RDB.Database
 	result = result.Preload("AssetGroup").Preload("Asset").Preload("RelationshipType")
-	result = result.First(&found, id)
+	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get asset group relationship by token.
-func (api *Api) AssetGroupRelationshipByToken(ctx context.Context, token string) (*AssetGroupRelationship, error) {
-	found := &AssetGroupRelationship{}
+// Get asset group relationships by token.
+func (api *Api) AssetGroupRelationshipsByToken(ctx context.Context, tokens []string) ([]*AssetGroupRelationship, error) {
+	found := make([]*AssetGroupRelationship, 0)
 	result := api.RDB.Database
 	result = result.Preload("AssetGroup").Preload("Asset").Preload("RelationshipType")
-	result = result.First(&found, "token = ?", token)
+	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}

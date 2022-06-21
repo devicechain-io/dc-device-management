@@ -143,11 +143,15 @@ func (r *DeviceAssignmentResolver) DeviceGroup() *DeviceGroupResolver {
 			C: r.C,
 		}
 	} else if r.M.DeviceGroupId != nil {
-		rez, err := r.S.DeviceGroup(r.C, struct{ Id string }{Id: fmt.Sprintf("%d", *r.M.DeviceGroupId)})
+		ids := []string{fmt.Sprintf("%d", *r.M.DeviceGroupId)}
+		matches, err := r.S.DeviceGroupsById(r.C, struct{ Ids []string }{Ids: ids})
 		if err != nil {
 			return nil
 		}
-		return rez
+		if len(matches) == 0 {
+			return nil
+		}
+		return matches[0]
 	}
 	return nil
 }
@@ -160,11 +164,15 @@ func (r *DeviceAssignmentResolver) Asset() *AssetResolver {
 			C: r.C,
 		}
 	} else if r.M.AssetId != nil {
-		rez, err := r.S.Asset(r.C, struct{ Id string }{Id: fmt.Sprintf("%d", *r.M.AssetId)})
+		ids := []string{fmt.Sprintf("%d", *r.M.AssetId)}
+		matches, err := r.S.AssetsById(r.C, struct{ Ids []string }{Ids: ids})
 		if err != nil {
 			return nil
 		}
-		return rez
+		if len(matches) == 0 {
+			return nil
+		}
+		return matches[0]
 	}
 	return nil
 }
@@ -177,11 +185,15 @@ func (r *DeviceAssignmentResolver) AssetGroup() *AssetGroupResolver {
 			C: r.C,
 		}
 	} else if r.M.AssetGroupId != nil {
-		rez, err := r.S.AssetGroup(r.C, struct{ Id string }{Id: fmt.Sprintf("%d", *r.M.AssetGroupId)})
+		ids := []string{fmt.Sprintf("%d", *r.M.AssetGroupId)}
+		matches, err := r.S.AssetGroupsById(r.C, struct{ Ids []string }{Ids: ids})
 		if err != nil {
 			return nil
 		}
-		return rez
+		if len(matches) == 0 {
+			return nil
+		}
+		return matches[0]
 	}
 	return nil
 }
@@ -194,11 +206,15 @@ func (r *DeviceAssignmentResolver) Customer() *CustomerResolver {
 			C: r.C,
 		}
 	} else if r.M.CustomerId != nil {
-		rez, err := r.S.Customer(r.C, struct{ Id string }{Id: fmt.Sprintf("%d", *r.M.CustomerId)})
+		ids := []string{fmt.Sprintf("%d", *r.M.CustomerId)}
+		matches, err := r.S.CustomersById(r.C, struct{ Ids []string }{Ids: ids})
 		if err != nil {
 			return nil
 		}
-		return rez
+		if len(matches) == 0 {
+			return nil
+		}
+		return matches[0]
 	}
 	return nil
 }
@@ -211,11 +227,15 @@ func (r *DeviceAssignmentResolver) CustomerGroup() *CustomerGroupResolver {
 			C: r.C,
 		}
 	} else if r.M.CustomerGroupId != nil {
-		rez, err := r.S.CustomerGroup(r.C, struct{ Id string }{Id: fmt.Sprintf("%d", *r.M.CustomerGroupId)})
+		ids := []string{fmt.Sprintf("%d", *r.M.CustomerGroupId)}
+		matches, err := r.S.CustomerGroupsById(r.C, struct{ Ids []string }{Ids: ids})
 		if err != nil {
 			return nil
 		}
-		return rez
+		if len(matches) == 0 {
+			return nil
+		}
+		return matches[0]
 	}
 	return nil
 }
@@ -228,11 +248,15 @@ func (r *DeviceAssignmentResolver) Area() *AreaResolver {
 			C: r.C,
 		}
 	} else if r.M.AreaId != nil {
-		rez, err := r.S.Area(r.C, struct{ Id string }{Id: fmt.Sprintf("%d", *r.M.AreaId)})
+		ids := []string{fmt.Sprintf("%d", *r.M.AreaId)}
+		matches, err := r.S.AreasById(r.C, struct{ Ids []string }{Ids: ids})
 		if err != nil {
 			return nil
 		}
-		return rez
+		if len(matches) == 0 {
+			return nil
+		}
+		return matches[0]
 	}
 	return nil
 }
@@ -245,11 +269,15 @@ func (r *DeviceAssignmentResolver) AreaGroup() *AreaGroupResolver {
 			C: r.C,
 		}
 	} else if r.M.AreaGroupId != nil {
-		rez, err := r.S.AreaGroup(r.C, struct{ Id string }{Id: fmt.Sprintf("%d", *r.M.AreaGroupId)})
+		ids := []string{fmt.Sprintf("%d", *r.M.AreaGroupId)}
+		matches, err := r.S.AreaGroupsById(r.C, struct{ Ids []string }{Ids: ids})
 		if err != nil {
 			return nil
 		}
-		return rez
+		if len(matches) == 0 {
+			return nil
+		}
+		return matches[0]
 	}
 	return nil
 }
@@ -262,11 +290,15 @@ func (r *DeviceAssignmentResolver) DeviceAssignmentStatus() *DeviceAssignmentSta
 			C: r.C,
 		}
 	} else if r.M.DeviceAssignmentStatusId != nil {
-		rez, err := r.S.DeviceAssignmentStatus(r.C, struct{ Id string }{Id: fmt.Sprintf("%d", *r.M.DeviceAssignmentStatusId)})
+		ids := []string{fmt.Sprintf("%d", *r.M.DeviceAssignmentStatusId)}
+		matches, err := r.S.DeviceAssignmentStatusesById(r.C, struct{ Ids []string }{Ids: ids})
 		if err != nil {
 			return nil
 		}
-		return rez
+		if len(matches) == 0 {
+			return nil
+		}
+		return matches[0]
 	}
 	return nil
 }

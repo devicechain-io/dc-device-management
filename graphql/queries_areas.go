@@ -9,50 +9,57 @@ package graphql
 import (
 	"context"
 	_ "embed"
-	"strconv"
 
 	"github.com/devicechain-io/dc-device-management/model"
 )
 
-// Find area type by unique id.
-func (r *SchemaResolver) AreaType(ctx context.Context, args struct {
-	Id string
-}) (*AreaTypeResolver, error) {
+// Find area types by unique id.
+func (r *SchemaResolver) AreaTypesById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*AreaTypeResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
 
-	found, err := api.AreaTypeById(ctx, uint(id))
+	found, err := api.AreaTypesById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AreaTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AreaTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &AreaTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find area type by unique token.
-func (r *SchemaResolver) AreaTypeByToken(ctx context.Context, args struct {
-	Token string
-}) (*AreaTypeResolver, error) {
+// Find area types by unique token.
+func (r *SchemaResolver) AreaTypesByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*AreaTypeResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.AreaTypeByToken(ctx, args.Token)
+	found, err := api.AreaTypesByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AreaTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AreaTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &AreaTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all area types that match the given criteria.
@@ -73,44 +80,52 @@ func (r *SchemaResolver) AreaTypes(ctx context.Context, args struct {
 	}, nil
 }
 
-// Find area by unique id.
-func (r *SchemaResolver) Area(ctx context.Context, args struct {
-	Id string
-}) (*AreaResolver, error) {
+// Find areas by unique id.
+func (r *SchemaResolver) AreasById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*AreaResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.AreaById(ctx, uint(id))
+	found, err := api.AreasById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AreaResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AreaResolver, 0)
+	for _, dt := range found {
+		dtr := &AreaResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find area by unique token.
-func (r *SchemaResolver) AreaByToken(ctx context.Context, args struct {
-	Token string
-}) (*AreaResolver, error) {
+// Find areas by unique token.
+func (r *SchemaResolver) AreasByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*AreaResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.AreaByToken(ctx, args.Token)
+	found, err := api.AreasByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AreaResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AreaResolver, 0)
+	for _, dt := range found {
+		dtr := &AreaResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all areas that match the given criteria.
@@ -131,44 +146,52 @@ func (r *SchemaResolver) Areas(ctx context.Context, args struct {
 	}, nil
 }
 
-// Find area relationship type by unique id.
-func (r *SchemaResolver) AreaRelationshipType(ctx context.Context, args struct {
-	Id string
-}) (*AreaRelationshipTypeResolver, error) {
+// Find area relationship types by unique id.
+func (r *SchemaResolver) AreaRelationshipTypesById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*AreaRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.AreaRelationshipTypeById(ctx, uint(id))
+	found, err := api.AreaRelationshipTypesById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AreaRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AreaRelationshipTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &AreaRelationshipTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find area relationship type by unique token.
-func (r *SchemaResolver) AreaRelationshipTypeByToken(ctx context.Context, args struct {
-	Token string
-}) (*AreaRelationshipTypeResolver, error) {
+// Find area relationship types by unique token.
+func (r *SchemaResolver) AreaRelationshipTypesByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*AreaRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.AreaRelationshipTypeByToken(ctx, args.Token)
+	found, err := api.AreaRelationshipTypesByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AreaRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AreaRelationshipTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &AreaRelationshipTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all area relationship types that match the given criteria.
@@ -189,44 +212,52 @@ func (r *SchemaResolver) AreaRelationshipTypes(ctx context.Context, args struct 
 	}, nil
 }
 
-// Find area relationship by unique id.
-func (r *SchemaResolver) AreaRelationship(ctx context.Context, args struct {
-	Id string
-}) (*AreaRelationshipResolver, error) {
+// Find area relationships by unique id.
+func (r *SchemaResolver) AreaRelationshipsById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*AreaRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.AreaRelationshipById(ctx, uint(id))
+	found, err := api.AreaRelationshipsById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AreaRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AreaRelationshipResolver, 0)
+	for _, dt := range found {
+		dtr := &AreaRelationshipResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find area relationship by unique token.
-func (r *SchemaResolver) AreaRelationshipByToken(ctx context.Context, args struct {
-	Token string
-}) (*AreaRelationshipResolver, error) {
+// Find area relationships by unique token.
+func (r *SchemaResolver) AreaRelationshipsByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*AreaRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.AreaRelationshipByToken(ctx, args.Token)
+	found, err := api.AreaRelationshipsByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AreaRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AreaRelationshipResolver, 0)
+	for _, dt := range found {
+		dtr := &AreaRelationshipResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all area relationships that match the given criteria.
@@ -247,44 +278,52 @@ func (r *SchemaResolver) AreaRelationships(ctx context.Context, args struct {
 	}, nil
 }
 
-// Find area group by unique id.
-func (r *SchemaResolver) AreaGroup(ctx context.Context, args struct {
-	Id string
-}) (*AreaGroupResolver, error) {
+// Find area groups by unique id.
+func (r *SchemaResolver) AreaGroupsById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*AreaGroupResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.AreaGroupById(ctx, uint(id))
+	found, err := api.AreaGroupsById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AreaGroupResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AreaGroupResolver, 0)
+	for _, dt := range found {
+		dtr := &AreaGroupResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find area group by unique token.
-func (r *SchemaResolver) AreaGroupByToken(ctx context.Context, args struct {
-	Token string
-}) (*AreaGroupResolver, error) {
+// Find area groups by unique token.
+func (r *SchemaResolver) AreaGroupsByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*AreaGroupResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.AreaGroupByToken(ctx, args.Token)
+	found, err := api.AreaGroupsByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AreaGroupResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AreaGroupResolver, 0)
+	for _, dt := range found {
+		dtr := &AreaGroupResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all area groups that match the given criteria.
@@ -305,44 +344,52 @@ func (r *SchemaResolver) AreaGroups(ctx context.Context, args struct {
 	}, nil
 }
 
-// Find area group relationship type by unique id.
-func (r *SchemaResolver) AreaGroupRelationshipType(ctx context.Context, args struct {
-	Id string
-}) (*AreaGroupRelationshipTypeResolver, error) {
+// Find area group relationship types by unique id.
+func (r *SchemaResolver) AreaGroupRelationshipTypesById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*AreaGroupRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.AreaGroupRelationshipTypeById(ctx, uint(id))
+	found, err := api.AreaGroupRelationshipTypesById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AreaGroupRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AreaGroupRelationshipTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &AreaGroupRelationshipTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find area group relationship type by unique token.
-func (r *SchemaResolver) AreaGroupRelationshipTypeByToken(ctx context.Context, args struct {
-	Token string
-}) (*AreaGroupRelationshipTypeResolver, error) {
+// Find area group relationship types by unique token.
+func (r *SchemaResolver) AreaGroupRelationshipTypesByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*AreaGroupRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.AreaGroupRelationshipTypeByToken(ctx, args.Token)
+	found, err := api.AreaGroupRelationshipTypesByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AreaGroupRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AreaGroupRelationshipTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &AreaGroupRelationshipTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all area group relationship types that match the given criteria.
@@ -363,44 +410,52 @@ func (r *SchemaResolver) AreaGroupRelationshipTypes(ctx context.Context, args st
 	}, nil
 }
 
-// Find area group relationship by unique id.
-func (r *SchemaResolver) AreaGroupRelationship(ctx context.Context, args struct {
-	Id string
-}) (*AreaGroupRelationshipResolver, error) {
+// Find area group relationships by unique id.
+func (r *SchemaResolver) AreaGroupRelationshipsById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*AreaGroupRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.AreaGroupRelationshipById(ctx, uint(id))
+	found, err := api.AreaGroupRelationshipsById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AreaGroupRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AreaGroupRelationshipResolver, 0)
+	for _, dt := range found {
+		dtr := &AreaGroupRelationshipResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find area group relationship by unique token.
-func (r *SchemaResolver) AreaGroupRelationshipByToken(ctx context.Context, args struct {
-	Token string
-}) (*AreaGroupRelationshipResolver, error) {
+// Find area group relationships by unique token.
+func (r *SchemaResolver) AreaGroupRelationshipsByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*AreaGroupRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.AreaGroupRelationshipByToken(ctx, args.Token)
+	found, err := api.AreaGroupRelationshipsByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &AreaGroupRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*AreaGroupRelationshipResolver, 0)
+	for _, dt := range found {
+		dtr := &AreaGroupRelationshipResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all area group relationships that match the given criteria.

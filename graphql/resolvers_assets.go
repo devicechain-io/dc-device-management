@@ -159,11 +159,15 @@ func (r *AssetResolver) AssetType() *AssetTypeResolver {
 			C: r.C,
 		}
 	} else {
-		rez, err := r.S.AssetType(r.C, struct{ Id string }{Id: fmt.Sprintf("%d", r.M.AssetTypeId)})
+		ids := []string{fmt.Sprintf("%d", r.M.AssetTypeId)}
+		matches, err := r.S.AssetTypesById(r.C, struct{ Ids []string }{Ids: ids})
 		if err != nil {
 			return nil
 		}
-		return rez
+		if len(matches) == 0 {
+			return nil
+		}
+		return matches[0]
 	}
 }
 

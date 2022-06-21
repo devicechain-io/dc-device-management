@@ -38,11 +38,15 @@ func (api *Api) CreateDeviceAssignmentStatus(ctx context.Context, request *Devic
 // Update an existing device assignment status.
 func (api *Api) UpdateDeviceAssignmentStatus(ctx context.Context, token string,
 	request *DeviceAssignmentStatusCreateRequest) (*DeviceAssignmentStatus, error) {
-	found, err := api.DeviceAssignmentStatusByToken(ctx, request.Token)
+	matches, err := api.DeviceAssignmentStatusesByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
+	found := matches[0]
 	found.Token = request.Token
 	found.Name = rdb.NullStrOf(request.Name)
 	found.Description = rdb.NullStrOf(request.Description)
@@ -55,20 +59,20 @@ func (api *Api) UpdateDeviceAssignmentStatus(ctx context.Context, token string,
 	return found, nil
 }
 
-// Get device assignment status by id.
-func (api *Api) DeviceAssignmentStatusById(ctx context.Context, id uint) (*DeviceAssignmentStatus, error) {
-	found := &DeviceAssignmentStatus{}
-	result := api.RDB.Database.First(&found, id)
+// Get device assignment statuses by id.
+func (api *Api) DeviceAssignmentStatusesById(ctx context.Context, ids []uint) ([]*DeviceAssignmentStatus, error) {
+	found := make([]*DeviceAssignmentStatus, 0)
+	result := api.RDB.Database.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get device assignment status by token.
-func (api *Api) DeviceAssignmentStatusByToken(ctx context.Context, token string) (*DeviceAssignmentStatus, error) {
-	found := &DeviceAssignmentStatus{}
-	result := api.RDB.Database.First(&found, "token = ?", token)
+// Get device assignment statuses by token.
+func (api *Api) DeviceAssignmentStatusesByToken(ctx context.Context, tokens []string) ([]*DeviceAssignmentStatus, error) {
+	found := make([]*DeviceAssignmentStatus, 0)
+	result := api.RDB.Database.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -104,73 +108,97 @@ func (api *Api) CreateDeviceAssignment(ctx context.Context, request *DeviceAssig
 	}
 
 	// Associate device.
-	device, err := api.DeviceByToken(ctx, request.Device)
+	matches, err := api.DevicesByToken(ctx, []string{request.Device})
 	if err != nil {
 		return nil, err
 	}
-	created.DeviceId = device.ID
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
+	created.DeviceId = matches[0].ID
 
 	// Associate device group if provided.
 	if request.DeviceGroup != nil {
-		dgroup, err := api.DeviceGroupByToken(ctx, *request.DeviceGroup)
+		matches, err := api.DeviceGroupsByToken(ctx, []string{*request.DeviceGroup})
 		if err != nil {
 			return nil, err
 		}
-		created.DeviceGroupId = &dgroup.ID
+		if len(matches) == 0 {
+			return nil, gorm.ErrRecordNotFound
+		}
+		created.DeviceGroupId = &matches[0].ID
 	}
 
 	// Associate asset if provided.
 	if request.Asset != nil {
-		asset, err := api.AssetByToken(ctx, *request.Asset)
+		matches, err := api.AssetsByToken(ctx, []string{*request.Asset})
 		if err != nil {
 			return nil, err
 		}
-		created.AssetId = &asset.ID
+		if len(matches) == 0 {
+			return nil, gorm.ErrRecordNotFound
+		}
+		created.AssetId = &matches[0].ID
 	}
 
 	// Associate asset group if provided.
 	if request.AssetGroup != nil {
-		agroup, err := api.AssetGroupByToken(ctx, *request.AssetGroup)
+		matches, err := api.AssetGroupsByToken(ctx, []string{*request.AssetGroup})
 		if err != nil {
 			return nil, err
 		}
-		created.AssetGroupId = &agroup.ID
+		if len(matches) == 0 {
+			return nil, gorm.ErrRecordNotFound
+		}
+		created.AssetGroupId = &matches[0].ID
 	}
 
 	// Associate customer if provided.
 	if request.Customer != nil {
-		customer, err := api.CustomerByToken(ctx, *request.Customer)
+		matches, err := api.CustomersByToken(ctx, []string{*request.Customer})
 		if err != nil {
 			return nil, err
 		}
-		created.CustomerId = &customer.ID
+		if len(matches) == 0 {
+			return nil, gorm.ErrRecordNotFound
+		}
+		created.CustomerId = &matches[0].ID
 	}
 
 	// Associate customer group if provided.
 	if request.CustomerGroup != nil {
-		cgroup, err := api.CustomerGroupByToken(ctx, *request.CustomerGroup)
+		matches, err := api.CustomerGroupsByToken(ctx, []string{*request.CustomerGroup})
 		if err != nil {
 			return nil, err
 		}
-		created.CustomerGroupId = &cgroup.ID
+		if len(matches) == 0 {
+			return nil, gorm.ErrRecordNotFound
+		}
+		created.CustomerGroupId = &matches[0].ID
 	}
 
 	// Associate area if provided.
 	if request.Area != nil {
-		area, err := api.AreaByToken(ctx, *request.Area)
+		matches, err := api.AreasByToken(ctx, []string{*request.Area})
 		if err != nil {
 			return nil, err
 		}
-		created.AreaId = &area.ID
+		if len(matches) == 0 {
+			return nil, gorm.ErrRecordNotFound
+		}
+		created.AreaId = &matches[0].ID
 	}
 
 	// Associate area group if provided.
 	if request.AreaGroup != nil {
-		agroup, err := api.AreaGroupByToken(ctx, *request.AreaGroup)
+		matches, err := api.AreaGroupsByToken(ctx, []string{*request.AreaGroup})
 		if err != nil {
 			return nil, err
 		}
-		created.AreaGroupId = &agroup.ID
+		if len(matches) == 0 {
+			return nil, gorm.ErrRecordNotFound
+		}
+		created.AreaGroupId = &matches[0].ID
 	}
 
 	// Set active flag.
@@ -190,11 +218,15 @@ func (api *Api) CreateDeviceAssignment(ctx context.Context, request *DeviceAssig
 // Update an existing device assignment.
 func (api *Api) UpdateDeviceAssignment(ctx context.Context, token string,
 	request *DeviceAssignmentCreateRequest) (*DeviceAssignment, error) {
-	found, err := api.DeviceAssignmentByToken(ctx, request.Token)
+	matches, err := api.DeviceAssignmentsByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
+	found := matches[0]
 	found.Token = request.Token
 	found.Metadata = rdb.MetadataStrOf(request.Metadata)
 
@@ -208,25 +240,25 @@ func (api *Api) UpdateDeviceAssignment(ctx context.Context, token string,
 }
 
 // Get device assignment by id.
-func (api *Api) DeviceAssignmentById(ctx context.Context, id uint) (*DeviceAssignment, error) {
-	found := &DeviceAssignment{}
+func (api *Api) DeviceAssignmentsById(ctx context.Context, ids []uint) ([]*DeviceAssignment, error) {
+	found := make([]*DeviceAssignment, 0)
 	result := api.RDB.Database
 	result = result.Preload("Device").Preload("DeviceGroup").Preload("Asset").Preload("AssetGroup")
 	result = result.Preload("Customer").Preload("CustomerGroup").Preload("Area").Preload("AreaGroup")
-	result = result.First(&found, id)
+	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get device assignment by token.
-func (api *Api) DeviceAssignmentByToken(ctx context.Context, token string) (*DeviceAssignment, error) {
-	found := &DeviceAssignment{}
+// Get device assignments by token.
+func (api *Api) DeviceAssignmentsByToken(ctx context.Context, tokens []string) ([]*DeviceAssignment, error) {
+	found := make([]*DeviceAssignment, 0)
 	result := api.RDB.Database
 	result = result.Preload("Device").Preload("DeviceGroup").Preload("Asset").Preload("AssetGroup")
 	result = result.Preload("Customer").Preload("CustomerGroup").Preload("Area").Preload("AreaGroup")
-	result = result.First(&found, "token = ?", token)
+	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}

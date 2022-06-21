@@ -1130,188 +1130,188 @@ type DeviceAssignmentSearchResults {
 
 # Contains queries executed against model.
 type Query {
-    # Find a device type by unique id.
-    deviceType(id: ID!): DeviceType!
-    # Find a device type by unique token.
-    deviceTypeByToken(token: String!): DeviceType!
+    # Find device types by unique id.
+    deviceTypesById(ids: [ID!]!): [DeviceType!]!
+    # Find device types by unique token.
+    deviceTypesByToken(tokens: [String!]!): [DeviceType!]!
     # List device types that meet criteria.
     deviceTypes(criteria: DeviceTypeSearchCriteria!): DeviceTypeSearchResults!
-    # Find a device by unique id.
-    device(id: ID!): Device!
-    # Find a device by unique token.
-    deviceByToken(token: String!): Device!
+    # Find devices by unique id.
+    devicesById(ids: [ID!]!): [Device!]!
+    # Find devices by unique token.
+    devicesByToken(tokens: [String!]!): [Device!]!
     # List devices that meet criteria.
     devices(criteria: DeviceSearchCriteria!): DeviceSearchResults!
-    # Find a device relationship type by unique id.
-    deviceRelationshipType(id: ID!): DeviceRelationshipType!
-    # Find a device relationship type by unique token.
-    deviceRelationshipTypeByToken(token: String!): DeviceRelationshipType!
+    # Find device relationship types by unique id.
+    deviceRelationshipTypesById(ids: [ID!]!): [DeviceRelationshipType!]!
+    # Find device relationship types by unique token.
+    deviceRelationshipTypesByToken(tokens: [String!]!): [DeviceRelationshipType!]!
     # List device relationship types that meet criteria.
     deviceRelationshipTypes(criteria: DeviceRelationshipTypeSearchCriteria!): DeviceRelationshipTypeSearchResults!
-    # Find a device relationship by unique id.
-    deviceRelationship(id: ID!): DeviceRelationship!
-    # Find a device relationship by unique token.
-    deviceRelationshipByToken(token: String!): DeviceRelationship!
+    # Find device relationships by unique id.
+    deviceRelationshipsById(ids: [ID!]!): [DeviceRelationship!]!
+    # Find device relationships by unique token.
+    deviceRelationshipsByToken(tokens: [String!]!): [DeviceRelationship!]!
     # List device relationships that meet criteria.
     deviceRelationships(criteria: DeviceRelationshipSearchCriteria!): DeviceRelationshipSearchResults!
-    # Find a device group by unique id.
-    deviceGroup(id: ID!): DeviceGroup!
-    # Find a device group by unique token.
-    deviceGroupByToken(token: String!): DeviceGroup!
+    # Find device groups by unique id.
+    deviceGroupsById(ids: [ID!]!): [DeviceGroup!]!
+    # Find device groups by unique token.
+    deviceGroupsByToken(tokens: [String!]!): [DeviceGroup!]!
     # List device groups that meet criteria.
     deviceGroups(criteria: DeviceGroupSearchCriteria!): DeviceGroupSearchResults!
-    # Find a device group relationship type by unique id.
-    deviceGroupRelationshipType(id: ID!): DeviceGroupRelationshipType!
-    # Find a device group relationship type by unique token.
-    deviceGroupRelationshipTypeByToken(token: String!): DeviceGroupRelationshipType!
+    # Find device group relationship types by unique id.
+    deviceGroupRelationshipTypesById(ids: [ID!]!): [DeviceGroupRelationshipType!]!
+    # Find device group relationship types by unique token.
+    deviceGroupRelationshipTypesByToken(tokens: [String!]!): [DeviceGroupRelationshipType!]!
     # List device group relationship types that meet criteria.
     deviceGroupRelationshipTypes(criteria: DeviceGroupRelationshipTypeSearchCriteria!): DeviceGroupRelationshipTypeSearchResults!
-    # Find a device group relationship by unique id.
-    deviceGroupRelationship(id: ID!): DeviceGroupRelationship!
-    # Find a device group relationship by unique token.
-    deviceGroupRelationshipByToken(token: String!): DeviceGroupRelationship!
+    # Find device group relationships by unique id.
+    deviceGroupRelationshipsById(ids: [ID!]!): [DeviceGroupRelationship!]!
+    # Find device group relationships by unique token.
+    deviceGroupRelationshipsByToken(tokens: [String!]!): [DeviceGroupRelationship!]!
     # List device group relationships that meet criteria.
     deviceGroupRelationships(criteria: DeviceGroupRelationshipSearchCriteria!): DeviceGroupRelationshipSearchResults!
 
-    # Find an asset type by unique id.
-    assetType(id: ID!): AssetType!
-    # Find an asset type by unique token.
-    assetTypeByToken(token: String!): AssetType!
+    # Find asset types by unique id.
+    assetTypesById(ids: [ID!]!): [AssetType!]!
+    # Find asset types by unique token.
+    assetTypesByToken(tokens: [String!]!): [AssetType!]!
     # List asset types that meet criteria.
     assetTypes(criteria: AssetTypeSearchCriteria!): AssetTypeSearchResults!
-    # Find an asset by unique id.
-    asset(id: ID!): Asset!
-    # Find a device by unique token.
-    assetByToken(token: String!): Asset!
+    # Find assets by unique id.
+    assetsById(ids: [ID!]!): [Asset!]!
+    # Find assets by unique token.
+    assetsByToken(tokens: [String!]!): [Asset!]!
     # List assets that meet criteria.
     assets(criteria: AssetSearchCriteria!): AssetSearchResults!
-    # Find an asset relationship type by unique id.
-    assetRelationshipType(id: ID!): AssetRelationshipType!
-    # Find an asset relationship type by unique token.
-    assetRelationshipTypeByToken(token: String!): AssetRelationshipType!
+    # Find asset relationship types by unique id.
+    assetRelationshipTypesById(ids: [ID!]!): [AssetRelationshipType!]!
+    # Find asset relationship types by unique token.
+    assetRelationshipTypesByToken(tokens: [String!]!): [AssetRelationshipType!]!
     # List asset relationship types that meet criteria.
     assetRelationshipTypes(criteria: AssetRelationshipTypeSearchCriteria!): AssetRelationshipTypeSearchResults!
-    # Find an asset relationship by unique id.
-    assetRelationship(id: ID!): AssetRelationship!
-    # Find an asset relationship by unique token.
-    assetRelationshipByToken(token: String!): AssetRelationship!
+    # Find asset relationships by unique id.
+    assetRelationshipsById(ids: [ID!]!): [AssetRelationship!]!
+    # Find an asset relationships by unique token.
+    assetRelationshipsByToken(tokens: [String!]!): [AssetRelationship!]!
     # List asset relationships that meet criteria.
     assetRelationships(criteria: AssetRelationshipSearchCriteria!): AssetRelationshipSearchResults!
-    # Find an asset group by unique id.
-    assetGroup(id: ID!): AssetGroup!
-    # Find an asset group by unique token.
-    assetGroupByToken(token: String!): AssetGroup!
+    # Find asset groups by unique id.
+    assetGroupsById(ids: [ID!]!): [AssetGroup!]!
+    # Find asset groups by unique token.
+    assetGroupsByToken(tokens: [String!]!): [AssetGroup!]!
     # List asset groups that meet criteria.
     assetGroups(criteria: AssetGroupSearchCriteria!): AssetGroupSearchResults!
-    # Find an asset group relationship type by unique id.
-    assetGroupRelationshipType(id: ID!): AssetGroupRelationshipType!
-    # Find an asset group relationship type by unique token.
-    assetGroupRelationshipTypeByToken(token: String!): AssetGroupRelationshipType!
+    # Find asset group relationship types by unique id.
+    assetGroupRelationshipTypesById(ids: [ID!]!): [AssetGroupRelationshipType!]!
+    # Find asset group relationship types by unique token.
+    assetGroupRelationshipTypesByToken(tokens: [String!]!): [AssetGroupRelationshipType!]!
     # List asset group relationship types that meet criteria.
     assetGroupRelationshipTypes(criteria: AssetGroupRelationshipTypeSearchCriteria!): AssetGroupRelationshipTypeSearchResults!
-    # Find an asset group relationship by unique id.
-    assetGroupRelationship(id: ID!): AssetGroupRelationship!
-    # Find an asset group relationship type by unique token.
-    assetGroupRelationshipByToken(token: String!): AssetGroupRelationship!
+    # Find asset group relationships by unique id.
+    assetGroupRelationshipsById(ids: [ID!]!): [AssetGroupRelationship!]!
+    # Find asset group relationships type by unique token.
+    assetGroupRelationshipsByToken(tokens: [String!]!): [AssetGroupRelationship!]!
     # List asset group relationships that meet criteria.
     assetGroupRelationships(criteria: AssetGroupRelationshipSearchCriteria!): AssetGroupRelationshipSearchResults!
 
-    # Find a customer type by unique id.
-    customerType(id: ID!): CustomerType!
-    # Find a customer type by unique token.
-    customerTypeByToken(token: String!): CustomerType!
+    # Find customer types by unique id.
+    customerTypesById(ids: [ID!]!): [CustomerType!]!
+    # Find customer types by unique token.
+    customerTypesByToken(tokens: [String!]!): [CustomerType!]!
     # List customer types that meet criteria.
     customerTypes(criteria: CustomerTypeSearchCriteria!): CustomerTypeSearchResults!
-    # Find a customer by unique id.
-    customer(id: ID!): Customer!
-    # Find a customer by unique token.
-    customerByToken(token: String!): Customer!
+    # Find customers by unique id.
+    customersById(ids: [ID!]!): [Customer!]!
+    # Find customers by unique token.
+    customersByToken(tokens: [String!]!): [Customer!]!
     # List customers that meet criteria.
     customers(criteria: CustomerSearchCriteria!): CustomerSearchResults!
-    # Find a customer relationship type by unique id.
-    customerRelationshipType(id: ID!): CustomerRelationshipType!
-    # Find a customer relationship type by unique token.
-    customerRelationshipTypeByToken(token: String!): CustomerRelationshipType!
+    # Find customer relationship types by unique id.
+    customerRelationshipTypesById(ids: [ID!]!): [CustomerRelationshipType!]!
+    # Find customer relationship types by unique token.
+    customerRelationshipTypesByToken(tokens: [String!]!): [CustomerRelationshipType!]!
     # List customer relationship types that meet criteria.
     customerRelationshipTypes(criteria: CustomerRelationshipTypeSearchCriteria!): CustomerRelationshipTypeSearchResults!
-    # Find a customer relationship by unique id.
-    customerRelationship(id: ID!): CustomerRelationship!
-    # Find a customer relationship by unique token.
-    customerRelationshipByToken(token: String!): CustomerRelationship!
+    # Find customer relationships by unique id.
+    customerRelationshipsById(ids: [ID!]!): [CustomerRelationship!]!
+    # Find customer relationships by unique token.
+    customerRelationshipsByToken(tokens: [String!]!): [CustomerRelationship!]!
     # List customer relationships that meet criteria.
     customerRelationships(criteria: CustomerRelationshipSearchCriteria!): CustomerRelationshipSearchResults!
-    # Find a customer group by unique id.
-    customerGroup(id: ID!): CustomerGroup!
-    # Find a customer group by unique token.
-    customerGroupByToken(token: String!): CustomerGroup!
+    # Find customer groups by unique id.
+    customerGroupsById(ids: [ID!]!): [CustomerGroup!]!
+    # Find customer groups by unique token.
+    customerGroupsByToken(tokens: [String!]!): [CustomerGroup!]!
     # List customer groups that meet criteria.
     customerGroups(criteria: CustomerGroupSearchCriteria!): CustomerGroupSearchResults!
-    # Find a customer group relationship type by unique id.
-    customerGroupRelationshipType(id: ID!): CustomerGroupRelationshipType!
-    # Find a customer group relationship type by unique token.
-    customerGroupRelationshipTypeByToken(token: String!): CustomerGroupRelationshipType!
+    # Find customer group relationship types by unique id.
+    customerGroupRelationshipTypesById(ids: [ID!]!): [CustomerGroupRelationshipType!]!
+    # Find customer group relationship types by unique token.
+    customerGroupRelationshipTypesByToken(tokens: [String!]!): [CustomerGroupRelationshipType!]!
     # List customer group relationship types that meet criteria.
     customerGroupRelationshipTypes(criteria: CustomerGroupRelationshipTypeSearchCriteria!): CustomerGroupRelationshipTypeSearchResults!
-    # Find a customer group relationship by unique id.
-    customerGroupRelationship(id: ID!): CustomerGroupRelationship!
-    # Find a customer group relationship by unique token.
-    customerGroupRelationshipByToken(token: String!): CustomerGroupRelationship!
+    # Find customer group relationship by unique id.
+    customerGroupRelationshipsById(ids: [ID!]!): [CustomerGroupRelationship!]!
+    # Find customer group relationship by unique token.
+    customerGroupRelationshipsByToken(tokens: [String!]!): [CustomerGroupRelationship!]!
     # List customer group relationships that meet criteria.
     customerGroupRelationships(criteria: CustomerGroupRelationshipSearchCriteria!): CustomerGroupRelationshipSearchResults!
 
-    # Find an area type by unique id.
-    areaType(id: ID!): AreaType!
-    # Find an area type by unique token.
-    areaTypeByToken(token: String!): AreaType!
+    # Find area types by unique id.
+    areaTypesById(ids: [ID!]!): [AreaType!]!
+    # Find area types by unique token.
+    areaTypesByToken(tokens: [String!]!): [AreaType!]!
     # List area types that meet criteria.
     areaTypes(criteria: AreaTypeSearchCriteria!): AreaTypeSearchResults!
-    # Find an area by unique id.
-    area(id: ID!): Area!
-    # Find a device by unique token.
-    areaByToken(token: String!): Area!
+    # Find areas by unique id.
+    areasById(ids: [ID!]!): [Area!]!
+    # Find areas by unique token.
+    areasByToken(tokens: [String!]!): [Area!]!
     # List areas that meet criteria.
     areas(criteria: AreaSearchCriteria!): AreaSearchResults!
-    # Find an area relationship type by unique id.
-    areaRelationshipType(id: ID!): AreaRelationshipType!
-    # Find an area relationship type by unique token.
-    areaRelationshipTypeByToken(token: String!): AreaRelationshipType!
+    # Find area relationship types by unique id.
+    areaRelationshipTypesById(ids: [ID!]!): [AreaRelationshipType!]!
+    # Find area relationship types by unique token.
+    areaRelationshipTypesByToken(tokens: [String!]!): [AreaRelationshipType!]!
     # List area relationship types that meet criteria.
     areaRelationshipTypes(criteria: AreaRelationshipTypeSearchCriteria!): AreaRelationshipTypeSearchResults!
-    # Find an area relationship by unique id.
-    areaRelationship(id: ID!): AreaRelationship!
-    # Find an area relationship type by unique token.
-    areaRelationshipByToken(token: String!): AreaRelationship!
+    # Find area relationships by unique id.
+    areaRelationshipsById(ids: [ID!]!): [AreaRelationship!]!
+    # Find area relationships by unique token.
+    areaRelationshipsByToken(tokens: [String!]!): [AreaRelationship!]!
     # List area relationships that meet criteria.
     areaRelationships(criteria: AreaRelationshipSearchCriteria!): AreaRelationshipSearchResults!
-    # Find an area group by unique id.
-    areaGroup(id: ID!): AreaGroup!
-    # Find an area group by unique token.
-    areaGroupByToken(token: String!): AreaGroup!
+    # Find area groups by unique id.
+    areaGroupsById(ids: [ID!]!): [AreaGroup!]!
+    # Find area groups by unique token.
+    areaGroupsByToken(tokens: [String!]!): [AreaGroup!]!
     # List area groups that meet criteria.
     areaGroups(criteria: AreaGroupSearchCriteria!): AreaGroupSearchResults!
-    # Find an area group relationship type by unique id.
-    areaGroupRelationshipType(id: ID!): AreaGroupRelationshipType!
-    # Find an area group relationship type by unique token.
-    areaGroupRelationshipTypeByToken(token: String!): AreaGroupRelationshipType!
+    # Find area group relationship types by unique id.
+    areaGroupRelationshipTypesById(ids: [ID!]!): [AreaGroupRelationshipType!]!
+    # Find area group relationship types by unique token.
+    areaGroupRelationshipTypesByToken(tokens: [String!]!): [AreaGroupRelationshipType!]!
     # List area group relationship types that meet criteria.
     areaGroupRelationshipTypes(criteria: AreaGroupRelationshipTypeSearchCriteria!): AreaGroupRelationshipTypeSearchResults!
-    # Find an area group relationship by unique id.
-    areaGroupRelationship(id: ID!): AreaGroupRelationship!
-    # Find an area group relationship by unique token.
-    areaGroupRelationshipByToken(token: String!): AreaGroupRelationship!
+    # Find area group relationships by unique id.
+    areaGroupRelationshipsById(ids: [ID!]!): [AreaGroupRelationship!]!
+    # Find area group relationships by unique token.
+    areaGroupRelationshipsByToken(tokens: [String!]!): [AreaGroupRelationship!]!
     # List area group relationships that meet criteria.
     areaGroupRelationships(criteria: AreaGroupRelationshipSearchCriteria!): AreaGroupRelationshipSearchResults!
 
-    # Find a device assignment status by unique id.
-    deviceAssignmentStatus(id: ID!): DeviceAssignmentStatus!
-    # Find a device assignment status by unique token.
-    deviceAssignmentStatusByToken(token: String!): DeviceAssignmentStatus!
+    # Find a device assignment statuses by unique id.
+    deviceAssignmentStatusesById(ids: [ID!]!): [DeviceAssignmentStatus!]!
+    # Find a device assignment statuses by unique token.
+    deviceAssignmentStatusesByToken(tokens: [String!]!): [DeviceAssignmentStatus!]!
     # List device assignment statuses that meet criteria.
     deviceAssignmentStatuses(criteria: DeviceAssignmentStatusSearchCriteria!): DeviceAssignmentStatusSearchResults!
-    # Find a device assignment by unique id.
-    deviceAssignment(id: ID!): DeviceAssignment!
-    # Find a device assignment by unique token.
-    deviceAssignmentByToken(token: String!): DeviceAssignment!
+    # Find a device assignments by unique id.
+    deviceAssignmentsById(ids: [ID!]!): [DeviceAssignment!]!
+    # Find a device assignments by unique token.
+    deviceAssignmentsByToken(tokens: [String!]!): [DeviceAssignment!]!
     # List device assignments that meet criteria.
     deviceAssignments(criteria: DeviceAssignmentSearchCriteria!): DeviceAssignmentSearchResults!
     # List all device assignments for device with given id.

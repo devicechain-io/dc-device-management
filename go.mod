@@ -8,7 +8,6 @@ require (
 	github.com/devicechain-io/dc-k8s v0.0.0
 	github.com/devicechain-io/dc-microservice v0.0.0
 	github.com/go-gormigrate/gormigrate/v2 v2.0.1
-	github.com/go-redis/cache/v8 v8.4.3
 	github.com/google/uuid v1.3.0
 	github.com/graph-gophers/graphql-go v1.4.0
 	github.com/rs/zerolog v1.26.1
@@ -32,6 +31,7 @@ require (
 	github.com/go-openapi/jsonpointer v0.19.5 // indirect
 	github.com/go-openapi/jsonreference v0.20.0 // indirect
 	github.com/go-openapi/swag v0.21.1 // indirect
+	github.com/go-redis/cache/v8 v8.4.3 // indirect
 	github.com/go-redis/redis/v8 v8.11.5 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect

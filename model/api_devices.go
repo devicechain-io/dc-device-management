@@ -44,11 +44,15 @@ func (api *Api) CreateDeviceType(ctx context.Context, request *DeviceTypeCreateR
 // Update an existing device type.
 func (api *Api) UpdateDeviceType(ctx context.Context, token string,
 	request *DeviceTypeCreateRequest) (*DeviceType, error) {
-	found, err := api.DeviceTypeByToken(ctx, request.Token)
+	matches, err := api.DeviceTypesByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
+	found := matches[0]
 	found.Token = request.Token
 	found.Name = rdb.NullStrOf(request.Name)
 	found.Description = rdb.NullStrOf(request.Description)
@@ -66,20 +70,20 @@ func (api *Api) UpdateDeviceType(ctx context.Context, token string,
 	return found, nil
 }
 
-// Get device type by id.
-func (api *Api) DeviceTypeById(ctx context.Context, id uint) (*DeviceType, error) {
-	found := &DeviceType{}
-	result := api.RDB.Database.First(&found, id)
+// Get device types by id.
+func (api *Api) DeviceTypesById(ctx context.Context, ids []uint) ([]*DeviceType, error) {
+	found := make([]*DeviceType, 0)
+	result := api.RDB.Database.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get device type by token.
-func (api *Api) DeviceTypeByToken(ctx context.Context, token string) (*DeviceType, error) {
-	found := &DeviceType{}
-	result := api.RDB.Database.First(&found, "token = ?", token)
+// Get device types by token.
+func (api *Api) DeviceTypesByToken(ctx context.Context, tokens []string) ([]*DeviceType, error) {
+	found := make([]*DeviceType, 0)
+	result := api.RDB.Database.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -104,9 +108,12 @@ func (api *Api) DeviceTypes(ctx context.Context, criteria DeviceTypeSearchCriter
 
 // Create a new device.
 func (api *Api) CreateDevice(ctx context.Context, request *DeviceCreateRequest) (*Device, error) {
-	dtr, err := api.DeviceTypeByToken(ctx, request.DeviceTypeToken)
+	matches, err := api.DeviceTypesByToken(ctx, []string{request.DeviceTypeToken})
 	if err != nil {
 		return nil, err
+	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
 	}
 
 	created := &Device{
@@ -120,7 +127,7 @@ func (api *Api) CreateDevice(ctx context.Context, request *DeviceCreateRequest) 
 		MetadataEntity: rdb.MetadataEntity{
 			Metadata: rdb.MetadataStrOf(request.Metadata),
 		},
-		DeviceType: dtr,
+		DeviceType: matches[0],
 	}
 	result := api.RDB.Database.Create(created)
 	if result.Error != nil {
@@ -131,12 +138,16 @@ func (api *Api) CreateDevice(ctx context.Context, request *DeviceCreateRequest) 
 
 // Update an existing device.
 func (api *Api) UpdateDevice(ctx context.Context, token string, request *DeviceCreateRequest) (*Device, error) {
-	updated, err := api.DeviceByToken(ctx, request.Token)
+	matches, err := api.DevicesByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
 	// Update fields that changed.
+	updated := matches[0]
 	updated.Token = request.Token
 	updated.Name = rdb.NullStrOf(request.Name)
 	updated.Description = rdb.NullStrOf(request.Description)
@@ -144,11 +155,14 @@ func (api *Api) UpdateDevice(ctx context.Context, token string, request *DeviceC
 
 	// Update device type if changed.
 	if request.DeviceTypeToken != updated.DeviceType.Token {
-		dtr, err := api.DeviceTypeByToken(ctx, request.DeviceTypeToken)
+		matches, err := api.DeviceTypesByToken(ctx, []string{request.DeviceTypeToken})
 		if err != nil {
 			return nil, err
 		}
-		updated.DeviceType = dtr
+		if len(matches) == 0 {
+			return nil, gorm.ErrRecordNotFound
+		}
+		updated.DeviceType = matches[0]
 	}
 
 	result := api.RDB.Database.Save(updated)
@@ -158,24 +172,24 @@ func (api *Api) UpdateDevice(ctx context.Context, token string, request *DeviceC
 	return updated, nil
 }
 
-// Get device by id.
-func (api *Api) DeviceById(ctx context.Context, id uint) (*Device, error) {
-	found := &Device{}
+// Get devices by id.
+func (api *Api) DevicesById(ctx context.Context, ids []uint) ([]*Device, error) {
+	found := make([]*Device, 0)
 	result := api.RDB.Database
 	result = result.Preload("DeviceType")
-	result = result.First(found, id)
+	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get device by token.
-func (api *Api) DeviceByToken(ctx context.Context, token string) (*Device, error) {
-	found := &Device{}
+// Get devices by token.
+func (api *Api) DevicesByToken(ctx context.Context, tokens []string) ([]*Device, error) {
+	found := make([]*Device, 0)
 	result := api.RDB.Database
 	result = result.Preload("DeviceType")
-	result = result.First(&found, "token = ?", token)
+	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -228,11 +242,15 @@ func (api *Api) CreateDeviceRelationshipType(ctx context.Context, request *Devic
 // Update an existing device relationship type.
 func (api *Api) UpdateDeviceRelationshipType(ctx context.Context, token string,
 	request *DeviceRelationshipTypeCreateRequest) (*DeviceRelationshipType, error) {
-	updated, err := api.DeviceRelationshipTypeByToken(ctx, request.Token)
+	matches, err := api.DeviceRelationshipTypesByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
+	updated := matches[0]
 	updated.Token = request.Token
 	updated.Name = rdb.NullStrOf(request.Name)
 	updated.Description = rdb.NullStrOf(request.Description)
@@ -245,20 +263,20 @@ func (api *Api) UpdateDeviceRelationshipType(ctx context.Context, token string,
 	return updated, nil
 }
 
-// Get device relationship type by id.
-func (api *Api) DeviceRelationshipTypeById(ctx context.Context, id uint) (*DeviceRelationshipType, error) {
-	found := &DeviceRelationshipType{}
-	result := api.RDB.Database.First(&found, id)
+// Get device relationship types by id.
+func (api *Api) DeviceRelationshipTypesById(ctx context.Context, ids []uint) ([]*DeviceRelationshipType, error) {
+	found := make([]*DeviceRelationshipType, 0)
+	result := api.RDB.Database.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get device relationship type by token.
-func (api *Api) DeviceRelationshipTypeByToken(ctx context.Context, token string) (*DeviceRelationshipType, error) {
-	found := &DeviceRelationshipType{}
-	result := api.RDB.Database.First(&found, "token = ?", token)
+// Get device relationship types by token.
+func (api *Api) DeviceRelationshipTypesByToken(ctx context.Context, tokens []string) ([]*DeviceRelationshipType, error) {
+	found := make([]*DeviceRelationshipType, 0)
+	result := api.RDB.Database.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -282,29 +300,43 @@ func (api *Api) DeviceRelationshipTypes(ctx context.Context,
 	}, nil
 }
 
+// Create map by token from list of devices.
+func deviceByTokenMap(vals []*Device) map[string]*Device {
+	results := make(map[string]*Device)
+	for _, val := range vals {
+		results[val.Token] = val
+	}
+	return results
+}
+
 // Create a new device relationship.
 func (api *Api) CreateDeviceRelationship(ctx context.Context, request *DeviceRelationshipCreateRequest) (*DeviceRelationship, error) {
-	// Look up token references.
-	source, err := api.DeviceByToken(ctx, request.SourceDevice)
+	// Look up device token references.
+	dvmatches, err := api.DevicesByToken(ctx, []string{request.SourceDevice, request.TargetDevice})
 	if err != nil {
 		return nil, err
 	}
-	target, err := api.DeviceByToken(ctx, request.TargetDevice)
+	if len(dvmatches) != 2 {
+		return nil, gorm.ErrRecordNotFound
+	}
+	mmap := deviceByTokenMap(dvmatches)
+
+	// Look up relationship token reference.
+	drmatches, err := api.DeviceRelationshipTypesByToken(ctx, []string{request.RelationshipType})
 	if err != nil {
 		return nil, err
 	}
-	rtype, err := api.DeviceRelationshipTypeByToken(ctx, request.RelationshipType)
-	if err != nil {
-		return nil, err
+	if len(drmatches) == 0 {
+		return nil, gorm.ErrRecordNotFound
 	}
 
 	created := &DeviceRelationship{
 		TokenReference: rdb.TokenReference{
 			Token: request.Token,
 		},
-		SourceDevice:     *source,
-		TargetDevice:     *target,
-		RelationshipType: *rtype,
+		SourceDevice:     *mmap[request.SourceDevice],
+		TargetDevice:     *mmap[request.TargetDevice],
+		RelationshipType: *drmatches[0],
 		MetadataEntity: rdb.MetadataEntity{
 			Metadata: rdb.MetadataStrOf(request.Metadata),
 		},
@@ -316,24 +348,24 @@ func (api *Api) CreateDeviceRelationship(ctx context.Context, request *DeviceRel
 	return created, nil
 }
 
-// Get device relationship by id.
-func (api *Api) DeviceRelationshipById(ctx context.Context, id uint) (*DeviceRelationship, error) {
-	found := &DeviceRelationship{}
+// Get device relationships by id.
+func (api *Api) DeviceRelationshipsById(ctx context.Context, ids []uint) ([]*DeviceRelationship, error) {
+	found := make([]*DeviceRelationship, 0)
 	result := api.RDB.Database
 	result = result.Preload("SourceDevice").Preload("TargetDevice").Preload("RelationshipType")
-	result = result.First(&found, id)
+	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get device relationship by token.
-func (api *Api) DeviceRelationshipByToken(ctx context.Context, token string) (*DeviceRelationship, error) {
-	found := &DeviceRelationship{}
+// Get device relationships by token.
+func (api *Api) DeviceRelationshipsByToken(ctx context.Context, tokens []string) ([]*DeviceRelationship, error) {
+	found := make([]*DeviceRelationship, 0)
 	result := api.RDB.Database
 	result = result.Preload("SourceDevice").Preload("TargetDevice").Preload("RelationshipType")
-	result = result.First(&found, "token = ?", token)
+	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -389,11 +421,15 @@ func (api *Api) CreateDeviceGroup(ctx context.Context, request *DeviceGroupCreat
 // Update an existing device type.
 func (api *Api) UpdateDeviceGroup(ctx context.Context, token string,
 	request *DeviceGroupCreateRequest) (*DeviceGroup, error) {
-	updated, err := api.DeviceGroupByToken(ctx, request.Token)
+	matches, err := api.DeviceGroupsByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
+	updated := matches[0]
 	updated.Token = request.Token
 	updated.Name = rdb.NullStrOf(request.Name)
 	updated.Description = rdb.NullStrOf(request.Description)
@@ -411,20 +447,20 @@ func (api *Api) UpdateDeviceGroup(ctx context.Context, token string,
 	return updated, nil
 }
 
-// Get device group by id.
-func (api *Api) DeviceGroupById(ctx context.Context, id uint) (*DeviceGroup, error) {
-	found := &DeviceGroup{}
-	result := api.RDB.Database.First(&found, id)
+// Get device groups by id.
+func (api *Api) DeviceGroupsById(ctx context.Context, ids []uint) ([]*DeviceGroup, error) {
+	found := make([]*DeviceGroup, 0)
+	result := api.RDB.Database.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get device group by token.
-func (api *Api) DeviceGroupByToken(ctx context.Context, token string) (*DeviceGroup, error) {
-	found := &DeviceGroup{}
-	result := api.RDB.Database.First(&found, "token = ?", token)
+// Get device groups by token.
+func (api *Api) DeviceGroupsByToken(ctx context.Context, tokens []string) ([]*DeviceGroup, error) {
+	found := make([]*DeviceGroup, 0)
+	result := api.RDB.Database.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -472,11 +508,15 @@ func (api *Api) CreateDeviceGroupRelationshipType(ctx context.Context,
 // Update an existing device group relationship type.
 func (api *Api) UpdateDeviceGroupRelationshipType(ctx context.Context, token string,
 	request *DeviceGroupRelationshipTypeCreateRequest) (*DeviceGroupRelationshipType, error) {
-	updated, err := api.DeviceGroupRelationshipTypeByToken(ctx, request.Token)
+	matches, err := api.DeviceGroupRelationshipTypesByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
+	updated := matches[0]
 	updated.Token = request.Token
 	updated.Name = rdb.NullStrOf(request.Name)
 	updated.Description = rdb.NullStrOf(request.Description)
@@ -489,20 +529,20 @@ func (api *Api) UpdateDeviceGroupRelationshipType(ctx context.Context, token str
 	return updated, nil
 }
 
-// Get device group relationship type by id.
-func (api *Api) DeviceGroupRelationshipTypeById(ctx context.Context, id uint) (*DeviceGroupRelationshipType, error) {
-	found := &DeviceGroupRelationshipType{}
-	result := api.RDB.Database.First(&found, id)
+// Get device group relationship types by id.
+func (api *Api) DeviceGroupRelationshipTypesById(ctx context.Context, ids []uint) ([]*DeviceGroupRelationshipType, error) {
+	found := make([]*DeviceGroupRelationshipType, 0)
+	result := api.RDB.Database.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get device group relationship type by token.
-func (api *Api) DeviceGroupRelationshipTypeByToken(ctx context.Context, token string) (*DeviceGroupRelationshipType, error) {
-	found := &DeviceGroupRelationshipType{}
-	result := api.RDB.Database.First(&found, "token = ?", token)
+// Get device group relationship types by token.
+func (api *Api) DeviceGroupRelationshipTypesByToken(ctx context.Context, tokens []string) ([]*DeviceGroupRelationshipType, error) {
+	found := make([]*DeviceGroupRelationshipType, 0)
+	result := api.RDB.Database.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -531,26 +571,35 @@ func (api *Api) CreateDeviceGroupRelationship(ctx context.Context,
 	request *DeviceGroupRelationshipCreateRequest) (*DeviceGroupRelationship, error) {
 
 	// Look up token references.
-	source, err := api.DeviceGroupByToken(ctx, request.DeviceGroup)
+	gmatches, err := api.DeviceGroupsByToken(ctx, []string{request.DeviceGroup})
 	if err != nil {
 		return nil, err
 	}
-	target, err := api.DeviceByToken(ctx, request.Device)
+	if len(gmatches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
+	dmatches, err := api.DevicesByToken(ctx, []string{request.Device})
 	if err != nil {
 		return nil, err
 	}
-	rtype, err := api.DeviceGroupRelationshipTypeByToken(ctx, request.RelationshipType)
+	if len(dmatches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
+	rtmatches, err := api.DeviceGroupRelationshipTypesByToken(ctx, []string{request.RelationshipType})
 	if err != nil {
 		return nil, err
+	}
+	if len(rtmatches) == 0 {
+		return nil, gorm.ErrRecordNotFound
 	}
 
 	created := &DeviceGroupRelationship{
 		TokenReference: rdb.TokenReference{
 			Token: request.Token,
 		},
-		DeviceGroup:      *source,
-		Device:           *target,
-		RelationshipType: *rtype,
+		DeviceGroup:      *gmatches[0],
+		Device:           *dmatches[0],
+		RelationshipType: *rtmatches[0],
 		MetadataEntity: rdb.MetadataEntity{
 			Metadata: rdb.MetadataStrOf(request.Metadata),
 		},
@@ -562,24 +611,24 @@ func (api *Api) CreateDeviceGroupRelationship(ctx context.Context,
 	return created, nil
 }
 
-// Get device group relationship by id.
-func (api *Api) DeviceGroupRelationshipById(ctx context.Context, id uint) (*DeviceGroupRelationship, error) {
-	found := &DeviceGroupRelationship{}
+// Get device group relationships by id.
+func (api *Api) DeviceGroupRelationshipsById(ctx context.Context, ids []uint) ([]*DeviceGroupRelationship, error) {
+	found := make([]*DeviceGroupRelationship, 0)
 	result := api.RDB.Database
 	result = result.Preload("DeviceGroup").Preload("Device").Preload("RelationshipType")
-	result = result.First(&found, id)
+	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get device group relationship by token.
-func (api *Api) DeviceGroupRelationshipByToken(ctx context.Context, token string) (*DeviceGroupRelationship, error) {
-	found := &DeviceGroupRelationship{}
+// Get device group relationships by token.
+func (api *Api) DeviceGroupRelationshipsByToken(ctx context.Context, tokens []string) ([]*DeviceGroupRelationship, error) {
+	found := make([]*DeviceGroupRelationship, 0)
 	result := api.RDB.Database
 	result = result.Preload("DeviceGroup").Preload("Device").Preload("RelationshipType")
-	result = result.First(&found, "token = ?", token)
+	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}

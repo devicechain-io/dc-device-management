@@ -44,11 +44,15 @@ func (api *Api) CreateAreaType(ctx context.Context, request *AreaTypeCreateReque
 // Update an existing area type.
 func (api *Api) UpdateAreaType(ctx context.Context, token string,
 	request *AreaTypeCreateRequest) (*AreaType, error) {
-	found, err := api.AreaTypeByToken(ctx, request.Token)
+	matches, err := api.AreaTypesByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
+	found := matches[0]
 	found.Token = request.Token
 	found.Name = rdb.NullStrOf(request.Name)
 	found.Description = rdb.NullStrOf(request.Description)
@@ -66,20 +70,20 @@ func (api *Api) UpdateAreaType(ctx context.Context, token string,
 	return found, nil
 }
 
-// Get area type by id.
-func (api *Api) AreaTypeById(ctx context.Context, id uint) (*AreaType, error) {
-	found := &AreaType{}
-	result := api.RDB.Database.First(&found, id)
+// Get area types by id.
+func (api *Api) AreaTypesById(ctx context.Context, ids []uint) ([]*AreaType, error) {
+	found := make([]*AreaType, 0)
+	result := api.RDB.Database.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get area type by token.
-func (api *Api) AreaTypeByToken(ctx context.Context, token string) (*AreaType, error) {
-	found := &AreaType{}
-	result := api.RDB.Database.First(&found, "token = ?", token)
+// Get area types by token.
+func (api *Api) AreaTypesByToken(ctx context.Context, tokens []string) ([]*AreaType, error) {
+	found := make([]*AreaType, 0)
+	result := api.RDB.Database.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -104,9 +108,12 @@ func (api *Api) AreaTypes(ctx context.Context, criteria AreaTypeSearchCriteria) 
 
 // Create a new area.
 func (api *Api) CreateArea(ctx context.Context, request *AreaCreateRequest) (*Area, error) {
-	dtr, err := api.AreaTypeByToken(ctx, request.AreaTypeToken)
+	atmatches, err := api.AreaTypesByToken(ctx, []string{request.AreaTypeToken})
 	if err != nil {
 		return nil, err
+	}
+	if len(atmatches) == 0 {
+		return nil, gorm.ErrRecordNotFound
 	}
 
 	created := &Area{
@@ -120,7 +127,7 @@ func (api *Api) CreateArea(ctx context.Context, request *AreaCreateRequest) (*Ar
 		MetadataEntity: rdb.MetadataEntity{
 			Metadata: rdb.MetadataStrOf(request.Metadata),
 		},
-		AreaType: dtr,
+		AreaType: atmatches[0],
 	}
 	result := api.RDB.Database.Create(created)
 	if result.Error != nil {
@@ -131,12 +138,16 @@ func (api *Api) CreateArea(ctx context.Context, request *AreaCreateRequest) (*Ar
 
 // Update an existing area.
 func (api *Api) UpdateArea(ctx context.Context, token string, request *AreaCreateRequest) (*Area, error) {
-	updated, err := api.AreaByToken(ctx, request.Token)
+	matches, err := api.AreasByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
 	// Update fields that changed.
+	updated := matches[0]
 	updated.Token = request.Token
 	updated.Name = rdb.NullStrOf(request.Name)
 	updated.Description = rdb.NullStrOf(request.Description)
@@ -144,11 +155,14 @@ func (api *Api) UpdateArea(ctx context.Context, token string, request *AreaCreat
 
 	// Update area type if changed.
 	if request.AreaTypeToken != updated.AreaType.Token {
-		dtr, err := api.AreaTypeByToken(ctx, request.AreaTypeToken)
+		atmatches, err := api.AreaTypesByToken(ctx, []string{request.AreaTypeToken})
 		if err != nil {
 			return nil, err
 		}
-		updated.AreaType = dtr
+		if len(atmatches) == 0 {
+			return nil, gorm.ErrRecordNotFound
+		}
+		updated.AreaType = atmatches[0]
 	}
 
 	result := api.RDB.Database.Save(updated)
@@ -158,24 +172,24 @@ func (api *Api) UpdateArea(ctx context.Context, token string, request *AreaCreat
 	return updated, nil
 }
 
-// Get area by id.
-func (api *Api) AreaById(ctx context.Context, id uint) (*Area, error) {
-	found := &Area{}
+// Get areas by id.
+func (api *Api) AreasById(ctx context.Context, ids []uint) ([]*Area, error) {
+	found := make([]*Area, 0)
 	result := api.RDB.Database
 	result = result.Preload("AreaType")
-	result = result.First(found, id)
+	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get area by token.
-func (api *Api) AreaByToken(ctx context.Context, token string) (*Area, error) {
-	found := &Area{}
+// Get areas by token.
+func (api *Api) AreasByToken(ctx context.Context, tokens []string) ([]*Area, error) {
+	found := make([]*Area, 0)
 	result := api.RDB.Database
 	result = result.Preload("AreaType")
-	result = result.First(&found, "token = ?", token)
+	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -228,11 +242,15 @@ func (api *Api) CreateAreaRelationshipType(ctx context.Context, request *AreaRel
 // Update an existing area relationship type.
 func (api *Api) UpdateAreaRelationshipType(ctx context.Context, token string,
 	request *AreaRelationshipTypeCreateRequest) (*AreaRelationshipType, error) {
-	updated, err := api.AreaRelationshipTypeByToken(ctx, request.Token)
+	artmatches, err := api.AreaRelationshipTypesByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(artmatches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
+	updated := artmatches[0]
 	updated.Token = request.Token
 	updated.Name = rdb.NullStrOf(request.Name)
 	updated.Description = rdb.NullStrOf(request.Description)
@@ -245,20 +263,20 @@ func (api *Api) UpdateAreaRelationshipType(ctx context.Context, token string,
 	return updated, nil
 }
 
-// Get area relationship type by id.
-func (api *Api) AreaRelationshipTypeById(ctx context.Context, id uint) (*AreaRelationshipType, error) {
-	found := &AreaRelationshipType{}
-	result := api.RDB.Database.First(&found, id)
+// Get area relationship types by id.
+func (api *Api) AreaRelationshipTypesById(ctx context.Context, ids []uint) ([]*AreaRelationshipType, error) {
+	found := make([]*AreaRelationshipType, 0)
+	result := api.RDB.Database.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get area relationship type by token.
-func (api *Api) AreaRelationshipTypeByToken(ctx context.Context, token string) (*AreaRelationshipType, error) {
-	found := &AreaRelationshipType{}
-	result := api.RDB.Database.First(&found, "token = ?", token)
+// Get area relationship types by token.
+func (api *Api) AreaRelationshipTypesByToken(ctx context.Context, tokens []string) ([]*AreaRelationshipType, error) {
+	found := make([]*AreaRelationshipType, 0)
+	result := api.RDB.Database.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -282,29 +300,42 @@ func (api *Api) AreaRelationshipTypes(ctx context.Context,
 	}, nil
 }
 
+// Create map by token from list of areas.
+func areasByTokenMap(vals []*Area) map[string]*Area {
+	results := make(map[string]*Area)
+	for _, val := range vals {
+		results[val.Token] = val
+	}
+	return results
+}
+
 // Create a new area relationship.
 func (api *Api) CreateAreaRelationship(ctx context.Context, request *AreaRelationshipCreateRequest) (*AreaRelationship, error) {
 	// Look up token references.
-	source, err := api.AreaByToken(ctx, request.SourceArea)
+	amatches, err := api.AreasByToken(ctx, []string{request.SourceArea, request.TargetArea})
 	if err != nil {
 		return nil, err
 	}
-	target, err := api.AreaByToken(ctx, request.TargetArea)
+	if len(amatches) != 2 {
+		return nil, gorm.ErrRecordNotFound
+	}
+	mmap := areasByTokenMap(amatches)
+
+	artmatches, err := api.AreaRelationshipTypesByToken(ctx, []string{request.RelationshipType})
 	if err != nil {
 		return nil, err
 	}
-	rtype, err := api.AreaRelationshipTypeByToken(ctx, request.RelationshipType)
-	if err != nil {
-		return nil, err
+	if len(artmatches) == 0 {
+		return nil, gorm.ErrRecordNotFound
 	}
 
 	created := &AreaRelationship{
 		TokenReference: rdb.TokenReference{
 			Token: request.Token,
 		},
-		SourceArea:       *source,
-		TargetArea:       *target,
-		RelationshipType: *rtype,
+		SourceArea:       *mmap[request.SourceArea],
+		TargetArea:       *mmap[request.TargetArea],
+		RelationshipType: *artmatches[0],
 		MetadataEntity: rdb.MetadataEntity{
 			Metadata: rdb.MetadataStrOf(request.Metadata),
 		},
@@ -316,24 +347,24 @@ func (api *Api) CreateAreaRelationship(ctx context.Context, request *AreaRelatio
 	return created, nil
 }
 
-// Get area relationship by id.
-func (api *Api) AreaRelationshipById(ctx context.Context, id uint) (*AreaRelationship, error) {
-	found := &AreaRelationship{}
+// Get area relationships by id.
+func (api *Api) AreaRelationshipsById(ctx context.Context, ids []uint) ([]*AreaRelationship, error) {
+	found := make([]*AreaRelationship, 0)
 	result := api.RDB.Database
 	result = result.Preload("SourceArea").Preload("TargetArea").Preload("RelationshipType")
-	result = result.First(&found, id)
+	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get area relationship by token.
-func (api *Api) AreaRelationshipByToken(ctx context.Context, token string) (*AreaRelationship, error) {
-	found := &AreaRelationship{}
+// Get area relationships by token.
+func (api *Api) AreaRelationshipsByToken(ctx context.Context, tokens []string) ([]*AreaRelationship, error) {
+	found := make([]*AreaRelationship, 0)
 	result := api.RDB.Database
 	result = result.Preload("SourceArea").Preload("TargetArea").Preload("RelationshipType")
-	result = result.First(&found, "token = ?", token)
+	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -389,11 +420,15 @@ func (api *Api) CreateAreaGroup(ctx context.Context, request *AreaGroupCreateReq
 // Update an existing area type.
 func (api *Api) UpdateAreaGroup(ctx context.Context, token string,
 	request *AreaGroupCreateRequest) (*AreaGroup, error) {
-	updated, err := api.AreaGroupByToken(ctx, request.Token)
+	matches, err := api.AreaGroupsByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
+	updated := matches[0]
 	updated.Token = request.Token
 	updated.Name = rdb.NullStrOf(request.Name)
 	updated.Description = rdb.NullStrOf(request.Description)
@@ -411,20 +446,20 @@ func (api *Api) UpdateAreaGroup(ctx context.Context, token string,
 	return updated, nil
 }
 
-// Get area group by id.
-func (api *Api) AreaGroupById(ctx context.Context, id uint) (*AreaGroup, error) {
-	found := &AreaGroup{}
-	result := api.RDB.Database.First(&found, id)
+// Get area groups by id.
+func (api *Api) AreaGroupsById(ctx context.Context, ids []uint) ([]*AreaGroup, error) {
+	found := make([]*AreaGroup, 0)
+	result := api.RDB.Database.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get area group by token.
-func (api *Api) AreaGroupByToken(ctx context.Context, token string) (*AreaGroup, error) {
-	found := &AreaGroup{}
-	result := api.RDB.Database.First(&found, "token = ?", token)
+// Get area groups by token.
+func (api *Api) AreaGroupsByToken(ctx context.Context, tokens []string) ([]*AreaGroup, error) {
+	found := make([]*AreaGroup, 0)
+	result := api.RDB.Database.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -472,11 +507,15 @@ func (api *Api) CreateAreaGroupRelationshipType(ctx context.Context,
 // Update an existing area group relationship type.
 func (api *Api) UpdateAreaGroupRelationshipType(ctx context.Context, token string,
 	request *AreaGroupRelationshipTypeCreateRequest) (*AreaGroupRelationshipType, error) {
-	updated, err := api.AreaGroupRelationshipTypeByToken(ctx, request.Token)
+	matches, err := api.AreaGroupRelationshipTypesByToken(ctx, []string{request.Token})
 	if err != nil {
 		return nil, err
 	}
+	if len(matches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
 
+	updated := matches[0]
 	updated.Token = request.Token
 	updated.Name = rdb.NullStrOf(request.Name)
 	updated.Description = rdb.NullStrOf(request.Description)
@@ -489,20 +528,20 @@ func (api *Api) UpdateAreaGroupRelationshipType(ctx context.Context, token strin
 	return updated, nil
 }
 
-// Get area group relationship type by id.
-func (api *Api) AreaGroupRelationshipTypeById(ctx context.Context, id uint) (*AreaGroupRelationshipType, error) {
-	found := &AreaGroupRelationshipType{}
-	result := api.RDB.Database.First(&found, id)
+// Get area group relationship types by id.
+func (api *Api) AreaGroupRelationshipTypesById(ctx context.Context, ids []uint) ([]*AreaGroupRelationshipType, error) {
+	found := make([]*AreaGroupRelationshipType, 0)
+	result := api.RDB.Database.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get area group relationship type by token.
-func (api *Api) AreaGroupRelationshipTypeByToken(ctx context.Context, token string) (*AreaGroupRelationshipType, error) {
-	found := &AreaGroupRelationshipType{}
-	result := api.RDB.Database.First(&found, "token = ?", token)
+// Get area group relationship types by token.
+func (api *Api) AreaGroupRelationshipTypesByToken(ctx context.Context, tokens []string) ([]*AreaGroupRelationshipType, error) {
+	found := make([]*AreaGroupRelationshipType, 0)
+	result := api.RDB.Database.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -531,26 +570,35 @@ func (api *Api) CreateAreaGroupRelationship(ctx context.Context,
 	request *AreaGroupRelationshipCreateRequest) (*AreaGroupRelationship, error) {
 
 	// Look up token references.
-	source, err := api.AreaGroupByToken(ctx, request.AreaGroup)
+	agmatches, err := api.AreaGroupsByToken(ctx, []string{request.AreaGroup})
 	if err != nil {
 		return nil, err
 	}
-	target, err := api.AreaByToken(ctx, request.Area)
+	if len(agmatches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
+	amatches, err := api.AreasByToken(ctx, []string{request.Area})
 	if err != nil {
 		return nil, err
 	}
-	rtype, err := api.AreaGroupRelationshipTypeByToken(ctx, request.RelationshipType)
+	if len(amatches) == 0 {
+		return nil, gorm.ErrRecordNotFound
+	}
+	agrtmatches, err := api.AreaGroupRelationshipTypesByToken(ctx, []string{request.RelationshipType})
 	if err != nil {
 		return nil, err
+	}
+	if len(agrtmatches) == 0 {
+		return nil, gorm.ErrRecordNotFound
 	}
 
 	created := &AreaGroupRelationship{
 		TokenReference: rdb.TokenReference{
 			Token: request.Token,
 		},
-		AreaGroup:        *source,
-		Area:             *target,
-		RelationshipType: *rtype,
+		AreaGroup:        *agmatches[0],
+		Area:             *amatches[0],
+		RelationshipType: *agrtmatches[0],
 		MetadataEntity: rdb.MetadataEntity{
 			Metadata: rdb.MetadataStrOf(request.Metadata),
 		},
@@ -562,24 +610,24 @@ func (api *Api) CreateAreaGroupRelationship(ctx context.Context,
 	return created, nil
 }
 
-// Get area group relationship by id.
-func (api *Api) AreaGroupRelationshipById(ctx context.Context, id uint) (*AreaGroupRelationship, error) {
-	found := &AreaGroupRelationship{}
+// Get area group relationships by id.
+func (api *Api) AreaGroupRelationshipsById(ctx context.Context, ids []uint) ([]*AreaGroupRelationship, error) {
+	found := make([]*AreaGroupRelationship, 0)
 	result := api.RDB.Database
 	result = result.Preload("AreaGroup").Preload("Area").Preload("RelationshipType")
-	result = result.First(&found, id)
+	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 	return found, nil
 }
 
-// Get area group relationship by token.
-func (api *Api) AreaGroupRelationshipByToken(ctx context.Context, token string) (*AreaGroupRelationship, error) {
-	found := &AreaGroupRelationship{}
+// Get area group relationships by token.
+func (api *Api) AreaGroupRelationshipsByToken(ctx context.Context, tokens []string) ([]*AreaGroupRelationship, error) {
+	found := make([]*AreaGroupRelationship, 0)
 	result := api.RDB.Database
 	result = result.Preload("AreaGroup").Preload("Area").Preload("RelationshipType")
-	result = result.First(&found, "token = ?", token)
+	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
 	}

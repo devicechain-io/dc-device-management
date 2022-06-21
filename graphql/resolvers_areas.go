@@ -159,11 +159,15 @@ func (r *AreaResolver) AreaType() *AreaTypeResolver {
 			C: r.C,
 		}
 	} else {
-		rez, err := r.S.AreaType(r.C, struct{ Id string }{Id: fmt.Sprintf("%d", r.M.AreaTypeId)})
+		ids := []string{fmt.Sprintf("%d", r.M.AreaTypeId)}
+		matches, err := r.S.AreaTypesById(r.C, struct{ Ids []string }{Ids: ids})
 		if err != nil {
 			return nil
 		}
-		return rez
+		if len(matches) == 0 {
+			return nil
+		}
+		return matches[0]
 	}
 }
 

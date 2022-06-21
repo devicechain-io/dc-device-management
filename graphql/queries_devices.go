@@ -9,50 +9,57 @@ package graphql
 import (
 	"context"
 	_ "embed"
-	"strconv"
 
 	"github.com/devicechain-io/dc-device-management/model"
 )
 
 // Find device type by unique id.
-func (r *SchemaResolver) DeviceType(ctx context.Context, args struct {
-	Id string
-}) (*DeviceTypeResolver, error) {
+func (r *SchemaResolver) DeviceTypesById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*DeviceTypeResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
 
-	found, err := api.DeviceTypeById(ctx, uint(id))
+	found, err := api.DeviceTypesById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &DeviceTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // Find device type by unique token.
-func (r *SchemaResolver) DeviceTypeByToken(ctx context.Context, args struct {
-	Token string
-}) (*DeviceTypeResolver, error) {
+func (r *SchemaResolver) DeviceTypesByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*DeviceTypeResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.DeviceTypeByToken(ctx, args.Token)
+	found, err := api.DeviceTypesByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &DeviceTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all device types that match the given criteria.
@@ -73,44 +80,52 @@ func (r *SchemaResolver) DeviceTypes(ctx context.Context, args struct {
 	}, nil
 }
 
-// Find device by unique id.
-func (r *SchemaResolver) Device(ctx context.Context, args struct {
-	Id string
-}) (*DeviceResolver, error) {
+// Find devices by unique id.
+func (r *SchemaResolver) DevicesById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*DeviceResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.DeviceById(ctx, uint(id))
+	found, err := api.DevicesById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceResolver, 0)
+	for _, dv := range found {
+		dvr := &DeviceResolver{
+			M: *dv,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dvr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find device by unique token.
-func (r *SchemaResolver) DeviceByToken(ctx context.Context, args struct {
-	Token string
-}) (*DeviceResolver, error) {
+// Find devices by unique token.
+func (r *SchemaResolver) DevicesByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*DeviceResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.DeviceByToken(ctx, args.Token)
+	found, err := api.DevicesByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceResolver, 0)
+	for _, dv := range found {
+		dvr := &DeviceResolver{
+			M: *dv,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dvr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all devices that match the given criteria.
@@ -131,44 +146,52 @@ func (r *SchemaResolver) Devices(ctx context.Context, args struct {
 	}, nil
 }
 
-// Find device relationship type by unique id.
-func (r *SchemaResolver) DeviceRelationshipType(ctx context.Context, args struct {
-	Id string
-}) (*DeviceRelationshipTypeResolver, error) {
+// Find device relationship types by unique id.
+func (r *SchemaResolver) DeviceRelationshipTypesById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*DeviceRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.DeviceRelationshipTypeById(ctx, uint(id))
+	found, err := api.DeviceRelationshipTypesById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceRelationshipTypeResolver, 0)
+	for _, rec := range found {
+		rez := &DeviceRelationshipTypeResolver{
+			M: *rec,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, rez)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find device relationship type by unique token.
-func (r *SchemaResolver) DeviceRelationshipTypeByToken(ctx context.Context, args struct {
-	Token string
-}) (*DeviceRelationshipTypeResolver, error) {
+// Find device relationship types by unique token.
+func (r *SchemaResolver) DeviceRelationshipTypesByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*DeviceRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.DeviceRelationshipTypeByToken(ctx, args.Token)
+	found, err := api.DeviceRelationshipTypesByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceRelationshipTypeResolver, 0)
+	for _, rec := range found {
+		rez := &DeviceRelationshipTypeResolver{
+			M: *rec,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, rez)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all device relationship types that match the given criteria.
@@ -189,44 +212,52 @@ func (r *SchemaResolver) DeviceRelationshipTypes(ctx context.Context, args struc
 	}, nil
 }
 
-// Find device relationship by unique id.
-func (r *SchemaResolver) DeviceRelationship(ctx context.Context, args struct {
-	Id string
-}) (*DeviceRelationshipResolver, error) {
+// Find device relationships by unique id.
+func (r *SchemaResolver) DeviceRelationshipsById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*DeviceRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.DeviceRelationshipById(ctx, uint(id))
+	found, err := api.DeviceRelationshipsById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceRelationshipResolver, 0)
+	for _, rec := range found {
+		rez := &DeviceRelationshipResolver{
+			M: *rec,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, rez)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find device relationship by unique token.
-func (r *SchemaResolver) DeviceRelationshipByToken(ctx context.Context, args struct {
-	Token string
-}) (*DeviceRelationshipResolver, error) {
+// Find device relationships by unique token.
+func (r *SchemaResolver) DeviceRelationshipsByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*DeviceRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.DeviceRelationshipByToken(ctx, args.Token)
+	found, err := api.DeviceRelationshipsByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceRelationshipResolver, 0)
+	for _, rec := range found {
+		rez := &DeviceRelationshipResolver{
+			M: *rec,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, rez)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all device relationships that match the given criteria.
@@ -247,44 +278,52 @@ func (r *SchemaResolver) DeviceRelationships(ctx context.Context, args struct {
 	}, nil
 }
 
-// Find device group by unique id.
-func (r *SchemaResolver) DeviceGroup(ctx context.Context, args struct {
-	Id string
-}) (*DeviceGroupResolver, error) {
+// Find device groups by unique id.
+func (r *SchemaResolver) DeviceGroupsById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*DeviceGroupResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.DeviceGroupById(ctx, uint(id))
+	found, err := api.DeviceGroupsById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceGroupResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceGroupResolver, 0)
+	for _, rec := range found {
+		rez := &DeviceGroupResolver{
+			M: *rec,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, rez)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find device group by unique token.
-func (r *SchemaResolver) DeviceGroupByToken(ctx context.Context, args struct {
-	Token string
-}) (*DeviceGroupResolver, error) {
+// Find device groups by unique token.
+func (r *SchemaResolver) DeviceGroupsByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*DeviceGroupResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.DeviceGroupByToken(ctx, args.Token)
+	found, err := api.DeviceGroupsByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceGroupResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceGroupResolver, 0)
+	for _, rec := range found {
+		rez := &DeviceGroupResolver{
+			M: *rec,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, rez)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all device groups that match the given criteria.
@@ -305,44 +344,52 @@ func (r *SchemaResolver) DeviceGroups(ctx context.Context, args struct {
 	}, nil
 }
 
-// Find device group relationship type by unique id.
-func (r *SchemaResolver) DeviceGroupRelationshipType(ctx context.Context, args struct {
-	Id string
-}) (*DeviceGroupRelationshipTypeResolver, error) {
+// Find device group relationship types by unique id.
+func (r *SchemaResolver) DeviceGroupRelationshipTypesById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*DeviceGroupRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.DeviceGroupRelationshipTypeById(ctx, uint(id))
+	found, err := api.DeviceGroupRelationshipTypesById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceGroupRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceGroupRelationshipTypeResolver, 0)
+	for _, rec := range found {
+		rez := &DeviceGroupRelationshipTypeResolver{
+			M: *rec,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, rez)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find device group relationship type by unique token.
-func (r *SchemaResolver) DeviceGroupRelationshipTypeByToken(ctx context.Context, args struct {
-	Token string
-}) (*DeviceGroupRelationshipTypeResolver, error) {
+// Find device group relationship types by unique token.
+func (r *SchemaResolver) DeviceGroupRelationshipTypesByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*DeviceGroupRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.DeviceGroupRelationshipTypeByToken(ctx, args.Token)
+	found, err := api.DeviceGroupRelationshipTypesByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceGroupRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceGroupRelationshipTypeResolver, 0)
+	for _, rec := range found {
+		rez := &DeviceGroupRelationshipTypeResolver{
+			M: *rec,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, rez)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all device group relationship types that match the given criteria.
@@ -363,44 +410,52 @@ func (r *SchemaResolver) DeviceGroupRelationshipTypes(ctx context.Context, args 
 	}, nil
 }
 
-// Find device group relationship by unique id.
-func (r *SchemaResolver) DeviceGroupRelationship(ctx context.Context, args struct {
-	Id string
-}) (*DeviceGroupRelationshipResolver, error) {
+// Find device group relationships by unique id.
+func (r *SchemaResolver) DeviceGroupRelationshipsById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*DeviceGroupRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.DeviceGroupRelationshipById(ctx, uint(id))
+	found, err := api.DeviceGroupRelationshipsById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceGroupRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceGroupRelationshipResolver, 0)
+	for _, rec := range found {
+		rez := &DeviceGroupRelationshipResolver{
+			M: *rec,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, rez)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find device group relationship by unique token.
-func (r *SchemaResolver) DeviceGroupRelationshipByToken(ctx context.Context, args struct {
-	Token string
-}) (*DeviceGroupRelationshipResolver, error) {
+// Find device group relationships by unique token.
+func (r *SchemaResolver) DeviceGroupRelationshipsByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*DeviceGroupRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.DeviceGroupRelationshipByToken(ctx, args.Token)
+	found, err := api.DeviceGroupRelationshipsByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceGroupRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceGroupRelationshipResolver, 0)
+	for _, rec := range found {
+		rez := &DeviceGroupRelationshipResolver{
+			M: *rec,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, rez)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all device group relationships that match the given criteria.

@@ -1,7 +1,7 @@
-# Create device type and return identifiers.
-mutation createDeviceType($token: String!, $name: String, $description: String, 
+# Create customer type and return identifiers.
+mutation createCustomerType($token: String!, $name: String, $description: String, 
   $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
-  createDeviceType(request: { 
+  createCustomerType(request: { 
     token: $token,
     name: $name,
     description: $description,
@@ -17,9 +17,9 @@ mutation createDeviceType($token: String!, $name: String, $description: String,
   }
 }
 
-# Get device types by unique tokens.
-query getDeviceTypesByToken($tokens: [String!]!) {
-  deviceTypesByToken(tokens: $tokens) {
+# Get customer types by unique token.
+query getCustomerTypesByToken($tokens: [String!]!) {
+  customerTypesByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
@@ -36,9 +36,9 @@ query getDeviceTypesByToken($tokens: [String!]!) {
   }
 }
 
-# List device types that match criteria.
-query listDeviceTypes($pageNumber: Int!, $pageSize: Int!) {
-  deviceTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List customer types that match criteria.
+query listCustomerTypes($pageNumber: Int!, $pageSize: Int!) {
+  customerTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
@@ -62,11 +62,11 @@ query listDeviceTypes($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device and return identifiers.
-mutation createDevice($token: String!, $deviceTypeToken: String!, $name: String, $description: String, $metadata: String) {
-  createDevice(request: { 
+# Create customer and return identifiers.
+mutation createCustomer($token: String!, $customerTypeToken: String!, $name: String, $description: String, $metadata: String) {
+  createCustomer(request: { 
     token: $token, 
-    deviceTypeToken: $deviceTypeToken,
+    customerTypeToken: $customerTypeToken,
     name: $name,
     description: $description,
     metadata: $metadata
@@ -76,9 +76,9 @@ mutation createDevice($token: String!, $deviceTypeToken: String!, $name: String,
   }
 }
 
-# Get devices by unique tokens.
-query getDevicesByToken($tokens: [String!]!) {
-  devicesByToken(tokens: $tokens) {
+# Get customers by unique token.
+query getCustomersByToken($tokens: [String!]!) {
+  customersByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
@@ -86,21 +86,18 @@ query getDevicesByToken($tokens: [String!]!) {
     token
     name
     description
-    deviceType {
+    customerType {
       token
       name
       description
-    }
-    activeAssignments {
-      token
     }
     metadata
   }
 }
 
-# List devices that match criteria.
-query listDevices($pageNumber: Int!, $pageSize: Int!) {
-  devices(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List customers that match criteria.
+query listCustomers($pageNumber: Int!, $pageSize: Int!) {
+  customers(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
@@ -109,13 +106,10 @@ query listDevices($pageNumber: Int!, $pageSize: Int!) {
       token
       name
       description
-      deviceType {
+      customerType {
         token
         name
         description
-      }
-      activeAssignments {
-        token
       }
       metadata
     }
@@ -127,9 +121,9 @@ query listDevices($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device relationship type and return identifiers.
-mutation createDeviceRelationshipType($token: String!, $name: String, $description: String, $metadata: String) {
-  createDeviceRelationshipType(request: { 
+# Create customer relationship type and return identifiers.
+mutation createCustomerRelationshipType($token: String!, $name: String, $description: String, $metadata: String) {
+  createCustomerRelationshipType(request: { 
     token: $token,
     name: $name,
     description: $description,
@@ -140,9 +134,9 @@ mutation createDeviceRelationshipType($token: String!, $name: String, $descripti
   }
 }
 
-# Get device relationship types by unique tokens.
-query getDeviceRelationshipTypesByToken($tokens: [String!]!) {
-  deviceRelationshipTypesByToken(tokens: $tokens) {
+# Get customer relationship types by unique token.
+query getCustomerRelationshipTypesByToken($tokens: [String!]!) {
+  customerRelationshipTypesByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
@@ -154,9 +148,9 @@ query getDeviceRelationshipTypesByToken($tokens: [String!]!) {
   }
 }
 
-# List device relationship types that match criteria.
-query listDeviceRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
-  deviceRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List customer relationship types that match criteria.
+query listCustomerRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
+  customerRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
@@ -175,13 +169,13 @@ query listDeviceRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device relationship and return identifiers.
-mutation createDeviceRelationship($token: String!, $sourceDevice: String!, $targetDevice: String!, $relationshipType: String!) {
-  createDeviceRelationship(
+# Create customer relationship and return identifiers.
+mutation createCustomerRelationship($token: String!, $sourceCustomer: String!, $targetCustomer: String!, $relationshipType: String!) {
+  createCustomerRelationship(
     request: {
       token: $token,
-      sourceDevice: $sourceDevice
-      targetDevice: $targetDevice
+      sourceCustomer: $sourceCustomer
+      targetCustomer: $targetCustomer
       relationshipType: $relationshipType
     }
   ) {
@@ -190,20 +184,20 @@ mutation createDeviceRelationship($token: String!, $sourceDevice: String!, $targ
   }
 }
 
-# Get device relationships by unique tokens.
-query getDeviceRelationshipsByToken($tokens: [String!]!) {
-  deviceRelationshipsByToken(tokens: $tokens) {
+# Get customer relationships by unique token.
+query getCustomerRelationshipsByToken($tokens: [String!]!) {
+  customerRelationshipsByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
     deletedAt
     token
-    sourceDevice {
+    sourceCustomer {
       token
       name
       description
     }
-    targetDevice {
+    targetCustomer {
       token
       name
       description
@@ -217,17 +211,17 @@ query getDeviceRelationshipsByToken($tokens: [String!]!) {
   }
 }
 
-# List device relationships that match criteria.
-query listDeviceRelationships($pageNumber: Int!, $pageSize: Int!) {
-  deviceRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List customer relationships that match criteria.
+query listCustomerRelationships($pageNumber: Int!, $pageSize: Int!) {
+  customerRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
-      sourceDevice {
+      sourceCustomer {
         token
         name
         description
       }
-      targetDevice {
+      targetCustomer {
         token
         name
         description
@@ -247,10 +241,10 @@ query listDeviceRelationships($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device group and return identifiers.
-mutation createDeviceGroup($token: String!, $name: String, $description: String, 
+# Create customer group and return identifiers.
+mutation createCustomerGroup($token: String!, $name: String, $description: String, 
   $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
-  createDeviceGroup(request: { 
+  createCustomerGroup(request: { 
     token: $token,
     name: $name,
     description: $description,
@@ -266,9 +260,9 @@ mutation createDeviceGroup($token: String!, $name: String, $description: String,
   }
 }
 
-# Get device groups by unique tokens.
-query getDeviceGroupsByToken($tokens: [String!]!) {
-  deviceGroupsByToken(tokens: $tokens) {
+# Get customer groups by unique token.
+query getCustomerGroupsByToken($tokens: [String!]!) {
+  customerGroupsByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
@@ -285,9 +279,9 @@ query getDeviceGroupsByToken($tokens: [String!]!) {
   }
 }
 
-# List device groups that match criteria.
-query listDeviceGroups($pageNumber: Int!, $pageSize: Int!) {
-  deviceGroups(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List customer groups that match criteria.
+query listCustomerGroups($pageNumber: Int!, $pageSize: Int!) {
+  customerGroups(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
@@ -311,9 +305,9 @@ query listDeviceGroups($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device group relationship type and return identifiers.
-mutation createDeviceGroupRelationshipType($token: String!, $name: String, $description: String, $metadata: String) {
-  createDeviceGroupRelationshipType(request: { 
+# Create customer group relationship type and return identifiers.
+mutation createCustomerGroupRelationshipType($token: String!, $name: String, $description: String, $metadata: String) {
+  createCustomerGroupRelationshipType(request: { 
     token: $token,
     name: $name,
     description: $description,
@@ -324,9 +318,9 @@ mutation createDeviceGroupRelationshipType($token: String!, $name: String, $desc
   }
 }
 
-# Get device group relationship types by unique token.
-query getDeviceGroupRelationshipTypesByToken($tokens: [String!]!) {
-  deviceGroupRelationshipTypesByToken(tokens: $tokens) {
+# Get customer group relationship types by unique token.
+query getCustomerGroupRelationshipTypesByToken($tokens: [String!]!) {
+  customerGroupRelationshipTypesByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
@@ -338,9 +332,9 @@ query getDeviceGroupRelationshipTypesByToken($tokens: [String!]!) {
   }
 }
 
-# List device group relationship types that match criteria.
-query listDeviceGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
-  deviceGroupRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List customer group relationship types that match criteria.
+query listCustomerGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
+  customerGroupRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
@@ -359,13 +353,13 @@ query listDeviceGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device group relationship and return identifiers.
-mutation createDeviceGroupRelationship($token: String!, $deviceGroup: String!, $device: String!, $relationshipType: String!) {
-  createDeviceGroupRelationship(
+# Create customer group relationship and return identifiers.
+mutation createCustomerGroupRelationship($token: String!, $customerGroup: String!, $customer: String!, $relationshipType: String!) {
+  createCustomerGroupRelationship(
     request: {
       token: $token,
-      deviceGroup: $deviceGroup,
-      device: $device,
+      customerGroup: $customerGroup,
+      customer: $customer,
       relationshipType: $relationshipType
     }
   ) {
@@ -374,20 +368,20 @@ mutation createDeviceGroupRelationship($token: String!, $deviceGroup: String!, $
   }
 }
 
-# Get device group relationships by unique tokens.
-query getDeviceGroupRelationshipsByToken($tokens: [String!]!) {
-  deviceGroupRelationshipsByToken(tokens: $tokens) {
+# Get customer group relationships by unique token.
+query getCustomerGroupRelationshipsByToken($tokens: [String!]!) {
+  customerGroupRelationshipsByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
     deletedAt
     token
-    deviceGroup {
+    customerGroup {
       token
       name
       description
     }
-    device {
+    customer {
       token
       name
       description
@@ -401,21 +395,21 @@ query getDeviceGroupRelationshipsByToken($tokens: [String!]!) {
   }
 }
 
-# List device group relationships that match criteria.
-query listDeviceGroupRelationships($pageNumber: Int!, $pageSize: Int!) {
-  deviceGroupRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List customer group relationships that match criteria.
+query listCustomerGroupRelationships($pageNumber: Int!, $pageSize: Int!) {
+  customerGroupRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
       updatedAt
       deletedAt
       token
-      deviceGroup {
+      customerGroup {
         token
         name
         description
       }
-      device {
+      customer {
         token
         name
         description

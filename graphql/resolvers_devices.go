@@ -159,11 +159,12 @@ func (r *DeviceResolver) DeviceType() *DeviceTypeResolver {
 			C: r.C,
 		}
 	} else {
-		rez, err := r.S.DeviceType(r.C, struct{ Id string }{Id: fmt.Sprintf("%d", r.M.DeviceTypeId)})
+		ids := []string{fmt.Sprintf("%d", r.M.DeviceTypeId)}
+		rez, err := r.S.DeviceTypesById(r.C, struct{ Ids []string }{Ids: ids})
 		if err != nil {
 			return nil
 		}
-		return rez
+		return rez[0]
 	}
 }
 

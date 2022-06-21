@@ -1,7 +1,7 @@
-# Create device type and return identifiers.
-mutation createDeviceType($token: String!, $name: String, $description: String, 
+# Create asset type and return identifiers.
+mutation createAssetType($token: String!, $name: String, $description: String, 
   $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
-  createDeviceType(request: { 
+  createAssetType(request: { 
     token: $token,
     name: $name,
     description: $description,
@@ -17,9 +17,9 @@ mutation createDeviceType($token: String!, $name: String, $description: String,
   }
 }
 
-# Get device types by unique tokens.
-query getDeviceTypesByToken($tokens: [String!]!) {
-  deviceTypesByToken(tokens: $tokens) {
+# Get asset types by unique tokens.
+query getAssetTypesByToken($tokens: [String!]!) {
+  assetTypesByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
@@ -36,9 +36,9 @@ query getDeviceTypesByToken($tokens: [String!]!) {
   }
 }
 
-# List device types that match criteria.
-query listDeviceTypes($pageNumber: Int!, $pageSize: Int!) {
-  deviceTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List asset types that match criteria.
+query listAssetTypes($pageNumber: Int!, $pageSize: Int!) {
+  assetTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
@@ -62,11 +62,11 @@ query listDeviceTypes($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device and return identifiers.
-mutation createDevice($token: String!, $deviceTypeToken: String!, $name: String, $description: String, $metadata: String) {
-  createDevice(request: { 
+# Create asset and return identifiers.
+mutation createAsset($token: String!, $assetTypeToken: String!, $name: String, $description: String, $metadata: String) {
+  createAsset(request: { 
     token: $token, 
-    deviceTypeToken: $deviceTypeToken,
+    assetTypeToken: $assetTypeToken,
     name: $name,
     description: $description,
     metadata: $metadata
@@ -76,9 +76,9 @@ mutation createDevice($token: String!, $deviceTypeToken: String!, $name: String,
   }
 }
 
-# Get devices by unique tokens.
-query getDevicesByToken($tokens: [String!]!) {
-  devicesByToken(tokens: $tokens) {
+# Get asset by unique token.
+query getAssetsByToken($tokens: [String!]!) {
+  assetsByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
@@ -86,21 +86,18 @@ query getDevicesByToken($tokens: [String!]!) {
     token
     name
     description
-    deviceType {
+    assetType {
       token
       name
       description
-    }
-    activeAssignments {
-      token
     }
     metadata
   }
 }
 
-# List devices that match criteria.
-query listDevices($pageNumber: Int!, $pageSize: Int!) {
-  devices(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List assets that match criteria.
+query listAssets($pageNumber: Int!, $pageSize: Int!) {
+  assets(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
@@ -109,13 +106,10 @@ query listDevices($pageNumber: Int!, $pageSize: Int!) {
       token
       name
       description
-      deviceType {
+      assetType {
         token
         name
         description
-      }
-      activeAssignments {
-        token
       }
       metadata
     }
@@ -127,9 +121,9 @@ query listDevices($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device relationship type and return identifiers.
-mutation createDeviceRelationshipType($token: String!, $name: String, $description: String, $metadata: String) {
-  createDeviceRelationshipType(request: { 
+# Create asset relationship type and return identifiers.
+mutation createAssetRelationshipType($token: String!, $name: String, $description: String, $metadata: String) {
+  createAssetRelationshipType(request: { 
     token: $token,
     name: $name,
     description: $description,
@@ -140,9 +134,9 @@ mutation createDeviceRelationshipType($token: String!, $name: String, $descripti
   }
 }
 
-# Get device relationship types by unique tokens.
-query getDeviceRelationshipTypesByToken($tokens: [String!]!) {
-  deviceRelationshipTypesByToken(tokens: $tokens) {
+# Get asset relationship types by unique token.
+query getAssetRelationshipTypesByToken($tokens: [String!]!) {
+  assetRelationshipTypesByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
@@ -154,9 +148,9 @@ query getDeviceRelationshipTypesByToken($tokens: [String!]!) {
   }
 }
 
-# List device relationship types that match criteria.
-query listDeviceRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
-  deviceRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List asset relationship types that match criteria.
+query listAssetRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
+  assetRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
@@ -175,13 +169,13 @@ query listDeviceRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device relationship and return identifiers.
-mutation createDeviceRelationship($token: String!, $sourceDevice: String!, $targetDevice: String!, $relationshipType: String!) {
-  createDeviceRelationship(
+# Create asset relationship and return identifiers.
+mutation createAssetRelationship($token: String!, $sourceAsset: String!, $targetAsset: String!, $relationshipType: String!) {
+  createAssetRelationship(
     request: {
       token: $token,
-      sourceDevice: $sourceDevice
-      targetDevice: $targetDevice
+      sourceAsset: $sourceAsset
+      targetAsset: $targetAsset
       relationshipType: $relationshipType
     }
   ) {
@@ -190,20 +184,20 @@ mutation createDeviceRelationship($token: String!, $sourceDevice: String!, $targ
   }
 }
 
-# Get device relationships by unique tokens.
-query getDeviceRelationshipsByToken($tokens: [String!]!) {
-  deviceRelationshipsByToken(tokens: $tokens) {
+# Get asset relationships by unique token.
+query getAssetRelationshipsByToken($tokens: [String!]!) {
+  assetRelationshipsByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
     deletedAt
     token
-    sourceDevice {
+    sourceAsset {
       token
       name
       description
     }
-    targetDevice {
+    targetAsset {
       token
       name
       description
@@ -217,17 +211,17 @@ query getDeviceRelationshipsByToken($tokens: [String!]!) {
   }
 }
 
-# List device relationships that match criteria.
-query listDeviceRelationships($pageNumber: Int!, $pageSize: Int!) {
-  deviceRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List asset relationships that match criteria.
+query listAssetRelationships($pageNumber: Int!, $pageSize: Int!) {
+  assetRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
-      sourceDevice {
+      sourceAsset {
         token
         name
         description
       }
-      targetDevice {
+      targetAsset {
         token
         name
         description
@@ -247,10 +241,10 @@ query listDeviceRelationships($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device group and return identifiers.
-mutation createDeviceGroup($token: String!, $name: String, $description: String, 
+# Create asset group and return identifiers.
+mutation createAssetGroup($token: String!, $name: String, $description: String, 
   $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
-  createDeviceGroup(request: { 
+  createAssetGroup(request: { 
     token: $token,
     name: $name,
     description: $description,
@@ -266,9 +260,9 @@ mutation createDeviceGroup($token: String!, $name: String, $description: String,
   }
 }
 
-# Get device groups by unique tokens.
-query getDeviceGroupsByToken($tokens: [String!]!) {
-  deviceGroupsByToken(tokens: $tokens) {
+# Get asset groups by unique token.
+query getAssetGroupsByToken($tokens: [String!]!) {
+  assetGroupsByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
@@ -285,9 +279,9 @@ query getDeviceGroupsByToken($tokens: [String!]!) {
   }
 }
 
-# List device groups that match criteria.
-query listDeviceGroups($pageNumber: Int!, $pageSize: Int!) {
-  deviceGroups(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List asset groups that match criteria.
+query listAssetGroups($pageNumber: Int!, $pageSize: Int!) {
+  assetGroups(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
@@ -311,9 +305,9 @@ query listDeviceGroups($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device group relationship type and return identifiers.
-mutation createDeviceGroupRelationshipType($token: String!, $name: String, $description: String, $metadata: String) {
-  createDeviceGroupRelationshipType(request: { 
+# Create asset group relationship type and return identifiers.
+mutation createAssetGroupRelationshipType($token: String!, $name: String, $description: String, $metadata: String) {
+  createAssetGroupRelationshipType(request: { 
     token: $token,
     name: $name,
     description: $description,
@@ -324,9 +318,9 @@ mutation createDeviceGroupRelationshipType($token: String!, $name: String, $desc
   }
 }
 
-# Get device group relationship types by unique token.
-query getDeviceGroupRelationshipTypesByToken($tokens: [String!]!) {
-  deviceGroupRelationshipTypesByToken(tokens: $tokens) {
+# Get asset group relationship types by unique token.
+query getAssetGroupRelationshipTypesByToken($tokens: [String!]!) {
+  assetGroupRelationshipTypesByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
@@ -338,9 +332,9 @@ query getDeviceGroupRelationshipTypesByToken($tokens: [String!]!) {
   }
 }
 
-# List device group relationship types that match criteria.
-query listDeviceGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
-  deviceGroupRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List asset group relationship types that match criteria.
+query listAssetGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
+  assetGroupRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
@@ -359,13 +353,13 @@ query listDeviceGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device group relationship and return identifiers.
-mutation createDeviceGroupRelationship($token: String!, $deviceGroup: String!, $device: String!, $relationshipType: String!) {
-  createDeviceGroupRelationship(
+# Create asset group relationship and return identifiers.
+mutation createAssetGroupRelationship($token: String!, $assetGroup: String!, $asset: String!, $relationshipType: String!) {
+  createAssetGroupRelationship(
     request: {
       token: $token,
-      deviceGroup: $deviceGroup,
-      device: $device,
+      assetGroup: $assetGroup,
+      asset: $asset,
       relationshipType: $relationshipType
     }
   ) {
@@ -374,20 +368,20 @@ mutation createDeviceGroupRelationship($token: String!, $deviceGroup: String!, $
   }
 }
 
-# Get device group relationships by unique tokens.
-query getDeviceGroupRelationshipsByToken($tokens: [String!]!) {
-  deviceGroupRelationshipsByToken(tokens: $tokens) {
+# Get asset group relationships by unique token.
+query getAssetGroupRelationshipsByToken($tokens: [String!]!) {
+  assetGroupRelationshipsByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
     deletedAt
     token
-    deviceGroup {
+    assetGroup {
       token
       name
       description
     }
-    device {
+    asset {
       token
       name
       description
@@ -401,21 +395,21 @@ query getDeviceGroupRelationshipsByToken($tokens: [String!]!) {
   }
 }
 
-# List device group relationships that match criteria.
-query listDeviceGroupRelationships($pageNumber: Int!, $pageSize: Int!) {
-  deviceGroupRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List asset group relationships that match criteria.
+query listAssetGroupRelationships($pageNumber: Int!, $pageSize: Int!) {
+  assetGroupRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
       updatedAt
       deletedAt
       token
-      deviceGroup {
+      assetGroup {
         token
         name
         description
       }
-      device {
+      asset {
         token
         name
         description

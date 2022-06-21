@@ -14,45 +14,53 @@ import (
 	"github.com/devicechain-io/dc-device-management/model"
 )
 
-// Find device assignment status by unique id.
-func (r *SchemaResolver) DeviceAssignmentStatus(ctx context.Context, args struct {
-	Id string
-}) (*DeviceAssignmentStatusResolver, error) {
+// Find device assignment statuses by unique id.
+func (r *SchemaResolver) DeviceAssignmentStatusesById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*DeviceAssignmentStatusResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
 
-	found, err := api.DeviceAssignmentStatusById(ctx, uint(id))
+	found, err := api.DeviceAssignmentStatusesById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceAssignmentStatusResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceAssignmentStatusResolver, 0)
+	for _, dt := range found {
+		dtr := &DeviceAssignmentStatusResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find device assignment status by unique token.
-func (r *SchemaResolver) DeviceAssignmentStatusByToken(ctx context.Context, args struct {
-	Token string
-}) (*DeviceAssignmentStatusResolver, error) {
+// Find device assignment statuses by unique token.
+func (r *SchemaResolver) DeviceAssignmentStatusesByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*DeviceAssignmentStatusResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.DeviceAssignmentStatusByToken(ctx, args.Token)
+	found, err := api.DeviceAssignmentStatusesByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceAssignmentStatusResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceAssignmentStatusResolver, 0)
+	for _, dt := range found {
+		dtr := &DeviceAssignmentStatusResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all device assignment statuses that match the given criteria.
@@ -73,45 +81,53 @@ func (r *SchemaResolver) DeviceAssignmentStatuses(ctx context.Context, args stru
 	}, nil
 }
 
-// Find device assignment by unique id.
-func (r *SchemaResolver) DeviceAssignment(ctx context.Context, args struct {
-	Id string
-}) (*DeviceAssignmentResolver, error) {
+// Find device assignments by unique id.
+func (r *SchemaResolver) DeviceAssignmentsById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*DeviceAssignmentResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
 
-	found, err := api.DeviceAssignmentById(ctx, uint(id))
+	found, err := api.DeviceAssignmentsById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceAssignmentResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceAssignmentResolver, 0)
+	for _, dt := range found {
+		dtr := &DeviceAssignmentResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find device assignment by unique token.
-func (r *SchemaResolver) DeviceAssignmentByToken(ctx context.Context, args struct {
-	Token string
-}) (*DeviceAssignmentResolver, error) {
+// Find device assignments by unique token.
+func (r *SchemaResolver) DeviceAssignmentsByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*DeviceAssignmentResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.DeviceAssignmentByToken(ctx, args.Token)
+	found, err := api.DeviceAssignmentsByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &DeviceAssignmentResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*DeviceAssignmentResolver, 0)
+	for _, dt := range found {
+		dtr := &DeviceAssignmentResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all device assignments that match the given criteria.

@@ -1,7 +1,7 @@
-# Create device type and return identifiers.
-mutation createDeviceType($token: String!, $name: String, $description: String, 
+# Create area type and return identifiers.
+mutation createAreaType($token: String!, $name: String, $description: String, 
   $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
-  createDeviceType(request: { 
+  createAreaType(request: { 
     token: $token,
     name: $name,
     description: $description,
@@ -17,9 +17,9 @@ mutation createDeviceType($token: String!, $name: String, $description: String,
   }
 }
 
-# Get device types by unique tokens.
-query getDeviceTypesByToken($tokens: [String!]!) {
-  deviceTypesByToken(tokens: $tokens) {
+# Get area types by unique token.
+query getAreaTypesByToken($tokens: [String!]!) {
+  areaTypesByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
@@ -36,9 +36,9 @@ query getDeviceTypesByToken($tokens: [String!]!) {
   }
 }
 
-# List device types that match criteria.
-query listDeviceTypes($pageNumber: Int!, $pageSize: Int!) {
-  deviceTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List area types that match criteria.
+query listAreaTypes($pageNumber: Int!, $pageSize: Int!) {
+  areaTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
@@ -62,11 +62,11 @@ query listDeviceTypes($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device and return identifiers.
-mutation createDevice($token: String!, $deviceTypeToken: String!, $name: String, $description: String, $metadata: String) {
-  createDevice(request: { 
+# Create area and return identifiers.
+mutation createArea($token: String!, $areaTypeToken: String!, $name: String, $description: String, $metadata: String) {
+  createArea(request: { 
     token: $token, 
-    deviceTypeToken: $deviceTypeToken,
+    areaTypeToken: $areaTypeToken,
     name: $name,
     description: $description,
     metadata: $metadata
@@ -76,9 +76,9 @@ mutation createDevice($token: String!, $deviceTypeToken: String!, $name: String,
   }
 }
 
-# Get devices by unique tokens.
-query getDevicesByToken($tokens: [String!]!) {
-  devicesByToken(tokens: $tokens) {
+# Get areas by unique token.
+query getAreasByToken($tokens: [String!]!) {
+  areasByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
@@ -86,21 +86,18 @@ query getDevicesByToken($tokens: [String!]!) {
     token
     name
     description
-    deviceType {
+    areaType {
       token
       name
       description
-    }
-    activeAssignments {
-      token
     }
     metadata
   }
 }
 
-# List devices that match criteria.
-query listDevices($pageNumber: Int!, $pageSize: Int!) {
-  devices(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List areas that match criteria.
+query listAreas($pageNumber: Int!, $pageSize: Int!) {
+  areas(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
@@ -109,13 +106,10 @@ query listDevices($pageNumber: Int!, $pageSize: Int!) {
       token
       name
       description
-      deviceType {
+      areaType {
         token
         name
         description
-      }
-      activeAssignments {
-        token
       }
       metadata
     }
@@ -127,9 +121,9 @@ query listDevices($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device relationship type and return identifiers.
-mutation createDeviceRelationshipType($token: String!, $name: String, $description: String, $metadata: String) {
-  createDeviceRelationshipType(request: { 
+# Create area relationship type and return identifiers.
+mutation createAreaRelationshipType($token: String!, $name: String, $description: String, $metadata: String) {
+  createAreaRelationshipType(request: { 
     token: $token,
     name: $name,
     description: $description,
@@ -140,9 +134,9 @@ mutation createDeviceRelationshipType($token: String!, $name: String, $descripti
   }
 }
 
-# Get device relationship types by unique tokens.
-query getDeviceRelationshipTypesByToken($tokens: [String!]!) {
-  deviceRelationshipTypesByToken(tokens: $tokens) {
+# Get area relationship types by unique token.
+query getAreaRelationshipTypesByToken($tokens: [String!]!) {
+  areaRelationshipTypesByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
@@ -154,9 +148,9 @@ query getDeviceRelationshipTypesByToken($tokens: [String!]!) {
   }
 }
 
-# List device relationship types that match criteria.
-query listDeviceRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
-  deviceRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List area relationship types that match criteria.
+query listAreaRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
+  areaRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
@@ -175,13 +169,13 @@ query listDeviceRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device relationship and return identifiers.
-mutation createDeviceRelationship($token: String!, $sourceDevice: String!, $targetDevice: String!, $relationshipType: String!) {
-  createDeviceRelationship(
+# Create area relationship and return identifiers.
+mutation createAreaRelationship($token: String!, $sourceArea: String!, $targetArea: String!, $relationshipType: String!) {
+  createAreaRelationship(
     request: {
       token: $token,
-      sourceDevice: $sourceDevice
-      targetDevice: $targetDevice
+      sourceArea: $sourceArea
+      targetArea: $targetArea
       relationshipType: $relationshipType
     }
   ) {
@@ -190,20 +184,20 @@ mutation createDeviceRelationship($token: String!, $sourceDevice: String!, $targ
   }
 }
 
-# Get device relationships by unique tokens.
-query getDeviceRelationshipsByToken($tokens: [String!]!) {
-  deviceRelationshipsByToken(tokens: $tokens) {
+# Get area relationships by unique token.
+query getAreaRelationshipsByToken($tokens: [String!]!) {
+  areaRelationshipsByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
     deletedAt
     token
-    sourceDevice {
+    sourceArea {
       token
       name
       description
     }
-    targetDevice {
+    targetArea {
       token
       name
       description
@@ -217,17 +211,17 @@ query getDeviceRelationshipsByToken($tokens: [String!]!) {
   }
 }
 
-# List device relationships that match criteria.
-query listDeviceRelationships($pageNumber: Int!, $pageSize: Int!) {
-  deviceRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List area relationships that match criteria.
+query listAreaRelationships($pageNumber: Int!, $pageSize: Int!) {
+  areaRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
-      sourceDevice {
+      sourceArea {
         token
         name
         description
       }
-      targetDevice {
+      targetArea {
         token
         name
         description
@@ -247,10 +241,10 @@ query listDeviceRelationships($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device group and return identifiers.
-mutation createDeviceGroup($token: String!, $name: String, $description: String, 
+# Create area group and return identifiers.
+mutation createAreaGroup($token: String!, $name: String, $description: String, 
   $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
-  createDeviceGroup(request: { 
+  createAreaGroup(request: { 
     token: $token,
     name: $name,
     description: $description,
@@ -266,9 +260,9 @@ mutation createDeviceGroup($token: String!, $name: String, $description: String,
   }
 }
 
-# Get device groups by unique tokens.
-query getDeviceGroupsByToken($tokens: [String!]!) {
-  deviceGroupsByToken(tokens: $tokens) {
+# Get area groups by unique token.
+query getAreaGroupsByToken($tokens: [String!]!) {
+  areaGroupsByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
@@ -285,9 +279,9 @@ query getDeviceGroupsByToken($tokens: [String!]!) {
   }
 }
 
-# List device groups that match criteria.
-query listDeviceGroups($pageNumber: Int!, $pageSize: Int!) {
-  deviceGroups(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List area groups that match criteria.
+query listAreaGroups($pageNumber: Int!, $pageSize: Int!) {
+  areaGroups(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
@@ -311,9 +305,9 @@ query listDeviceGroups($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device group relationship type and return identifiers.
-mutation createDeviceGroupRelationshipType($token: String!, $name: String, $description: String, $metadata: String) {
-  createDeviceGroupRelationshipType(request: { 
+# Create area group relationship type and return identifiers.
+mutation createAreaGroupRelationshipType($token: String!, $name: String, $description: String, $metadata: String) {
+  createAreaGroupRelationshipType(request: { 
     token: $token,
     name: $name,
     description: $description,
@@ -324,9 +318,9 @@ mutation createDeviceGroupRelationshipType($token: String!, $name: String, $desc
   }
 }
 
-# Get device group relationship types by unique token.
-query getDeviceGroupRelationshipTypesByToken($tokens: [String!]!) {
-  deviceGroupRelationshipTypesByToken(tokens: $tokens) {
+# Get area group relationship type by unique token.
+query getAreaGroupRelationshipTypesByToken($tokens: [String!]!) {
+  areaGroupRelationshipTypesByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
@@ -338,9 +332,9 @@ query getDeviceGroupRelationshipTypesByToken($tokens: [String!]!) {
   }
 }
 
-# List device group relationship types that match criteria.
-query listDeviceGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
-  deviceGroupRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List area group relationship types that match criteria.
+query listAreaGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
+  areaGroupRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
@@ -359,13 +353,13 @@ query listDeviceGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
   }
 }
 
-# Create device group relationship and return identifiers.
-mutation createDeviceGroupRelationship($token: String!, $deviceGroup: String!, $device: String!, $relationshipType: String!) {
-  createDeviceGroupRelationship(
+# Create area group relationship and return identifiers.
+mutation createAreaGroupRelationship($token: String!, $areaGroup: String!, $area: String!, $relationshipType: String!) {
+  createAreaGroupRelationship(
     request: {
       token: $token,
-      deviceGroup: $deviceGroup,
-      device: $device,
+      areaGroup: $areaGroup,
+      area: $area,
       relationshipType: $relationshipType
     }
   ) {
@@ -374,20 +368,20 @@ mutation createDeviceGroupRelationship($token: String!, $deviceGroup: String!, $
   }
 }
 
-# Get device group relationships by unique tokens.
-query getDeviceGroupRelationshipsByToken($tokens: [String!]!) {
-  deviceGroupRelationshipsByToken(tokens: $tokens) {
+# Get area group relationships by unique token.
+query getAreaGroupRelationshipsByToken($tokens: [String!]!) {
+  areaGroupRelationshipsByToken(tokens: $tokens) {
     id
     createdAt
     updatedAt
     deletedAt
     token
-    deviceGroup {
+    areaGroup {
       token
       name
       description
     }
-    device {
+    area {
       token
       name
       description
@@ -401,21 +395,21 @@ query getDeviceGroupRelationshipsByToken($tokens: [String!]!) {
   }
 }
 
-# List device group relationships that match criteria.
-query listDeviceGroupRelationships($pageNumber: Int!, $pageSize: Int!) {
-  deviceGroupRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+# List area group relationships that match criteria.
+query listAreaGroupRelationships($pageNumber: Int!, $pageSize: Int!) {
+  areaGroupRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
       id
       createdAt
       updatedAt
       deletedAt
       token
-      deviceGroup {
+      areaGroup {
         token
         name
         description
       }
-      device {
+      area {
         token
         name
         description

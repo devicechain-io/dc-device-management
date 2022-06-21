@@ -279,11 +279,11 @@ func (rez *EventResolver) HandleEvent(ctx context.Context,
 
 // Execute logic to resolve event.
 func (rez *EventResolver) ResolveEvent(ctx context.Context, unrez *esmodel.UnresolvedEvent) ([]EventResolutionResults, uint, error) {
-	device, err := rez.Api.DeviceByToken(context.Background(), unrez.Device)
-	if err != nil {
+	matches, err := rez.Api.DevicesByToken(context.Background(), []string{unrez.Device})
+	if err != nil || len(matches) == 0 {
 		return nil, uint(dmproto.FailureReason_DeviceNotFound), err
 	}
-	return rez.HandleEvent(ctx, device, unrez)
+	return rez.HandleEvent(ctx, matches[0], unrez)
 }
 
 // Converts unresolved events into resolved events.

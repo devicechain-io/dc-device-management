@@ -9,50 +9,57 @@ package graphql
 import (
 	"context"
 	_ "embed"
-	"strconv"
 
 	"github.com/devicechain-io/dc-device-management/model"
 )
 
-// Find customer type by unique id.
-func (r *SchemaResolver) CustomerType(ctx context.Context, args struct {
-	Id string
-}) (*CustomerTypeResolver, error) {
+// Find customer types by unique id.
+func (r *SchemaResolver) CustomerTypesById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*CustomerTypeResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
 
-	found, err := api.CustomerTypeById(ctx, uint(id))
+	found, err := api.CustomerTypesById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &CustomerTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*CustomerTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &CustomerTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find customer type by unique token.
-func (r *SchemaResolver) CustomerTypeByToken(ctx context.Context, args struct {
-	Token string
-}) (*CustomerTypeResolver, error) {
+// Find customer types by unique token.
+func (r *SchemaResolver) CustomerTypesByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*CustomerTypeResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.CustomerTypeByToken(ctx, args.Token)
+	found, err := api.CustomerTypesByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &CustomerTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*CustomerTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &CustomerTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all customer types that match the given criteria.
@@ -73,44 +80,52 @@ func (r *SchemaResolver) CustomerTypes(ctx context.Context, args struct {
 	}, nil
 }
 
-// Find customer by unique id.
-func (r *SchemaResolver) Customer(ctx context.Context, args struct {
-	Id string
-}) (*CustomerResolver, error) {
+// Find customers by unique id.
+func (r *SchemaResolver) CustomersById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*CustomerResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.CustomerById(ctx, uint(id))
+	found, err := api.CustomersById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &CustomerResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*CustomerResolver, 0)
+	for _, dt := range found {
+		dtr := &CustomerResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find customer by unique token.
-func (r *SchemaResolver) CustomerByToken(ctx context.Context, args struct {
-	Token string
-}) (*CustomerResolver, error) {
+// Find customers by unique token.
+func (r *SchemaResolver) CustomersByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*CustomerResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.CustomerByToken(ctx, args.Token)
+	found, err := api.CustomersByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &CustomerResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*CustomerResolver, 0)
+	for _, dt := range found {
+		dtr := &CustomerResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all customers that match the given criteria.
@@ -131,44 +146,52 @@ func (r *SchemaResolver) Customers(ctx context.Context, args struct {
 	}, nil
 }
 
-// Find customer relationship type by unique id.
-func (r *SchemaResolver) CustomerRelationshipType(ctx context.Context, args struct {
-	Id string
-}) (*CustomerRelationshipTypeResolver, error) {
+// Find customer relationship types by unique id.
+func (r *SchemaResolver) CustomerRelationshipTypesById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*CustomerRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.CustomerRelationshipTypeById(ctx, uint(id))
+	found, err := api.CustomerRelationshipTypesById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &CustomerRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*CustomerRelationshipTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &CustomerRelationshipTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find customer relationship type by unique token.
-func (r *SchemaResolver) CustomerRelationshipTypeByToken(ctx context.Context, args struct {
-	Token string
-}) (*CustomerRelationshipTypeResolver, error) {
+// Find customer relationship types by unique token.
+func (r *SchemaResolver) CustomerRelationshipTypesByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*CustomerRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.CustomerRelationshipTypeByToken(ctx, args.Token)
+	found, err := api.CustomerRelationshipTypesByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &CustomerRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*CustomerRelationshipTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &CustomerRelationshipTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all customer relationship types that match the given criteria.
@@ -189,44 +212,52 @@ func (r *SchemaResolver) CustomerRelationshipTypes(ctx context.Context, args str
 	}, nil
 }
 
-// Find customer relationship by unique id.
-func (r *SchemaResolver) CustomerRelationship(ctx context.Context, args struct {
-	Id string
-}) (*CustomerRelationshipResolver, error) {
+// Find customer relationships by unique id.
+func (r *SchemaResolver) CustomerRelationshipsById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*CustomerRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.CustomerRelationshipById(ctx, uint(id))
+	found, err := api.CustomerRelationshipsById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &CustomerRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*CustomerRelationshipResolver, 0)
+	for _, dt := range found {
+		dtr := &CustomerRelationshipResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find customer relationship by unique token.
-func (r *SchemaResolver) CustomerRelationshipByToken(ctx context.Context, args struct {
-	Token string
-}) (*CustomerRelationshipResolver, error) {
+// Find customer relationships by unique token.
+func (r *SchemaResolver) CustomerRelationshipsByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*CustomerRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.CustomerRelationshipByToken(ctx, args.Token)
+	found, err := api.CustomerRelationshipsByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &CustomerRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*CustomerRelationshipResolver, 0)
+	for _, dt := range found {
+		dtr := &CustomerRelationshipResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all customer relationships that match the given criteria.
@@ -247,44 +278,52 @@ func (r *SchemaResolver) CustomerRelationships(ctx context.Context, args struct 
 	}, nil
 }
 
-// Find customer group by unique id.
-func (r *SchemaResolver) CustomerGroup(ctx context.Context, args struct {
-	Id string
-}) (*CustomerGroupResolver, error) {
+// Find customer groups by unique id.
+func (r *SchemaResolver) CustomerGroupsById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*CustomerGroupResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.CustomerGroupById(ctx, uint(id))
+	found, err := api.CustomerGroupsById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &CustomerGroupResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*CustomerGroupResolver, 0)
+	for _, dt := range found {
+		dtr := &CustomerGroupResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find customer group by unique token.
-func (r *SchemaResolver) CustomerGroupByToken(ctx context.Context, args struct {
-	Token string
-}) (*CustomerGroupResolver, error) {
+// Find customer groups by unique token.
+func (r *SchemaResolver) CustomerGroupsByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*CustomerGroupResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.CustomerGroupByToken(ctx, args.Token)
+	found, err := api.CustomerGroupsByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &CustomerGroupResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*CustomerGroupResolver, 0)
+	for _, dt := range found {
+		dtr := &CustomerGroupResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all customer groups that match the given criteria.
@@ -305,44 +344,52 @@ func (r *SchemaResolver) CustomerGroups(ctx context.Context, args struct {
 	}, nil
 }
 
-// Find customer group relationship type by unique id.
-func (r *SchemaResolver) CustomerGroupRelationshipType(ctx context.Context, args struct {
-	Id string
-}) (*CustomerGroupRelationshipTypeResolver, error) {
+// Find customer group relationship types by unique id.
+func (r *SchemaResolver) CustomerGroupRelationshipTypesById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*CustomerGroupRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.CustomerGroupRelationshipTypeById(ctx, uint(id))
+	found, err := api.CustomerGroupRelationshipTypesById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &CustomerGroupRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*CustomerGroupRelationshipTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &CustomerGroupRelationshipTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find customer group relationship type by unique token.
-func (r *SchemaResolver) CustomerGroupRelationshipTypeByToken(ctx context.Context, args struct {
-	Token string
-}) (*CustomerGroupRelationshipTypeResolver, error) {
+// Find customer group relationship types by unique token.
+func (r *SchemaResolver) CustomerGroupRelationshipTypesByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*CustomerGroupRelationshipTypeResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.CustomerGroupRelationshipTypeByToken(ctx, args.Token)
+	found, err := api.CustomerGroupRelationshipTypesByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &CustomerGroupRelationshipTypeResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*CustomerGroupRelationshipTypeResolver, 0)
+	for _, dt := range found {
+		dtr := &CustomerGroupRelationshipTypeResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all customer group relationship types that match the given criteria.
@@ -363,44 +410,52 @@ func (r *SchemaResolver) CustomerGroupRelationshipTypes(ctx context.Context, arg
 	}, nil
 }
 
-// Find customer group relationship by unique id.
-func (r *SchemaResolver) CustomerGroupRelationship(ctx context.Context, args struct {
-	Id string
-}) (*CustomerGroupRelationshipResolver, error) {
+// Find customer group relationships by unique id.
+func (r *SchemaResolver) CustomerGroupRelationshipsById(ctx context.Context, args struct {
+	Ids []string
+}) ([]*CustomerGroupRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	id, err := strconv.ParseUint(args.Id, 0, 64)
+	ids, err := r.asUintIds(args.Ids)
 	if err != nil {
 		return nil, err
 	}
-	found, err := api.CustomerGroupRelationshipById(ctx, uint(id))
+	found, err := api.CustomerGroupRelationshipsById(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &CustomerGroupRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*CustomerGroupRelationshipResolver, 0)
+	for _, dt := range found {
+		dtr := &CustomerGroupRelationshipResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
-// Find customer group relationship by unique token.
-func (r *SchemaResolver) CustomerGroupRelationshipByToken(ctx context.Context, args struct {
-	Token string
-}) (*CustomerGroupRelationshipResolver, error) {
+// Find customer group relationships by unique token.
+func (r *SchemaResolver) CustomerGroupRelationshipsByToken(ctx context.Context, args struct {
+	Tokens []string
+}) ([]*CustomerGroupRelationshipResolver, error) {
 	api := r.GetApi(ctx)
-	found, err := api.CustomerGroupRelationshipByToken(ctx, args.Token)
+	found, err := api.CustomerGroupRelationshipsByToken(ctx, args.Tokens)
 	if err != nil {
 		return nil, err
 	}
 
-	dt := &CustomerGroupRelationshipResolver{
-		M: *found,
-		S: r,
-		C: ctx,
+	result := make([]*CustomerGroupRelationshipResolver, 0)
+	for _, dt := range found {
+		dtr := &CustomerGroupRelationshipResolver{
+			M: *dt,
+			S: r,
+			C: ctx,
+		}
+		result = append(result, dtr)
 	}
-	return dt, nil
+	return result, nil
 }
 
 // List all customer group relationships that match the given criteria.

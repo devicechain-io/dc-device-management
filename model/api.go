@@ -26,13 +26,13 @@ func NewApi(rdb *rdb.RdbManager) *Api {
 // Interface for device management API (used for mocking)
 type DeviceManagementApi interface {
 	// Device types.
-	DeviceTypeById(ctx context.Context, id uint) (*DeviceType, error)
-	DeviceTypeByToken(ctx context.Context, token string) (*DeviceType, error)
+	DeviceTypesById(ctx context.Context, ids []uint) ([]*DeviceType, error)
+	DeviceTypesByToken(ctx context.Context, tokens []string) ([]*DeviceType, error)
 	DeviceTypes(ctx context.Context, criteria DeviceTypeSearchCriteria) (*DeviceTypeSearchResults, error)
 
 	// Devices.
-	DeviceById(ctx context.Context, id uint) (*Device, error)
-	DeviceByToken(ctx context.Context, token string) (*Device, error)
+	DevicesById(ctx context.Context, ids []uint) ([]*Device, error)
+	DevicesByToken(ctx context.Context, tokens []string) ([]*Device, error)
 	Devices(ctx context.Context, criteria DeviceSearchCriteria) (*DeviceSearchResults, error)
 
 	// Device assignments.
