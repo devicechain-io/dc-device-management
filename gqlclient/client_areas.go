@@ -13,21 +13,24 @@ import (
 	"github.com/devicechain-io/dc-device-management/model"
 )
 
-// Assure that an area type exists.
+// Assure that a area type exists.
 func AssureAreaType(
 	ctx context.Context,
 	client graphql.Client,
 	request model.AreaTypeCreateRequest,
-) (*getAreaTypesByTokenResponse, *createAreaTypeResponse, error) {
+) (IAreaType, bool, error) {
 	gresp, err := GetAreaTypesByToken(ctx, client, []string{request.Token})
-	if err == nil && len(gresp.AreaTypesByToken) > 0 {
-		return gresp, nil, nil
+	if err != nil {
+		return nil, false, err
+	}
+	if gresp[request.Token] != nil {
+		return gresp[request.Token], false, nil
 	}
 	cresp, err := CreateAreaType(ctx, client, request)
 	if err != nil {
-		return nil, nil, err
+		return nil, false, err
 	}
-	return nil, cresp, nil
+	return cresp, true, nil
 }
 
 // Create a new area type.
@@ -35,10 +38,14 @@ func CreateAreaType(
 	ctx context.Context,
 	client graphql.Client,
 	request model.AreaTypeCreateRequest,
-) (*createAreaTypeResponse, error) {
-	return createAreaType(ctx, client, request.Token, blank(request.Name), blank(request.Description),
+) (IAreaType, error) {
+	cresp, err := createAreaType(ctx, client, request.Token, blank(request.Name), blank(request.Description),
 		blank(request.ImageUrl), blank(request.Icon), blank(request.BackgroundColor), blank(request.ForegroundColor),
 		blank(request.BorderColor), blank(request.Metadata))
+	if err != nil {
+		return nil, err
+	}
+	return &cresp.CreateAreaType, nil
 }
 
 // Get area types by token.
@@ -46,8 +53,18 @@ func GetAreaTypesByToken(
 	ctx context.Context,
 	client graphql.Client,
 	tokens []string,
-) (*getAreaTypesByTokenResponse, error) {
-	return getAreaTypesByToken(ctx, client, tokens)
+) (map[string]IAreaType, error) {
+	gresp, err := getAreaTypesByToken(ctx, client, tokens)
+	if err != nil {
+		return nil, err
+	}
+	itypes := make(map[string]IAreaType)
+	if gresp != nil {
+		for _, res := range gresp.AreaTypesByToken {
+			itypes[res.Token] = IAreaType(&res)
+		}
+	}
+	return itypes, nil
 }
 
 // List area types based on criteria.
@@ -60,21 +77,24 @@ func ListAreaTypes(
 	return listAreaTypes(ctx, client, pageNumber, pageSize)
 }
 
-// Assure that an area exists.
+// Assure that a area exists.
 func AssureArea(
 	ctx context.Context,
 	client graphql.Client,
 	request model.AreaCreateRequest,
-) (*getAreasByTokenResponse, *createAreaResponse, error) {
+) (IArea, bool, error) {
 	gresp, err := GetAreasByToken(ctx, client, []string{request.Token})
-	if err == nil && len(gresp.AreasByToken) > 0 {
-		return gresp, nil, nil
+	if err != nil {
+		return nil, false, err
+	}
+	if gresp[request.Token] != nil {
+		return gresp[request.Token], false, nil
 	}
 	cresp, err := CreateArea(ctx, client, request)
 	if err != nil {
-		return nil, nil, err
+		return nil, false, err
 	}
-	return nil, cresp, nil
+	return cresp, true, nil
 }
 
 // Create a new area.
@@ -82,9 +102,13 @@ func CreateArea(
 	ctx context.Context,
 	client graphql.Client,
 	request model.AreaCreateRequest,
-) (*createAreaResponse, error) {
-	return createArea(ctx, client, request.Token, request.AreaTypeToken,
+) (IArea, error) {
+	cresp, err := createArea(ctx, client, request.Token, request.AreaTypeToken,
 		blank(request.Name), blank(request.Description), blank(request.Metadata))
+	if err != nil {
+		return nil, err
+	}
+	return &cresp.CreateArea, nil
 }
 
 // Get areas by token.
@@ -92,8 +116,18 @@ func GetAreasByToken(
 	ctx context.Context,
 	client graphql.Client,
 	tokens []string,
-) (*getAreasByTokenResponse, error) {
-	return getAreasByToken(ctx, client, tokens)
+) (map[string]IArea, error) {
+	gresp, err := getAreasByToken(ctx, client, tokens)
+	if err != nil {
+		return nil, err
+	}
+	itypes := make(map[string]IArea)
+	if gresp != nil {
+		for _, res := range gresp.AreasByToken {
+			itypes[res.Token] = IArea(&res)
+		}
+	}
+	return itypes, nil
 }
 
 // List areas based on criteria.
@@ -106,21 +140,24 @@ func ListAreas(
 	return listAreas(ctx, client, pageNumber, pageSize)
 }
 
-// Assure that an area relationship type exists.
+// Assure that a area relationship type exists.
 func AssureAreaRelationshipType(
 	ctx context.Context,
 	client graphql.Client,
 	request model.AreaRelationshipTypeCreateRequest,
-) (*getAreaRelationshipTypesByTokenResponse, *createAreaRelationshipTypeResponse, error) {
+) (IAreaRelationshipType, bool, error) {
 	gresp, err := GetAreaRelationshipTypesByToken(ctx, client, []string{request.Token})
-	if err == nil && len(gresp.AreaRelationshipTypesByToken) > 0 {
-		return gresp, nil, nil
+	if err != nil {
+		return nil, false, err
+	}
+	if gresp[request.Token] != nil {
+		return gresp[request.Token], false, nil
 	}
 	cresp, err := CreateAreaRelationshipType(ctx, client, request)
 	if err != nil {
-		return nil, nil, err
+		return nil, false, err
 	}
-	return nil, cresp, nil
+	return cresp, true, nil
 }
 
 // Create a new area relationship type.
@@ -128,8 +165,13 @@ func CreateAreaRelationshipType(
 	ctx context.Context,
 	client graphql.Client,
 	request model.AreaRelationshipTypeCreateRequest,
-) (*createAreaRelationshipTypeResponse, error) {
-	return createAreaRelationshipType(ctx, client, request.Token, blank(request.Name), blank(request.Description), blank(request.Metadata))
+) (IAreaRelationshipType, error) {
+	cresp, err := createAreaRelationshipType(ctx, client, request.Token, blank(request.Name),
+		blank(request.Description), blank(request.Metadata))
+	if err != nil {
+		return nil, err
+	}
+	return &cresp.CreateAreaRelationshipType, nil
 }
 
 // Get area relationship types by token.
@@ -137,8 +179,18 @@ func GetAreaRelationshipTypesByToken(
 	ctx context.Context,
 	client graphql.Client,
 	tokens []string,
-) (*getAreaRelationshipTypesByTokenResponse, error) {
-	return getAreaRelationshipTypesByToken(ctx, client, tokens)
+) (map[string]IAreaRelationshipType, error) {
+	gresp, err := getAreaRelationshipTypesByToken(ctx, client, tokens)
+	if err != nil {
+		return nil, err
+	}
+	itypes := make(map[string]IAreaRelationshipType)
+	if gresp != nil {
+		for _, res := range gresp.AreaRelationshipTypesByToken {
+			itypes[res.Token] = IAreaRelationshipType(&res)
+		}
+	}
+	return itypes, nil
 }
 
 // List area relationship types based on criteria.
@@ -151,21 +203,24 @@ func ListAreaRelationshipTypes(
 	return listAreaRelationshipTypes(ctx, client, pageNumber, pageSize)
 }
 
-// Assure that an area relationship exists.
+// Assure that a area relationship exists.
 func AssureAreaRelationship(
 	ctx context.Context,
 	client graphql.Client,
 	request model.AreaRelationshipCreateRequest,
-) (*getAreaRelationshipsByTokenResponse, *createAreaRelationshipResponse, error) {
+) (IAreaRelationship, bool, error) {
 	gresp, err := GetAreaRelationshipsByToken(ctx, client, []string{request.Token})
-	if err == nil && len(gresp.AreaRelationshipsByToken) > 0 {
-		return gresp, nil, nil
+	if err != nil {
+		return nil, false, err
+	}
+	if gresp[request.Token] != nil {
+		return gresp[request.Token], false, nil
 	}
 	cresp, err := CreateAreaRelationship(ctx, client, request)
 	if err != nil {
-		return nil, nil, err
+		return nil, false, err
 	}
-	return nil, cresp, nil
+	return cresp, true, nil
 }
 
 // Create a new area relationship.
@@ -173,8 +228,13 @@ func CreateAreaRelationship(
 	ctx context.Context,
 	client graphql.Client,
 	request model.AreaRelationshipCreateRequest,
-) (*createAreaRelationshipResponse, error) {
-	return createAreaRelationship(ctx, client, request.Token, request.SourceArea, request.TargetArea, request.RelationshipType)
+) (IAreaRelationship, error) {
+	cresp, err := createAreaRelationship(ctx, client, request.Token, request.SourceArea,
+		request.TargetArea, request.RelationshipType)
+	if err != nil {
+		return nil, err
+	}
+	return &cresp.CreateAreaRelationship, nil
 }
 
 // Get area relationships by token.
@@ -182,8 +242,18 @@ func GetAreaRelationshipsByToken(
 	ctx context.Context,
 	client graphql.Client,
 	tokens []string,
-) (*getAreaRelationshipsByTokenResponse, error) {
-	return getAreaRelationshipsByToken(ctx, client, tokens)
+) (map[string]IAreaRelationship, error) {
+	gresp, err := getAreaRelationshipsByToken(ctx, client, tokens)
+	if err != nil {
+		return nil, err
+	}
+	itypes := make(map[string]IAreaRelationship)
+	if gresp != nil {
+		for _, res := range gresp.AreaRelationshipsByToken {
+			itypes[res.Token] = IAreaRelationship(&res)
+		}
+	}
+	return itypes, nil
 }
 
 // List area relationships based on criteria.
@@ -196,21 +266,24 @@ func ListAreaRelationships(
 	return listAreaRelationships(ctx, client, pageNumber, pageSize)
 }
 
-// Assure that an area group exists.
+// Assure that a area group exists.
 func AssureAreaGroup(
 	ctx context.Context,
 	client graphql.Client,
 	request model.AreaGroupCreateRequest,
-) (*getAreaGroupsByTokenResponse, *createAreaGroupResponse, error) {
+) (IAreaGroup, bool, error) {
 	gresp, err := GetAreaGroupsByToken(ctx, client, []string{request.Token})
-	if err == nil && len(gresp.AreaGroupsByToken) > 0 {
-		return gresp, nil, nil
+	if err != nil {
+		return nil, false, err
+	}
+	if gresp[request.Token] != nil {
+		return gresp[request.Token], false, nil
 	}
 	cresp, err := CreateAreaGroup(ctx, client, request)
 	if err != nil {
-		return nil, nil, err
+		return nil, false, err
 	}
-	return nil, cresp, nil
+	return cresp, true, nil
 }
 
 // Create a new area group.
@@ -218,10 +291,14 @@ func CreateAreaGroup(
 	ctx context.Context,
 	client graphql.Client,
 	request model.AreaGroupCreateRequest,
-) (*createAreaGroupResponse, error) {
-	return createAreaGroup(ctx, client, request.Token, blank(request.Name), blank(request.Description),
+) (IAreaGroup, error) {
+	cresp, err := createAreaGroup(ctx, client, request.Token, blank(request.Name), blank(request.Description),
 		blank(request.ImageUrl), blank(request.Icon), blank(request.BackgroundColor), blank(request.ForegroundColor),
 		blank(request.BorderColor), blank(request.Metadata))
+	if err != nil {
+		return nil, err
+	}
+	return &cresp.CreateAreaGroup, nil
 }
 
 // Get area groups by token.
@@ -229,8 +306,18 @@ func GetAreaGroupsByToken(
 	ctx context.Context,
 	client graphql.Client,
 	tokens []string,
-) (*getAreaGroupsByTokenResponse, error) {
-	return getAreaGroupsByToken(ctx, client, tokens)
+) (map[string]IAreaGroup, error) {
+	gresp, err := getAreaGroupsByToken(ctx, client, tokens)
+	if err != nil {
+		return nil, err
+	}
+	itypes := make(map[string]IAreaGroup)
+	if gresp != nil {
+		for _, res := range gresp.AreaGroupsByToken {
+			itypes[res.Token] = IAreaGroup(&res)
+		}
+	}
+	return itypes, nil
 }
 
 // List area groups based on criteria.
@@ -243,21 +330,24 @@ func ListAreaGroups(
 	return listAreaGroups(ctx, client, pageNumber, pageSize)
 }
 
-// Assure that an area group relationship type exists.
+// Assure that a area group relationship type exists.
 func AssureAreaGroupRelationshipType(
 	ctx context.Context,
 	client graphql.Client,
 	request model.AreaGroupRelationshipTypeCreateRequest,
-) (*getAreaGroupRelationshipTypesByTokenResponse, *createAreaGroupRelationshipTypeResponse, error) {
+) (IAreaGroupRelationshipType, bool, error) {
 	gresp, err := GetAreaGroupRelationshipTypesByToken(ctx, client, []string{request.Token})
-	if err == nil && len(gresp.AreaGroupRelationshipTypesByToken) > 0 {
-		return gresp, nil, nil
+	if err != nil {
+		return nil, false, err
+	}
+	if gresp[request.Token] != nil {
+		return gresp[request.Token], false, nil
 	}
 	cresp, err := CreateAreaGroupRelationshipType(ctx, client, request)
 	if err != nil {
-		return nil, nil, err
+		return nil, false, err
 	}
-	return nil, cresp, nil
+	return cresp, true, nil
 }
 
 // Create a new area group relationship type.
@@ -265,17 +355,32 @@ func CreateAreaGroupRelationshipType(
 	ctx context.Context,
 	client graphql.Client,
 	request model.AreaGroupRelationshipTypeCreateRequest,
-) (*createAreaGroupRelationshipTypeResponse, error) {
-	return createAreaGroupRelationshipType(ctx, client, request.Token, blank(request.Name), blank(request.Description), blank(request.Metadata))
+) (IAreaGroupRelationshipType, error) {
+	cresp, err := createAreaGroupRelationshipType(ctx, client, request.Token, blank(request.Name),
+		blank(request.Description), blank(request.Metadata))
+	if err != nil {
+		return nil, err
+	}
+	return &cresp.CreateAreaGroupRelationshipType, nil
 }
 
-// Get area group relationship types by token.
+// Get a area group relationship types by token.
 func GetAreaGroupRelationshipTypesByToken(
 	ctx context.Context,
 	client graphql.Client,
 	tokens []string,
-) (*getAreaGroupRelationshipTypesByTokenResponse, error) {
-	return getAreaGroupRelationshipTypesByToken(ctx, client, tokens)
+) (map[string]IAreaGroupRelationshipType, error) {
+	gresp, err := getAreaGroupRelationshipTypesByToken(ctx, client, tokens)
+	if err != nil {
+		return nil, err
+	}
+	itypes := make(map[string]IAreaGroupRelationshipType)
+	if gresp != nil {
+		for _, res := range gresp.AreaGroupRelationshipTypesByToken {
+			itypes[res.Token] = IAreaGroupRelationshipType(&res)
+		}
+	}
+	return itypes, nil
 }
 
 // List area group relationship types based on criteria.
@@ -288,21 +393,24 @@ func ListAreaGroupRelationshipTypes(
 	return listAreaGroupRelationshipTypes(ctx, client, pageNumber, pageSize)
 }
 
-// Assure that an area group relationship exists.
+// Assure that a area group relationship exists.
 func AssureAreaGroupRelationship(
 	ctx context.Context,
 	client graphql.Client,
 	request model.AreaGroupRelationshipCreateRequest,
-) (*getAreaGroupRelationshipsByTokenResponse, *createAreaGroupRelationshipResponse, error) {
+) (IAreaGroupRelationship, bool, error) {
 	gresp, err := GetAreaGroupRelationshipsByToken(ctx, client, []string{request.Token})
-	if err == nil && len(gresp.AreaGroupRelationshipsByToken) > 0 {
-		return gresp, nil, nil
+	if err != nil {
+		return nil, false, err
+	}
+	if gresp[request.Token] != nil {
+		return gresp[request.Token], false, nil
 	}
 	cresp, err := CreateAreaGroupRelationship(ctx, client, request)
 	if err != nil {
-		return nil, nil, err
+		return nil, false, err
 	}
-	return nil, cresp, nil
+	return cresp, true, nil
 }
 
 // Create a new area group relationship.
@@ -310,17 +418,32 @@ func CreateAreaGroupRelationship(
 	ctx context.Context,
 	client graphql.Client,
 	request model.AreaGroupRelationshipCreateRequest,
-) (*createAreaGroupRelationshipResponse, error) {
-	return createAreaGroupRelationship(ctx, client, request.Token, request.AreaGroup, request.Area, request.RelationshipType)
+) (IAreaGroupRelationship, error) {
+	cresp, err := createAreaGroupRelationship(ctx, client, request.Token, request.AreaGroup, request.Area,
+		request.RelationshipType)
+	if err != nil {
+		return nil, err
+	}
+	return &cresp.CreateAreaGroupRelationship, nil
 }
 
-// Get area group relationships by token.
+// Get a area group relationships by token.
 func GetAreaGroupRelationshipsByToken(
 	ctx context.Context,
 	client graphql.Client,
 	tokens []string,
-) (*getAreaGroupRelationshipsByTokenResponse, error) {
-	return getAreaGroupRelationshipsByToken(ctx, client, tokens)
+) (map[string]IAreaGroupRelationship, error) {
+	gresp, err := getAreaGroupRelationshipsByToken(ctx, client, tokens)
+	if err != nil {
+		return nil, err
+	}
+	itypes := make(map[string]IAreaGroupRelationship)
+	if gresp != nil {
+		for _, res := range gresp.AreaGroupRelationshipsByToken {
+			itypes[res.Token] = IAreaGroupRelationship(&res)
+		}
+	}
+	return itypes, nil
 }
 
 // List area group relationships based on criteria.

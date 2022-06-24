@@ -4,9 +4,1794 @@ package gqlclient
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/Khan/genqlient/graphql"
 )
+
+// Content associated with area response.
+type DefaultArea struct {
+	Id          string              `json:"id"`
+	CreatedAt   string              `json:"createdAt"`
+	UpdatedAt   string              `json:"updatedAt"`
+	DeletedAt   string              `json:"deletedAt"`
+	Token       string              `json:"token"`
+	Name        string              `json:"name"`
+	Description string              `json:"description"`
+	AreaType    DefaultAreaAreaType `json:"areaType"`
+	Metadata    string              `json:"metadata"`
+}
+
+// GetId returns DefaultArea.Id, and is useful for accessing the field via an interface.
+func (v *DefaultArea) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultArea.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultArea) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultArea.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultArea) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultArea.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultArea) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultArea.Token, and is useful for accessing the field via an interface.
+func (v *DefaultArea) GetToken() string { return v.Token }
+
+// GetName returns DefaultArea.Name, and is useful for accessing the field via an interface.
+func (v *DefaultArea) GetName() string { return v.Name }
+
+// GetDescription returns DefaultArea.Description, and is useful for accessing the field via an interface.
+func (v *DefaultArea) GetDescription() string { return v.Description }
+
+// GetAreaType returns DefaultArea.AreaType, and is useful for accessing the field via an interface.
+func (v *DefaultArea) GetAreaType() DefaultAreaAreaType { return v.AreaType }
+
+// GetMetadata returns DefaultArea.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultArea) GetMetadata() string { return v.Metadata }
+
+// DefaultAreaAreaType includes the requested fields of the GraphQL type AreaType.
+type DefaultAreaAreaType struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAreaAreaType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAreaAreaType) GetToken() string { return v.Token }
+
+// GetName returns DefaultAreaAreaType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAreaAreaType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAreaAreaType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAreaAreaType) GetDescription() string { return v.Description }
+
+// Content associated with area group.
+type DefaultAreaGroup struct {
+	Id              string `json:"id"`
+	CreatedAt       string `json:"createdAt"`
+	UpdatedAt       string `json:"updatedAt"`
+	DeletedAt       string `json:"deletedAt"`
+	Token           string `json:"token"`
+	Name            string `json:"name"`
+	Description     string `json:"description"`
+	ImageUrl        string `json:"imageUrl"`
+	Icon            string `json:"icon"`
+	BackgroundColor string `json:"backgroundColor"`
+	ForegroundColor string `json:"foregroundColor"`
+	BorderColor     string `json:"borderColor"`
+	Metadata        string `json:"metadata"`
+}
+
+// GetId returns DefaultAreaGroup.Id, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroup) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultAreaGroup.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroup) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultAreaGroup.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroup) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultAreaGroup.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroup) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultAreaGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroup) GetToken() string { return v.Token }
+
+// GetName returns DefaultAreaGroup.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroup) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAreaGroup.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroup) GetDescription() string { return v.Description }
+
+// GetImageUrl returns DefaultAreaGroup.ImageUrl, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroup) GetImageUrl() string { return v.ImageUrl }
+
+// GetIcon returns DefaultAreaGroup.Icon, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroup) GetIcon() string { return v.Icon }
+
+// GetBackgroundColor returns DefaultAreaGroup.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroup) GetBackgroundColor() string { return v.BackgroundColor }
+
+// GetForegroundColor returns DefaultAreaGroup.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroup) GetForegroundColor() string { return v.ForegroundColor }
+
+// GetBorderColor returns DefaultAreaGroup.BorderColor, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroup) GetBorderColor() string { return v.BorderColor }
+
+// GetMetadata returns DefaultAreaGroup.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroup) GetMetadata() string { return v.Metadata }
+
+// Content associated with area group relationship.
+type DefaultAreaGroupRelationship struct {
+	Id               string                                                                `json:"id"`
+	CreatedAt        string                                                                `json:"createdAt"`
+	UpdatedAt        string                                                                `json:"updatedAt"`
+	DeletedAt        string                                                                `json:"deletedAt"`
+	Token            string                                                                `json:"token"`
+	AreaGroup        DefaultAreaGroupRelationshipAreaGroup                                 `json:"areaGroup"`
+	Area             DefaultAreaGroupRelationshipArea                                      `json:"area"`
+	RelationshipType DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType `json:"relationshipType"`
+	Metadata         string                                                                `json:"metadata"`
+}
+
+// GetId returns DefaultAreaGroupRelationship.Id, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationship) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultAreaGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationship) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultAreaGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationship) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultAreaGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationship) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultAreaGroupRelationship.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationship) GetToken() string { return v.Token }
+
+// GetAreaGroup returns DefaultAreaGroupRelationship.AreaGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationship) GetAreaGroup() DefaultAreaGroupRelationshipAreaGroup {
+	return v.AreaGroup
+}
+
+// GetArea returns DefaultAreaGroupRelationship.Area, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationship) GetArea() DefaultAreaGroupRelationshipArea { return v.Area }
+
+// GetRelationshipType returns DefaultAreaGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationship) GetRelationshipType() DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType {
+	return v.RelationshipType
+}
+
+// GetMetadata returns DefaultAreaGroupRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationship) GetMetadata() string { return v.Metadata }
+
+// DefaultAreaGroupRelationshipArea includes the requested fields of the GraphQL type Area.
+type DefaultAreaGroupRelationshipArea struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAreaGroupRelationshipArea.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipArea) GetToken() string { return v.Token }
+
+// GetName returns DefaultAreaGroupRelationshipArea.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipArea) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAreaGroupRelationshipArea.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipArea) GetDescription() string { return v.Description }
+
+// DefaultAreaGroupRelationshipAreaGroup includes the requested fields of the GraphQL type AreaGroup.
+type DefaultAreaGroupRelationshipAreaGroup struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAreaGroupRelationshipAreaGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipAreaGroup) GetToken() string { return v.Token }
+
+// GetName returns DefaultAreaGroupRelationshipAreaGroup.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipAreaGroup) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAreaGroupRelationshipAreaGroup.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipAreaGroup) GetDescription() string { return v.Description }
+
+// DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType includes the requested fields of the GraphQL type AreaGroupRelationshipType.
+type DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType) GetToken() string {
+	return v.Token
+}
+
+// GetName returns DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType) GetDescription() string {
+	return v.Description
+}
+
+// Content associated with area group relationship type.
+type DefaultAreaGroupRelationshipType struct {
+	Id          string `json:"id"`
+	CreatedAt   string `json:"createdAt"`
+	UpdatedAt   string `json:"updatedAt"`
+	DeletedAt   string `json:"deletedAt"`
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Metadata    string `json:"metadata"`
+}
+
+// GetId returns DefaultAreaGroupRelationshipType.Id, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipType) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultAreaGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipType) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultAreaGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipType) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultAreaGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipType) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultAreaGroupRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipType) GetToken() string { return v.Token }
+
+// GetName returns DefaultAreaGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAreaGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipType) GetDescription() string { return v.Description }
+
+// GetMetadata returns DefaultAreaGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipType) GetMetadata() string { return v.Metadata }
+
+// Content associated with area relationship response.
+type DefaultAreaRelationship struct {
+	Id               string                                                      `json:"id"`
+	CreatedAt        string                                                      `json:"createdAt"`
+	UpdatedAt        string                                                      `json:"updatedAt"`
+	DeletedAt        string                                                      `json:"deletedAt"`
+	Token            string                                                      `json:"token"`
+	SourceArea       DefaultAreaRelationshipSourceArea                           `json:"sourceArea"`
+	TargetArea       DefaultAreaRelationshipTargetArea                           `json:"targetArea"`
+	RelationshipType DefaultAreaRelationshipRelationshipTypeAreaRelationshipType `json:"relationshipType"`
+	Metadata         string                                                      `json:"metadata"`
+}
+
+// GetId returns DefaultAreaRelationship.Id, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationship) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultAreaRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationship) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultAreaRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationship) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultAreaRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationship) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultAreaRelationship.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationship) GetToken() string { return v.Token }
+
+// GetSourceArea returns DefaultAreaRelationship.SourceArea, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationship) GetSourceArea() DefaultAreaRelationshipSourceArea {
+	return v.SourceArea
+}
+
+// GetTargetArea returns DefaultAreaRelationship.TargetArea, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationship) GetTargetArea() DefaultAreaRelationshipTargetArea {
+	return v.TargetArea
+}
+
+// GetRelationshipType returns DefaultAreaRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationship) GetRelationshipType() DefaultAreaRelationshipRelationshipTypeAreaRelationshipType {
+	return v.RelationshipType
+}
+
+// GetMetadata returns DefaultAreaRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationship) GetMetadata() string { return v.Metadata }
+
+// DefaultAreaRelationshipRelationshipTypeAreaRelationshipType includes the requested fields of the GraphQL type AreaRelationshipType.
+type DefaultAreaRelationshipRelationshipTypeAreaRelationshipType struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAreaRelationshipRelationshipTypeAreaRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipRelationshipTypeAreaRelationshipType) GetToken() string {
+	return v.Token
+}
+
+// GetName returns DefaultAreaRelationshipRelationshipTypeAreaRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipRelationshipTypeAreaRelationshipType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAreaRelationshipRelationshipTypeAreaRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipRelationshipTypeAreaRelationshipType) GetDescription() string {
+	return v.Description
+}
+
+// DefaultAreaRelationshipSourceArea includes the requested fields of the GraphQL type Area.
+type DefaultAreaRelationshipSourceArea struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAreaRelationshipSourceArea.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipSourceArea) GetToken() string { return v.Token }
+
+// GetName returns DefaultAreaRelationshipSourceArea.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipSourceArea) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAreaRelationshipSourceArea.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipSourceArea) GetDescription() string { return v.Description }
+
+// DefaultAreaRelationshipTargetArea includes the requested fields of the GraphQL type Area.
+type DefaultAreaRelationshipTargetArea struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAreaRelationshipTargetArea.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipTargetArea) GetToken() string { return v.Token }
+
+// GetName returns DefaultAreaRelationshipTargetArea.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipTargetArea) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAreaRelationshipTargetArea.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipTargetArea) GetDescription() string { return v.Description }
+
+// Content associated with area relationship type response.
+type DefaultAreaRelationshipType struct {
+	Id          string `json:"id"`
+	CreatedAt   string `json:"createdAt"`
+	UpdatedAt   string `json:"updatedAt"`
+	DeletedAt   string `json:"deletedAt"`
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Metadata    string `json:"metadata"`
+}
+
+// GetId returns DefaultAreaRelationshipType.Id, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipType) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultAreaRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipType) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultAreaRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipType) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultAreaRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipType) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultAreaRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipType) GetToken() string { return v.Token }
+
+// GetName returns DefaultAreaRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAreaRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipType) GetDescription() string { return v.Description }
+
+// GetMetadata returns DefaultAreaRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipType) GetMetadata() string { return v.Metadata }
+
+// Content associated with area type response.
+type DefaultAreaType struct {
+	Id              string `json:"id"`
+	CreatedAt       string `json:"createdAt"`
+	UpdatedAt       string `json:"updatedAt"`
+	DeletedAt       string `json:"deletedAt"`
+	Token           string `json:"token"`
+	Name            string `json:"name"`
+	Description     string `json:"description"`
+	ImageUrl        string `json:"imageUrl"`
+	Icon            string `json:"icon"`
+	BackgroundColor string `json:"backgroundColor"`
+	ForegroundColor string `json:"foregroundColor"`
+	BorderColor     string `json:"borderColor"`
+	Metadata        string `json:"metadata"`
+}
+
+// GetId returns DefaultAreaType.Id, and is useful for accessing the field via an interface.
+func (v *DefaultAreaType) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultAreaType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaType) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultAreaType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaType) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultAreaType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAreaType) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultAreaType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAreaType) GetToken() string { return v.Token }
+
+// GetName returns DefaultAreaType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAreaType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAreaType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAreaType) GetDescription() string { return v.Description }
+
+// GetImageUrl returns DefaultAreaType.ImageUrl, and is useful for accessing the field via an interface.
+func (v *DefaultAreaType) GetImageUrl() string { return v.ImageUrl }
+
+// GetIcon returns DefaultAreaType.Icon, and is useful for accessing the field via an interface.
+func (v *DefaultAreaType) GetIcon() string { return v.Icon }
+
+// GetBackgroundColor returns DefaultAreaType.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultAreaType) GetBackgroundColor() string { return v.BackgroundColor }
+
+// GetForegroundColor returns DefaultAreaType.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultAreaType) GetForegroundColor() string { return v.ForegroundColor }
+
+// GetBorderColor returns DefaultAreaType.BorderColor, and is useful for accessing the field via an interface.
+func (v *DefaultAreaType) GetBorderColor() string { return v.BorderColor }
+
+// GetMetadata returns DefaultAreaType.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultAreaType) GetMetadata() string { return v.Metadata }
+
+// Content associated with asset response.
+type DefaultAsset struct {
+	Id          string                `json:"id"`
+	CreatedAt   string                `json:"createdAt"`
+	UpdatedAt   string                `json:"updatedAt"`
+	DeletedAt   string                `json:"deletedAt"`
+	Token       string                `json:"token"`
+	Name        string                `json:"name"`
+	Description string                `json:"description"`
+	AssetType   DefaultAssetAssetType `json:"assetType"`
+	Metadata    string                `json:"metadata"`
+}
+
+// GetId returns DefaultAsset.Id, and is useful for accessing the field via an interface.
+func (v *DefaultAsset) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultAsset.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAsset) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultAsset.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAsset) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultAsset.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAsset) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultAsset.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAsset) GetToken() string { return v.Token }
+
+// GetName returns DefaultAsset.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAsset) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAsset.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAsset) GetDescription() string { return v.Description }
+
+// GetAssetType returns DefaultAsset.AssetType, and is useful for accessing the field via an interface.
+func (v *DefaultAsset) GetAssetType() DefaultAssetAssetType { return v.AssetType }
+
+// GetMetadata returns DefaultAsset.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultAsset) GetMetadata() string { return v.Metadata }
+
+// DefaultAssetAssetType includes the requested fields of the GraphQL type AssetType.
+type DefaultAssetAssetType struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAssetAssetType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAssetAssetType) GetToken() string { return v.Token }
+
+// GetName returns DefaultAssetAssetType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAssetAssetType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAssetAssetType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAssetAssetType) GetDescription() string { return v.Description }
+
+// Content associated with asset group.
+type DefaultAssetGroup struct {
+	Id              string `json:"id"`
+	CreatedAt       string `json:"createdAt"`
+	UpdatedAt       string `json:"updatedAt"`
+	DeletedAt       string `json:"deletedAt"`
+	Token           string `json:"token"`
+	Name            string `json:"name"`
+	Description     string `json:"description"`
+	ImageUrl        string `json:"imageUrl"`
+	Icon            string `json:"icon"`
+	BackgroundColor string `json:"backgroundColor"`
+	ForegroundColor string `json:"foregroundColor"`
+	BorderColor     string `json:"borderColor"`
+	Metadata        string `json:"metadata"`
+}
+
+// GetId returns DefaultAssetGroup.Id, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroup) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultAssetGroup.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroup) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultAssetGroup.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroup) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultAssetGroup.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroup) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultAssetGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroup) GetToken() string { return v.Token }
+
+// GetName returns DefaultAssetGroup.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroup) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAssetGroup.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroup) GetDescription() string { return v.Description }
+
+// GetImageUrl returns DefaultAssetGroup.ImageUrl, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroup) GetImageUrl() string { return v.ImageUrl }
+
+// GetIcon returns DefaultAssetGroup.Icon, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroup) GetIcon() string { return v.Icon }
+
+// GetBackgroundColor returns DefaultAssetGroup.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroup) GetBackgroundColor() string { return v.BackgroundColor }
+
+// GetForegroundColor returns DefaultAssetGroup.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroup) GetForegroundColor() string { return v.ForegroundColor }
+
+// GetBorderColor returns DefaultAssetGroup.BorderColor, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroup) GetBorderColor() string { return v.BorderColor }
+
+// GetMetadata returns DefaultAssetGroup.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroup) GetMetadata() string { return v.Metadata }
+
+// Content associated with asset group relationship.
+type DefaultAssetGroupRelationship struct {
+	Id               string                                                                  `json:"id"`
+	CreatedAt        string                                                                  `json:"createdAt"`
+	UpdatedAt        string                                                                  `json:"updatedAt"`
+	DeletedAt        string                                                                  `json:"deletedAt"`
+	Token            string                                                                  `json:"token"`
+	AssetGroup       DefaultAssetGroupRelationshipAssetGroup                                 `json:"assetGroup"`
+	Asset            DefaultAssetGroupRelationshipAsset                                      `json:"asset"`
+	RelationshipType DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType `json:"relationshipType"`
+	Metadata         string                                                                  `json:"metadata"`
+}
+
+// GetId returns DefaultAssetGroupRelationship.Id, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationship) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultAssetGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationship) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultAssetGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationship) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultAssetGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationship) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultAssetGroupRelationship.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationship) GetToken() string { return v.Token }
+
+// GetAssetGroup returns DefaultAssetGroupRelationship.AssetGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationship) GetAssetGroup() DefaultAssetGroupRelationshipAssetGroup {
+	return v.AssetGroup
+}
+
+// GetAsset returns DefaultAssetGroupRelationship.Asset, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationship) GetAsset() DefaultAssetGroupRelationshipAsset { return v.Asset }
+
+// GetRelationshipType returns DefaultAssetGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationship) GetRelationshipType() DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType {
+	return v.RelationshipType
+}
+
+// GetMetadata returns DefaultAssetGroupRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationship) GetMetadata() string { return v.Metadata }
+
+// DefaultAssetGroupRelationshipAsset includes the requested fields of the GraphQL type Asset.
+type DefaultAssetGroupRelationshipAsset struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAssetGroupRelationshipAsset.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipAsset) GetToken() string { return v.Token }
+
+// GetName returns DefaultAssetGroupRelationshipAsset.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipAsset) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAssetGroupRelationshipAsset.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipAsset) GetDescription() string { return v.Description }
+
+// DefaultAssetGroupRelationshipAssetGroup includes the requested fields of the GraphQL type AssetGroup.
+type DefaultAssetGroupRelationshipAssetGroup struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAssetGroupRelationshipAssetGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipAssetGroup) GetToken() string { return v.Token }
+
+// GetName returns DefaultAssetGroupRelationshipAssetGroup.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipAssetGroup) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAssetGroupRelationshipAssetGroup.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipAssetGroup) GetDescription() string { return v.Description }
+
+// DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType includes the requested fields of the GraphQL type AssetGroupRelationshipType.
+type DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType) GetToken() string {
+	return v.Token
+}
+
+// GetName returns DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType) GetDescription() string {
+	return v.Description
+}
+
+// Content associated with asset group relationship type.
+type DefaultAssetGroupRelationshipType struct {
+	Id          string `json:"id"`
+	CreatedAt   string `json:"createdAt"`
+	UpdatedAt   string `json:"updatedAt"`
+	DeletedAt   string `json:"deletedAt"`
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Metadata    string `json:"metadata"`
+}
+
+// GetId returns DefaultAssetGroupRelationshipType.Id, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipType) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultAssetGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipType) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultAssetGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipType) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultAssetGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipType) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultAssetGroupRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipType) GetToken() string { return v.Token }
+
+// GetName returns DefaultAssetGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAssetGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipType) GetDescription() string { return v.Description }
+
+// GetMetadata returns DefaultAssetGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipType) GetMetadata() string { return v.Metadata }
+
+// Content associated with asset relationship response.
+type DefaultAssetRelationship struct {
+	Id               string                                                        `json:"id"`
+	CreatedAt        string                                                        `json:"createdAt"`
+	UpdatedAt        string                                                        `json:"updatedAt"`
+	DeletedAt        string                                                        `json:"deletedAt"`
+	Token            string                                                        `json:"token"`
+	SourceAsset      DefaultAssetRelationshipSourceAsset                           `json:"sourceAsset"`
+	TargetAsset      DefaultAssetRelationshipTargetAsset                           `json:"targetAsset"`
+	RelationshipType DefaultAssetRelationshipRelationshipTypeAssetRelationshipType `json:"relationshipType"`
+	Metadata         string                                                        `json:"metadata"`
+}
+
+// GetId returns DefaultAssetRelationship.Id, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationship) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultAssetRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationship) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultAssetRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationship) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultAssetRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationship) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultAssetRelationship.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationship) GetToken() string { return v.Token }
+
+// GetSourceAsset returns DefaultAssetRelationship.SourceAsset, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationship) GetSourceAsset() DefaultAssetRelationshipSourceAsset {
+	return v.SourceAsset
+}
+
+// GetTargetAsset returns DefaultAssetRelationship.TargetAsset, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationship) GetTargetAsset() DefaultAssetRelationshipTargetAsset {
+	return v.TargetAsset
+}
+
+// GetRelationshipType returns DefaultAssetRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationship) GetRelationshipType() DefaultAssetRelationshipRelationshipTypeAssetRelationshipType {
+	return v.RelationshipType
+}
+
+// GetMetadata returns DefaultAssetRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationship) GetMetadata() string { return v.Metadata }
+
+// DefaultAssetRelationshipRelationshipTypeAssetRelationshipType includes the requested fields of the GraphQL type AssetRelationshipType.
+type DefaultAssetRelationshipRelationshipTypeAssetRelationshipType struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAssetRelationshipRelationshipTypeAssetRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipRelationshipTypeAssetRelationshipType) GetToken() string {
+	return v.Token
+}
+
+// GetName returns DefaultAssetRelationshipRelationshipTypeAssetRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipRelationshipTypeAssetRelationshipType) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns DefaultAssetRelationshipRelationshipTypeAssetRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipRelationshipTypeAssetRelationshipType) GetDescription() string {
+	return v.Description
+}
+
+// DefaultAssetRelationshipSourceAsset includes the requested fields of the GraphQL type Asset.
+type DefaultAssetRelationshipSourceAsset struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAssetRelationshipSourceAsset.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipSourceAsset) GetToken() string { return v.Token }
+
+// GetName returns DefaultAssetRelationshipSourceAsset.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipSourceAsset) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAssetRelationshipSourceAsset.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipSourceAsset) GetDescription() string { return v.Description }
+
+// DefaultAssetRelationshipTargetAsset includes the requested fields of the GraphQL type Asset.
+type DefaultAssetRelationshipTargetAsset struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAssetRelationshipTargetAsset.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipTargetAsset) GetToken() string { return v.Token }
+
+// GetName returns DefaultAssetRelationshipTargetAsset.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipTargetAsset) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAssetRelationshipTargetAsset.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipTargetAsset) GetDescription() string { return v.Description }
+
+// Content associated with asset relationship type response.
+type DefaultAssetRelationshipType struct {
+	Id          string `json:"id"`
+	CreatedAt   string `json:"createdAt"`
+	UpdatedAt   string `json:"updatedAt"`
+	DeletedAt   string `json:"deletedAt"`
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Metadata    string `json:"metadata"`
+}
+
+// GetId returns DefaultAssetRelationshipType.Id, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipType) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultAssetRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipType) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultAssetRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipType) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultAssetRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipType) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultAssetRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipType) GetToken() string { return v.Token }
+
+// GetName returns DefaultAssetRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAssetRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipType) GetDescription() string { return v.Description }
+
+// GetMetadata returns DefaultAssetRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipType) GetMetadata() string { return v.Metadata }
+
+// Content associated with asset type response.
+type DefaultAssetType struct {
+	Id              string `json:"id"`
+	CreatedAt       string `json:"createdAt"`
+	UpdatedAt       string `json:"updatedAt"`
+	DeletedAt       string `json:"deletedAt"`
+	Token           string `json:"token"`
+	Name            string `json:"name"`
+	Description     string `json:"description"`
+	ImageUrl        string `json:"imageUrl"`
+	Icon            string `json:"icon"`
+	BackgroundColor string `json:"backgroundColor"`
+	ForegroundColor string `json:"foregroundColor"`
+	BorderColor     string `json:"borderColor"`
+	Metadata        string `json:"metadata"`
+}
+
+// GetId returns DefaultAssetType.Id, and is useful for accessing the field via an interface.
+func (v *DefaultAssetType) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultAssetType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetType) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultAssetType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetType) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultAssetType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultAssetType) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultAssetType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAssetType) GetToken() string { return v.Token }
+
+// GetName returns DefaultAssetType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAssetType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAssetType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAssetType) GetDescription() string { return v.Description }
+
+// GetImageUrl returns DefaultAssetType.ImageUrl, and is useful for accessing the field via an interface.
+func (v *DefaultAssetType) GetImageUrl() string { return v.ImageUrl }
+
+// GetIcon returns DefaultAssetType.Icon, and is useful for accessing the field via an interface.
+func (v *DefaultAssetType) GetIcon() string { return v.Icon }
+
+// GetBackgroundColor returns DefaultAssetType.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultAssetType) GetBackgroundColor() string { return v.BackgroundColor }
+
+// GetForegroundColor returns DefaultAssetType.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultAssetType) GetForegroundColor() string { return v.ForegroundColor }
+
+// GetBorderColor returns DefaultAssetType.BorderColor, and is useful for accessing the field via an interface.
+func (v *DefaultAssetType) GetBorderColor() string { return v.BorderColor }
+
+// GetMetadata returns DefaultAssetType.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultAssetType) GetMetadata() string { return v.Metadata }
+
+// Content associated with customer response.
+type DefaultCustomer struct {
+	Id           string                      `json:"id"`
+	CreatedAt    string                      `json:"createdAt"`
+	UpdatedAt    string                      `json:"updatedAt"`
+	DeletedAt    string                      `json:"deletedAt"`
+	Token        string                      `json:"token"`
+	Name         string                      `json:"name"`
+	Description  string                      `json:"description"`
+	CustomerType DefaultCustomerCustomerType `json:"customerType"`
+	Metadata     string                      `json:"metadata"`
+}
+
+// GetId returns DefaultCustomer.Id, and is useful for accessing the field via an interface.
+func (v *DefaultCustomer) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultCustomer.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomer) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultCustomer.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomer) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultCustomer.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomer) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultCustomer.Token, and is useful for accessing the field via an interface.
+func (v *DefaultCustomer) GetToken() string { return v.Token }
+
+// GetName returns DefaultCustomer.Name, and is useful for accessing the field via an interface.
+func (v *DefaultCustomer) GetName() string { return v.Name }
+
+// GetDescription returns DefaultCustomer.Description, and is useful for accessing the field via an interface.
+func (v *DefaultCustomer) GetDescription() string { return v.Description }
+
+// GetCustomerType returns DefaultCustomer.CustomerType, and is useful for accessing the field via an interface.
+func (v *DefaultCustomer) GetCustomerType() DefaultCustomerCustomerType { return v.CustomerType }
+
+// GetMetadata returns DefaultCustomer.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultCustomer) GetMetadata() string { return v.Metadata }
+
+// DefaultCustomerCustomerType includes the requested fields of the GraphQL type CustomerType.
+type DefaultCustomerCustomerType struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultCustomerCustomerType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerCustomerType) GetToken() string { return v.Token }
+
+// GetName returns DefaultCustomerCustomerType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerCustomerType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultCustomerCustomerType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerCustomerType) GetDescription() string { return v.Description }
+
+// Content associated with customer group.
+type DefaultCustomerGroup struct {
+	Id              string `json:"id"`
+	CreatedAt       string `json:"createdAt"`
+	UpdatedAt       string `json:"updatedAt"`
+	DeletedAt       string `json:"deletedAt"`
+	Token           string `json:"token"`
+	Name            string `json:"name"`
+	Description     string `json:"description"`
+	ImageUrl        string `json:"imageUrl"`
+	Icon            string `json:"icon"`
+	BackgroundColor string `json:"backgroundColor"`
+	ForegroundColor string `json:"foregroundColor"`
+	BorderColor     string `json:"borderColor"`
+	Metadata        string `json:"metadata"`
+}
+
+// GetId returns DefaultCustomerGroup.Id, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroup) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultCustomerGroup.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroup) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultCustomerGroup.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroup) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultCustomerGroup.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroup) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultCustomerGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroup) GetToken() string { return v.Token }
+
+// GetName returns DefaultCustomerGroup.Name, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroup) GetName() string { return v.Name }
+
+// GetDescription returns DefaultCustomerGroup.Description, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroup) GetDescription() string { return v.Description }
+
+// GetImageUrl returns DefaultCustomerGroup.ImageUrl, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroup) GetImageUrl() string { return v.ImageUrl }
+
+// GetIcon returns DefaultCustomerGroup.Icon, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroup) GetIcon() string { return v.Icon }
+
+// GetBackgroundColor returns DefaultCustomerGroup.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroup) GetBackgroundColor() string { return v.BackgroundColor }
+
+// GetForegroundColor returns DefaultCustomerGroup.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroup) GetForegroundColor() string { return v.ForegroundColor }
+
+// GetBorderColor returns DefaultCustomerGroup.BorderColor, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroup) GetBorderColor() string { return v.BorderColor }
+
+// GetMetadata returns DefaultCustomerGroup.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroup) GetMetadata() string { return v.Metadata }
+
+// Content associated with customer group relationship.
+type DefaultCustomerGroupRelationship struct {
+	Id               string                                                                        `json:"id"`
+	CreatedAt        string                                                                        `json:"createdAt"`
+	UpdatedAt        string                                                                        `json:"updatedAt"`
+	DeletedAt        string                                                                        `json:"deletedAt"`
+	Token            string                                                                        `json:"token"`
+	CustomerGroup    DefaultCustomerGroupRelationshipCustomerGroup                                 `json:"customerGroup"`
+	Customer         DefaultCustomerGroupRelationshipCustomer                                      `json:"customer"`
+	RelationshipType DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType `json:"relationshipType"`
+	Metadata         string                                                                        `json:"metadata"`
+}
+
+// GetId returns DefaultCustomerGroupRelationship.Id, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationship) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultCustomerGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationship) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultCustomerGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationship) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultCustomerGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationship) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultCustomerGroupRelationship.Token, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationship) GetToken() string { return v.Token }
+
+// GetCustomerGroup returns DefaultCustomerGroupRelationship.CustomerGroup, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationship) GetCustomerGroup() DefaultCustomerGroupRelationshipCustomerGroup {
+	return v.CustomerGroup
+}
+
+// GetCustomer returns DefaultCustomerGroupRelationship.Customer, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationship) GetCustomer() DefaultCustomerGroupRelationshipCustomer {
+	return v.Customer
+}
+
+// GetRelationshipType returns DefaultCustomerGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationship) GetRelationshipType() DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType {
+	return v.RelationshipType
+}
+
+// GetMetadata returns DefaultCustomerGroupRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationship) GetMetadata() string { return v.Metadata }
+
+// DefaultCustomerGroupRelationshipCustomer includes the requested fields of the GraphQL type Customer.
+type DefaultCustomerGroupRelationshipCustomer struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultCustomerGroupRelationshipCustomer.Token, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipCustomer) GetToken() string { return v.Token }
+
+// GetName returns DefaultCustomerGroupRelationshipCustomer.Name, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipCustomer) GetName() string { return v.Name }
+
+// GetDescription returns DefaultCustomerGroupRelationshipCustomer.Description, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipCustomer) GetDescription() string { return v.Description }
+
+// DefaultCustomerGroupRelationshipCustomerGroup includes the requested fields of the GraphQL type CustomerGroup.
+type DefaultCustomerGroupRelationshipCustomerGroup struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultCustomerGroupRelationshipCustomerGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipCustomerGroup) GetToken() string { return v.Token }
+
+// GetName returns DefaultCustomerGroupRelationshipCustomerGroup.Name, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipCustomerGroup) GetName() string { return v.Name }
+
+// GetDescription returns DefaultCustomerGroupRelationshipCustomerGroup.Description, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipCustomerGroup) GetDescription() string { return v.Description }
+
+// DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType includes the requested fields of the GraphQL type CustomerGroupRelationshipType.
+type DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType) GetToken() string {
+	return v.Token
+}
+
+// GetName returns DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType) GetDescription() string {
+	return v.Description
+}
+
+// Content associated with customer group relationship type.
+type DefaultCustomerGroupRelationshipType struct {
+	Id          string `json:"id"`
+	CreatedAt   string `json:"createdAt"`
+	UpdatedAt   string `json:"updatedAt"`
+	DeletedAt   string `json:"deletedAt"`
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Metadata    string `json:"metadata"`
+}
+
+// GetId returns DefaultCustomerGroupRelationshipType.Id, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipType) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultCustomerGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipType) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultCustomerGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipType) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultCustomerGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipType) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultCustomerGroupRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipType) GetToken() string { return v.Token }
+
+// GetName returns DefaultCustomerGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultCustomerGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipType) GetDescription() string { return v.Description }
+
+// GetMetadata returns DefaultCustomerGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipType) GetMetadata() string { return v.Metadata }
+
+// Content associated with customer relationship response.
+type DefaultCustomerRelationship struct {
+	Id               string                                                              `json:"id"`
+	CreatedAt        string                                                              `json:"createdAt"`
+	UpdatedAt        string                                                              `json:"updatedAt"`
+	DeletedAt        string                                                              `json:"deletedAt"`
+	Token            string                                                              `json:"token"`
+	SourceCustomer   DefaultCustomerRelationshipSourceCustomer                           `json:"sourceCustomer"`
+	TargetCustomer   DefaultCustomerRelationshipTargetCustomer                           `json:"targetCustomer"`
+	RelationshipType DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType `json:"relationshipType"`
+	Metadata         string                                                              `json:"metadata"`
+}
+
+// GetId returns DefaultCustomerRelationship.Id, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationship) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultCustomerRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationship) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultCustomerRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationship) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultCustomerRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationship) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultCustomerRelationship.Token, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationship) GetToken() string { return v.Token }
+
+// GetSourceCustomer returns DefaultCustomerRelationship.SourceCustomer, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationship) GetSourceCustomer() DefaultCustomerRelationshipSourceCustomer {
+	return v.SourceCustomer
+}
+
+// GetTargetCustomer returns DefaultCustomerRelationship.TargetCustomer, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationship) GetTargetCustomer() DefaultCustomerRelationshipTargetCustomer {
+	return v.TargetCustomer
+}
+
+// GetRelationshipType returns DefaultCustomerRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationship) GetRelationshipType() DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType {
+	return v.RelationshipType
+}
+
+// GetMetadata returns DefaultCustomerRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationship) GetMetadata() string { return v.Metadata }
+
+// DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType includes the requested fields of the GraphQL type CustomerRelationshipType.
+type DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType) GetToken() string {
+	return v.Token
+}
+
+// GetName returns DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType) GetDescription() string {
+	return v.Description
+}
+
+// DefaultCustomerRelationshipSourceCustomer includes the requested fields of the GraphQL type Customer.
+type DefaultCustomerRelationshipSourceCustomer struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultCustomerRelationshipSourceCustomer.Token, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipSourceCustomer) GetToken() string { return v.Token }
+
+// GetName returns DefaultCustomerRelationshipSourceCustomer.Name, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipSourceCustomer) GetName() string { return v.Name }
+
+// GetDescription returns DefaultCustomerRelationshipSourceCustomer.Description, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipSourceCustomer) GetDescription() string { return v.Description }
+
+// DefaultCustomerRelationshipTargetCustomer includes the requested fields of the GraphQL type Customer.
+type DefaultCustomerRelationshipTargetCustomer struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultCustomerRelationshipTargetCustomer.Token, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipTargetCustomer) GetToken() string { return v.Token }
+
+// GetName returns DefaultCustomerRelationshipTargetCustomer.Name, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipTargetCustomer) GetName() string { return v.Name }
+
+// GetDescription returns DefaultCustomerRelationshipTargetCustomer.Description, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipTargetCustomer) GetDescription() string { return v.Description }
+
+// Content associated with customer relationship type response.
+type DefaultCustomerRelationshipType struct {
+	Id          string `json:"id"`
+	CreatedAt   string `json:"createdAt"`
+	UpdatedAt   string `json:"updatedAt"`
+	DeletedAt   string `json:"deletedAt"`
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Metadata    string `json:"metadata"`
+}
+
+// GetId returns DefaultCustomerRelationshipType.Id, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipType) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultCustomerRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipType) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultCustomerRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipType) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultCustomerRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipType) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultCustomerRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipType) GetToken() string { return v.Token }
+
+// GetName returns DefaultCustomerRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultCustomerRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipType) GetDescription() string { return v.Description }
+
+// GetMetadata returns DefaultCustomerRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipType) GetMetadata() string { return v.Metadata }
+
+// Content associated with customer type response.
+type DefaultCustomerType struct {
+	Id              string `json:"id"`
+	CreatedAt       string `json:"createdAt"`
+	UpdatedAt       string `json:"updatedAt"`
+	DeletedAt       string `json:"deletedAt"`
+	Token           string `json:"token"`
+	Name            string `json:"name"`
+	Description     string `json:"description"`
+	ImageUrl        string `json:"imageUrl"`
+	Icon            string `json:"icon"`
+	BackgroundColor string `json:"backgroundColor"`
+	ForegroundColor string `json:"foregroundColor"`
+	BorderColor     string `json:"borderColor"`
+	Metadata        string `json:"metadata"`
+}
+
+// GetId returns DefaultCustomerType.Id, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerType) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultCustomerType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerType) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultCustomerType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerType) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultCustomerType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerType) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultCustomerType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerType) GetToken() string { return v.Token }
+
+// GetName returns DefaultCustomerType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultCustomerType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerType) GetDescription() string { return v.Description }
+
+// GetImageUrl returns DefaultCustomerType.ImageUrl, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerType) GetImageUrl() string { return v.ImageUrl }
+
+// GetIcon returns DefaultCustomerType.Icon, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerType) GetIcon() string { return v.Icon }
+
+// GetBackgroundColor returns DefaultCustomerType.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerType) GetBackgroundColor() string { return v.BackgroundColor }
+
+// GetForegroundColor returns DefaultCustomerType.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerType) GetForegroundColor() string { return v.ForegroundColor }
+
+// GetBorderColor returns DefaultCustomerType.BorderColor, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerType) GetBorderColor() string { return v.BorderColor }
+
+// GetMetadata returns DefaultCustomerType.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerType) GetMetadata() string { return v.Metadata }
+
+// Content associated with a device response.
+type DefaultDevice struct {
+	Id                string                                           `json:"id"`
+	CreatedAt         string                                           `json:"createdAt"`
+	UpdatedAt         string                                           `json:"updatedAt"`
+	DeletedAt         string                                           `json:"deletedAt"`
+	Token             string                                           `json:"token"`
+	Name              string                                           `json:"name"`
+	Description       string                                           `json:"description"`
+	DeviceType        DefaultDeviceDeviceType                          `json:"deviceType"`
+	ActiveAssignments []DefaultDeviceActiveAssignmentsDeviceAssignment `json:"activeAssignments"`
+	Metadata          string                                           `json:"metadata"`
+}
+
+// GetId returns DefaultDevice.Id, and is useful for accessing the field via an interface.
+func (v *DefaultDevice) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultDevice.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDevice) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultDevice.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDevice) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultDevice.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDevice) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultDevice.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDevice) GetToken() string { return v.Token }
+
+// GetName returns DefaultDevice.Name, and is useful for accessing the field via an interface.
+func (v *DefaultDevice) GetName() string { return v.Name }
+
+// GetDescription returns DefaultDevice.Description, and is useful for accessing the field via an interface.
+func (v *DefaultDevice) GetDescription() string { return v.Description }
+
+// GetDeviceType returns DefaultDevice.DeviceType, and is useful for accessing the field via an interface.
+func (v *DefaultDevice) GetDeviceType() DefaultDeviceDeviceType { return v.DeviceType }
+
+// GetActiveAssignments returns DefaultDevice.ActiveAssignments, and is useful for accessing the field via an interface.
+func (v *DefaultDevice) GetActiveAssignments() []DefaultDeviceActiveAssignmentsDeviceAssignment {
+	return v.ActiveAssignments
+}
+
+// GetMetadata returns DefaultDevice.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultDevice) GetMetadata() string { return v.Metadata }
+
+// DefaultDeviceActiveAssignmentsDeviceAssignment includes the requested fields of the GraphQL type DeviceAssignment.
+type DefaultDeviceActiveAssignmentsDeviceAssignment struct {
+	Token string `json:"token"`
+}
+
+// GetToken returns DefaultDeviceActiveAssignmentsDeviceAssignment.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceActiveAssignmentsDeviceAssignment) GetToken() string { return v.Token }
+
+// DefaultDeviceDeviceType includes the requested fields of the GraphQL type DeviceType.
+type DefaultDeviceDeviceType struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultDeviceDeviceType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceDeviceType) GetToken() string { return v.Token }
+
+// GetName returns DefaultDeviceDeviceType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceDeviceType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultDeviceDeviceType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceDeviceType) GetDescription() string { return v.Description }
+
+// Content associated with a device group.
+type DefaultDeviceGroup struct {
+	Id              string `json:"id"`
+	CreatedAt       string `json:"createdAt"`
+	UpdatedAt       string `json:"updatedAt"`
+	DeletedAt       string `json:"deletedAt"`
+	Token           string `json:"token"`
+	Name            string `json:"name"`
+	Description     string `json:"description"`
+	ImageUrl        string `json:"imageUrl"`
+	Icon            string `json:"icon"`
+	BackgroundColor string `json:"backgroundColor"`
+	ForegroundColor string `json:"foregroundColor"`
+	BorderColor     string `json:"borderColor"`
+	Metadata        string `json:"metadata"`
+}
+
+// GetId returns DefaultDeviceGroup.Id, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroup) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultDeviceGroup.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroup) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultDeviceGroup.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroup) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultDeviceGroup.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroup) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultDeviceGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroup) GetToken() string { return v.Token }
+
+// GetName returns DefaultDeviceGroup.Name, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroup) GetName() string { return v.Name }
+
+// GetDescription returns DefaultDeviceGroup.Description, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroup) GetDescription() string { return v.Description }
+
+// GetImageUrl returns DefaultDeviceGroup.ImageUrl, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroup) GetImageUrl() string { return v.ImageUrl }
+
+// GetIcon returns DefaultDeviceGroup.Icon, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroup) GetIcon() string { return v.Icon }
+
+// GetBackgroundColor returns DefaultDeviceGroup.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroup) GetBackgroundColor() string { return v.BackgroundColor }
+
+// GetForegroundColor returns DefaultDeviceGroup.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroup) GetForegroundColor() string { return v.ForegroundColor }
+
+// GetBorderColor returns DefaultDeviceGroup.BorderColor, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroup) GetBorderColor() string { return v.BorderColor }
+
+// GetMetadata returns DefaultDeviceGroup.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroup) GetMetadata() string { return v.Metadata }
+
+// Content associated with a device group relationship.
+type DefaultDeviceGroupRelationship struct {
+	Id               string                                                                    `json:"id"`
+	CreatedAt        string                                                                    `json:"createdAt"`
+	UpdatedAt        string                                                                    `json:"updatedAt"`
+	DeletedAt        string                                                                    `json:"deletedAt"`
+	Token            string                                                                    `json:"token"`
+	DeviceGroup      DefaultDeviceGroupRelationshipDeviceGroup                                 `json:"deviceGroup"`
+	Device           DefaultDeviceGroupRelationshipDevice                                      `json:"device"`
+	RelationshipType DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType `json:"relationshipType"`
+	Metadata         string                                                                    `json:"metadata"`
+}
+
+// GetId returns DefaultDeviceGroupRelationship.Id, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationship) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultDeviceGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationship) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultDeviceGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationship) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultDeviceGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationship) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultDeviceGroupRelationship.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationship) GetToken() string { return v.Token }
+
+// GetDeviceGroup returns DefaultDeviceGroupRelationship.DeviceGroup, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationship) GetDeviceGroup() DefaultDeviceGroupRelationshipDeviceGroup {
+	return v.DeviceGroup
+}
+
+// GetDevice returns DefaultDeviceGroupRelationship.Device, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationship) GetDevice() DefaultDeviceGroupRelationshipDevice {
+	return v.Device
+}
+
+// GetRelationshipType returns DefaultDeviceGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationship) GetRelationshipType() DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType {
+	return v.RelationshipType
+}
+
+// GetMetadata returns DefaultDeviceGroupRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationship) GetMetadata() string { return v.Metadata }
+
+// DefaultDeviceGroupRelationshipDevice includes the requested fields of the GraphQL type Device.
+type DefaultDeviceGroupRelationshipDevice struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultDeviceGroupRelationshipDevice.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipDevice) GetToken() string { return v.Token }
+
+// GetName returns DefaultDeviceGroupRelationshipDevice.Name, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipDevice) GetName() string { return v.Name }
+
+// GetDescription returns DefaultDeviceGroupRelationshipDevice.Description, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipDevice) GetDescription() string { return v.Description }
+
+// DefaultDeviceGroupRelationshipDeviceGroup includes the requested fields of the GraphQL type DeviceGroup.
+type DefaultDeviceGroupRelationshipDeviceGroup struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultDeviceGroupRelationshipDeviceGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipDeviceGroup) GetToken() string { return v.Token }
+
+// GetName returns DefaultDeviceGroupRelationshipDeviceGroup.Name, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipDeviceGroup) GetName() string { return v.Name }
+
+// GetDescription returns DefaultDeviceGroupRelationshipDeviceGroup.Description, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipDeviceGroup) GetDescription() string { return v.Description }
+
+// DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType includes the requested fields of the GraphQL type DeviceGroupRelationshipType.
+type DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetToken() string {
+	return v.Token
+}
+
+// GetName returns DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetDescription() string {
+	return v.Description
+}
+
+// Content associated with a device group relationship type.
+type DefaultDeviceGroupRelationshipType struct {
+	Id          string `json:"id"`
+	CreatedAt   string `json:"createdAt"`
+	UpdatedAt   string `json:"updatedAt"`
+	DeletedAt   string `json:"deletedAt"`
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Metadata    string `json:"metadata"`
+}
+
+// GetId returns DefaultDeviceGroupRelationshipType.Id, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipType) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultDeviceGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipType) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultDeviceGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipType) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultDeviceGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipType) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultDeviceGroupRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipType) GetToken() string { return v.Token }
+
+// GetName returns DefaultDeviceGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultDeviceGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipType) GetDescription() string { return v.Description }
+
+// GetMetadata returns DefaultDeviceGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipType) GetMetadata() string { return v.Metadata }
+
+// Content associated with a device relationship response.
+type DefaultDeviceRelationship struct {
+	Id               string                                                          `json:"id"`
+	CreatedAt        string                                                          `json:"createdAt"`
+	UpdatedAt        string                                                          `json:"updatedAt"`
+	DeletedAt        string                                                          `json:"deletedAt"`
+	Token            string                                                          `json:"token"`
+	SourceDevice     DefaultDeviceRelationshipSourceDevice                           `json:"sourceDevice"`
+	TargetDevice     DefaultDeviceRelationshipTargetDevice                           `json:"targetDevice"`
+	RelationshipType DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType `json:"relationshipType"`
+	Metadata         string                                                          `json:"metadata"`
+}
+
+// GetId returns DefaultDeviceRelationship.Id, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationship) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultDeviceRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationship) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultDeviceRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationship) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultDeviceRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationship) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultDeviceRelationship.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationship) GetToken() string { return v.Token }
+
+// GetSourceDevice returns DefaultDeviceRelationship.SourceDevice, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationship) GetSourceDevice() DefaultDeviceRelationshipSourceDevice {
+	return v.SourceDevice
+}
+
+// GetTargetDevice returns DefaultDeviceRelationship.TargetDevice, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationship) GetTargetDevice() DefaultDeviceRelationshipTargetDevice {
+	return v.TargetDevice
+}
+
+// GetRelationshipType returns DefaultDeviceRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationship) GetRelationshipType() DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType {
+	return v.RelationshipType
+}
+
+// GetMetadata returns DefaultDeviceRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationship) GetMetadata() string { return v.Metadata }
+
+// DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType includes the requested fields of the GraphQL type DeviceRelationshipType.
+type DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType) GetToken() string {
+	return v.Token
+}
+
+// GetName returns DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType) GetName() string {
+	return v.Name
+}
+
+// GetDescription returns DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType) GetDescription() string {
+	return v.Description
+}
+
+// DefaultDeviceRelationshipSourceDevice includes the requested fields of the GraphQL type Device.
+type DefaultDeviceRelationshipSourceDevice struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultDeviceRelationshipSourceDevice.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipSourceDevice) GetToken() string { return v.Token }
+
+// GetName returns DefaultDeviceRelationshipSourceDevice.Name, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipSourceDevice) GetName() string { return v.Name }
+
+// GetDescription returns DefaultDeviceRelationshipSourceDevice.Description, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipSourceDevice) GetDescription() string { return v.Description }
+
+// DefaultDeviceRelationshipTargetDevice includes the requested fields of the GraphQL type Device.
+type DefaultDeviceRelationshipTargetDevice struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultDeviceRelationshipTargetDevice.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipTargetDevice) GetToken() string { return v.Token }
+
+// GetName returns DefaultDeviceRelationshipTargetDevice.Name, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipTargetDevice) GetName() string { return v.Name }
+
+// GetDescription returns DefaultDeviceRelationshipTargetDevice.Description, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipTargetDevice) GetDescription() string { return v.Description }
+
+// Content associated with a device relationship type response.
+type DefaultDeviceRelationshipType struct {
+	Id          string `json:"id"`
+	CreatedAt   string `json:"createdAt"`
+	UpdatedAt   string `json:"updatedAt"`
+	DeletedAt   string `json:"deletedAt"`
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Metadata    string `json:"metadata"`
+}
+
+// GetId returns DefaultDeviceRelationshipType.Id, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipType) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultDeviceRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipType) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultDeviceRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipType) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultDeviceRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipType) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultDeviceRelationshipType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipType) GetToken() string { return v.Token }
+
+// GetName returns DefaultDeviceRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultDeviceRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipType) GetDescription() string { return v.Description }
+
+// GetMetadata returns DefaultDeviceRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipType) GetMetadata() string { return v.Metadata }
+
+// Content associated with a device type response.
+type DefaultDeviceType struct {
+	Id              string `json:"id"`
+	CreatedAt       string `json:"createdAt"`
+	UpdatedAt       string `json:"updatedAt"`
+	DeletedAt       string `json:"deletedAt"`
+	Token           string `json:"token"`
+	Name            string `json:"name"`
+	Description     string `json:"description"`
+	ImageUrl        string `json:"imageUrl"`
+	Icon            string `json:"icon"`
+	BackgroundColor string `json:"backgroundColor"`
+	ForegroundColor string `json:"foregroundColor"`
+	BorderColor     string `json:"borderColor"`
+	Metadata        string `json:"metadata"`
+}
+
+// GetId returns DefaultDeviceType.Id, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceType) GetId() string { return v.Id }
+
+// GetCreatedAt returns DefaultDeviceType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceType) GetCreatedAt() string { return v.CreatedAt }
+
+// GetUpdatedAt returns DefaultDeviceType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceType) GetUpdatedAt() string { return v.UpdatedAt }
+
+// GetDeletedAt returns DefaultDeviceType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceType) GetDeletedAt() string { return v.DeletedAt }
+
+// GetToken returns DefaultDeviceType.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceType) GetToken() string { return v.Token }
+
+// GetName returns DefaultDeviceType.Name, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceType) GetName() string { return v.Name }
+
+// GetDescription returns DefaultDeviceType.Description, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceType) GetDescription() string { return v.Description }
+
+// GetImageUrl returns DefaultDeviceType.ImageUrl, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceType) GetImageUrl() string { return v.ImageUrl }
+
+// GetIcon returns DefaultDeviceType.Icon, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceType) GetIcon() string { return v.Icon }
+
+// GetBackgroundColor returns DefaultDeviceType.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceType) GetBackgroundColor() string { return v.BackgroundColor }
+
+// GetForegroundColor returns DefaultDeviceType.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceType) GetForegroundColor() string { return v.ForegroundColor }
+
+// GetBorderColor returns DefaultDeviceType.BorderColor, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceType) GetBorderColor() string { return v.BorderColor }
+
+// GetMetadata returns DefaultDeviceType.Metadata, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceType) GetMetadata() string { return v.Metadata }
+
+// Content associated with pagination.
+type DefaultPagination struct {
+	PageStart    int `json:"pageStart"`
+	PageEnd      int `json:"pageEnd"`
+	TotalRecords int `json:"totalRecords"`
+}
+
+// GetPageStart returns DefaultPagination.PageStart, and is useful for accessing the field via an interface.
+func (v *DefaultPagination) GetPageStart() int { return v.PageStart }
+
+// GetPageEnd returns DefaultPagination.PageEnd, and is useful for accessing the field via an interface.
+func (v *DefaultPagination) GetPageEnd() int { return v.PageEnd }
+
+// GetTotalRecords returns DefaultPagination.TotalRecords, and is useful for accessing the field via an interface.
+func (v *DefaultPagination) GetTotalRecords() int { return v.TotalRecords }
 
 // __createAreaGroupInput is used internally by genqlient
 type __createAreaGroupInput struct {
@@ -1310,39 +3095,353 @@ func (v *__listDevicesInput) GetPageSize() int { return v.PageSize }
 
 // createAreaCreateArea includes the requested fields of the GraphQL type Area.
 type createAreaCreateArea struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultArea `json:"-"`
 }
 
 // GetId returns createAreaCreateArea.Id, and is useful for accessing the field via an interface.
-func (v *createAreaCreateArea) GetId() string { return v.Id }
+func (v *createAreaCreateArea) GetId() string { return v.DefaultArea.Id }
+
+// GetCreatedAt returns createAreaCreateArea.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createAreaCreateArea) GetCreatedAt() string { return v.DefaultArea.CreatedAt }
+
+// GetUpdatedAt returns createAreaCreateArea.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createAreaCreateArea) GetUpdatedAt() string { return v.DefaultArea.UpdatedAt }
+
+// GetDeletedAt returns createAreaCreateArea.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createAreaCreateArea) GetDeletedAt() string { return v.DefaultArea.DeletedAt }
 
 // GetToken returns createAreaCreateArea.Token, and is useful for accessing the field via an interface.
-func (v *createAreaCreateArea) GetToken() string { return v.Token }
+func (v *createAreaCreateArea) GetToken() string { return v.DefaultArea.Token }
+
+// GetName returns createAreaCreateArea.Name, and is useful for accessing the field via an interface.
+func (v *createAreaCreateArea) GetName() string { return v.DefaultArea.Name }
+
+// GetDescription returns createAreaCreateArea.Description, and is useful for accessing the field via an interface.
+func (v *createAreaCreateArea) GetDescription() string { return v.DefaultArea.Description }
+
+// GetAreaType returns createAreaCreateArea.AreaType, and is useful for accessing the field via an interface.
+func (v *createAreaCreateArea) GetAreaType() DefaultAreaAreaType { return v.DefaultArea.AreaType }
+
+// GetMetadata returns createAreaCreateArea.Metadata, and is useful for accessing the field via an interface.
+func (v *createAreaCreateArea) GetMetadata() string { return v.DefaultArea.Metadata }
+
+func (v *createAreaCreateArea) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createAreaCreateArea
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createAreaCreateArea = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultArea)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateAreaCreateArea struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	AreaType DefaultAreaAreaType `json:"areaType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createAreaCreateArea) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createAreaCreateArea) __premarshalJSON() (*__premarshalcreateAreaCreateArea, error) {
+	var retval __premarshalcreateAreaCreateArea
+
+	retval.Id = v.DefaultArea.Id
+	retval.CreatedAt = v.DefaultArea.CreatedAt
+	retval.UpdatedAt = v.DefaultArea.UpdatedAt
+	retval.DeletedAt = v.DefaultArea.DeletedAt
+	retval.Token = v.DefaultArea.Token
+	retval.Name = v.DefaultArea.Name
+	retval.Description = v.DefaultArea.Description
+	retval.AreaType = v.DefaultArea.AreaType
+	retval.Metadata = v.DefaultArea.Metadata
+	return &retval, nil
+}
 
 // createAreaGroupCreateAreaGroup includes the requested fields of the GraphQL type AreaGroup.
 type createAreaGroupCreateAreaGroup struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultAreaGroup `json:"-"`
 }
 
 // GetId returns createAreaGroupCreateAreaGroup.Id, and is useful for accessing the field via an interface.
-func (v *createAreaGroupCreateAreaGroup) GetId() string { return v.Id }
+func (v *createAreaGroupCreateAreaGroup) GetId() string { return v.DefaultAreaGroup.Id }
+
+// GetCreatedAt returns createAreaGroupCreateAreaGroup.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createAreaGroupCreateAreaGroup) GetCreatedAt() string { return v.DefaultAreaGroup.CreatedAt }
+
+// GetUpdatedAt returns createAreaGroupCreateAreaGroup.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createAreaGroupCreateAreaGroup) GetUpdatedAt() string { return v.DefaultAreaGroup.UpdatedAt }
+
+// GetDeletedAt returns createAreaGroupCreateAreaGroup.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createAreaGroupCreateAreaGroup) GetDeletedAt() string { return v.DefaultAreaGroup.DeletedAt }
 
 // GetToken returns createAreaGroupCreateAreaGroup.Token, and is useful for accessing the field via an interface.
-func (v *createAreaGroupCreateAreaGroup) GetToken() string { return v.Token }
+func (v *createAreaGroupCreateAreaGroup) GetToken() string { return v.DefaultAreaGroup.Token }
+
+// GetName returns createAreaGroupCreateAreaGroup.Name, and is useful for accessing the field via an interface.
+func (v *createAreaGroupCreateAreaGroup) GetName() string { return v.DefaultAreaGroup.Name }
+
+// GetDescription returns createAreaGroupCreateAreaGroup.Description, and is useful for accessing the field via an interface.
+func (v *createAreaGroupCreateAreaGroup) GetDescription() string {
+	return v.DefaultAreaGroup.Description
+}
+
+// GetImageUrl returns createAreaGroupCreateAreaGroup.ImageUrl, and is useful for accessing the field via an interface.
+func (v *createAreaGroupCreateAreaGroup) GetImageUrl() string { return v.DefaultAreaGroup.ImageUrl }
+
+// GetIcon returns createAreaGroupCreateAreaGroup.Icon, and is useful for accessing the field via an interface.
+func (v *createAreaGroupCreateAreaGroup) GetIcon() string { return v.DefaultAreaGroup.Icon }
+
+// GetBackgroundColor returns createAreaGroupCreateAreaGroup.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *createAreaGroupCreateAreaGroup) GetBackgroundColor() string {
+	return v.DefaultAreaGroup.BackgroundColor
+}
+
+// GetForegroundColor returns createAreaGroupCreateAreaGroup.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *createAreaGroupCreateAreaGroup) GetForegroundColor() string {
+	return v.DefaultAreaGroup.ForegroundColor
+}
+
+// GetBorderColor returns createAreaGroupCreateAreaGroup.BorderColor, and is useful for accessing the field via an interface.
+func (v *createAreaGroupCreateAreaGroup) GetBorderColor() string {
+	return v.DefaultAreaGroup.BorderColor
+}
+
+// GetMetadata returns createAreaGroupCreateAreaGroup.Metadata, and is useful for accessing the field via an interface.
+func (v *createAreaGroupCreateAreaGroup) GetMetadata() string { return v.DefaultAreaGroup.Metadata }
+
+func (v *createAreaGroupCreateAreaGroup) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createAreaGroupCreateAreaGroup
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createAreaGroupCreateAreaGroup = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaGroup)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateAreaGroupCreateAreaGroup struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createAreaGroupCreateAreaGroup) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createAreaGroupCreateAreaGroup) __premarshalJSON() (*__premarshalcreateAreaGroupCreateAreaGroup, error) {
+	var retval __premarshalcreateAreaGroupCreateAreaGroup
+
+	retval.Id = v.DefaultAreaGroup.Id
+	retval.CreatedAt = v.DefaultAreaGroup.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaGroup.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaGroup.DeletedAt
+	retval.Token = v.DefaultAreaGroup.Token
+	retval.Name = v.DefaultAreaGroup.Name
+	retval.Description = v.DefaultAreaGroup.Description
+	retval.ImageUrl = v.DefaultAreaGroup.ImageUrl
+	retval.Icon = v.DefaultAreaGroup.Icon
+	retval.BackgroundColor = v.DefaultAreaGroup.BackgroundColor
+	retval.ForegroundColor = v.DefaultAreaGroup.ForegroundColor
+	retval.BorderColor = v.DefaultAreaGroup.BorderColor
+	retval.Metadata = v.DefaultAreaGroup.Metadata
+	return &retval, nil
+}
 
 // createAreaGroupRelationshipCreateAreaGroupRelationship includes the requested fields of the GraphQL type AreaGroupRelationship.
 type createAreaGroupRelationshipCreateAreaGroupRelationship struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultAreaGroupRelationship `json:"-"`
 }
 
 // GetId returns createAreaGroupRelationshipCreateAreaGroupRelationship.Id, and is useful for accessing the field via an interface.
-func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetId() string { return v.Id }
+func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetId() string {
+	return v.DefaultAreaGroupRelationship.Id
+}
+
+// GetCreatedAt returns createAreaGroupRelationshipCreateAreaGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetCreatedAt() string {
+	return v.DefaultAreaGroupRelationship.CreatedAt
+}
+
+// GetUpdatedAt returns createAreaGroupRelationshipCreateAreaGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetUpdatedAt() string {
+	return v.DefaultAreaGroupRelationship.UpdatedAt
+}
+
+// GetDeletedAt returns createAreaGroupRelationshipCreateAreaGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetDeletedAt() string {
+	return v.DefaultAreaGroupRelationship.DeletedAt
+}
 
 // GetToken returns createAreaGroupRelationshipCreateAreaGroupRelationship.Token, and is useful for accessing the field via an interface.
-func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetToken() string { return v.Token }
+func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetToken() string {
+	return v.DefaultAreaGroupRelationship.Token
+}
+
+// GetAreaGroup returns createAreaGroupRelationshipCreateAreaGroupRelationship.AreaGroup, and is useful for accessing the field via an interface.
+func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetAreaGroup() DefaultAreaGroupRelationshipAreaGroup {
+	return v.DefaultAreaGroupRelationship.AreaGroup
+}
+
+// GetArea returns createAreaGroupRelationshipCreateAreaGroupRelationship.Area, and is useful for accessing the field via an interface.
+func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetArea() DefaultAreaGroupRelationshipArea {
+	return v.DefaultAreaGroupRelationship.Area
+}
+
+// GetRelationshipType returns createAreaGroupRelationshipCreateAreaGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetRelationshipType() DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType {
+	return v.DefaultAreaGroupRelationship.RelationshipType
+}
+
+// GetMetadata returns createAreaGroupRelationshipCreateAreaGroupRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetMetadata() string {
+	return v.DefaultAreaGroupRelationship.Metadata
+}
+
+func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createAreaGroupRelationshipCreateAreaGroupRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createAreaGroupRelationshipCreateAreaGroupRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaGroupRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateAreaGroupRelationshipCreateAreaGroupRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	AreaGroup DefaultAreaGroupRelationshipAreaGroup `json:"areaGroup"`
+
+	Area DefaultAreaGroupRelationshipArea `json:"area"`
+
+	RelationshipType DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) __premarshalJSON() (*__premarshalcreateAreaGroupRelationshipCreateAreaGroupRelationship, error) {
+	var retval __premarshalcreateAreaGroupRelationshipCreateAreaGroupRelationship
+
+	retval.Id = v.DefaultAreaGroupRelationship.Id
+	retval.CreatedAt = v.DefaultAreaGroupRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaGroupRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaGroupRelationship.DeletedAt
+	retval.Token = v.DefaultAreaGroupRelationship.Token
+	retval.AreaGroup = v.DefaultAreaGroupRelationship.AreaGroup
+	retval.Area = v.DefaultAreaGroupRelationship.Area
+	retval.RelationshipType = v.DefaultAreaGroupRelationship.RelationshipType
+	retval.Metadata = v.DefaultAreaGroupRelationship.Metadata
+	return &retval, nil
+}
 
 // createAreaGroupRelationshipResponse is returned by createAreaGroupRelationship on success.
 type createAreaGroupRelationshipResponse struct {
@@ -1356,16 +3455,112 @@ func (v *createAreaGroupRelationshipResponse) GetCreateAreaGroupRelationship() c
 
 // createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType includes the requested fields of the GraphQL type AreaGroupRelationshipType.
 type createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultAreaGroupRelationshipType `json:"-"`
 }
 
 // GetId returns createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType.Id, and is useful for accessing the field via an interface.
-func (v *createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType) GetId() string { return v.Id }
+func (v *createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType) GetId() string {
+	return v.DefaultAreaGroupRelationshipType.Id
+}
+
+// GetCreatedAt returns createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType) GetCreatedAt() string {
+	return v.DefaultAreaGroupRelationshipType.CreatedAt
+}
+
+// GetUpdatedAt returns createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType) GetUpdatedAt() string {
+	return v.DefaultAreaGroupRelationshipType.UpdatedAt
+}
+
+// GetDeletedAt returns createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType) GetDeletedAt() string {
+	return v.DefaultAreaGroupRelationshipType.DeletedAt
+}
 
 // GetToken returns createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultAreaGroupRelationshipType.Token
+}
+
+// GetName returns createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType) GetName() string {
+	return v.DefaultAreaGroupRelationshipType.Name
+}
+
+// GetDescription returns createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType) GetDescription() string {
+	return v.DefaultAreaGroupRelationshipType.Description
+}
+
+// GetMetadata returns createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType) GetMetadata() string {
+	return v.DefaultAreaGroupRelationshipType.Metadata
+}
+
+func (v *createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaGroupRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateAreaGroupRelationshipTypeCreateAreaGroupRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createAreaGroupRelationshipTypeCreateAreaGroupRelationshipType) __premarshalJSON() (*__premarshalcreateAreaGroupRelationshipTypeCreateAreaGroupRelationshipType, error) {
+	var retval __premarshalcreateAreaGroupRelationshipTypeCreateAreaGroupRelationshipType
+
+	retval.Id = v.DefaultAreaGroupRelationshipType.Id
+	retval.CreatedAt = v.DefaultAreaGroupRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaGroupRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaGroupRelationshipType.DeletedAt
+	retval.Token = v.DefaultAreaGroupRelationshipType.Token
+	retval.Name = v.DefaultAreaGroupRelationshipType.Name
+	retval.Description = v.DefaultAreaGroupRelationshipType.Description
+	retval.Metadata = v.DefaultAreaGroupRelationshipType.Metadata
+	return &retval, nil
 }
 
 // createAreaGroupRelationshipTypeResponse is returned by createAreaGroupRelationshipType on success.
@@ -1390,15 +3585,121 @@ func (v *createAreaGroupResponse) GetCreateAreaGroup() createAreaGroupCreateArea
 
 // createAreaRelationshipCreateAreaRelationship includes the requested fields of the GraphQL type AreaRelationship.
 type createAreaRelationshipCreateAreaRelationship struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultAreaRelationship `json:"-"`
 }
 
 // GetId returns createAreaRelationshipCreateAreaRelationship.Id, and is useful for accessing the field via an interface.
-func (v *createAreaRelationshipCreateAreaRelationship) GetId() string { return v.Id }
+func (v *createAreaRelationshipCreateAreaRelationship) GetId() string {
+	return v.DefaultAreaRelationship.Id
+}
+
+// GetCreatedAt returns createAreaRelationshipCreateAreaRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createAreaRelationshipCreateAreaRelationship) GetCreatedAt() string {
+	return v.DefaultAreaRelationship.CreatedAt
+}
+
+// GetUpdatedAt returns createAreaRelationshipCreateAreaRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createAreaRelationshipCreateAreaRelationship) GetUpdatedAt() string {
+	return v.DefaultAreaRelationship.UpdatedAt
+}
+
+// GetDeletedAt returns createAreaRelationshipCreateAreaRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createAreaRelationshipCreateAreaRelationship) GetDeletedAt() string {
+	return v.DefaultAreaRelationship.DeletedAt
+}
 
 // GetToken returns createAreaRelationshipCreateAreaRelationship.Token, and is useful for accessing the field via an interface.
-func (v *createAreaRelationshipCreateAreaRelationship) GetToken() string { return v.Token }
+func (v *createAreaRelationshipCreateAreaRelationship) GetToken() string {
+	return v.DefaultAreaRelationship.Token
+}
+
+// GetSourceArea returns createAreaRelationshipCreateAreaRelationship.SourceArea, and is useful for accessing the field via an interface.
+func (v *createAreaRelationshipCreateAreaRelationship) GetSourceArea() DefaultAreaRelationshipSourceArea {
+	return v.DefaultAreaRelationship.SourceArea
+}
+
+// GetTargetArea returns createAreaRelationshipCreateAreaRelationship.TargetArea, and is useful for accessing the field via an interface.
+func (v *createAreaRelationshipCreateAreaRelationship) GetTargetArea() DefaultAreaRelationshipTargetArea {
+	return v.DefaultAreaRelationship.TargetArea
+}
+
+// GetRelationshipType returns createAreaRelationshipCreateAreaRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *createAreaRelationshipCreateAreaRelationship) GetRelationshipType() DefaultAreaRelationshipRelationshipTypeAreaRelationshipType {
+	return v.DefaultAreaRelationship.RelationshipType
+}
+
+// GetMetadata returns createAreaRelationshipCreateAreaRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *createAreaRelationshipCreateAreaRelationship) GetMetadata() string {
+	return v.DefaultAreaRelationship.Metadata
+}
+
+func (v *createAreaRelationshipCreateAreaRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createAreaRelationshipCreateAreaRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createAreaRelationshipCreateAreaRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateAreaRelationshipCreateAreaRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	SourceArea DefaultAreaRelationshipSourceArea `json:"sourceArea"`
+
+	TargetArea DefaultAreaRelationshipTargetArea `json:"targetArea"`
+
+	RelationshipType DefaultAreaRelationshipRelationshipTypeAreaRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createAreaRelationshipCreateAreaRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createAreaRelationshipCreateAreaRelationship) __premarshalJSON() (*__premarshalcreateAreaRelationshipCreateAreaRelationship, error) {
+	var retval __premarshalcreateAreaRelationshipCreateAreaRelationship
+
+	retval.Id = v.DefaultAreaRelationship.Id
+	retval.CreatedAt = v.DefaultAreaRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaRelationship.DeletedAt
+	retval.Token = v.DefaultAreaRelationship.Token
+	retval.SourceArea = v.DefaultAreaRelationship.SourceArea
+	retval.TargetArea = v.DefaultAreaRelationship.TargetArea
+	retval.RelationshipType = v.DefaultAreaRelationship.RelationshipType
+	retval.Metadata = v.DefaultAreaRelationship.Metadata
+	return &retval, nil
+}
 
 // createAreaRelationshipResponse is returned by createAreaRelationship on success.
 type createAreaRelationshipResponse struct {
@@ -1412,15 +3713,113 @@ func (v *createAreaRelationshipResponse) GetCreateAreaRelationship() createAreaR
 
 // createAreaRelationshipTypeCreateAreaRelationshipType includes the requested fields of the GraphQL type AreaRelationshipType.
 type createAreaRelationshipTypeCreateAreaRelationshipType struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultAreaRelationshipType `json:"-"`
 }
 
 // GetId returns createAreaRelationshipTypeCreateAreaRelationshipType.Id, and is useful for accessing the field via an interface.
-func (v *createAreaRelationshipTypeCreateAreaRelationshipType) GetId() string { return v.Id }
+func (v *createAreaRelationshipTypeCreateAreaRelationshipType) GetId() string {
+	return v.DefaultAreaRelationshipType.Id
+}
+
+// GetCreatedAt returns createAreaRelationshipTypeCreateAreaRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createAreaRelationshipTypeCreateAreaRelationshipType) GetCreatedAt() string {
+	return v.DefaultAreaRelationshipType.CreatedAt
+}
+
+// GetUpdatedAt returns createAreaRelationshipTypeCreateAreaRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createAreaRelationshipTypeCreateAreaRelationshipType) GetUpdatedAt() string {
+	return v.DefaultAreaRelationshipType.UpdatedAt
+}
+
+// GetDeletedAt returns createAreaRelationshipTypeCreateAreaRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createAreaRelationshipTypeCreateAreaRelationshipType) GetDeletedAt() string {
+	return v.DefaultAreaRelationshipType.DeletedAt
+}
 
 // GetToken returns createAreaRelationshipTypeCreateAreaRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *createAreaRelationshipTypeCreateAreaRelationshipType) GetToken() string { return v.Token }
+func (v *createAreaRelationshipTypeCreateAreaRelationshipType) GetToken() string {
+	return v.DefaultAreaRelationshipType.Token
+}
+
+// GetName returns createAreaRelationshipTypeCreateAreaRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *createAreaRelationshipTypeCreateAreaRelationshipType) GetName() string {
+	return v.DefaultAreaRelationshipType.Name
+}
+
+// GetDescription returns createAreaRelationshipTypeCreateAreaRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *createAreaRelationshipTypeCreateAreaRelationshipType) GetDescription() string {
+	return v.DefaultAreaRelationshipType.Description
+}
+
+// GetMetadata returns createAreaRelationshipTypeCreateAreaRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *createAreaRelationshipTypeCreateAreaRelationshipType) GetMetadata() string {
+	return v.DefaultAreaRelationshipType.Metadata
+}
+
+func (v *createAreaRelationshipTypeCreateAreaRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createAreaRelationshipTypeCreateAreaRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createAreaRelationshipTypeCreateAreaRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateAreaRelationshipTypeCreateAreaRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createAreaRelationshipTypeCreateAreaRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createAreaRelationshipTypeCreateAreaRelationshipType) __premarshalJSON() (*__premarshalcreateAreaRelationshipTypeCreateAreaRelationshipType, error) {
+	var retval __premarshalcreateAreaRelationshipTypeCreateAreaRelationshipType
+
+	retval.Id = v.DefaultAreaRelationshipType.Id
+	retval.CreatedAt = v.DefaultAreaRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaRelationshipType.DeletedAt
+	retval.Token = v.DefaultAreaRelationshipType.Token
+	retval.Name = v.DefaultAreaRelationshipType.Name
+	retval.Description = v.DefaultAreaRelationshipType.Description
+	retval.Metadata = v.DefaultAreaRelationshipType.Metadata
+	return &retval, nil
+}
 
 // createAreaRelationshipTypeResponse is returned by createAreaRelationshipType on success.
 type createAreaRelationshipTypeResponse struct {
@@ -1442,15 +3841,131 @@ func (v *createAreaResponse) GetCreateArea() createAreaCreateArea { return v.Cre
 
 // createAreaTypeCreateAreaType includes the requested fields of the GraphQL type AreaType.
 type createAreaTypeCreateAreaType struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultAreaType `json:"-"`
 }
 
 // GetId returns createAreaTypeCreateAreaType.Id, and is useful for accessing the field via an interface.
-func (v *createAreaTypeCreateAreaType) GetId() string { return v.Id }
+func (v *createAreaTypeCreateAreaType) GetId() string { return v.DefaultAreaType.Id }
+
+// GetCreatedAt returns createAreaTypeCreateAreaType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createAreaTypeCreateAreaType) GetCreatedAt() string { return v.DefaultAreaType.CreatedAt }
+
+// GetUpdatedAt returns createAreaTypeCreateAreaType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createAreaTypeCreateAreaType) GetUpdatedAt() string { return v.DefaultAreaType.UpdatedAt }
+
+// GetDeletedAt returns createAreaTypeCreateAreaType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createAreaTypeCreateAreaType) GetDeletedAt() string { return v.DefaultAreaType.DeletedAt }
 
 // GetToken returns createAreaTypeCreateAreaType.Token, and is useful for accessing the field via an interface.
-func (v *createAreaTypeCreateAreaType) GetToken() string { return v.Token }
+func (v *createAreaTypeCreateAreaType) GetToken() string { return v.DefaultAreaType.Token }
+
+// GetName returns createAreaTypeCreateAreaType.Name, and is useful for accessing the field via an interface.
+func (v *createAreaTypeCreateAreaType) GetName() string { return v.DefaultAreaType.Name }
+
+// GetDescription returns createAreaTypeCreateAreaType.Description, and is useful for accessing the field via an interface.
+func (v *createAreaTypeCreateAreaType) GetDescription() string { return v.DefaultAreaType.Description }
+
+// GetImageUrl returns createAreaTypeCreateAreaType.ImageUrl, and is useful for accessing the field via an interface.
+func (v *createAreaTypeCreateAreaType) GetImageUrl() string { return v.DefaultAreaType.ImageUrl }
+
+// GetIcon returns createAreaTypeCreateAreaType.Icon, and is useful for accessing the field via an interface.
+func (v *createAreaTypeCreateAreaType) GetIcon() string { return v.DefaultAreaType.Icon }
+
+// GetBackgroundColor returns createAreaTypeCreateAreaType.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *createAreaTypeCreateAreaType) GetBackgroundColor() string {
+	return v.DefaultAreaType.BackgroundColor
+}
+
+// GetForegroundColor returns createAreaTypeCreateAreaType.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *createAreaTypeCreateAreaType) GetForegroundColor() string {
+	return v.DefaultAreaType.ForegroundColor
+}
+
+// GetBorderColor returns createAreaTypeCreateAreaType.BorderColor, and is useful for accessing the field via an interface.
+func (v *createAreaTypeCreateAreaType) GetBorderColor() string { return v.DefaultAreaType.BorderColor }
+
+// GetMetadata returns createAreaTypeCreateAreaType.Metadata, and is useful for accessing the field via an interface.
+func (v *createAreaTypeCreateAreaType) GetMetadata() string { return v.DefaultAreaType.Metadata }
+
+func (v *createAreaTypeCreateAreaType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createAreaTypeCreateAreaType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createAreaTypeCreateAreaType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateAreaTypeCreateAreaType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createAreaTypeCreateAreaType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createAreaTypeCreateAreaType) __premarshalJSON() (*__premarshalcreateAreaTypeCreateAreaType, error) {
+	var retval __premarshalcreateAreaTypeCreateAreaType
+
+	retval.Id = v.DefaultAreaType.Id
+	retval.CreatedAt = v.DefaultAreaType.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaType.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaType.DeletedAt
+	retval.Token = v.DefaultAreaType.Token
+	retval.Name = v.DefaultAreaType.Name
+	retval.Description = v.DefaultAreaType.Description
+	retval.ImageUrl = v.DefaultAreaType.ImageUrl
+	retval.Icon = v.DefaultAreaType.Icon
+	retval.BackgroundColor = v.DefaultAreaType.BackgroundColor
+	retval.ForegroundColor = v.DefaultAreaType.ForegroundColor
+	retval.BorderColor = v.DefaultAreaType.BorderColor
+	retval.Metadata = v.DefaultAreaType.Metadata
+	return &retval, nil
+}
 
 // createAreaTypeResponse is returned by createAreaType on success.
 type createAreaTypeResponse struct {
@@ -1464,39 +3979,361 @@ func (v *createAreaTypeResponse) GetCreateAreaType() createAreaTypeCreateAreaTyp
 
 // createAssetCreateAsset includes the requested fields of the GraphQL type Asset.
 type createAssetCreateAsset struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultAsset `json:"-"`
 }
 
 // GetId returns createAssetCreateAsset.Id, and is useful for accessing the field via an interface.
-func (v *createAssetCreateAsset) GetId() string { return v.Id }
+func (v *createAssetCreateAsset) GetId() string { return v.DefaultAsset.Id }
+
+// GetCreatedAt returns createAssetCreateAsset.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createAssetCreateAsset) GetCreatedAt() string { return v.DefaultAsset.CreatedAt }
+
+// GetUpdatedAt returns createAssetCreateAsset.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createAssetCreateAsset) GetUpdatedAt() string { return v.DefaultAsset.UpdatedAt }
+
+// GetDeletedAt returns createAssetCreateAsset.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createAssetCreateAsset) GetDeletedAt() string { return v.DefaultAsset.DeletedAt }
 
 // GetToken returns createAssetCreateAsset.Token, and is useful for accessing the field via an interface.
-func (v *createAssetCreateAsset) GetToken() string { return v.Token }
+func (v *createAssetCreateAsset) GetToken() string { return v.DefaultAsset.Token }
+
+// GetName returns createAssetCreateAsset.Name, and is useful for accessing the field via an interface.
+func (v *createAssetCreateAsset) GetName() string { return v.DefaultAsset.Name }
+
+// GetDescription returns createAssetCreateAsset.Description, and is useful for accessing the field via an interface.
+func (v *createAssetCreateAsset) GetDescription() string { return v.DefaultAsset.Description }
+
+// GetAssetType returns createAssetCreateAsset.AssetType, and is useful for accessing the field via an interface.
+func (v *createAssetCreateAsset) GetAssetType() DefaultAssetAssetType {
+	return v.DefaultAsset.AssetType
+}
+
+// GetMetadata returns createAssetCreateAsset.Metadata, and is useful for accessing the field via an interface.
+func (v *createAssetCreateAsset) GetMetadata() string { return v.DefaultAsset.Metadata }
+
+func (v *createAssetCreateAsset) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createAssetCreateAsset
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createAssetCreateAsset = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAsset)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateAssetCreateAsset struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	AssetType DefaultAssetAssetType `json:"assetType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createAssetCreateAsset) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createAssetCreateAsset) __premarshalJSON() (*__premarshalcreateAssetCreateAsset, error) {
+	var retval __premarshalcreateAssetCreateAsset
+
+	retval.Id = v.DefaultAsset.Id
+	retval.CreatedAt = v.DefaultAsset.CreatedAt
+	retval.UpdatedAt = v.DefaultAsset.UpdatedAt
+	retval.DeletedAt = v.DefaultAsset.DeletedAt
+	retval.Token = v.DefaultAsset.Token
+	retval.Name = v.DefaultAsset.Name
+	retval.Description = v.DefaultAsset.Description
+	retval.AssetType = v.DefaultAsset.AssetType
+	retval.Metadata = v.DefaultAsset.Metadata
+	return &retval, nil
+}
 
 // createAssetGroupCreateAssetGroup includes the requested fields of the GraphQL type AssetGroup.
 type createAssetGroupCreateAssetGroup struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultAssetGroup `json:"-"`
 }
 
 // GetId returns createAssetGroupCreateAssetGroup.Id, and is useful for accessing the field via an interface.
-func (v *createAssetGroupCreateAssetGroup) GetId() string { return v.Id }
+func (v *createAssetGroupCreateAssetGroup) GetId() string { return v.DefaultAssetGroup.Id }
+
+// GetCreatedAt returns createAssetGroupCreateAssetGroup.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createAssetGroupCreateAssetGroup) GetCreatedAt() string {
+	return v.DefaultAssetGroup.CreatedAt
+}
+
+// GetUpdatedAt returns createAssetGroupCreateAssetGroup.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createAssetGroupCreateAssetGroup) GetUpdatedAt() string {
+	return v.DefaultAssetGroup.UpdatedAt
+}
+
+// GetDeletedAt returns createAssetGroupCreateAssetGroup.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createAssetGroupCreateAssetGroup) GetDeletedAt() string {
+	return v.DefaultAssetGroup.DeletedAt
+}
 
 // GetToken returns createAssetGroupCreateAssetGroup.Token, and is useful for accessing the field via an interface.
-func (v *createAssetGroupCreateAssetGroup) GetToken() string { return v.Token }
+func (v *createAssetGroupCreateAssetGroup) GetToken() string { return v.DefaultAssetGroup.Token }
+
+// GetName returns createAssetGroupCreateAssetGroup.Name, and is useful for accessing the field via an interface.
+func (v *createAssetGroupCreateAssetGroup) GetName() string { return v.DefaultAssetGroup.Name }
+
+// GetDescription returns createAssetGroupCreateAssetGroup.Description, and is useful for accessing the field via an interface.
+func (v *createAssetGroupCreateAssetGroup) GetDescription() string {
+	return v.DefaultAssetGroup.Description
+}
+
+// GetImageUrl returns createAssetGroupCreateAssetGroup.ImageUrl, and is useful for accessing the field via an interface.
+func (v *createAssetGroupCreateAssetGroup) GetImageUrl() string { return v.DefaultAssetGroup.ImageUrl }
+
+// GetIcon returns createAssetGroupCreateAssetGroup.Icon, and is useful for accessing the field via an interface.
+func (v *createAssetGroupCreateAssetGroup) GetIcon() string { return v.DefaultAssetGroup.Icon }
+
+// GetBackgroundColor returns createAssetGroupCreateAssetGroup.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *createAssetGroupCreateAssetGroup) GetBackgroundColor() string {
+	return v.DefaultAssetGroup.BackgroundColor
+}
+
+// GetForegroundColor returns createAssetGroupCreateAssetGroup.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *createAssetGroupCreateAssetGroup) GetForegroundColor() string {
+	return v.DefaultAssetGroup.ForegroundColor
+}
+
+// GetBorderColor returns createAssetGroupCreateAssetGroup.BorderColor, and is useful for accessing the field via an interface.
+func (v *createAssetGroupCreateAssetGroup) GetBorderColor() string {
+	return v.DefaultAssetGroup.BorderColor
+}
+
+// GetMetadata returns createAssetGroupCreateAssetGroup.Metadata, and is useful for accessing the field via an interface.
+func (v *createAssetGroupCreateAssetGroup) GetMetadata() string { return v.DefaultAssetGroup.Metadata }
+
+func (v *createAssetGroupCreateAssetGroup) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createAssetGroupCreateAssetGroup
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createAssetGroupCreateAssetGroup = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetGroup)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateAssetGroupCreateAssetGroup struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createAssetGroupCreateAssetGroup) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createAssetGroupCreateAssetGroup) __premarshalJSON() (*__premarshalcreateAssetGroupCreateAssetGroup, error) {
+	var retval __premarshalcreateAssetGroupCreateAssetGroup
+
+	retval.Id = v.DefaultAssetGroup.Id
+	retval.CreatedAt = v.DefaultAssetGroup.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetGroup.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetGroup.DeletedAt
+	retval.Token = v.DefaultAssetGroup.Token
+	retval.Name = v.DefaultAssetGroup.Name
+	retval.Description = v.DefaultAssetGroup.Description
+	retval.ImageUrl = v.DefaultAssetGroup.ImageUrl
+	retval.Icon = v.DefaultAssetGroup.Icon
+	retval.BackgroundColor = v.DefaultAssetGroup.BackgroundColor
+	retval.ForegroundColor = v.DefaultAssetGroup.ForegroundColor
+	retval.BorderColor = v.DefaultAssetGroup.BorderColor
+	retval.Metadata = v.DefaultAssetGroup.Metadata
+	return &retval, nil
+}
 
 // createAssetGroupRelationshipCreateAssetGroupRelationship includes the requested fields of the GraphQL type AssetGroupRelationship.
 type createAssetGroupRelationshipCreateAssetGroupRelationship struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultAssetGroupRelationship `json:"-"`
 }
 
 // GetId returns createAssetGroupRelationshipCreateAssetGroupRelationship.Id, and is useful for accessing the field via an interface.
-func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetId() string { return v.Id }
+func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetId() string {
+	return v.DefaultAssetGroupRelationship.Id
+}
+
+// GetCreatedAt returns createAssetGroupRelationshipCreateAssetGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetCreatedAt() string {
+	return v.DefaultAssetGroupRelationship.CreatedAt
+}
+
+// GetUpdatedAt returns createAssetGroupRelationshipCreateAssetGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetUpdatedAt() string {
+	return v.DefaultAssetGroupRelationship.UpdatedAt
+}
+
+// GetDeletedAt returns createAssetGroupRelationshipCreateAssetGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetDeletedAt() string {
+	return v.DefaultAssetGroupRelationship.DeletedAt
+}
 
 // GetToken returns createAssetGroupRelationshipCreateAssetGroupRelationship.Token, and is useful for accessing the field via an interface.
-func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetToken() string { return v.Token }
+func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetToken() string {
+	return v.DefaultAssetGroupRelationship.Token
+}
+
+// GetAssetGroup returns createAssetGroupRelationshipCreateAssetGroupRelationship.AssetGroup, and is useful for accessing the field via an interface.
+func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetAssetGroup() DefaultAssetGroupRelationshipAssetGroup {
+	return v.DefaultAssetGroupRelationship.AssetGroup
+}
+
+// GetAsset returns createAssetGroupRelationshipCreateAssetGroupRelationship.Asset, and is useful for accessing the field via an interface.
+func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetAsset() DefaultAssetGroupRelationshipAsset {
+	return v.DefaultAssetGroupRelationship.Asset
+}
+
+// GetRelationshipType returns createAssetGroupRelationshipCreateAssetGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetRelationshipType() DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType {
+	return v.DefaultAssetGroupRelationship.RelationshipType
+}
+
+// GetMetadata returns createAssetGroupRelationshipCreateAssetGroupRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetMetadata() string {
+	return v.DefaultAssetGroupRelationship.Metadata
+}
+
+func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createAssetGroupRelationshipCreateAssetGroupRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createAssetGroupRelationshipCreateAssetGroupRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetGroupRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateAssetGroupRelationshipCreateAssetGroupRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	AssetGroup DefaultAssetGroupRelationshipAssetGroup `json:"assetGroup"`
+
+	Asset DefaultAssetGroupRelationshipAsset `json:"asset"`
+
+	RelationshipType DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) __premarshalJSON() (*__premarshalcreateAssetGroupRelationshipCreateAssetGroupRelationship, error) {
+	var retval __premarshalcreateAssetGroupRelationshipCreateAssetGroupRelationship
+
+	retval.Id = v.DefaultAssetGroupRelationship.Id
+	retval.CreatedAt = v.DefaultAssetGroupRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetGroupRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetGroupRelationship.DeletedAt
+	retval.Token = v.DefaultAssetGroupRelationship.Token
+	retval.AssetGroup = v.DefaultAssetGroupRelationship.AssetGroup
+	retval.Asset = v.DefaultAssetGroupRelationship.Asset
+	retval.RelationshipType = v.DefaultAssetGroupRelationship.RelationshipType
+	retval.Metadata = v.DefaultAssetGroupRelationship.Metadata
+	return &retval, nil
+}
 
 // createAssetGroupRelationshipResponse is returned by createAssetGroupRelationship on success.
 type createAssetGroupRelationshipResponse struct {
@@ -1510,18 +4347,112 @@ func (v *createAssetGroupRelationshipResponse) GetCreateAssetGroupRelationship()
 
 // createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType includes the requested fields of the GraphQL type AssetGroupRelationshipType.
 type createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultAssetGroupRelationshipType `json:"-"`
 }
 
 // GetId returns createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultAssetGroupRelationshipType.Id
+}
+
+// GetCreatedAt returns createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType) GetCreatedAt() string {
+	return v.DefaultAssetGroupRelationshipType.CreatedAt
+}
+
+// GetUpdatedAt returns createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType) GetUpdatedAt() string {
+	return v.DefaultAssetGroupRelationshipType.UpdatedAt
+}
+
+// GetDeletedAt returns createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType) GetDeletedAt() string {
+	return v.DefaultAssetGroupRelationshipType.DeletedAt
 }
 
 // GetToken returns createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultAssetGroupRelationshipType.Token
+}
+
+// GetName returns createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType) GetName() string {
+	return v.DefaultAssetGroupRelationshipType.Name
+}
+
+// GetDescription returns createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType) GetDescription() string {
+	return v.DefaultAssetGroupRelationshipType.Description
+}
+
+// GetMetadata returns createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType) GetMetadata() string {
+	return v.DefaultAssetGroupRelationshipType.Metadata
+}
+
+func (v *createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetGroupRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateAssetGroupRelationshipTypeCreateAssetGroupRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createAssetGroupRelationshipTypeCreateAssetGroupRelationshipType) __premarshalJSON() (*__premarshalcreateAssetGroupRelationshipTypeCreateAssetGroupRelationshipType, error) {
+	var retval __premarshalcreateAssetGroupRelationshipTypeCreateAssetGroupRelationshipType
+
+	retval.Id = v.DefaultAssetGroupRelationshipType.Id
+	retval.CreatedAt = v.DefaultAssetGroupRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetGroupRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetGroupRelationshipType.DeletedAt
+	retval.Token = v.DefaultAssetGroupRelationshipType.Token
+	retval.Name = v.DefaultAssetGroupRelationshipType.Name
+	retval.Description = v.DefaultAssetGroupRelationshipType.Description
+	retval.Metadata = v.DefaultAssetGroupRelationshipType.Metadata
+	return &retval, nil
 }
 
 // createAssetGroupRelationshipTypeResponse is returned by createAssetGroupRelationshipType on success.
@@ -1546,15 +4477,121 @@ func (v *createAssetGroupResponse) GetCreateAssetGroup() createAssetGroupCreateA
 
 // createAssetRelationshipCreateAssetRelationship includes the requested fields of the GraphQL type AssetRelationship.
 type createAssetRelationshipCreateAssetRelationship struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultAssetRelationship `json:"-"`
 }
 
 // GetId returns createAssetRelationshipCreateAssetRelationship.Id, and is useful for accessing the field via an interface.
-func (v *createAssetRelationshipCreateAssetRelationship) GetId() string { return v.Id }
+func (v *createAssetRelationshipCreateAssetRelationship) GetId() string {
+	return v.DefaultAssetRelationship.Id
+}
+
+// GetCreatedAt returns createAssetRelationshipCreateAssetRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createAssetRelationshipCreateAssetRelationship) GetCreatedAt() string {
+	return v.DefaultAssetRelationship.CreatedAt
+}
+
+// GetUpdatedAt returns createAssetRelationshipCreateAssetRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createAssetRelationshipCreateAssetRelationship) GetUpdatedAt() string {
+	return v.DefaultAssetRelationship.UpdatedAt
+}
+
+// GetDeletedAt returns createAssetRelationshipCreateAssetRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createAssetRelationshipCreateAssetRelationship) GetDeletedAt() string {
+	return v.DefaultAssetRelationship.DeletedAt
+}
 
 // GetToken returns createAssetRelationshipCreateAssetRelationship.Token, and is useful for accessing the field via an interface.
-func (v *createAssetRelationshipCreateAssetRelationship) GetToken() string { return v.Token }
+func (v *createAssetRelationshipCreateAssetRelationship) GetToken() string {
+	return v.DefaultAssetRelationship.Token
+}
+
+// GetSourceAsset returns createAssetRelationshipCreateAssetRelationship.SourceAsset, and is useful for accessing the field via an interface.
+func (v *createAssetRelationshipCreateAssetRelationship) GetSourceAsset() DefaultAssetRelationshipSourceAsset {
+	return v.DefaultAssetRelationship.SourceAsset
+}
+
+// GetTargetAsset returns createAssetRelationshipCreateAssetRelationship.TargetAsset, and is useful for accessing the field via an interface.
+func (v *createAssetRelationshipCreateAssetRelationship) GetTargetAsset() DefaultAssetRelationshipTargetAsset {
+	return v.DefaultAssetRelationship.TargetAsset
+}
+
+// GetRelationshipType returns createAssetRelationshipCreateAssetRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *createAssetRelationshipCreateAssetRelationship) GetRelationshipType() DefaultAssetRelationshipRelationshipTypeAssetRelationshipType {
+	return v.DefaultAssetRelationship.RelationshipType
+}
+
+// GetMetadata returns createAssetRelationshipCreateAssetRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *createAssetRelationshipCreateAssetRelationship) GetMetadata() string {
+	return v.DefaultAssetRelationship.Metadata
+}
+
+func (v *createAssetRelationshipCreateAssetRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createAssetRelationshipCreateAssetRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createAssetRelationshipCreateAssetRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateAssetRelationshipCreateAssetRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	SourceAsset DefaultAssetRelationshipSourceAsset `json:"sourceAsset"`
+
+	TargetAsset DefaultAssetRelationshipTargetAsset `json:"targetAsset"`
+
+	RelationshipType DefaultAssetRelationshipRelationshipTypeAssetRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createAssetRelationshipCreateAssetRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createAssetRelationshipCreateAssetRelationship) __premarshalJSON() (*__premarshalcreateAssetRelationshipCreateAssetRelationship, error) {
+	var retval __premarshalcreateAssetRelationshipCreateAssetRelationship
+
+	retval.Id = v.DefaultAssetRelationship.Id
+	retval.CreatedAt = v.DefaultAssetRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetRelationship.DeletedAt
+	retval.Token = v.DefaultAssetRelationship.Token
+	retval.SourceAsset = v.DefaultAssetRelationship.SourceAsset
+	retval.TargetAsset = v.DefaultAssetRelationship.TargetAsset
+	retval.RelationshipType = v.DefaultAssetRelationship.RelationshipType
+	retval.Metadata = v.DefaultAssetRelationship.Metadata
+	return &retval, nil
+}
 
 // createAssetRelationshipResponse is returned by createAssetRelationship on success.
 type createAssetRelationshipResponse struct {
@@ -1568,15 +4605,113 @@ func (v *createAssetRelationshipResponse) GetCreateAssetRelationship() createAss
 
 // createAssetRelationshipTypeCreateAssetRelationshipType includes the requested fields of the GraphQL type AssetRelationshipType.
 type createAssetRelationshipTypeCreateAssetRelationshipType struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultAssetRelationshipType `json:"-"`
 }
 
 // GetId returns createAssetRelationshipTypeCreateAssetRelationshipType.Id, and is useful for accessing the field via an interface.
-func (v *createAssetRelationshipTypeCreateAssetRelationshipType) GetId() string { return v.Id }
+func (v *createAssetRelationshipTypeCreateAssetRelationshipType) GetId() string {
+	return v.DefaultAssetRelationshipType.Id
+}
+
+// GetCreatedAt returns createAssetRelationshipTypeCreateAssetRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createAssetRelationshipTypeCreateAssetRelationshipType) GetCreatedAt() string {
+	return v.DefaultAssetRelationshipType.CreatedAt
+}
+
+// GetUpdatedAt returns createAssetRelationshipTypeCreateAssetRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createAssetRelationshipTypeCreateAssetRelationshipType) GetUpdatedAt() string {
+	return v.DefaultAssetRelationshipType.UpdatedAt
+}
+
+// GetDeletedAt returns createAssetRelationshipTypeCreateAssetRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createAssetRelationshipTypeCreateAssetRelationshipType) GetDeletedAt() string {
+	return v.DefaultAssetRelationshipType.DeletedAt
+}
 
 // GetToken returns createAssetRelationshipTypeCreateAssetRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *createAssetRelationshipTypeCreateAssetRelationshipType) GetToken() string { return v.Token }
+func (v *createAssetRelationshipTypeCreateAssetRelationshipType) GetToken() string {
+	return v.DefaultAssetRelationshipType.Token
+}
+
+// GetName returns createAssetRelationshipTypeCreateAssetRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *createAssetRelationshipTypeCreateAssetRelationshipType) GetName() string {
+	return v.DefaultAssetRelationshipType.Name
+}
+
+// GetDescription returns createAssetRelationshipTypeCreateAssetRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *createAssetRelationshipTypeCreateAssetRelationshipType) GetDescription() string {
+	return v.DefaultAssetRelationshipType.Description
+}
+
+// GetMetadata returns createAssetRelationshipTypeCreateAssetRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *createAssetRelationshipTypeCreateAssetRelationshipType) GetMetadata() string {
+	return v.DefaultAssetRelationshipType.Metadata
+}
+
+func (v *createAssetRelationshipTypeCreateAssetRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createAssetRelationshipTypeCreateAssetRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createAssetRelationshipTypeCreateAssetRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateAssetRelationshipTypeCreateAssetRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createAssetRelationshipTypeCreateAssetRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createAssetRelationshipTypeCreateAssetRelationshipType) __premarshalJSON() (*__premarshalcreateAssetRelationshipTypeCreateAssetRelationshipType, error) {
+	var retval __premarshalcreateAssetRelationshipTypeCreateAssetRelationshipType
+
+	retval.Id = v.DefaultAssetRelationshipType.Id
+	retval.CreatedAt = v.DefaultAssetRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetRelationshipType.DeletedAt
+	retval.Token = v.DefaultAssetRelationshipType.Token
+	retval.Name = v.DefaultAssetRelationshipType.Name
+	retval.Description = v.DefaultAssetRelationshipType.Description
+	retval.Metadata = v.DefaultAssetRelationshipType.Metadata
+	return &retval, nil
+}
 
 // createAssetRelationshipTypeResponse is returned by createAssetRelationshipType on success.
 type createAssetRelationshipTypeResponse struct {
@@ -1598,15 +4733,135 @@ func (v *createAssetResponse) GetCreateAsset() createAssetCreateAsset { return v
 
 // createAssetTypeCreateAssetType includes the requested fields of the GraphQL type AssetType.
 type createAssetTypeCreateAssetType struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultAssetType `json:"-"`
 }
 
 // GetId returns createAssetTypeCreateAssetType.Id, and is useful for accessing the field via an interface.
-func (v *createAssetTypeCreateAssetType) GetId() string { return v.Id }
+func (v *createAssetTypeCreateAssetType) GetId() string { return v.DefaultAssetType.Id }
+
+// GetCreatedAt returns createAssetTypeCreateAssetType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createAssetTypeCreateAssetType) GetCreatedAt() string { return v.DefaultAssetType.CreatedAt }
+
+// GetUpdatedAt returns createAssetTypeCreateAssetType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createAssetTypeCreateAssetType) GetUpdatedAt() string { return v.DefaultAssetType.UpdatedAt }
+
+// GetDeletedAt returns createAssetTypeCreateAssetType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createAssetTypeCreateAssetType) GetDeletedAt() string { return v.DefaultAssetType.DeletedAt }
 
 // GetToken returns createAssetTypeCreateAssetType.Token, and is useful for accessing the field via an interface.
-func (v *createAssetTypeCreateAssetType) GetToken() string { return v.Token }
+func (v *createAssetTypeCreateAssetType) GetToken() string { return v.DefaultAssetType.Token }
+
+// GetName returns createAssetTypeCreateAssetType.Name, and is useful for accessing the field via an interface.
+func (v *createAssetTypeCreateAssetType) GetName() string { return v.DefaultAssetType.Name }
+
+// GetDescription returns createAssetTypeCreateAssetType.Description, and is useful for accessing the field via an interface.
+func (v *createAssetTypeCreateAssetType) GetDescription() string {
+	return v.DefaultAssetType.Description
+}
+
+// GetImageUrl returns createAssetTypeCreateAssetType.ImageUrl, and is useful for accessing the field via an interface.
+func (v *createAssetTypeCreateAssetType) GetImageUrl() string { return v.DefaultAssetType.ImageUrl }
+
+// GetIcon returns createAssetTypeCreateAssetType.Icon, and is useful for accessing the field via an interface.
+func (v *createAssetTypeCreateAssetType) GetIcon() string { return v.DefaultAssetType.Icon }
+
+// GetBackgroundColor returns createAssetTypeCreateAssetType.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *createAssetTypeCreateAssetType) GetBackgroundColor() string {
+	return v.DefaultAssetType.BackgroundColor
+}
+
+// GetForegroundColor returns createAssetTypeCreateAssetType.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *createAssetTypeCreateAssetType) GetForegroundColor() string {
+	return v.DefaultAssetType.ForegroundColor
+}
+
+// GetBorderColor returns createAssetTypeCreateAssetType.BorderColor, and is useful for accessing the field via an interface.
+func (v *createAssetTypeCreateAssetType) GetBorderColor() string {
+	return v.DefaultAssetType.BorderColor
+}
+
+// GetMetadata returns createAssetTypeCreateAssetType.Metadata, and is useful for accessing the field via an interface.
+func (v *createAssetTypeCreateAssetType) GetMetadata() string { return v.DefaultAssetType.Metadata }
+
+func (v *createAssetTypeCreateAssetType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createAssetTypeCreateAssetType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createAssetTypeCreateAssetType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateAssetTypeCreateAssetType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createAssetTypeCreateAssetType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createAssetTypeCreateAssetType) __premarshalJSON() (*__premarshalcreateAssetTypeCreateAssetType, error) {
+	var retval __premarshalcreateAssetTypeCreateAssetType
+
+	retval.Id = v.DefaultAssetType.Id
+	retval.CreatedAt = v.DefaultAssetType.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetType.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetType.DeletedAt
+	retval.Token = v.DefaultAssetType.Token
+	retval.Name = v.DefaultAssetType.Name
+	retval.Description = v.DefaultAssetType.Description
+	retval.ImageUrl = v.DefaultAssetType.ImageUrl
+	retval.Icon = v.DefaultAssetType.Icon
+	retval.BackgroundColor = v.DefaultAssetType.BackgroundColor
+	retval.ForegroundColor = v.DefaultAssetType.ForegroundColor
+	retval.BorderColor = v.DefaultAssetType.BorderColor
+	retval.Metadata = v.DefaultAssetType.Metadata
+	return &retval, nil
+}
 
 // createAssetTypeResponse is returned by createAssetType on success.
 type createAssetTypeResponse struct {
@@ -1620,40 +4875,366 @@ func (v *createAssetTypeResponse) GetCreateAssetType() createAssetTypeCreateAsse
 
 // createCustomerCreateCustomer includes the requested fields of the GraphQL type Customer.
 type createCustomerCreateCustomer struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultCustomer `json:"-"`
 }
 
 // GetId returns createCustomerCreateCustomer.Id, and is useful for accessing the field via an interface.
-func (v *createCustomerCreateCustomer) GetId() string { return v.Id }
+func (v *createCustomerCreateCustomer) GetId() string { return v.DefaultCustomer.Id }
+
+// GetCreatedAt returns createCustomerCreateCustomer.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerCreateCustomer) GetCreatedAt() string { return v.DefaultCustomer.CreatedAt }
+
+// GetUpdatedAt returns createCustomerCreateCustomer.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerCreateCustomer) GetUpdatedAt() string { return v.DefaultCustomer.UpdatedAt }
+
+// GetDeletedAt returns createCustomerCreateCustomer.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerCreateCustomer) GetDeletedAt() string { return v.DefaultCustomer.DeletedAt }
 
 // GetToken returns createCustomerCreateCustomer.Token, and is useful for accessing the field via an interface.
-func (v *createCustomerCreateCustomer) GetToken() string { return v.Token }
+func (v *createCustomerCreateCustomer) GetToken() string { return v.DefaultCustomer.Token }
+
+// GetName returns createCustomerCreateCustomer.Name, and is useful for accessing the field via an interface.
+func (v *createCustomerCreateCustomer) GetName() string { return v.DefaultCustomer.Name }
+
+// GetDescription returns createCustomerCreateCustomer.Description, and is useful for accessing the field via an interface.
+func (v *createCustomerCreateCustomer) GetDescription() string { return v.DefaultCustomer.Description }
+
+// GetCustomerType returns createCustomerCreateCustomer.CustomerType, and is useful for accessing the field via an interface.
+func (v *createCustomerCreateCustomer) GetCustomerType() DefaultCustomerCustomerType {
+	return v.DefaultCustomer.CustomerType
+}
+
+// GetMetadata returns createCustomerCreateCustomer.Metadata, and is useful for accessing the field via an interface.
+func (v *createCustomerCreateCustomer) GetMetadata() string { return v.DefaultCustomer.Metadata }
+
+func (v *createCustomerCreateCustomer) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createCustomerCreateCustomer
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createCustomerCreateCustomer = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomer)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateCustomerCreateCustomer struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	CustomerType DefaultCustomerCustomerType `json:"customerType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createCustomerCreateCustomer) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createCustomerCreateCustomer) __premarshalJSON() (*__premarshalcreateCustomerCreateCustomer, error) {
+	var retval __premarshalcreateCustomerCreateCustomer
+
+	retval.Id = v.DefaultCustomer.Id
+	retval.CreatedAt = v.DefaultCustomer.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomer.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomer.DeletedAt
+	retval.Token = v.DefaultCustomer.Token
+	retval.Name = v.DefaultCustomer.Name
+	retval.Description = v.DefaultCustomer.Description
+	retval.CustomerType = v.DefaultCustomer.CustomerType
+	retval.Metadata = v.DefaultCustomer.Metadata
+	return &retval, nil
+}
 
 // createCustomerGroupCreateCustomerGroup includes the requested fields of the GraphQL type CustomerGroup.
 type createCustomerGroupCreateCustomerGroup struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultCustomerGroup `json:"-"`
 }
 
 // GetId returns createCustomerGroupCreateCustomerGroup.Id, and is useful for accessing the field via an interface.
-func (v *createCustomerGroupCreateCustomerGroup) GetId() string { return v.Id }
+func (v *createCustomerGroupCreateCustomerGroup) GetId() string { return v.DefaultCustomerGroup.Id }
+
+// GetCreatedAt returns createCustomerGroupCreateCustomerGroup.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupCreateCustomerGroup) GetCreatedAt() string {
+	return v.DefaultCustomerGroup.CreatedAt
+}
+
+// GetUpdatedAt returns createCustomerGroupCreateCustomerGroup.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupCreateCustomerGroup) GetUpdatedAt() string {
+	return v.DefaultCustomerGroup.UpdatedAt
+}
+
+// GetDeletedAt returns createCustomerGroupCreateCustomerGroup.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupCreateCustomerGroup) GetDeletedAt() string {
+	return v.DefaultCustomerGroup.DeletedAt
+}
 
 // GetToken returns createCustomerGroupCreateCustomerGroup.Token, and is useful for accessing the field via an interface.
-func (v *createCustomerGroupCreateCustomerGroup) GetToken() string { return v.Token }
+func (v *createCustomerGroupCreateCustomerGroup) GetToken() string {
+	return v.DefaultCustomerGroup.Token
+}
+
+// GetName returns createCustomerGroupCreateCustomerGroup.Name, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupCreateCustomerGroup) GetName() string { return v.DefaultCustomerGroup.Name }
+
+// GetDescription returns createCustomerGroupCreateCustomerGroup.Description, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupCreateCustomerGroup) GetDescription() string {
+	return v.DefaultCustomerGroup.Description
+}
+
+// GetImageUrl returns createCustomerGroupCreateCustomerGroup.ImageUrl, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupCreateCustomerGroup) GetImageUrl() string {
+	return v.DefaultCustomerGroup.ImageUrl
+}
+
+// GetIcon returns createCustomerGroupCreateCustomerGroup.Icon, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupCreateCustomerGroup) GetIcon() string { return v.DefaultCustomerGroup.Icon }
+
+// GetBackgroundColor returns createCustomerGroupCreateCustomerGroup.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupCreateCustomerGroup) GetBackgroundColor() string {
+	return v.DefaultCustomerGroup.BackgroundColor
+}
+
+// GetForegroundColor returns createCustomerGroupCreateCustomerGroup.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupCreateCustomerGroup) GetForegroundColor() string {
+	return v.DefaultCustomerGroup.ForegroundColor
+}
+
+// GetBorderColor returns createCustomerGroupCreateCustomerGroup.BorderColor, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupCreateCustomerGroup) GetBorderColor() string {
+	return v.DefaultCustomerGroup.BorderColor
+}
+
+// GetMetadata returns createCustomerGroupCreateCustomerGroup.Metadata, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupCreateCustomerGroup) GetMetadata() string {
+	return v.DefaultCustomerGroup.Metadata
+}
+
+func (v *createCustomerGroupCreateCustomerGroup) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createCustomerGroupCreateCustomerGroup
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createCustomerGroupCreateCustomerGroup = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerGroup)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateCustomerGroupCreateCustomerGroup struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createCustomerGroupCreateCustomerGroup) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createCustomerGroupCreateCustomerGroup) __premarshalJSON() (*__premarshalcreateCustomerGroupCreateCustomerGroup, error) {
+	var retval __premarshalcreateCustomerGroupCreateCustomerGroup
+
+	retval.Id = v.DefaultCustomerGroup.Id
+	retval.CreatedAt = v.DefaultCustomerGroup.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerGroup.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerGroup.DeletedAt
+	retval.Token = v.DefaultCustomerGroup.Token
+	retval.Name = v.DefaultCustomerGroup.Name
+	retval.Description = v.DefaultCustomerGroup.Description
+	retval.ImageUrl = v.DefaultCustomerGroup.ImageUrl
+	retval.Icon = v.DefaultCustomerGroup.Icon
+	retval.BackgroundColor = v.DefaultCustomerGroup.BackgroundColor
+	retval.ForegroundColor = v.DefaultCustomerGroup.ForegroundColor
+	retval.BorderColor = v.DefaultCustomerGroup.BorderColor
+	retval.Metadata = v.DefaultCustomerGroup.Metadata
+	return &retval, nil
+}
 
 // createCustomerGroupRelationshipCreateCustomerGroupRelationship includes the requested fields of the GraphQL type CustomerGroupRelationship.
 type createCustomerGroupRelationshipCreateCustomerGroupRelationship struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultCustomerGroupRelationship `json:"-"`
 }
 
 // GetId returns createCustomerGroupRelationshipCreateCustomerGroupRelationship.Id, and is useful for accessing the field via an interface.
-func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) GetId() string { return v.Id }
+func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) GetId() string {
+	return v.DefaultCustomerGroupRelationship.Id
+}
+
+// GetCreatedAt returns createCustomerGroupRelationshipCreateCustomerGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) GetCreatedAt() string {
+	return v.DefaultCustomerGroupRelationship.CreatedAt
+}
+
+// GetUpdatedAt returns createCustomerGroupRelationshipCreateCustomerGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) GetUpdatedAt() string {
+	return v.DefaultCustomerGroupRelationship.UpdatedAt
+}
+
+// GetDeletedAt returns createCustomerGroupRelationshipCreateCustomerGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) GetDeletedAt() string {
+	return v.DefaultCustomerGroupRelationship.DeletedAt
+}
 
 // GetToken returns createCustomerGroupRelationshipCreateCustomerGroupRelationship.Token, and is useful for accessing the field via an interface.
 func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) GetToken() string {
-	return v.Token
+	return v.DefaultCustomerGroupRelationship.Token
+}
+
+// GetCustomerGroup returns createCustomerGroupRelationshipCreateCustomerGroupRelationship.CustomerGroup, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) GetCustomerGroup() DefaultCustomerGroupRelationshipCustomerGroup {
+	return v.DefaultCustomerGroupRelationship.CustomerGroup
+}
+
+// GetCustomer returns createCustomerGroupRelationshipCreateCustomerGroupRelationship.Customer, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) GetCustomer() DefaultCustomerGroupRelationshipCustomer {
+	return v.DefaultCustomerGroupRelationship.Customer
+}
+
+// GetRelationshipType returns createCustomerGroupRelationshipCreateCustomerGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) GetRelationshipType() DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType {
+	return v.DefaultCustomerGroupRelationship.RelationshipType
+}
+
+// GetMetadata returns createCustomerGroupRelationshipCreateCustomerGroupRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) GetMetadata() string {
+	return v.DefaultCustomerGroupRelationship.Metadata
+}
+
+func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createCustomerGroupRelationshipCreateCustomerGroupRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createCustomerGroupRelationshipCreateCustomerGroupRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerGroupRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateCustomerGroupRelationshipCreateCustomerGroupRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	CustomerGroup DefaultCustomerGroupRelationshipCustomerGroup `json:"customerGroup"`
+
+	Customer DefaultCustomerGroupRelationshipCustomer `json:"customer"`
+
+	RelationshipType DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) __premarshalJSON() (*__premarshalcreateCustomerGroupRelationshipCreateCustomerGroupRelationship, error) {
+	var retval __premarshalcreateCustomerGroupRelationshipCreateCustomerGroupRelationship
+
+	retval.Id = v.DefaultCustomerGroupRelationship.Id
+	retval.CreatedAt = v.DefaultCustomerGroupRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerGroupRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerGroupRelationship.DeletedAt
+	retval.Token = v.DefaultCustomerGroupRelationship.Token
+	retval.CustomerGroup = v.DefaultCustomerGroupRelationship.CustomerGroup
+	retval.Customer = v.DefaultCustomerGroupRelationship.Customer
+	retval.RelationshipType = v.DefaultCustomerGroupRelationship.RelationshipType
+	retval.Metadata = v.DefaultCustomerGroupRelationship.Metadata
+	return &retval, nil
 }
 
 // createCustomerGroupRelationshipResponse is returned by createCustomerGroupRelationship on success.
@@ -1668,18 +5249,112 @@ func (v *createCustomerGroupRelationshipResponse) GetCreateCustomerGroupRelation
 
 // createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType includes the requested fields of the GraphQL type CustomerGroupRelationshipType.
 type createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultCustomerGroupRelationshipType `json:"-"`
 }
 
 // GetId returns createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultCustomerGroupRelationshipType.Id
+}
+
+// GetCreatedAt returns createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType) GetCreatedAt() string {
+	return v.DefaultCustomerGroupRelationshipType.CreatedAt
+}
+
+// GetUpdatedAt returns createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType) GetUpdatedAt() string {
+	return v.DefaultCustomerGroupRelationshipType.UpdatedAt
+}
+
+// GetDeletedAt returns createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType) GetDeletedAt() string {
+	return v.DefaultCustomerGroupRelationshipType.DeletedAt
 }
 
 // GetToken returns createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultCustomerGroupRelationshipType.Token
+}
+
+// GetName returns createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType) GetName() string {
+	return v.DefaultCustomerGroupRelationshipType.Name
+}
+
+// GetDescription returns createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType) GetDescription() string {
+	return v.DefaultCustomerGroupRelationshipType.Description
+}
+
+// GetMetadata returns createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType) GetMetadata() string {
+	return v.DefaultCustomerGroupRelationshipType.Metadata
+}
+
+func (v *createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerGroupRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType) __premarshalJSON() (*__premarshalcreateCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType, error) {
+	var retval __premarshalcreateCustomerGroupRelationshipTypeCreateCustomerGroupRelationshipType
+
+	retval.Id = v.DefaultCustomerGroupRelationshipType.Id
+	retval.CreatedAt = v.DefaultCustomerGroupRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerGroupRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerGroupRelationshipType.DeletedAt
+	retval.Token = v.DefaultCustomerGroupRelationshipType.Token
+	retval.Name = v.DefaultCustomerGroupRelationshipType.Name
+	retval.Description = v.DefaultCustomerGroupRelationshipType.Description
+	retval.Metadata = v.DefaultCustomerGroupRelationshipType.Metadata
+	return &retval, nil
 }
 
 // createCustomerGroupRelationshipTypeResponse is returned by createCustomerGroupRelationshipType on success.
@@ -1704,15 +5379,121 @@ func (v *createCustomerGroupResponse) GetCreateCustomerGroup() createCustomerGro
 
 // createCustomerRelationshipCreateCustomerRelationship includes the requested fields of the GraphQL type CustomerRelationship.
 type createCustomerRelationshipCreateCustomerRelationship struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultCustomerRelationship `json:"-"`
 }
 
 // GetId returns createCustomerRelationshipCreateCustomerRelationship.Id, and is useful for accessing the field via an interface.
-func (v *createCustomerRelationshipCreateCustomerRelationship) GetId() string { return v.Id }
+func (v *createCustomerRelationshipCreateCustomerRelationship) GetId() string {
+	return v.DefaultCustomerRelationship.Id
+}
+
+// GetCreatedAt returns createCustomerRelationshipCreateCustomerRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerRelationshipCreateCustomerRelationship) GetCreatedAt() string {
+	return v.DefaultCustomerRelationship.CreatedAt
+}
+
+// GetUpdatedAt returns createCustomerRelationshipCreateCustomerRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerRelationshipCreateCustomerRelationship) GetUpdatedAt() string {
+	return v.DefaultCustomerRelationship.UpdatedAt
+}
+
+// GetDeletedAt returns createCustomerRelationshipCreateCustomerRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerRelationshipCreateCustomerRelationship) GetDeletedAt() string {
+	return v.DefaultCustomerRelationship.DeletedAt
+}
 
 // GetToken returns createCustomerRelationshipCreateCustomerRelationship.Token, and is useful for accessing the field via an interface.
-func (v *createCustomerRelationshipCreateCustomerRelationship) GetToken() string { return v.Token }
+func (v *createCustomerRelationshipCreateCustomerRelationship) GetToken() string {
+	return v.DefaultCustomerRelationship.Token
+}
+
+// GetSourceCustomer returns createCustomerRelationshipCreateCustomerRelationship.SourceCustomer, and is useful for accessing the field via an interface.
+func (v *createCustomerRelationshipCreateCustomerRelationship) GetSourceCustomer() DefaultCustomerRelationshipSourceCustomer {
+	return v.DefaultCustomerRelationship.SourceCustomer
+}
+
+// GetTargetCustomer returns createCustomerRelationshipCreateCustomerRelationship.TargetCustomer, and is useful for accessing the field via an interface.
+func (v *createCustomerRelationshipCreateCustomerRelationship) GetTargetCustomer() DefaultCustomerRelationshipTargetCustomer {
+	return v.DefaultCustomerRelationship.TargetCustomer
+}
+
+// GetRelationshipType returns createCustomerRelationshipCreateCustomerRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *createCustomerRelationshipCreateCustomerRelationship) GetRelationshipType() DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType {
+	return v.DefaultCustomerRelationship.RelationshipType
+}
+
+// GetMetadata returns createCustomerRelationshipCreateCustomerRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *createCustomerRelationshipCreateCustomerRelationship) GetMetadata() string {
+	return v.DefaultCustomerRelationship.Metadata
+}
+
+func (v *createCustomerRelationshipCreateCustomerRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createCustomerRelationshipCreateCustomerRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createCustomerRelationshipCreateCustomerRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateCustomerRelationshipCreateCustomerRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	SourceCustomer DefaultCustomerRelationshipSourceCustomer `json:"sourceCustomer"`
+
+	TargetCustomer DefaultCustomerRelationshipTargetCustomer `json:"targetCustomer"`
+
+	RelationshipType DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createCustomerRelationshipCreateCustomerRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createCustomerRelationshipCreateCustomerRelationship) __premarshalJSON() (*__premarshalcreateCustomerRelationshipCreateCustomerRelationship, error) {
+	var retval __premarshalcreateCustomerRelationshipCreateCustomerRelationship
+
+	retval.Id = v.DefaultCustomerRelationship.Id
+	retval.CreatedAt = v.DefaultCustomerRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerRelationship.DeletedAt
+	retval.Token = v.DefaultCustomerRelationship.Token
+	retval.SourceCustomer = v.DefaultCustomerRelationship.SourceCustomer
+	retval.TargetCustomer = v.DefaultCustomerRelationship.TargetCustomer
+	retval.RelationshipType = v.DefaultCustomerRelationship.RelationshipType
+	retval.Metadata = v.DefaultCustomerRelationship.Metadata
+	return &retval, nil
+}
 
 // createCustomerRelationshipResponse is returned by createCustomerRelationship on success.
 type createCustomerRelationshipResponse struct {
@@ -1726,16 +5507,112 @@ func (v *createCustomerRelationshipResponse) GetCreateCustomerRelationship() cre
 
 // createCustomerRelationshipTypeCreateCustomerRelationshipType includes the requested fields of the GraphQL type CustomerRelationshipType.
 type createCustomerRelationshipTypeCreateCustomerRelationshipType struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultCustomerRelationshipType `json:"-"`
 }
 
 // GetId returns createCustomerRelationshipTypeCreateCustomerRelationshipType.Id, and is useful for accessing the field via an interface.
-func (v *createCustomerRelationshipTypeCreateCustomerRelationshipType) GetId() string { return v.Id }
+func (v *createCustomerRelationshipTypeCreateCustomerRelationshipType) GetId() string {
+	return v.DefaultCustomerRelationshipType.Id
+}
+
+// GetCreatedAt returns createCustomerRelationshipTypeCreateCustomerRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerRelationshipTypeCreateCustomerRelationshipType) GetCreatedAt() string {
+	return v.DefaultCustomerRelationshipType.CreatedAt
+}
+
+// GetUpdatedAt returns createCustomerRelationshipTypeCreateCustomerRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerRelationshipTypeCreateCustomerRelationshipType) GetUpdatedAt() string {
+	return v.DefaultCustomerRelationshipType.UpdatedAt
+}
+
+// GetDeletedAt returns createCustomerRelationshipTypeCreateCustomerRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerRelationshipTypeCreateCustomerRelationshipType) GetDeletedAt() string {
+	return v.DefaultCustomerRelationshipType.DeletedAt
+}
 
 // GetToken returns createCustomerRelationshipTypeCreateCustomerRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *createCustomerRelationshipTypeCreateCustomerRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultCustomerRelationshipType.Token
+}
+
+// GetName returns createCustomerRelationshipTypeCreateCustomerRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *createCustomerRelationshipTypeCreateCustomerRelationshipType) GetName() string {
+	return v.DefaultCustomerRelationshipType.Name
+}
+
+// GetDescription returns createCustomerRelationshipTypeCreateCustomerRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *createCustomerRelationshipTypeCreateCustomerRelationshipType) GetDescription() string {
+	return v.DefaultCustomerRelationshipType.Description
+}
+
+// GetMetadata returns createCustomerRelationshipTypeCreateCustomerRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *createCustomerRelationshipTypeCreateCustomerRelationshipType) GetMetadata() string {
+	return v.DefaultCustomerRelationshipType.Metadata
+}
+
+func (v *createCustomerRelationshipTypeCreateCustomerRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createCustomerRelationshipTypeCreateCustomerRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createCustomerRelationshipTypeCreateCustomerRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateCustomerRelationshipTypeCreateCustomerRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createCustomerRelationshipTypeCreateCustomerRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createCustomerRelationshipTypeCreateCustomerRelationshipType) __premarshalJSON() (*__premarshalcreateCustomerRelationshipTypeCreateCustomerRelationshipType, error) {
+	var retval __premarshalcreateCustomerRelationshipTypeCreateCustomerRelationshipType
+
+	retval.Id = v.DefaultCustomerRelationshipType.Id
+	retval.CreatedAt = v.DefaultCustomerRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerRelationshipType.DeletedAt
+	retval.Token = v.DefaultCustomerRelationshipType.Token
+	retval.Name = v.DefaultCustomerRelationshipType.Name
+	retval.Description = v.DefaultCustomerRelationshipType.Description
+	retval.Metadata = v.DefaultCustomerRelationshipType.Metadata
+	return &retval, nil
 }
 
 // createCustomerRelationshipTypeResponse is returned by createCustomerRelationshipType on success.
@@ -1760,15 +5637,145 @@ func (v *createCustomerResponse) GetCreateCustomer() createCustomerCreateCustome
 
 // createCustomerTypeCreateCustomerType includes the requested fields of the GraphQL type CustomerType.
 type createCustomerTypeCreateCustomerType struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultCustomerType `json:"-"`
 }
 
 // GetId returns createCustomerTypeCreateCustomerType.Id, and is useful for accessing the field via an interface.
-func (v *createCustomerTypeCreateCustomerType) GetId() string { return v.Id }
+func (v *createCustomerTypeCreateCustomerType) GetId() string { return v.DefaultCustomerType.Id }
+
+// GetCreatedAt returns createCustomerTypeCreateCustomerType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerTypeCreateCustomerType) GetCreatedAt() string {
+	return v.DefaultCustomerType.CreatedAt
+}
+
+// GetUpdatedAt returns createCustomerTypeCreateCustomerType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerTypeCreateCustomerType) GetUpdatedAt() string {
+	return v.DefaultCustomerType.UpdatedAt
+}
+
+// GetDeletedAt returns createCustomerTypeCreateCustomerType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createCustomerTypeCreateCustomerType) GetDeletedAt() string {
+	return v.DefaultCustomerType.DeletedAt
+}
 
 // GetToken returns createCustomerTypeCreateCustomerType.Token, and is useful for accessing the field via an interface.
-func (v *createCustomerTypeCreateCustomerType) GetToken() string { return v.Token }
+func (v *createCustomerTypeCreateCustomerType) GetToken() string { return v.DefaultCustomerType.Token }
+
+// GetName returns createCustomerTypeCreateCustomerType.Name, and is useful for accessing the field via an interface.
+func (v *createCustomerTypeCreateCustomerType) GetName() string { return v.DefaultCustomerType.Name }
+
+// GetDescription returns createCustomerTypeCreateCustomerType.Description, and is useful for accessing the field via an interface.
+func (v *createCustomerTypeCreateCustomerType) GetDescription() string {
+	return v.DefaultCustomerType.Description
+}
+
+// GetImageUrl returns createCustomerTypeCreateCustomerType.ImageUrl, and is useful for accessing the field via an interface.
+func (v *createCustomerTypeCreateCustomerType) GetImageUrl() string {
+	return v.DefaultCustomerType.ImageUrl
+}
+
+// GetIcon returns createCustomerTypeCreateCustomerType.Icon, and is useful for accessing the field via an interface.
+func (v *createCustomerTypeCreateCustomerType) GetIcon() string { return v.DefaultCustomerType.Icon }
+
+// GetBackgroundColor returns createCustomerTypeCreateCustomerType.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *createCustomerTypeCreateCustomerType) GetBackgroundColor() string {
+	return v.DefaultCustomerType.BackgroundColor
+}
+
+// GetForegroundColor returns createCustomerTypeCreateCustomerType.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *createCustomerTypeCreateCustomerType) GetForegroundColor() string {
+	return v.DefaultCustomerType.ForegroundColor
+}
+
+// GetBorderColor returns createCustomerTypeCreateCustomerType.BorderColor, and is useful for accessing the field via an interface.
+func (v *createCustomerTypeCreateCustomerType) GetBorderColor() string {
+	return v.DefaultCustomerType.BorderColor
+}
+
+// GetMetadata returns createCustomerTypeCreateCustomerType.Metadata, and is useful for accessing the field via an interface.
+func (v *createCustomerTypeCreateCustomerType) GetMetadata() string {
+	return v.DefaultCustomerType.Metadata
+}
+
+func (v *createCustomerTypeCreateCustomerType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createCustomerTypeCreateCustomerType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createCustomerTypeCreateCustomerType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateCustomerTypeCreateCustomerType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createCustomerTypeCreateCustomerType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createCustomerTypeCreateCustomerType) __premarshalJSON() (*__premarshalcreateCustomerTypeCreateCustomerType, error) {
+	var retval __premarshalcreateCustomerTypeCreateCustomerType
+
+	retval.Id = v.DefaultCustomerType.Id
+	retval.CreatedAt = v.DefaultCustomerType.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerType.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerType.DeletedAt
+	retval.Token = v.DefaultCustomerType.Token
+	retval.Name = v.DefaultCustomerType.Name
+	retval.Description = v.DefaultCustomerType.Description
+	retval.ImageUrl = v.DefaultCustomerType.ImageUrl
+	retval.Icon = v.DefaultCustomerType.Icon
+	retval.BackgroundColor = v.DefaultCustomerType.BackgroundColor
+	retval.ForegroundColor = v.DefaultCustomerType.ForegroundColor
+	retval.BorderColor = v.DefaultCustomerType.BorderColor
+	retval.Metadata = v.DefaultCustomerType.Metadata
+	return &retval, nil
+}
 
 // createCustomerTypeResponse is returned by createCustomerType on success.
 type createCustomerTypeResponse struct {
@@ -1782,40 +5789,372 @@ func (v *createCustomerTypeResponse) GetCreateCustomerType() createCustomerTypeC
 
 // createDeviceCreateDevice includes the requested fields of the GraphQL type Device.
 type createDeviceCreateDevice struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultDevice `json:"-"`
 }
 
 // GetId returns createDeviceCreateDevice.Id, and is useful for accessing the field via an interface.
-func (v *createDeviceCreateDevice) GetId() string { return v.Id }
+func (v *createDeviceCreateDevice) GetId() string { return v.DefaultDevice.Id }
+
+// GetCreatedAt returns createDeviceCreateDevice.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceCreateDevice) GetCreatedAt() string { return v.DefaultDevice.CreatedAt }
+
+// GetUpdatedAt returns createDeviceCreateDevice.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceCreateDevice) GetUpdatedAt() string { return v.DefaultDevice.UpdatedAt }
+
+// GetDeletedAt returns createDeviceCreateDevice.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceCreateDevice) GetDeletedAt() string { return v.DefaultDevice.DeletedAt }
 
 // GetToken returns createDeviceCreateDevice.Token, and is useful for accessing the field via an interface.
-func (v *createDeviceCreateDevice) GetToken() string { return v.Token }
+func (v *createDeviceCreateDevice) GetToken() string { return v.DefaultDevice.Token }
+
+// GetName returns createDeviceCreateDevice.Name, and is useful for accessing the field via an interface.
+func (v *createDeviceCreateDevice) GetName() string { return v.DefaultDevice.Name }
+
+// GetDescription returns createDeviceCreateDevice.Description, and is useful for accessing the field via an interface.
+func (v *createDeviceCreateDevice) GetDescription() string { return v.DefaultDevice.Description }
+
+// GetDeviceType returns createDeviceCreateDevice.DeviceType, and is useful for accessing the field via an interface.
+func (v *createDeviceCreateDevice) GetDeviceType() DefaultDeviceDeviceType {
+	return v.DefaultDevice.DeviceType
+}
+
+// GetActiveAssignments returns createDeviceCreateDevice.ActiveAssignments, and is useful for accessing the field via an interface.
+func (v *createDeviceCreateDevice) GetActiveAssignments() []DefaultDeviceActiveAssignmentsDeviceAssignment {
+	return v.DefaultDevice.ActiveAssignments
+}
+
+// GetMetadata returns createDeviceCreateDevice.Metadata, and is useful for accessing the field via an interface.
+func (v *createDeviceCreateDevice) GetMetadata() string { return v.DefaultDevice.Metadata }
+
+func (v *createDeviceCreateDevice) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createDeviceCreateDevice
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createDeviceCreateDevice = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDevice)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateDeviceCreateDevice struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	DeviceType DefaultDeviceDeviceType `json:"deviceType"`
+
+	ActiveAssignments []DefaultDeviceActiveAssignmentsDeviceAssignment `json:"activeAssignments"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createDeviceCreateDevice) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createDeviceCreateDevice) __premarshalJSON() (*__premarshalcreateDeviceCreateDevice, error) {
+	var retval __premarshalcreateDeviceCreateDevice
+
+	retval.Id = v.DefaultDevice.Id
+	retval.CreatedAt = v.DefaultDevice.CreatedAt
+	retval.UpdatedAt = v.DefaultDevice.UpdatedAt
+	retval.DeletedAt = v.DefaultDevice.DeletedAt
+	retval.Token = v.DefaultDevice.Token
+	retval.Name = v.DefaultDevice.Name
+	retval.Description = v.DefaultDevice.Description
+	retval.DeviceType = v.DefaultDevice.DeviceType
+	retval.ActiveAssignments = v.DefaultDevice.ActiveAssignments
+	retval.Metadata = v.DefaultDevice.Metadata
+	return &retval, nil
+}
 
 // createDeviceGroupCreateDeviceGroup includes the requested fields of the GraphQL type DeviceGroup.
 type createDeviceGroupCreateDeviceGroup struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultDeviceGroup `json:"-"`
 }
 
 // GetId returns createDeviceGroupCreateDeviceGroup.Id, and is useful for accessing the field via an interface.
-func (v *createDeviceGroupCreateDeviceGroup) GetId() string { return v.Id }
+func (v *createDeviceGroupCreateDeviceGroup) GetId() string { return v.DefaultDeviceGroup.Id }
+
+// GetCreatedAt returns createDeviceGroupCreateDeviceGroup.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupCreateDeviceGroup) GetCreatedAt() string {
+	return v.DefaultDeviceGroup.CreatedAt
+}
+
+// GetUpdatedAt returns createDeviceGroupCreateDeviceGroup.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupCreateDeviceGroup) GetUpdatedAt() string {
+	return v.DefaultDeviceGroup.UpdatedAt
+}
+
+// GetDeletedAt returns createDeviceGroupCreateDeviceGroup.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupCreateDeviceGroup) GetDeletedAt() string {
+	return v.DefaultDeviceGroup.DeletedAt
+}
 
 // GetToken returns createDeviceGroupCreateDeviceGroup.Token, and is useful for accessing the field via an interface.
-func (v *createDeviceGroupCreateDeviceGroup) GetToken() string { return v.Token }
+func (v *createDeviceGroupCreateDeviceGroup) GetToken() string { return v.DefaultDeviceGroup.Token }
+
+// GetName returns createDeviceGroupCreateDeviceGroup.Name, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupCreateDeviceGroup) GetName() string { return v.DefaultDeviceGroup.Name }
+
+// GetDescription returns createDeviceGroupCreateDeviceGroup.Description, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupCreateDeviceGroup) GetDescription() string {
+	return v.DefaultDeviceGroup.Description
+}
+
+// GetImageUrl returns createDeviceGroupCreateDeviceGroup.ImageUrl, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupCreateDeviceGroup) GetImageUrl() string {
+	return v.DefaultDeviceGroup.ImageUrl
+}
+
+// GetIcon returns createDeviceGroupCreateDeviceGroup.Icon, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupCreateDeviceGroup) GetIcon() string { return v.DefaultDeviceGroup.Icon }
+
+// GetBackgroundColor returns createDeviceGroupCreateDeviceGroup.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupCreateDeviceGroup) GetBackgroundColor() string {
+	return v.DefaultDeviceGroup.BackgroundColor
+}
+
+// GetForegroundColor returns createDeviceGroupCreateDeviceGroup.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupCreateDeviceGroup) GetForegroundColor() string {
+	return v.DefaultDeviceGroup.ForegroundColor
+}
+
+// GetBorderColor returns createDeviceGroupCreateDeviceGroup.BorderColor, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupCreateDeviceGroup) GetBorderColor() string {
+	return v.DefaultDeviceGroup.BorderColor
+}
+
+// GetMetadata returns createDeviceGroupCreateDeviceGroup.Metadata, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupCreateDeviceGroup) GetMetadata() string {
+	return v.DefaultDeviceGroup.Metadata
+}
+
+func (v *createDeviceGroupCreateDeviceGroup) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createDeviceGroupCreateDeviceGroup
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createDeviceGroupCreateDeviceGroup = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceGroup)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateDeviceGroupCreateDeviceGroup struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createDeviceGroupCreateDeviceGroup) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createDeviceGroupCreateDeviceGroup) __premarshalJSON() (*__premarshalcreateDeviceGroupCreateDeviceGroup, error) {
+	var retval __premarshalcreateDeviceGroupCreateDeviceGroup
+
+	retval.Id = v.DefaultDeviceGroup.Id
+	retval.CreatedAt = v.DefaultDeviceGroup.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceGroup.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceGroup.DeletedAt
+	retval.Token = v.DefaultDeviceGroup.Token
+	retval.Name = v.DefaultDeviceGroup.Name
+	retval.Description = v.DefaultDeviceGroup.Description
+	retval.ImageUrl = v.DefaultDeviceGroup.ImageUrl
+	retval.Icon = v.DefaultDeviceGroup.Icon
+	retval.BackgroundColor = v.DefaultDeviceGroup.BackgroundColor
+	retval.ForegroundColor = v.DefaultDeviceGroup.ForegroundColor
+	retval.BorderColor = v.DefaultDeviceGroup.BorderColor
+	retval.Metadata = v.DefaultDeviceGroup.Metadata
+	return &retval, nil
+}
 
 // createDeviceGroupRelationshipCreateDeviceGroupRelationship includes the requested fields of the GraphQL type DeviceGroupRelationship.
 type createDeviceGroupRelationshipCreateDeviceGroupRelationship struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultDeviceGroupRelationship `json:"-"`
 }
 
 // GetId returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.Id, and is useful for accessing the field via an interface.
-func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetId() string { return v.Id }
+func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetId() string {
+	return v.DefaultDeviceGroupRelationship.Id
+}
+
+// GetCreatedAt returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetCreatedAt() string {
+	return v.DefaultDeviceGroupRelationship.CreatedAt
+}
+
+// GetUpdatedAt returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetUpdatedAt() string {
+	return v.DefaultDeviceGroupRelationship.UpdatedAt
+}
+
+// GetDeletedAt returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetDeletedAt() string {
+	return v.DefaultDeviceGroupRelationship.DeletedAt
+}
 
 // GetToken returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.Token, and is useful for accessing the field via an interface.
 func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetToken() string {
-	return v.Token
+	return v.DefaultDeviceGroupRelationship.Token
+}
+
+// GetDeviceGroup returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.DeviceGroup, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetDeviceGroup() DefaultDeviceGroupRelationshipDeviceGroup {
+	return v.DefaultDeviceGroupRelationship.DeviceGroup
+}
+
+// GetDevice returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.Device, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetDevice() DefaultDeviceGroupRelationshipDevice {
+	return v.DefaultDeviceGroupRelationship.Device
+}
+
+// GetRelationshipType returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetRelationshipType() DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType {
+	return v.DefaultDeviceGroupRelationship.RelationshipType
+}
+
+// GetMetadata returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetMetadata() string {
+	return v.DefaultDeviceGroupRelationship.Metadata
+}
+
+func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createDeviceGroupRelationshipCreateDeviceGroupRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createDeviceGroupRelationshipCreateDeviceGroupRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceGroupRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateDeviceGroupRelationshipCreateDeviceGroupRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	DeviceGroup DefaultDeviceGroupRelationshipDeviceGroup `json:"deviceGroup"`
+
+	Device DefaultDeviceGroupRelationshipDevice `json:"device"`
+
+	RelationshipType DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) __premarshalJSON() (*__premarshalcreateDeviceGroupRelationshipCreateDeviceGroupRelationship, error) {
+	var retval __premarshalcreateDeviceGroupRelationshipCreateDeviceGroupRelationship
+
+	retval.Id = v.DefaultDeviceGroupRelationship.Id
+	retval.CreatedAt = v.DefaultDeviceGroupRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceGroupRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceGroupRelationship.DeletedAt
+	retval.Token = v.DefaultDeviceGroupRelationship.Token
+	retval.DeviceGroup = v.DefaultDeviceGroupRelationship.DeviceGroup
+	retval.Device = v.DefaultDeviceGroupRelationship.Device
+	retval.RelationshipType = v.DefaultDeviceGroupRelationship.RelationshipType
+	retval.Metadata = v.DefaultDeviceGroupRelationship.Metadata
+	return &retval, nil
 }
 
 // createDeviceGroupRelationshipResponse is returned by createDeviceGroupRelationship on success.
@@ -1830,18 +6169,112 @@ func (v *createDeviceGroupRelationshipResponse) GetCreateDeviceGroupRelationship
 
 // createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType includes the requested fields of the GraphQL type DeviceGroupRelationshipType.
 type createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultDeviceGroupRelationshipType `json:"-"`
 }
 
 // GetId returns createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultDeviceGroupRelationshipType.Id
+}
+
+// GetCreatedAt returns createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType) GetCreatedAt() string {
+	return v.DefaultDeviceGroupRelationshipType.CreatedAt
+}
+
+// GetUpdatedAt returns createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType) GetUpdatedAt() string {
+	return v.DefaultDeviceGroupRelationshipType.UpdatedAt
+}
+
+// GetDeletedAt returns createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType) GetDeletedAt() string {
+	return v.DefaultDeviceGroupRelationshipType.DeletedAt
 }
 
 // GetToken returns createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultDeviceGroupRelationshipType.Token
+}
+
+// GetName returns createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType) GetName() string {
+	return v.DefaultDeviceGroupRelationshipType.Name
+}
+
+// GetDescription returns createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType) GetDescription() string {
+	return v.DefaultDeviceGroupRelationshipType.Description
+}
+
+// GetMetadata returns createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType) GetMetadata() string {
+	return v.DefaultDeviceGroupRelationshipType.Metadata
+}
+
+func (v *createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceGroupRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType) __premarshalJSON() (*__premarshalcreateDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType, error) {
+	var retval __premarshalcreateDeviceGroupRelationshipTypeCreateDeviceGroupRelationshipType
+
+	retval.Id = v.DefaultDeviceGroupRelationshipType.Id
+	retval.CreatedAt = v.DefaultDeviceGroupRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceGroupRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceGroupRelationshipType.DeletedAt
+	retval.Token = v.DefaultDeviceGroupRelationshipType.Token
+	retval.Name = v.DefaultDeviceGroupRelationshipType.Name
+	retval.Description = v.DefaultDeviceGroupRelationshipType.Description
+	retval.Metadata = v.DefaultDeviceGroupRelationshipType.Metadata
+	return &retval, nil
 }
 
 // createDeviceGroupRelationshipTypeResponse is returned by createDeviceGroupRelationshipType on success.
@@ -1866,15 +6299,121 @@ func (v *createDeviceGroupResponse) GetCreateDeviceGroup() createDeviceGroupCrea
 
 // createDeviceRelationshipCreateDeviceRelationship includes the requested fields of the GraphQL type DeviceRelationship.
 type createDeviceRelationshipCreateDeviceRelationship struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultDeviceRelationship `json:"-"`
 }
 
 // GetId returns createDeviceRelationshipCreateDeviceRelationship.Id, and is useful for accessing the field via an interface.
-func (v *createDeviceRelationshipCreateDeviceRelationship) GetId() string { return v.Id }
+func (v *createDeviceRelationshipCreateDeviceRelationship) GetId() string {
+	return v.DefaultDeviceRelationship.Id
+}
+
+// GetCreatedAt returns createDeviceRelationshipCreateDeviceRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceRelationshipCreateDeviceRelationship) GetCreatedAt() string {
+	return v.DefaultDeviceRelationship.CreatedAt
+}
+
+// GetUpdatedAt returns createDeviceRelationshipCreateDeviceRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceRelationshipCreateDeviceRelationship) GetUpdatedAt() string {
+	return v.DefaultDeviceRelationship.UpdatedAt
+}
+
+// GetDeletedAt returns createDeviceRelationshipCreateDeviceRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceRelationshipCreateDeviceRelationship) GetDeletedAt() string {
+	return v.DefaultDeviceRelationship.DeletedAt
+}
 
 // GetToken returns createDeviceRelationshipCreateDeviceRelationship.Token, and is useful for accessing the field via an interface.
-func (v *createDeviceRelationshipCreateDeviceRelationship) GetToken() string { return v.Token }
+func (v *createDeviceRelationshipCreateDeviceRelationship) GetToken() string {
+	return v.DefaultDeviceRelationship.Token
+}
+
+// GetSourceDevice returns createDeviceRelationshipCreateDeviceRelationship.SourceDevice, and is useful for accessing the field via an interface.
+func (v *createDeviceRelationshipCreateDeviceRelationship) GetSourceDevice() DefaultDeviceRelationshipSourceDevice {
+	return v.DefaultDeviceRelationship.SourceDevice
+}
+
+// GetTargetDevice returns createDeviceRelationshipCreateDeviceRelationship.TargetDevice, and is useful for accessing the field via an interface.
+func (v *createDeviceRelationshipCreateDeviceRelationship) GetTargetDevice() DefaultDeviceRelationshipTargetDevice {
+	return v.DefaultDeviceRelationship.TargetDevice
+}
+
+// GetRelationshipType returns createDeviceRelationshipCreateDeviceRelationship.RelationshipType, and is useful for accessing the field via an interface.
+func (v *createDeviceRelationshipCreateDeviceRelationship) GetRelationshipType() DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType {
+	return v.DefaultDeviceRelationship.RelationshipType
+}
+
+// GetMetadata returns createDeviceRelationshipCreateDeviceRelationship.Metadata, and is useful for accessing the field via an interface.
+func (v *createDeviceRelationshipCreateDeviceRelationship) GetMetadata() string {
+	return v.DefaultDeviceRelationship.Metadata
+}
+
+func (v *createDeviceRelationshipCreateDeviceRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createDeviceRelationshipCreateDeviceRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createDeviceRelationshipCreateDeviceRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateDeviceRelationshipCreateDeviceRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	SourceDevice DefaultDeviceRelationshipSourceDevice `json:"sourceDevice"`
+
+	TargetDevice DefaultDeviceRelationshipTargetDevice `json:"targetDevice"`
+
+	RelationshipType DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createDeviceRelationshipCreateDeviceRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createDeviceRelationshipCreateDeviceRelationship) __premarshalJSON() (*__premarshalcreateDeviceRelationshipCreateDeviceRelationship, error) {
+	var retval __premarshalcreateDeviceRelationshipCreateDeviceRelationship
+
+	retval.Id = v.DefaultDeviceRelationship.Id
+	retval.CreatedAt = v.DefaultDeviceRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceRelationship.DeletedAt
+	retval.Token = v.DefaultDeviceRelationship.Token
+	retval.SourceDevice = v.DefaultDeviceRelationship.SourceDevice
+	retval.TargetDevice = v.DefaultDeviceRelationship.TargetDevice
+	retval.RelationshipType = v.DefaultDeviceRelationship.RelationshipType
+	retval.Metadata = v.DefaultDeviceRelationship.Metadata
+	return &retval, nil
+}
 
 // createDeviceRelationshipResponse is returned by createDeviceRelationship on success.
 type createDeviceRelationshipResponse struct {
@@ -1888,15 +6427,113 @@ func (v *createDeviceRelationshipResponse) GetCreateDeviceRelationship() createD
 
 // createDeviceRelationshipTypeCreateDeviceRelationshipType includes the requested fields of the GraphQL type DeviceRelationshipType.
 type createDeviceRelationshipTypeCreateDeviceRelationshipType struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultDeviceRelationshipType `json:"-"`
 }
 
 // GetId returns createDeviceRelationshipTypeCreateDeviceRelationshipType.Id, and is useful for accessing the field via an interface.
-func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) GetId() string { return v.Id }
+func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) GetId() string {
+	return v.DefaultDeviceRelationshipType.Id
+}
+
+// GetCreatedAt returns createDeviceRelationshipTypeCreateDeviceRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) GetCreatedAt() string {
+	return v.DefaultDeviceRelationshipType.CreatedAt
+}
+
+// GetUpdatedAt returns createDeviceRelationshipTypeCreateDeviceRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) GetUpdatedAt() string {
+	return v.DefaultDeviceRelationshipType.UpdatedAt
+}
+
+// GetDeletedAt returns createDeviceRelationshipTypeCreateDeviceRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) GetDeletedAt() string {
+	return v.DefaultDeviceRelationshipType.DeletedAt
+}
 
 // GetToken returns createDeviceRelationshipTypeCreateDeviceRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) GetToken() string { return v.Token }
+func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) GetToken() string {
+	return v.DefaultDeviceRelationshipType.Token
+}
+
+// GetName returns createDeviceRelationshipTypeCreateDeviceRelationshipType.Name, and is useful for accessing the field via an interface.
+func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) GetName() string {
+	return v.DefaultDeviceRelationshipType.Name
+}
+
+// GetDescription returns createDeviceRelationshipTypeCreateDeviceRelationshipType.Description, and is useful for accessing the field via an interface.
+func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) GetDescription() string {
+	return v.DefaultDeviceRelationshipType.Description
+}
+
+// GetMetadata returns createDeviceRelationshipTypeCreateDeviceRelationshipType.Metadata, and is useful for accessing the field via an interface.
+func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) GetMetadata() string {
+	return v.DefaultDeviceRelationshipType.Metadata
+}
+
+func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createDeviceRelationshipTypeCreateDeviceRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createDeviceRelationshipTypeCreateDeviceRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateDeviceRelationshipTypeCreateDeviceRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) __premarshalJSON() (*__premarshalcreateDeviceRelationshipTypeCreateDeviceRelationshipType, error) {
+	var retval __premarshalcreateDeviceRelationshipTypeCreateDeviceRelationshipType
+
+	retval.Id = v.DefaultDeviceRelationshipType.Id
+	retval.CreatedAt = v.DefaultDeviceRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceRelationshipType.DeletedAt
+	retval.Token = v.DefaultDeviceRelationshipType.Token
+	retval.Name = v.DefaultDeviceRelationshipType.Name
+	retval.Description = v.DefaultDeviceRelationshipType.Description
+	retval.Metadata = v.DefaultDeviceRelationshipType.Metadata
+	return &retval, nil
+}
 
 // createDeviceRelationshipTypeResponse is returned by createDeviceRelationshipType on success.
 type createDeviceRelationshipTypeResponse struct {
@@ -1918,15 +6555,141 @@ func (v *createDeviceResponse) GetCreateDevice() createDeviceCreateDevice { retu
 
 // createDeviceTypeCreateDeviceType includes the requested fields of the GraphQL type DeviceType.
 type createDeviceTypeCreateDeviceType struct {
-	Id    string `json:"id"`
-	Token string `json:"token"`
+	DefaultDeviceType `json:"-"`
 }
 
 // GetId returns createDeviceTypeCreateDeviceType.Id, and is useful for accessing the field via an interface.
-func (v *createDeviceTypeCreateDeviceType) GetId() string { return v.Id }
+func (v *createDeviceTypeCreateDeviceType) GetId() string { return v.DefaultDeviceType.Id }
+
+// GetCreatedAt returns createDeviceTypeCreateDeviceType.CreatedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceTypeCreateDeviceType) GetCreatedAt() string {
+	return v.DefaultDeviceType.CreatedAt
+}
+
+// GetUpdatedAt returns createDeviceTypeCreateDeviceType.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceTypeCreateDeviceType) GetUpdatedAt() string {
+	return v.DefaultDeviceType.UpdatedAt
+}
+
+// GetDeletedAt returns createDeviceTypeCreateDeviceType.DeletedAt, and is useful for accessing the field via an interface.
+func (v *createDeviceTypeCreateDeviceType) GetDeletedAt() string {
+	return v.DefaultDeviceType.DeletedAt
+}
 
 // GetToken returns createDeviceTypeCreateDeviceType.Token, and is useful for accessing the field via an interface.
-func (v *createDeviceTypeCreateDeviceType) GetToken() string { return v.Token }
+func (v *createDeviceTypeCreateDeviceType) GetToken() string { return v.DefaultDeviceType.Token }
+
+// GetName returns createDeviceTypeCreateDeviceType.Name, and is useful for accessing the field via an interface.
+func (v *createDeviceTypeCreateDeviceType) GetName() string { return v.DefaultDeviceType.Name }
+
+// GetDescription returns createDeviceTypeCreateDeviceType.Description, and is useful for accessing the field via an interface.
+func (v *createDeviceTypeCreateDeviceType) GetDescription() string {
+	return v.DefaultDeviceType.Description
+}
+
+// GetImageUrl returns createDeviceTypeCreateDeviceType.ImageUrl, and is useful for accessing the field via an interface.
+func (v *createDeviceTypeCreateDeviceType) GetImageUrl() string { return v.DefaultDeviceType.ImageUrl }
+
+// GetIcon returns createDeviceTypeCreateDeviceType.Icon, and is useful for accessing the field via an interface.
+func (v *createDeviceTypeCreateDeviceType) GetIcon() string { return v.DefaultDeviceType.Icon }
+
+// GetBackgroundColor returns createDeviceTypeCreateDeviceType.BackgroundColor, and is useful for accessing the field via an interface.
+func (v *createDeviceTypeCreateDeviceType) GetBackgroundColor() string {
+	return v.DefaultDeviceType.BackgroundColor
+}
+
+// GetForegroundColor returns createDeviceTypeCreateDeviceType.ForegroundColor, and is useful for accessing the field via an interface.
+func (v *createDeviceTypeCreateDeviceType) GetForegroundColor() string {
+	return v.DefaultDeviceType.ForegroundColor
+}
+
+// GetBorderColor returns createDeviceTypeCreateDeviceType.BorderColor, and is useful for accessing the field via an interface.
+func (v *createDeviceTypeCreateDeviceType) GetBorderColor() string {
+	return v.DefaultDeviceType.BorderColor
+}
+
+// GetMetadata returns createDeviceTypeCreateDeviceType.Metadata, and is useful for accessing the field via an interface.
+func (v *createDeviceTypeCreateDeviceType) GetMetadata() string { return v.DefaultDeviceType.Metadata }
+
+func (v *createDeviceTypeCreateDeviceType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*createDeviceTypeCreateDeviceType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.createDeviceTypeCreateDeviceType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalcreateDeviceTypeCreateDeviceType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *createDeviceTypeCreateDeviceType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *createDeviceTypeCreateDeviceType) __premarshalJSON() (*__premarshalcreateDeviceTypeCreateDeviceType, error) {
+	var retval __premarshalcreateDeviceTypeCreateDeviceType
+
+	retval.Id = v.DefaultDeviceType.Id
+	retval.CreatedAt = v.DefaultDeviceType.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceType.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceType.DeletedAt
+	retval.Token = v.DefaultDeviceType.Token
+	retval.Name = v.DefaultDeviceType.Name
+	retval.Description = v.DefaultDeviceType.Description
+	retval.ImageUrl = v.DefaultDeviceType.ImageUrl
+	retval.Icon = v.DefaultDeviceType.Icon
+	retval.BackgroundColor = v.DefaultDeviceType.BackgroundColor
+	retval.ForegroundColor = v.DefaultDeviceType.ForegroundColor
+	retval.BorderColor = v.DefaultDeviceType.BorderColor
+	retval.Metadata = v.DefaultDeviceType.Metadata
+	return &retval, nil
+}
 
 // createDeviceTypeResponse is returned by createDeviceType on success.
 type createDeviceTypeResponse struct {
@@ -1940,54 +6703,112 @@ func (v *createDeviceTypeResponse) GetCreateDeviceType() createDeviceTypeCreateD
 
 // getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType includes the requested fields of the GraphQL type AreaGroupRelationshipType.
 type getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultAreaGroupRelationshipType `json:"-"`
 }
 
 // GetId returns getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultAreaGroupRelationshipType.Id
 }
 
 // GetCreatedAt returns getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAreaGroupRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAreaGroupRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAreaGroupRelationshipType.DeletedAt
 }
 
 // GetToken returns getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultAreaGroupRelationshipType.Token
 }
 
 // GetName returns getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultAreaGroupRelationshipType.Name
 }
 
 // GetDescription returns getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultAreaGroupRelationshipType.Description
 }
 
 // GetMetadata returns getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAreaGroupRelationshipType.Metadata
+}
+
+func (v *getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaGroupRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType) __premarshalJSON() (*__premarshalgetAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType, error) {
+	var retval __premarshalgetAreaGroupRelationshipTypesByTokenAreaGroupRelationshipTypesByTokenAreaGroupRelationshipType
+
+	retval.Id = v.DefaultAreaGroupRelationshipType.Id
+	retval.CreatedAt = v.DefaultAreaGroupRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaGroupRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaGroupRelationshipType.DeletedAt
+	retval.Token = v.DefaultAreaGroupRelationshipType.Token
+	retval.Name = v.DefaultAreaGroupRelationshipType.Name
+	retval.Description = v.DefaultAreaGroupRelationshipType.Description
+	retval.Metadata = v.DefaultAreaGroupRelationshipType.Metadata
+	return &retval, nil
 }
 
 // getAreaGroupRelationshipTypesByTokenResponse is returned by getAreaGroupRelationshipTypesByToken on success.
@@ -2002,126 +6823,120 @@ func (v *getAreaGroupRelationshipTypesByTokenResponse) GetAreaGroupRelationshipT
 
 // getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship includes the requested fields of the GraphQL type AreaGroupRelationship.
 type getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship struct {
-	Id               string                                                                                                                      `json:"id"`
-	CreatedAt        string                                                                                                                      `json:"createdAt"`
-	UpdatedAt        string                                                                                                                      `json:"updatedAt"`
-	DeletedAt        string                                                                                                                      `json:"deletedAt"`
-	Token            string                                                                                                                      `json:"token"`
-	AreaGroup        getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipAreaGroup                                 `json:"areaGroup"`
-	Area             getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipArea                                      `json:"area"`
-	RelationshipType getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                                      `json:"metadata"`
+	DefaultAreaGroupRelationship `json:"-"`
 }
 
 // GetId returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship.Id, and is useful for accessing the field via an interface.
 func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetId() string {
-	return v.Id
+	return v.DefaultAreaGroupRelationship.Id
 }
 
 // GetCreatedAt returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAreaGroupRelationship.CreatedAt
 }
 
 // GetUpdatedAt returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAreaGroupRelationship.UpdatedAt
 }
 
 // GetDeletedAt returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAreaGroupRelationship.DeletedAt
 }
 
 // GetToken returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship.Token, and is useful for accessing the field via an interface.
 func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetToken() string {
-	return v.Token
+	return v.DefaultAreaGroupRelationship.Token
 }
 
 // GetAreaGroup returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship.AreaGroup, and is useful for accessing the field via an interface.
-func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetAreaGroup() getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipAreaGroup {
-	return v.AreaGroup
+func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetAreaGroup() DefaultAreaGroupRelationshipAreaGroup {
+	return v.DefaultAreaGroupRelationship.AreaGroup
 }
 
 // GetArea returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship.Area, and is useful for accessing the field via an interface.
-func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetArea() getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipArea {
-	return v.Area
+func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetArea() DefaultAreaGroupRelationshipArea {
+	return v.DefaultAreaGroupRelationship.Area
 }
 
 // GetRelationshipType returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetRelationshipType() getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType {
-	return v.RelationshipType
+func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetRelationshipType() DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType {
+	return v.DefaultAreaGroupRelationship.RelationshipType
 }
 
 // GetMetadata returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAreaGroupRelationship.Metadata
 }
 
-// getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipArea includes the requested fields of the GraphQL type Area.
-type getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipArea struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaGroupRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipArea.Token, and is useful for accessing the field via an interface.
-func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipArea) GetToken() string {
-	return v.Token
+type __premarshalgetAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	AreaGroup DefaultAreaGroupRelationshipAreaGroup `json:"areaGroup"`
+
+	Area DefaultAreaGroupRelationshipArea `json:"area"`
+
+	RelationshipType DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipArea.Name, and is useful for accessing the field via an interface.
-func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipArea) GetName() string {
-	return v.Name
+func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipArea.Description, and is useful for accessing the field via an interface.
-func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipArea) GetDescription() string {
-	return v.Description
-}
+func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) __premarshalJSON() (*__premarshalgetAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship, error) {
+	var retval __premarshalgetAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship
 
-// getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipAreaGroup includes the requested fields of the GraphQL type AreaGroup.
-type getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipAreaGroup struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipAreaGroup.Token, and is useful for accessing the field via an interface.
-func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipAreaGroup) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipAreaGroup.Name, and is useful for accessing the field via an interface.
-func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipAreaGroup) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipAreaGroup.Description, and is useful for accessing the field via an interface.
-func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipAreaGroup) GetDescription() string {
-	return v.Description
-}
-
-// getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType includes the requested fields of the GraphQL type AreaGroupRelationshipType.
-type getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultAreaGroupRelationship.Id
+	retval.CreatedAt = v.DefaultAreaGroupRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaGroupRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaGroupRelationship.DeletedAt
+	retval.Token = v.DefaultAreaGroupRelationship.Token
+	retval.AreaGroup = v.DefaultAreaGroupRelationship.AreaGroup
+	retval.Area = v.DefaultAreaGroupRelationship.Area
+	retval.RelationshipType = v.DefaultAreaGroupRelationship.RelationshipType
+	retval.Metadata = v.DefaultAreaGroupRelationship.Metadata
+	return &retval, nil
 }
 
 // getAreaGroupRelationshipsByTokenResponse is returned by getAreaGroupRelationshipsByToken on success.
@@ -2136,67 +6951,151 @@ func (v *getAreaGroupRelationshipsByTokenResponse) GetAreaGroupRelationshipsByTo
 
 // getAreaGroupsByTokenAreaGroupsByTokenAreaGroup includes the requested fields of the GraphQL type AreaGroup.
 type getAreaGroupsByTokenAreaGroupsByTokenAreaGroup struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultAreaGroup `json:"-"`
 }
 
 // GetId returns getAreaGroupsByTokenAreaGroupsByTokenAreaGroup.Id, and is useful for accessing the field via an interface.
-func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetId() string { return v.Id }
+func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetId() string { return v.DefaultAreaGroup.Id }
 
 // GetCreatedAt returns getAreaGroupsByTokenAreaGroupsByTokenAreaGroup.CreatedAt, and is useful for accessing the field via an interface.
-func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetCreatedAt() string { return v.CreatedAt }
+func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetCreatedAt() string {
+	return v.DefaultAreaGroup.CreatedAt
+}
 
 // GetUpdatedAt returns getAreaGroupsByTokenAreaGroupsByTokenAreaGroup.UpdatedAt, and is useful for accessing the field via an interface.
-func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetUpdatedAt() string { return v.UpdatedAt }
+func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetUpdatedAt() string {
+	return v.DefaultAreaGroup.UpdatedAt
+}
 
 // GetDeletedAt returns getAreaGroupsByTokenAreaGroupsByTokenAreaGroup.DeletedAt, and is useful for accessing the field via an interface.
-func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetDeletedAt() string { return v.DeletedAt }
+func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetDeletedAt() string {
+	return v.DefaultAreaGroup.DeletedAt
+}
 
 // GetToken returns getAreaGroupsByTokenAreaGroupsByTokenAreaGroup.Token, and is useful for accessing the field via an interface.
-func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetToken() string { return v.Token }
+func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetToken() string {
+	return v.DefaultAreaGroup.Token
+}
 
 // GetName returns getAreaGroupsByTokenAreaGroupsByTokenAreaGroup.Name, and is useful for accessing the field via an interface.
-func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetName() string { return v.Name }
+func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetName() string {
+	return v.DefaultAreaGroup.Name
+}
 
 // GetDescription returns getAreaGroupsByTokenAreaGroupsByTokenAreaGroup.Description, and is useful for accessing the field via an interface.
 func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetDescription() string {
-	return v.Description
+	return v.DefaultAreaGroup.Description
 }
 
 // GetImageUrl returns getAreaGroupsByTokenAreaGroupsByTokenAreaGroup.ImageUrl, and is useful for accessing the field via an interface.
-func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetImageUrl() string { return v.ImageUrl }
+func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetImageUrl() string {
+	return v.DefaultAreaGroup.ImageUrl
+}
 
 // GetIcon returns getAreaGroupsByTokenAreaGroupsByTokenAreaGroup.Icon, and is useful for accessing the field via an interface.
-func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetIcon() string { return v.Icon }
+func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetIcon() string {
+	return v.DefaultAreaGroup.Icon
+}
 
 // GetBackgroundColor returns getAreaGroupsByTokenAreaGroupsByTokenAreaGroup.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultAreaGroup.BackgroundColor
 }
 
 // GetForegroundColor returns getAreaGroupsByTokenAreaGroupsByTokenAreaGroup.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultAreaGroup.ForegroundColor
 }
 
 // GetBorderColor returns getAreaGroupsByTokenAreaGroupsByTokenAreaGroup.BorderColor, and is useful for accessing the field via an interface.
 func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetBorderColor() string {
-	return v.BorderColor
+	return v.DefaultAreaGroup.BorderColor
 }
 
 // GetMetadata returns getAreaGroupsByTokenAreaGroupsByTokenAreaGroup.Metadata, and is useful for accessing the field via an interface.
-func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetMetadata() string { return v.Metadata }
+func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) GetMetadata() string {
+	return v.DefaultAreaGroup.Metadata
+}
+
+func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getAreaGroupsByTokenAreaGroupsByTokenAreaGroup
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getAreaGroupsByTokenAreaGroupsByTokenAreaGroup = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaGroup)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetAreaGroupsByTokenAreaGroupsByTokenAreaGroup struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getAreaGroupsByTokenAreaGroupsByTokenAreaGroup) __premarshalJSON() (*__premarshalgetAreaGroupsByTokenAreaGroupsByTokenAreaGroup, error) {
+	var retval __premarshalgetAreaGroupsByTokenAreaGroupsByTokenAreaGroup
+
+	retval.Id = v.DefaultAreaGroup.Id
+	retval.CreatedAt = v.DefaultAreaGroup.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaGroup.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaGroup.DeletedAt
+	retval.Token = v.DefaultAreaGroup.Token
+	retval.Name = v.DefaultAreaGroup.Name
+	retval.Description = v.DefaultAreaGroup.Description
+	retval.ImageUrl = v.DefaultAreaGroup.ImageUrl
+	retval.Icon = v.DefaultAreaGroup.Icon
+	retval.BackgroundColor = v.DefaultAreaGroup.BackgroundColor
+	retval.ForegroundColor = v.DefaultAreaGroup.ForegroundColor
+	retval.BorderColor = v.DefaultAreaGroup.BorderColor
+	retval.Metadata = v.DefaultAreaGroup.Metadata
+	return &retval, nil
+}
 
 // getAreaGroupsByTokenResponse is returned by getAreaGroupsByToken on success.
 type getAreaGroupsByTokenResponse struct {
@@ -2210,54 +7109,112 @@ func (v *getAreaGroupsByTokenResponse) GetAreaGroupsByToken() []getAreaGroupsByT
 
 // getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType includes the requested fields of the GraphQL type AreaRelationshipType.
 type getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultAreaRelationshipType `json:"-"`
 }
 
 // GetId returns getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultAreaRelationshipType.Id
 }
 
 // GetCreatedAt returns getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAreaRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAreaRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAreaRelationshipType.DeletedAt
 }
 
 // GetToken returns getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultAreaRelationshipType.Token
 }
 
 // GetName returns getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultAreaRelationshipType.Name
 }
 
 // GetDescription returns getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultAreaRelationshipType.Description
 }
 
 // GetMetadata returns getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAreaRelationshipType.Metadata
+}
+
+func (v *getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType) __premarshalJSON() (*__premarshalgetAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType, error) {
+	var retval __premarshalgetAreaRelationshipTypesByTokenAreaRelationshipTypesByTokenAreaRelationshipType
+
+	retval.Id = v.DefaultAreaRelationshipType.Id
+	retval.CreatedAt = v.DefaultAreaRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaRelationshipType.DeletedAt
+	retval.Token = v.DefaultAreaRelationshipType.Token
+	retval.Name = v.DefaultAreaRelationshipType.Name
+	retval.Description = v.DefaultAreaRelationshipType.Description
+	retval.Metadata = v.DefaultAreaRelationshipType.Metadata
+	return &retval, nil
 }
 
 // getAreaRelationshipTypesByTokenResponse is returned by getAreaRelationshipTypesByToken on success.
@@ -2272,126 +7229,120 @@ func (v *getAreaRelationshipTypesByTokenResponse) GetAreaRelationshipTypesByToke
 
 // getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship includes the requested fields of the GraphQL type AreaRelationship.
 type getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship struct {
-	Id               string                                                                                                  `json:"id"`
-	CreatedAt        string                                                                                                  `json:"createdAt"`
-	UpdatedAt        string                                                                                                  `json:"updatedAt"`
-	DeletedAt        string                                                                                                  `json:"deletedAt"`
-	Token            string                                                                                                  `json:"token"`
-	SourceArea       getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipSourceArea                           `json:"sourceArea"`
-	TargetArea       getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipTargetArea                           `json:"targetArea"`
-	RelationshipType getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipRelationshipTypeAreaRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                  `json:"metadata"`
+	DefaultAreaRelationship `json:"-"`
 }
 
 // GetId returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship.Id, and is useful for accessing the field via an interface.
 func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) GetId() string {
-	return v.Id
+	return v.DefaultAreaRelationship.Id
 }
 
 // GetCreatedAt returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAreaRelationship.CreatedAt
 }
 
 // GetUpdatedAt returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAreaRelationship.UpdatedAt
 }
 
 // GetDeletedAt returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAreaRelationship.DeletedAt
 }
 
 // GetToken returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship.Token, and is useful for accessing the field via an interface.
 func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) GetToken() string {
-	return v.Token
+	return v.DefaultAreaRelationship.Token
 }
 
 // GetSourceArea returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship.SourceArea, and is useful for accessing the field via an interface.
-func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) GetSourceArea() getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipSourceArea {
-	return v.SourceArea
+func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) GetSourceArea() DefaultAreaRelationshipSourceArea {
+	return v.DefaultAreaRelationship.SourceArea
 }
 
 // GetTargetArea returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship.TargetArea, and is useful for accessing the field via an interface.
-func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) GetTargetArea() getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipTargetArea {
-	return v.TargetArea
+func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) GetTargetArea() DefaultAreaRelationshipTargetArea {
+	return v.DefaultAreaRelationship.TargetArea
 }
 
 // GetRelationshipType returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) GetRelationshipType() getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipRelationshipTypeAreaRelationshipType {
-	return v.RelationshipType
+func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) GetRelationshipType() DefaultAreaRelationshipRelationshipTypeAreaRelationshipType {
+	return v.DefaultAreaRelationship.RelationshipType
 }
 
 // GetMetadata returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAreaRelationship.Metadata
 }
 
-// getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipRelationshipTypeAreaRelationshipType includes the requested fields of the GraphQL type AreaRelationshipType.
-type getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipRelationshipTypeAreaRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipRelationshipTypeAreaRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipRelationshipTypeAreaRelationshipType) GetToken() string {
-	return v.Token
+type __premarshalgetAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	SourceArea DefaultAreaRelationshipSourceArea `json:"sourceArea"`
+
+	TargetArea DefaultAreaRelationshipTargetArea `json:"targetArea"`
+
+	RelationshipType DefaultAreaRelationshipRelationshipTypeAreaRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipRelationshipTypeAreaRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipRelationshipTypeAreaRelationshipType) GetName() string {
-	return v.Name
+func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipRelationshipTypeAreaRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipRelationshipTypeAreaRelationshipType) GetDescription() string {
-	return v.Description
-}
+func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) __premarshalJSON() (*__premarshalgetAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship, error) {
+	var retval __premarshalgetAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship
 
-// getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipSourceArea includes the requested fields of the GraphQL type Area.
-type getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipSourceArea struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipSourceArea.Token, and is useful for accessing the field via an interface.
-func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipSourceArea) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipSourceArea.Name, and is useful for accessing the field via an interface.
-func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipSourceArea) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipSourceArea.Description, and is useful for accessing the field via an interface.
-func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipSourceArea) GetDescription() string {
-	return v.Description
-}
-
-// getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipTargetArea includes the requested fields of the GraphQL type Area.
-type getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipTargetArea struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipTargetArea.Token, and is useful for accessing the field via an interface.
-func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipTargetArea) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipTargetArea.Name, and is useful for accessing the field via an interface.
-func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipTargetArea) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipTargetArea.Description, and is useful for accessing the field via an interface.
-func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationshipTargetArea) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultAreaRelationship.Id
+	retval.CreatedAt = v.DefaultAreaRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaRelationship.DeletedAt
+	retval.Token = v.DefaultAreaRelationship.Token
+	retval.SourceArea = v.DefaultAreaRelationship.SourceArea
+	retval.TargetArea = v.DefaultAreaRelationship.TargetArea
+	retval.RelationshipType = v.DefaultAreaRelationship.RelationshipType
+	retval.Metadata = v.DefaultAreaRelationship.Metadata
+	return &retval, nil
 }
 
 // getAreaRelationshipsByTokenResponse is returned by getAreaRelationshipsByToken on success.
@@ -2406,63 +7357,147 @@ func (v *getAreaRelationshipsByTokenResponse) GetAreaRelationshipsByToken() []ge
 
 // getAreaTypesByTokenAreaTypesByTokenAreaType includes the requested fields of the GraphQL type AreaType.
 type getAreaTypesByTokenAreaTypesByTokenAreaType struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultAreaType `json:"-"`
 }
 
 // GetId returns getAreaTypesByTokenAreaTypesByTokenAreaType.Id, and is useful for accessing the field via an interface.
-func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetId() string { return v.Id }
+func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetId() string { return v.DefaultAreaType.Id }
 
 // GetCreatedAt returns getAreaTypesByTokenAreaTypesByTokenAreaType.CreatedAt, and is useful for accessing the field via an interface.
-func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetCreatedAt() string { return v.CreatedAt }
+func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetCreatedAt() string {
+	return v.DefaultAreaType.CreatedAt
+}
 
 // GetUpdatedAt returns getAreaTypesByTokenAreaTypesByTokenAreaType.UpdatedAt, and is useful for accessing the field via an interface.
-func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetUpdatedAt() string { return v.UpdatedAt }
+func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetUpdatedAt() string {
+	return v.DefaultAreaType.UpdatedAt
+}
 
 // GetDeletedAt returns getAreaTypesByTokenAreaTypesByTokenAreaType.DeletedAt, and is useful for accessing the field via an interface.
-func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetDeletedAt() string { return v.DeletedAt }
+func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetDeletedAt() string {
+	return v.DefaultAreaType.DeletedAt
+}
 
 // GetToken returns getAreaTypesByTokenAreaTypesByTokenAreaType.Token, and is useful for accessing the field via an interface.
-func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetToken() string { return v.Token }
+func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetToken() string {
+	return v.DefaultAreaType.Token
+}
 
 // GetName returns getAreaTypesByTokenAreaTypesByTokenAreaType.Name, and is useful for accessing the field via an interface.
-func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetName() string { return v.Name }
+func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetName() string { return v.DefaultAreaType.Name }
 
 // GetDescription returns getAreaTypesByTokenAreaTypesByTokenAreaType.Description, and is useful for accessing the field via an interface.
-func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetDescription() string { return v.Description }
+func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetDescription() string {
+	return v.DefaultAreaType.Description
+}
 
 // GetImageUrl returns getAreaTypesByTokenAreaTypesByTokenAreaType.ImageUrl, and is useful for accessing the field via an interface.
-func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetImageUrl() string { return v.ImageUrl }
+func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetImageUrl() string {
+	return v.DefaultAreaType.ImageUrl
+}
 
 // GetIcon returns getAreaTypesByTokenAreaTypesByTokenAreaType.Icon, and is useful for accessing the field via an interface.
-func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetIcon() string { return v.Icon }
+func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetIcon() string { return v.DefaultAreaType.Icon }
 
 // GetBackgroundColor returns getAreaTypesByTokenAreaTypesByTokenAreaType.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultAreaType.BackgroundColor
 }
 
 // GetForegroundColor returns getAreaTypesByTokenAreaTypesByTokenAreaType.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultAreaType.ForegroundColor
 }
 
 // GetBorderColor returns getAreaTypesByTokenAreaTypesByTokenAreaType.BorderColor, and is useful for accessing the field via an interface.
-func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetBorderColor() string { return v.BorderColor }
+func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetBorderColor() string {
+	return v.DefaultAreaType.BorderColor
+}
 
 // GetMetadata returns getAreaTypesByTokenAreaTypesByTokenAreaType.Metadata, and is useful for accessing the field via an interface.
-func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetMetadata() string { return v.Metadata }
+func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) GetMetadata() string {
+	return v.DefaultAreaType.Metadata
+}
+
+func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getAreaTypesByTokenAreaTypesByTokenAreaType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getAreaTypesByTokenAreaTypesByTokenAreaType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetAreaTypesByTokenAreaTypesByTokenAreaType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getAreaTypesByTokenAreaTypesByTokenAreaType) __premarshalJSON() (*__premarshalgetAreaTypesByTokenAreaTypesByTokenAreaType, error) {
+	var retval __premarshalgetAreaTypesByTokenAreaTypesByTokenAreaType
+
+	retval.Id = v.DefaultAreaType.Id
+	retval.CreatedAt = v.DefaultAreaType.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaType.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaType.DeletedAt
+	retval.Token = v.DefaultAreaType.Token
+	retval.Name = v.DefaultAreaType.Name
+	retval.Description = v.DefaultAreaType.Description
+	retval.ImageUrl = v.DefaultAreaType.ImageUrl
+	retval.Icon = v.DefaultAreaType.Icon
+	retval.BackgroundColor = v.DefaultAreaType.BackgroundColor
+	retval.ForegroundColor = v.DefaultAreaType.ForegroundColor
+	retval.BorderColor = v.DefaultAreaType.BorderColor
+	retval.Metadata = v.DefaultAreaType.Metadata
+	return &retval, nil
+}
 
 // getAreaTypesByTokenResponse is returned by getAreaTypesByToken on success.
 type getAreaTypesByTokenResponse struct {
@@ -2476,61 +7511,105 @@ func (v *getAreaTypesByTokenResponse) GetAreaTypesByToken() []getAreaTypesByToke
 
 // getAreasByTokenAreasByTokenArea includes the requested fields of the GraphQL type Area.
 type getAreasByTokenAreasByTokenArea struct {
-	Id          string                                  `json:"id"`
-	CreatedAt   string                                  `json:"createdAt"`
-	UpdatedAt   string                                  `json:"updatedAt"`
-	DeletedAt   string                                  `json:"deletedAt"`
-	Token       string                                  `json:"token"`
-	Name        string                                  `json:"name"`
-	Description string                                  `json:"description"`
-	AreaType    getAreasByTokenAreasByTokenAreaAreaType `json:"areaType"`
-	Metadata    string                                  `json:"metadata"`
+	DefaultArea `json:"-"`
 }
 
 // GetId returns getAreasByTokenAreasByTokenArea.Id, and is useful for accessing the field via an interface.
-func (v *getAreasByTokenAreasByTokenArea) GetId() string { return v.Id }
+func (v *getAreasByTokenAreasByTokenArea) GetId() string { return v.DefaultArea.Id }
 
 // GetCreatedAt returns getAreasByTokenAreasByTokenArea.CreatedAt, and is useful for accessing the field via an interface.
-func (v *getAreasByTokenAreasByTokenArea) GetCreatedAt() string { return v.CreatedAt }
+func (v *getAreasByTokenAreasByTokenArea) GetCreatedAt() string { return v.DefaultArea.CreatedAt }
 
 // GetUpdatedAt returns getAreasByTokenAreasByTokenArea.UpdatedAt, and is useful for accessing the field via an interface.
-func (v *getAreasByTokenAreasByTokenArea) GetUpdatedAt() string { return v.UpdatedAt }
+func (v *getAreasByTokenAreasByTokenArea) GetUpdatedAt() string { return v.DefaultArea.UpdatedAt }
 
 // GetDeletedAt returns getAreasByTokenAreasByTokenArea.DeletedAt, and is useful for accessing the field via an interface.
-func (v *getAreasByTokenAreasByTokenArea) GetDeletedAt() string { return v.DeletedAt }
+func (v *getAreasByTokenAreasByTokenArea) GetDeletedAt() string { return v.DefaultArea.DeletedAt }
 
 // GetToken returns getAreasByTokenAreasByTokenArea.Token, and is useful for accessing the field via an interface.
-func (v *getAreasByTokenAreasByTokenArea) GetToken() string { return v.Token }
+func (v *getAreasByTokenAreasByTokenArea) GetToken() string { return v.DefaultArea.Token }
 
 // GetName returns getAreasByTokenAreasByTokenArea.Name, and is useful for accessing the field via an interface.
-func (v *getAreasByTokenAreasByTokenArea) GetName() string { return v.Name }
+func (v *getAreasByTokenAreasByTokenArea) GetName() string { return v.DefaultArea.Name }
 
 // GetDescription returns getAreasByTokenAreasByTokenArea.Description, and is useful for accessing the field via an interface.
-func (v *getAreasByTokenAreasByTokenArea) GetDescription() string { return v.Description }
+func (v *getAreasByTokenAreasByTokenArea) GetDescription() string { return v.DefaultArea.Description }
 
 // GetAreaType returns getAreasByTokenAreasByTokenArea.AreaType, and is useful for accessing the field via an interface.
-func (v *getAreasByTokenAreasByTokenArea) GetAreaType() getAreasByTokenAreasByTokenAreaAreaType {
-	return v.AreaType
+func (v *getAreasByTokenAreasByTokenArea) GetAreaType() DefaultAreaAreaType {
+	return v.DefaultArea.AreaType
 }
 
 // GetMetadata returns getAreasByTokenAreasByTokenArea.Metadata, and is useful for accessing the field via an interface.
-func (v *getAreasByTokenAreasByTokenArea) GetMetadata() string { return v.Metadata }
+func (v *getAreasByTokenAreasByTokenArea) GetMetadata() string { return v.DefaultArea.Metadata }
 
-// getAreasByTokenAreasByTokenAreaAreaType includes the requested fields of the GraphQL type AreaType.
-type getAreasByTokenAreasByTokenAreaAreaType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *getAreasByTokenAreasByTokenArea) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getAreasByTokenAreasByTokenArea
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getAreasByTokenAreasByTokenArea = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultArea)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns getAreasByTokenAreasByTokenAreaAreaType.Token, and is useful for accessing the field via an interface.
-func (v *getAreasByTokenAreasByTokenAreaAreaType) GetToken() string { return v.Token }
+type __premarshalgetAreasByTokenAreasByTokenArea struct {
+	Id string `json:"id"`
 
-// GetName returns getAreasByTokenAreasByTokenAreaAreaType.Name, and is useful for accessing the field via an interface.
-func (v *getAreasByTokenAreasByTokenAreaAreaType) GetName() string { return v.Name }
+	CreatedAt string `json:"createdAt"`
 
-// GetDescription returns getAreasByTokenAreasByTokenAreaAreaType.Description, and is useful for accessing the field via an interface.
-func (v *getAreasByTokenAreasByTokenAreaAreaType) GetDescription() string { return v.Description }
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	AreaType DefaultAreaAreaType `json:"areaType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getAreasByTokenAreasByTokenArea) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getAreasByTokenAreasByTokenArea) __premarshalJSON() (*__premarshalgetAreasByTokenAreasByTokenArea, error) {
+	var retval __premarshalgetAreasByTokenAreasByTokenArea
+
+	retval.Id = v.DefaultArea.Id
+	retval.CreatedAt = v.DefaultArea.CreatedAt
+	retval.UpdatedAt = v.DefaultArea.UpdatedAt
+	retval.DeletedAt = v.DefaultArea.DeletedAt
+	retval.Token = v.DefaultArea.Token
+	retval.Name = v.DefaultArea.Name
+	retval.Description = v.DefaultArea.Description
+	retval.AreaType = v.DefaultArea.AreaType
+	retval.Metadata = v.DefaultArea.Metadata
+	return &retval, nil
+}
 
 // getAreasByTokenResponse is returned by getAreasByToken on success.
 type getAreasByTokenResponse struct {
@@ -2544,54 +7623,112 @@ func (v *getAreasByTokenResponse) GetAreasByToken() []getAreasByTokenAreasByToke
 
 // getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType includes the requested fields of the GraphQL type AssetGroupRelationshipType.
 type getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultAssetGroupRelationshipType `json:"-"`
 }
 
 // GetId returns getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultAssetGroupRelationshipType.Id
 }
 
 // GetCreatedAt returns getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAssetGroupRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAssetGroupRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAssetGroupRelationshipType.DeletedAt
 }
 
 // GetToken returns getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultAssetGroupRelationshipType.Token
 }
 
 // GetName returns getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultAssetGroupRelationshipType.Name
 }
 
 // GetDescription returns getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultAssetGroupRelationshipType.Description
 }
 
 // GetMetadata returns getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAssetGroupRelationshipType.Metadata
+}
+
+func (v *getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetGroupRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType) __premarshalJSON() (*__premarshalgetAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType, error) {
+	var retval __premarshalgetAssetGroupRelationshipTypesByTokenAssetGroupRelationshipTypesByTokenAssetGroupRelationshipType
+
+	retval.Id = v.DefaultAssetGroupRelationshipType.Id
+	retval.CreatedAt = v.DefaultAssetGroupRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetGroupRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetGroupRelationshipType.DeletedAt
+	retval.Token = v.DefaultAssetGroupRelationshipType.Token
+	retval.Name = v.DefaultAssetGroupRelationshipType.Name
+	retval.Description = v.DefaultAssetGroupRelationshipType.Description
+	retval.Metadata = v.DefaultAssetGroupRelationshipType.Metadata
+	return &retval, nil
 }
 
 // getAssetGroupRelationshipTypesByTokenResponse is returned by getAssetGroupRelationshipTypesByToken on success.
@@ -2606,126 +7743,120 @@ func (v *getAssetGroupRelationshipTypesByTokenResponse) GetAssetGroupRelationshi
 
 // getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship includes the requested fields of the GraphQL type AssetGroupRelationship.
 type getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship struct {
-	Id               string                                                                                                                          `json:"id"`
-	CreatedAt        string                                                                                                                          `json:"createdAt"`
-	UpdatedAt        string                                                                                                                          `json:"updatedAt"`
-	DeletedAt        string                                                                                                                          `json:"deletedAt"`
-	Token            string                                                                                                                          `json:"token"`
-	AssetGroup       getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAssetGroup                                 `json:"assetGroup"`
-	Asset            getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAsset                                      `json:"asset"`
-	RelationshipType getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                                          `json:"metadata"`
+	DefaultAssetGroupRelationship `json:"-"`
 }
 
 // GetId returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship.Id, and is useful for accessing the field via an interface.
 func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetId() string {
-	return v.Id
+	return v.DefaultAssetGroupRelationship.Id
 }
 
 // GetCreatedAt returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAssetGroupRelationship.CreatedAt
 }
 
 // GetUpdatedAt returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAssetGroupRelationship.UpdatedAt
 }
 
 // GetDeletedAt returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAssetGroupRelationship.DeletedAt
 }
 
 // GetToken returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship.Token, and is useful for accessing the field via an interface.
 func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetToken() string {
-	return v.Token
+	return v.DefaultAssetGroupRelationship.Token
 }
 
 // GetAssetGroup returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship.AssetGroup, and is useful for accessing the field via an interface.
-func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetAssetGroup() getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAssetGroup {
-	return v.AssetGroup
+func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetAssetGroup() DefaultAssetGroupRelationshipAssetGroup {
+	return v.DefaultAssetGroupRelationship.AssetGroup
 }
 
 // GetAsset returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship.Asset, and is useful for accessing the field via an interface.
-func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetAsset() getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAsset {
-	return v.Asset
+func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetAsset() DefaultAssetGroupRelationshipAsset {
+	return v.DefaultAssetGroupRelationship.Asset
 }
 
 // GetRelationshipType returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetRelationshipType() getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType {
-	return v.RelationshipType
+func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetRelationshipType() DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType {
+	return v.DefaultAssetGroupRelationship.RelationshipType
 }
 
 // GetMetadata returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAssetGroupRelationship.Metadata
 }
 
-// getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAsset includes the requested fields of the GraphQL type Asset.
-type getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAsset struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetGroupRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAsset.Token, and is useful for accessing the field via an interface.
-func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAsset) GetToken() string {
-	return v.Token
+type __premarshalgetAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	AssetGroup DefaultAssetGroupRelationshipAssetGroup `json:"assetGroup"`
+
+	Asset DefaultAssetGroupRelationshipAsset `json:"asset"`
+
+	RelationshipType DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAsset.Name, and is useful for accessing the field via an interface.
-func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAsset) GetName() string {
-	return v.Name
+func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAsset.Description, and is useful for accessing the field via an interface.
-func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAsset) GetDescription() string {
-	return v.Description
-}
+func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) __premarshalJSON() (*__premarshalgetAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship, error) {
+	var retval __premarshalgetAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship
 
-// getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAssetGroup includes the requested fields of the GraphQL type AssetGroup.
-type getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAssetGroup struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAssetGroup.Token, and is useful for accessing the field via an interface.
-func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAssetGroup) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAssetGroup.Name, and is useful for accessing the field via an interface.
-func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAssetGroup) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAssetGroup.Description, and is useful for accessing the field via an interface.
-func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipAssetGroup) GetDescription() string {
-	return v.Description
-}
-
-// getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType includes the requested fields of the GraphQL type AssetGroupRelationshipType.
-type getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultAssetGroupRelationship.Id
+	retval.CreatedAt = v.DefaultAssetGroupRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetGroupRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetGroupRelationship.DeletedAt
+	retval.Token = v.DefaultAssetGroupRelationship.Token
+	retval.AssetGroup = v.DefaultAssetGroupRelationship.AssetGroup
+	retval.Asset = v.DefaultAssetGroupRelationship.Asset
+	retval.RelationshipType = v.DefaultAssetGroupRelationship.RelationshipType
+	retval.Metadata = v.DefaultAssetGroupRelationship.Metadata
+	return &retval, nil
 }
 
 // getAssetGroupRelationshipsByTokenResponse is returned by getAssetGroupRelationshipsByToken on success.
@@ -2740,67 +7871,153 @@ func (v *getAssetGroupRelationshipsByTokenResponse) GetAssetGroupRelationshipsBy
 
 // getAssetGroupsByTokenAssetGroupsByTokenAssetGroup includes the requested fields of the GraphQL type AssetGroup.
 type getAssetGroupsByTokenAssetGroupsByTokenAssetGroup struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultAssetGroup `json:"-"`
 }
 
 // GetId returns getAssetGroupsByTokenAssetGroupsByTokenAssetGroup.Id, and is useful for accessing the field via an interface.
-func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetId() string { return v.Id }
+func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetId() string {
+	return v.DefaultAssetGroup.Id
+}
 
 // GetCreatedAt returns getAssetGroupsByTokenAssetGroupsByTokenAssetGroup.CreatedAt, and is useful for accessing the field via an interface.
-func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetCreatedAt() string { return v.CreatedAt }
+func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetCreatedAt() string {
+	return v.DefaultAssetGroup.CreatedAt
+}
 
 // GetUpdatedAt returns getAssetGroupsByTokenAssetGroupsByTokenAssetGroup.UpdatedAt, and is useful for accessing the field via an interface.
-func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetUpdatedAt() string { return v.UpdatedAt }
+func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetUpdatedAt() string {
+	return v.DefaultAssetGroup.UpdatedAt
+}
 
 // GetDeletedAt returns getAssetGroupsByTokenAssetGroupsByTokenAssetGroup.DeletedAt, and is useful for accessing the field via an interface.
-func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetDeletedAt() string { return v.DeletedAt }
+func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetDeletedAt() string {
+	return v.DefaultAssetGroup.DeletedAt
+}
 
 // GetToken returns getAssetGroupsByTokenAssetGroupsByTokenAssetGroup.Token, and is useful for accessing the field via an interface.
-func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetToken() string { return v.Token }
+func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetToken() string {
+	return v.DefaultAssetGroup.Token
+}
 
 // GetName returns getAssetGroupsByTokenAssetGroupsByTokenAssetGroup.Name, and is useful for accessing the field via an interface.
-func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetName() string { return v.Name }
+func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetName() string {
+	return v.DefaultAssetGroup.Name
+}
 
 // GetDescription returns getAssetGroupsByTokenAssetGroupsByTokenAssetGroup.Description, and is useful for accessing the field via an interface.
 func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetDescription() string {
-	return v.Description
+	return v.DefaultAssetGroup.Description
 }
 
 // GetImageUrl returns getAssetGroupsByTokenAssetGroupsByTokenAssetGroup.ImageUrl, and is useful for accessing the field via an interface.
-func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetImageUrl() string { return v.ImageUrl }
+func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetImageUrl() string {
+	return v.DefaultAssetGroup.ImageUrl
+}
 
 // GetIcon returns getAssetGroupsByTokenAssetGroupsByTokenAssetGroup.Icon, and is useful for accessing the field via an interface.
-func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetIcon() string { return v.Icon }
+func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetIcon() string {
+	return v.DefaultAssetGroup.Icon
+}
 
 // GetBackgroundColor returns getAssetGroupsByTokenAssetGroupsByTokenAssetGroup.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultAssetGroup.BackgroundColor
 }
 
 // GetForegroundColor returns getAssetGroupsByTokenAssetGroupsByTokenAssetGroup.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultAssetGroup.ForegroundColor
 }
 
 // GetBorderColor returns getAssetGroupsByTokenAssetGroupsByTokenAssetGroup.BorderColor, and is useful for accessing the field via an interface.
 func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetBorderColor() string {
-	return v.BorderColor
+	return v.DefaultAssetGroup.BorderColor
 }
 
 // GetMetadata returns getAssetGroupsByTokenAssetGroupsByTokenAssetGroup.Metadata, and is useful for accessing the field via an interface.
-func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetMetadata() string { return v.Metadata }
+func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) GetMetadata() string {
+	return v.DefaultAssetGroup.Metadata
+}
+
+func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getAssetGroupsByTokenAssetGroupsByTokenAssetGroup
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getAssetGroupsByTokenAssetGroupsByTokenAssetGroup = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetGroup)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetAssetGroupsByTokenAssetGroupsByTokenAssetGroup struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getAssetGroupsByTokenAssetGroupsByTokenAssetGroup) __premarshalJSON() (*__premarshalgetAssetGroupsByTokenAssetGroupsByTokenAssetGroup, error) {
+	var retval __premarshalgetAssetGroupsByTokenAssetGroupsByTokenAssetGroup
+
+	retval.Id = v.DefaultAssetGroup.Id
+	retval.CreatedAt = v.DefaultAssetGroup.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetGroup.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetGroup.DeletedAt
+	retval.Token = v.DefaultAssetGroup.Token
+	retval.Name = v.DefaultAssetGroup.Name
+	retval.Description = v.DefaultAssetGroup.Description
+	retval.ImageUrl = v.DefaultAssetGroup.ImageUrl
+	retval.Icon = v.DefaultAssetGroup.Icon
+	retval.BackgroundColor = v.DefaultAssetGroup.BackgroundColor
+	retval.ForegroundColor = v.DefaultAssetGroup.ForegroundColor
+	retval.BorderColor = v.DefaultAssetGroup.BorderColor
+	retval.Metadata = v.DefaultAssetGroup.Metadata
+	return &retval, nil
+}
 
 // getAssetGroupsByTokenResponse is returned by getAssetGroupsByToken on success.
 type getAssetGroupsByTokenResponse struct {
@@ -2814,54 +8031,112 @@ func (v *getAssetGroupsByTokenResponse) GetAssetGroupsByToken() []getAssetGroups
 
 // getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType includes the requested fields of the GraphQL type AssetRelationshipType.
 type getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultAssetRelationshipType `json:"-"`
 }
 
 // GetId returns getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultAssetRelationshipType.Id
 }
 
 // GetCreatedAt returns getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAssetRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAssetRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAssetRelationshipType.DeletedAt
 }
 
 // GetToken returns getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultAssetRelationshipType.Token
 }
 
 // GetName returns getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultAssetRelationshipType.Name
 }
 
 // GetDescription returns getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultAssetRelationshipType.Description
 }
 
 // GetMetadata returns getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAssetRelationshipType.Metadata
+}
+
+func (v *getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType) __premarshalJSON() (*__premarshalgetAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType, error) {
+	var retval __premarshalgetAssetRelationshipTypesByTokenAssetRelationshipTypesByTokenAssetRelationshipType
+
+	retval.Id = v.DefaultAssetRelationshipType.Id
+	retval.CreatedAt = v.DefaultAssetRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetRelationshipType.DeletedAt
+	retval.Token = v.DefaultAssetRelationshipType.Token
+	retval.Name = v.DefaultAssetRelationshipType.Name
+	retval.Description = v.DefaultAssetRelationshipType.Description
+	retval.Metadata = v.DefaultAssetRelationshipType.Metadata
+	return &retval, nil
 }
 
 // getAssetRelationshipTypesByTokenResponse is returned by getAssetRelationshipTypesByToken on success.
@@ -2876,126 +8151,120 @@ func (v *getAssetRelationshipTypesByTokenResponse) GetAssetRelationshipTypesByTo
 
 // getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship includes the requested fields of the GraphQL type AssetRelationship.
 type getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship struct {
-	Id               string                                                                                                      `json:"id"`
-	CreatedAt        string                                                                                                      `json:"createdAt"`
-	UpdatedAt        string                                                                                                      `json:"updatedAt"`
-	DeletedAt        string                                                                                                      `json:"deletedAt"`
-	Token            string                                                                                                      `json:"token"`
-	SourceAsset      getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipSourceAsset                           `json:"sourceAsset"`
-	TargetAsset      getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipTargetAsset                           `json:"targetAsset"`
-	RelationshipType getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipRelationshipTypeAssetRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                      `json:"metadata"`
+	DefaultAssetRelationship `json:"-"`
 }
 
 // GetId returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship.Id, and is useful for accessing the field via an interface.
 func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) GetId() string {
-	return v.Id
+	return v.DefaultAssetRelationship.Id
 }
 
 // GetCreatedAt returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAssetRelationship.CreatedAt
 }
 
 // GetUpdatedAt returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAssetRelationship.UpdatedAt
 }
 
 // GetDeletedAt returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAssetRelationship.DeletedAt
 }
 
 // GetToken returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship.Token, and is useful for accessing the field via an interface.
 func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) GetToken() string {
-	return v.Token
+	return v.DefaultAssetRelationship.Token
 }
 
 // GetSourceAsset returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship.SourceAsset, and is useful for accessing the field via an interface.
-func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) GetSourceAsset() getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipSourceAsset {
-	return v.SourceAsset
+func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) GetSourceAsset() DefaultAssetRelationshipSourceAsset {
+	return v.DefaultAssetRelationship.SourceAsset
 }
 
 // GetTargetAsset returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship.TargetAsset, and is useful for accessing the field via an interface.
-func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) GetTargetAsset() getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipTargetAsset {
-	return v.TargetAsset
+func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) GetTargetAsset() DefaultAssetRelationshipTargetAsset {
+	return v.DefaultAssetRelationship.TargetAsset
 }
 
 // GetRelationshipType returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) GetRelationshipType() getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipRelationshipTypeAssetRelationshipType {
-	return v.RelationshipType
+func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) GetRelationshipType() DefaultAssetRelationshipRelationshipTypeAssetRelationshipType {
+	return v.DefaultAssetRelationship.RelationshipType
 }
 
 // GetMetadata returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAssetRelationship.Metadata
 }
 
-// getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipRelationshipTypeAssetRelationshipType includes the requested fields of the GraphQL type AssetRelationshipType.
-type getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipRelationshipTypeAssetRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipRelationshipTypeAssetRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipRelationshipTypeAssetRelationshipType) GetToken() string {
-	return v.Token
+type __premarshalgetAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	SourceAsset DefaultAssetRelationshipSourceAsset `json:"sourceAsset"`
+
+	TargetAsset DefaultAssetRelationshipTargetAsset `json:"targetAsset"`
+
+	RelationshipType DefaultAssetRelationshipRelationshipTypeAssetRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipRelationshipTypeAssetRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipRelationshipTypeAssetRelationshipType) GetName() string {
-	return v.Name
+func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipRelationshipTypeAssetRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipRelationshipTypeAssetRelationshipType) GetDescription() string {
-	return v.Description
-}
+func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) __premarshalJSON() (*__premarshalgetAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship, error) {
+	var retval __premarshalgetAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship
 
-// getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipSourceAsset includes the requested fields of the GraphQL type Asset.
-type getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipSourceAsset struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipSourceAsset.Token, and is useful for accessing the field via an interface.
-func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipSourceAsset) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipSourceAsset.Name, and is useful for accessing the field via an interface.
-func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipSourceAsset) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipSourceAsset.Description, and is useful for accessing the field via an interface.
-func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipSourceAsset) GetDescription() string {
-	return v.Description
-}
-
-// getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipTargetAsset includes the requested fields of the GraphQL type Asset.
-type getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipTargetAsset struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipTargetAsset.Token, and is useful for accessing the field via an interface.
-func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipTargetAsset) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipTargetAsset.Name, and is useful for accessing the field via an interface.
-func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipTargetAsset) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipTargetAsset.Description, and is useful for accessing the field via an interface.
-func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationshipTargetAsset) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultAssetRelationship.Id
+	retval.CreatedAt = v.DefaultAssetRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetRelationship.DeletedAt
+	retval.Token = v.DefaultAssetRelationship.Token
+	retval.SourceAsset = v.DefaultAssetRelationship.SourceAsset
+	retval.TargetAsset = v.DefaultAssetRelationship.TargetAsset
+	retval.RelationshipType = v.DefaultAssetRelationship.RelationshipType
+	retval.Metadata = v.DefaultAssetRelationship.Metadata
+	return &retval, nil
 }
 
 // getAssetRelationshipsByTokenResponse is returned by getAssetRelationshipsByToken on success.
@@ -3010,67 +8279,151 @@ func (v *getAssetRelationshipsByTokenResponse) GetAssetRelationshipsByToken() []
 
 // getAssetTypesByTokenAssetTypesByTokenAssetType includes the requested fields of the GraphQL type AssetType.
 type getAssetTypesByTokenAssetTypesByTokenAssetType struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultAssetType `json:"-"`
 }
 
 // GetId returns getAssetTypesByTokenAssetTypesByTokenAssetType.Id, and is useful for accessing the field via an interface.
-func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetId() string { return v.Id }
+func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetId() string { return v.DefaultAssetType.Id }
 
 // GetCreatedAt returns getAssetTypesByTokenAssetTypesByTokenAssetType.CreatedAt, and is useful for accessing the field via an interface.
-func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetCreatedAt() string { return v.CreatedAt }
+func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetCreatedAt() string {
+	return v.DefaultAssetType.CreatedAt
+}
 
 // GetUpdatedAt returns getAssetTypesByTokenAssetTypesByTokenAssetType.UpdatedAt, and is useful for accessing the field via an interface.
-func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetUpdatedAt() string { return v.UpdatedAt }
+func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetUpdatedAt() string {
+	return v.DefaultAssetType.UpdatedAt
+}
 
 // GetDeletedAt returns getAssetTypesByTokenAssetTypesByTokenAssetType.DeletedAt, and is useful for accessing the field via an interface.
-func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetDeletedAt() string { return v.DeletedAt }
+func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetDeletedAt() string {
+	return v.DefaultAssetType.DeletedAt
+}
 
 // GetToken returns getAssetTypesByTokenAssetTypesByTokenAssetType.Token, and is useful for accessing the field via an interface.
-func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetToken() string { return v.Token }
+func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetToken() string {
+	return v.DefaultAssetType.Token
+}
 
 // GetName returns getAssetTypesByTokenAssetTypesByTokenAssetType.Name, and is useful for accessing the field via an interface.
-func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetName() string { return v.Name }
+func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetName() string {
+	return v.DefaultAssetType.Name
+}
 
 // GetDescription returns getAssetTypesByTokenAssetTypesByTokenAssetType.Description, and is useful for accessing the field via an interface.
 func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetDescription() string {
-	return v.Description
+	return v.DefaultAssetType.Description
 }
 
 // GetImageUrl returns getAssetTypesByTokenAssetTypesByTokenAssetType.ImageUrl, and is useful for accessing the field via an interface.
-func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetImageUrl() string { return v.ImageUrl }
+func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetImageUrl() string {
+	return v.DefaultAssetType.ImageUrl
+}
 
 // GetIcon returns getAssetTypesByTokenAssetTypesByTokenAssetType.Icon, and is useful for accessing the field via an interface.
-func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetIcon() string { return v.Icon }
+func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetIcon() string {
+	return v.DefaultAssetType.Icon
+}
 
 // GetBackgroundColor returns getAssetTypesByTokenAssetTypesByTokenAssetType.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultAssetType.BackgroundColor
 }
 
 // GetForegroundColor returns getAssetTypesByTokenAssetTypesByTokenAssetType.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultAssetType.ForegroundColor
 }
 
 // GetBorderColor returns getAssetTypesByTokenAssetTypesByTokenAssetType.BorderColor, and is useful for accessing the field via an interface.
 func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetBorderColor() string {
-	return v.BorderColor
+	return v.DefaultAssetType.BorderColor
 }
 
 // GetMetadata returns getAssetTypesByTokenAssetTypesByTokenAssetType.Metadata, and is useful for accessing the field via an interface.
-func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetMetadata() string { return v.Metadata }
+func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) GetMetadata() string {
+	return v.DefaultAssetType.Metadata
+}
+
+func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getAssetTypesByTokenAssetTypesByTokenAssetType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getAssetTypesByTokenAssetTypesByTokenAssetType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetAssetTypesByTokenAssetTypesByTokenAssetType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getAssetTypesByTokenAssetTypesByTokenAssetType) __premarshalJSON() (*__premarshalgetAssetTypesByTokenAssetTypesByTokenAssetType, error) {
+	var retval __premarshalgetAssetTypesByTokenAssetTypesByTokenAssetType
+
+	retval.Id = v.DefaultAssetType.Id
+	retval.CreatedAt = v.DefaultAssetType.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetType.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetType.DeletedAt
+	retval.Token = v.DefaultAssetType.Token
+	retval.Name = v.DefaultAssetType.Name
+	retval.Description = v.DefaultAssetType.Description
+	retval.ImageUrl = v.DefaultAssetType.ImageUrl
+	retval.Icon = v.DefaultAssetType.Icon
+	retval.BackgroundColor = v.DefaultAssetType.BackgroundColor
+	retval.ForegroundColor = v.DefaultAssetType.ForegroundColor
+	retval.BorderColor = v.DefaultAssetType.BorderColor
+	retval.Metadata = v.DefaultAssetType.Metadata
+	return &retval, nil
+}
 
 // getAssetTypesByTokenResponse is returned by getAssetTypesByToken on success.
 type getAssetTypesByTokenResponse struct {
@@ -3084,61 +8437,107 @@ func (v *getAssetTypesByTokenResponse) GetAssetTypesByToken() []getAssetTypesByT
 
 // getAssetsByTokenAssetsByTokenAsset includes the requested fields of the GraphQL type Asset.
 type getAssetsByTokenAssetsByTokenAsset struct {
-	Id          string                                      `json:"id"`
-	CreatedAt   string                                      `json:"createdAt"`
-	UpdatedAt   string                                      `json:"updatedAt"`
-	DeletedAt   string                                      `json:"deletedAt"`
-	Token       string                                      `json:"token"`
-	Name        string                                      `json:"name"`
-	Description string                                      `json:"description"`
-	AssetType   getAssetsByTokenAssetsByTokenAssetAssetType `json:"assetType"`
-	Metadata    string                                      `json:"metadata"`
+	DefaultAsset `json:"-"`
 }
 
 // GetId returns getAssetsByTokenAssetsByTokenAsset.Id, and is useful for accessing the field via an interface.
-func (v *getAssetsByTokenAssetsByTokenAsset) GetId() string { return v.Id }
+func (v *getAssetsByTokenAssetsByTokenAsset) GetId() string { return v.DefaultAsset.Id }
 
 // GetCreatedAt returns getAssetsByTokenAssetsByTokenAsset.CreatedAt, and is useful for accessing the field via an interface.
-func (v *getAssetsByTokenAssetsByTokenAsset) GetCreatedAt() string { return v.CreatedAt }
+func (v *getAssetsByTokenAssetsByTokenAsset) GetCreatedAt() string { return v.DefaultAsset.CreatedAt }
 
 // GetUpdatedAt returns getAssetsByTokenAssetsByTokenAsset.UpdatedAt, and is useful for accessing the field via an interface.
-func (v *getAssetsByTokenAssetsByTokenAsset) GetUpdatedAt() string { return v.UpdatedAt }
+func (v *getAssetsByTokenAssetsByTokenAsset) GetUpdatedAt() string { return v.DefaultAsset.UpdatedAt }
 
 // GetDeletedAt returns getAssetsByTokenAssetsByTokenAsset.DeletedAt, and is useful for accessing the field via an interface.
-func (v *getAssetsByTokenAssetsByTokenAsset) GetDeletedAt() string { return v.DeletedAt }
+func (v *getAssetsByTokenAssetsByTokenAsset) GetDeletedAt() string { return v.DefaultAsset.DeletedAt }
 
 // GetToken returns getAssetsByTokenAssetsByTokenAsset.Token, and is useful for accessing the field via an interface.
-func (v *getAssetsByTokenAssetsByTokenAsset) GetToken() string { return v.Token }
+func (v *getAssetsByTokenAssetsByTokenAsset) GetToken() string { return v.DefaultAsset.Token }
 
 // GetName returns getAssetsByTokenAssetsByTokenAsset.Name, and is useful for accessing the field via an interface.
-func (v *getAssetsByTokenAssetsByTokenAsset) GetName() string { return v.Name }
+func (v *getAssetsByTokenAssetsByTokenAsset) GetName() string { return v.DefaultAsset.Name }
 
 // GetDescription returns getAssetsByTokenAssetsByTokenAsset.Description, and is useful for accessing the field via an interface.
-func (v *getAssetsByTokenAssetsByTokenAsset) GetDescription() string { return v.Description }
+func (v *getAssetsByTokenAssetsByTokenAsset) GetDescription() string {
+	return v.DefaultAsset.Description
+}
 
 // GetAssetType returns getAssetsByTokenAssetsByTokenAsset.AssetType, and is useful for accessing the field via an interface.
-func (v *getAssetsByTokenAssetsByTokenAsset) GetAssetType() getAssetsByTokenAssetsByTokenAssetAssetType {
-	return v.AssetType
+func (v *getAssetsByTokenAssetsByTokenAsset) GetAssetType() DefaultAssetAssetType {
+	return v.DefaultAsset.AssetType
 }
 
 // GetMetadata returns getAssetsByTokenAssetsByTokenAsset.Metadata, and is useful for accessing the field via an interface.
-func (v *getAssetsByTokenAssetsByTokenAsset) GetMetadata() string { return v.Metadata }
+func (v *getAssetsByTokenAssetsByTokenAsset) GetMetadata() string { return v.DefaultAsset.Metadata }
 
-// getAssetsByTokenAssetsByTokenAssetAssetType includes the requested fields of the GraphQL type AssetType.
-type getAssetsByTokenAssetsByTokenAssetAssetType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *getAssetsByTokenAssetsByTokenAsset) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getAssetsByTokenAssetsByTokenAsset
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getAssetsByTokenAssetsByTokenAsset = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAsset)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns getAssetsByTokenAssetsByTokenAssetAssetType.Token, and is useful for accessing the field via an interface.
-func (v *getAssetsByTokenAssetsByTokenAssetAssetType) GetToken() string { return v.Token }
+type __premarshalgetAssetsByTokenAssetsByTokenAsset struct {
+	Id string `json:"id"`
 
-// GetName returns getAssetsByTokenAssetsByTokenAssetAssetType.Name, and is useful for accessing the field via an interface.
-func (v *getAssetsByTokenAssetsByTokenAssetAssetType) GetName() string { return v.Name }
+	CreatedAt string `json:"createdAt"`
 
-// GetDescription returns getAssetsByTokenAssetsByTokenAssetAssetType.Description, and is useful for accessing the field via an interface.
-func (v *getAssetsByTokenAssetsByTokenAssetAssetType) GetDescription() string { return v.Description }
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	AssetType DefaultAssetAssetType `json:"assetType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getAssetsByTokenAssetsByTokenAsset) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getAssetsByTokenAssetsByTokenAsset) __premarshalJSON() (*__premarshalgetAssetsByTokenAssetsByTokenAsset, error) {
+	var retval __premarshalgetAssetsByTokenAssetsByTokenAsset
+
+	retval.Id = v.DefaultAsset.Id
+	retval.CreatedAt = v.DefaultAsset.CreatedAt
+	retval.UpdatedAt = v.DefaultAsset.UpdatedAt
+	retval.DeletedAt = v.DefaultAsset.DeletedAt
+	retval.Token = v.DefaultAsset.Token
+	retval.Name = v.DefaultAsset.Name
+	retval.Description = v.DefaultAsset.Description
+	retval.AssetType = v.DefaultAsset.AssetType
+	retval.Metadata = v.DefaultAsset.Metadata
+	return &retval, nil
+}
 
 // getAssetsByTokenResponse is returned by getAssetsByToken on success.
 type getAssetsByTokenResponse struct {
@@ -3152,54 +8551,112 @@ func (v *getAssetsByTokenResponse) GetAssetsByToken() []getAssetsByTokenAssetsBy
 
 // getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType includes the requested fields of the GraphQL type CustomerGroupRelationshipType.
 type getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultCustomerGroupRelationshipType `json:"-"`
 }
 
 // GetId returns getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultCustomerGroupRelationshipType.Id
 }
 
 // GetCreatedAt returns getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultCustomerGroupRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultCustomerGroupRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultCustomerGroupRelationshipType.DeletedAt
 }
 
 // GetToken returns getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultCustomerGroupRelationshipType.Token
 }
 
 // GetName returns getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultCustomerGroupRelationshipType.Name
 }
 
 // GetDescription returns getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultCustomerGroupRelationshipType.Description
 }
 
 // GetMetadata returns getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultCustomerGroupRelationshipType.Metadata
+}
+
+func (v *getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerGroupRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType) __premarshalJSON() (*__premarshalgetCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType, error) {
+	var retval __premarshalgetCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipTypesByTokenCustomerGroupRelationshipType
+
+	retval.Id = v.DefaultCustomerGroupRelationshipType.Id
+	retval.CreatedAt = v.DefaultCustomerGroupRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerGroupRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerGroupRelationshipType.DeletedAt
+	retval.Token = v.DefaultCustomerGroupRelationshipType.Token
+	retval.Name = v.DefaultCustomerGroupRelationshipType.Name
+	retval.Description = v.DefaultCustomerGroupRelationshipType.Description
+	retval.Metadata = v.DefaultCustomerGroupRelationshipType.Metadata
+	return &retval, nil
 }
 
 // getCustomerGroupRelationshipTypesByTokenResponse is returned by getCustomerGroupRelationshipTypesByToken on success.
@@ -3214,126 +8671,120 @@ func (v *getCustomerGroupRelationshipTypesByTokenResponse) GetCustomerGroupRelat
 
 // getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship includes the requested fields of the GraphQL type CustomerGroupRelationship.
 type getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship struct {
-	Id               string                                                                                                                                      `json:"id"`
-	CreatedAt        string                                                                                                                                      `json:"createdAt"`
-	UpdatedAt        string                                                                                                                                      `json:"updatedAt"`
-	DeletedAt        string                                                                                                                                      `json:"deletedAt"`
-	Token            string                                                                                                                                      `json:"token"`
-	CustomerGroup    getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomerGroup                                 `json:"customerGroup"`
-	Customer         getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomer                                      `json:"customer"`
-	RelationshipType getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                                                      `json:"metadata"`
+	DefaultCustomerGroupRelationship `json:"-"`
 }
 
 // GetId returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship.Id, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetId() string {
-	return v.Id
+	return v.DefaultCustomerGroupRelationship.Id
 }
 
 // GetCreatedAt returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultCustomerGroupRelationship.CreatedAt
 }
 
 // GetUpdatedAt returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultCustomerGroupRelationship.UpdatedAt
 }
 
 // GetDeletedAt returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultCustomerGroupRelationship.DeletedAt
 }
 
 // GetToken returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship.Token, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetToken() string {
-	return v.Token
+	return v.DefaultCustomerGroupRelationship.Token
 }
 
 // GetCustomerGroup returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship.CustomerGroup, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetCustomerGroup() getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomerGroup {
-	return v.CustomerGroup
+func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetCustomerGroup() DefaultCustomerGroupRelationshipCustomerGroup {
+	return v.DefaultCustomerGroupRelationship.CustomerGroup
 }
 
 // GetCustomer returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship.Customer, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetCustomer() getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomer {
-	return v.Customer
+func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetCustomer() DefaultCustomerGroupRelationshipCustomer {
+	return v.DefaultCustomerGroupRelationship.Customer
 }
 
 // GetRelationshipType returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetRelationshipType() getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType {
-	return v.RelationshipType
+func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetRelationshipType() DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType {
+	return v.DefaultCustomerGroupRelationship.RelationshipType
 }
 
 // GetMetadata returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultCustomerGroupRelationship.Metadata
 }
 
-// getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomer includes the requested fields of the GraphQL type Customer.
-type getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomer struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerGroupRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomer.Token, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomer) GetToken() string {
-	return v.Token
+type __premarshalgetCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	CustomerGroup DefaultCustomerGroupRelationshipCustomerGroup `json:"customerGroup"`
+
+	Customer DefaultCustomerGroupRelationshipCustomer `json:"customer"`
+
+	RelationshipType DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomer.Name, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomer) GetName() string {
-	return v.Name
+func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomer.Description, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomer) GetDescription() string {
-	return v.Description
-}
+func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) __premarshalJSON() (*__premarshalgetCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship, error) {
+	var retval __premarshalgetCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship
 
-// getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomerGroup includes the requested fields of the GraphQL type CustomerGroup.
-type getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomerGroup struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomerGroup.Token, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomerGroup) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomerGroup.Name, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomerGroup) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomerGroup.Description, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipCustomerGroup) GetDescription() string {
-	return v.Description
-}
-
-// getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType includes the requested fields of the GraphQL type CustomerGroupRelationshipType.
-type getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultCustomerGroupRelationship.Id
+	retval.CreatedAt = v.DefaultCustomerGroupRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerGroupRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerGroupRelationship.DeletedAt
+	retval.Token = v.DefaultCustomerGroupRelationship.Token
+	retval.CustomerGroup = v.DefaultCustomerGroupRelationship.CustomerGroup
+	retval.Customer = v.DefaultCustomerGroupRelationship.Customer
+	retval.RelationshipType = v.DefaultCustomerGroupRelationship.RelationshipType
+	retval.Metadata = v.DefaultCustomerGroupRelationship.Metadata
+	return &retval, nil
 }
 
 // getCustomerGroupRelationshipsByTokenResponse is returned by getCustomerGroupRelationshipsByToken on success.
@@ -3348,78 +8799,152 @@ func (v *getCustomerGroupRelationshipsByTokenResponse) GetCustomerGroupRelations
 
 // getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup includes the requested fields of the GraphQL type CustomerGroup.
 type getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultCustomerGroup `json:"-"`
 }
 
 // GetId returns getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup.Id, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetId() string { return v.Id }
+func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetId() string {
+	return v.DefaultCustomerGroup.Id
+}
 
 // GetCreatedAt returns getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultCustomerGroup.CreatedAt
 }
 
 // GetUpdatedAt returns getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultCustomerGroup.UpdatedAt
 }
 
 // GetDeletedAt returns getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultCustomerGroup.DeletedAt
 }
 
 // GetToken returns getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup.Token, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetToken() string {
-	return v.Token
+	return v.DefaultCustomerGroup.Token
 }
 
 // GetName returns getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup.Name, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetName() string { return v.Name }
+func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetName() string {
+	return v.DefaultCustomerGroup.Name
+}
 
 // GetDescription returns getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup.Description, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetDescription() string {
-	return v.Description
+	return v.DefaultCustomerGroup.Description
 }
 
 // GetImageUrl returns getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup.ImageUrl, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetImageUrl() string {
-	return v.ImageUrl
+	return v.DefaultCustomerGroup.ImageUrl
 }
 
 // GetIcon returns getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup.Icon, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetIcon() string { return v.Icon }
+func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetIcon() string {
+	return v.DefaultCustomerGroup.Icon
+}
 
 // GetBackgroundColor returns getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultCustomerGroup.BackgroundColor
 }
 
 // GetForegroundColor returns getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultCustomerGroup.ForegroundColor
 }
 
 // GetBorderColor returns getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup.BorderColor, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetBorderColor() string {
-	return v.BorderColor
+	return v.DefaultCustomerGroup.BorderColor
 }
 
 // GetMetadata returns getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup.Metadata, and is useful for accessing the field via an interface.
 func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultCustomerGroup.Metadata
+}
+
+func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerGroup)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup) __premarshalJSON() (*__premarshalgetCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup, error) {
+	var retval __premarshalgetCustomerGroupsByTokenCustomerGroupsByTokenCustomerGroup
+
+	retval.Id = v.DefaultCustomerGroup.Id
+	retval.CreatedAt = v.DefaultCustomerGroup.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerGroup.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerGroup.DeletedAt
+	retval.Token = v.DefaultCustomerGroup.Token
+	retval.Name = v.DefaultCustomerGroup.Name
+	retval.Description = v.DefaultCustomerGroup.Description
+	retval.ImageUrl = v.DefaultCustomerGroup.ImageUrl
+	retval.Icon = v.DefaultCustomerGroup.Icon
+	retval.BackgroundColor = v.DefaultCustomerGroup.BackgroundColor
+	retval.ForegroundColor = v.DefaultCustomerGroup.ForegroundColor
+	retval.BorderColor = v.DefaultCustomerGroup.BorderColor
+	retval.Metadata = v.DefaultCustomerGroup.Metadata
+	return &retval, nil
 }
 
 // getCustomerGroupsByTokenResponse is returned by getCustomerGroupsByToken on success.
@@ -3434,54 +8959,112 @@ func (v *getCustomerGroupsByTokenResponse) GetCustomerGroupsByToken() []getCusto
 
 // getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType includes the requested fields of the GraphQL type CustomerRelationshipType.
 type getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultCustomerRelationshipType `json:"-"`
 }
 
 // GetId returns getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultCustomerRelationshipType.Id
 }
 
 // GetCreatedAt returns getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultCustomerRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultCustomerRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultCustomerRelationshipType.DeletedAt
 }
 
 // GetToken returns getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultCustomerRelationshipType.Token
 }
 
 // GetName returns getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultCustomerRelationshipType.Name
 }
 
 // GetDescription returns getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultCustomerRelationshipType.Description
 }
 
 // GetMetadata returns getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultCustomerRelationshipType.Metadata
+}
+
+func (v *getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType) __premarshalJSON() (*__premarshalgetCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType, error) {
+	var retval __premarshalgetCustomerRelationshipTypesByTokenCustomerRelationshipTypesByTokenCustomerRelationshipType
+
+	retval.Id = v.DefaultCustomerRelationshipType.Id
+	retval.CreatedAt = v.DefaultCustomerRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerRelationshipType.DeletedAt
+	retval.Token = v.DefaultCustomerRelationshipType.Token
+	retval.Name = v.DefaultCustomerRelationshipType.Name
+	retval.Description = v.DefaultCustomerRelationshipType.Description
+	retval.Metadata = v.DefaultCustomerRelationshipType.Metadata
+	return &retval, nil
 }
 
 // getCustomerRelationshipTypesByTokenResponse is returned by getCustomerRelationshipTypesByToken on success.
@@ -3496,126 +9079,120 @@ func (v *getCustomerRelationshipTypesByTokenResponse) GetCustomerRelationshipTyp
 
 // getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship includes the requested fields of the GraphQL type CustomerRelationship.
 type getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship struct {
-	Id               string                                                                                                                  `json:"id"`
-	CreatedAt        string                                                                                                                  `json:"createdAt"`
-	UpdatedAt        string                                                                                                                  `json:"updatedAt"`
-	DeletedAt        string                                                                                                                  `json:"deletedAt"`
-	Token            string                                                                                                                  `json:"token"`
-	SourceCustomer   getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipSourceCustomer                           `json:"sourceCustomer"`
-	TargetCustomer   getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipTargetCustomer                           `json:"targetCustomer"`
-	RelationshipType getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipRelationshipTypeCustomerRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                                  `json:"metadata"`
+	DefaultCustomerRelationship `json:"-"`
 }
 
 // GetId returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship.Id, and is useful for accessing the field via an interface.
 func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) GetId() string {
-	return v.Id
+	return v.DefaultCustomerRelationship.Id
 }
 
 // GetCreatedAt returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultCustomerRelationship.CreatedAt
 }
 
 // GetUpdatedAt returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultCustomerRelationship.UpdatedAt
 }
 
 // GetDeletedAt returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultCustomerRelationship.DeletedAt
 }
 
 // GetToken returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship.Token, and is useful for accessing the field via an interface.
 func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) GetToken() string {
-	return v.Token
+	return v.DefaultCustomerRelationship.Token
 }
 
 // GetSourceCustomer returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship.SourceCustomer, and is useful for accessing the field via an interface.
-func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) GetSourceCustomer() getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipSourceCustomer {
-	return v.SourceCustomer
+func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) GetSourceCustomer() DefaultCustomerRelationshipSourceCustomer {
+	return v.DefaultCustomerRelationship.SourceCustomer
 }
 
 // GetTargetCustomer returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship.TargetCustomer, and is useful for accessing the field via an interface.
-func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) GetTargetCustomer() getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipTargetCustomer {
-	return v.TargetCustomer
+func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) GetTargetCustomer() DefaultCustomerRelationshipTargetCustomer {
+	return v.DefaultCustomerRelationship.TargetCustomer
 }
 
 // GetRelationshipType returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) GetRelationshipType() getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipRelationshipTypeCustomerRelationshipType {
-	return v.RelationshipType
+func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) GetRelationshipType() DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType {
+	return v.DefaultCustomerRelationship.RelationshipType
 }
 
 // GetMetadata returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultCustomerRelationship.Metadata
 }
 
-// getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipRelationshipTypeCustomerRelationshipType includes the requested fields of the GraphQL type CustomerRelationshipType.
-type getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipRelationshipTypeCustomerRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipRelationshipTypeCustomerRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipRelationshipTypeCustomerRelationshipType) GetToken() string {
-	return v.Token
+type __premarshalgetCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	SourceCustomer DefaultCustomerRelationshipSourceCustomer `json:"sourceCustomer"`
+
+	TargetCustomer DefaultCustomerRelationshipTargetCustomer `json:"targetCustomer"`
+
+	RelationshipType DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipRelationshipTypeCustomerRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipRelationshipTypeCustomerRelationshipType) GetName() string {
-	return v.Name
+func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipRelationshipTypeCustomerRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipRelationshipTypeCustomerRelationshipType) GetDescription() string {
-	return v.Description
-}
+func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) __premarshalJSON() (*__premarshalgetCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship, error) {
+	var retval __premarshalgetCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship
 
-// getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipSourceCustomer includes the requested fields of the GraphQL type Customer.
-type getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipSourceCustomer struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipSourceCustomer.Token, and is useful for accessing the field via an interface.
-func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipSourceCustomer) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipSourceCustomer.Name, and is useful for accessing the field via an interface.
-func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipSourceCustomer) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipSourceCustomer.Description, and is useful for accessing the field via an interface.
-func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipSourceCustomer) GetDescription() string {
-	return v.Description
-}
-
-// getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipTargetCustomer includes the requested fields of the GraphQL type Customer.
-type getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipTargetCustomer struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipTargetCustomer.Token, and is useful for accessing the field via an interface.
-func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipTargetCustomer) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipTargetCustomer.Name, and is useful for accessing the field via an interface.
-func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipTargetCustomer) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipTargetCustomer.Description, and is useful for accessing the field via an interface.
-func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationshipTargetCustomer) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultCustomerRelationship.Id
+	retval.CreatedAt = v.DefaultCustomerRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerRelationship.DeletedAt
+	retval.Token = v.DefaultCustomerRelationship.Token
+	retval.SourceCustomer = v.DefaultCustomerRelationship.SourceCustomer
+	retval.TargetCustomer = v.DefaultCustomerRelationship.TargetCustomer
+	retval.RelationshipType = v.DefaultCustomerRelationship.RelationshipType
+	retval.Metadata = v.DefaultCustomerRelationship.Metadata
+	return &retval, nil
 }
 
 // getCustomerRelationshipsByTokenResponse is returned by getCustomerRelationshipsByToken on success.
@@ -3630,76 +9207,152 @@ func (v *getCustomerRelationshipsByTokenResponse) GetCustomerRelationshipsByToke
 
 // getCustomerTypesByTokenCustomerTypesByTokenCustomerType includes the requested fields of the GraphQL type CustomerType.
 type getCustomerTypesByTokenCustomerTypesByTokenCustomerType struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultCustomerType `json:"-"`
 }
 
 // GetId returns getCustomerTypesByTokenCustomerTypesByTokenCustomerType.Id, and is useful for accessing the field via an interface.
-func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetId() string { return v.Id }
+func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetId() string {
+	return v.DefaultCustomerType.Id
+}
 
 // GetCreatedAt returns getCustomerTypesByTokenCustomerTypesByTokenCustomerType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultCustomerType.CreatedAt
 }
 
 // GetUpdatedAt returns getCustomerTypesByTokenCustomerTypesByTokenCustomerType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultCustomerType.UpdatedAt
 }
 
 // GetDeletedAt returns getCustomerTypesByTokenCustomerTypesByTokenCustomerType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultCustomerType.DeletedAt
 }
 
 // GetToken returns getCustomerTypesByTokenCustomerTypesByTokenCustomerType.Token, and is useful for accessing the field via an interface.
-func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetToken() string { return v.Token }
+func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetToken() string {
+	return v.DefaultCustomerType.Token
+}
 
 // GetName returns getCustomerTypesByTokenCustomerTypesByTokenCustomerType.Name, and is useful for accessing the field via an interface.
-func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetName() string { return v.Name }
+func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetName() string {
+	return v.DefaultCustomerType.Name
+}
 
 // GetDescription returns getCustomerTypesByTokenCustomerTypesByTokenCustomerType.Description, and is useful for accessing the field via an interface.
 func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetDescription() string {
-	return v.Description
+	return v.DefaultCustomerType.Description
 }
 
 // GetImageUrl returns getCustomerTypesByTokenCustomerTypesByTokenCustomerType.ImageUrl, and is useful for accessing the field via an interface.
 func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetImageUrl() string {
-	return v.ImageUrl
+	return v.DefaultCustomerType.ImageUrl
 }
 
 // GetIcon returns getCustomerTypesByTokenCustomerTypesByTokenCustomerType.Icon, and is useful for accessing the field via an interface.
-func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetIcon() string { return v.Icon }
+func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetIcon() string {
+	return v.DefaultCustomerType.Icon
+}
 
 // GetBackgroundColor returns getCustomerTypesByTokenCustomerTypesByTokenCustomerType.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultCustomerType.BackgroundColor
 }
 
 // GetForegroundColor returns getCustomerTypesByTokenCustomerTypesByTokenCustomerType.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultCustomerType.ForegroundColor
 }
 
 // GetBorderColor returns getCustomerTypesByTokenCustomerTypesByTokenCustomerType.BorderColor, and is useful for accessing the field via an interface.
 func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetBorderColor() string {
-	return v.BorderColor
+	return v.DefaultCustomerType.BorderColor
 }
 
 // GetMetadata returns getCustomerTypesByTokenCustomerTypesByTokenCustomerType.Metadata, and is useful for accessing the field via an interface.
 func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultCustomerType.Metadata
+}
+
+func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getCustomerTypesByTokenCustomerTypesByTokenCustomerType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getCustomerTypesByTokenCustomerTypesByTokenCustomerType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetCustomerTypesByTokenCustomerTypesByTokenCustomerType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getCustomerTypesByTokenCustomerTypesByTokenCustomerType) __premarshalJSON() (*__premarshalgetCustomerTypesByTokenCustomerTypesByTokenCustomerType, error) {
+	var retval __premarshalgetCustomerTypesByTokenCustomerTypesByTokenCustomerType
+
+	retval.Id = v.DefaultCustomerType.Id
+	retval.CreatedAt = v.DefaultCustomerType.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerType.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerType.DeletedAt
+	retval.Token = v.DefaultCustomerType.Token
+	retval.Name = v.DefaultCustomerType.Name
+	retval.Description = v.DefaultCustomerType.Description
+	retval.ImageUrl = v.DefaultCustomerType.ImageUrl
+	retval.Icon = v.DefaultCustomerType.Icon
+	retval.BackgroundColor = v.DefaultCustomerType.BackgroundColor
+	retval.ForegroundColor = v.DefaultCustomerType.ForegroundColor
+	retval.BorderColor = v.DefaultCustomerType.BorderColor
+	retval.Metadata = v.DefaultCustomerType.Metadata
+	return &retval, nil
 }
 
 // getCustomerTypesByTokenResponse is returned by getCustomerTypesByToken on success.
@@ -3714,62 +9367,116 @@ func (v *getCustomerTypesByTokenResponse) GetCustomerTypesByToken() []getCustome
 
 // getCustomersByTokenCustomersByTokenCustomer includes the requested fields of the GraphQL type Customer.
 type getCustomersByTokenCustomersByTokenCustomer struct {
-	Id           string                                                  `json:"id"`
-	CreatedAt    string                                                  `json:"createdAt"`
-	UpdatedAt    string                                                  `json:"updatedAt"`
-	DeletedAt    string                                                  `json:"deletedAt"`
-	Token        string                                                  `json:"token"`
-	Name         string                                                  `json:"name"`
-	Description  string                                                  `json:"description"`
-	CustomerType getCustomersByTokenCustomersByTokenCustomerCustomerType `json:"customerType"`
-	Metadata     string                                                  `json:"metadata"`
+	DefaultCustomer `json:"-"`
 }
 
 // GetId returns getCustomersByTokenCustomersByTokenCustomer.Id, and is useful for accessing the field via an interface.
-func (v *getCustomersByTokenCustomersByTokenCustomer) GetId() string { return v.Id }
+func (v *getCustomersByTokenCustomersByTokenCustomer) GetId() string { return v.DefaultCustomer.Id }
 
 // GetCreatedAt returns getCustomersByTokenCustomersByTokenCustomer.CreatedAt, and is useful for accessing the field via an interface.
-func (v *getCustomersByTokenCustomersByTokenCustomer) GetCreatedAt() string { return v.CreatedAt }
+func (v *getCustomersByTokenCustomersByTokenCustomer) GetCreatedAt() string {
+	return v.DefaultCustomer.CreatedAt
+}
 
 // GetUpdatedAt returns getCustomersByTokenCustomersByTokenCustomer.UpdatedAt, and is useful for accessing the field via an interface.
-func (v *getCustomersByTokenCustomersByTokenCustomer) GetUpdatedAt() string { return v.UpdatedAt }
+func (v *getCustomersByTokenCustomersByTokenCustomer) GetUpdatedAt() string {
+	return v.DefaultCustomer.UpdatedAt
+}
 
 // GetDeletedAt returns getCustomersByTokenCustomersByTokenCustomer.DeletedAt, and is useful for accessing the field via an interface.
-func (v *getCustomersByTokenCustomersByTokenCustomer) GetDeletedAt() string { return v.DeletedAt }
+func (v *getCustomersByTokenCustomersByTokenCustomer) GetDeletedAt() string {
+	return v.DefaultCustomer.DeletedAt
+}
 
 // GetToken returns getCustomersByTokenCustomersByTokenCustomer.Token, and is useful for accessing the field via an interface.
-func (v *getCustomersByTokenCustomersByTokenCustomer) GetToken() string { return v.Token }
+func (v *getCustomersByTokenCustomersByTokenCustomer) GetToken() string {
+	return v.DefaultCustomer.Token
+}
 
 // GetName returns getCustomersByTokenCustomersByTokenCustomer.Name, and is useful for accessing the field via an interface.
-func (v *getCustomersByTokenCustomersByTokenCustomer) GetName() string { return v.Name }
+func (v *getCustomersByTokenCustomersByTokenCustomer) GetName() string { return v.DefaultCustomer.Name }
 
 // GetDescription returns getCustomersByTokenCustomersByTokenCustomer.Description, and is useful for accessing the field via an interface.
-func (v *getCustomersByTokenCustomersByTokenCustomer) GetDescription() string { return v.Description }
+func (v *getCustomersByTokenCustomersByTokenCustomer) GetDescription() string {
+	return v.DefaultCustomer.Description
+}
 
 // GetCustomerType returns getCustomersByTokenCustomersByTokenCustomer.CustomerType, and is useful for accessing the field via an interface.
-func (v *getCustomersByTokenCustomersByTokenCustomer) GetCustomerType() getCustomersByTokenCustomersByTokenCustomerCustomerType {
-	return v.CustomerType
+func (v *getCustomersByTokenCustomersByTokenCustomer) GetCustomerType() DefaultCustomerCustomerType {
+	return v.DefaultCustomer.CustomerType
 }
 
 // GetMetadata returns getCustomersByTokenCustomersByTokenCustomer.Metadata, and is useful for accessing the field via an interface.
-func (v *getCustomersByTokenCustomersByTokenCustomer) GetMetadata() string { return v.Metadata }
-
-// getCustomersByTokenCustomersByTokenCustomerCustomerType includes the requested fields of the GraphQL type CustomerType.
-type getCustomersByTokenCustomersByTokenCustomerCustomerType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *getCustomersByTokenCustomersByTokenCustomer) GetMetadata() string {
+	return v.DefaultCustomer.Metadata
 }
 
-// GetToken returns getCustomersByTokenCustomersByTokenCustomerCustomerType.Token, and is useful for accessing the field via an interface.
-func (v *getCustomersByTokenCustomersByTokenCustomerCustomerType) GetToken() string { return v.Token }
+func (v *getCustomersByTokenCustomersByTokenCustomer) UnmarshalJSON(b []byte) error {
 
-// GetName returns getCustomersByTokenCustomersByTokenCustomerCustomerType.Name, and is useful for accessing the field via an interface.
-func (v *getCustomersByTokenCustomersByTokenCustomerCustomerType) GetName() string { return v.Name }
+	if string(b) == "null" {
+		return nil
+	}
 
-// GetDescription returns getCustomersByTokenCustomersByTokenCustomerCustomerType.Description, and is useful for accessing the field via an interface.
-func (v *getCustomersByTokenCustomersByTokenCustomerCustomerType) GetDescription() string {
-	return v.Description
+	var firstPass struct {
+		*getCustomersByTokenCustomersByTokenCustomer
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getCustomersByTokenCustomersByTokenCustomer = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomer)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetCustomersByTokenCustomersByTokenCustomer struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	CustomerType DefaultCustomerCustomerType `json:"customerType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getCustomersByTokenCustomersByTokenCustomer) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getCustomersByTokenCustomersByTokenCustomer) __premarshalJSON() (*__premarshalgetCustomersByTokenCustomersByTokenCustomer, error) {
+	var retval __premarshalgetCustomersByTokenCustomersByTokenCustomer
+
+	retval.Id = v.DefaultCustomer.Id
+	retval.CreatedAt = v.DefaultCustomer.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomer.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomer.DeletedAt
+	retval.Token = v.DefaultCustomer.Token
+	retval.Name = v.DefaultCustomer.Name
+	retval.Description = v.DefaultCustomer.Description
+	retval.CustomerType = v.DefaultCustomer.CustomerType
+	retval.Metadata = v.DefaultCustomer.Metadata
+	return &retval, nil
 }
 
 // getCustomersByTokenResponse is returned by getCustomersByToken on success.
@@ -3784,54 +9491,112 @@ func (v *getCustomersByTokenResponse) GetCustomersByToken() []getCustomersByToke
 
 // getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType includes the requested fields of the GraphQL type DeviceGroupRelationshipType.
 type getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultDeviceGroupRelationshipType `json:"-"`
 }
 
 // GetId returns getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultDeviceGroupRelationshipType.Id
 }
 
 // GetCreatedAt returns getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultDeviceGroupRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultDeviceGroupRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultDeviceGroupRelationshipType.DeletedAt
 }
 
 // GetToken returns getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultDeviceGroupRelationshipType.Token
 }
 
 // GetName returns getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultDeviceGroupRelationshipType.Name
 }
 
 // GetDescription returns getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultDeviceGroupRelationshipType.Description
 }
 
 // GetMetadata returns getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultDeviceGroupRelationshipType.Metadata
+}
+
+func (v *getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceGroupRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType) __premarshalJSON() (*__premarshalgetDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType, error) {
+	var retval __premarshalgetDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipTypesByTokenDeviceGroupRelationshipType
+
+	retval.Id = v.DefaultDeviceGroupRelationshipType.Id
+	retval.CreatedAt = v.DefaultDeviceGroupRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceGroupRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceGroupRelationshipType.DeletedAt
+	retval.Token = v.DefaultDeviceGroupRelationshipType.Token
+	retval.Name = v.DefaultDeviceGroupRelationshipType.Name
+	retval.Description = v.DefaultDeviceGroupRelationshipType.Description
+	retval.Metadata = v.DefaultDeviceGroupRelationshipType.Metadata
+	return &retval, nil
 }
 
 // getDeviceGroupRelationshipTypesByTokenResponse is returned by getDeviceGroupRelationshipTypesByToken on success.
@@ -3846,126 +9611,120 @@ func (v *getDeviceGroupRelationshipTypesByTokenResponse) GetDeviceGroupRelations
 
 // getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship includes the requested fields of the GraphQL type DeviceGroupRelationship.
 type getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship struct {
-	Id               string                                                                                                                              `json:"id"`
-	CreatedAt        string                                                                                                                              `json:"createdAt"`
-	UpdatedAt        string                                                                                                                              `json:"updatedAt"`
-	DeletedAt        string                                                                                                                              `json:"deletedAt"`
-	Token            string                                                                                                                              `json:"token"`
-	DeviceGroup      getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDeviceGroup                                 `json:"deviceGroup"`
-	Device           getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDevice                                      `json:"device"`
-	RelationshipType getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                                              `json:"metadata"`
+	DefaultDeviceGroupRelationship `json:"-"`
 }
 
 // GetId returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship.Id, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetId() string {
-	return v.Id
+	return v.DefaultDeviceGroupRelationship.Id
 }
 
 // GetCreatedAt returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultDeviceGroupRelationship.CreatedAt
 }
 
 // GetUpdatedAt returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultDeviceGroupRelationship.UpdatedAt
 }
 
 // GetDeletedAt returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultDeviceGroupRelationship.DeletedAt
 }
 
 // GetToken returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship.Token, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetToken() string {
-	return v.Token
+	return v.DefaultDeviceGroupRelationship.Token
 }
 
 // GetDeviceGroup returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship.DeviceGroup, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetDeviceGroup() getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDeviceGroup {
-	return v.DeviceGroup
+func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetDeviceGroup() DefaultDeviceGroupRelationshipDeviceGroup {
+	return v.DefaultDeviceGroupRelationship.DeviceGroup
 }
 
 // GetDevice returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship.Device, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetDevice() getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDevice {
-	return v.Device
+func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetDevice() DefaultDeviceGroupRelationshipDevice {
+	return v.DefaultDeviceGroupRelationship.Device
 }
 
 // GetRelationshipType returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetRelationshipType() getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType {
-	return v.RelationshipType
+func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetRelationshipType() DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType {
+	return v.DefaultDeviceGroupRelationship.RelationshipType
 }
 
 // GetMetadata returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultDeviceGroupRelationship.Metadata
 }
 
-// getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDevice includes the requested fields of the GraphQL type Device.
-type getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDevice struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceGroupRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDevice.Token, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDevice) GetToken() string {
-	return v.Token
+type __premarshalgetDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	DeviceGroup DefaultDeviceGroupRelationshipDeviceGroup `json:"deviceGroup"`
+
+	Device DefaultDeviceGroupRelationshipDevice `json:"device"`
+
+	RelationshipType DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDevice.Name, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDevice) GetName() string {
-	return v.Name
+func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDevice.Description, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDevice) GetDescription() string {
-	return v.Description
-}
+func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) __premarshalJSON() (*__premarshalgetDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship, error) {
+	var retval __premarshalgetDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship
 
-// getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDeviceGroup includes the requested fields of the GraphQL type DeviceGroup.
-type getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDeviceGroup struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDeviceGroup.Token, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDeviceGroup) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDeviceGroup.Name, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDeviceGroup) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDeviceGroup.Description, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipDeviceGroup) GetDescription() string {
-	return v.Description
-}
-
-// getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType includes the requested fields of the GraphQL type DeviceGroupRelationshipType.
-type getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultDeviceGroupRelationship.Id
+	retval.CreatedAt = v.DefaultDeviceGroupRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceGroupRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceGroupRelationship.DeletedAt
+	retval.Token = v.DefaultDeviceGroupRelationship.Token
+	retval.DeviceGroup = v.DefaultDeviceGroupRelationship.DeviceGroup
+	retval.Device = v.DefaultDeviceGroupRelationship.Device
+	retval.RelationshipType = v.DefaultDeviceGroupRelationship.RelationshipType
+	retval.Metadata = v.DefaultDeviceGroupRelationship.Metadata
+	return &retval, nil
 }
 
 // getDeviceGroupRelationshipsByTokenResponse is returned by getDeviceGroupRelationshipsByToken on success.
@@ -3980,76 +9739,152 @@ func (v *getDeviceGroupRelationshipsByTokenResponse) GetDeviceGroupRelationships
 
 // getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup includes the requested fields of the GraphQL type DeviceGroup.
 type getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultDeviceGroup `json:"-"`
 }
 
 // GetId returns getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup.Id, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetId() string { return v.Id }
+func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetId() string {
+	return v.DefaultDeviceGroup.Id
+}
 
 // GetCreatedAt returns getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultDeviceGroup.CreatedAt
 }
 
 // GetUpdatedAt returns getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultDeviceGroup.UpdatedAt
 }
 
 // GetDeletedAt returns getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultDeviceGroup.DeletedAt
 }
 
 // GetToken returns getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup.Token, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetToken() string { return v.Token }
+func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetToken() string {
+	return v.DefaultDeviceGroup.Token
+}
 
 // GetName returns getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup.Name, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetName() string { return v.Name }
+func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetName() string {
+	return v.DefaultDeviceGroup.Name
+}
 
 // GetDescription returns getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup.Description, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetDescription() string {
-	return v.Description
+	return v.DefaultDeviceGroup.Description
 }
 
 // GetImageUrl returns getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup.ImageUrl, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetImageUrl() string {
-	return v.ImageUrl
+	return v.DefaultDeviceGroup.ImageUrl
 }
 
 // GetIcon returns getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup.Icon, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetIcon() string { return v.Icon }
+func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetIcon() string {
+	return v.DefaultDeviceGroup.Icon
+}
 
 // GetBackgroundColor returns getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultDeviceGroup.BackgroundColor
 }
 
 // GetForegroundColor returns getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultDeviceGroup.ForegroundColor
 }
 
 // GetBorderColor returns getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup.BorderColor, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetBorderColor() string {
-	return v.BorderColor
+	return v.DefaultDeviceGroup.BorderColor
 }
 
 // GetMetadata returns getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup.Metadata, and is useful for accessing the field via an interface.
 func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultDeviceGroup.Metadata
+}
+
+func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceGroup)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup) __premarshalJSON() (*__premarshalgetDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup, error) {
+	var retval __premarshalgetDeviceGroupsByTokenDeviceGroupsByTokenDeviceGroup
+
+	retval.Id = v.DefaultDeviceGroup.Id
+	retval.CreatedAt = v.DefaultDeviceGroup.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceGroup.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceGroup.DeletedAt
+	retval.Token = v.DefaultDeviceGroup.Token
+	retval.Name = v.DefaultDeviceGroup.Name
+	retval.Description = v.DefaultDeviceGroup.Description
+	retval.ImageUrl = v.DefaultDeviceGroup.ImageUrl
+	retval.Icon = v.DefaultDeviceGroup.Icon
+	retval.BackgroundColor = v.DefaultDeviceGroup.BackgroundColor
+	retval.ForegroundColor = v.DefaultDeviceGroup.ForegroundColor
+	retval.BorderColor = v.DefaultDeviceGroup.BorderColor
+	retval.Metadata = v.DefaultDeviceGroup.Metadata
+	return &retval, nil
 }
 
 // getDeviceGroupsByTokenResponse is returned by getDeviceGroupsByToken on success.
@@ -4064,54 +9899,112 @@ func (v *getDeviceGroupsByTokenResponse) GetDeviceGroupsByToken() []getDeviceGro
 
 // getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType includes the requested fields of the GraphQL type DeviceRelationshipType.
 type getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultDeviceRelationshipType `json:"-"`
 }
 
 // GetId returns getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultDeviceRelationshipType.Id
 }
 
 // GetCreatedAt returns getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultDeviceRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultDeviceRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultDeviceRelationshipType.DeletedAt
 }
 
 // GetToken returns getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultDeviceRelationshipType.Token
 }
 
 // GetName returns getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultDeviceRelationshipType.Name
 }
 
 // GetDescription returns getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultDeviceRelationshipType.Description
 }
 
 // GetMetadata returns getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultDeviceRelationshipType.Metadata
+}
+
+func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType) __premarshalJSON() (*__premarshalgetDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType, error) {
+	var retval __premarshalgetDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType
+
+	retval.Id = v.DefaultDeviceRelationshipType.Id
+	retval.CreatedAt = v.DefaultDeviceRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceRelationshipType.DeletedAt
+	retval.Token = v.DefaultDeviceRelationshipType.Token
+	retval.Name = v.DefaultDeviceRelationshipType.Name
+	retval.Description = v.DefaultDeviceRelationshipType.Description
+	retval.Metadata = v.DefaultDeviceRelationshipType.Metadata
+	return &retval, nil
 }
 
 // getDeviceRelationshipTypesByTokenResponse is returned by getDeviceRelationshipTypesByToken on success.
@@ -4126,126 +10019,120 @@ func (v *getDeviceRelationshipTypesByTokenResponse) GetDeviceRelationshipTypesBy
 
 // getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship includes the requested fields of the GraphQL type DeviceRelationship.
 type getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship struct {
-	Id               string                                                                                                          `json:"id"`
-	CreatedAt        string                                                                                                          `json:"createdAt"`
-	UpdatedAt        string                                                                                                          `json:"updatedAt"`
-	DeletedAt        string                                                                                                          `json:"deletedAt"`
-	Token            string                                                                                                          `json:"token"`
-	SourceDevice     getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipSourceDevice                           `json:"sourceDevice"`
-	TargetDevice     getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipTargetDevice                           `json:"targetDevice"`
-	RelationshipType getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipRelationshipTypeDeviceRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                          `json:"metadata"`
+	DefaultDeviceRelationship `json:"-"`
 }
 
 // GetId returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship.Id, and is useful for accessing the field via an interface.
 func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) GetId() string {
-	return v.Id
+	return v.DefaultDeviceRelationship.Id
 }
 
 // GetCreatedAt returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship.CreatedAt, and is useful for accessing the field via an interface.
 func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultDeviceRelationship.CreatedAt
 }
 
 // GetUpdatedAt returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultDeviceRelationship.UpdatedAt
 }
 
 // GetDeletedAt returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship.DeletedAt, and is useful for accessing the field via an interface.
 func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultDeviceRelationship.DeletedAt
 }
 
 // GetToken returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship.Token, and is useful for accessing the field via an interface.
 func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) GetToken() string {
-	return v.Token
+	return v.DefaultDeviceRelationship.Token
 }
 
 // GetSourceDevice returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship.SourceDevice, and is useful for accessing the field via an interface.
-func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) GetSourceDevice() getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipSourceDevice {
-	return v.SourceDevice
+func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) GetSourceDevice() DefaultDeviceRelationshipSourceDevice {
+	return v.DefaultDeviceRelationship.SourceDevice
 }
 
 // GetTargetDevice returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship.TargetDevice, and is useful for accessing the field via an interface.
-func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) GetTargetDevice() getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipTargetDevice {
-	return v.TargetDevice
+func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) GetTargetDevice() DefaultDeviceRelationshipTargetDevice {
+	return v.DefaultDeviceRelationship.TargetDevice
 }
 
 // GetRelationshipType returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) GetRelationshipType() getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipRelationshipTypeDeviceRelationshipType {
-	return v.RelationshipType
+func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) GetRelationshipType() DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType {
+	return v.DefaultDeviceRelationship.RelationshipType
 }
 
 // GetMetadata returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultDeviceRelationship.Metadata
 }
 
-// getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipRelationshipTypeDeviceRelationshipType includes the requested fields of the GraphQL type DeviceRelationshipType.
-type getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipRelationshipTypeDeviceRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipRelationshipTypeDeviceRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipRelationshipTypeDeviceRelationshipType) GetToken() string {
-	return v.Token
+type __premarshalgetDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	SourceDevice DefaultDeviceRelationshipSourceDevice `json:"sourceDevice"`
+
+	TargetDevice DefaultDeviceRelationshipTargetDevice `json:"targetDevice"`
+
+	RelationshipType DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipRelationshipTypeDeviceRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipRelationshipTypeDeviceRelationshipType) GetName() string {
-	return v.Name
+func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipRelationshipTypeDeviceRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipRelationshipTypeDeviceRelationshipType) GetDescription() string {
-	return v.Description
-}
+func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) __premarshalJSON() (*__premarshalgetDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship, error) {
+	var retval __premarshalgetDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship
 
-// getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipSourceDevice includes the requested fields of the GraphQL type Device.
-type getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipSourceDevice struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipSourceDevice.Token, and is useful for accessing the field via an interface.
-func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipSourceDevice) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipSourceDevice.Name, and is useful for accessing the field via an interface.
-func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipSourceDevice) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipSourceDevice.Description, and is useful for accessing the field via an interface.
-func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipSourceDevice) GetDescription() string {
-	return v.Description
-}
-
-// getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipTargetDevice includes the requested fields of the GraphQL type Device.
-type getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipTargetDevice struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipTargetDevice.Token, and is useful for accessing the field via an interface.
-func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipTargetDevice) GetToken() string {
-	return v.Token
-}
-
-// GetName returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipTargetDevice.Name, and is useful for accessing the field via an interface.
-func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipTargetDevice) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipTargetDevice.Description, and is useful for accessing the field via an interface.
-func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationshipTargetDevice) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultDeviceRelationship.Id
+	retval.CreatedAt = v.DefaultDeviceRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceRelationship.DeletedAt
+	retval.Token = v.DefaultDeviceRelationship.Token
+	retval.SourceDevice = v.DefaultDeviceRelationship.SourceDevice
+	retval.TargetDevice = v.DefaultDeviceRelationship.TargetDevice
+	retval.RelationshipType = v.DefaultDeviceRelationship.RelationshipType
+	retval.Metadata = v.DefaultDeviceRelationship.Metadata
+	return &retval, nil
 }
 
 // getDeviceRelationshipsByTokenResponse is returned by getDeviceRelationshipsByToken on success.
@@ -4260,67 +10147,153 @@ func (v *getDeviceRelationshipsByTokenResponse) GetDeviceRelationshipsByToken() 
 
 // getDeviceTypesByTokenDeviceTypesByTokenDeviceType includes the requested fields of the GraphQL type DeviceType.
 type getDeviceTypesByTokenDeviceTypesByTokenDeviceType struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultDeviceType `json:"-"`
 }
 
 // GetId returns getDeviceTypesByTokenDeviceTypesByTokenDeviceType.Id, and is useful for accessing the field via an interface.
-func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetId() string { return v.Id }
+func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetId() string {
+	return v.DefaultDeviceType.Id
+}
 
 // GetCreatedAt returns getDeviceTypesByTokenDeviceTypesByTokenDeviceType.CreatedAt, and is useful for accessing the field via an interface.
-func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetCreatedAt() string { return v.CreatedAt }
+func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetCreatedAt() string {
+	return v.DefaultDeviceType.CreatedAt
+}
 
 // GetUpdatedAt returns getDeviceTypesByTokenDeviceTypesByTokenDeviceType.UpdatedAt, and is useful for accessing the field via an interface.
-func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetUpdatedAt() string { return v.UpdatedAt }
+func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetUpdatedAt() string {
+	return v.DefaultDeviceType.UpdatedAt
+}
 
 // GetDeletedAt returns getDeviceTypesByTokenDeviceTypesByTokenDeviceType.DeletedAt, and is useful for accessing the field via an interface.
-func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetDeletedAt() string { return v.DeletedAt }
+func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetDeletedAt() string {
+	return v.DefaultDeviceType.DeletedAt
+}
 
 // GetToken returns getDeviceTypesByTokenDeviceTypesByTokenDeviceType.Token, and is useful for accessing the field via an interface.
-func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetToken() string { return v.Token }
+func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetToken() string {
+	return v.DefaultDeviceType.Token
+}
 
 // GetName returns getDeviceTypesByTokenDeviceTypesByTokenDeviceType.Name, and is useful for accessing the field via an interface.
-func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetName() string { return v.Name }
+func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetName() string {
+	return v.DefaultDeviceType.Name
+}
 
 // GetDescription returns getDeviceTypesByTokenDeviceTypesByTokenDeviceType.Description, and is useful for accessing the field via an interface.
 func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetDescription() string {
-	return v.Description
+	return v.DefaultDeviceType.Description
 }
 
 // GetImageUrl returns getDeviceTypesByTokenDeviceTypesByTokenDeviceType.ImageUrl, and is useful for accessing the field via an interface.
-func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetImageUrl() string { return v.ImageUrl }
+func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetImageUrl() string {
+	return v.DefaultDeviceType.ImageUrl
+}
 
 // GetIcon returns getDeviceTypesByTokenDeviceTypesByTokenDeviceType.Icon, and is useful for accessing the field via an interface.
-func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetIcon() string { return v.Icon }
+func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetIcon() string {
+	return v.DefaultDeviceType.Icon
+}
 
 // GetBackgroundColor returns getDeviceTypesByTokenDeviceTypesByTokenDeviceType.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultDeviceType.BackgroundColor
 }
 
 // GetForegroundColor returns getDeviceTypesByTokenDeviceTypesByTokenDeviceType.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultDeviceType.ForegroundColor
 }
 
 // GetBorderColor returns getDeviceTypesByTokenDeviceTypesByTokenDeviceType.BorderColor, and is useful for accessing the field via an interface.
 func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetBorderColor() string {
-	return v.BorderColor
+	return v.DefaultDeviceType.BorderColor
 }
 
 // GetMetadata returns getDeviceTypesByTokenDeviceTypesByTokenDeviceType.Metadata, and is useful for accessing the field via an interface.
-func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetMetadata() string { return v.Metadata }
+func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) GetMetadata() string {
+	return v.DefaultDeviceType.Metadata
+}
+
+func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getDeviceTypesByTokenDeviceTypesByTokenDeviceType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getDeviceTypesByTokenDeviceTypesByTokenDeviceType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetDeviceTypesByTokenDeviceTypesByTokenDeviceType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *getDeviceTypesByTokenDeviceTypesByTokenDeviceType) __premarshalJSON() (*__premarshalgetDeviceTypesByTokenDeviceTypesByTokenDeviceType, error) {
+	var retval __premarshalgetDeviceTypesByTokenDeviceTypesByTokenDeviceType
+
+	retval.Id = v.DefaultDeviceType.Id
+	retval.CreatedAt = v.DefaultDeviceType.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceType.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceType.DeletedAt
+	retval.Token = v.DefaultDeviceType.Token
+	retval.Name = v.DefaultDeviceType.Name
+	retval.Description = v.DefaultDeviceType.Description
+	retval.ImageUrl = v.DefaultDeviceType.ImageUrl
+	retval.Icon = v.DefaultDeviceType.Icon
+	retval.BackgroundColor = v.DefaultDeviceType.BackgroundColor
+	retval.ForegroundColor = v.DefaultDeviceType.ForegroundColor
+	retval.BorderColor = v.DefaultDeviceType.BorderColor
+	retval.Metadata = v.DefaultDeviceType.Metadata
+	return &retval, nil
+}
 
 // getDeviceTypesByTokenResponse is returned by getDeviceTypesByToken on success.
 type getDeviceTypesByTokenResponse struct {
@@ -4334,78 +10307,120 @@ func (v *getDeviceTypesByTokenResponse) GetDeviceTypesByToken() []getDeviceTypes
 
 // getDevicesByTokenDevicesByTokenDevice includes the requested fields of the GraphQL type Device.
 type getDevicesByTokenDevicesByTokenDevice struct {
-	Id                string                                                                   `json:"id"`
-	CreatedAt         string                                                                   `json:"createdAt"`
-	UpdatedAt         string                                                                   `json:"updatedAt"`
-	DeletedAt         string                                                                   `json:"deletedAt"`
-	Token             string                                                                   `json:"token"`
-	Name              string                                                                   `json:"name"`
-	Description       string                                                                   `json:"description"`
-	DeviceType        getDevicesByTokenDevicesByTokenDeviceDeviceType                          `json:"deviceType"`
-	ActiveAssignments []getDevicesByTokenDevicesByTokenDeviceActiveAssignmentsDeviceAssignment `json:"activeAssignments"`
-	Metadata          string                                                                   `json:"metadata"`
+	DefaultDevice `json:"-"`
 }
 
 // GetId returns getDevicesByTokenDevicesByTokenDevice.Id, and is useful for accessing the field via an interface.
-func (v *getDevicesByTokenDevicesByTokenDevice) GetId() string { return v.Id }
+func (v *getDevicesByTokenDevicesByTokenDevice) GetId() string { return v.DefaultDevice.Id }
 
 // GetCreatedAt returns getDevicesByTokenDevicesByTokenDevice.CreatedAt, and is useful for accessing the field via an interface.
-func (v *getDevicesByTokenDevicesByTokenDevice) GetCreatedAt() string { return v.CreatedAt }
+func (v *getDevicesByTokenDevicesByTokenDevice) GetCreatedAt() string {
+	return v.DefaultDevice.CreatedAt
+}
 
 // GetUpdatedAt returns getDevicesByTokenDevicesByTokenDevice.UpdatedAt, and is useful for accessing the field via an interface.
-func (v *getDevicesByTokenDevicesByTokenDevice) GetUpdatedAt() string { return v.UpdatedAt }
+func (v *getDevicesByTokenDevicesByTokenDevice) GetUpdatedAt() string {
+	return v.DefaultDevice.UpdatedAt
+}
 
 // GetDeletedAt returns getDevicesByTokenDevicesByTokenDevice.DeletedAt, and is useful for accessing the field via an interface.
-func (v *getDevicesByTokenDevicesByTokenDevice) GetDeletedAt() string { return v.DeletedAt }
+func (v *getDevicesByTokenDevicesByTokenDevice) GetDeletedAt() string {
+	return v.DefaultDevice.DeletedAt
+}
 
 // GetToken returns getDevicesByTokenDevicesByTokenDevice.Token, and is useful for accessing the field via an interface.
-func (v *getDevicesByTokenDevicesByTokenDevice) GetToken() string { return v.Token }
+func (v *getDevicesByTokenDevicesByTokenDevice) GetToken() string { return v.DefaultDevice.Token }
 
 // GetName returns getDevicesByTokenDevicesByTokenDevice.Name, and is useful for accessing the field via an interface.
-func (v *getDevicesByTokenDevicesByTokenDevice) GetName() string { return v.Name }
+func (v *getDevicesByTokenDevicesByTokenDevice) GetName() string { return v.DefaultDevice.Name }
 
 // GetDescription returns getDevicesByTokenDevicesByTokenDevice.Description, and is useful for accessing the field via an interface.
-func (v *getDevicesByTokenDevicesByTokenDevice) GetDescription() string { return v.Description }
+func (v *getDevicesByTokenDevicesByTokenDevice) GetDescription() string {
+	return v.DefaultDevice.Description
+}
 
 // GetDeviceType returns getDevicesByTokenDevicesByTokenDevice.DeviceType, and is useful for accessing the field via an interface.
-func (v *getDevicesByTokenDevicesByTokenDevice) GetDeviceType() getDevicesByTokenDevicesByTokenDeviceDeviceType {
-	return v.DeviceType
+func (v *getDevicesByTokenDevicesByTokenDevice) GetDeviceType() DefaultDeviceDeviceType {
+	return v.DefaultDevice.DeviceType
 }
 
 // GetActiveAssignments returns getDevicesByTokenDevicesByTokenDevice.ActiveAssignments, and is useful for accessing the field via an interface.
-func (v *getDevicesByTokenDevicesByTokenDevice) GetActiveAssignments() []getDevicesByTokenDevicesByTokenDeviceActiveAssignmentsDeviceAssignment {
-	return v.ActiveAssignments
+func (v *getDevicesByTokenDevicesByTokenDevice) GetActiveAssignments() []DefaultDeviceActiveAssignmentsDeviceAssignment {
+	return v.DefaultDevice.ActiveAssignments
 }
 
 // GetMetadata returns getDevicesByTokenDevicesByTokenDevice.Metadata, and is useful for accessing the field via an interface.
-func (v *getDevicesByTokenDevicesByTokenDevice) GetMetadata() string { return v.Metadata }
+func (v *getDevicesByTokenDevicesByTokenDevice) GetMetadata() string { return v.DefaultDevice.Metadata }
 
-// getDevicesByTokenDevicesByTokenDeviceActiveAssignmentsDeviceAssignment includes the requested fields of the GraphQL type DeviceAssignment.
-type getDevicesByTokenDevicesByTokenDeviceActiveAssignmentsDeviceAssignment struct {
+func (v *getDevicesByTokenDevicesByTokenDevice) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*getDevicesByTokenDevicesByTokenDevice
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.getDevicesByTokenDevicesByTokenDevice = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDevice)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalgetDevicesByTokenDevicesByTokenDevice struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
 	Token string `json:"token"`
-}
 
-// GetToken returns getDevicesByTokenDevicesByTokenDeviceActiveAssignmentsDeviceAssignment.Token, and is useful for accessing the field via an interface.
-func (v *getDevicesByTokenDevicesByTokenDeviceActiveAssignmentsDeviceAssignment) GetToken() string {
-	return v.Token
-}
+	Name string `json:"name"`
 
-// getDevicesByTokenDevicesByTokenDeviceDeviceType includes the requested fields of the GraphQL type DeviceType.
-type getDevicesByTokenDevicesByTokenDeviceDeviceType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
 	Description string `json:"description"`
+
+	DeviceType DefaultDeviceDeviceType `json:"deviceType"`
+
+	ActiveAssignments []DefaultDeviceActiveAssignmentsDeviceAssignment `json:"activeAssignments"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetToken returns getDevicesByTokenDevicesByTokenDeviceDeviceType.Token, and is useful for accessing the field via an interface.
-func (v *getDevicesByTokenDevicesByTokenDeviceDeviceType) GetToken() string { return v.Token }
+func (v *getDevicesByTokenDevicesByTokenDevice) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
 
-// GetName returns getDevicesByTokenDevicesByTokenDeviceDeviceType.Name, and is useful for accessing the field via an interface.
-func (v *getDevicesByTokenDevicesByTokenDeviceDeviceType) GetName() string { return v.Name }
+func (v *getDevicesByTokenDevicesByTokenDevice) __premarshalJSON() (*__premarshalgetDevicesByTokenDevicesByTokenDevice, error) {
+	var retval __premarshalgetDevicesByTokenDevicesByTokenDevice
 
-// GetDescription returns getDevicesByTokenDevicesByTokenDeviceDeviceType.Description, and is useful for accessing the field via an interface.
-func (v *getDevicesByTokenDevicesByTokenDeviceDeviceType) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultDevice.Id
+	retval.CreatedAt = v.DefaultDevice.CreatedAt
+	retval.UpdatedAt = v.DefaultDevice.UpdatedAt
+	retval.DeletedAt = v.DefaultDevice.DeletedAt
+	retval.Token = v.DefaultDevice.Token
+	retval.Name = v.DefaultDevice.Name
+	retval.Description = v.DefaultDevice.Description
+	retval.DeviceType = v.DefaultDevice.DeviceType
+	retval.ActiveAssignments = v.DefaultDevice.ActiveAssignments
+	retval.Metadata = v.DefaultDevice.Metadata
+	return &retval, nil
 }
 
 // getDevicesByTokenResponse is returned by getDevicesByToken on success.
@@ -4436,76 +10451,182 @@ func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelati
 
 // listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination) __premarshalJSON() (*__premarshallistAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination, error) {
+	var retval __premarshallistAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType includes the requested fields of the GraphQL type AreaGroupRelationshipType.
 type listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultAreaGroupRelationshipType `json:"-"`
 }
 
 // GetId returns listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultAreaGroupRelationshipType.Id
 }
 
 // GetCreatedAt returns listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAreaGroupRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAreaGroupRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAreaGroupRelationshipType.DeletedAt
 }
 
 // GetToken returns listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultAreaGroupRelationshipType.Token
 }
 
 // GetName returns listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultAreaGroupRelationshipType.Name
 }
 
 // GetDescription returns listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultAreaGroupRelationshipType.Description
 }
 
 // GetMetadata returns listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAreaGroupRelationshipType.Metadata
+}
+
+func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaGroupRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType) __premarshalJSON() (*__premarshallistAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType, error) {
+	var retval __premarshallistAreaGroupRelationshipTypesAreaGroupRelationshipTypesAreaGroupRelationshipTypeSearchResultsResultsAreaGroupRelationshipType
+
+	retval.Id = v.DefaultAreaGroupRelationshipType.Id
+	retval.CreatedAt = v.DefaultAreaGroupRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaGroupRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaGroupRelationshipType.DeletedAt
+	retval.Token = v.DefaultAreaGroupRelationshipType.Token
+	retval.Name = v.DefaultAreaGroupRelationshipType.Name
+	retval.Description = v.DefaultAreaGroupRelationshipType.Description
+	retval.Metadata = v.DefaultAreaGroupRelationshipType.Metadata
+	return &retval, nil
 }
 
 // listAreaGroupRelationshipTypesResponse is returned by listAreaGroupRelationshipTypes on success.
@@ -4536,148 +10657,190 @@ func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSe
 
 // listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination) __premarshalJSON() (*__premarshallistAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination, error) {
+	var retval __premarshallistAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship includes the requested fields of the GraphQL type AreaGroupRelationship.
 type listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship struct {
-	Id               string                                                                                                                                                  `json:"id"`
-	CreatedAt        string                                                                                                                                                  `json:"createdAt"`
-	UpdatedAt        string                                                                                                                                                  `json:"updatedAt"`
-	DeletedAt        string                                                                                                                                                  `json:"deletedAt"`
-	Token            string                                                                                                                                                  `json:"token"`
-	AreaGroup        listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipAreaGroup                                 `json:"areaGroup"`
-	Area             listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipArea                                      `json:"area"`
-	RelationshipType listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                                                                  `json:"metadata"`
+	DefaultAreaGroupRelationship `json:"-"`
 }
 
 // GetId returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship.Id, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetId() string {
-	return v.Id
+	return v.DefaultAreaGroupRelationship.Id
 }
 
 // GetCreatedAt returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAreaGroupRelationship.CreatedAt
 }
 
 // GetUpdatedAt returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAreaGroupRelationship.UpdatedAt
 }
 
 // GetDeletedAt returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAreaGroupRelationship.DeletedAt
 }
 
 // GetToken returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship.Token, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetToken() string {
-	return v.Token
+	return v.DefaultAreaGroupRelationship.Token
 }
 
 // GetAreaGroup returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship.AreaGroup, and is useful for accessing the field via an interface.
-func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetAreaGroup() listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipAreaGroup {
-	return v.AreaGroup
+func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetAreaGroup() DefaultAreaGroupRelationshipAreaGroup {
+	return v.DefaultAreaGroupRelationship.AreaGroup
 }
 
 // GetArea returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship.Area, and is useful for accessing the field via an interface.
-func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetArea() listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipArea {
-	return v.Area
+func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetArea() DefaultAreaGroupRelationshipArea {
+	return v.DefaultAreaGroupRelationship.Area
 }
 
 // GetRelationshipType returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetRelationshipType() listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType {
-	return v.RelationshipType
+func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetRelationshipType() DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType {
+	return v.DefaultAreaGroupRelationship.RelationshipType
 }
 
 // GetMetadata returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAreaGroupRelationship.Metadata
 }
 
-// listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipArea includes the requested fields of the GraphQL type Area.
-type listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipArea struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaGroupRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipArea.Token, and is useful for accessing the field via an interface.
-func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipArea) GetToken() string {
-	return v.Token
+type __premarshallistAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	AreaGroup DefaultAreaGroupRelationshipAreaGroup `json:"areaGroup"`
+
+	Area DefaultAreaGroupRelationshipArea `json:"area"`
+
+	RelationshipType DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipArea.Name, and is useful for accessing the field via an interface.
-func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipArea) GetName() string {
-	return v.Name
+func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipArea.Description, and is useful for accessing the field via an interface.
-func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipArea) GetDescription() string {
-	return v.Description
-}
+func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) __premarshalJSON() (*__premarshallistAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship, error) {
+	var retval __premarshallistAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship
 
-// listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipAreaGroup includes the requested fields of the GraphQL type AreaGroup.
-type listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipAreaGroup struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipAreaGroup.Token, and is useful for accessing the field via an interface.
-func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipAreaGroup) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipAreaGroup.Name, and is useful for accessing the field via an interface.
-func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipAreaGroup) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipAreaGroup.Description, and is useful for accessing the field via an interface.
-func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipAreaGroup) GetDescription() string {
-	return v.Description
-}
-
-// listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType includes the requested fields of the GraphQL type AreaGroupRelationshipType.
-type listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultAreaGroupRelationship.Id
+	retval.CreatedAt = v.DefaultAreaGroupRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaGroupRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaGroupRelationship.DeletedAt
+	retval.Token = v.DefaultAreaGroupRelationship.Token
+	retval.AreaGroup = v.DefaultAreaGroupRelationship.AreaGroup
+	retval.Area = v.DefaultAreaGroupRelationship.Area
+	retval.RelationshipType = v.DefaultAreaGroupRelationship.RelationshipType
+	retval.Metadata = v.DefaultAreaGroupRelationship.Metadata
+	return &retval, nil
 }
 
 // listAreaGroupRelationshipsResponse is returned by listAreaGroupRelationships on success.
@@ -4708,102 +10871,222 @@ func (v *listAreaGroupsAreaGroupsAreaGroupSearchResults) GetPagination() listAre
 
 // listAreaGroupsAreaGroupsAreaGroupSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listAreaGroupsAreaGroupsAreaGroupSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listAreaGroupsAreaGroupsAreaGroupSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listAreaGroupsAreaGroupsAreaGroupSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
-func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsPagination) GetPageEnd() int { return v.PageEnd }
+func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsPagination) GetPageEnd() int {
+	return v.DefaultPagination.PageEnd
+}
 
 // GetTotalRecords returns listAreaGroupsAreaGroupsAreaGroupSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAreaGroupsAreaGroupsAreaGroupSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAreaGroupsAreaGroupsAreaGroupSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAreaGroupsAreaGroupsAreaGroupSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsPagination) __premarshalJSON() (*__premarshallistAreaGroupsAreaGroupsAreaGroupSearchResultsPagination, error) {
+	var retval __premarshallistAreaGroupsAreaGroupsAreaGroupSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup includes the requested fields of the GraphQL type AreaGroup.
 type listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultAreaGroup `json:"-"`
 }
 
 // GetId returns listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup.Id, and is useful for accessing the field via an interface.
-func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) GetId() string { return v.Id }
+func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) GetId() string {
+	return v.DefaultAreaGroup.Id
+}
 
 // GetCreatedAt returns listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAreaGroup.CreatedAt
 }
 
 // GetUpdatedAt returns listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAreaGroup.UpdatedAt
 }
 
 // GetDeletedAt returns listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAreaGroup.DeletedAt
 }
 
 // GetToken returns listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup.Token, and is useful for accessing the field via an interface.
 func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) GetToken() string {
-	return v.Token
+	return v.DefaultAreaGroup.Token
 }
 
 // GetName returns listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup.Name, and is useful for accessing the field via an interface.
 func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) GetName() string {
-	return v.Name
+	return v.DefaultAreaGroup.Name
 }
 
 // GetDescription returns listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup.Description, and is useful for accessing the field via an interface.
 func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) GetDescription() string {
-	return v.Description
+	return v.DefaultAreaGroup.Description
 }
 
 // GetImageUrl returns listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup.ImageUrl, and is useful for accessing the field via an interface.
 func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) GetImageUrl() string {
-	return v.ImageUrl
+	return v.DefaultAreaGroup.ImageUrl
 }
 
 // GetIcon returns listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup.Icon, and is useful for accessing the field via an interface.
 func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) GetIcon() string {
-	return v.Icon
+	return v.DefaultAreaGroup.Icon
 }
 
 // GetBackgroundColor returns listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultAreaGroup.BackgroundColor
 }
 
 // GetForegroundColor returns listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultAreaGroup.ForegroundColor
 }
 
 // GetBorderColor returns listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup.BorderColor, and is useful for accessing the field via an interface.
 func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) GetBorderColor() string {
-	return v.BorderColor
+	return v.DefaultAreaGroup.BorderColor
 }
 
 // GetMetadata returns listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup.Metadata, and is useful for accessing the field via an interface.
 func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAreaGroup.Metadata
+}
+
+func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaGroup)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup) __premarshalJSON() (*__premarshallistAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup, error) {
+	var retval __premarshallistAreaGroupsAreaGroupsAreaGroupSearchResultsResultsAreaGroup
+
+	retval.Id = v.DefaultAreaGroup.Id
+	retval.CreatedAt = v.DefaultAreaGroup.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaGroup.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaGroup.DeletedAt
+	retval.Token = v.DefaultAreaGroup.Token
+	retval.Name = v.DefaultAreaGroup.Name
+	retval.Description = v.DefaultAreaGroup.Description
+	retval.ImageUrl = v.DefaultAreaGroup.ImageUrl
+	retval.Icon = v.DefaultAreaGroup.Icon
+	retval.BackgroundColor = v.DefaultAreaGroup.BackgroundColor
+	retval.ForegroundColor = v.DefaultAreaGroup.ForegroundColor
+	retval.BorderColor = v.DefaultAreaGroup.BorderColor
+	retval.Metadata = v.DefaultAreaGroup.Metadata
+	return &retval, nil
 }
 
 // listAreaGroupsResponse is returned by listAreaGroups on success.
@@ -4834,76 +11117,182 @@ func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearc
 
 // listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination) __premarshalJSON() (*__premarshallistAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination, error) {
+	var retval __premarshallistAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType includes the requested fields of the GraphQL type AreaRelationshipType.
 type listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultAreaRelationshipType `json:"-"`
 }
 
 // GetId returns listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultAreaRelationshipType.Id
 }
 
 // GetCreatedAt returns listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAreaRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAreaRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAreaRelationshipType.DeletedAt
 }
 
 // GetToken returns listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultAreaRelationshipType.Token
 }
 
 // GetName returns listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultAreaRelationshipType.Name
 }
 
 // GetDescription returns listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultAreaRelationshipType.Description
 }
 
 // GetMetadata returns listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAreaRelationshipType.Metadata
+}
+
+func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType) __premarshalJSON() (*__premarshallistAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType, error) {
+	var retval __premarshallistAreaRelationshipTypesAreaRelationshipTypesAreaRelationshipTypeSearchResultsResultsAreaRelationshipType
+
+	retval.Id = v.DefaultAreaRelationshipType.Id
+	retval.CreatedAt = v.DefaultAreaRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaRelationshipType.DeletedAt
+	retval.Token = v.DefaultAreaRelationshipType.Token
+	retval.Name = v.DefaultAreaRelationshipType.Name
+	retval.Description = v.DefaultAreaRelationshipType.Description
+	retval.Metadata = v.DefaultAreaRelationshipType.Metadata
+	return &retval, nil
 }
 
 // listAreaRelationshipTypesResponse is returned by listAreaRelationshipTypes on success.
@@ -4934,124 +11323,190 @@ func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResults) Ge
 
 // listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination) __premarshalJSON() (*__premarshallistAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination, error) {
+	var retval __premarshallistAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship includes the requested fields of the GraphQL type AreaRelationship.
 type listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship struct {
-	Id               string                                                                                                                         `json:"id"`
-	SourceArea       listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipSourceArea                           `json:"sourceArea"`
-	TargetArea       listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipTargetArea                           `json:"targetArea"`
-	RelationshipType listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipRelationshipTypeAreaRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                                         `json:"metadata"`
+	DefaultAreaRelationship `json:"-"`
 }
 
 // GetId returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship.Id, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) GetId() string {
-	return v.Id
+	return v.DefaultAreaRelationship.Id
+}
+
+// GetCreatedAt returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) GetCreatedAt() string {
+	return v.DefaultAreaRelationship.CreatedAt
+}
+
+// GetUpdatedAt returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) GetUpdatedAt() string {
+	return v.DefaultAreaRelationship.UpdatedAt
+}
+
+// GetDeletedAt returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) GetDeletedAt() string {
+	return v.DefaultAreaRelationship.DeletedAt
+}
+
+// GetToken returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship.Token, and is useful for accessing the field via an interface.
+func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) GetToken() string {
+	return v.DefaultAreaRelationship.Token
 }
 
 // GetSourceArea returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship.SourceArea, and is useful for accessing the field via an interface.
-func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) GetSourceArea() listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipSourceArea {
-	return v.SourceArea
+func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) GetSourceArea() DefaultAreaRelationshipSourceArea {
+	return v.DefaultAreaRelationship.SourceArea
 }
 
 // GetTargetArea returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship.TargetArea, and is useful for accessing the field via an interface.
-func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) GetTargetArea() listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipTargetArea {
-	return v.TargetArea
+func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) GetTargetArea() DefaultAreaRelationshipTargetArea {
+	return v.DefaultAreaRelationship.TargetArea
 }
 
 // GetRelationshipType returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) GetRelationshipType() listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipRelationshipTypeAreaRelationshipType {
-	return v.RelationshipType
+func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) GetRelationshipType() DefaultAreaRelationshipRelationshipTypeAreaRelationshipType {
+	return v.DefaultAreaRelationship.RelationshipType
 }
 
 // GetMetadata returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAreaRelationship.Metadata
 }
 
-// listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipRelationshipTypeAreaRelationshipType includes the requested fields of the GraphQL type AreaRelationshipType.
-type listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipRelationshipTypeAreaRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipRelationshipTypeAreaRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipRelationshipTypeAreaRelationshipType) GetToken() string {
-	return v.Token
+type __premarshallistAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	SourceArea DefaultAreaRelationshipSourceArea `json:"sourceArea"`
+
+	TargetArea DefaultAreaRelationshipTargetArea `json:"targetArea"`
+
+	RelationshipType DefaultAreaRelationshipRelationshipTypeAreaRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipRelationshipTypeAreaRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipRelationshipTypeAreaRelationshipType) GetName() string {
-	return v.Name
+func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipRelationshipTypeAreaRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipRelationshipTypeAreaRelationshipType) GetDescription() string {
-	return v.Description
-}
+func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) __premarshalJSON() (*__premarshallistAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship, error) {
+	var retval __premarshallistAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship
 
-// listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipSourceArea includes the requested fields of the GraphQL type Area.
-type listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipSourceArea struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipSourceArea.Token, and is useful for accessing the field via an interface.
-func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipSourceArea) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipSourceArea.Name, and is useful for accessing the field via an interface.
-func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipSourceArea) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipSourceArea.Description, and is useful for accessing the field via an interface.
-func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipSourceArea) GetDescription() string {
-	return v.Description
-}
-
-// listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipTargetArea includes the requested fields of the GraphQL type Area.
-type listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipTargetArea struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipTargetArea.Token, and is useful for accessing the field via an interface.
-func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipTargetArea) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipTargetArea.Name, and is useful for accessing the field via an interface.
-func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipTargetArea) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipTargetArea.Description, and is useful for accessing the field via an interface.
-func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationshipTargetArea) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultAreaRelationship.Id
+	retval.CreatedAt = v.DefaultAreaRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaRelationship.DeletedAt
+	retval.Token = v.DefaultAreaRelationship.Token
+	retval.SourceArea = v.DefaultAreaRelationship.SourceArea
+	retval.TargetArea = v.DefaultAreaRelationship.TargetArea
+	retval.RelationshipType = v.DefaultAreaRelationship.RelationshipType
+	retval.Metadata = v.DefaultAreaRelationship.Metadata
+	return &retval, nil
 }
 
 // listAreaRelationshipsResponse is returned by listAreaRelationships on success.
@@ -5082,98 +11537,222 @@ func (v *listAreaTypesAreaTypesAreaTypeSearchResults) GetPagination() listAreaTy
 
 // listAreaTypesAreaTypesAreaTypeSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listAreaTypesAreaTypesAreaTypeSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listAreaTypesAreaTypesAreaTypeSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listAreaTypesAreaTypesAreaTypeSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listAreaTypesAreaTypesAreaTypeSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
-func (v *listAreaTypesAreaTypesAreaTypeSearchResultsPagination) GetPageEnd() int { return v.PageEnd }
+func (v *listAreaTypesAreaTypesAreaTypeSearchResultsPagination) GetPageEnd() int {
+	return v.DefaultPagination.PageEnd
+}
 
 // GetTotalRecords returns listAreaTypesAreaTypesAreaTypeSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listAreaTypesAreaTypesAreaTypeSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listAreaTypesAreaTypesAreaTypeSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAreaTypesAreaTypesAreaTypeSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAreaTypesAreaTypesAreaTypeSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAreaTypesAreaTypesAreaTypeSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listAreaTypesAreaTypesAreaTypeSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAreaTypesAreaTypesAreaTypeSearchResultsPagination) __premarshalJSON() (*__premarshallistAreaTypesAreaTypesAreaTypeSearchResultsPagination, error) {
+	var retval __premarshallistAreaTypesAreaTypesAreaTypeSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType includes the requested fields of the GraphQL type AreaType.
 type listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultAreaType `json:"-"`
 }
 
 // GetId returns listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType.Id, and is useful for accessing the field via an interface.
-func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetId() string { return v.Id }
+func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetId() string {
+	return v.DefaultAreaType.Id
+}
 
 // GetCreatedAt returns listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAreaType.CreatedAt
 }
 
 // GetUpdatedAt returns listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAreaType.UpdatedAt
 }
 
 // GetDeletedAt returns listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAreaType.DeletedAt
 }
 
 // GetToken returns listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType.Token, and is useful for accessing the field via an interface.
 func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetToken() string {
-	return v.Token
+	return v.DefaultAreaType.Token
 }
 
 // GetName returns listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType.Name, and is useful for accessing the field via an interface.
-func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetName() string { return v.Name }
+func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetName() string {
+	return v.DefaultAreaType.Name
+}
 
 // GetDescription returns listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType.Description, and is useful for accessing the field via an interface.
 func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetDescription() string {
-	return v.Description
+	return v.DefaultAreaType.Description
 }
 
 // GetImageUrl returns listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType.ImageUrl, and is useful for accessing the field via an interface.
 func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetImageUrl() string {
-	return v.ImageUrl
+	return v.DefaultAreaType.ImageUrl
 }
 
 // GetIcon returns listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType.Icon, and is useful for accessing the field via an interface.
-func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetIcon() string { return v.Icon }
+func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetIcon() string {
+	return v.DefaultAreaType.Icon
+}
 
 // GetBackgroundColor returns listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultAreaType.BackgroundColor
 }
 
 // GetForegroundColor returns listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultAreaType.ForegroundColor
 }
 
 // GetBorderColor returns listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType.BorderColor, and is useful for accessing the field via an interface.
 func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetBorderColor() string {
-	return v.BorderColor
+	return v.DefaultAreaType.BorderColor
 }
 
 // GetMetadata returns listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType.Metadata, and is useful for accessing the field via an interface.
 func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAreaType.Metadata
+}
+
+func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAreaType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType) __premarshalJSON() (*__premarshallistAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType, error) {
+	var retval __premarshallistAreaTypesAreaTypesAreaTypeSearchResultsResultsAreaType
+
+	retval.Id = v.DefaultAreaType.Id
+	retval.CreatedAt = v.DefaultAreaType.CreatedAt
+	retval.UpdatedAt = v.DefaultAreaType.UpdatedAt
+	retval.DeletedAt = v.DefaultAreaType.DeletedAt
+	retval.Token = v.DefaultAreaType.Token
+	retval.Name = v.DefaultAreaType.Name
+	retval.Description = v.DefaultAreaType.Description
+	retval.ImageUrl = v.DefaultAreaType.ImageUrl
+	retval.Icon = v.DefaultAreaType.Icon
+	retval.BackgroundColor = v.DefaultAreaType.BackgroundColor
+	retval.ForegroundColor = v.DefaultAreaType.ForegroundColor
+	retval.BorderColor = v.DefaultAreaType.BorderColor
+	retval.Metadata = v.DefaultAreaType.Metadata
+	return &retval, nil
 }
 
 // listAreaTypesResponse is returned by listAreaTypes on success.
@@ -5204,78 +11783,184 @@ func (v *listAreasAreasAreaSearchResults) GetPagination() listAreasAreasAreaSear
 
 // listAreasAreasAreaSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listAreasAreasAreaSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listAreasAreasAreaSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
-func (v *listAreasAreasAreaSearchResultsPagination) GetPageStart() int { return v.PageStart }
+func (v *listAreasAreasAreaSearchResultsPagination) GetPageStart() int {
+	return v.DefaultPagination.PageStart
+}
 
 // GetPageEnd returns listAreasAreasAreaSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
-func (v *listAreasAreasAreaSearchResultsPagination) GetPageEnd() int { return v.PageEnd }
+func (v *listAreasAreasAreaSearchResultsPagination) GetPageEnd() int {
+	return v.DefaultPagination.PageEnd
+}
 
 // GetTotalRecords returns listAreasAreasAreaSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
-func (v *listAreasAreasAreaSearchResultsPagination) GetTotalRecords() int { return v.TotalRecords }
+func (v *listAreasAreasAreaSearchResultsPagination) GetTotalRecords() int {
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listAreasAreasAreaSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAreasAreasAreaSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAreasAreasAreaSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAreasAreasAreaSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listAreasAreasAreaSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAreasAreasAreaSearchResultsPagination) __premarshalJSON() (*__premarshallistAreasAreasAreaSearchResultsPagination, error) {
+	var retval __premarshallistAreasAreasAreaSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
+}
 
 // listAreasAreasAreaSearchResultsResultsArea includes the requested fields of the GraphQL type Area.
 type listAreasAreasAreaSearchResultsResultsArea struct {
-	Id          string                                             `json:"id"`
-	CreatedAt   string                                             `json:"createdAt"`
-	UpdatedAt   string                                             `json:"updatedAt"`
-	DeletedAt   string                                             `json:"deletedAt"`
-	Token       string                                             `json:"token"`
-	Name        string                                             `json:"name"`
-	Description string                                             `json:"description"`
-	AreaType    listAreasAreasAreaSearchResultsResultsAreaAreaType `json:"areaType"`
-	Metadata    string                                             `json:"metadata"`
+	DefaultArea `json:"-"`
 }
 
 // GetId returns listAreasAreasAreaSearchResultsResultsArea.Id, and is useful for accessing the field via an interface.
-func (v *listAreasAreasAreaSearchResultsResultsArea) GetId() string { return v.Id }
+func (v *listAreasAreasAreaSearchResultsResultsArea) GetId() string { return v.DefaultArea.Id }
 
 // GetCreatedAt returns listAreasAreasAreaSearchResultsResultsArea.CreatedAt, and is useful for accessing the field via an interface.
-func (v *listAreasAreasAreaSearchResultsResultsArea) GetCreatedAt() string { return v.CreatedAt }
+func (v *listAreasAreasAreaSearchResultsResultsArea) GetCreatedAt() string {
+	return v.DefaultArea.CreatedAt
+}
 
 // GetUpdatedAt returns listAreasAreasAreaSearchResultsResultsArea.UpdatedAt, and is useful for accessing the field via an interface.
-func (v *listAreasAreasAreaSearchResultsResultsArea) GetUpdatedAt() string { return v.UpdatedAt }
+func (v *listAreasAreasAreaSearchResultsResultsArea) GetUpdatedAt() string {
+	return v.DefaultArea.UpdatedAt
+}
 
 // GetDeletedAt returns listAreasAreasAreaSearchResultsResultsArea.DeletedAt, and is useful for accessing the field via an interface.
-func (v *listAreasAreasAreaSearchResultsResultsArea) GetDeletedAt() string { return v.DeletedAt }
+func (v *listAreasAreasAreaSearchResultsResultsArea) GetDeletedAt() string {
+	return v.DefaultArea.DeletedAt
+}
 
 // GetToken returns listAreasAreasAreaSearchResultsResultsArea.Token, and is useful for accessing the field via an interface.
-func (v *listAreasAreasAreaSearchResultsResultsArea) GetToken() string { return v.Token }
+func (v *listAreasAreasAreaSearchResultsResultsArea) GetToken() string { return v.DefaultArea.Token }
 
 // GetName returns listAreasAreasAreaSearchResultsResultsArea.Name, and is useful for accessing the field via an interface.
-func (v *listAreasAreasAreaSearchResultsResultsArea) GetName() string { return v.Name }
+func (v *listAreasAreasAreaSearchResultsResultsArea) GetName() string { return v.DefaultArea.Name }
 
 // GetDescription returns listAreasAreasAreaSearchResultsResultsArea.Description, and is useful for accessing the field via an interface.
-func (v *listAreasAreasAreaSearchResultsResultsArea) GetDescription() string { return v.Description }
+func (v *listAreasAreasAreaSearchResultsResultsArea) GetDescription() string {
+	return v.DefaultArea.Description
+}
 
 // GetAreaType returns listAreasAreasAreaSearchResultsResultsArea.AreaType, and is useful for accessing the field via an interface.
-func (v *listAreasAreasAreaSearchResultsResultsArea) GetAreaType() listAreasAreasAreaSearchResultsResultsAreaAreaType {
-	return v.AreaType
+func (v *listAreasAreasAreaSearchResultsResultsArea) GetAreaType() DefaultAreaAreaType {
+	return v.DefaultArea.AreaType
 }
 
 // GetMetadata returns listAreasAreasAreaSearchResultsResultsArea.Metadata, and is useful for accessing the field via an interface.
-func (v *listAreasAreasAreaSearchResultsResultsArea) GetMetadata() string { return v.Metadata }
-
-// listAreasAreasAreaSearchResultsResultsAreaAreaType includes the requested fields of the GraphQL type AreaType.
-type listAreasAreasAreaSearchResultsResultsAreaAreaType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *listAreasAreasAreaSearchResultsResultsArea) GetMetadata() string {
+	return v.DefaultArea.Metadata
 }
 
-// GetToken returns listAreasAreasAreaSearchResultsResultsAreaAreaType.Token, and is useful for accessing the field via an interface.
-func (v *listAreasAreasAreaSearchResultsResultsAreaAreaType) GetToken() string { return v.Token }
+func (v *listAreasAreasAreaSearchResultsResultsArea) UnmarshalJSON(b []byte) error {
 
-// GetName returns listAreasAreasAreaSearchResultsResultsAreaAreaType.Name, and is useful for accessing the field via an interface.
-func (v *listAreasAreasAreaSearchResultsResultsAreaAreaType) GetName() string { return v.Name }
+	if string(b) == "null" {
+		return nil
+	}
 
-// GetDescription returns listAreasAreasAreaSearchResultsResultsAreaAreaType.Description, and is useful for accessing the field via an interface.
-func (v *listAreasAreasAreaSearchResultsResultsAreaAreaType) GetDescription() string {
-	return v.Description
+	var firstPass struct {
+		*listAreasAreasAreaSearchResultsResultsArea
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAreasAreasAreaSearchResultsResultsArea = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultArea)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAreasAreasAreaSearchResultsResultsArea struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	AreaType DefaultAreaAreaType `json:"areaType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listAreasAreasAreaSearchResultsResultsArea) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAreasAreasAreaSearchResultsResultsArea) __premarshalJSON() (*__premarshallistAreasAreasAreaSearchResultsResultsArea, error) {
+	var retval __premarshallistAreasAreasAreaSearchResultsResultsArea
+
+	retval.Id = v.DefaultArea.Id
+	retval.CreatedAt = v.DefaultArea.CreatedAt
+	retval.UpdatedAt = v.DefaultArea.UpdatedAt
+	retval.DeletedAt = v.DefaultArea.DeletedAt
+	retval.Token = v.DefaultArea.Token
+	retval.Name = v.DefaultArea.Name
+	retval.Description = v.DefaultArea.Description
+	retval.AreaType = v.DefaultArea.AreaType
+	retval.Metadata = v.DefaultArea.Metadata
+	return &retval, nil
 }
 
 // listAreasResponse is returned by listAreas on success.
@@ -5304,76 +11989,182 @@ func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRel
 
 // listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination) __premarshalJSON() (*__premarshallistAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination, error) {
+	var retval __premarshallistAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType includes the requested fields of the GraphQL type AssetGroupRelationshipType.
 type listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultAssetGroupRelationshipType `json:"-"`
 }
 
 // GetId returns listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultAssetGroupRelationshipType.Id
 }
 
 // GetCreatedAt returns listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAssetGroupRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAssetGroupRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAssetGroupRelationshipType.DeletedAt
 }
 
 // GetToken returns listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultAssetGroupRelationshipType.Token
 }
 
 // GetName returns listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultAssetGroupRelationshipType.Name
 }
 
 // GetDescription returns listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultAssetGroupRelationshipType.Description
 }
 
 // GetMetadata returns listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAssetGroupRelationshipType.Metadata
+}
+
+func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetGroupRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType) __premarshalJSON() (*__premarshallistAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType, error) {
+	var retval __premarshallistAssetGroupRelationshipTypesAssetGroupRelationshipTypesAssetGroupRelationshipTypeSearchResultsResultsAssetGroupRelationshipType
+
+	retval.Id = v.DefaultAssetGroupRelationshipType.Id
+	retval.CreatedAt = v.DefaultAssetGroupRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetGroupRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetGroupRelationshipType.DeletedAt
+	retval.Token = v.DefaultAssetGroupRelationshipType.Token
+	retval.Name = v.DefaultAssetGroupRelationshipType.Name
+	retval.Description = v.DefaultAssetGroupRelationshipType.Description
+	retval.Metadata = v.DefaultAssetGroupRelationshipType.Metadata
+	return &retval, nil
 }
 
 // listAssetGroupRelationshipTypesResponse is returned by listAssetGroupRelationshipTypes on success.
@@ -5404,148 +12195,190 @@ func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshi
 
 // listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination) __premarshalJSON() (*__premarshallistAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination, error) {
+	var retval __premarshallistAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship includes the requested fields of the GraphQL type AssetGroupRelationship.
 type listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship struct {
-	Id               string                                                                                                                                                       `json:"id"`
-	CreatedAt        string                                                                                                                                                       `json:"createdAt"`
-	UpdatedAt        string                                                                                                                                                       `json:"updatedAt"`
-	DeletedAt        string                                                                                                                                                       `json:"deletedAt"`
-	Token            string                                                                                                                                                       `json:"token"`
-	AssetGroup       listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAssetGroup                                 `json:"assetGroup"`
-	Asset            listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAsset                                      `json:"asset"`
-	RelationshipType listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                                                                       `json:"metadata"`
+	DefaultAssetGroupRelationship `json:"-"`
 }
 
 // GetId returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship.Id, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetId() string {
-	return v.Id
+	return v.DefaultAssetGroupRelationship.Id
 }
 
 // GetCreatedAt returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAssetGroupRelationship.CreatedAt
 }
 
 // GetUpdatedAt returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAssetGroupRelationship.UpdatedAt
 }
 
 // GetDeletedAt returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAssetGroupRelationship.DeletedAt
 }
 
 // GetToken returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship.Token, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetToken() string {
-	return v.Token
+	return v.DefaultAssetGroupRelationship.Token
 }
 
 // GetAssetGroup returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship.AssetGroup, and is useful for accessing the field via an interface.
-func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetAssetGroup() listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAssetGroup {
-	return v.AssetGroup
+func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetAssetGroup() DefaultAssetGroupRelationshipAssetGroup {
+	return v.DefaultAssetGroupRelationship.AssetGroup
 }
 
 // GetAsset returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship.Asset, and is useful for accessing the field via an interface.
-func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetAsset() listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAsset {
-	return v.Asset
+func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetAsset() DefaultAssetGroupRelationshipAsset {
+	return v.DefaultAssetGroupRelationship.Asset
 }
 
 // GetRelationshipType returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetRelationshipType() listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType {
-	return v.RelationshipType
+func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetRelationshipType() DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType {
+	return v.DefaultAssetGroupRelationship.RelationshipType
 }
 
 // GetMetadata returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAssetGroupRelationship.Metadata
 }
 
-// listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAsset includes the requested fields of the GraphQL type Asset.
-type listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAsset struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetGroupRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAsset.Token, and is useful for accessing the field via an interface.
-func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAsset) GetToken() string {
-	return v.Token
+type __premarshallistAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	AssetGroup DefaultAssetGroupRelationshipAssetGroup `json:"assetGroup"`
+
+	Asset DefaultAssetGroupRelationshipAsset `json:"asset"`
+
+	RelationshipType DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAsset.Name, and is useful for accessing the field via an interface.
-func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAsset) GetName() string {
-	return v.Name
+func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAsset.Description, and is useful for accessing the field via an interface.
-func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAsset) GetDescription() string {
-	return v.Description
-}
+func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) __premarshalJSON() (*__premarshallistAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship, error) {
+	var retval __premarshallistAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship
 
-// listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAssetGroup includes the requested fields of the GraphQL type AssetGroup.
-type listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAssetGroup struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAssetGroup.Token, and is useful for accessing the field via an interface.
-func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAssetGroup) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAssetGroup.Name, and is useful for accessing the field via an interface.
-func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAssetGroup) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAssetGroup.Description, and is useful for accessing the field via an interface.
-func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipAssetGroup) GetDescription() string {
-	return v.Description
-}
-
-// listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType includes the requested fields of the GraphQL type AssetGroupRelationshipType.
-type listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultAssetGroupRelationship.Id
+	retval.CreatedAt = v.DefaultAssetGroupRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetGroupRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetGroupRelationship.DeletedAt
+	retval.Token = v.DefaultAssetGroupRelationship.Token
+	retval.AssetGroup = v.DefaultAssetGroupRelationship.AssetGroup
+	retval.Asset = v.DefaultAssetGroupRelationship.Asset
+	retval.RelationshipType = v.DefaultAssetGroupRelationship.RelationshipType
+	retval.Metadata = v.DefaultAssetGroupRelationship.Metadata
+	return &retval, nil
 }
 
 // listAssetGroupRelationshipsResponse is returned by listAssetGroupRelationships on success.
@@ -5576,106 +12409,222 @@ func (v *listAssetGroupsAssetGroupsAssetGroupSearchResults) GetPagination() list
 
 // listAssetGroupsAssetGroupsAssetGroupSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listAssetGroupsAssetGroupsAssetGroupSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listAssetGroupsAssetGroupsAssetGroupSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listAssetGroupsAssetGroupsAssetGroupSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listAssetGroupsAssetGroupsAssetGroupSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAssetGroupsAssetGroupsAssetGroupSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAssetGroupsAssetGroupsAssetGroupSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAssetGroupsAssetGroupsAssetGroupSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsPagination) __premarshalJSON() (*__premarshallistAssetGroupsAssetGroupsAssetGroupSearchResultsPagination, error) {
+	var retval __premarshallistAssetGroupsAssetGroupsAssetGroupSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup includes the requested fields of the GraphQL type AssetGroup.
 type listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultAssetGroup `json:"-"`
 }
 
 // GetId returns listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup.Id, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) GetId() string {
-	return v.Id
+	return v.DefaultAssetGroup.Id
 }
 
 // GetCreatedAt returns listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAssetGroup.CreatedAt
 }
 
 // GetUpdatedAt returns listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAssetGroup.UpdatedAt
 }
 
 // GetDeletedAt returns listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAssetGroup.DeletedAt
 }
 
 // GetToken returns listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup.Token, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) GetToken() string {
-	return v.Token
+	return v.DefaultAssetGroup.Token
 }
 
 // GetName returns listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup.Name, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) GetName() string {
-	return v.Name
+	return v.DefaultAssetGroup.Name
 }
 
 // GetDescription returns listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup.Description, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) GetDescription() string {
-	return v.Description
+	return v.DefaultAssetGroup.Description
 }
 
 // GetImageUrl returns listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup.ImageUrl, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) GetImageUrl() string {
-	return v.ImageUrl
+	return v.DefaultAssetGroup.ImageUrl
 }
 
 // GetIcon returns listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup.Icon, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) GetIcon() string {
-	return v.Icon
+	return v.DefaultAssetGroup.Icon
 }
 
 // GetBackgroundColor returns listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultAssetGroup.BackgroundColor
 }
 
 // GetForegroundColor returns listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultAssetGroup.ForegroundColor
 }
 
 // GetBorderColor returns listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup.BorderColor, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) GetBorderColor() string {
-	return v.BorderColor
+	return v.DefaultAssetGroup.BorderColor
 }
 
 // GetMetadata returns listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup.Metadata, and is useful for accessing the field via an interface.
 func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAssetGroup.Metadata
+}
+
+func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetGroup)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup) __premarshalJSON() (*__premarshallistAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup, error) {
+	var retval __premarshallistAssetGroupsAssetGroupsAssetGroupSearchResultsResultsAssetGroup
+
+	retval.Id = v.DefaultAssetGroup.Id
+	retval.CreatedAt = v.DefaultAssetGroup.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetGroup.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetGroup.DeletedAt
+	retval.Token = v.DefaultAssetGroup.Token
+	retval.Name = v.DefaultAssetGroup.Name
+	retval.Description = v.DefaultAssetGroup.Description
+	retval.ImageUrl = v.DefaultAssetGroup.ImageUrl
+	retval.Icon = v.DefaultAssetGroup.Icon
+	retval.BackgroundColor = v.DefaultAssetGroup.BackgroundColor
+	retval.ForegroundColor = v.DefaultAssetGroup.ForegroundColor
+	retval.BorderColor = v.DefaultAssetGroup.BorderColor
+	retval.Metadata = v.DefaultAssetGroup.Metadata
+	return &retval, nil
 }
 
 // listAssetGroupsResponse is returned by listAssetGroups on success.
@@ -5706,76 +12655,182 @@ func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSe
 
 // listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination) __premarshalJSON() (*__premarshallistAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination, error) {
+	var retval __premarshallistAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType includes the requested fields of the GraphQL type AssetRelationshipType.
 type listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultAssetRelationshipType `json:"-"`
 }
 
 // GetId returns listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultAssetRelationshipType.Id
 }
 
 // GetCreatedAt returns listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAssetRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAssetRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAssetRelationshipType.DeletedAt
 }
 
 // GetToken returns listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultAssetRelationshipType.Token
 }
 
 // GetName returns listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultAssetRelationshipType.Name
 }
 
 // GetDescription returns listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultAssetRelationshipType.Description
 }
 
 // GetMetadata returns listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAssetRelationshipType.Metadata
+}
+
+func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType) __premarshalJSON() (*__premarshallistAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType, error) {
+	var retval __premarshallistAssetRelationshipTypesAssetRelationshipTypesAssetRelationshipTypeSearchResultsResultsAssetRelationshipType
+
+	retval.Id = v.DefaultAssetRelationshipType.Id
+	retval.CreatedAt = v.DefaultAssetRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetRelationshipType.DeletedAt
+	retval.Token = v.DefaultAssetRelationshipType.Token
+	retval.Name = v.DefaultAssetRelationshipType.Name
+	retval.Description = v.DefaultAssetRelationshipType.Description
+	retval.Metadata = v.DefaultAssetRelationshipType.Metadata
+	return &retval, nil
 }
 
 // listAssetRelationshipTypesResponse is returned by listAssetRelationshipTypes on success.
@@ -5806,124 +12861,190 @@ func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResults)
 
 // listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination) __premarshalJSON() (*__premarshallistAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination, error) {
+	var retval __premarshallistAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship includes the requested fields of the GraphQL type AssetRelationship.
 type listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship struct {
-	Id               string                                                                                                                              `json:"id"`
-	SourceAsset      listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipSourceAsset                           `json:"sourceAsset"`
-	TargetAsset      listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipTargetAsset                           `json:"targetAsset"`
-	RelationshipType listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipRelationshipTypeAssetRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                                              `json:"metadata"`
+	DefaultAssetRelationship `json:"-"`
 }
 
 // GetId returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship.Id, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) GetId() string {
-	return v.Id
+	return v.DefaultAssetRelationship.Id
+}
+
+// GetCreatedAt returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) GetCreatedAt() string {
+	return v.DefaultAssetRelationship.CreatedAt
+}
+
+// GetUpdatedAt returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) GetUpdatedAt() string {
+	return v.DefaultAssetRelationship.UpdatedAt
+}
+
+// GetDeletedAt returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) GetDeletedAt() string {
+	return v.DefaultAssetRelationship.DeletedAt
+}
+
+// GetToken returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship.Token, and is useful for accessing the field via an interface.
+func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) GetToken() string {
+	return v.DefaultAssetRelationship.Token
 }
 
 // GetSourceAsset returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship.SourceAsset, and is useful for accessing the field via an interface.
-func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) GetSourceAsset() listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipSourceAsset {
-	return v.SourceAsset
+func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) GetSourceAsset() DefaultAssetRelationshipSourceAsset {
+	return v.DefaultAssetRelationship.SourceAsset
 }
 
 // GetTargetAsset returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship.TargetAsset, and is useful for accessing the field via an interface.
-func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) GetTargetAsset() listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipTargetAsset {
-	return v.TargetAsset
+func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) GetTargetAsset() DefaultAssetRelationshipTargetAsset {
+	return v.DefaultAssetRelationship.TargetAsset
 }
 
 // GetRelationshipType returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) GetRelationshipType() listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipRelationshipTypeAssetRelationshipType {
-	return v.RelationshipType
+func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) GetRelationshipType() DefaultAssetRelationshipRelationshipTypeAssetRelationshipType {
+	return v.DefaultAssetRelationship.RelationshipType
 }
 
 // GetMetadata returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAssetRelationship.Metadata
 }
 
-// listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipRelationshipTypeAssetRelationshipType includes the requested fields of the GraphQL type AssetRelationshipType.
-type listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipRelationshipTypeAssetRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipRelationshipTypeAssetRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipRelationshipTypeAssetRelationshipType) GetToken() string {
-	return v.Token
+type __premarshallistAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	SourceAsset DefaultAssetRelationshipSourceAsset `json:"sourceAsset"`
+
+	TargetAsset DefaultAssetRelationshipTargetAsset `json:"targetAsset"`
+
+	RelationshipType DefaultAssetRelationshipRelationshipTypeAssetRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipRelationshipTypeAssetRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipRelationshipTypeAssetRelationshipType) GetName() string {
-	return v.Name
+func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipRelationshipTypeAssetRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipRelationshipTypeAssetRelationshipType) GetDescription() string {
-	return v.Description
-}
+func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) __premarshalJSON() (*__premarshallistAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship, error) {
+	var retval __premarshallistAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship
 
-// listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipSourceAsset includes the requested fields of the GraphQL type Asset.
-type listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipSourceAsset struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipSourceAsset.Token, and is useful for accessing the field via an interface.
-func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipSourceAsset) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipSourceAsset.Name, and is useful for accessing the field via an interface.
-func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipSourceAsset) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipSourceAsset.Description, and is useful for accessing the field via an interface.
-func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipSourceAsset) GetDescription() string {
-	return v.Description
-}
-
-// listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipTargetAsset includes the requested fields of the GraphQL type Asset.
-type listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipTargetAsset struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipTargetAsset.Token, and is useful for accessing the field via an interface.
-func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipTargetAsset) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipTargetAsset.Name, and is useful for accessing the field via an interface.
-func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipTargetAsset) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipTargetAsset.Description, and is useful for accessing the field via an interface.
-func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationshipTargetAsset) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultAssetRelationship.Id
+	retval.CreatedAt = v.DefaultAssetRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetRelationship.DeletedAt
+	retval.Token = v.DefaultAssetRelationship.Token
+	retval.SourceAsset = v.DefaultAssetRelationship.SourceAsset
+	retval.TargetAsset = v.DefaultAssetRelationship.TargetAsset
+	retval.RelationshipType = v.DefaultAssetRelationship.RelationshipType
+	retval.Metadata = v.DefaultAssetRelationship.Metadata
+	return &retval, nil
 }
 
 // listAssetRelationshipsResponse is returned by listAssetRelationships on success.
@@ -5954,102 +13075,222 @@ func (v *listAssetTypesAssetTypesAssetTypeSearchResults) GetPagination() listAss
 
 // listAssetTypesAssetTypesAssetTypeSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listAssetTypesAssetTypesAssetTypeSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listAssetTypesAssetTypesAssetTypeSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listAssetTypesAssetTypesAssetTypeSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listAssetTypesAssetTypesAssetTypeSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
-func (v *listAssetTypesAssetTypesAssetTypeSearchResultsPagination) GetPageEnd() int { return v.PageEnd }
+func (v *listAssetTypesAssetTypesAssetTypeSearchResultsPagination) GetPageEnd() int {
+	return v.DefaultPagination.PageEnd
+}
 
 // GetTotalRecords returns listAssetTypesAssetTypesAssetTypeSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listAssetTypesAssetTypesAssetTypeSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listAssetTypesAssetTypesAssetTypeSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAssetTypesAssetTypesAssetTypeSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAssetTypesAssetTypesAssetTypeSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAssetTypesAssetTypesAssetTypeSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listAssetTypesAssetTypesAssetTypeSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAssetTypesAssetTypesAssetTypeSearchResultsPagination) __premarshalJSON() (*__premarshallistAssetTypesAssetTypesAssetTypeSearchResultsPagination, error) {
+	var retval __premarshallistAssetTypesAssetTypesAssetTypeSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType includes the requested fields of the GraphQL type AssetType.
 type listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultAssetType `json:"-"`
 }
 
 // GetId returns listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType.Id, and is useful for accessing the field via an interface.
-func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) GetId() string { return v.Id }
+func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) GetId() string {
+	return v.DefaultAssetType.Id
+}
 
 // GetCreatedAt returns listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultAssetType.CreatedAt
 }
 
 // GetUpdatedAt returns listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultAssetType.UpdatedAt
 }
 
 // GetDeletedAt returns listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultAssetType.DeletedAt
 }
 
 // GetToken returns listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType.Token, and is useful for accessing the field via an interface.
 func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) GetToken() string {
-	return v.Token
+	return v.DefaultAssetType.Token
 }
 
 // GetName returns listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType.Name, and is useful for accessing the field via an interface.
 func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) GetName() string {
-	return v.Name
+	return v.DefaultAssetType.Name
 }
 
 // GetDescription returns listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType.Description, and is useful for accessing the field via an interface.
 func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) GetDescription() string {
-	return v.Description
+	return v.DefaultAssetType.Description
 }
 
 // GetImageUrl returns listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType.ImageUrl, and is useful for accessing the field via an interface.
 func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) GetImageUrl() string {
-	return v.ImageUrl
+	return v.DefaultAssetType.ImageUrl
 }
 
 // GetIcon returns listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType.Icon, and is useful for accessing the field via an interface.
 func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) GetIcon() string {
-	return v.Icon
+	return v.DefaultAssetType.Icon
 }
 
 // GetBackgroundColor returns listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultAssetType.BackgroundColor
 }
 
 // GetForegroundColor returns listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultAssetType.ForegroundColor
 }
 
 // GetBorderColor returns listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType.BorderColor, and is useful for accessing the field via an interface.
 func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) GetBorderColor() string {
-	return v.BorderColor
+	return v.DefaultAssetType.BorderColor
 }
 
 // GetMetadata returns listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType.Metadata, and is useful for accessing the field via an interface.
 func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultAssetType.Metadata
+}
+
+func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAssetType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType) __premarshalJSON() (*__premarshallistAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType, error) {
+	var retval __premarshallistAssetTypesAssetTypesAssetTypeSearchResultsResultsAssetType
+
+	retval.Id = v.DefaultAssetType.Id
+	retval.CreatedAt = v.DefaultAssetType.CreatedAt
+	retval.UpdatedAt = v.DefaultAssetType.UpdatedAt
+	retval.DeletedAt = v.DefaultAssetType.DeletedAt
+	retval.Token = v.DefaultAssetType.Token
+	retval.Name = v.DefaultAssetType.Name
+	retval.Description = v.DefaultAssetType.Description
+	retval.ImageUrl = v.DefaultAssetType.ImageUrl
+	retval.Icon = v.DefaultAssetType.Icon
+	retval.BackgroundColor = v.DefaultAssetType.BackgroundColor
+	retval.ForegroundColor = v.DefaultAssetType.ForegroundColor
+	retval.BorderColor = v.DefaultAssetType.BorderColor
+	retval.Metadata = v.DefaultAssetType.Metadata
+	return &retval, nil
 }
 
 // listAssetTypesResponse is returned by listAssetTypes on success.
@@ -6080,80 +13321,186 @@ func (v *listAssetsAssetsAssetSearchResults) GetPagination() listAssetsAssetsAss
 
 // listAssetsAssetsAssetSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listAssetsAssetsAssetSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listAssetsAssetsAssetSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
-func (v *listAssetsAssetsAssetSearchResultsPagination) GetPageStart() int { return v.PageStart }
+func (v *listAssetsAssetsAssetSearchResultsPagination) GetPageStart() int {
+	return v.DefaultPagination.PageStart
+}
 
 // GetPageEnd returns listAssetsAssetsAssetSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
-func (v *listAssetsAssetsAssetSearchResultsPagination) GetPageEnd() int { return v.PageEnd }
+func (v *listAssetsAssetsAssetSearchResultsPagination) GetPageEnd() int {
+	return v.DefaultPagination.PageEnd
+}
 
 // GetTotalRecords returns listAssetsAssetsAssetSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
-func (v *listAssetsAssetsAssetSearchResultsPagination) GetTotalRecords() int { return v.TotalRecords }
+func (v *listAssetsAssetsAssetSearchResultsPagination) GetTotalRecords() int {
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listAssetsAssetsAssetSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listAssetsAssetsAssetSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAssetsAssetsAssetSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAssetsAssetsAssetSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listAssetsAssetsAssetSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAssetsAssetsAssetSearchResultsPagination) __premarshalJSON() (*__premarshallistAssetsAssetsAssetSearchResultsPagination, error) {
+	var retval __premarshallistAssetsAssetsAssetSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
+}
 
 // listAssetsAssetsAssetSearchResultsResultsAsset includes the requested fields of the GraphQL type Asset.
 type listAssetsAssetsAssetSearchResultsResultsAsset struct {
-	Id          string                                                  `json:"id"`
-	CreatedAt   string                                                  `json:"createdAt"`
-	UpdatedAt   string                                                  `json:"updatedAt"`
-	DeletedAt   string                                                  `json:"deletedAt"`
-	Token       string                                                  `json:"token"`
-	Name        string                                                  `json:"name"`
-	Description string                                                  `json:"description"`
-	AssetType   listAssetsAssetsAssetSearchResultsResultsAssetAssetType `json:"assetType"`
-	Metadata    string                                                  `json:"metadata"`
+	DefaultAsset `json:"-"`
 }
 
 // GetId returns listAssetsAssetsAssetSearchResultsResultsAsset.Id, and is useful for accessing the field via an interface.
-func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetId() string { return v.Id }
+func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetId() string { return v.DefaultAsset.Id }
 
 // GetCreatedAt returns listAssetsAssetsAssetSearchResultsResultsAsset.CreatedAt, and is useful for accessing the field via an interface.
-func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetCreatedAt() string { return v.CreatedAt }
+func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetCreatedAt() string {
+	return v.DefaultAsset.CreatedAt
+}
 
 // GetUpdatedAt returns listAssetsAssetsAssetSearchResultsResultsAsset.UpdatedAt, and is useful for accessing the field via an interface.
-func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetUpdatedAt() string { return v.UpdatedAt }
+func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetUpdatedAt() string {
+	return v.DefaultAsset.UpdatedAt
+}
 
 // GetDeletedAt returns listAssetsAssetsAssetSearchResultsResultsAsset.DeletedAt, and is useful for accessing the field via an interface.
-func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetDeletedAt() string { return v.DeletedAt }
+func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetDeletedAt() string {
+	return v.DefaultAsset.DeletedAt
+}
 
 // GetToken returns listAssetsAssetsAssetSearchResultsResultsAsset.Token, and is useful for accessing the field via an interface.
-func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetToken() string { return v.Token }
+func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetToken() string {
+	return v.DefaultAsset.Token
+}
 
 // GetName returns listAssetsAssetsAssetSearchResultsResultsAsset.Name, and is useful for accessing the field via an interface.
-func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetName() string { return v.Name }
+func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetName() string { return v.DefaultAsset.Name }
 
 // GetDescription returns listAssetsAssetsAssetSearchResultsResultsAsset.Description, and is useful for accessing the field via an interface.
 func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetDescription() string {
-	return v.Description
+	return v.DefaultAsset.Description
 }
 
 // GetAssetType returns listAssetsAssetsAssetSearchResultsResultsAsset.AssetType, and is useful for accessing the field via an interface.
-func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetAssetType() listAssetsAssetsAssetSearchResultsResultsAssetAssetType {
-	return v.AssetType
+func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetAssetType() DefaultAssetAssetType {
+	return v.DefaultAsset.AssetType
 }
 
 // GetMetadata returns listAssetsAssetsAssetSearchResultsResultsAsset.Metadata, and is useful for accessing the field via an interface.
-func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetMetadata() string { return v.Metadata }
-
-// listAssetsAssetsAssetSearchResultsResultsAssetAssetType includes the requested fields of the GraphQL type AssetType.
-type listAssetsAssetsAssetSearchResultsResultsAssetAssetType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *listAssetsAssetsAssetSearchResultsResultsAsset) GetMetadata() string {
+	return v.DefaultAsset.Metadata
 }
 
-// GetToken returns listAssetsAssetsAssetSearchResultsResultsAssetAssetType.Token, and is useful for accessing the field via an interface.
-func (v *listAssetsAssetsAssetSearchResultsResultsAssetAssetType) GetToken() string { return v.Token }
+func (v *listAssetsAssetsAssetSearchResultsResultsAsset) UnmarshalJSON(b []byte) error {
 
-// GetName returns listAssetsAssetsAssetSearchResultsResultsAssetAssetType.Name, and is useful for accessing the field via an interface.
-func (v *listAssetsAssetsAssetSearchResultsResultsAssetAssetType) GetName() string { return v.Name }
+	if string(b) == "null" {
+		return nil
+	}
 
-// GetDescription returns listAssetsAssetsAssetSearchResultsResultsAssetAssetType.Description, and is useful for accessing the field via an interface.
-func (v *listAssetsAssetsAssetSearchResultsResultsAssetAssetType) GetDescription() string {
-	return v.Description
+	var firstPass struct {
+		*listAssetsAssetsAssetSearchResultsResultsAsset
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listAssetsAssetsAssetSearchResultsResultsAsset = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultAsset)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistAssetsAssetsAssetSearchResultsResultsAsset struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	AssetType DefaultAssetAssetType `json:"assetType"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listAssetsAssetsAssetSearchResultsResultsAsset) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listAssetsAssetsAssetSearchResultsResultsAsset) __premarshalJSON() (*__premarshallistAssetsAssetsAssetSearchResultsResultsAsset, error) {
+	var retval __premarshallistAssetsAssetsAssetSearchResultsResultsAsset
+
+	retval.Id = v.DefaultAsset.Id
+	retval.CreatedAt = v.DefaultAsset.CreatedAt
+	retval.UpdatedAt = v.DefaultAsset.UpdatedAt
+	retval.DeletedAt = v.DefaultAsset.DeletedAt
+	retval.Token = v.DefaultAsset.Token
+	retval.Name = v.DefaultAsset.Name
+	retval.Description = v.DefaultAsset.Description
+	retval.AssetType = v.DefaultAsset.AssetType
+	retval.Metadata = v.DefaultAsset.Metadata
+	return &retval, nil
 }
 
 // listAssetsResponse is returned by listAssets on success.
@@ -6182,76 +13529,182 @@ func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustome
 
 // listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination) __premarshalJSON() (*__premarshallistCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination, error) {
+	var retval __premarshallistCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType includes the requested fields of the GraphQL type CustomerGroupRelationshipType.
 type listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultCustomerGroupRelationshipType `json:"-"`
 }
 
 // GetId returns listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultCustomerGroupRelationshipType.Id
 }
 
 // GetCreatedAt returns listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultCustomerGroupRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultCustomerGroupRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultCustomerGroupRelationshipType.DeletedAt
 }
 
 // GetToken returns listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultCustomerGroupRelationshipType.Token
 }
 
 // GetName returns listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultCustomerGroupRelationshipType.Name
 }
 
 // GetDescription returns listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultCustomerGroupRelationshipType.Description
 }
 
 // GetMetadata returns listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultCustomerGroupRelationshipType.Metadata
+}
+
+func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerGroupRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType) __premarshalJSON() (*__premarshallistCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType, error) {
+	var retval __premarshallistCustomerGroupRelationshipTypesCustomerGroupRelationshipTypesCustomerGroupRelationshipTypeSearchResultsResultsCustomerGroupRelationshipType
+
+	retval.Id = v.DefaultCustomerGroupRelationshipType.Id
+	retval.CreatedAt = v.DefaultCustomerGroupRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerGroupRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerGroupRelationshipType.DeletedAt
+	retval.Token = v.DefaultCustomerGroupRelationshipType.Token
+	retval.Name = v.DefaultCustomerGroupRelationshipType.Name
+	retval.Description = v.DefaultCustomerGroupRelationshipType.Description
+	retval.Metadata = v.DefaultCustomerGroupRelationshipType.Metadata
+	return &retval, nil
 }
 
 // listCustomerGroupRelationshipTypesResponse is returned by listCustomerGroupRelationshipTypes on success.
@@ -6282,148 +13735,190 @@ func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRe
 
 // listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination) __premarshalJSON() (*__premarshallistCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination, error) {
+	var retval __premarshallistCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship includes the requested fields of the GraphQL type CustomerGroupRelationship.
 type listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship struct {
-	Id               string                                                                                                                                                                      `json:"id"`
-	CreatedAt        string                                                                                                                                                                      `json:"createdAt"`
-	UpdatedAt        string                                                                                                                                                                      `json:"updatedAt"`
-	DeletedAt        string                                                                                                                                                                      `json:"deletedAt"`
-	Token            string                                                                                                                                                                      `json:"token"`
-	CustomerGroup    listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomerGroup                                 `json:"customerGroup"`
-	Customer         listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomer                                      `json:"customer"`
-	RelationshipType listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                                                                                      `json:"metadata"`
+	DefaultCustomerGroupRelationship `json:"-"`
 }
 
 // GetId returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship.Id, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetId() string {
-	return v.Id
+	return v.DefaultCustomerGroupRelationship.Id
 }
 
 // GetCreatedAt returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultCustomerGroupRelationship.CreatedAt
 }
 
 // GetUpdatedAt returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultCustomerGroupRelationship.UpdatedAt
 }
 
 // GetDeletedAt returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultCustomerGroupRelationship.DeletedAt
 }
 
 // GetToken returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship.Token, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetToken() string {
-	return v.Token
+	return v.DefaultCustomerGroupRelationship.Token
 }
 
 // GetCustomerGroup returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship.CustomerGroup, and is useful for accessing the field via an interface.
-func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetCustomerGroup() listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomerGroup {
-	return v.CustomerGroup
+func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetCustomerGroup() DefaultCustomerGroupRelationshipCustomerGroup {
+	return v.DefaultCustomerGroupRelationship.CustomerGroup
 }
 
 // GetCustomer returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship.Customer, and is useful for accessing the field via an interface.
-func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetCustomer() listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomer {
-	return v.Customer
+func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetCustomer() DefaultCustomerGroupRelationshipCustomer {
+	return v.DefaultCustomerGroupRelationship.Customer
 }
 
 // GetRelationshipType returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetRelationshipType() listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType {
-	return v.RelationshipType
+func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetRelationshipType() DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType {
+	return v.DefaultCustomerGroupRelationship.RelationshipType
 }
 
 // GetMetadata returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultCustomerGroupRelationship.Metadata
 }
 
-// listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomer includes the requested fields of the GraphQL type Customer.
-type listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomer struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerGroupRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomer.Token, and is useful for accessing the field via an interface.
-func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomer) GetToken() string {
-	return v.Token
+type __premarshallistCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	CustomerGroup DefaultCustomerGroupRelationshipCustomerGroup `json:"customerGroup"`
+
+	Customer DefaultCustomerGroupRelationshipCustomer `json:"customer"`
+
+	RelationshipType DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomer.Name, and is useful for accessing the field via an interface.
-func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomer) GetName() string {
-	return v.Name
+func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomer.Description, and is useful for accessing the field via an interface.
-func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomer) GetDescription() string {
-	return v.Description
-}
+func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) __premarshalJSON() (*__premarshallistCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship, error) {
+	var retval __premarshallistCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship
 
-// listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomerGroup includes the requested fields of the GraphQL type CustomerGroup.
-type listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomerGroup struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomerGroup.Token, and is useful for accessing the field via an interface.
-func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomerGroup) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomerGroup.Name, and is useful for accessing the field via an interface.
-func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomerGroup) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomerGroup.Description, and is useful for accessing the field via an interface.
-func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipCustomerGroup) GetDescription() string {
-	return v.Description
-}
-
-// listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType includes the requested fields of the GraphQL type CustomerGroupRelationshipType.
-type listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultCustomerGroupRelationship.Id
+	retval.CreatedAt = v.DefaultCustomerGroupRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerGroupRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerGroupRelationship.DeletedAt
+	retval.Token = v.DefaultCustomerGroupRelationship.Token
+	retval.CustomerGroup = v.DefaultCustomerGroupRelationship.CustomerGroup
+	retval.Customer = v.DefaultCustomerGroupRelationship.Customer
+	retval.RelationshipType = v.DefaultCustomerGroupRelationship.RelationshipType
+	retval.Metadata = v.DefaultCustomerGroupRelationship.Metadata
+	return &retval, nil
 }
 
 // listCustomerGroupRelationshipsResponse is returned by listCustomerGroupRelationships on success.
@@ -6454,106 +13949,222 @@ func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResults) GetPaginati
 
 // listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination) __premarshalJSON() (*__premarshallistCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination, error) {
+	var retval __premarshallistCustomerGroupsCustomerGroupsCustomerGroupSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup includes the requested fields of the GraphQL type CustomerGroup.
 type listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultCustomerGroup `json:"-"`
 }
 
 // GetId returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup.Id, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) GetId() string {
-	return v.Id
+	return v.DefaultCustomerGroup.Id
 }
 
 // GetCreatedAt returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultCustomerGroup.CreatedAt
 }
 
 // GetUpdatedAt returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultCustomerGroup.UpdatedAt
 }
 
 // GetDeletedAt returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultCustomerGroup.DeletedAt
 }
 
 // GetToken returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup.Token, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) GetToken() string {
-	return v.Token
+	return v.DefaultCustomerGroup.Token
 }
 
 // GetName returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup.Name, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) GetName() string {
-	return v.Name
+	return v.DefaultCustomerGroup.Name
 }
 
 // GetDescription returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup.Description, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) GetDescription() string {
-	return v.Description
+	return v.DefaultCustomerGroup.Description
 }
 
 // GetImageUrl returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup.ImageUrl, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) GetImageUrl() string {
-	return v.ImageUrl
+	return v.DefaultCustomerGroup.ImageUrl
 }
 
 // GetIcon returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup.Icon, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) GetIcon() string {
-	return v.Icon
+	return v.DefaultCustomerGroup.Icon
 }
 
 // GetBackgroundColor returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultCustomerGroup.BackgroundColor
 }
 
 // GetForegroundColor returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultCustomerGroup.ForegroundColor
 }
 
 // GetBorderColor returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup.BorderColor, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) GetBorderColor() string {
-	return v.BorderColor
+	return v.DefaultCustomerGroup.BorderColor
 }
 
 // GetMetadata returns listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup.Metadata, and is useful for accessing the field via an interface.
 func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultCustomerGroup.Metadata
+}
+
+func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerGroup)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup) __premarshalJSON() (*__premarshallistCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup, error) {
+	var retval __premarshallistCustomerGroupsCustomerGroupsCustomerGroupSearchResultsResultsCustomerGroup
+
+	retval.Id = v.DefaultCustomerGroup.Id
+	retval.CreatedAt = v.DefaultCustomerGroup.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerGroup.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerGroup.DeletedAt
+	retval.Token = v.DefaultCustomerGroup.Token
+	retval.Name = v.DefaultCustomerGroup.Name
+	retval.Description = v.DefaultCustomerGroup.Description
+	retval.ImageUrl = v.DefaultCustomerGroup.ImageUrl
+	retval.Icon = v.DefaultCustomerGroup.Icon
+	retval.BackgroundColor = v.DefaultCustomerGroup.BackgroundColor
+	retval.ForegroundColor = v.DefaultCustomerGroup.ForegroundColor
+	retval.BorderColor = v.DefaultCustomerGroup.BorderColor
+	retval.Metadata = v.DefaultCustomerGroup.Metadata
+	return &retval, nil
 }
 
 // listCustomerGroupsResponse is returned by listCustomerGroups on success.
@@ -6584,76 +14195,182 @@ func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelations
 
 // listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination) __premarshalJSON() (*__premarshallistCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination, error) {
+	var retval __premarshallistCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType includes the requested fields of the GraphQL type CustomerRelationshipType.
 type listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultCustomerRelationshipType `json:"-"`
 }
 
 // GetId returns listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultCustomerRelationshipType.Id
 }
 
 // GetCreatedAt returns listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultCustomerRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultCustomerRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultCustomerRelationshipType.DeletedAt
 }
 
 // GetToken returns listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultCustomerRelationshipType.Token
 }
 
 // GetName returns listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultCustomerRelationshipType.Name
 }
 
 // GetDescription returns listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultCustomerRelationshipType.Description
 }
 
 // GetMetadata returns listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultCustomerRelationshipType.Metadata
+}
+
+func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType) __premarshalJSON() (*__premarshallistCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType, error) {
+	var retval __premarshallistCustomerRelationshipTypesCustomerRelationshipTypesCustomerRelationshipTypeSearchResultsResultsCustomerRelationshipType
+
+	retval.Id = v.DefaultCustomerRelationshipType.Id
+	retval.CreatedAt = v.DefaultCustomerRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerRelationshipType.DeletedAt
+	retval.Token = v.DefaultCustomerRelationshipType.Token
+	retval.Name = v.DefaultCustomerRelationshipType.Name
+	retval.Description = v.DefaultCustomerRelationshipType.Description
+	retval.Metadata = v.DefaultCustomerRelationshipType.Metadata
+	return &retval, nil
 }
 
 // listCustomerRelationshipTypesResponse is returned by listCustomerRelationshipTypes on success.
@@ -6684,124 +14401,190 @@ func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearc
 
 // listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination) __premarshalJSON() (*__premarshallistCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination, error) {
+	var retval __premarshallistCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship includes the requested fields of the GraphQL type CustomerRelationship.
 type listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship struct {
-	Id               string                                                                                                                                             `json:"id"`
-	SourceCustomer   listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipSourceCustomer                           `json:"sourceCustomer"`
-	TargetCustomer   listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipTargetCustomer                           `json:"targetCustomer"`
-	RelationshipType listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipRelationshipTypeCustomerRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                                                             `json:"metadata"`
+	DefaultCustomerRelationship `json:"-"`
 }
 
 // GetId returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship.Id, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) GetId() string {
-	return v.Id
+	return v.DefaultCustomerRelationship.Id
+}
+
+// GetCreatedAt returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) GetCreatedAt() string {
+	return v.DefaultCustomerRelationship.CreatedAt
+}
+
+// GetUpdatedAt returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) GetUpdatedAt() string {
+	return v.DefaultCustomerRelationship.UpdatedAt
+}
+
+// GetDeletedAt returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) GetDeletedAt() string {
+	return v.DefaultCustomerRelationship.DeletedAt
+}
+
+// GetToken returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship.Token, and is useful for accessing the field via an interface.
+func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) GetToken() string {
+	return v.DefaultCustomerRelationship.Token
 }
 
 // GetSourceCustomer returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship.SourceCustomer, and is useful for accessing the field via an interface.
-func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) GetSourceCustomer() listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipSourceCustomer {
-	return v.SourceCustomer
+func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) GetSourceCustomer() DefaultCustomerRelationshipSourceCustomer {
+	return v.DefaultCustomerRelationship.SourceCustomer
 }
 
 // GetTargetCustomer returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship.TargetCustomer, and is useful for accessing the field via an interface.
-func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) GetTargetCustomer() listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipTargetCustomer {
-	return v.TargetCustomer
+func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) GetTargetCustomer() DefaultCustomerRelationshipTargetCustomer {
+	return v.DefaultCustomerRelationship.TargetCustomer
 }
 
 // GetRelationshipType returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) GetRelationshipType() listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipRelationshipTypeCustomerRelationshipType {
-	return v.RelationshipType
+func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) GetRelationshipType() DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType {
+	return v.DefaultCustomerRelationship.RelationshipType
 }
 
 // GetMetadata returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultCustomerRelationship.Metadata
 }
 
-// listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipRelationshipTypeCustomerRelationshipType includes the requested fields of the GraphQL type CustomerRelationshipType.
-type listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipRelationshipTypeCustomerRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipRelationshipTypeCustomerRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipRelationshipTypeCustomerRelationshipType) GetToken() string {
-	return v.Token
+type __premarshallistCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	SourceCustomer DefaultCustomerRelationshipSourceCustomer `json:"sourceCustomer"`
+
+	TargetCustomer DefaultCustomerRelationshipTargetCustomer `json:"targetCustomer"`
+
+	RelationshipType DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipRelationshipTypeCustomerRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipRelationshipTypeCustomerRelationshipType) GetName() string {
-	return v.Name
+func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipRelationshipTypeCustomerRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipRelationshipTypeCustomerRelationshipType) GetDescription() string {
-	return v.Description
-}
+func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) __premarshalJSON() (*__premarshallistCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship, error) {
+	var retval __premarshallistCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship
 
-// listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipSourceCustomer includes the requested fields of the GraphQL type Customer.
-type listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipSourceCustomer struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipSourceCustomer.Token, and is useful for accessing the field via an interface.
-func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipSourceCustomer) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipSourceCustomer.Name, and is useful for accessing the field via an interface.
-func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipSourceCustomer) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipSourceCustomer.Description, and is useful for accessing the field via an interface.
-func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipSourceCustomer) GetDescription() string {
-	return v.Description
-}
-
-// listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipTargetCustomer includes the requested fields of the GraphQL type Customer.
-type listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipTargetCustomer struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipTargetCustomer.Token, and is useful for accessing the field via an interface.
-func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipTargetCustomer) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipTargetCustomer.Name, and is useful for accessing the field via an interface.
-func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipTargetCustomer) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipTargetCustomer.Description, and is useful for accessing the field via an interface.
-func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationshipTargetCustomer) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultCustomerRelationship.Id
+	retval.CreatedAt = v.DefaultCustomerRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerRelationship.DeletedAt
+	retval.Token = v.DefaultCustomerRelationship.Token
+	retval.SourceCustomer = v.DefaultCustomerRelationship.SourceCustomer
+	retval.TargetCustomer = v.DefaultCustomerRelationship.TargetCustomer
+	retval.RelationshipType = v.DefaultCustomerRelationship.RelationshipType
+	retval.Metadata = v.DefaultCustomerRelationship.Metadata
+	return &retval, nil
 }
 
 // listCustomerRelationshipsResponse is returned by listCustomerRelationships on success.
@@ -6832,106 +14615,222 @@ func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResults) GetPagination(
 
 // listCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination) __premarshalJSON() (*__premarshallistCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination, error) {
+	var retval __premarshallistCustomerTypesCustomerTypesCustomerTypeSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType includes the requested fields of the GraphQL type CustomerType.
 type listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultCustomerType `json:"-"`
 }
 
 // GetId returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType.Id, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) GetId() string {
-	return v.Id
+	return v.DefaultCustomerType.Id
 }
 
 // GetCreatedAt returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultCustomerType.CreatedAt
 }
 
 // GetUpdatedAt returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultCustomerType.UpdatedAt
 }
 
 // GetDeletedAt returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultCustomerType.DeletedAt
 }
 
 // GetToken returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType.Token, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) GetToken() string {
-	return v.Token
+	return v.DefaultCustomerType.Token
 }
 
 // GetName returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType.Name, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) GetName() string {
-	return v.Name
+	return v.DefaultCustomerType.Name
 }
 
 // GetDescription returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType.Description, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) GetDescription() string {
-	return v.Description
+	return v.DefaultCustomerType.Description
 }
 
 // GetImageUrl returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType.ImageUrl, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) GetImageUrl() string {
-	return v.ImageUrl
+	return v.DefaultCustomerType.ImageUrl
 }
 
 // GetIcon returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType.Icon, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) GetIcon() string {
-	return v.Icon
+	return v.DefaultCustomerType.Icon
 }
 
 // GetBackgroundColor returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultCustomerType.BackgroundColor
 }
 
 // GetForegroundColor returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultCustomerType.ForegroundColor
 }
 
 // GetBorderColor returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType.BorderColor, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) GetBorderColor() string {
-	return v.BorderColor
+	return v.DefaultCustomerType.BorderColor
 }
 
 // GetMetadata returns listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType.Metadata, and is useful for accessing the field via an interface.
 func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultCustomerType.Metadata
+}
+
+func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomerType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType) __premarshalJSON() (*__premarshallistCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType, error) {
+	var retval __premarshallistCustomerTypesCustomerTypesCustomerTypeSearchResultsResultsCustomerType
+
+	retval.Id = v.DefaultCustomerType.Id
+	retval.CreatedAt = v.DefaultCustomerType.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomerType.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomerType.DeletedAt
+	retval.Token = v.DefaultCustomerType.Token
+	retval.Name = v.DefaultCustomerType.Name
+	retval.Description = v.DefaultCustomerType.Description
+	retval.ImageUrl = v.DefaultCustomerType.ImageUrl
+	retval.Icon = v.DefaultCustomerType.Icon
+	retval.BackgroundColor = v.DefaultCustomerType.BackgroundColor
+	retval.ForegroundColor = v.DefaultCustomerType.ForegroundColor
+	retval.BorderColor = v.DefaultCustomerType.BorderColor
+	retval.Metadata = v.DefaultCustomerType.Metadata
+	return &retval, nil
 }
 
 // listCustomerTypesResponse is returned by listCustomerTypes on success.
@@ -6962,98 +14861,190 @@ func (v *listCustomersCustomersCustomerSearchResults) GetPagination() listCustom
 
 // listCustomersCustomersCustomerSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listCustomersCustomersCustomerSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listCustomersCustomersCustomerSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listCustomersCustomersCustomerSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listCustomersCustomersCustomerSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
-func (v *listCustomersCustomersCustomerSearchResultsPagination) GetPageEnd() int { return v.PageEnd }
+func (v *listCustomersCustomersCustomerSearchResultsPagination) GetPageEnd() int {
+	return v.DefaultPagination.PageEnd
+}
 
 // GetTotalRecords returns listCustomersCustomersCustomerSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listCustomersCustomersCustomerSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listCustomersCustomersCustomerSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listCustomersCustomersCustomerSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listCustomersCustomersCustomerSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistCustomersCustomersCustomerSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listCustomersCustomersCustomerSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listCustomersCustomersCustomerSearchResultsPagination) __premarshalJSON() (*__premarshallistCustomersCustomersCustomerSearchResultsPagination, error) {
+	var retval __premarshallistCustomersCustomersCustomerSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listCustomersCustomersCustomerSearchResultsResultsCustomer includes the requested fields of the GraphQL type Customer.
 type listCustomersCustomersCustomerSearchResultsResultsCustomer struct {
-	Id           string                                                                 `json:"id"`
-	CreatedAt    string                                                                 `json:"createdAt"`
-	UpdatedAt    string                                                                 `json:"updatedAt"`
-	DeletedAt    string                                                                 `json:"deletedAt"`
-	Token        string                                                                 `json:"token"`
-	Name         string                                                                 `json:"name"`
-	Description  string                                                                 `json:"description"`
-	CustomerType listCustomersCustomersCustomerSearchResultsResultsCustomerCustomerType `json:"customerType"`
-	Metadata     string                                                                 `json:"metadata"`
+	DefaultCustomer `json:"-"`
 }
 
 // GetId returns listCustomersCustomersCustomerSearchResultsResultsCustomer.Id, and is useful for accessing the field via an interface.
-func (v *listCustomersCustomersCustomerSearchResultsResultsCustomer) GetId() string { return v.Id }
+func (v *listCustomersCustomersCustomerSearchResultsResultsCustomer) GetId() string {
+	return v.DefaultCustomer.Id
+}
 
 // GetCreatedAt returns listCustomersCustomersCustomerSearchResultsResultsCustomer.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listCustomersCustomersCustomerSearchResultsResultsCustomer) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultCustomer.CreatedAt
 }
 
 // GetUpdatedAt returns listCustomersCustomersCustomerSearchResultsResultsCustomer.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listCustomersCustomersCustomerSearchResultsResultsCustomer) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultCustomer.UpdatedAt
 }
 
 // GetDeletedAt returns listCustomersCustomersCustomerSearchResultsResultsCustomer.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listCustomersCustomersCustomerSearchResultsResultsCustomer) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultCustomer.DeletedAt
 }
 
 // GetToken returns listCustomersCustomersCustomerSearchResultsResultsCustomer.Token, and is useful for accessing the field via an interface.
 func (v *listCustomersCustomersCustomerSearchResultsResultsCustomer) GetToken() string {
-	return v.Token
+	return v.DefaultCustomer.Token
 }
 
 // GetName returns listCustomersCustomersCustomerSearchResultsResultsCustomer.Name, and is useful for accessing the field via an interface.
-func (v *listCustomersCustomersCustomerSearchResultsResultsCustomer) GetName() string { return v.Name }
+func (v *listCustomersCustomersCustomerSearchResultsResultsCustomer) GetName() string {
+	return v.DefaultCustomer.Name
+}
 
 // GetDescription returns listCustomersCustomersCustomerSearchResultsResultsCustomer.Description, and is useful for accessing the field via an interface.
 func (v *listCustomersCustomersCustomerSearchResultsResultsCustomer) GetDescription() string {
-	return v.Description
+	return v.DefaultCustomer.Description
 }
 
 // GetCustomerType returns listCustomersCustomersCustomerSearchResultsResultsCustomer.CustomerType, and is useful for accessing the field via an interface.
-func (v *listCustomersCustomersCustomerSearchResultsResultsCustomer) GetCustomerType() listCustomersCustomersCustomerSearchResultsResultsCustomerCustomerType {
-	return v.CustomerType
+func (v *listCustomersCustomersCustomerSearchResultsResultsCustomer) GetCustomerType() DefaultCustomerCustomerType {
+	return v.DefaultCustomer.CustomerType
 }
 
 // GetMetadata returns listCustomersCustomersCustomerSearchResultsResultsCustomer.Metadata, and is useful for accessing the field via an interface.
 func (v *listCustomersCustomersCustomerSearchResultsResultsCustomer) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultCustomer.Metadata
 }
 
-// listCustomersCustomersCustomerSearchResultsResultsCustomerCustomerType includes the requested fields of the GraphQL type CustomerType.
-type listCustomersCustomersCustomerSearchResultsResultsCustomerCustomerType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
+func (v *listCustomersCustomersCustomerSearchResultsResultsCustomer) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listCustomersCustomersCustomerSearchResultsResultsCustomer
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listCustomersCustomersCustomerSearchResultsResultsCustomer = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultCustomer)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistCustomersCustomersCustomerSearchResultsResultsCustomer struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
 	Description string `json:"description"`
+
+	CustomerType DefaultCustomerCustomerType `json:"customerType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetToken returns listCustomersCustomersCustomerSearchResultsResultsCustomerCustomerType.Token, and is useful for accessing the field via an interface.
-func (v *listCustomersCustomersCustomerSearchResultsResultsCustomerCustomerType) GetToken() string {
-	return v.Token
+func (v *listCustomersCustomersCustomerSearchResultsResultsCustomer) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetName returns listCustomersCustomersCustomerSearchResultsResultsCustomerCustomerType.Name, and is useful for accessing the field via an interface.
-func (v *listCustomersCustomersCustomerSearchResultsResultsCustomerCustomerType) GetName() string {
-	return v.Name
-}
+func (v *listCustomersCustomersCustomerSearchResultsResultsCustomer) __premarshalJSON() (*__premarshallistCustomersCustomersCustomerSearchResultsResultsCustomer, error) {
+	var retval __premarshallistCustomersCustomersCustomerSearchResultsResultsCustomer
 
-// GetDescription returns listCustomersCustomersCustomerSearchResultsResultsCustomerCustomerType.Description, and is useful for accessing the field via an interface.
-func (v *listCustomersCustomersCustomerSearchResultsResultsCustomerCustomerType) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultCustomer.Id
+	retval.CreatedAt = v.DefaultCustomer.CreatedAt
+	retval.UpdatedAt = v.DefaultCustomer.UpdatedAt
+	retval.DeletedAt = v.DefaultCustomer.DeletedAt
+	retval.Token = v.DefaultCustomer.Token
+	retval.Name = v.DefaultCustomer.Name
+	retval.Description = v.DefaultCustomer.Description
+	retval.CustomerType = v.DefaultCustomer.CustomerType
+	retval.Metadata = v.DefaultCustomer.Metadata
+	return &retval, nil
 }
 
 // listCustomersResponse is returned by listCustomers on success.
@@ -7084,76 +15075,182 @@ func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroup
 
 // listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination) __premarshalJSON() (*__premarshallistDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination, error) {
+	var retval __premarshallistDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType includes the requested fields of the GraphQL type DeviceGroupRelationshipType.
 type listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultDeviceGroupRelationshipType `json:"-"`
 }
 
 // GetId returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultDeviceGroupRelationshipType.Id
 }
 
 // GetCreatedAt returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultDeviceGroupRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultDeviceGroupRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultDeviceGroupRelationshipType.DeletedAt
 }
 
 // GetToken returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultDeviceGroupRelationshipType.Token
 }
 
 // GetName returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultDeviceGroupRelationshipType.Name
 }
 
 // GetDescription returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultDeviceGroupRelationshipType.Description
 }
 
 // GetMetadata returns listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultDeviceGroupRelationshipType.Metadata
+}
+
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceGroupRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType) __premarshalJSON() (*__premarshallistDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType, error) {
+	var retval __premarshallistDeviceGroupRelationshipTypesDeviceGroupRelationshipTypesDeviceGroupRelationshipTypeSearchResultsResultsDeviceGroupRelationshipType
+
+	retval.Id = v.DefaultDeviceGroupRelationshipType.Id
+	retval.CreatedAt = v.DefaultDeviceGroupRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceGroupRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceGroupRelationshipType.DeletedAt
+	retval.Token = v.DefaultDeviceGroupRelationshipType.Token
+	retval.Name = v.DefaultDeviceGroupRelationshipType.Name
+	retval.Description = v.DefaultDeviceGroupRelationshipType.Description
+	retval.Metadata = v.DefaultDeviceGroupRelationshipType.Metadata
+	return &retval, nil
 }
 
 // listDeviceGroupRelationshipTypesResponse is returned by listDeviceGroupRelationshipTypes on success.
@@ -7184,148 +15281,190 @@ func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelation
 
 // listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination) __premarshalJSON() (*__premarshallistDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination, error) {
+	var retval __premarshallistDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship includes the requested fields of the GraphQL type DeviceGroupRelationship.
 type listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship struct {
-	Id               string                                                                                                                                                            `json:"id"`
-	CreatedAt        string                                                                                                                                                            `json:"createdAt"`
-	UpdatedAt        string                                                                                                                                                            `json:"updatedAt"`
-	DeletedAt        string                                                                                                                                                            `json:"deletedAt"`
-	Token            string                                                                                                                                                            `json:"token"`
-	DeviceGroup      listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup                                 `json:"deviceGroup"`
-	Device           listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice                                      `json:"device"`
-	RelationshipType listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                                                                            `json:"metadata"`
+	DefaultDeviceGroupRelationship `json:"-"`
 }
 
 // GetId returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.Id, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetId() string {
-	return v.Id
+	return v.DefaultDeviceGroupRelationship.Id
 }
 
 // GetCreatedAt returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultDeviceGroupRelationship.CreatedAt
 }
 
 // GetUpdatedAt returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultDeviceGroupRelationship.UpdatedAt
 }
 
 // GetDeletedAt returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultDeviceGroupRelationship.DeletedAt
 }
 
 // GetToken returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.Token, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetToken() string {
-	return v.Token
+	return v.DefaultDeviceGroupRelationship.Token
 }
 
 // GetDeviceGroup returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.DeviceGroup, and is useful for accessing the field via an interface.
-func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetDeviceGroup() listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup {
-	return v.DeviceGroup
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetDeviceGroup() DefaultDeviceGroupRelationshipDeviceGroup {
+	return v.DefaultDeviceGroupRelationship.DeviceGroup
 }
 
 // GetDevice returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.Device, and is useful for accessing the field via an interface.
-func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetDevice() listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice {
-	return v.Device
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetDevice() DefaultDeviceGroupRelationshipDevice {
+	return v.DefaultDeviceGroupRelationship.Device
 }
 
 // GetRelationshipType returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetRelationshipType() listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType {
-	return v.RelationshipType
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetRelationshipType() DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType {
+	return v.DefaultDeviceGroupRelationship.RelationshipType
 }
 
 // GetMetadata returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultDeviceGroupRelationship.Metadata
 }
 
-// listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice includes the requested fields of the GraphQL type Device.
-type listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceGroupRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice.Token, and is useful for accessing the field via an interface.
-func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice) GetToken() string {
-	return v.Token
+type __premarshallistDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	DeviceGroup DefaultDeviceGroupRelationshipDeviceGroup `json:"deviceGroup"`
+
+	Device DefaultDeviceGroupRelationshipDevice `json:"device"`
+
+	RelationshipType DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice.Name, and is useful for accessing the field via an interface.
-func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice) GetName() string {
-	return v.Name
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice.Description, and is useful for accessing the field via an interface.
-func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDevice) GetDescription() string {
-	return v.Description
-}
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) __premarshalJSON() (*__premarshallistDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship, error) {
+	var retval __premarshallistDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship
 
-// listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup includes the requested fields of the GraphQL type DeviceGroup.
-type listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup.Token, and is useful for accessing the field via an interface.
-func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup.Name, and is useful for accessing the field via an interface.
-func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup.Description, and is useful for accessing the field via an interface.
-func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipDeviceGroup) GetDescription() string {
-	return v.Description
-}
-
-// listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType includes the requested fields of the GraphQL type DeviceGroupRelationshipType.
-type listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultDeviceGroupRelationship.Id
+	retval.CreatedAt = v.DefaultDeviceGroupRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceGroupRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceGroupRelationship.DeletedAt
+	retval.Token = v.DefaultDeviceGroupRelationship.Token
+	retval.DeviceGroup = v.DefaultDeviceGroupRelationship.DeviceGroup
+	retval.Device = v.DefaultDeviceGroupRelationship.Device
+	retval.RelationshipType = v.DefaultDeviceGroupRelationship.RelationshipType
+	retval.Metadata = v.DefaultDeviceGroupRelationship.Metadata
+	return &retval, nil
 }
 
 // listDeviceGroupRelationshipsResponse is returned by listDeviceGroupRelationships on success.
@@ -7356,106 +15495,222 @@ func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResults) GetPagination() l
 
 // listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination) __premarshalJSON() (*__premarshallistDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination, error) {
+	var retval __premarshallistDeviceGroupsDeviceGroupsDeviceGroupSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup includes the requested fields of the GraphQL type DeviceGroup.
 type listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultDeviceGroup `json:"-"`
 }
 
 // GetId returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.Id, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetId() string {
-	return v.Id
+	return v.DefaultDeviceGroup.Id
 }
 
 // GetCreatedAt returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultDeviceGroup.CreatedAt
 }
 
 // GetUpdatedAt returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultDeviceGroup.UpdatedAt
 }
 
 // GetDeletedAt returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultDeviceGroup.DeletedAt
 }
 
 // GetToken returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.Token, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetToken() string {
-	return v.Token
+	return v.DefaultDeviceGroup.Token
 }
 
 // GetName returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.Name, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetName() string {
-	return v.Name
+	return v.DefaultDeviceGroup.Name
 }
 
 // GetDescription returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.Description, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetDescription() string {
-	return v.Description
+	return v.DefaultDeviceGroup.Description
 }
 
 // GetImageUrl returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.ImageUrl, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetImageUrl() string {
-	return v.ImageUrl
+	return v.DefaultDeviceGroup.ImageUrl
 }
 
 // GetIcon returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.Icon, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetIcon() string {
-	return v.Icon
+	return v.DefaultDeviceGroup.Icon
 }
 
 // GetBackgroundColor returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultDeviceGroup.BackgroundColor
 }
 
 // GetForegroundColor returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultDeviceGroup.ForegroundColor
 }
 
 // GetBorderColor returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.BorderColor, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetBorderColor() string {
-	return v.BorderColor
+	return v.DefaultDeviceGroup.BorderColor
 }
 
 // GetMetadata returns listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup.Metadata, and is useful for accessing the field via an interface.
 func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultDeviceGroup.Metadata
+}
+
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceGroup)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup) __premarshalJSON() (*__premarshallistDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup, error) {
+	var retval __premarshallistDeviceGroupsDeviceGroupsDeviceGroupSearchResultsResultsDeviceGroup
+
+	retval.Id = v.DefaultDeviceGroup.Id
+	retval.CreatedAt = v.DefaultDeviceGroup.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceGroup.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceGroup.DeletedAt
+	retval.Token = v.DefaultDeviceGroup.Token
+	retval.Name = v.DefaultDeviceGroup.Name
+	retval.Description = v.DefaultDeviceGroup.Description
+	retval.ImageUrl = v.DefaultDeviceGroup.ImageUrl
+	retval.Icon = v.DefaultDeviceGroup.Icon
+	retval.BackgroundColor = v.DefaultDeviceGroup.BackgroundColor
+	retval.ForegroundColor = v.DefaultDeviceGroup.ForegroundColor
+	retval.BorderColor = v.DefaultDeviceGroup.BorderColor
+	retval.Metadata = v.DefaultDeviceGroup.Metadata
+	return &retval, nil
 }
 
 // listDeviceGroupsResponse is returned by listDeviceGroups on success.
@@ -7486,76 +15741,182 @@ func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTyp
 
 // listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination) __premarshalJSON() (*__premarshallistDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination, error) {
+	var retval __premarshallistDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType includes the requested fields of the GraphQL type DeviceRelationshipType.
 type listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType struct {
-	Id          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-	DeletedAt   string `json:"deletedAt"`
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Metadata    string `json:"metadata"`
+	DefaultDeviceRelationshipType `json:"-"`
 }
 
 // GetId returns listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType.Id, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType) GetId() string {
-	return v.Id
+	return v.DefaultDeviceRelationshipType.Id
 }
 
 // GetCreatedAt returns listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultDeviceRelationshipType.CreatedAt
 }
 
 // GetUpdatedAt returns listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultDeviceRelationshipType.UpdatedAt
 }
 
 // GetDeletedAt returns listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultDeviceRelationshipType.DeletedAt
 }
 
 // GetToken returns listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType.Token, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType) GetToken() string {
-	return v.Token
+	return v.DefaultDeviceRelationshipType.Token
 }
 
 // GetName returns listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType.Name, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType) GetName() string {
-	return v.Name
+	return v.DefaultDeviceRelationshipType.Name
 }
 
 // GetDescription returns listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType) GetDescription() string {
-	return v.Description
+	return v.DefaultDeviceRelationshipType.Description
 }
 
 // GetMetadata returns listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultDeviceRelationshipType.Metadata
+}
+
+func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceRelationshipType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType) __premarshalJSON() (*__premarshallistDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType, error) {
+	var retval __premarshallistDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType
+
+	retval.Id = v.DefaultDeviceRelationshipType.Id
+	retval.CreatedAt = v.DefaultDeviceRelationshipType.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceRelationshipType.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceRelationshipType.DeletedAt
+	retval.Token = v.DefaultDeviceRelationshipType.Token
+	retval.Name = v.DefaultDeviceRelationshipType.Name
+	retval.Description = v.DefaultDeviceRelationshipType.Description
+	retval.Metadata = v.DefaultDeviceRelationshipType.Metadata
+	return &retval, nil
 }
 
 // listDeviceRelationshipTypesResponse is returned by listDeviceRelationshipTypes on success.
@@ -7586,124 +15947,190 @@ func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResul
 
 // listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination) __premarshalJSON() (*__premarshallistDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination, error) {
+	var retval __premarshallistDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship includes the requested fields of the GraphQL type DeviceRelationship.
 type listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship struct {
-	Id               string                                                                                                                                   `json:"id"`
-	SourceDevice     listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipSourceDevice                           `json:"sourceDevice"`
-	TargetDevice     listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipTargetDevice                           `json:"targetDevice"`
-	RelationshipType listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipRelationshipTypeDeviceRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                                                                                   `json:"metadata"`
+	DefaultDeviceRelationship `json:"-"`
 }
 
 // GetId returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship.Id, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) GetId() string {
-	return v.Id
+	return v.DefaultDeviceRelationship.Id
+}
+
+// GetCreatedAt returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship.CreatedAt, and is useful for accessing the field via an interface.
+func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) GetCreatedAt() string {
+	return v.DefaultDeviceRelationship.CreatedAt
+}
+
+// GetUpdatedAt returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship.UpdatedAt, and is useful for accessing the field via an interface.
+func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) GetUpdatedAt() string {
+	return v.DefaultDeviceRelationship.UpdatedAt
+}
+
+// GetDeletedAt returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship.DeletedAt, and is useful for accessing the field via an interface.
+func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) GetDeletedAt() string {
+	return v.DefaultDeviceRelationship.DeletedAt
+}
+
+// GetToken returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship.Token, and is useful for accessing the field via an interface.
+func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) GetToken() string {
+	return v.DefaultDeviceRelationship.Token
 }
 
 // GetSourceDevice returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship.SourceDevice, and is useful for accessing the field via an interface.
-func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) GetSourceDevice() listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipSourceDevice {
-	return v.SourceDevice
+func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) GetSourceDevice() DefaultDeviceRelationshipSourceDevice {
+	return v.DefaultDeviceRelationship.SourceDevice
 }
 
 // GetTargetDevice returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship.TargetDevice, and is useful for accessing the field via an interface.
-func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) GetTargetDevice() listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipTargetDevice {
-	return v.TargetDevice
+func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) GetTargetDevice() DefaultDeviceRelationshipTargetDevice {
+	return v.DefaultDeviceRelationship.TargetDevice
 }
 
 // GetRelationshipType returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship.RelationshipType, and is useful for accessing the field via an interface.
-func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) GetRelationshipType() listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipRelationshipTypeDeviceRelationshipType {
-	return v.RelationshipType
+func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) GetRelationshipType() DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType {
+	return v.DefaultDeviceRelationship.RelationshipType
 }
 
 // GetMetadata returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultDeviceRelationship.Metadata
 }
 
-// listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipRelationshipTypeDeviceRelationshipType includes the requested fields of the GraphQL type DeviceRelationshipType.
-type listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipRelationshipTypeDeviceRelationshipType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceRelationship)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-// GetToken returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipRelationshipTypeDeviceRelationshipType.Token, and is useful for accessing the field via an interface.
-func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipRelationshipTypeDeviceRelationshipType) GetToken() string {
-	return v.Token
+type __premarshallistDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	SourceDevice DefaultDeviceRelationshipSourceDevice `json:"sourceDevice"`
+
+	TargetDevice DefaultDeviceRelationshipTargetDevice `json:"targetDevice"`
+
+	RelationshipType DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType `json:"relationshipType"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetName returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipRelationshipTypeDeviceRelationshipType.Name, and is useful for accessing the field via an interface.
-func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipRelationshipTypeDeviceRelationshipType) GetName() string {
-	return v.Name
+func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetDescription returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipRelationshipTypeDeviceRelationshipType.Description, and is useful for accessing the field via an interface.
-func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipRelationshipTypeDeviceRelationshipType) GetDescription() string {
-	return v.Description
-}
+func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) __premarshalJSON() (*__premarshallistDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship, error) {
+	var retval __premarshallistDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship
 
-// listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipSourceDevice includes the requested fields of the GraphQL type Device.
-type listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipSourceDevice struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipSourceDevice.Token, and is useful for accessing the field via an interface.
-func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipSourceDevice) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipSourceDevice.Name, and is useful for accessing the field via an interface.
-func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipSourceDevice) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipSourceDevice.Description, and is useful for accessing the field via an interface.
-func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipSourceDevice) GetDescription() string {
-	return v.Description
-}
-
-// listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipTargetDevice includes the requested fields of the GraphQL type Device.
-type listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipTargetDevice struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipTargetDevice.Token, and is useful for accessing the field via an interface.
-func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipTargetDevice) GetToken() string {
-	return v.Token
-}
-
-// GetName returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipTargetDevice.Name, and is useful for accessing the field via an interface.
-func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipTargetDevice) GetName() string {
-	return v.Name
-}
-
-// GetDescription returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipTargetDevice.Description, and is useful for accessing the field via an interface.
-func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationshipTargetDevice) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultDeviceRelationship.Id
+	retval.CreatedAt = v.DefaultDeviceRelationship.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceRelationship.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceRelationship.DeletedAt
+	retval.Token = v.DefaultDeviceRelationship.Token
+	retval.SourceDevice = v.DefaultDeviceRelationship.SourceDevice
+	retval.TargetDevice = v.DefaultDeviceRelationship.TargetDevice
+	retval.RelationshipType = v.DefaultDeviceRelationship.RelationshipType
+	retval.Metadata = v.DefaultDeviceRelationship.Metadata
+	return &retval, nil
 }
 
 // listDeviceRelationshipsResponse is returned by listDeviceRelationships on success.
@@ -7734,106 +16161,222 @@ func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResults) GetPagination() list
 
 // listDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination) GetPageStart() int {
-	return v.PageStart
+	return v.DefaultPagination.PageStart
 }
 
 // GetPageEnd returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination) GetPageEnd() int {
-	return v.PageEnd
+	return v.DefaultPagination.PageEnd
 }
 
 // GetTotalRecords returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination) __premarshalJSON() (*__premarshallistDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination, error) {
+	var retval __premarshallistDeviceTypesDeviceTypesDeviceTypeSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType includes the requested fields of the GraphQL type DeviceType.
 type listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType struct {
-	Id              string `json:"id"`
-	CreatedAt       string `json:"createdAt"`
-	UpdatedAt       string `json:"updatedAt"`
-	DeletedAt       string `json:"deletedAt"`
-	Token           string `json:"token"`
-	Name            string `json:"name"`
-	Description     string `json:"description"`
-	ImageUrl        string `json:"imageUrl"`
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
-	ForegroundColor string `json:"foregroundColor"`
-	BorderColor     string `json:"borderColor"`
-	Metadata        string `json:"metadata"`
+	DefaultDeviceType `json:"-"`
 }
 
 // GetId returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType.Id, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) GetId() string {
-	return v.Id
+	return v.DefaultDeviceType.Id
 }
 
 // GetCreatedAt returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultDeviceType.CreatedAt
 }
 
 // GetUpdatedAt returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultDeviceType.UpdatedAt
 }
 
 // GetDeletedAt returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultDeviceType.DeletedAt
 }
 
 // GetToken returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType.Token, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) GetToken() string {
-	return v.Token
+	return v.DefaultDeviceType.Token
 }
 
 // GetName returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType.Name, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) GetName() string {
-	return v.Name
+	return v.DefaultDeviceType.Name
 }
 
 // GetDescription returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType.Description, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) GetDescription() string {
-	return v.Description
+	return v.DefaultDeviceType.Description
 }
 
 // GetImageUrl returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType.ImageUrl, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) GetImageUrl() string {
-	return v.ImageUrl
+	return v.DefaultDeviceType.ImageUrl
 }
 
 // GetIcon returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType.Icon, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) GetIcon() string {
-	return v.Icon
+	return v.DefaultDeviceType.Icon
 }
 
 // GetBackgroundColor returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType.BackgroundColor, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) GetBackgroundColor() string {
-	return v.BackgroundColor
+	return v.DefaultDeviceType.BackgroundColor
 }
 
 // GetForegroundColor returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType.ForegroundColor, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) GetForegroundColor() string {
-	return v.ForegroundColor
+	return v.DefaultDeviceType.ForegroundColor
 }
 
 // GetBorderColor returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType.BorderColor, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) GetBorderColor() string {
-	return v.BorderColor
+	return v.DefaultDeviceType.BorderColor
 }
 
 // GetMetadata returns listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType.Metadata, and is useful for accessing the field via an interface.
 func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) GetMetadata() string {
-	return v.Metadata
+	return v.DefaultDeviceType.Metadata
+}
+
+func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDeviceType)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
+	Token string `json:"token"`
+
+	Name string `json:"name"`
+
+	Description string `json:"description"`
+
+	ImageUrl string `json:"imageUrl"`
+
+	Icon string `json:"icon"`
+
+	BackgroundColor string `json:"backgroundColor"`
+
+	ForegroundColor string `json:"foregroundColor"`
+
+	BorderColor string `json:"borderColor"`
+
+	Metadata string `json:"metadata"`
+}
+
+func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType) __premarshalJSON() (*__premarshallistDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType, error) {
+	var retval __premarshallistDeviceTypesDeviceTypesDeviceTypeSearchResultsResultsDeviceType
+
+	retval.Id = v.DefaultDeviceType.Id
+	retval.CreatedAt = v.DefaultDeviceType.CreatedAt
+	retval.UpdatedAt = v.DefaultDeviceType.UpdatedAt
+	retval.DeletedAt = v.DefaultDeviceType.DeletedAt
+	retval.Token = v.DefaultDeviceType.Token
+	retval.Name = v.DefaultDeviceType.Name
+	retval.Description = v.DefaultDeviceType.Description
+	retval.ImageUrl = v.DefaultDeviceType.ImageUrl
+	retval.Icon = v.DefaultDeviceType.Icon
+	retval.BackgroundColor = v.DefaultDeviceType.BackgroundColor
+	retval.ForegroundColor = v.DefaultDeviceType.ForegroundColor
+	retval.BorderColor = v.DefaultDeviceType.BorderColor
+	retval.Metadata = v.DefaultDeviceType.Metadata
+	return &retval, nil
 }
 
 // listDeviceTypesResponse is returned by listDeviceTypes on success.
@@ -7864,108 +16407,198 @@ func (v *listDevicesDevicesDeviceSearchResults) GetPagination() listDevicesDevic
 
 // listDevicesDevicesDeviceSearchResultsPagination includes the requested fields of the GraphQL type SearchResultsPagination.
 type listDevicesDevicesDeviceSearchResultsPagination struct {
-	PageStart    int `json:"pageStart"`
-	PageEnd      int `json:"pageEnd"`
-	TotalRecords int `json:"totalRecords"`
+	DefaultPagination `json:"-"`
 }
 
 // GetPageStart returns listDevicesDevicesDeviceSearchResultsPagination.PageStart, and is useful for accessing the field via an interface.
-func (v *listDevicesDevicesDeviceSearchResultsPagination) GetPageStart() int { return v.PageStart }
+func (v *listDevicesDevicesDeviceSearchResultsPagination) GetPageStart() int {
+	return v.DefaultPagination.PageStart
+}
 
 // GetPageEnd returns listDevicesDevicesDeviceSearchResultsPagination.PageEnd, and is useful for accessing the field via an interface.
-func (v *listDevicesDevicesDeviceSearchResultsPagination) GetPageEnd() int { return v.PageEnd }
+func (v *listDevicesDevicesDeviceSearchResultsPagination) GetPageEnd() int {
+	return v.DefaultPagination.PageEnd
+}
 
 // GetTotalRecords returns listDevicesDevicesDeviceSearchResultsPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *listDevicesDevicesDeviceSearchResultsPagination) GetTotalRecords() int {
-	return v.TotalRecords
+	return v.DefaultPagination.TotalRecords
+}
+
+func (v *listDevicesDevicesDeviceSearchResultsPagination) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listDevicesDevicesDeviceSearchResultsPagination
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listDevicesDevicesDeviceSearchResultsPagination = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultPagination)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistDevicesDevicesDeviceSearchResultsPagination struct {
+	PageStart int `json:"pageStart"`
+
+	PageEnd int `json:"pageEnd"`
+
+	TotalRecords int `json:"totalRecords"`
+}
+
+func (v *listDevicesDevicesDeviceSearchResultsPagination) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *listDevicesDevicesDeviceSearchResultsPagination) __premarshalJSON() (*__premarshallistDevicesDevicesDeviceSearchResultsPagination, error) {
+	var retval __premarshallistDevicesDevicesDeviceSearchResultsPagination
+
+	retval.PageStart = v.DefaultPagination.PageStart
+	retval.PageEnd = v.DefaultPagination.PageEnd
+	retval.TotalRecords = v.DefaultPagination.TotalRecords
+	return &retval, nil
 }
 
 // listDevicesDevicesDeviceSearchResultsResultsDevice includes the requested fields of the GraphQL type Device.
 type listDevicesDevicesDeviceSearchResultsResultsDevice struct {
-	Id                string                                                                                `json:"id"`
-	CreatedAt         string                                                                                `json:"createdAt"`
-	UpdatedAt         string                                                                                `json:"updatedAt"`
-	DeletedAt         string                                                                                `json:"deletedAt"`
-	Token             string                                                                                `json:"token"`
-	Name              string                                                                                `json:"name"`
-	Description       string                                                                                `json:"description"`
-	DeviceType        listDevicesDevicesDeviceSearchResultsResultsDeviceDeviceType                          `json:"deviceType"`
-	ActiveAssignments []listDevicesDevicesDeviceSearchResultsResultsDeviceActiveAssignmentsDeviceAssignment `json:"activeAssignments"`
-	Metadata          string                                                                                `json:"metadata"`
+	DefaultDevice `json:"-"`
 }
 
 // GetId returns listDevicesDevicesDeviceSearchResultsResultsDevice.Id, and is useful for accessing the field via an interface.
-func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetId() string { return v.Id }
+func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetId() string {
+	return v.DefaultDevice.Id
+}
 
 // GetCreatedAt returns listDevicesDevicesDeviceSearchResultsResultsDevice.CreatedAt, and is useful for accessing the field via an interface.
 func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetCreatedAt() string {
-	return v.CreatedAt
+	return v.DefaultDevice.CreatedAt
 }
 
 // GetUpdatedAt returns listDevicesDevicesDeviceSearchResultsResultsDevice.UpdatedAt, and is useful for accessing the field via an interface.
 func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetUpdatedAt() string {
-	return v.UpdatedAt
+	return v.DefaultDevice.UpdatedAt
 }
 
 // GetDeletedAt returns listDevicesDevicesDeviceSearchResultsResultsDevice.DeletedAt, and is useful for accessing the field via an interface.
 func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetDeletedAt() string {
-	return v.DeletedAt
+	return v.DefaultDevice.DeletedAt
 }
 
 // GetToken returns listDevicesDevicesDeviceSearchResultsResultsDevice.Token, and is useful for accessing the field via an interface.
-func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetToken() string { return v.Token }
+func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetToken() string {
+	return v.DefaultDevice.Token
+}
 
 // GetName returns listDevicesDevicesDeviceSearchResultsResultsDevice.Name, and is useful for accessing the field via an interface.
-func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetName() string { return v.Name }
+func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetName() string {
+	return v.DefaultDevice.Name
+}
 
 // GetDescription returns listDevicesDevicesDeviceSearchResultsResultsDevice.Description, and is useful for accessing the field via an interface.
 func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetDescription() string {
-	return v.Description
+	return v.DefaultDevice.Description
 }
 
 // GetDeviceType returns listDevicesDevicesDeviceSearchResultsResultsDevice.DeviceType, and is useful for accessing the field via an interface.
-func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetDeviceType() listDevicesDevicesDeviceSearchResultsResultsDeviceDeviceType {
-	return v.DeviceType
+func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetDeviceType() DefaultDeviceDeviceType {
+	return v.DefaultDevice.DeviceType
 }
 
 // GetActiveAssignments returns listDevicesDevicesDeviceSearchResultsResultsDevice.ActiveAssignments, and is useful for accessing the field via an interface.
-func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetActiveAssignments() []listDevicesDevicesDeviceSearchResultsResultsDeviceActiveAssignmentsDeviceAssignment {
-	return v.ActiveAssignments
+func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetActiveAssignments() []DefaultDeviceActiveAssignmentsDeviceAssignment {
+	return v.DefaultDevice.ActiveAssignments
 }
 
 // GetMetadata returns listDevicesDevicesDeviceSearchResultsResultsDevice.Metadata, and is useful for accessing the field via an interface.
-func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetMetadata() string { return v.Metadata }
+func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetMetadata() string {
+	return v.DefaultDevice.Metadata
+}
 
-// listDevicesDevicesDeviceSearchResultsResultsDeviceActiveAssignmentsDeviceAssignment includes the requested fields of the GraphQL type DeviceAssignment.
-type listDevicesDevicesDeviceSearchResultsResultsDeviceActiveAssignmentsDeviceAssignment struct {
+func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*listDevicesDevicesDeviceSearchResultsResultsDevice
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.listDevicesDevicesDeviceSearchResultsResultsDevice = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultDevice)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshallistDevicesDevicesDeviceSearchResultsResultsDevice struct {
+	Id string `json:"id"`
+
+	CreatedAt string `json:"createdAt"`
+
+	UpdatedAt string `json:"updatedAt"`
+
+	DeletedAt string `json:"deletedAt"`
+
 	Token string `json:"token"`
-}
 
-// GetToken returns listDevicesDevicesDeviceSearchResultsResultsDeviceActiveAssignmentsDeviceAssignment.Token, and is useful for accessing the field via an interface.
-func (v *listDevicesDevicesDeviceSearchResultsResultsDeviceActiveAssignmentsDeviceAssignment) GetToken() string {
-	return v.Token
-}
+	Name string `json:"name"`
 
-// listDevicesDevicesDeviceSearchResultsResultsDeviceDeviceType includes the requested fields of the GraphQL type DeviceType.
-type listDevicesDevicesDeviceSearchResultsResultsDeviceDeviceType struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
 	Description string `json:"description"`
+
+	DeviceType DefaultDeviceDeviceType `json:"deviceType"`
+
+	ActiveAssignments []DefaultDeviceActiveAssignmentsDeviceAssignment `json:"activeAssignments"`
+
+	Metadata string `json:"metadata"`
 }
 
-// GetToken returns listDevicesDevicesDeviceSearchResultsResultsDeviceDeviceType.Token, and is useful for accessing the field via an interface.
-func (v *listDevicesDevicesDeviceSearchResultsResultsDeviceDeviceType) GetToken() string {
-	return v.Token
+func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
 }
 
-// GetName returns listDevicesDevicesDeviceSearchResultsResultsDeviceDeviceType.Name, and is useful for accessing the field via an interface.
-func (v *listDevicesDevicesDeviceSearchResultsResultsDeviceDeviceType) GetName() string {
-	return v.Name
-}
+func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) __premarshalJSON() (*__premarshallistDevicesDevicesDeviceSearchResultsResultsDevice, error) {
+	var retval __premarshallistDevicesDevicesDeviceSearchResultsResultsDevice
 
-// GetDescription returns listDevicesDevicesDeviceSearchResultsResultsDeviceDeviceType.Description, and is useful for accessing the field via an interface.
-func (v *listDevicesDevicesDeviceSearchResultsResultsDeviceDeviceType) GetDescription() string {
-	return v.Description
+	retval.Id = v.DefaultDevice.Id
+	retval.CreatedAt = v.DefaultDevice.CreatedAt
+	retval.UpdatedAt = v.DefaultDevice.UpdatedAt
+	retval.DeletedAt = v.DefaultDevice.DeletedAt
+	retval.Token = v.DefaultDevice.Token
+	retval.Name = v.DefaultDevice.Name
+	retval.Description = v.DefaultDevice.Description
+	retval.DeviceType = v.DefaultDevice.DeviceType
+	retval.ActiveAssignments = v.DefaultDevice.ActiveAssignments
+	retval.Metadata = v.DefaultDevice.Metadata
+	return &retval, nil
 }
 
 // listDevicesResponse is returned by listDevices on success.
@@ -8002,9 +16635,23 @@ func createArea(
 		`
 mutation createArea ($token: String!, $areaTypeToken: String!, $name: String, $description: String, $metadata: String) {
 	createArea(request: {token:$token,areaTypeToken:$areaTypeToken,name:$name,description:$description,metadata:$metadata}) {
-		id
-		token
+		... DefaultArea
 	}
+}
+fragment DefaultArea on Area {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	areaType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -8047,9 +16694,23 @@ func createAreaGroup(
 		`
 mutation createAreaGroup ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createAreaGroup(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
-		id
-		token
+		... DefaultAreaGroup
 	}
+}
+fragment DefaultAreaGroup on AreaGroup {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -8082,9 +16743,31 @@ func createAreaGroupRelationship(
 		`
 mutation createAreaGroupRelationship ($token: String!, $areaGroup: String!, $area: String!, $relationshipType: String!) {
 	createAreaGroupRelationship(request: {token:$token,areaGroup:$areaGroup,area:$area,relationshipType:$relationshipType}) {
-		id
-		token
+		... DefaultAreaGroupRelationship
 	}
+}
+fragment DefaultAreaGroupRelationship on AreaGroupRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	areaGroup {
+		token
+		name
+		description
+	}
+	area {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -8117,9 +16800,18 @@ func createAreaGroupRelationshipType(
 		`
 mutation createAreaGroupRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createAreaGroupRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
-		id
-		token
+		... DefaultAreaGroupRelationshipType
 	}
+}
+fragment DefaultAreaGroupRelationshipType on AreaGroupRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -8152,9 +16844,31 @@ func createAreaRelationship(
 		`
 mutation createAreaRelationship ($token: String!, $sourceArea: String!, $targetArea: String!, $relationshipType: String!) {
 	createAreaRelationship(request: {token:$token,sourceArea:$sourceArea,targetArea:$targetArea,relationshipType:$relationshipType}) {
-		id
-		token
+		... DefaultAreaRelationship
 	}
+}
+fragment DefaultAreaRelationship on AreaRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	sourceArea {
+		token
+		name
+		description
+	}
+	targetArea {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -8187,9 +16901,18 @@ func createAreaRelationshipType(
 		`
 mutation createAreaRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createAreaRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
-		id
-		token
+		... DefaultAreaRelationshipType
 	}
+}
+fragment DefaultAreaRelationshipType on AreaRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -8232,9 +16955,23 @@ func createAreaType(
 		`
 mutation createAreaType ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createAreaType(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
-		id
-		token
+		... DefaultAreaType
 	}
+}
+fragment DefaultAreaType on AreaType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -8269,9 +17006,23 @@ func createAsset(
 		`
 mutation createAsset ($token: String!, $assetTypeToken: String!, $name: String, $description: String, $metadata: String) {
 	createAsset(request: {token:$token,assetTypeToken:$assetTypeToken,name:$name,description:$description,metadata:$metadata}) {
-		id
-		token
+		... DefaultAsset
 	}
+}
+fragment DefaultAsset on Asset {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	assetType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -8314,9 +17065,23 @@ func createAssetGroup(
 		`
 mutation createAssetGroup ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createAssetGroup(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
-		id
-		token
+		... DefaultAssetGroup
 	}
+}
+fragment DefaultAssetGroup on AssetGroup {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -8349,9 +17114,31 @@ func createAssetGroupRelationship(
 		`
 mutation createAssetGroupRelationship ($token: String!, $assetGroup: String!, $asset: String!, $relationshipType: String!) {
 	createAssetGroupRelationship(request: {token:$token,assetGroup:$assetGroup,asset:$asset,relationshipType:$relationshipType}) {
-		id
-		token
+		... DefaultAssetGroupRelationship
 	}
+}
+fragment DefaultAssetGroupRelationship on AssetGroupRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	assetGroup {
+		token
+		name
+		description
+	}
+	asset {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -8384,9 +17171,18 @@ func createAssetGroupRelationshipType(
 		`
 mutation createAssetGroupRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createAssetGroupRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
-		id
-		token
+		... DefaultAssetGroupRelationshipType
 	}
+}
+fragment DefaultAssetGroupRelationshipType on AssetGroupRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -8419,9 +17215,31 @@ func createAssetRelationship(
 		`
 mutation createAssetRelationship ($token: String!, $sourceAsset: String!, $targetAsset: String!, $relationshipType: String!) {
 	createAssetRelationship(request: {token:$token,sourceAsset:$sourceAsset,targetAsset:$targetAsset,relationshipType:$relationshipType}) {
-		id
-		token
+		... DefaultAssetRelationship
 	}
+}
+fragment DefaultAssetRelationship on AssetRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	sourceAsset {
+		token
+		name
+		description
+	}
+	targetAsset {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -8454,9 +17272,18 @@ func createAssetRelationshipType(
 		`
 mutation createAssetRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createAssetRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
-		id
-		token
+		... DefaultAssetRelationshipType
 	}
+}
+fragment DefaultAssetRelationshipType on AssetRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -8499,9 +17326,23 @@ func createAssetType(
 		`
 mutation createAssetType ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createAssetType(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
-		id
-		token
+		... DefaultAssetType
 	}
+}
+fragment DefaultAssetType on AssetType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -8536,9 +17377,23 @@ func createCustomer(
 		`
 mutation createCustomer ($token: String!, $customerTypeToken: String!, $name: String, $description: String, $metadata: String) {
 	createCustomer(request: {token:$token,customerTypeToken:$customerTypeToken,name:$name,description:$description,metadata:$metadata}) {
-		id
-		token
+		... DefaultCustomer
 	}
+}
+fragment DefaultCustomer on Customer {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	customerType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -8581,9 +17436,23 @@ func createCustomerGroup(
 		`
 mutation createCustomerGroup ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createCustomerGroup(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
-		id
-		token
+		... DefaultCustomerGroup
 	}
+}
+fragment DefaultCustomerGroup on CustomerGroup {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -8616,9 +17485,31 @@ func createCustomerGroupRelationship(
 		`
 mutation createCustomerGroupRelationship ($token: String!, $customerGroup: String!, $customer: String!, $relationshipType: String!) {
 	createCustomerGroupRelationship(request: {token:$token,customerGroup:$customerGroup,customer:$customer,relationshipType:$relationshipType}) {
-		id
-		token
+		... DefaultCustomerGroupRelationship
 	}
+}
+fragment DefaultCustomerGroupRelationship on CustomerGroupRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	customerGroup {
+		token
+		name
+		description
+	}
+	customer {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -8651,9 +17542,18 @@ func createCustomerGroupRelationshipType(
 		`
 mutation createCustomerGroupRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createCustomerGroupRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
-		id
-		token
+		... DefaultCustomerGroupRelationshipType
 	}
+}
+fragment DefaultCustomerGroupRelationshipType on CustomerGroupRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -8686,9 +17586,31 @@ func createCustomerRelationship(
 		`
 mutation createCustomerRelationship ($token: String!, $sourceCustomer: String!, $targetCustomer: String!, $relationshipType: String!) {
 	createCustomerRelationship(request: {token:$token,sourceCustomer:$sourceCustomer,targetCustomer:$targetCustomer,relationshipType:$relationshipType}) {
-		id
-		token
+		... DefaultCustomerRelationship
 	}
+}
+fragment DefaultCustomerRelationship on CustomerRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	sourceCustomer {
+		token
+		name
+		description
+	}
+	targetCustomer {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -8721,9 +17643,18 @@ func createCustomerRelationshipType(
 		`
 mutation createCustomerRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createCustomerRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
-		id
-		token
+		... DefaultCustomerRelationshipType
 	}
+}
+fragment DefaultCustomerRelationshipType on CustomerRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -8766,9 +17697,23 @@ func createCustomerType(
 		`
 mutation createCustomerType ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createCustomerType(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
-		id
-		token
+		... DefaultCustomerType
 	}
+}
+fragment DefaultCustomerType on CustomerType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -8803,9 +17748,26 @@ func createDevice(
 		`
 mutation createDevice ($token: String!, $deviceTypeToken: String!, $name: String, $description: String, $metadata: String) {
 	createDevice(request: {token:$token,deviceTypeToken:$deviceTypeToken,name:$name,description:$description,metadata:$metadata}) {
-		id
+		... DefaultDevice
+	}
+}
+fragment DefaultDevice on Device {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	deviceType {
+		token
+		name
+		description
+	}
+	activeAssignments {
 		token
 	}
+	metadata
 }
 `,
 		&retval,
@@ -8848,9 +17810,23 @@ func createDeviceGroup(
 		`
 mutation createDeviceGroup ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createDeviceGroup(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
-		id
-		token
+		... DefaultDeviceGroup
 	}
+}
+fragment DefaultDeviceGroup on DeviceGroup {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -8883,9 +17859,31 @@ func createDeviceGroupRelationship(
 		`
 mutation createDeviceGroupRelationship ($token: String!, $deviceGroup: String!, $device: String!, $relationshipType: String!) {
 	createDeviceGroupRelationship(request: {token:$token,deviceGroup:$deviceGroup,device:$device,relationshipType:$relationshipType}) {
-		id
-		token
+		... DefaultDeviceGroupRelationship
 	}
+}
+fragment DefaultDeviceGroupRelationship on DeviceGroupRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	deviceGroup {
+		token
+		name
+		description
+	}
+	device {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -8918,9 +17916,18 @@ func createDeviceGroupRelationshipType(
 		`
 mutation createDeviceGroupRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createDeviceGroupRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
-		id
-		token
+		... DefaultDeviceGroupRelationshipType
 	}
+}
+fragment DefaultDeviceGroupRelationshipType on DeviceGroupRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -8953,9 +17960,31 @@ func createDeviceRelationship(
 		`
 mutation createDeviceRelationship ($token: String!, $sourceDevice: String!, $targetDevice: String!, $relationshipType: String!) {
 	createDeviceRelationship(request: {token:$token,sourceDevice:$sourceDevice,targetDevice:$targetDevice,relationshipType:$relationshipType}) {
-		id
-		token
+		... DefaultDeviceRelationship
 	}
+}
+fragment DefaultDeviceRelationship on DeviceRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	sourceDevice {
+		token
+		name
+		description
+	}
+	targetDevice {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -8988,9 +18017,18 @@ func createDeviceRelationshipType(
 		`
 mutation createDeviceRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createDeviceRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
-		id
-		token
+		... DefaultDeviceRelationshipType
 	}
+}
+fragment DefaultDeviceRelationshipType on DeviceRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -9033,9 +18071,23 @@ func createDeviceType(
 		`
 mutation createDeviceType ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createDeviceType(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
-		id
-		token
+		... DefaultDeviceType
 	}
+}
+fragment DefaultDeviceType on DeviceType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -9044,7 +18096,7 @@ mutation createDeviceType ($token: String!, $name: String, $description: String,
 	return &retval, err
 }
 
-// Get area group relationship type by unique token.
+// Get area group relationship types by unique token.
 func getAreaGroupRelationshipTypesByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9062,15 +18114,18 @@ func getAreaGroupRelationshipTypesByToken(
 		`
 query getAreaGroupRelationshipTypesByToken ($tokens: [String!]!) {
 	areaGroupRelationshipTypesByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		metadata
+		... DefaultAreaGroupRelationshipType
 	}
+}
+fragment DefaultAreaGroupRelationshipType on AreaGroupRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -9079,7 +18134,7 @@ query getAreaGroupRelationshipTypesByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get area group relationships by unique token.
+// Get area group relationships by unique tokens.
 func getAreaGroupRelationshipsByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9097,28 +18152,31 @@ func getAreaGroupRelationshipsByToken(
 		`
 query getAreaGroupRelationshipsByToken ($tokens: [String!]!) {
 	areaGroupRelationshipsByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		areaGroup {
-			token
-			name
-			description
-		}
-		area {
-			token
-			name
-			description
-		}
-		relationshipType {
-			token
-			name
-			description
-		}
-		metadata
+		... DefaultAreaGroupRelationship
 	}
+}
+fragment DefaultAreaGroupRelationship on AreaGroupRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	areaGroup {
+		token
+		name
+		description
+	}
+	area {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -9127,7 +18185,7 @@ query getAreaGroupRelationshipsByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get area groups by unique token.
+// Get area groups by unique tokens.
 func getAreaGroupsByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9145,20 +18203,23 @@ func getAreaGroupsByToken(
 		`
 query getAreaGroupsByToken ($tokens: [String!]!) {
 	areaGroupsByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		imageUrl
-		icon
-		backgroundColor
-		foregroundColor
-		borderColor
-		metadata
+		... DefaultAreaGroup
 	}
+}
+fragment DefaultAreaGroup on AreaGroup {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -9167,7 +18228,7 @@ query getAreaGroupsByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get area relationship types by unique token.
+// Get area relationship types by unique tokens.
 func getAreaRelationshipTypesByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9185,15 +18246,18 @@ func getAreaRelationshipTypesByToken(
 		`
 query getAreaRelationshipTypesByToken ($tokens: [String!]!) {
 	areaRelationshipTypesByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		metadata
+		... DefaultAreaRelationshipType
 	}
+}
+fragment DefaultAreaRelationshipType on AreaRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -9202,7 +18266,7 @@ query getAreaRelationshipTypesByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get area relationships by unique token.
+// Get area relationships by unique tokens.
 func getAreaRelationshipsByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9220,28 +18284,31 @@ func getAreaRelationshipsByToken(
 		`
 query getAreaRelationshipsByToken ($tokens: [String!]!) {
 	areaRelationshipsByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		sourceArea {
-			token
-			name
-			description
-		}
-		targetArea {
-			token
-			name
-			description
-		}
-		relationshipType {
-			token
-			name
-			description
-		}
-		metadata
+		... DefaultAreaRelationship
 	}
+}
+fragment DefaultAreaRelationship on AreaRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	sourceArea {
+		token
+		name
+		description
+	}
+	targetArea {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -9250,7 +18317,7 @@ query getAreaRelationshipsByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get area types by unique token.
+// Get area types by unique tokens.
 func getAreaTypesByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9268,20 +18335,23 @@ func getAreaTypesByToken(
 		`
 query getAreaTypesByToken ($tokens: [String!]!) {
 	areaTypesByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		imageUrl
-		icon
-		backgroundColor
-		foregroundColor
-		borderColor
-		metadata
+		... DefaultAreaType
 	}
+}
+fragment DefaultAreaType on AreaType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -9290,7 +18360,7 @@ query getAreaTypesByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get areas by unique token.
+// Get areas by unique tokens.
 func getAreasByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9308,20 +18378,23 @@ func getAreasByToken(
 		`
 query getAreasByToken ($tokens: [String!]!) {
 	areasByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
+		... DefaultArea
+	}
+}
+fragment DefaultArea on Area {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	areaType {
 		token
 		name
 		description
-		areaType {
-			token
-			name
-			description
-		}
-		metadata
 	}
+	metadata
 }
 `,
 		&retval,
@@ -9348,15 +18421,18 @@ func getAssetGroupRelationshipTypesByToken(
 		`
 query getAssetGroupRelationshipTypesByToken ($tokens: [String!]!) {
 	assetGroupRelationshipTypesByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		metadata
+		... DefaultAssetGroupRelationshipType
 	}
+}
+fragment DefaultAssetGroupRelationshipType on AssetGroupRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -9365,7 +18441,7 @@ query getAssetGroupRelationshipTypesByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get asset group relationships by unique token.
+// Get asset group relationships by unique tokens.
 func getAssetGroupRelationshipsByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9383,28 +18459,31 @@ func getAssetGroupRelationshipsByToken(
 		`
 query getAssetGroupRelationshipsByToken ($tokens: [String!]!) {
 	assetGroupRelationshipsByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		assetGroup {
-			token
-			name
-			description
-		}
-		asset {
-			token
-			name
-			description
-		}
-		relationshipType {
-			token
-			name
-			description
-		}
-		metadata
+		... DefaultAssetGroupRelationship
 	}
+}
+fragment DefaultAssetGroupRelationship on AssetGroupRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	assetGroup {
+		token
+		name
+		description
+	}
+	asset {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -9413,7 +18492,7 @@ query getAssetGroupRelationshipsByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get asset groups by unique token.
+// Get asset groups by unique tokens.
 func getAssetGroupsByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9431,20 +18510,23 @@ func getAssetGroupsByToken(
 		`
 query getAssetGroupsByToken ($tokens: [String!]!) {
 	assetGroupsByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		imageUrl
-		icon
-		backgroundColor
-		foregroundColor
-		borderColor
-		metadata
+		... DefaultAssetGroup
 	}
+}
+fragment DefaultAssetGroup on AssetGroup {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -9453,7 +18535,7 @@ query getAssetGroupsByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get asset relationship types by unique token.
+// Get asset relationship types by unique tokens.
 func getAssetRelationshipTypesByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9471,15 +18553,18 @@ func getAssetRelationshipTypesByToken(
 		`
 query getAssetRelationshipTypesByToken ($tokens: [String!]!) {
 	assetRelationshipTypesByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		metadata
+		... DefaultAssetRelationshipType
 	}
+}
+fragment DefaultAssetRelationshipType on AssetRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -9488,7 +18573,7 @@ query getAssetRelationshipTypesByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get asset relationships by unique token.
+// Get asset relationships by unique tokens.
 func getAssetRelationshipsByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9506,28 +18591,31 @@ func getAssetRelationshipsByToken(
 		`
 query getAssetRelationshipsByToken ($tokens: [String!]!) {
 	assetRelationshipsByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		sourceAsset {
-			token
-			name
-			description
-		}
-		targetAsset {
-			token
-			name
-			description
-		}
-		relationshipType {
-			token
-			name
-			description
-		}
-		metadata
+		... DefaultAssetRelationship
 	}
+}
+fragment DefaultAssetRelationship on AssetRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	sourceAsset {
+		token
+		name
+		description
+	}
+	targetAsset {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -9554,20 +18642,23 @@ func getAssetTypesByToken(
 		`
 query getAssetTypesByToken ($tokens: [String!]!) {
 	assetTypesByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		imageUrl
-		icon
-		backgroundColor
-		foregroundColor
-		borderColor
-		metadata
+		... DefaultAssetType
 	}
+}
+fragment DefaultAssetType on AssetType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -9576,7 +18667,7 @@ query getAssetTypesByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get asset by unique token.
+// Get assets by unique tokens.
 func getAssetsByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9594,20 +18685,23 @@ func getAssetsByToken(
 		`
 query getAssetsByToken ($tokens: [String!]!) {
 	assetsByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
+		... DefaultAsset
+	}
+}
+fragment DefaultAsset on Asset {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	assetType {
 		token
 		name
 		description
-		assetType {
-			token
-			name
-			description
-		}
-		metadata
 	}
+	metadata
 }
 `,
 		&retval,
@@ -9634,15 +18728,18 @@ func getCustomerGroupRelationshipTypesByToken(
 		`
 query getCustomerGroupRelationshipTypesByToken ($tokens: [String!]!) {
 	customerGroupRelationshipTypesByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		metadata
+		... DefaultCustomerGroupRelationshipType
 	}
+}
+fragment DefaultCustomerGroupRelationshipType on CustomerGroupRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -9651,7 +18748,7 @@ query getCustomerGroupRelationshipTypesByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get customer group relationships by unique token.
+// Get customer group relationships by unique tokens.
 func getCustomerGroupRelationshipsByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9669,28 +18766,31 @@ func getCustomerGroupRelationshipsByToken(
 		`
 query getCustomerGroupRelationshipsByToken ($tokens: [String!]!) {
 	customerGroupRelationshipsByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		customerGroup {
-			token
-			name
-			description
-		}
-		customer {
-			token
-			name
-			description
-		}
-		relationshipType {
-			token
-			name
-			description
-		}
-		metadata
+		... DefaultCustomerGroupRelationship
 	}
+}
+fragment DefaultCustomerGroupRelationship on CustomerGroupRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	customerGroup {
+		token
+		name
+		description
+	}
+	customer {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -9699,7 +18799,7 @@ query getCustomerGroupRelationshipsByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get customer groups by unique token.
+// Get customer groups by unique tokens.
 func getCustomerGroupsByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9717,20 +18817,23 @@ func getCustomerGroupsByToken(
 		`
 query getCustomerGroupsByToken ($tokens: [String!]!) {
 	customerGroupsByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		imageUrl
-		icon
-		backgroundColor
-		foregroundColor
-		borderColor
-		metadata
+		... DefaultCustomerGroup
 	}
+}
+fragment DefaultCustomerGroup on CustomerGroup {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -9739,7 +18842,7 @@ query getCustomerGroupsByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get customer relationship types by unique token.
+// Get customer relationship types by unique tokens.
 func getCustomerRelationshipTypesByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9757,15 +18860,18 @@ func getCustomerRelationshipTypesByToken(
 		`
 query getCustomerRelationshipTypesByToken ($tokens: [String!]!) {
 	customerRelationshipTypesByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		metadata
+		... DefaultCustomerRelationshipType
 	}
+}
+fragment DefaultCustomerRelationshipType on CustomerRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -9774,7 +18880,7 @@ query getCustomerRelationshipTypesByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get customer relationships by unique token.
+// Get customer relationships by unique tokens.
 func getCustomerRelationshipsByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9792,28 +18898,31 @@ func getCustomerRelationshipsByToken(
 		`
 query getCustomerRelationshipsByToken ($tokens: [String!]!) {
 	customerRelationshipsByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		sourceCustomer {
-			token
-			name
-			description
-		}
-		targetCustomer {
-			token
-			name
-			description
-		}
-		relationshipType {
-			token
-			name
-			description
-		}
-		metadata
+		... DefaultCustomerRelationship
 	}
+}
+fragment DefaultCustomerRelationship on CustomerRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	sourceCustomer {
+		token
+		name
+		description
+	}
+	targetCustomer {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -9822,7 +18931,7 @@ query getCustomerRelationshipsByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get customer types by unique token.
+// Get customer types by unique tokens.
 func getCustomerTypesByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9840,20 +18949,23 @@ func getCustomerTypesByToken(
 		`
 query getCustomerTypesByToken ($tokens: [String!]!) {
 	customerTypesByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		imageUrl
-		icon
-		backgroundColor
-		foregroundColor
-		borderColor
-		metadata
+		... DefaultCustomerType
 	}
+}
+fragment DefaultCustomerType on CustomerType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -9862,7 +18974,7 @@ query getCustomerTypesByToken ($tokens: [String!]!) {
 	return &retval, err
 }
 
-// Get customers by unique token.
+// Get customers by unique tokens.
 func getCustomersByToken(
 	ctx context.Context,
 	client graphql.Client,
@@ -9880,20 +18992,23 @@ func getCustomersByToken(
 		`
 query getCustomersByToken ($tokens: [String!]!) {
 	customersByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
+		... DefaultCustomer
+	}
+}
+fragment DefaultCustomer on Customer {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	customerType {
 		token
 		name
 		description
-		customerType {
-			token
-			name
-			description
-		}
-		metadata
 	}
+	metadata
 }
 `,
 		&retval,
@@ -9920,15 +19035,18 @@ func getDeviceGroupRelationshipTypesByToken(
 		`
 query getDeviceGroupRelationshipTypesByToken ($tokens: [String!]!) {
 	deviceGroupRelationshipTypesByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		metadata
+		... DefaultDeviceGroupRelationshipType
 	}
+}
+fragment DefaultDeviceGroupRelationshipType on DeviceGroupRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -9955,28 +19073,31 @@ func getDeviceGroupRelationshipsByToken(
 		`
 query getDeviceGroupRelationshipsByToken ($tokens: [String!]!) {
 	deviceGroupRelationshipsByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		deviceGroup {
-			token
-			name
-			description
-		}
-		device {
-			token
-			name
-			description
-		}
-		relationshipType {
-			token
-			name
-			description
-		}
-		metadata
+		... DefaultDeviceGroupRelationship
 	}
+}
+fragment DefaultDeviceGroupRelationship on DeviceGroupRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	deviceGroup {
+		token
+		name
+		description
+	}
+	device {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -10003,20 +19124,23 @@ func getDeviceGroupsByToken(
 		`
 query getDeviceGroupsByToken ($tokens: [String!]!) {
 	deviceGroupsByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		imageUrl
-		icon
-		backgroundColor
-		foregroundColor
-		borderColor
-		metadata
+		... DefaultDeviceGroup
 	}
+}
+fragment DefaultDeviceGroup on DeviceGroup {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -10043,15 +19167,18 @@ func getDeviceRelationshipTypesByToken(
 		`
 query getDeviceRelationshipTypesByToken ($tokens: [String!]!) {
 	deviceRelationshipTypesByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		metadata
+		... DefaultDeviceRelationshipType
 	}
+}
+fragment DefaultDeviceRelationshipType on DeviceRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
 }
 `,
 		&retval,
@@ -10078,28 +19205,31 @@ func getDeviceRelationshipsByToken(
 		`
 query getDeviceRelationshipsByToken ($tokens: [String!]!) {
 	deviceRelationshipsByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		sourceDevice {
-			token
-			name
-			description
-		}
-		targetDevice {
-			token
-			name
-			description
-		}
-		relationshipType {
-			token
-			name
-			description
-		}
-		metadata
+		... DefaultDeviceRelationship
 	}
+}
+fragment DefaultDeviceRelationship on DeviceRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	sourceDevice {
+		token
+		name
+		description
+	}
+	targetDevice {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
 }
 `,
 		&retval,
@@ -10126,20 +19256,23 @@ func getDeviceTypesByToken(
 		`
 query getDeviceTypesByToken ($tokens: [String!]!) {
 	deviceTypesByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
-		token
-		name
-		description
-		imageUrl
-		icon
-		backgroundColor
-		foregroundColor
-		borderColor
-		metadata
+		... DefaultDeviceType
 	}
+}
+fragment DefaultDeviceType on DeviceType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
 }
 `,
 		&retval,
@@ -10166,23 +19299,26 @@ func getDevicesByToken(
 		`
 query getDevicesByToken ($tokens: [String!]!) {
 	devicesByToken(tokens: $tokens) {
-		id
-		createdAt
-		updatedAt
-		deletedAt
+		... DefaultDevice
+	}
+}
+fragment DefaultDevice on Device {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	deviceType {
 		token
 		name
 		description
-		deviceType {
-			token
-			name
-			description
-		}
-		activeAssignments {
-			token
-		}
-		metadata
 	}
+	activeAssignments {
+		token
+	}
+	metadata
 }
 `,
 		&retval,
@@ -10212,21 +19348,27 @@ func listAreaGroupRelationshipTypes(
 query listAreaGroupRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	areaGroupRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			metadata
+			... DefaultAreaGroupRelationshipType
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultAreaGroupRelationshipType on AreaGroupRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -10256,34 +19398,40 @@ func listAreaGroupRelationships(
 query listAreaGroupRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	areaGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			areaGroup {
-				token
-				name
-				description
-			}
-			area {
-				token
-				name
-				description
-			}
-			relationshipType {
-				token
-				name
-				description
-			}
-			metadata
+			... DefaultAreaGroupRelationship
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultAreaGroupRelationship on AreaGroupRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	areaGroup {
+		token
+		name
+		description
+	}
+	area {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -10313,26 +19461,32 @@ func listAreaGroups(
 query listAreaGroups ($pageNumber: Int!, $pageSize: Int!) {
 	areaGroups(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			imageUrl
-			icon
-			backgroundColor
-			foregroundColor
-			borderColor
-			metadata
+			... DefaultAreaGroup
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultAreaGroup on AreaGroup {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -10362,21 +19516,27 @@ func listAreaRelationshipTypes(
 query listAreaRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	areaRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			metadata
+			... DefaultAreaRelationshipType
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultAreaRelationshipType on AreaRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -10406,30 +19566,40 @@ func listAreaRelationships(
 query listAreaRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	areaRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			sourceArea {
-				token
-				name
-				description
-			}
-			targetArea {
-				token
-				name
-				description
-			}
-			relationshipType {
-				token
-				name
-				description
-			}
-			metadata
+			... DefaultAreaRelationship
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultAreaRelationship on AreaRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	sourceArea {
+		token
+		name
+		description
+	}
+	targetArea {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -10459,26 +19629,32 @@ func listAreaTypes(
 query listAreaTypes ($pageNumber: Int!, $pageSize: Int!) {
 	areaTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			imageUrl
-			icon
-			backgroundColor
-			foregroundColor
-			borderColor
-			metadata
+			... DefaultAreaType
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultAreaType on AreaType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -10508,26 +19684,32 @@ func listAreas(
 query listAreas ($pageNumber: Int!, $pageSize: Int!) {
 	areas(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			areaType {
-				token
-				name
-				description
-			}
-			metadata
+			... DefaultArea
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultArea on Area {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	areaType {
+		token
+		name
+		description
+	}
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -10557,21 +19739,27 @@ func listAssetGroupRelationshipTypes(
 query listAssetGroupRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	assetGroupRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			metadata
+			... DefaultAssetGroupRelationshipType
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultAssetGroupRelationshipType on AssetGroupRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -10601,34 +19789,40 @@ func listAssetGroupRelationships(
 query listAssetGroupRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	assetGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			assetGroup {
-				token
-				name
-				description
-			}
-			asset {
-				token
-				name
-				description
-			}
-			relationshipType {
-				token
-				name
-				description
-			}
-			metadata
+			... DefaultAssetGroupRelationship
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultAssetGroupRelationship on AssetGroupRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	assetGroup {
+		token
+		name
+		description
+	}
+	asset {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -10658,26 +19852,32 @@ func listAssetGroups(
 query listAssetGroups ($pageNumber: Int!, $pageSize: Int!) {
 	assetGroups(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			imageUrl
-			icon
-			backgroundColor
-			foregroundColor
-			borderColor
-			metadata
+			... DefaultAssetGroup
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultAssetGroup on AssetGroup {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -10707,21 +19907,27 @@ func listAssetRelationshipTypes(
 query listAssetRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	assetRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			metadata
+			... DefaultAssetRelationshipType
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultAssetRelationshipType on AssetRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -10751,30 +19957,40 @@ func listAssetRelationships(
 query listAssetRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	assetRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			sourceAsset {
-				token
-				name
-				description
-			}
-			targetAsset {
-				token
-				name
-				description
-			}
-			relationshipType {
-				token
-				name
-				description
-			}
-			metadata
+			... DefaultAssetRelationship
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultAssetRelationship on AssetRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	sourceAsset {
+		token
+		name
+		description
+	}
+	targetAsset {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -10804,26 +20020,32 @@ func listAssetTypes(
 query listAssetTypes ($pageNumber: Int!, $pageSize: Int!) {
 	assetTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			imageUrl
-			icon
-			backgroundColor
-			foregroundColor
-			borderColor
-			metadata
+			... DefaultAssetType
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultAssetType on AssetType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -10853,26 +20075,32 @@ func listAssets(
 query listAssets ($pageNumber: Int!, $pageSize: Int!) {
 	assets(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			assetType {
-				token
-				name
-				description
-			}
-			metadata
+			... DefaultAsset
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultAsset on Asset {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	assetType {
+		token
+		name
+		description
+	}
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -10902,21 +20130,27 @@ func listCustomerGroupRelationshipTypes(
 query listCustomerGroupRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	customerGroupRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			metadata
+			... DefaultCustomerGroupRelationshipType
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultCustomerGroupRelationshipType on CustomerGroupRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -10946,34 +20180,40 @@ func listCustomerGroupRelationships(
 query listCustomerGroupRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	customerGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			customerGroup {
-				token
-				name
-				description
-			}
-			customer {
-				token
-				name
-				description
-			}
-			relationshipType {
-				token
-				name
-				description
-			}
-			metadata
+			... DefaultCustomerGroupRelationship
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultCustomerGroupRelationship on CustomerGroupRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	customerGroup {
+		token
+		name
+		description
+	}
+	customer {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -11003,26 +20243,32 @@ func listCustomerGroups(
 query listCustomerGroups ($pageNumber: Int!, $pageSize: Int!) {
 	customerGroups(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			imageUrl
-			icon
-			backgroundColor
-			foregroundColor
-			borderColor
-			metadata
+			... DefaultCustomerGroup
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultCustomerGroup on CustomerGroup {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -11052,21 +20298,27 @@ func listCustomerRelationshipTypes(
 query listCustomerRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	customerRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			metadata
+			... DefaultCustomerRelationshipType
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultCustomerRelationshipType on CustomerRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -11096,30 +20348,40 @@ func listCustomerRelationships(
 query listCustomerRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	customerRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			sourceCustomer {
-				token
-				name
-				description
-			}
-			targetCustomer {
-				token
-				name
-				description
-			}
-			relationshipType {
-				token
-				name
-				description
-			}
-			metadata
+			... DefaultCustomerRelationship
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultCustomerRelationship on CustomerRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	sourceCustomer {
+		token
+		name
+		description
+	}
+	targetCustomer {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -11149,26 +20411,32 @@ func listCustomerTypes(
 query listCustomerTypes ($pageNumber: Int!, $pageSize: Int!) {
 	customerTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			imageUrl
-			icon
-			backgroundColor
-			foregroundColor
-			borderColor
-			metadata
+			... DefaultCustomerType
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultCustomerType on CustomerType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -11198,26 +20466,32 @@ func listCustomers(
 query listCustomers ($pageNumber: Int!, $pageSize: Int!) {
 	customers(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			customerType {
-				token
-				name
-				description
-			}
-			metadata
+			... DefaultCustomer
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultCustomer on Customer {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	customerType {
+		token
+		name
+		description
+	}
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -11247,21 +20521,27 @@ func listDeviceGroupRelationshipTypes(
 query listDeviceGroupRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	deviceGroupRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			metadata
+			... DefaultDeviceGroupRelationshipType
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultDeviceGroupRelationshipType on DeviceGroupRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -11291,34 +20571,40 @@ func listDeviceGroupRelationships(
 query listDeviceGroupRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	deviceGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			deviceGroup {
-				token
-				name
-				description
-			}
-			device {
-				token
-				name
-				description
-			}
-			relationshipType {
-				token
-				name
-				description
-			}
-			metadata
+			... DefaultDeviceGroupRelationship
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultDeviceGroupRelationship on DeviceGroupRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	deviceGroup {
+		token
+		name
+		description
+	}
+	device {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -11348,26 +20634,32 @@ func listDeviceGroups(
 query listDeviceGroups ($pageNumber: Int!, $pageSize: Int!) {
 	deviceGroups(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			imageUrl
-			icon
-			backgroundColor
-			foregroundColor
-			borderColor
-			metadata
+			... DefaultDeviceGroup
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultDeviceGroup on DeviceGroup {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -11397,21 +20689,27 @@ func listDeviceRelationshipTypes(
 query listDeviceRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	deviceRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			metadata
+			... DefaultDeviceRelationshipType
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultDeviceRelationshipType on DeviceRelationshipType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -11441,30 +20739,40 @@ func listDeviceRelationships(
 query listDeviceRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	deviceRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			sourceDevice {
-				token
-				name
-				description
-			}
-			targetDevice {
-				token
-				name
-				description
-			}
-			relationshipType {
-				token
-				name
-				description
-			}
-			metadata
+			... DefaultDeviceRelationship
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultDeviceRelationship on DeviceRelationship {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	sourceDevice {
+		token
+		name
+		description
+	}
+	targetDevice {
+		token
+		name
+		description
+	}
+	relationshipType {
+		token
+		name
+		description
+	}
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -11494,26 +20802,32 @@ func listDeviceTypes(
 query listDeviceTypes ($pageNumber: Int!, $pageSize: Int!) {
 	deviceTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			imageUrl
-			icon
-			backgroundColor
-			foregroundColor
-			borderColor
-			metadata
+			... DefaultDeviceType
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultDeviceType on DeviceType {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	imageUrl
+	icon
+	backgroundColor
+	foregroundColor
+	borderColor
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,
@@ -11543,29 +20857,35 @@ func listDevices(
 query listDevices ($pageNumber: Int!, $pageSize: Int!) {
 	devices(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
-			id
-			createdAt
-			updatedAt
-			deletedAt
-			token
-			name
-			description
-			deviceType {
-				token
-				name
-				description
-			}
-			activeAssignments {
-				token
-			}
-			metadata
+			... DefaultDevice
 		}
 		pagination {
-			pageStart
-			pageEnd
-			totalRecords
+			... DefaultPagination
 		}
 	}
+}
+fragment DefaultDevice on Device {
+	id
+	createdAt
+	updatedAt
+	deletedAt
+	token
+	name
+	description
+	deviceType {
+		token
+		name
+		description
+	}
+	activeAssignments {
+		token
+	}
+	metadata
+}
+fragment DefaultPagination on SearchResultsPagination {
+	pageStart
+	pageEnd
+	totalRecords
 }
 `,
 		&retval,

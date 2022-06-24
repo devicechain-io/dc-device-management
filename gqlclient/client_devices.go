@@ -18,16 +18,19 @@ func AssureDeviceType(
 	ctx context.Context,
 	client graphql.Client,
 	request model.DeviceTypeCreateRequest,
-) (*getDeviceTypesByTokenResponse, *createDeviceTypeResponse, error) {
+) (IDeviceType, bool, error) {
 	gresp, err := GetDeviceTypesByToken(ctx, client, []string{request.Token})
-	if err == nil && len(gresp.DeviceTypesByToken) > 0 {
-		return gresp, nil, nil
+	if err != nil {
+		return nil, false, err
+	}
+	if gresp[request.Token] != nil {
+		return gresp[request.Token], false, nil
 	}
 	cresp, err := CreateDeviceType(ctx, client, request)
 	if err != nil {
-		return nil, nil, err
+		return nil, false, err
 	}
-	return nil, cresp, nil
+	return cresp, true, nil
 }
 
 // Create a new device type.
@@ -35,10 +38,14 @@ func CreateDeviceType(
 	ctx context.Context,
 	client graphql.Client,
 	request model.DeviceTypeCreateRequest,
-) (*createDeviceTypeResponse, error) {
-	return createDeviceType(ctx, client, request.Token, blank(request.Name), blank(request.Description),
+) (IDeviceType, error) {
+	cresp, err := createDeviceType(ctx, client, request.Token, blank(request.Name), blank(request.Description),
 		blank(request.ImageUrl), blank(request.Icon), blank(request.BackgroundColor), blank(request.ForegroundColor),
 		blank(request.BorderColor), blank(request.Metadata))
+	if err != nil {
+		return nil, err
+	}
+	return &cresp.CreateDeviceType, nil
 }
 
 // Get device types by token.
@@ -46,8 +53,18 @@ func GetDeviceTypesByToken(
 	ctx context.Context,
 	client graphql.Client,
 	tokens []string,
-) (*getDeviceTypesByTokenResponse, error) {
-	return getDeviceTypesByToken(ctx, client, tokens)
+) (map[string]IDeviceType, error) {
+	gresp, err := getDeviceTypesByToken(ctx, client, tokens)
+	if err != nil {
+		return nil, err
+	}
+	itypes := make(map[string]IDeviceType)
+	if gresp != nil {
+		for _, res := range gresp.DeviceTypesByToken {
+			itypes[res.Token] = IDeviceType(&res)
+		}
+	}
+	return itypes, nil
 }
 
 // List device types based on criteria.
@@ -65,16 +82,19 @@ func AssureDevice(
 	ctx context.Context,
 	client graphql.Client,
 	request model.DeviceCreateRequest,
-) (*getDevicesByTokenResponse, *createDeviceResponse, error) {
+) (IDevice, bool, error) {
 	gresp, err := GetDevicesByToken(ctx, client, []string{request.Token})
-	if err == nil && len(gresp.DevicesByToken) > 0 {
-		return gresp, nil, nil
+	if err != nil {
+		return nil, false, err
+	}
+	if gresp[request.Token] != nil {
+		return gresp[request.Token], false, nil
 	}
 	cresp, err := CreateDevice(ctx, client, request)
 	if err != nil {
-		return nil, nil, err
+		return nil, false, err
 	}
-	return nil, cresp, nil
+	return cresp, true, nil
 }
 
 // Create a new device.
@@ -82,9 +102,13 @@ func CreateDevice(
 	ctx context.Context,
 	client graphql.Client,
 	request model.DeviceCreateRequest,
-) (*createDeviceResponse, error) {
-	return createDevice(ctx, client, request.Token, request.DeviceTypeToken,
+) (IDevice, error) {
+	cresp, err := createDevice(ctx, client, request.Token, request.DeviceTypeToken,
 		blank(request.Name), blank(request.Description), blank(request.Metadata))
+	if err != nil {
+		return nil, err
+	}
+	return &cresp.CreateDevice, nil
 }
 
 // Get devices by token.
@@ -92,8 +116,18 @@ func GetDevicesByToken(
 	ctx context.Context,
 	client graphql.Client,
 	tokens []string,
-) (*getDevicesByTokenResponse, error) {
-	return getDevicesByToken(ctx, client, tokens)
+) (map[string]IDevice, error) {
+	gresp, err := getDevicesByToken(ctx, client, tokens)
+	if err != nil {
+		return nil, err
+	}
+	itypes := make(map[string]IDevice)
+	if gresp != nil {
+		for _, res := range gresp.DevicesByToken {
+			itypes[res.Token] = IDevice(&res)
+		}
+	}
+	return itypes, nil
 }
 
 // List devices based on criteria.
@@ -111,16 +145,19 @@ func AssureDeviceRelationshipType(
 	ctx context.Context,
 	client graphql.Client,
 	request model.DeviceRelationshipTypeCreateRequest,
-) (*getDeviceRelationshipTypesByTokenResponse, *createDeviceRelationshipTypeResponse, error) {
+) (IDeviceRelationshipType, bool, error) {
 	gresp, err := GetDeviceRelationshipTypesByToken(ctx, client, []string{request.Token})
-	if err == nil && len(gresp.DeviceRelationshipTypesByToken) > 0 {
-		return gresp, nil, nil
+	if err != nil {
+		return nil, false, err
+	}
+	if gresp[request.Token] != nil {
+		return gresp[request.Token], false, nil
 	}
 	cresp, err := CreateDeviceRelationshipType(ctx, client, request)
 	if err != nil {
-		return nil, nil, err
+		return nil, false, err
 	}
-	return nil, cresp, nil
+	return cresp, true, nil
 }
 
 // Create a new device relationship type.
@@ -128,8 +165,13 @@ func CreateDeviceRelationshipType(
 	ctx context.Context,
 	client graphql.Client,
 	request model.DeviceRelationshipTypeCreateRequest,
-) (*createDeviceRelationshipTypeResponse, error) {
-	return createDeviceRelationshipType(ctx, client, request.Token, blank(request.Name), blank(request.Description), blank(request.Metadata))
+) (IDeviceRelationshipType, error) {
+	cresp, err := createDeviceRelationshipType(ctx, client, request.Token, blank(request.Name),
+		blank(request.Description), blank(request.Metadata))
+	if err != nil {
+		return nil, err
+	}
+	return &cresp.CreateDeviceRelationshipType, nil
 }
 
 // Get device relationship types by token.
@@ -137,8 +179,18 @@ func GetDeviceRelationshipTypesByToken(
 	ctx context.Context,
 	client graphql.Client,
 	tokens []string,
-) (*getDeviceRelationshipTypesByTokenResponse, error) {
-	return getDeviceRelationshipTypesByToken(ctx, client, tokens)
+) (map[string]IDeviceRelationshipType, error) {
+	gresp, err := getDeviceRelationshipTypesByToken(ctx, client, tokens)
+	if err != nil {
+		return nil, err
+	}
+	itypes := make(map[string]IDeviceRelationshipType)
+	if gresp != nil {
+		for _, res := range gresp.DeviceRelationshipTypesByToken {
+			itypes[res.Token] = IDeviceRelationshipType(&res)
+		}
+	}
+	return itypes, nil
 }
 
 // List device relationship types based on criteria.
@@ -156,16 +208,19 @@ func AssureDeviceRelationship(
 	ctx context.Context,
 	client graphql.Client,
 	request model.DeviceRelationshipCreateRequest,
-) (*getDeviceRelationshipsByTokenResponse, *createDeviceRelationshipResponse, error) {
+) (IDeviceRelationship, bool, error) {
 	gresp, err := GetDeviceRelationshipsByToken(ctx, client, []string{request.Token})
-	if err == nil && len(gresp.DeviceRelationshipsByToken) > 0 {
-		return gresp, nil, nil
+	if err != nil {
+		return nil, false, err
+	}
+	if gresp[request.Token] != nil {
+		return gresp[request.Token], false, nil
 	}
 	cresp, err := CreateDeviceRelationship(ctx, client, request)
 	if err != nil {
-		return nil, nil, err
+		return nil, false, err
 	}
-	return nil, cresp, nil
+	return cresp, true, nil
 }
 
 // Create a new device relationship.
@@ -173,8 +228,13 @@ func CreateDeviceRelationship(
 	ctx context.Context,
 	client graphql.Client,
 	request model.DeviceRelationshipCreateRequest,
-) (*createDeviceRelationshipResponse, error) {
-	return createDeviceRelationship(ctx, client, request.Token, request.SourceDevice, request.TargetDevice, request.RelationshipType)
+) (IDeviceRelationship, error) {
+	cresp, err := createDeviceRelationship(ctx, client, request.Token, request.SourceDevice,
+		request.TargetDevice, request.RelationshipType)
+	if err != nil {
+		return nil, err
+	}
+	return &cresp.CreateDeviceRelationship, nil
 }
 
 // Get device relationships by token.
@@ -182,8 +242,18 @@ func GetDeviceRelationshipsByToken(
 	ctx context.Context,
 	client graphql.Client,
 	tokens []string,
-) (*getDeviceRelationshipsByTokenResponse, error) {
-	return getDeviceRelationshipsByToken(ctx, client, tokens)
+) (map[string]IDeviceRelationship, error) {
+	gresp, err := getDeviceRelationshipsByToken(ctx, client, tokens)
+	if err != nil {
+		return nil, err
+	}
+	itypes := make(map[string]IDeviceRelationship)
+	if gresp != nil {
+		for _, res := range gresp.DeviceRelationshipsByToken {
+			itypes[res.Token] = IDeviceRelationship(&res)
+		}
+	}
+	return itypes, nil
 }
 
 // List device relationships based on criteria.
@@ -201,16 +271,19 @@ func AssureDeviceGroup(
 	ctx context.Context,
 	client graphql.Client,
 	request model.DeviceGroupCreateRequest,
-) (*getDeviceGroupsByTokenResponse, *createDeviceGroupResponse, error) {
+) (IDeviceGroup, bool, error) {
 	gresp, err := GetDeviceGroupsByToken(ctx, client, []string{request.Token})
-	if err == nil && len(gresp.DeviceGroupsByToken) > 0 {
-		return gresp, nil, nil
+	if err != nil {
+		return nil, false, err
+	}
+	if gresp[request.Token] != nil {
+		return gresp[request.Token], false, nil
 	}
 	cresp, err := CreateDeviceGroup(ctx, client, request)
 	if err != nil {
-		return nil, nil, err
+		return nil, false, err
 	}
-	return nil, cresp, nil
+	return cresp, true, nil
 }
 
 // Create a new device group.
@@ -218,10 +291,14 @@ func CreateDeviceGroup(
 	ctx context.Context,
 	client graphql.Client,
 	request model.DeviceGroupCreateRequest,
-) (*createDeviceGroupResponse, error) {
-	return createDeviceGroup(ctx, client, request.Token, blank(request.Name), blank(request.Description),
+) (IDeviceGroup, error) {
+	cresp, err := createDeviceGroup(ctx, client, request.Token, blank(request.Name), blank(request.Description),
 		blank(request.ImageUrl), blank(request.Icon), blank(request.BackgroundColor), blank(request.ForegroundColor),
 		blank(request.BorderColor), blank(request.Metadata))
+	if err != nil {
+		return nil, err
+	}
+	return &cresp.CreateDeviceGroup, nil
 }
 
 // Get device groups by token.
@@ -229,8 +306,18 @@ func GetDeviceGroupsByToken(
 	ctx context.Context,
 	client graphql.Client,
 	tokens []string,
-) (*getDeviceGroupsByTokenResponse, error) {
-	return getDeviceGroupsByToken(ctx, client, tokens)
+) (map[string]IDeviceGroup, error) {
+	gresp, err := getDeviceGroupsByToken(ctx, client, tokens)
+	if err != nil {
+		return nil, err
+	}
+	itypes := make(map[string]IDeviceGroup)
+	if gresp != nil {
+		for _, res := range gresp.DeviceGroupsByToken {
+			itypes[res.Token] = IDeviceGroup(&res)
+		}
+	}
+	return itypes, nil
 }
 
 // List device groups based on criteria.
@@ -248,16 +335,19 @@ func AssureDeviceGroupRelationshipType(
 	ctx context.Context,
 	client graphql.Client,
 	request model.DeviceGroupRelationshipTypeCreateRequest,
-) (*getDeviceGroupRelationshipTypesByTokenResponse, *createDeviceGroupRelationshipTypeResponse, error) {
+) (IDeviceGroupRelationshipType, bool, error) {
 	gresp, err := GetDeviceGroupRelationshipTypesByToken(ctx, client, []string{request.Token})
-	if err == nil && len(gresp.DeviceGroupRelationshipTypesByToken) > 0 {
-		return gresp, nil, nil
+	if err != nil {
+		return nil, false, err
+	}
+	if gresp[request.Token] != nil {
+		return gresp[request.Token], false, nil
 	}
 	cresp, err := CreateDeviceGroupRelationshipType(ctx, client, request)
 	if err != nil {
-		return nil, nil, err
+		return nil, false, err
 	}
-	return nil, cresp, nil
+	return cresp, true, nil
 }
 
 // Create a new device group relationship type.
@@ -265,8 +355,13 @@ func CreateDeviceGroupRelationshipType(
 	ctx context.Context,
 	client graphql.Client,
 	request model.DeviceGroupRelationshipTypeCreateRequest,
-) (*createDeviceGroupRelationshipTypeResponse, error) {
-	return createDeviceGroupRelationshipType(ctx, client, request.Token, blank(request.Name), blank(request.Description), blank(request.Metadata))
+) (IDeviceGroupRelationshipType, error) {
+	cresp, err := createDeviceGroupRelationshipType(ctx, client, request.Token, blank(request.Name),
+		blank(request.Description), blank(request.Metadata))
+	if err != nil {
+		return nil, err
+	}
+	return &cresp.CreateDeviceGroupRelationshipType, nil
 }
 
 // Get a device group relationship types by token.
@@ -274,8 +369,18 @@ func GetDeviceGroupRelationshipTypesByToken(
 	ctx context.Context,
 	client graphql.Client,
 	tokens []string,
-) (*getDeviceGroupRelationshipTypesByTokenResponse, error) {
-	return getDeviceGroupRelationshipTypesByToken(ctx, client, tokens)
+) (map[string]IDeviceGroupRelationshipType, error) {
+	gresp, err := getDeviceGroupRelationshipTypesByToken(ctx, client, tokens)
+	if err != nil {
+		return nil, err
+	}
+	itypes := make(map[string]IDeviceGroupRelationshipType)
+	if gresp != nil {
+		for _, res := range gresp.DeviceGroupRelationshipTypesByToken {
+			itypes[res.Token] = IDeviceGroupRelationshipType(&res)
+		}
+	}
+	return itypes, nil
 }
 
 // List device group relationship types based on criteria.
@@ -293,16 +398,19 @@ func AssureDeviceGroupRelationship(
 	ctx context.Context,
 	client graphql.Client,
 	request model.DeviceGroupRelationshipCreateRequest,
-) (*getDeviceGroupRelationshipsByTokenResponse, *createDeviceGroupRelationshipResponse, error) {
+) (IDeviceGroupRelationship, bool, error) {
 	gresp, err := GetDeviceGroupRelationshipsByToken(ctx, client, []string{request.Token})
-	if err == nil && len(gresp.DeviceGroupRelationshipsByToken) > 0 {
-		return gresp, nil, nil
+	if err != nil {
+		return nil, false, err
+	}
+	if gresp[request.Token] != nil {
+		return gresp[request.Token], false, nil
 	}
 	cresp, err := CreateDeviceGroupRelationship(ctx, client, request)
 	if err != nil {
-		return nil, nil, err
+		return nil, false, err
 	}
-	return nil, cresp, nil
+	return cresp, true, nil
 }
 
 // Create a new device group relationship.
@@ -310,8 +418,13 @@ func CreateDeviceGroupRelationship(
 	ctx context.Context,
 	client graphql.Client,
 	request model.DeviceGroupRelationshipCreateRequest,
-) (*createDeviceGroupRelationshipResponse, error) {
-	return createDeviceGroupRelationship(ctx, client, request.Token, request.DeviceGroup, request.Device, request.RelationshipType)
+) (IDeviceGroupRelationship, error) {
+	cresp, err := createDeviceGroupRelationship(ctx, client, request.Token, request.DeviceGroup, request.Device,
+		request.RelationshipType)
+	if err != nil {
+		return nil, err
+	}
+	return &cresp.CreateDeviceGroupRelationship, nil
 }
 
 // Get a device group relationships by token.
@@ -319,8 +432,18 @@ func GetDeviceGroupRelationshipsByToken(
 	ctx context.Context,
 	client graphql.Client,
 	tokens []string,
-) (*getDeviceGroupRelationshipsByTokenResponse, error) {
-	return getDeviceGroupRelationshipsByToken(ctx, client, tokens)
+) (map[string]IDeviceGroupRelationship, error) {
+	gresp, err := getDeviceGroupRelationshipsByToken(ctx, client, tokens)
+	if err != nil {
+		return nil, err
+	}
+	itypes := make(map[string]IDeviceGroupRelationship)
+	if gresp != nil {
+		for _, res := range gresp.DeviceGroupRelationshipsByToken {
+			itypes[res.Token] = IDeviceGroupRelationship(&res)
+		}
+	}
+	return itypes, nil
 }
 
 // List device group relationships based on criteria.

@@ -1,3 +1,128 @@
+# Content associated with asset type response.
+fragment DefaultAssetType on AssetType {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  name
+  description
+  imageUrl
+  icon
+  backgroundColor
+  foregroundColor
+  borderColor
+  metadata
+}
+
+# Content associated with asset response.
+fragment DefaultAsset on Asset {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  name
+  description
+  assetType {
+    token
+    name
+    description
+  }
+  metadata
+}
+
+# Content associated with asset relationship type response.
+fragment DefaultAssetRelationshipType on AssetRelationshipType {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  name
+  description
+  metadata
+}
+
+# Content associated with asset relationship response.
+fragment DefaultAssetRelationship on AssetRelationship {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  sourceAsset {
+    token
+    name
+    description
+  }
+  targetAsset {
+    token
+    name
+    description
+  }
+  relationshipType {
+    token
+    name
+    description
+  }
+  metadata
+}
+
+# Content associated with asset group.
+fragment DefaultAssetGroup on AssetGroup {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  name
+  description
+  imageUrl
+  icon
+  backgroundColor
+  foregroundColor
+  borderColor
+  metadata
+}
+
+# Content associated with asset group relationship type.
+fragment DefaultAssetGroupRelationshipType on AssetGroupRelationshipType {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  name
+  description
+  metadata
+}
+
+# Content associated with asset group relationship.
+fragment DefaultAssetGroupRelationship on AssetGroupRelationship {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  assetGroup {
+    token
+    name
+    description
+  }
+  asset {
+    token
+    name
+    description
+  }
+  relationshipType {
+    token
+    name
+    description
+  }
+  metadata
+}
+
 # Create asset type and return identifiers.
 mutation createAssetType($token: String!, $name: String, $description: String, 
   $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
@@ -12,27 +137,14 @@ mutation createAssetType($token: String!, $name: String, $description: String,
     borderColor: $borderColor,
     metadata: $metadata
   }) {
-    id
-    token
+    ...DefaultAssetType
   }
 }
 
 # Get asset types by unique tokens.
 query getAssetTypesByToken($tokens: [String!]!) {
   assetTypesByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    imageUrl
-    icon
-    backgroundColor
-    foregroundColor
-    borderColor
-    metadata
+    ...DefaultAssetType
   }
 }
 
@@ -40,24 +152,10 @@ query getAssetTypesByToken($tokens: [String!]!) {
 query listAssetTypes($pageNumber: Int!, $pageSize: Int!) {
   assetTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      name
-      description
-      imageUrl
-      icon
-      backgroundColor
-      foregroundColor
-      borderColor
-      metadata
+      ...DefaultAssetType
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -71,27 +169,14 @@ mutation createAsset($token: String!, $assetTypeToken: String!, $name: String, $
     description: $description,
     metadata: $metadata
   }) {
-    id
-    token
+    ...DefaultAsset
   }
 }
 
-# Get asset by unique token.
+# Get assets by unique tokens.
 query getAssetsByToken($tokens: [String!]!) {
   assetsByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    assetType {
-      token
-      name
-      description
-    }
-    metadata
+    ...DefaultAsset
   }
 }
 
@@ -99,24 +184,10 @@ query getAssetsByToken($tokens: [String!]!) {
 query listAssets($pageNumber: Int!, $pageSize: Int!) {
   assets(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      name
-      description
-      assetType {
-        token
-        name
-        description
-      }
-      metadata
+      ...DefaultAsset
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -129,22 +200,14 @@ mutation createAssetRelationshipType($token: String!, $name: String, $descriptio
     description: $description,
     metadata: $metadata
   }) {
-    id
-    token
+    ...DefaultAssetRelationshipType
   }
 }
 
-# Get asset relationship types by unique token.
+# Get asset relationship types by unique tokens.
 query getAssetRelationshipTypesByToken($tokens: [String!]!) {
   assetRelationshipTypesByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    metadata
+    ...DefaultAssetRelationshipType
   }
 }
 
@@ -152,19 +215,10 @@ query getAssetRelationshipTypesByToken($tokens: [String!]!) {
 query listAssetRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
   assetRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      name
-      description
-      metadata
+      ...DefaultAssetRelationshipType
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -179,35 +233,14 @@ mutation createAssetRelationship($token: String!, $sourceAsset: String!, $target
       relationshipType: $relationshipType
     }
   ) {
-    id
-    token
+    ...DefaultAssetRelationship
   }
 }
 
-# Get asset relationships by unique token.
+# Get asset relationships by unique tokens.
 query getAssetRelationshipsByToken($tokens: [String!]!) {
   assetRelationshipsByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    sourceAsset {
-      token
-      name
-      description
-    }
-    targetAsset {
-      token
-      name
-      description
-    }
-    relationshipType {
-      token
-      name
-      description
-    }
-    metadata
+    ...DefaultAssetRelationship
   }
 }
 
@@ -215,28 +248,10 @@ query getAssetRelationshipsByToken($tokens: [String!]!) {
 query listAssetRelationships($pageNumber: Int!, $pageSize: Int!) {
   assetRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      sourceAsset {
-        token
-        name
-        description
-      }
-      targetAsset {
-        token
-        name
-        description
-      }
-      relationshipType {
-        token
-        name
-        description
-      }
-      metadata
+      ...DefaultAssetRelationship
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -255,27 +270,14 @@ mutation createAssetGroup($token: String!, $name: String, $description: String,
     borderColor: $borderColor,
     metadata: $metadata
   }) {
-    id
-    token
+    ...DefaultAssetGroup
   }
 }
 
-# Get asset groups by unique token.
+# Get asset groups by unique tokens.
 query getAssetGroupsByToken($tokens: [String!]!) {
   assetGroupsByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    imageUrl
-    icon
-    backgroundColor
-    foregroundColor
-    borderColor
-    metadata
+    ...DefaultAssetGroup
   }
 }
 
@@ -283,24 +285,10 @@ query getAssetGroupsByToken($tokens: [String!]!) {
 query listAssetGroups($pageNumber: Int!, $pageSize: Int!) {
   assetGroups(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      name
-      description
-      imageUrl
-      icon
-      backgroundColor
-      foregroundColor
-      borderColor
-      metadata
+      ...DefaultAssetGroup
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -313,22 +301,14 @@ mutation createAssetGroupRelationshipType($token: String!, $name: String, $descr
     description: $description,
     metadata: $metadata
   }) {
-    id
-    token
+    ...DefaultAssetGroupRelationshipType
   }
 }
 
 # Get asset group relationship types by unique token.
 query getAssetGroupRelationshipTypesByToken($tokens: [String!]!) {
   assetGroupRelationshipTypesByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    metadata
+    ...DefaultAssetGroupRelationshipType
   }
 }
 
@@ -336,19 +316,10 @@ query getAssetGroupRelationshipTypesByToken($tokens: [String!]!) {
 query listAssetGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
   assetGroupRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      name
-      description
-      metadata
+      ...DefaultAssetGroupRelationshipType
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -363,35 +334,14 @@ mutation createAssetGroupRelationship($token: String!, $assetGroup: String!, $as
       relationshipType: $relationshipType
     }
   ) {
-    id
-    token
+    ...DefaultAssetGroupRelationship
   }
 }
 
-# Get asset group relationships by unique token.
+# Get asset group relationships by unique tokens.
 query getAssetGroupRelationshipsByToken($tokens: [String!]!) {
   assetGroupRelationshipsByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    assetGroup {
-      token
-      name
-      description
-    }
-    asset {
-      token
-      name
-      description
-    }
-    relationshipType {
-      token
-      name
-      description
-    }
-    metadata
+    ...DefaultAssetGroupRelationship
   }
 }
 
@@ -399,32 +349,10 @@ query getAssetGroupRelationshipsByToken($tokens: [String!]!) {
 query listAssetGroupRelationships($pageNumber: Int!, $pageSize: Int!) {
   assetGroupRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      assetGroup {
-        token
-        name
-        description
-      }
-      asset {
-        token
-        name
-        description
-      }
-      relationshipType {
-        token
-        name
-        description
-      }
-      metadata
+      ...DefaultAssetGroupRelationship
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }

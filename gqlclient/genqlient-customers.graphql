@@ -1,3 +1,128 @@
+# Content associated with customer type response.
+fragment DefaultCustomerType on CustomerType {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  name
+  description
+  imageUrl
+  icon
+  backgroundColor
+  foregroundColor
+  borderColor
+  metadata
+}
+
+# Content associated with customer response.
+fragment DefaultCustomer on Customer {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  name
+  description
+  customerType {
+    token
+    name
+    description
+  }
+  metadata
+}
+
+# Content associated with customer relationship type response.
+fragment DefaultCustomerRelationshipType on CustomerRelationshipType {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  name
+  description
+  metadata
+}
+
+# Content associated with customer relationship response.
+fragment DefaultCustomerRelationship on CustomerRelationship {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  sourceCustomer {
+    token
+    name
+    description
+  }
+  targetCustomer {
+    token
+    name
+    description
+  }
+  relationshipType {
+    token
+    name
+    description
+  }
+  metadata
+}
+
+# Content associated with customer group.
+fragment DefaultCustomerGroup on CustomerGroup {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  name
+  description
+  imageUrl
+  icon
+  backgroundColor
+  foregroundColor
+  borderColor
+  metadata
+}
+
+# Content associated with customer group relationship type.
+fragment DefaultCustomerGroupRelationshipType on CustomerGroupRelationshipType {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  name
+  description
+  metadata
+}
+
+# Content associated with customer group relationship.
+fragment DefaultCustomerGroupRelationship on CustomerGroupRelationship {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  customerGroup {
+    token
+    name
+    description
+  }
+  customer {
+    token
+    name
+    description
+  }
+  relationshipType {
+    token
+    name
+    description
+  }
+  metadata
+}
+
 # Create customer type and return identifiers.
 mutation createCustomerType($token: String!, $name: String, $description: String, 
   $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
@@ -12,27 +137,14 @@ mutation createCustomerType($token: String!, $name: String, $description: String
     borderColor: $borderColor,
     metadata: $metadata
   }) {
-    id
-    token
+    ...DefaultCustomerType
   }
 }
 
-# Get customer types by unique token.
+# Get customer types by unique tokens.
 query getCustomerTypesByToken($tokens: [String!]!) {
   customerTypesByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    imageUrl
-    icon
-    backgroundColor
-    foregroundColor
-    borderColor
-    metadata
+    ...DefaultCustomerType
   }
 }
 
@@ -40,24 +152,10 @@ query getCustomerTypesByToken($tokens: [String!]!) {
 query listCustomerTypes($pageNumber: Int!, $pageSize: Int!) {
   customerTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      name
-      description
-      imageUrl
-      icon
-      backgroundColor
-      foregroundColor
-      borderColor
-      metadata
+      ...DefaultCustomerType
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -71,27 +169,14 @@ mutation createCustomer($token: String!, $customerTypeToken: String!, $name: Str
     description: $description,
     metadata: $metadata
   }) {
-    id
-    token
+    ...DefaultCustomer
   }
 }
 
-# Get customers by unique token.
+# Get customers by unique tokens.
 query getCustomersByToken($tokens: [String!]!) {
   customersByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    customerType {
-      token
-      name
-      description
-    }
-    metadata
+    ...DefaultCustomer
   }
 }
 
@@ -99,24 +184,10 @@ query getCustomersByToken($tokens: [String!]!) {
 query listCustomers($pageNumber: Int!, $pageSize: Int!) {
   customers(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      name
-      description
-      customerType {
-        token
-        name
-        description
-      }
-      metadata
+      ...DefaultCustomer
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -129,22 +200,14 @@ mutation createCustomerRelationshipType($token: String!, $name: String, $descrip
     description: $description,
     metadata: $metadata
   }) {
-    id
-    token
+    ...DefaultCustomerRelationshipType
   }
 }
 
-# Get customer relationship types by unique token.
+# Get customer relationship types by unique tokens.
 query getCustomerRelationshipTypesByToken($tokens: [String!]!) {
   customerRelationshipTypesByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    metadata
+    ...DefaultCustomerRelationshipType
   }
 }
 
@@ -152,19 +215,10 @@ query getCustomerRelationshipTypesByToken($tokens: [String!]!) {
 query listCustomerRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
   customerRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      name
-      description
-      metadata
+      ...DefaultCustomerRelationshipType
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -179,35 +233,14 @@ mutation createCustomerRelationship($token: String!, $sourceCustomer: String!, $
       relationshipType: $relationshipType
     }
   ) {
-    id
-    token
+    ...DefaultCustomerRelationship
   }
 }
 
-# Get customer relationships by unique token.
+# Get customer relationships by unique tokens.
 query getCustomerRelationshipsByToken($tokens: [String!]!) {
   customerRelationshipsByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    sourceCustomer {
-      token
-      name
-      description
-    }
-    targetCustomer {
-      token
-      name
-      description
-    }
-    relationshipType {
-      token
-      name
-      description
-    }
-    metadata
+    ...DefaultCustomerRelationship
   }
 }
 
@@ -215,28 +248,10 @@ query getCustomerRelationshipsByToken($tokens: [String!]!) {
 query listCustomerRelationships($pageNumber: Int!, $pageSize: Int!) {
   customerRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      sourceCustomer {
-        token
-        name
-        description
-      }
-      targetCustomer {
-        token
-        name
-        description
-      }
-      relationshipType {
-        token
-        name
-        description
-      }
-      metadata
+      ...DefaultCustomerRelationship
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -255,27 +270,14 @@ mutation createCustomerGroup($token: String!, $name: String, $description: Strin
     borderColor: $borderColor,
     metadata: $metadata
   }) {
-    id
-    token
+    ...DefaultCustomerGroup
   }
 }
 
-# Get customer groups by unique token.
+# Get customer groups by unique tokens.
 query getCustomerGroupsByToken($tokens: [String!]!) {
   customerGroupsByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    imageUrl
-    icon
-    backgroundColor
-    foregroundColor
-    borderColor
-    metadata
+    ...DefaultCustomerGroup
   }
 }
 
@@ -283,24 +285,10 @@ query getCustomerGroupsByToken($tokens: [String!]!) {
 query listCustomerGroups($pageNumber: Int!, $pageSize: Int!) {
   customerGroups(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      name
-      description
-      imageUrl
-      icon
-      backgroundColor
-      foregroundColor
-      borderColor
-      metadata
+      ...DefaultCustomerGroup
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -313,22 +301,14 @@ mutation createCustomerGroupRelationshipType($token: String!, $name: String, $de
     description: $description,
     metadata: $metadata
   }) {
-    id
-    token
+    ...DefaultCustomerGroupRelationshipType
   }
 }
 
 # Get customer group relationship types by unique token.
 query getCustomerGroupRelationshipTypesByToken($tokens: [String!]!) {
   customerGroupRelationshipTypesByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    metadata
+    ...DefaultCustomerGroupRelationshipType
   }
 }
 
@@ -336,19 +316,10 @@ query getCustomerGroupRelationshipTypesByToken($tokens: [String!]!) {
 query listCustomerGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
   customerGroupRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      name
-      description
-      metadata
+      ...DefaultCustomerGroupRelationshipType
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -363,35 +334,14 @@ mutation createCustomerGroupRelationship($token: String!, $customerGroup: String
       relationshipType: $relationshipType
     }
   ) {
-    id
-    token
+    ...DefaultCustomerGroupRelationship
   }
 }
 
-# Get customer group relationships by unique token.
+# Get customer group relationships by unique tokens.
 query getCustomerGroupRelationshipsByToken($tokens: [String!]!) {
   customerGroupRelationshipsByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    customerGroup {
-      token
-      name
-      description
-    }
-    customer {
-      token
-      name
-      description
-    }
-    relationshipType {
-      token
-      name
-      description
-    }
-    metadata
+    ...DefaultCustomerGroupRelationship
   }
 }
 
@@ -399,32 +349,10 @@ query getCustomerGroupRelationshipsByToken($tokens: [String!]!) {
 query listCustomerGroupRelationships($pageNumber: Int!, $pageSize: Int!) {
   customerGroupRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      customerGroup {
-        token
-        name
-        description
-      }
-      customer {
-        token
-        name
-        description
-      }
-      relationshipType {
-        token
-        name
-        description
-      }
-      metadata
+      ...DefaultCustomerGroupRelationship
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }

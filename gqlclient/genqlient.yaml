@@ -1,5 +1,6 @@
 schema: ../graphql/schema.graphql
 operations:
+- ./genqlient-common.graphql
 - ./genqlient-devices.graphql
 - ./genqlient-assets.graphql
 - ./genqlient-areas.graphql

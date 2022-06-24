@@ -1,0 +1,6 @@
+# Content associated with pagination.
+fragment DefaultPagination on SearchResultsPagination {
+  pageStart
+  pageEnd
+  totalRecords
+}

@@ -1,3 +1,128 @@
+# Content associated with area type response.
+fragment DefaultAreaType on AreaType {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  name
+  description
+  imageUrl
+  icon
+  backgroundColor
+  foregroundColor
+  borderColor
+  metadata
+}
+
+# Content associated with area response.
+fragment DefaultArea on Area {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  name
+  description
+  areaType {
+    token
+    name
+    description
+  }
+  metadata
+}
+
+# Content associated with area relationship type response.
+fragment DefaultAreaRelationshipType on AreaRelationshipType {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  name
+  description
+  metadata
+}
+
+# Content associated with area relationship response.
+fragment DefaultAreaRelationship on AreaRelationship {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  sourceArea {
+    token
+    name
+    description
+  }
+  targetArea {
+    token
+    name
+    description
+  }
+  relationshipType {
+    token
+    name
+    description
+  }
+  metadata
+}
+
+# Content associated with area group.
+fragment DefaultAreaGroup on AreaGroup {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  name
+  description
+  imageUrl
+  icon
+  backgroundColor
+  foregroundColor
+  borderColor
+  metadata
+}
+
+# Content associated with area group relationship type.
+fragment DefaultAreaGroupRelationshipType on AreaGroupRelationshipType {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  name
+  description
+  metadata
+}
+
+# Content associated with area group relationship.
+fragment DefaultAreaGroupRelationship on AreaGroupRelationship {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  token
+  areaGroup {
+    token
+    name
+    description
+  }
+  area {
+    token
+    name
+    description
+  }
+  relationshipType {
+    token
+    name
+    description
+  }
+  metadata
+}
+
 # Create area type and return identifiers.
 mutation createAreaType($token: String!, $name: String, $description: String, 
   $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
@@ -12,27 +137,14 @@ mutation createAreaType($token: String!, $name: String, $description: String,
     borderColor: $borderColor,
     metadata: $metadata
   }) {
-    id
-    token
+    ...DefaultAreaType
   }
 }
 
-# Get area types by unique token.
+# Get area types by unique tokens.
 query getAreaTypesByToken($tokens: [String!]!) {
   areaTypesByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    imageUrl
-    icon
-    backgroundColor
-    foregroundColor
-    borderColor
-    metadata
+    ...DefaultAreaType
   }
 }
 
@@ -40,24 +152,10 @@ query getAreaTypesByToken($tokens: [String!]!) {
 query listAreaTypes($pageNumber: Int!, $pageSize: Int!) {
   areaTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      name
-      description
-      imageUrl
-      icon
-      backgroundColor
-      foregroundColor
-      borderColor
-      metadata
+      ...DefaultAreaType
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -71,27 +169,14 @@ mutation createArea($token: String!, $areaTypeToken: String!, $name: String, $de
     description: $description,
     metadata: $metadata
   }) {
-    id
-    token
+    ...DefaultArea
   }
 }
 
-# Get areas by unique token.
+# Get areas by unique tokens.
 query getAreasByToken($tokens: [String!]!) {
   areasByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    areaType {
-      token
-      name
-      description
-    }
-    metadata
+    ...DefaultArea
   }
 }
 
@@ -99,24 +184,10 @@ query getAreasByToken($tokens: [String!]!) {
 query listAreas($pageNumber: Int!, $pageSize: Int!) {
   areas(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      name
-      description
-      areaType {
-        token
-        name
-        description
-      }
-      metadata
+      ...DefaultArea
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -129,22 +200,14 @@ mutation createAreaRelationshipType($token: String!, $name: String, $description
     description: $description,
     metadata: $metadata
   }) {
-    id
-    token
+    ...DefaultAreaRelationshipType
   }
 }
 
-# Get area relationship types by unique token.
+# Get area relationship types by unique tokens.
 query getAreaRelationshipTypesByToken($tokens: [String!]!) {
   areaRelationshipTypesByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    metadata
+    ...DefaultAreaRelationshipType
   }
 }
 
@@ -152,19 +215,10 @@ query getAreaRelationshipTypesByToken($tokens: [String!]!) {
 query listAreaRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
   areaRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      name
-      description
-      metadata
+      ...DefaultAreaRelationshipType
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -179,35 +233,14 @@ mutation createAreaRelationship($token: String!, $sourceArea: String!, $targetAr
       relationshipType: $relationshipType
     }
   ) {
-    id
-    token
+    ...DefaultAreaRelationship
   }
 }
 
-# Get area relationships by unique token.
+# Get area relationships by unique tokens.
 query getAreaRelationshipsByToken($tokens: [String!]!) {
   areaRelationshipsByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    sourceArea {
-      token
-      name
-      description
-    }
-    targetArea {
-      token
-      name
-      description
-    }
-    relationshipType {
-      token
-      name
-      description
-    }
-    metadata
+    ...DefaultAreaRelationship
   }
 }
 
@@ -215,28 +248,10 @@ query getAreaRelationshipsByToken($tokens: [String!]!) {
 query listAreaRelationships($pageNumber: Int!, $pageSize: Int!) {
   areaRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      sourceArea {
-        token
-        name
-        description
-      }
-      targetArea {
-        token
-        name
-        description
-      }
-      relationshipType {
-        token
-        name
-        description
-      }
-      metadata
+      ...DefaultAreaRelationship
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -255,27 +270,14 @@ mutation createAreaGroup($token: String!, $name: String, $description: String,
     borderColor: $borderColor,
     metadata: $metadata
   }) {
-    id
-    token
+    ...DefaultAreaGroup
   }
 }
 
-# Get area groups by unique token.
+# Get area groups by unique tokens.
 query getAreaGroupsByToken($tokens: [String!]!) {
   areaGroupsByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    imageUrl
-    icon
-    backgroundColor
-    foregroundColor
-    borderColor
-    metadata
+    ...DefaultAreaGroup
   }
 }
 
@@ -283,24 +285,10 @@ query getAreaGroupsByToken($tokens: [String!]!) {
 query listAreaGroups($pageNumber: Int!, $pageSize: Int!) {
   areaGroups(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      name
-      description
-      imageUrl
-      icon
-      backgroundColor
-      foregroundColor
-      borderColor
-      metadata
+      ...DefaultAreaGroup
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -313,22 +301,14 @@ mutation createAreaGroupRelationshipType($token: String!, $name: String, $descri
     description: $description,
     metadata: $metadata
   }) {
-    id
-    token
+    ...DefaultAreaGroupRelationshipType
   }
 }
 
-# Get area group relationship type by unique token.
+# Get area group relationship types by unique token.
 query getAreaGroupRelationshipTypesByToken($tokens: [String!]!) {
   areaGroupRelationshipTypesByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    name
-    description
-    metadata
+    ...DefaultAreaGroupRelationshipType
   }
 }
 
@@ -336,19 +316,10 @@ query getAreaGroupRelationshipTypesByToken($tokens: [String!]!) {
 query listAreaGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
   areaGroupRelationshipTypes(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      name
-      description
-      metadata
+      ...DefaultAreaGroupRelationshipType
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
@@ -363,35 +334,14 @@ mutation createAreaGroupRelationship($token: String!, $areaGroup: String!, $area
       relationshipType: $relationshipType
     }
   ) {
-    id
-    token
+    ...DefaultAreaGroupRelationship
   }
 }
 
-# Get area group relationships by unique token.
+# Get area group relationships by unique tokens.
 query getAreaGroupRelationshipsByToken($tokens: [String!]!) {
   areaGroupRelationshipsByToken(tokens: $tokens) {
-    id
-    createdAt
-    updatedAt
-    deletedAt
-    token
-    areaGroup {
-      token
-      name
-      description
-    }
-    area {
-      token
-      name
-      description
-    }
-    relationshipType {
-      token
-      name
-      description
-    }
-    metadata
+    ...DefaultAreaGroupRelationship
   }
 }
 
@@ -399,32 +349,10 @@ query getAreaGroupRelationshipsByToken($tokens: [String!]!) {
 query listAreaGroupRelationships($pageNumber: Int!, $pageSize: Int!) {
   areaGroupRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
     results {
-      id
-      createdAt
-      updatedAt
-      deletedAt
-      token
-      areaGroup {
-        token
-        name
-        description
-      }
-      area {
-        token
-        name
-        description
-      }
-      relationshipType {
-        token
-        name
-        description
-      }
-      metadata
+      ...DefaultAreaGroupRelationship
     }
     pagination {
-      pageStart
-      pageEnd
-      totalRecords
+      ...DefaultPagination
     }
   }
 }
