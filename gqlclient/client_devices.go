@@ -73,8 +73,16 @@ func ListDeviceTypes(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listDeviceTypesResponse, error) {
-	return listDeviceTypes(ctx, client, pageNumber, pageSize)
+) ([]IDeviceType, *DefaultPagination, error) {
+	resp, err := listDeviceTypes(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IDeviceType, 0)
+	for _, res := range resp.DeviceTypes.Results {
+		results = append(results, IDeviceType(&res.DefaultDeviceType))
+	}
+	return results, &resp.DeviceTypes.Pagination.DefaultPagination, nil
 }
 
 // Assure that a device exists.
@@ -136,8 +144,16 @@ func ListDevices(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listDevicesResponse, error) {
-	return listDevices(ctx, client, pageNumber, pageSize)
+) ([]IDevice, *DefaultPagination, error) {
+	resp, err := listDevices(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IDevice, 0)
+	for _, res := range resp.Devices.Results {
+		results = append(results, IDevice(&res.DefaultDevice))
+	}
+	return results, &resp.Devices.Pagination.DefaultPagination, nil
 }
 
 // Assure that a device relationship type exists.
@@ -199,8 +215,16 @@ func ListDeviceRelationshipTypes(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listDeviceRelationshipTypesResponse, error) {
-	return listDeviceRelationshipTypes(ctx, client, pageNumber, pageSize)
+) ([]IDeviceRelationshipType, *DefaultPagination, error) {
+	resp, err := listDeviceRelationshipTypes(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IDeviceRelationshipType, 0)
+	for _, res := range resp.DeviceRelationshipTypes.Results {
+		results = append(results, IDeviceRelationshipType(&res.DefaultDeviceRelationshipType))
+	}
+	return results, &resp.DeviceRelationshipTypes.Pagination.DefaultPagination, nil
 }
 
 // Assure that a device relationship exists.
@@ -262,8 +286,16 @@ func ListDeviceRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listDeviceRelationshipsResponse, error) {
-	return listDeviceRelationships(ctx, client, pageNumber, pageSize)
+) ([]IDeviceRelationship, *DefaultPagination, error) {
+	resp, err := listDeviceRelationships(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IDeviceRelationship, 0)
+	for _, res := range resp.DeviceRelationships.Results {
+		results = append(results, IDeviceRelationship(&res.DefaultDeviceRelationship))
+	}
+	return results, &resp.DeviceRelationships.Pagination.DefaultPagination, nil
 }
 
 // Assure that a device group exists.
@@ -326,8 +358,16 @@ func ListDeviceGroups(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listDeviceGroupsResponse, error) {
-	return listDeviceGroups(ctx, client, pageNumber, pageSize)
+) ([]IDeviceGroup, *DefaultPagination, error) {
+	resp, err := listDeviceGroups(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IDeviceGroup, 0)
+	for _, res := range resp.DeviceGroups.Results {
+		results = append(results, IDeviceGroup(&res.DefaultDeviceGroup))
+	}
+	return results, &resp.DeviceGroups.Pagination.DefaultPagination, nil
 }
 
 // Assure that a device group relationship type exists.
@@ -389,8 +429,16 @@ func ListDeviceGroupRelationshipTypes(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listDeviceGroupRelationshipTypesResponse, error) {
-	return listDeviceGroupRelationshipTypes(ctx, client, pageNumber, pageSize)
+) ([]IDeviceGroupRelationshipType, *DefaultPagination, error) {
+	resp, err := listDeviceGroupRelationshipTypes(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IDeviceGroupRelationshipType, 0)
+	for _, res := range resp.DeviceGroupRelationshipTypes.Results {
+		results = append(results, IDeviceGroupRelationshipType(&res.DefaultDeviceGroupRelationshipType))
+	}
+	return results, &resp.DeviceGroupRelationshipTypes.Pagination.DefaultPagination, nil
 }
 
 // Assure that a device group relationship exists.
@@ -452,6 +500,14 @@ func ListDeviceGroupRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listDeviceGroupRelationshipsResponse, error) {
-	return listDeviceGroupRelationships(ctx, client, pageNumber, pageSize)
+) ([]IDeviceGroupRelationship, *DefaultPagination, error) {
+	resp, err := listDeviceGroupRelationships(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IDeviceGroupRelationship, 0)
+	for _, res := range resp.DeviceGroupRelationships.Results {
+		results = append(results, IDeviceGroupRelationship(&res.DefaultDeviceGroupRelationship))
+	}
+	return results, &resp.DeviceGroupRelationships.Pagination.DefaultPagination, nil
 }

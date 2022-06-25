@@ -73,8 +73,16 @@ func ListAreaTypes(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listAreaTypesResponse, error) {
-	return listAreaTypes(ctx, client, pageNumber, pageSize)
+) ([]IAreaType, *DefaultPagination, error) {
+	resp, err := listAreaTypes(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IAreaType, 0)
+	for _, res := range resp.AreaTypes.Results {
+		results = append(results, IAreaType(&res.DefaultAreaType))
+	}
+	return results, &resp.AreaTypes.Pagination.DefaultPagination, nil
 }
 
 // Assure that a area exists.
@@ -136,8 +144,16 @@ func ListAreas(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listAreasResponse, error) {
-	return listAreas(ctx, client, pageNumber, pageSize)
+) ([]IArea, *DefaultPagination, error) {
+	resp, err := listAreas(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IArea, 0)
+	for _, res := range resp.Areas.Results {
+		results = append(results, IArea(&res.DefaultArea))
+	}
+	return results, &resp.Areas.Pagination.DefaultPagination, nil
 }
 
 // Assure that a area relationship type exists.
@@ -199,8 +215,16 @@ func ListAreaRelationshipTypes(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listAreaRelationshipTypesResponse, error) {
-	return listAreaRelationshipTypes(ctx, client, pageNumber, pageSize)
+) ([]IAreaRelationshipType, *DefaultPagination, error) {
+	resp, err := listAreaRelationshipTypes(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IAreaRelationshipType, 0)
+	for _, res := range resp.AreaRelationshipTypes.Results {
+		results = append(results, IAreaRelationshipType(&res.DefaultAreaRelationshipType))
+	}
+	return results, &resp.AreaRelationshipTypes.Pagination.DefaultPagination, nil
 }
 
 // Assure that a area relationship exists.
@@ -262,8 +286,16 @@ func ListAreaRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listAreaRelationshipsResponse, error) {
-	return listAreaRelationships(ctx, client, pageNumber, pageSize)
+) ([]IAreaRelationship, *DefaultPagination, error) {
+	resp, err := listAreaRelationships(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IAreaRelationship, 0)
+	for _, res := range resp.AreaRelationships.Results {
+		results = append(results, IAreaRelationship(&res.DefaultAreaRelationship))
+	}
+	return results, &resp.AreaRelationships.Pagination.DefaultPagination, nil
 }
 
 // Assure that a area group exists.
@@ -326,8 +358,16 @@ func ListAreaGroups(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listAreaGroupsResponse, error) {
-	return listAreaGroups(ctx, client, pageNumber, pageSize)
+) ([]IAreaGroup, *DefaultPagination, error) {
+	resp, err := listAreaGroups(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IAreaGroup, 0)
+	for _, res := range resp.AreaGroups.Results {
+		results = append(results, IAreaGroup(&res.DefaultAreaGroup))
+	}
+	return results, &resp.AreaGroups.Pagination.DefaultPagination, nil
 }
 
 // Assure that a area group relationship type exists.
@@ -389,8 +429,16 @@ func ListAreaGroupRelationshipTypes(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listAreaGroupRelationshipTypesResponse, error) {
-	return listAreaGroupRelationshipTypes(ctx, client, pageNumber, pageSize)
+) ([]IAreaGroupRelationshipType, *DefaultPagination, error) {
+	resp, err := listAreaGroupRelationshipTypes(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IAreaGroupRelationshipType, 0)
+	for _, res := range resp.AreaGroupRelationshipTypes.Results {
+		results = append(results, IAreaGroupRelationshipType(&res.DefaultAreaGroupRelationshipType))
+	}
+	return results, &resp.AreaGroupRelationshipTypes.Pagination.DefaultPagination, nil
 }
 
 // Assure that a area group relationship exists.
@@ -452,6 +500,14 @@ func ListAreaGroupRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listAreaGroupRelationshipsResponse, error) {
-	return listAreaGroupRelationships(ctx, client, pageNumber, pageSize)
+) ([]IAreaGroupRelationship, *DefaultPagination, error) {
+	resp, err := listAreaGroupRelationships(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IAreaGroupRelationship, 0)
+	for _, res := range resp.AreaGroupRelationships.Results {
+		results = append(results, IAreaGroupRelationship(&res.DefaultAreaGroupRelationship))
+	}
+	return results, &resp.AreaGroupRelationships.Pagination.DefaultPagination, nil
 }

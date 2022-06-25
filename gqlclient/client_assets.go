@@ -73,8 +73,16 @@ func ListAssetTypes(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listAssetTypesResponse, error) {
-	return listAssetTypes(ctx, client, pageNumber, pageSize)
+) ([]IAssetType, *DefaultPagination, error) {
+	resp, err := listAssetTypes(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IAssetType, 0)
+	for _, res := range resp.AssetTypes.Results {
+		results = append(results, IAssetType(&res.DefaultAssetType))
+	}
+	return results, &resp.AssetTypes.Pagination.DefaultPagination, nil
 }
 
 // Assure that a asset exists.
@@ -136,8 +144,16 @@ func ListAssets(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listAssetsResponse, error) {
-	return listAssets(ctx, client, pageNumber, pageSize)
+) ([]IAsset, *DefaultPagination, error) {
+	resp, err := listAssets(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IAsset, 0)
+	for _, res := range resp.Assets.Results {
+		results = append(results, IAsset(&res.DefaultAsset))
+	}
+	return results, &resp.Assets.Pagination.DefaultPagination, nil
 }
 
 // Assure that a asset relationship type exists.
@@ -199,8 +215,16 @@ func ListAssetRelationshipTypes(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listAssetRelationshipTypesResponse, error) {
-	return listAssetRelationshipTypes(ctx, client, pageNumber, pageSize)
+) ([]IAssetRelationshipType, *DefaultPagination, error) {
+	resp, err := listAssetRelationshipTypes(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IAssetRelationshipType, 0)
+	for _, res := range resp.AssetRelationshipTypes.Results {
+		results = append(results, IAssetRelationshipType(&res.DefaultAssetRelationshipType))
+	}
+	return results, &resp.AssetRelationshipTypes.Pagination.DefaultPagination, nil
 }
 
 // Assure that a asset relationship exists.
@@ -262,8 +286,16 @@ func ListAssetRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listAssetRelationshipsResponse, error) {
-	return listAssetRelationships(ctx, client, pageNumber, pageSize)
+) ([]IAssetRelationship, *DefaultPagination, error) {
+	resp, err := listAssetRelationships(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IAssetRelationship, 0)
+	for _, res := range resp.AssetRelationships.Results {
+		results = append(results, IAssetRelationship(&res.DefaultAssetRelationship))
+	}
+	return results, &resp.AssetRelationships.Pagination.DefaultPagination, nil
 }
 
 // Assure that a asset group exists.
@@ -326,8 +358,16 @@ func ListAssetGroups(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listAssetGroupsResponse, error) {
-	return listAssetGroups(ctx, client, pageNumber, pageSize)
+) ([]IAssetGroup, *DefaultPagination, error) {
+	resp, err := listAssetGroups(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IAssetGroup, 0)
+	for _, res := range resp.AssetGroups.Results {
+		results = append(results, IAssetGroup(&res.DefaultAssetGroup))
+	}
+	return results, &resp.AssetGroups.Pagination.DefaultPagination, nil
 }
 
 // Assure that a asset group relationship type exists.
@@ -389,8 +429,16 @@ func ListAssetGroupRelationshipTypes(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listAssetGroupRelationshipTypesResponse, error) {
-	return listAssetGroupRelationshipTypes(ctx, client, pageNumber, pageSize)
+) ([]IAssetGroupRelationshipType, *DefaultPagination, error) {
+	resp, err := listAssetGroupRelationshipTypes(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IAssetGroupRelationshipType, 0)
+	for _, res := range resp.AssetGroupRelationshipTypes.Results {
+		results = append(results, IAssetGroupRelationshipType(&res.DefaultAssetGroupRelationshipType))
+	}
+	return results, &resp.AssetGroupRelationshipTypes.Pagination.DefaultPagination, nil
 }
 
 // Assure that a asset group relationship exists.
@@ -452,6 +500,14 @@ func ListAssetGroupRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listAssetGroupRelationshipsResponse, error) {
-	return listAssetGroupRelationships(ctx, client, pageNumber, pageSize)
+) ([]IAssetGroupRelationship, *DefaultPagination, error) {
+	resp, err := listAssetGroupRelationships(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]IAssetGroupRelationship, 0)
+	for _, res := range resp.AssetGroupRelationships.Results {
+		results = append(results, IAssetGroupRelationship(&res.DefaultAssetGroupRelationship))
+	}
+	return results, &resp.AssetGroupRelationships.Pagination.DefaultPagination, nil
 }

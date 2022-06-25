@@ -73,8 +73,16 @@ func ListCustomerTypes(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listCustomerTypesResponse, error) {
-	return listCustomerTypes(ctx, client, pageNumber, pageSize)
+) ([]ICustomerType, *DefaultPagination, error) {
+	resp, err := listCustomerTypes(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]ICustomerType, 0)
+	for _, res := range resp.CustomerTypes.Results {
+		results = append(results, ICustomerType(&res.DefaultCustomerType))
+	}
+	return results, &resp.CustomerTypes.Pagination.DefaultPagination, nil
 }
 
 // Assure that a customer exists.
@@ -136,8 +144,16 @@ func ListCustomers(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listCustomersResponse, error) {
-	return listCustomers(ctx, client, pageNumber, pageSize)
+) ([]ICustomer, *DefaultPagination, error) {
+	resp, err := listCustomers(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]ICustomer, 0)
+	for _, res := range resp.Customers.Results {
+		results = append(results, ICustomer(&res.DefaultCustomer))
+	}
+	return results, &resp.Customers.Pagination.DefaultPagination, nil
 }
 
 // Assure that a customer relationship type exists.
@@ -199,8 +215,16 @@ func ListCustomerRelationshipTypes(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listCustomerRelationshipTypesResponse, error) {
-	return listCustomerRelationshipTypes(ctx, client, pageNumber, pageSize)
+) ([]ICustomerRelationshipType, *DefaultPagination, error) {
+	resp, err := listCustomerRelationshipTypes(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]ICustomerRelationshipType, 0)
+	for _, res := range resp.CustomerRelationshipTypes.Results {
+		results = append(results, ICustomerRelationshipType(&res.DefaultCustomerRelationshipType))
+	}
+	return results, &resp.CustomerRelationshipTypes.Pagination.DefaultPagination, nil
 }
 
 // Assure that a customer relationship exists.
@@ -262,8 +286,16 @@ func ListCustomerRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listCustomerRelationshipsResponse, error) {
-	return listCustomerRelationships(ctx, client, pageNumber, pageSize)
+) ([]ICustomerRelationship, *DefaultPagination, error) {
+	resp, err := listCustomerRelationships(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]ICustomerRelationship, 0)
+	for _, res := range resp.CustomerRelationships.Results {
+		results = append(results, ICustomerRelationship(&res.DefaultCustomerRelationship))
+	}
+	return results, &resp.CustomerRelationships.Pagination.DefaultPagination, nil
 }
 
 // Assure that a customer group exists.
@@ -326,8 +358,16 @@ func ListCustomerGroups(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listCustomerGroupsResponse, error) {
-	return listCustomerGroups(ctx, client, pageNumber, pageSize)
+) ([]ICustomerGroup, *DefaultPagination, error) {
+	resp, err := listCustomerGroups(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]ICustomerGroup, 0)
+	for _, res := range resp.CustomerGroups.Results {
+		results = append(results, ICustomerGroup(&res.DefaultCustomerGroup))
+	}
+	return results, &resp.CustomerGroups.Pagination.DefaultPagination, nil
 }
 
 // Assure that a customer group relationship type exists.
@@ -389,8 +429,16 @@ func ListCustomerGroupRelationshipTypes(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listCustomerGroupRelationshipTypesResponse, error) {
-	return listCustomerGroupRelationshipTypes(ctx, client, pageNumber, pageSize)
+) ([]ICustomerGroupRelationshipType, *DefaultPagination, error) {
+	resp, err := listCustomerGroupRelationshipTypes(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]ICustomerGroupRelationshipType, 0)
+	for _, res := range resp.CustomerGroupRelationshipTypes.Results {
+		results = append(results, ICustomerGroupRelationshipType(&res.DefaultCustomerGroupRelationshipType))
+	}
+	return results, &resp.CustomerGroupRelationshipTypes.Pagination.DefaultPagination, nil
 }
 
 // Assure that a customer group relationship exists.
@@ -452,6 +500,14 @@ func ListCustomerGroupRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
-) (*listCustomerGroupRelationshipsResponse, error) {
-	return listCustomerGroupRelationships(ctx, client, pageNumber, pageSize)
+) ([]ICustomerGroupRelationship, *DefaultPagination, error) {
+	resp, err := listCustomerGroupRelationships(ctx, client, pageNumber, pageSize)
+	if err != nil {
+		return nil, nil, err
+	}
+	results := make([]ICustomerGroupRelationship, 0)
+	for _, res := range resp.CustomerGroupRelationships.Results {
+		results = append(results, ICustomerGroupRelationship(&res.DefaultCustomerGroupRelationship))
+	}
+	return results, &resp.CustomerGroupRelationships.Pagination.DefaultPagination, nil
 }
