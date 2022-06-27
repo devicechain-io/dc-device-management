@@ -39,9 +39,9 @@ func CreateAssetType(
 	client graphql.Client,
 	request model.AssetTypeCreateRequest,
 ) (IAssetType, error) {
-	cresp, err := createAssetType(ctx, client, request.Token, blank(request.Name), blank(request.Description),
-		blank(request.ImageUrl), blank(request.Icon), blank(request.BackgroundColor), blank(request.ForegroundColor),
-		blank(request.BorderColor), blank(request.Metadata))
+	cresp, err := createAssetType(ctx, client, request.Token, request.Name, request.Description,
+		request.ImageUrl, request.Icon, request.BackgroundColor, request.ForegroundColor,
+		request.BorderColor, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -112,7 +112,7 @@ func CreateAsset(
 	request model.AssetCreateRequest,
 ) (IAsset, error) {
 	cresp, err := createAsset(ctx, client, request.Token, request.AssetTypeToken,
-		blank(request.Name), blank(request.Description), blank(request.Metadata))
+		request.Name, request.Description, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -182,8 +182,8 @@ func CreateAssetRelationshipType(
 	client graphql.Client,
 	request model.AssetRelationshipTypeCreateRequest,
 ) (IAssetRelationshipType, error) {
-	cresp, err := createAssetRelationshipType(ctx, client, request.Token, blank(request.Name),
-		blank(request.Description), blank(request.Metadata))
+	cresp, err := createAssetRelationshipType(ctx, client, request.Token, request.Name,
+		request.Description, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -324,9 +324,9 @@ func CreateAssetGroup(
 	client graphql.Client,
 	request model.AssetGroupCreateRequest,
 ) (IAssetGroup, error) {
-	cresp, err := createAssetGroup(ctx, client, request.Token, blank(request.Name), blank(request.Description),
-		blank(request.ImageUrl), blank(request.Icon), blank(request.BackgroundColor), blank(request.ForegroundColor),
-		blank(request.BorderColor), blank(request.Metadata))
+	cresp, err := createAssetGroup(ctx, client, request.Token, request.Name, request.Description,
+		request.ImageUrl, request.Icon, request.BackgroundColor, request.ForegroundColor,
+		request.BorderColor, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -396,8 +396,8 @@ func CreateAssetGroupRelationshipType(
 	client graphql.Client,
 	request model.AssetGroupRelationshipTypeCreateRequest,
 ) (IAssetGroupRelationshipType, error) {
-	cresp, err := createAssetGroupRelationshipType(ctx, client, request.Token, blank(request.Name),
-		blank(request.Description), blank(request.Metadata))
+	cresp, err := createAssetGroupRelationshipType(ctx, client, request.Token, request.Name,
+		request.Description, request.Metadata)
 	if err != nil {
 		return nil, err
 	}

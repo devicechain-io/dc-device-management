@@ -354,7 +354,8 @@ func (api *Api) CreateCustomerRelationship(ctx context.Context, request *Custome
 func (api *Api) CustomerRelationshipsById(ctx context.Context, ids []uint) ([]*CustomerRelationship, error) {
 	found := make([]*CustomerRelationship, 0)
 	result := api.RDB.Database
-	result = result.Preload("SourceCustomer").Preload("TargetCustomer").Preload("RelationshipType")
+	result = result.Preload("SourceCustomer").Preload("RelationshipType")
+	result = preloadRelationshipTargets(result)
 	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
@@ -366,7 +367,8 @@ func (api *Api) CustomerRelationshipsById(ctx context.Context, ids []uint) ([]*C
 func (api *Api) CustomerRelationshipsByToken(ctx context.Context, tokens []string) ([]*CustomerRelationship, error) {
 	found := make([]*CustomerRelationship, 0)
 	result := api.RDB.Database
-	result = result.Preload("SourceCustomer").Preload("TargetCustomer").Preload("RelationshipType")
+	result = result.Preload("SourceCustomer").Preload("RelationshipType")
+	result = preloadRelationshipTargets(result)
 	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
@@ -379,7 +381,8 @@ func (api *Api) CustomerRelationships(ctx context.Context,
 	criteria CustomerRelationshipSearchCriteria) (*CustomerRelationshipSearchResults, error) {
 	results := make([]CustomerRelationship, 0)
 	db, pag := api.RDB.ListOf(&CustomerRelationship{}, nil, criteria.Pagination)
-	db.Preload("SourceCustomer").Preload("TargetCustomer").Preload("RelationshipType")
+	db.Preload("SourceCustomer").Preload("RelationshipType")
+	db = preloadRelationshipTargets(db)
 	db.Find(&results)
 	if db.Error != nil {
 		return nil, db.Error
@@ -613,7 +616,8 @@ func (api *Api) CreateCustomerGroupRelationship(ctx context.Context,
 func (api *Api) CustomerGroupRelationshipsById(ctx context.Context, ids []uint) ([]*CustomerGroupRelationship, error) {
 	found := make([]*CustomerGroupRelationship, 0)
 	result := api.RDB.Database
-	result = result.Preload("CustomerGroup").Preload("Customer").Preload("RelationshipType")
+	result = result.Preload("SourceCustomerGroup").Preload("RelationshipType")
+	result = preloadRelationshipTargets(result)
 	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
@@ -625,7 +629,8 @@ func (api *Api) CustomerGroupRelationshipsById(ctx context.Context, ids []uint) 
 func (api *Api) CustomerGroupRelationshipsByToken(ctx context.Context, tokens []string) ([]*CustomerGroupRelationship, error) {
 	found := make([]*CustomerGroupRelationship, 0)
 	result := api.RDB.Database
-	result = result.Preload("CustomerGroup").Preload("Customer").Preload("RelationshipType")
+	result = result.Preload("SourceCustomerGroup").Preload("RelationshipType")
+	result = preloadRelationshipTargets(result)
 	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
@@ -638,7 +643,8 @@ func (api *Api) CustomerGroupRelationships(ctx context.Context,
 	criteria CustomerGroupRelationshipSearchCriteria) (*CustomerGroupRelationshipSearchResults, error) {
 	results := make([]CustomerGroupRelationship, 0)
 	db, pag := api.RDB.ListOf(&CustomerGroupRelationship{}, nil, criteria.Pagination)
-	db.Preload("CustomerGroup").Preload("Customer").Preload("RelationshipType")
+	db.Preload("SourceCustomerGroup").Preload("RelationshipType")
+	db = preloadRelationshipTargets(db)
 	db.Find(&results)
 	if db.Error != nil {
 		return nil, db.Error

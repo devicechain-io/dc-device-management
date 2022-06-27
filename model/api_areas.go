@@ -354,7 +354,8 @@ func (api *Api) CreateAreaRelationship(ctx context.Context, request *AreaRelatio
 func (api *Api) AreaRelationshipsById(ctx context.Context, ids []uint) ([]*AreaRelationship, error) {
 	found := make([]*AreaRelationship, 0)
 	result := api.RDB.Database
-	result = result.Preload("SourceArea").Preload("TargetArea").Preload("RelationshipType")
+	result = result.Preload("SourceArea").Preload("RelationshipType")
+	result = preloadRelationshipTargets(result)
 	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
@@ -366,7 +367,8 @@ func (api *Api) AreaRelationshipsById(ctx context.Context, ids []uint) ([]*AreaR
 func (api *Api) AreaRelationshipsByToken(ctx context.Context, tokens []string) ([]*AreaRelationship, error) {
 	found := make([]*AreaRelationship, 0)
 	result := api.RDB.Database
-	result = result.Preload("SourceArea").Preload("TargetArea").Preload("RelationshipType")
+	result = result.Preload("SourceArea").Preload("RelationshipType")
+	result = preloadRelationshipTargets(result)
 	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
@@ -379,7 +381,8 @@ func (api *Api) AreaRelationships(ctx context.Context,
 	criteria AreaRelationshipSearchCriteria) (*AreaRelationshipSearchResults, error) {
 	results := make([]AreaRelationship, 0)
 	db, pag := api.RDB.ListOf(&AreaRelationship{}, nil, criteria.Pagination)
-	db.Preload("SourceArea").Preload("TargetArea").Preload("RelationshipType")
+	db.Preload("SourceArea").Preload("RelationshipType")
+	db = preloadRelationshipTargets(db)
 	db.Find(&results)
 	if db.Error != nil {
 		return nil, db.Error
@@ -614,7 +617,8 @@ func (api *Api) CreateAreaGroupRelationship(ctx context.Context,
 func (api *Api) AreaGroupRelationshipsById(ctx context.Context, ids []uint) ([]*AreaGroupRelationship, error) {
 	found := make([]*AreaGroupRelationship, 0)
 	result := api.RDB.Database
-	result = result.Preload("AreaGroup").Preload("Area").Preload("RelationshipType")
+	result = result.Preload("SourceAreaGroup").Preload("RelationshipType")
+	result = preloadRelationshipTargets(result)
 	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
@@ -626,7 +630,8 @@ func (api *Api) AreaGroupRelationshipsById(ctx context.Context, ids []uint) ([]*
 func (api *Api) AreaGroupRelationshipsByToken(ctx context.Context, tokens []string) ([]*AreaGroupRelationship, error) {
 	found := make([]*AreaGroupRelationship, 0)
 	result := api.RDB.Database
-	result = result.Preload("AreaGroup").Preload("Area").Preload("RelationshipType")
+	result = result.Preload("SourceAreaGroup").Preload("RelationshipType")
+	result = preloadRelationshipTargets(result)
 	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
@@ -639,7 +644,8 @@ func (api *Api) AreaGroupRelationships(ctx context.Context,
 	criteria AreaGroupRelationshipSearchCriteria) (*AreaGroupRelationshipSearchResults, error) {
 	results := make([]AreaGroupRelationship, 0)
 	db, pag := api.RDB.ListOf(&AreaGroupRelationship{}, nil, criteria.Pagination)
-	db.Preload("AreaGroup").Preload("Area").Preload("RelationshipType")
+	db.Preload("SourceAreaGroup").Preload("RelationshipType")
+	db = preloadRelationshipTargets(db)
 	db.Find(&results)
 	if db.Error != nil {
 		return nil, db.Error

@@ -354,7 +354,8 @@ func (api *Api) CreateAssetRelationship(ctx context.Context, request *AssetRelat
 func (api *Api) AssetRelationshipsById(ctx context.Context, ids []uint) ([]*AssetRelationship, error) {
 	found := make([]*AssetRelationship, 0)
 	result := api.RDB.Database
-	result = result.Preload("SourceAsset").Preload("TargetAsset").Preload("RelationshipType")
+	result = result.Preload("SourceAsset").Preload("RelationshipType")
+	result = preloadRelationshipTargets(result)
 	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
@@ -366,7 +367,8 @@ func (api *Api) AssetRelationshipsById(ctx context.Context, ids []uint) ([]*Asse
 func (api *Api) AssetRelationshipsByToken(ctx context.Context, tokens []string) ([]*AssetRelationship, error) {
 	found := make([]*AssetRelationship, 0)
 	result := api.RDB.Database
-	result = result.Preload("SourceAsset").Preload("TargetAsset").Preload("RelationshipType")
+	result = result.Preload("SourceAsset").Preload("RelationshipType")
+	result = preloadRelationshipTargets(result)
 	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
@@ -379,7 +381,8 @@ func (api *Api) AssetRelationships(ctx context.Context,
 	criteria AssetRelationshipSearchCriteria) (*AssetRelationshipSearchResults, error) {
 	results := make([]AssetRelationship, 0)
 	db, pag := api.RDB.ListOf(&AssetRelationship{}, nil, criteria.Pagination)
-	db.Preload("SourceAsset").Preload("TargetAsset").Preload("RelationshipType")
+	db.Preload("SourceAsset").Preload("RelationshipType")
+	db = preloadRelationshipTargets(db)
 	db.Find(&results)
 	if db.Error != nil {
 		return nil, db.Error
@@ -641,7 +644,8 @@ func (api *Api) AssetGroupRelationships(ctx context.Context,
 	criteria AssetGroupRelationshipSearchCriteria) (*AssetGroupRelationshipSearchResults, error) {
 	results := make([]AssetGroupRelationship, 0)
 	db, pag := api.RDB.ListOf(&AssetGroupRelationship{}, nil, criteria.Pagination)
-	db.Preload("AssetGroup").Preload("Asset").Preload("RelationshipType")
+	db.Preload("SourceAssetGroup").Preload("RelationshipType")
+	db = preloadRelationshipTargets(db)
 	db.Find(&results)
 	if db.Error != nil {
 		return nil, db.Error

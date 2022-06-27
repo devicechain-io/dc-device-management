@@ -39,9 +39,9 @@ func CreateAreaType(
 	client graphql.Client,
 	request model.AreaTypeCreateRequest,
 ) (IAreaType, error) {
-	cresp, err := createAreaType(ctx, client, request.Token, blank(request.Name), blank(request.Description),
-		blank(request.ImageUrl), blank(request.Icon), blank(request.BackgroundColor), blank(request.ForegroundColor),
-		blank(request.BorderColor), blank(request.Metadata))
+	cresp, err := createAreaType(ctx, client, request.Token, request.Name, request.Description,
+		request.ImageUrl, request.Icon, request.BackgroundColor, request.ForegroundColor,
+		request.BorderColor, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -112,7 +112,7 @@ func CreateArea(
 	request model.AreaCreateRequest,
 ) (IArea, error) {
 	cresp, err := createArea(ctx, client, request.Token, request.AreaTypeToken,
-		blank(request.Name), blank(request.Description), blank(request.Metadata))
+		request.Name, request.Description, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -182,8 +182,8 @@ func CreateAreaRelationshipType(
 	client graphql.Client,
 	request model.AreaRelationshipTypeCreateRequest,
 ) (IAreaRelationshipType, error) {
-	cresp, err := createAreaRelationshipType(ctx, client, request.Token, blank(request.Name),
-		blank(request.Description), blank(request.Metadata))
+	cresp, err := createAreaRelationshipType(ctx, client, request.Token, request.Name,
+		request.Description, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -324,9 +324,9 @@ func CreateAreaGroup(
 	client graphql.Client,
 	request model.AreaGroupCreateRequest,
 ) (IAreaGroup, error) {
-	cresp, err := createAreaGroup(ctx, client, request.Token, blank(request.Name), blank(request.Description),
-		blank(request.ImageUrl), blank(request.Icon), blank(request.BackgroundColor), blank(request.ForegroundColor),
-		blank(request.BorderColor), blank(request.Metadata))
+	cresp, err := createAreaGroup(ctx, client, request.Token, request.Name, request.Description,
+		request.ImageUrl, request.Icon, request.BackgroundColor, request.ForegroundColor,
+		request.BorderColor, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -396,8 +396,8 @@ func CreateAreaGroupRelationshipType(
 	client graphql.Client,
 	request model.AreaGroupRelationshipTypeCreateRequest,
 ) (IAreaGroupRelationshipType, error) {
-	cresp, err := createAreaGroupRelationshipType(ctx, client, request.Token, blank(request.Name),
-		blank(request.Description), blank(request.Metadata))
+	cresp, err := createAreaGroupRelationshipType(ctx, client, request.Token, request.Name,
+		request.Description, request.Metadata)
 	if err != nil {
 		return nil, err
 	}

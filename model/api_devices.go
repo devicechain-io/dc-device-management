@@ -354,7 +354,8 @@ func (api *Api) CreateDeviceRelationship(ctx context.Context, request *DeviceRel
 func (api *Api) DeviceRelationshipsById(ctx context.Context, ids []uint) ([]*DeviceRelationship, error) {
 	found := make([]*DeviceRelationship, 0)
 	result := api.RDB.Database
-	result = result.Preload("SourceDevice").Preload("TargetDevice").Preload("RelationshipType")
+	result = result.Preload("SourceDevice").Preload("RelationshipType")
+	result = preloadRelationshipTargets(result)
 	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
@@ -366,7 +367,8 @@ func (api *Api) DeviceRelationshipsById(ctx context.Context, ids []uint) ([]*Dev
 func (api *Api) DeviceRelationshipsByToken(ctx context.Context, tokens []string) ([]*DeviceRelationship, error) {
 	found := make([]*DeviceRelationship, 0)
 	result := api.RDB.Database
-	result = result.Preload("SourceDevice").Preload("TargetDevice").Preload("RelationshipType")
+	result = result.Preload("SourceDevice").Preload("RelationshipType")
+	result = preloadRelationshipTargets(result)
 	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
@@ -379,7 +381,8 @@ func (api *Api) DeviceRelationships(ctx context.Context,
 	criteria DeviceRelationshipSearchCriteria) (*DeviceRelationshipSearchResults, error) {
 	results := make([]DeviceRelationship, 0)
 	db, pag := api.RDB.ListOf(&DeviceRelationship{}, nil, criteria.Pagination)
-	db.Preload("SourceDevice").Preload("TargetDevice").Preload("RelationshipType")
+	db.Preload("SourceDevice").Preload("RelationshipType")
+	db = preloadRelationshipTargets(db)
 	db.Find(&results)
 	if db.Error != nil {
 		return nil, db.Error
@@ -614,7 +617,8 @@ func (api *Api) CreateDeviceGroupRelationship(ctx context.Context,
 func (api *Api) DeviceGroupRelationshipsById(ctx context.Context, ids []uint) ([]*DeviceGroupRelationship, error) {
 	found := make([]*DeviceGroupRelationship, 0)
 	result := api.RDB.Database
-	result = result.Preload("DeviceGroup").Preload("Device").Preload("RelationshipType")
+	result = result.Preload("SourceDeviceGroup").Preload("RelationshipType")
+	result = preloadRelationshipTargets(result)
 	result = result.Find(&found, ids)
 	if result.Error != nil {
 		return nil, result.Error
@@ -626,7 +630,8 @@ func (api *Api) DeviceGroupRelationshipsById(ctx context.Context, ids []uint) ([
 func (api *Api) DeviceGroupRelationshipsByToken(ctx context.Context, tokens []string) ([]*DeviceGroupRelationship, error) {
 	found := make([]*DeviceGroupRelationship, 0)
 	result := api.RDB.Database
-	result = result.Preload("DeviceGroup").Preload("Device").Preload("RelationshipType")
+	result = result.Preload("SourceDeviceGroup").Preload("RelationshipType")
+	result = preloadRelationshipTargets(result)
 	result = result.Find(&found, "token in ?", tokens)
 	if result.Error != nil {
 		return nil, result.Error
@@ -639,7 +644,8 @@ func (api *Api) DeviceGroupRelationships(ctx context.Context,
 	criteria DeviceGroupRelationshipSearchCriteria) (*DeviceGroupRelationshipSearchResults, error) {
 	results := make([]DeviceGroupRelationship, 0)
 	db, pag := api.RDB.ListOf(&DeviceGroupRelationship{}, nil, criteria.Pagination)
-	db.Preload("DeviceGroup").Preload("Device").Preload("RelationshipType")
+	db.Preload("SourceDeviceGroup").Preload("RelationshipType")
+	db = preloadRelationshipTargets(db)
 	db.Find(&results)
 	if db.Error != nil {
 		return nil, db.Error

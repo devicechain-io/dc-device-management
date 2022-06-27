@@ -39,9 +39,9 @@ func CreateDeviceType(
 	client graphql.Client,
 	request model.DeviceTypeCreateRequest,
 ) (IDeviceType, error) {
-	cresp, err := createDeviceType(ctx, client, request.Token, blank(request.Name), blank(request.Description),
-		blank(request.ImageUrl), blank(request.Icon), blank(request.BackgroundColor), blank(request.ForegroundColor),
-		blank(request.BorderColor), blank(request.Metadata))
+	cresp, err := createDeviceType(ctx, client, request.Token, request.Name, request.Description,
+		request.ImageUrl, request.Icon, request.BackgroundColor, request.ForegroundColor,
+		request.BorderColor, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -112,7 +112,7 @@ func CreateDevice(
 	request model.DeviceCreateRequest,
 ) (IDevice, error) {
 	cresp, err := createDevice(ctx, client, request.Token, request.DeviceTypeToken,
-		blank(request.Name), blank(request.Description), blank(request.Metadata))
+		request.Name, request.Description, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -182,8 +182,8 @@ func CreateDeviceRelationshipType(
 	client graphql.Client,
 	request model.DeviceRelationshipTypeCreateRequest,
 ) (IDeviceRelationshipType, error) {
-	cresp, err := createDeviceRelationshipType(ctx, client, request.Token, blank(request.Name),
-		blank(request.Description), blank(request.Metadata))
+	cresp, err := createDeviceRelationshipType(ctx, client, request.Token, request.Name,
+		request.Description, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -324,9 +324,9 @@ func CreateDeviceGroup(
 	client graphql.Client,
 	request model.DeviceGroupCreateRequest,
 ) (IDeviceGroup, error) {
-	cresp, err := createDeviceGroup(ctx, client, request.Token, blank(request.Name), blank(request.Description),
-		blank(request.ImageUrl), blank(request.Icon), blank(request.BackgroundColor), blank(request.ForegroundColor),
-		blank(request.BorderColor), blank(request.Metadata))
+	cresp, err := createDeviceGroup(ctx, client, request.Token, request.Name, request.Description,
+		request.ImageUrl, request.Icon, request.BackgroundColor, request.ForegroundColor,
+		request.BorderColor, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -396,8 +396,8 @@ func CreateDeviceGroupRelationshipType(
 	client graphql.Client,
 	request model.DeviceGroupRelationshipTypeCreateRequest,
 ) (IDeviceGroupRelationshipType, error) {
-	cresp, err := createDeviceGroupRelationshipType(ctx, client, request.Token, blank(request.Name),
-		blank(request.Description), blank(request.Metadata))
+	cresp, err := createDeviceGroupRelationshipType(ctx, client, request.Token, request.Name,
+		request.Description, request.Metadata)
 	if err != nil {
 		return nil, err
 	}

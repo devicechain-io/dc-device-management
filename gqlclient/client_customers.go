@@ -39,9 +39,9 @@ func CreateCustomerType(
 	client graphql.Client,
 	request model.CustomerTypeCreateRequest,
 ) (ICustomerType, error) {
-	cresp, err := createCustomerType(ctx, client, request.Token, blank(request.Name), blank(request.Description),
-		blank(request.ImageUrl), blank(request.Icon), blank(request.BackgroundColor), blank(request.ForegroundColor),
-		blank(request.BorderColor), blank(request.Metadata))
+	cresp, err := createCustomerType(ctx, client, request.Token, request.Name, request.Description,
+		request.ImageUrl, request.Icon, request.BackgroundColor, request.ForegroundColor,
+		request.BorderColor, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -112,7 +112,7 @@ func CreateCustomer(
 	request model.CustomerCreateRequest,
 ) (ICustomer, error) {
 	cresp, err := createCustomer(ctx, client, request.Token, request.CustomerTypeToken,
-		blank(request.Name), blank(request.Description), blank(request.Metadata))
+		request.Name, request.Description, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -182,8 +182,8 @@ func CreateCustomerRelationshipType(
 	client graphql.Client,
 	request model.CustomerRelationshipTypeCreateRequest,
 ) (ICustomerRelationshipType, error) {
-	cresp, err := createCustomerRelationshipType(ctx, client, request.Token, blank(request.Name),
-		blank(request.Description), blank(request.Metadata))
+	cresp, err := createCustomerRelationshipType(ctx, client, request.Token, request.Name,
+		request.Description, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -324,9 +324,9 @@ func CreateCustomerGroup(
 	client graphql.Client,
 	request model.CustomerGroupCreateRequest,
 ) (ICustomerGroup, error) {
-	cresp, err := createCustomerGroup(ctx, client, request.Token, blank(request.Name), blank(request.Description),
-		blank(request.ImageUrl), blank(request.Icon), blank(request.BackgroundColor), blank(request.ForegroundColor),
-		blank(request.BorderColor), blank(request.Metadata))
+	cresp, err := createCustomerGroup(ctx, client, request.Token, request.Name, request.Description,
+		request.ImageUrl, request.Icon, request.BackgroundColor, request.ForegroundColor,
+		request.BorderColor, request.Metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -396,8 +396,8 @@ func CreateCustomerGroupRelationshipType(
 	client graphql.Client,
 	request model.CustomerGroupRelationshipTypeCreateRequest,
 ) (ICustomerGroupRelationshipType, error) {
-	cresp, err := createCustomerGroupRelationshipType(ctx, client, request.Token, blank(request.Name),
-		blank(request.Description), blank(request.Metadata))
+	cresp, err := createCustomerGroupRelationshipType(ctx, client, request.Token, request.Name,
+		request.Description, request.Metadata)
 	if err != nil {
 		return nil, err
 	}

@@ -12,24 +12,16 @@ import "github.com/devicechain-io/dc-device-management/model"
 
 //go:generate go run github.com/Khan/genqlient@v0.5.0
 
-// TEMP: genqlient doesn't handle pointers yet.
-func blank(val *string) string {
-	if val == nil {
-		return ""
-	}
-	return *val
-}
-
 // Converts relationship targets into generated datatype.
 func targets(req model.EntityRelationshipCreateRequest) EntityRelationshipTargetsCreateRequest {
 	return EntityRelationshipTargetsCreateRequest{
-		TargetDevice:        *req.TargetDevice,
-		TargetDeviceGroup:   *req.TargetDeviceGroup,
-		TargetAsset:         *req.TargetAsset,
-		TargetAssetGroup:    *req.TargetAssetGroup,
-		TargetArea:          *req.TargetArea,
-		TargetAreaGroup:     *req.TargetAreaGroup,
-		TargetCustomer:      *req.TargetCustomer,
-		TargetCustomerGroup: *req.TargetCustomerGroup,
+		TargetDevice:        req.TargetDevice,
+		TargetDeviceGroup:   req.TargetDeviceGroup,
+		TargetAsset:         req.TargetAsset,
+		TargetAssetGroup:    req.TargetAssetGroup,
+		TargetArea:          req.TargetArea,
+		TargetAreaGroup:     req.TargetAreaGroup,
+		TargetCustomer:      req.TargetCustomer,
+		TargetCustomerGroup: req.TargetCustomerGroup,
 	}
 }
