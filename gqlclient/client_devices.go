@@ -254,7 +254,7 @@ func CreateDeviceRelationship(
 	request model.DeviceRelationshipCreateRequest,
 ) (IDeviceRelationship, error) {
 	cresp, err := createDeviceRelationship(ctx, client, request.Token, request.SourceDevice,
-		request.TargetDevice, request.RelationshipType)
+		targets(request.Targets), request.RelationshipType)
 	if err != nil {
 		return nil, err
 	}
@@ -467,8 +467,8 @@ func CreateDeviceGroupRelationship(
 	client graphql.Client,
 	request model.DeviceGroupRelationshipCreateRequest,
 ) (IDeviceGroupRelationship, error) {
-	cresp, err := createDeviceGroupRelationship(ctx, client, request.Token, request.DeviceGroup, request.Device,
-		request.RelationshipType)
+	cresp, err := createDeviceGroupRelationship(ctx, client, request.Token, request.SourceDeviceGroup,
+		targets(request.Targets), request.RelationshipType)
 	if err != nil {
 		return nil, err
 	}

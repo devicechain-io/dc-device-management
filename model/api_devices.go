@@ -311,17 +311,17 @@ func deviceByTokenMap(vals []*Device) map[string]*Device {
 
 // Create a new device relationship.
 func (api *Api) CreateDeviceRelationship(ctx context.Context, request *DeviceRelationshipCreateRequest) (*DeviceRelationship, error) {
-	// Look up device token references.
-	dvmatches, err := api.DevicesByToken(ctx, []string{request.SourceDevice, request.TargetDevice})
+	// Look up source reference.
+	dvmatches, err := api.DevicesByToken(ctx, []string{request.SourceDevice})
 	if err != nil {
 		return nil, err
 	}
-	if len(dvmatches) != 2 {
+	if len(dvmatches) == 0 {
 		return nil, gorm.ErrRecordNotFound
 	}
 	mmap := deviceByTokenMap(dvmatches)
 
-	// Look up relationship token reference.
+	// Look up relationship reference.
 	drmatches, err := api.DeviceRelationshipTypesByToken(ctx, []string{request.RelationshipType})
 	if err != nil {
 		return nil, err
@@ -331,16 +331,18 @@ func (api *Api) CreateDeviceRelationship(ctx context.Context, request *DeviceRel
 	}
 
 	created := &DeviceRelationship{
-		TokenReference: rdb.TokenReference{
-			Token: request.Token,
+		EntityRelationship: EntityRelationship{
+			TokenReference: rdb.TokenReference{
+				Token: request.Token,
+			},
+			MetadataEntity: rdb.MetadataEntity{
+				Metadata: rdb.MetadataStrOf(request.Metadata),
+			},
 		},
 		SourceDevice:     *mmap[request.SourceDevice],
-		TargetDevice:     *mmap[request.TargetDevice],
 		RelationshipType: *drmatches[0],
-		MetadataEntity: rdb.MetadataEntity{
-			Metadata: rdb.MetadataStrOf(request.Metadata),
-		},
 	}
+	api.resolveRelationshipTargets(ctx, request.Targets, &created.EntityRelationship)
 	result := api.RDB.Database.Create(created)
 	if result.Error != nil {
 		return nil, result.Error
@@ -570,21 +572,16 @@ func (api *Api) DeviceGroupRelationshipTypes(ctx context.Context,
 func (api *Api) CreateDeviceGroupRelationship(ctx context.Context,
 	request *DeviceGroupRelationshipCreateRequest) (*DeviceGroupRelationship, error) {
 
-	// Look up token references.
-	gmatches, err := api.DeviceGroupsByToken(ctx, []string{request.DeviceGroup})
+	// Look up source reference.
+	gmatches, err := api.DeviceGroupsByToken(ctx, []string{request.SourceDeviceGroup})
 	if err != nil {
 		return nil, err
 	}
 	if len(gmatches) == 0 {
 		return nil, gorm.ErrRecordNotFound
 	}
-	dmatches, err := api.DevicesByToken(ctx, []string{request.Device})
-	if err != nil {
-		return nil, err
-	}
-	if len(dmatches) == 0 {
-		return nil, gorm.ErrRecordNotFound
-	}
+
+	// Look up relationship reference.
 	rtmatches, err := api.DeviceGroupRelationshipTypesByToken(ctx, []string{request.RelationshipType})
 	if err != nil {
 		return nil, err
@@ -594,16 +591,18 @@ func (api *Api) CreateDeviceGroupRelationship(ctx context.Context,
 	}
 
 	created := &DeviceGroupRelationship{
-		TokenReference: rdb.TokenReference{
-			Token: request.Token,
+		EntityRelationship: EntityRelationship{
+			TokenReference: rdb.TokenReference{
+				Token: request.Token,
+			},
+			MetadataEntity: rdb.MetadataEntity{
+				Metadata: rdb.MetadataStrOf(request.Metadata),
+			},
 		},
-		DeviceGroup:      *gmatches[0],
-		Device:           *dmatches[0],
-		RelationshipType: *rtmatches[0],
-		MetadataEntity: rdb.MetadataEntity{
-			Metadata: rdb.MetadataStrOf(request.Metadata),
-		},
+		SourceDeviceGroup: *gmatches[0],
+		RelationshipType:  *rtmatches[0],
 	}
+	api.resolveRelationshipTargets(ctx, request.Targets, &created.EntityRelationship)
 	result := api.RDB.Database.Create(created)
 	if result.Error != nil {
 		return nil, result.Error

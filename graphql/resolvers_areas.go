@@ -317,9 +317,9 @@ func (r *AreaRelationshipResolver) SourceArea() *AreaResolver {
 	}
 }
 
-func (r *AreaRelationshipResolver) TargetArea() *AreaResolver {
-	return &AreaResolver{
-		M: r.M.TargetArea,
+func (r *AreaRelationshipResolver) Targets() *EntityRelationshipResolver {
+	return &EntityRelationshipResolver{
+		M: r.M.EntityRelationship,
 		S: r.S,
 		C: r.C,
 	}
@@ -564,17 +564,17 @@ func (r *AreaGroupRelationshipResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
 }
 
-func (r *AreaGroupRelationshipResolver) AreaGroup() *AreaGroupResolver {
+func (r *AreaGroupRelationshipResolver) SourceAreaGroup() *AreaGroupResolver {
 	return &AreaGroupResolver{
-		M: r.M.AreaGroup,
+		M: r.M.SourceAreaGroup,
 		S: r.S,
 		C: r.C,
 	}
 }
 
-func (r *AreaGroupRelationshipResolver) Area() *AreaResolver {
-	return &AreaResolver{
-		M: r.M.Area,
+func (r *AreaGroupRelationshipResolver) Targets() *EntityRelationshipResolver {
+	return &EntityRelationshipResolver{
+		M: r.M.EntityRelationship,
 		S: r.S,
 		C: r.C,
 	}

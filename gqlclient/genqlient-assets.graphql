@@ -56,10 +56,8 @@ fragment DefaultAssetRelationship on AssetRelationship {
     name
     description
   }
-  targetAsset {
-    token
-    name
-    description
+  targets {
+    ...DefaultRelationshipTargets
   }
   relationshipType {
     token
@@ -105,15 +103,13 @@ fragment DefaultAssetGroupRelationship on AssetGroupRelationship {
   updatedAt
   deletedAt
   token
-  assetGroup {
+  sourceAssetGroup {
     token
     name
     description
   }
-  asset {
-    token
-    name
-    description
+  targets {
+    ...DefaultRelationshipTargets
   }
   relationshipType {
     token
@@ -224,12 +220,12 @@ query listAssetRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
 }
 
 # Create asset relationship and return identifiers.
-mutation createAssetRelationship($token: String!, $sourceAsset: String!, $targetAsset: String!, $relationshipType: String!) {
+mutation createAssetRelationship($token: String!, $sourceAsset: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
   createAssetRelationship(
     request: {
       token: $token,
       sourceAsset: $sourceAsset
-      targetAsset: $targetAsset
+      targets: $targets
       relationshipType: $relationshipType
     }
   ) {
@@ -325,12 +321,12 @@ query listAssetGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
 }
 
 # Create asset group relationship and return identifiers.
-mutation createAssetGroupRelationship($token: String!, $assetGroup: String!, $asset: String!, $relationshipType: String!) {
+mutation createAssetGroupRelationship($token: String!, $assetGroup: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
   createAssetGroupRelationship(
     request: {
       token: $token,
-      assetGroup: $assetGroup,
-      asset: $asset,
+      sourceAssetGroup: $assetGroup,
+      targets: $targets,
       relationshipType: $relationshipType
     }
   ) {

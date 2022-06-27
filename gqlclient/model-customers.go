@@ -38,7 +38,7 @@ type ICustomerRelationship interface {
 	ITokenReference
 	IMetadataEntity
 	GetSourceCustomer() DefaultCustomerRelationshipSourceCustomer
-	GetTargetCustomer() DefaultCustomerRelationshipTargetCustomer
+	GetTargets() DefaultCustomerRelationshipTargetsEntityRelationshipTargets
 	GetRelationshipType() DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType
 }
 
@@ -64,7 +64,7 @@ type ICustomerGroupRelationship interface {
 	IModel
 	ITokenReference
 	IMetadataEntity
-	GetCustomerGroup() DefaultCustomerGroupRelationshipCustomerGroup
-	GetCustomer() DefaultCustomerGroupRelationshipCustomer
+	GetSourceCustomerGroup() DefaultCustomerGroupRelationshipSourceCustomerGroup
+	GetTargets() DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets
 	GetRelationshipType() DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType
 }

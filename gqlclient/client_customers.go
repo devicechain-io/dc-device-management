@@ -254,7 +254,7 @@ func CreateCustomerRelationship(
 	request model.CustomerRelationshipCreateRequest,
 ) (ICustomerRelationship, error) {
 	cresp, err := createCustomerRelationship(ctx, client, request.Token, request.SourceCustomer,
-		request.TargetCustomer, request.RelationshipType)
+		targets(request.Targets), request.RelationshipType)
 	if err != nil {
 		return nil, err
 	}
@@ -467,8 +467,8 @@ func CreateCustomerGroupRelationship(
 	client graphql.Client,
 	request model.CustomerGroupRelationshipCreateRequest,
 ) (ICustomerGroupRelationship, error) {
-	cresp, err := createCustomerGroupRelationship(ctx, client, request.Token, request.CustomerGroup, request.Customer,
-		request.RelationshipType)
+	cresp, err := createCustomerGroupRelationship(ctx, client, request.Token, request.SourceCustomerGroup,
+		targets(request.Targets), request.RelationshipType)
 	if err != nil {
 		return nil, err
 	}

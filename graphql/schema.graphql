@@ -42,6 +42,30 @@ type SearchResultsPagination {
 	totalRecords: Int
 }
 
+# Entity relationship targets create request.
+input EntityRelationshipTargetsCreateRequest {
+    targetDevice: String
+    targetDeviceGroup: String
+    targetAsset: String
+    targetAssetGroup: String
+    targetArea: String
+    targetAreaGroup: String
+    targetCustomer: String
+    targetCustomerGroup: String
+}
+
+# Entity relationship targets.
+type EntityRelationshipTargets {
+    targetDevice: Device
+    targetDeviceGroup: DeviceGroup
+    targetAsset: Asset
+    targetAssetGroup: AssetGroup
+    targetArea: Area
+    targetAreaGroup: AreaGroup
+    targetCustomer: Customer
+    targetCustomerGroup: CustomerGroup
+}
+
 # Represents a type or class of devices
 type DeviceType implements Model & TokenReference & NamedEntity & BrandedEntity & MetadataEntity {
     id: ID!
@@ -152,6 +176,15 @@ type DeviceRelationshipTypeSearchResults {
     pagination: SearchResultsPagination!
 }
 
+# Data required to create a device relationship.
+input DeviceRelationshipCreateRequest {
+    token: String!
+    sourceDevice: String!
+    targets: EntityRelationshipTargetsCreateRequest!
+    relationshipType: String!
+    metadata: String
+}
+
 # Represents a relationship between devices.
 type DeviceRelationship implements Model & MetadataEntity {
     id: ID!
@@ -160,17 +193,8 @@ type DeviceRelationship implements Model & MetadataEntity {
     deletedAt: String
     token: String!
     sourceDevice: Device!
-    targetDevice: Device!
+    targets: EntityRelationshipTargets!
     relationshipType: DeviceRelationshipType!
-    metadata: String
-}
-
-# Data required to create a device relationship.
-input DeviceRelationshipCreateRequest {
-    token: String!
-    sourceDevice: String!
-    targetDevice: String!
-    relationshipType: String!
     metadata: String
 }
 
@@ -260,6 +284,15 @@ type DeviceGroupRelationshipTypeSearchResults {
     pagination: SearchResultsPagination!
 }
 
+# Data required to create a device group relationship.
+input DeviceGroupRelationshipCreateRequest {
+    token: String!
+    sourceDeviceGroup: String!
+    targets: EntityRelationshipTargetsCreateRequest!
+    relationshipType: String!
+    metadata: String
+}
+
 # Represents a relationship between a device and a group.
 type DeviceGroupRelationship implements Model {
     id: ID!
@@ -267,18 +300,9 @@ type DeviceGroupRelationship implements Model {
     updatedAt: String
     deletedAt: String
     token: String!
-    deviceGroup: DeviceGroup!
-    device: Device!
+    sourceDeviceGroup: DeviceGroup!
+    targets: EntityRelationshipTargets!
     relationshipType: DeviceGroupRelationshipType!
-    metadata: String
-}
-
-# Data required to create a device group relationship.
-input DeviceGroupRelationshipCreateRequest {
-    token: String!
-    deviceGroup: String!
-    device: String!
-    relationshipType: String!
     metadata: String
 }
 
@@ -403,6 +427,15 @@ type AssetRelationshipTypeSearchResults {
     pagination: SearchResultsPagination!
 }
 
+# Data required to create an asset relationship.
+input AssetRelationshipCreateRequest {
+    token: String!
+    sourceAsset: String!
+    targets: EntityRelationshipTargetsCreateRequest!
+    relationshipType: String!
+    metadata: String
+}
+
 # Represents a relationship between assets.
 type AssetRelationship implements Model {
     id: ID!
@@ -411,17 +444,8 @@ type AssetRelationship implements Model {
     deletedAt: String
     token: String!
     sourceAsset: Asset!
-    targetAsset: Asset!
+    targets: EntityRelationshipTargets!
     relationshipType: AssetRelationshipType!
-    metadata: String
-}
-
-# Data required to create an asset relationship.
-input AssetRelationshipCreateRequest {
-    token: String!
-    sourceAsset: String!
-    targetAsset: String!
-    relationshipType: String!
     metadata: String
 }
 
@@ -511,6 +535,15 @@ type AssetGroupRelationshipTypeSearchResults {
     pagination: SearchResultsPagination!
 }
 
+# Data required to create an asset group relationship.
+input AssetGroupRelationshipCreateRequest {
+    token: String!
+    sourceAssetGroup: String!
+    targets: EntityRelationshipTargetsCreateRequest!
+    relationshipType: String!
+    metadata: String
+}
+
 # Represents a relationship between an asset and an asset.
 type AssetGroupRelationship implements Model {
     id: ID!
@@ -518,18 +551,9 @@ type AssetGroupRelationship implements Model {
     updatedAt: String
     deletedAt: String
     token: String!
-    assetGroup: AssetGroup!
-    asset: Asset!
+    sourceAssetGroup: AssetGroup!
+    targets: EntityRelationshipTargets!
     relationshipType: AssetGroupRelationshipType!
-    metadata: String
-}
-
-# Data required to create an asset group relationship.
-input AssetGroupRelationshipCreateRequest {
-    token: String!
-    assetGroup: String!
-    asset: String!
-    relationshipType: String!
     metadata: String
 }
 
@@ -654,6 +678,15 @@ type CustomerRelationshipTypeSearchResults {
     pagination: SearchResultsPagination!
 }
 
+# Data required to create a customer relationship.
+input CustomerRelationshipCreateRequest {
+    token: String!
+    sourceCustomer: String!
+    targets: EntityRelationshipTargetsCreateRequest!
+    relationshipType: String!
+    metadata: String
+}
+
 # Represents a relationship between customers.
 type CustomerRelationship implements Model & MetadataEntity {
     id: ID!
@@ -662,17 +695,8 @@ type CustomerRelationship implements Model & MetadataEntity {
     deletedAt: String
     token: String!
     sourceCustomer: Customer!
-    targetCustomer: Customer!
+    targets: EntityRelationshipTargets!
     relationshipType: CustomerRelationshipType!
-    metadata: String
-}
-
-# Data required to create a customer relationship.
-input CustomerRelationshipCreateRequest {
-    token: String!
-    sourceCustomer: String!
-    targetCustomer: String!
-    relationshipType: String!
     metadata: String
 }
 
@@ -762,6 +786,15 @@ type CustomerGroupRelationshipTypeSearchResults {
     pagination: SearchResultsPagination!
 }
 
+# Data required to create a customer group relationship.
+input CustomerGroupRelationshipCreateRequest {
+    token: String!
+    sourceCustomerGroup: String!
+    targets: EntityRelationshipTargetsCreateRequest!
+    relationshipType: String!
+    metadata: String
+}
+
 # Represents a relationship between a customer and a group.
 type CustomerGroupRelationship implements Model {
     id: ID!
@@ -769,18 +802,9 @@ type CustomerGroupRelationship implements Model {
     updatedAt: String
     deletedAt: String
     token: String!
-    customerGroup: CustomerGroup!
-    customer: Customer!
+    sourceCustomerGroup: CustomerGroup!
+    targets: EntityRelationshipTargets!
     relationshipType: CustomerGroupRelationshipType!
-    metadata: String
-}
-
-# Data required to create a customer group relationship.
-input CustomerGroupRelationshipCreateRequest {
-    token: String!
-    customerGroup: String!
-    customer: String!
-    relationshipType: String!
     metadata: String
 }
 
@@ -905,6 +929,15 @@ type AreaRelationshipTypeSearchResults {
     pagination: SearchResultsPagination!
 }
 
+# Data required to create an area relationship.
+input AreaRelationshipCreateRequest {
+    token: String!
+    sourceArea: String!
+    targets: EntityRelationshipTargetsCreateRequest!
+    relationshipType: String!
+    metadata: String
+}
+
 # Represents a relationship between areas.
 type AreaRelationship implements Model {
     id: ID!
@@ -913,17 +946,8 @@ type AreaRelationship implements Model {
     deletedAt: String
     token: String!
     sourceArea: Area!
-    targetArea: Area!
+    targets: EntityRelationshipTargets!
     relationshipType: AreaRelationshipType!
-    metadata: String
-}
-
-# Data required to create an area relationship.
-input AreaRelationshipCreateRequest {
-    token: String!
-    sourceArea: String!
-    targetArea: String!
-    relationshipType: String!
     metadata: String
 }
 
@@ -1013,6 +1037,15 @@ type AreaGroupRelationshipTypeSearchResults {
     pagination: SearchResultsPagination!
 }
 
+# Data required to create an area group relationship.
+input AreaGroupRelationshipCreateRequest {
+    token: String!
+    sourceAreaGroup: String!
+    targets: EntityRelationshipTargetsCreateRequest!
+    relationshipType: String!
+    metadata: String
+}
+
 # Represents a relationship between an area and an area.
 type AreaGroupRelationship implements Model {
     id: ID!
@@ -1020,18 +1053,9 @@ type AreaGroupRelationship implements Model {
     updatedAt: String
     deletedAt: String
     token: String!
-    areaGroup: AreaGroup!
-    area: Area!
+    sourceAreaGroup: AreaGroup!
+    targets: EntityRelationshipTargets!
     relationshipType: AreaGroupRelationshipType!
-    metadata: String
-}
-
-# Data required to create an area group relationship.
-input AreaGroupRelationshipCreateRequest {
-    token: String!
-    areaGroup: String!
-    area: String!
-    relationshipType: String!
     metadata: String
 }
 

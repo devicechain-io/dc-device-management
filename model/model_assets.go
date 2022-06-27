@@ -109,20 +109,16 @@ type AssetRelationshipTypeSearchResults struct {
 type AssetRelationshipCreateRequest struct {
 	Token            string
 	SourceAsset      string
-	TargetAsset      string
 	RelationshipType string
+	Targets          EntityRelationshipCreateRequest
 	Metadata         *string
 }
 
 // Captures a relationship between assets.
 type AssetRelationship struct {
-	gorm.Model
-	rdb.TokenReference
-	rdb.MetadataEntity
+	EntityRelationship
 	SourceAssetId      uint
 	SourceAsset        Asset
-	TargetAssetId      uint
-	TargetAsset        Asset
 	RelationshipTypeId uint
 	RelationshipType   AssetRelationshipType
 }
@@ -201,21 +197,18 @@ type AssetGroupRelationshipTypeSearchResults struct {
 // Data required to create an asset group relationship.
 type AssetGroupRelationshipCreateRequest struct {
 	Token            string
-	AssetGroup       string
-	Asset            string
+	SourceAssetGroup string
 	RelationshipType string
+	Targets          EntityRelationshipCreateRequest
 	Metadata         *string
 }
 
 // Represents a asset-to-group relationship.
 type AssetGroupRelationship struct {
-	gorm.Model
-	rdb.TokenReference
-	rdb.MetadataEntity
-	AssetGroupId       uint
-	AssetGroup         AssetGroup
+	EntityRelationship
+	SourceAssetGroupId uint
+	SourceAssetGroup   AssetGroup
 	AssetId            uint
-	Asset              Asset
 	RelationshipTypeId uint
 	RelationshipType   AssetGroupRelationshipType
 }

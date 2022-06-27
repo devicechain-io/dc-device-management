@@ -56,10 +56,8 @@ fragment DefaultCustomerRelationship on CustomerRelationship {
     name
     description
   }
-  targetCustomer {
-    token
-    name
-    description
+  targets {
+    ...DefaultRelationshipTargets
   }
   relationshipType {
     token
@@ -105,15 +103,13 @@ fragment DefaultCustomerGroupRelationship on CustomerGroupRelationship {
   updatedAt
   deletedAt
   token
-  customerGroup {
+  sourceCustomerGroup {
     token
     name
     description
   }
-  customer {
-    token
-    name
-    description
+  targets {
+    ...DefaultRelationshipTargets
   }
   relationshipType {
     token
@@ -224,12 +220,12 @@ query listCustomerRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
 }
 
 # Create customer relationship and return identifiers.
-mutation createCustomerRelationship($token: String!, $sourceCustomer: String!, $targetCustomer: String!, $relationshipType: String!) {
+mutation createCustomerRelationship($token: String!, $sourceCustomer: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
   createCustomerRelationship(
     request: {
       token: $token,
       sourceCustomer: $sourceCustomer
-      targetCustomer: $targetCustomer
+      targets: $targets
       relationshipType: $relationshipType
     }
   ) {
@@ -325,12 +321,12 @@ query listCustomerGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
 }
 
 # Create customer group relationship and return identifiers.
-mutation createCustomerGroupRelationship($token: String!, $customerGroup: String!, $customer: String!, $relationshipType: String!) {
+mutation createCustomerGroupRelationship($token: String!, $customerGroup: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
   createCustomerGroupRelationship(
     request: {
       token: $token,
-      customerGroup: $customerGroup,
-      customer: $customer,
+      sourceCustomerGroup: $customerGroup,
+      targets: $targets,
       relationshipType: $relationshipType
     }
   ) {

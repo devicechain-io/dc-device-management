@@ -16,6 +16,7 @@ import (
 	"github.com/devicechain-io/dc-device-management/graphql"
 	"github.com/devicechain-io/dc-device-management/model"
 	"github.com/devicechain-io/dc-device-management/processor"
+	"github.com/devicechain-io/dc-device-management/schema"
 	esconfig "github.com/devicechain-io/dc-event-sources/config"
 	"github.com/devicechain-io/dc-microservice/core"
 	gqlcore "github.com/devicechain-io/dc-microservice/graphql"
@@ -120,7 +121,7 @@ func afterMicroserviceInitialized(ctx context.Context) error {
 
 	// Create and initialize rdb manager.
 	rdbcb := core.NewNoOpLifecycleCallbacks()
-	RdbManager = rdb.NewRdbManager(Microservice, rdbcb, model.Migrations,
+	RdbManager = rdb.NewRdbManager(Microservice, rdbcb, schema.Migrations,
 		Microservice.InstanceConfiguration.Persistence.Rdb, Configuration.RdbConfiguration)
 	err = RdbManager.Initialize(ctx)
 	if err != nil {

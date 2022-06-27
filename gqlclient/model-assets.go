@@ -38,7 +38,7 @@ type IAssetRelationship interface {
 	ITokenReference
 	IMetadataEntity
 	GetSourceAsset() DefaultAssetRelationshipSourceAsset
-	GetTargetAsset() DefaultAssetRelationshipTargetAsset
+	GetTargets() DefaultAssetRelationshipTargetsEntityRelationshipTargets
 	GetRelationshipType() DefaultAssetRelationshipRelationshipTypeAssetRelationshipType
 }
 
@@ -64,7 +64,7 @@ type IAssetGroupRelationship interface {
 	IModel
 	ITokenReference
 	IMetadataEntity
-	GetAssetGroup() DefaultAssetGroupRelationshipAssetGroup
-	GetAsset() DefaultAssetGroupRelationshipAsset
+	GetSourceAssetGroup() DefaultAssetGroupRelationshipSourceAssetGroup
+	GetTargets() DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets
 	GetRelationshipType() DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType
 }

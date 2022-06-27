@@ -311,16 +311,17 @@ func customerByTokenMap(vals []*Customer) map[string]*Customer {
 
 // Create a new customer relationship.
 func (api *Api) CreateCustomerRelationship(ctx context.Context, request *CustomerRelationshipCreateRequest) (*CustomerRelationship, error) {
-	// Look up token references.
-	cmatches, err := api.CustomersByToken(ctx, []string{request.SourceCustomer, request.TargetCustomer})
+	// Look up source reference.
+	cmatches, err := api.CustomersByToken(ctx, []string{request.SourceCustomer})
 	if err != nil {
 		return nil, err
 	}
-	if len(cmatches) != 2 {
+	if len(cmatches) == 0 {
 		return nil, gorm.ErrRecordNotFound
 	}
 	mmap := customerByTokenMap(cmatches)
 
+	// Look up relationship reference.
 	crtmatches, err := api.CustomerRelationshipTypesByToken(ctx, []string{request.RelationshipType})
 	if err != nil {
 		return nil, err
@@ -330,16 +331,18 @@ func (api *Api) CreateCustomerRelationship(ctx context.Context, request *Custome
 	}
 
 	created := &CustomerRelationship{
-		TokenReference: rdb.TokenReference{
-			Token: request.Token,
+		EntityRelationship: EntityRelationship{
+			TokenReference: rdb.TokenReference{
+				Token: request.Token,
+			},
+			MetadataEntity: rdb.MetadataEntity{
+				Metadata: rdb.MetadataStrOf(request.Metadata),
+			},
 		},
 		SourceCustomer:   *mmap[request.SourceCustomer],
-		TargetCustomer:   *mmap[request.TargetCustomer],
 		RelationshipType: *crtmatches[0],
-		MetadataEntity: rdb.MetadataEntity{
-			Metadata: rdb.MetadataStrOf(request.Metadata),
-		},
 	}
+	api.resolveRelationshipTargets(ctx, request.Targets, &created.EntityRelationship)
 	result := api.RDB.Database.Create(created)
 	if result.Error != nil {
 		return nil, result.Error
@@ -569,21 +572,16 @@ func (api *Api) CustomerGroupRelationshipTypes(ctx context.Context,
 func (api *Api) CreateCustomerGroupRelationship(ctx context.Context,
 	request *CustomerGroupRelationshipCreateRequest) (*CustomerGroupRelationship, error) {
 
-	// Look up token references.
-	cgmatches, err := api.CustomerGroupsByToken(ctx, []string{request.CustomerGroup})
+	// Look up source reference.
+	cgmatches, err := api.CustomerGroupsByToken(ctx, []string{request.SourceCustomerGroup})
 	if err != nil {
 		return nil, err
 	}
 	if len(cgmatches) == 0 {
 		return nil, gorm.ErrRecordNotFound
 	}
-	cmatches, err := api.CustomersByToken(ctx, []string{request.Customer})
-	if err != nil {
-		return nil, err
-	}
-	if len(cmatches) == 0 {
-		return nil, gorm.ErrRecordNotFound
-	}
+
+	// Look up relationship reference.
 	cgrtmatches, err := api.CustomerGroupRelationshipTypesByToken(ctx, []string{request.RelationshipType})
 	if err != nil {
 		return nil, err
@@ -593,15 +591,16 @@ func (api *Api) CreateCustomerGroupRelationship(ctx context.Context,
 	}
 
 	created := &CustomerGroupRelationship{
-		TokenReference: rdb.TokenReference{
-			Token: request.Token,
+		EntityRelationship: EntityRelationship{
+			TokenReference: rdb.TokenReference{
+				Token: request.Token,
+			},
+			MetadataEntity: rdb.MetadataEntity{
+				Metadata: rdb.MetadataStrOf(request.Metadata),
+			},
 		},
-		CustomerGroup:    *cgmatches[0],
-		Customer:         *cmatches[0],
-		RelationshipType: *cgrtmatches[0],
-		MetadataEntity: rdb.MetadataEntity{
-			Metadata: rdb.MetadataStrOf(request.Metadata),
-		},
+		SourceCustomerGroup: *cgmatches[0],
+		RelationshipType:    *cgrtmatches[0],
 	}
 	result := api.RDB.Database.Create(created)
 	if result.Error != nil {

@@ -56,10 +56,8 @@ fragment DefaultAreaRelationship on AreaRelationship {
     name
     description
   }
-  targetArea {
-    token
-    name
-    description
+  targets {
+    ...DefaultRelationshipTargets
   }
   relationshipType {
     token
@@ -105,15 +103,13 @@ fragment DefaultAreaGroupRelationship on AreaGroupRelationship {
   updatedAt
   deletedAt
   token
-  areaGroup {
+  sourceAreaGroup {
     token
     name
     description
   }
-  area {
-    token
-    name
-    description
+  targets {
+    ...DefaultRelationshipTargets
   }
   relationshipType {
     token
@@ -224,12 +220,12 @@ query listAreaRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
 }
 
 # Create area relationship and return identifiers.
-mutation createAreaRelationship($token: String!, $sourceArea: String!, $targetArea: String!, $relationshipType: String!) {
+mutation createAreaRelationship($token: String!, $sourceArea: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
   createAreaRelationship(
     request: {
       token: $token,
       sourceArea: $sourceArea
-      targetArea: $targetArea
+      targets: $targets
       relationshipType: $relationshipType
     }
   ) {
@@ -325,12 +321,12 @@ query listAreaGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
 }
 
 # Create area group relationship and return identifiers.
-mutation createAreaGroupRelationship($token: String!, $areaGroup: String!, $area: String!, $relationshipType: String!) {
+mutation createAreaGroupRelationship($token: String!, $areaGroup: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
   createAreaGroupRelationship(
     request: {
       token: $token,
-      areaGroup: $areaGroup,
-      area: $area,
+      sourceAreaGroup: $areaGroup,
+      targets: $targets,
       relationshipType: $relationshipType
     }
   ) {

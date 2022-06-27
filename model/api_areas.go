@@ -311,16 +311,17 @@ func areasByTokenMap(vals []*Area) map[string]*Area {
 
 // Create a new area relationship.
 func (api *Api) CreateAreaRelationship(ctx context.Context, request *AreaRelationshipCreateRequest) (*AreaRelationship, error) {
-	// Look up token references.
-	amatches, err := api.AreasByToken(ctx, []string{request.SourceArea, request.TargetArea})
+	// Look up source reference.
+	amatches, err := api.AreasByToken(ctx, []string{request.SourceArea})
 	if err != nil {
 		return nil, err
 	}
-	if len(amatches) != 2 {
+	if len(amatches) == 0 {
 		return nil, gorm.ErrRecordNotFound
 	}
 	mmap := areasByTokenMap(amatches)
 
+	// Look up relationship reference.
 	artmatches, err := api.AreaRelationshipTypesByToken(ctx, []string{request.RelationshipType})
 	if err != nil {
 		return nil, err
@@ -330,16 +331,18 @@ func (api *Api) CreateAreaRelationship(ctx context.Context, request *AreaRelatio
 	}
 
 	created := &AreaRelationship{
-		TokenReference: rdb.TokenReference{
-			Token: request.Token,
+		EntityRelationship: EntityRelationship{
+			TokenReference: rdb.TokenReference{
+				Token: request.Token,
+			},
+			MetadataEntity: rdb.MetadataEntity{
+				Metadata: rdb.MetadataStrOf(request.Metadata),
+			},
 		},
 		SourceArea:       *mmap[request.SourceArea],
-		TargetArea:       *mmap[request.TargetArea],
 		RelationshipType: *artmatches[0],
-		MetadataEntity: rdb.MetadataEntity{
-			Metadata: rdb.MetadataStrOf(request.Metadata),
-		},
 	}
+	api.resolveRelationshipTargets(ctx, request.Targets, &created.EntityRelationship)
 	result := api.RDB.Database.Create(created)
 	if result.Error != nil {
 		return nil, result.Error
@@ -569,21 +572,16 @@ func (api *Api) AreaGroupRelationshipTypes(ctx context.Context,
 func (api *Api) CreateAreaGroupRelationship(ctx context.Context,
 	request *AreaGroupRelationshipCreateRequest) (*AreaGroupRelationship, error) {
 
-	// Look up token references.
-	agmatches, err := api.AreaGroupsByToken(ctx, []string{request.AreaGroup})
+	// Look up source reference.
+	agmatches, err := api.AreaGroupsByToken(ctx, []string{request.SourceAreaGroup})
 	if err != nil {
 		return nil, err
 	}
 	if len(agmatches) == 0 {
 		return nil, gorm.ErrRecordNotFound
 	}
-	amatches, err := api.AreasByToken(ctx, []string{request.Area})
-	if err != nil {
-		return nil, err
-	}
-	if len(amatches) == 0 {
-		return nil, gorm.ErrRecordNotFound
-	}
+
+	// Look up relationship reference.
 	agrtmatches, err := api.AreaGroupRelationshipTypesByToken(ctx, []string{request.RelationshipType})
 	if err != nil {
 		return nil, err
@@ -593,16 +591,18 @@ func (api *Api) CreateAreaGroupRelationship(ctx context.Context,
 	}
 
 	created := &AreaGroupRelationship{
-		TokenReference: rdb.TokenReference{
-			Token: request.Token,
+		EntityRelationship: EntityRelationship{
+			TokenReference: rdb.TokenReference{
+				Token: request.Token,
+			},
+			MetadataEntity: rdb.MetadataEntity{
+				Metadata: rdb.MetadataStrOf(request.Metadata),
+			},
 		},
-		AreaGroup:        *agmatches[0],
-		Area:             *amatches[0],
+		SourceAreaGroup:  *agmatches[0],
 		RelationshipType: *agrtmatches[0],
-		MetadataEntity: rdb.MetadataEntity{
-			Metadata: rdb.MetadataStrOf(request.Metadata),
-		},
 	}
+	api.resolveRelationshipTargets(ctx, request.Targets, &created.EntityRelationship)
 	result := api.RDB.Database.Create(created)
 	if result.Error != nil {
 		return nil, result.Error

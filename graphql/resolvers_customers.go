@@ -317,9 +317,9 @@ func (r *CustomerRelationshipResolver) SourceCustomer() *CustomerResolver {
 	}
 }
 
-func (r *CustomerRelationshipResolver) TargetCustomer() *CustomerResolver {
-	return &CustomerResolver{
-		M: r.M.TargetCustomer,
+func (r *CustomerRelationshipResolver) Targets() *EntityRelationshipResolver {
+	return &EntityRelationshipResolver{
+		M: r.M.EntityRelationship,
 		S: r.S,
 		C: r.C,
 	}
@@ -564,17 +564,17 @@ func (r *CustomerGroupRelationshipResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
 }
 
-func (r *CustomerGroupRelationshipResolver) CustomerGroup() *CustomerGroupResolver {
+func (r *CustomerGroupRelationshipResolver) SourceCustomerGroup() *CustomerGroupResolver {
 	return &CustomerGroupResolver{
-		M: r.M.CustomerGroup,
+		M: r.M.SourceCustomerGroup,
 		S: r.S,
 		C: r.C,
 	}
 }
 
-func (r *CustomerGroupRelationshipResolver) Customer() *CustomerResolver {
-	return &CustomerResolver{
-		M: r.M.Customer,
+func (r *CustomerGroupRelationshipResolver) Targets() *EntityRelationshipResolver {
+	return &EntityRelationshipResolver{
+		M: r.M.EntityRelationship,
 		S: r.S,
 		C: r.C,
 	}

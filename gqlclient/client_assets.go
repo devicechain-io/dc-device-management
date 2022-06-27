@@ -254,7 +254,7 @@ func CreateAssetRelationship(
 	request model.AssetRelationshipCreateRequest,
 ) (IAssetRelationship, error) {
 	cresp, err := createAssetRelationship(ctx, client, request.Token, request.SourceAsset,
-		request.TargetAsset, request.RelationshipType)
+		targets(request.Targets), request.RelationshipType)
 	if err != nil {
 		return nil, err
 	}
@@ -467,8 +467,8 @@ func CreateAssetGroupRelationship(
 	client graphql.Client,
 	request model.AssetGroupRelationshipCreateRequest,
 ) (IAssetGroupRelationship, error) {
-	cresp, err := createAssetGroupRelationship(ctx, client, request.Token, request.AssetGroup, request.Asset,
-		request.RelationshipType)
+	cresp, err := createAssetGroupRelationship(ctx, client, request.Token, request.SourceAssetGroup,
+		targets(request.Targets), request.RelationshipType)
 	if err != nil {
 		return nil, err
 	}

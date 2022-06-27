@@ -317,9 +317,9 @@ func (r *AssetRelationshipResolver) SourceAsset() *AssetResolver {
 	}
 }
 
-func (r *AssetRelationshipResolver) TargetAsset() *AssetResolver {
-	return &AssetResolver{
-		M: r.M.TargetAsset,
+func (r *AssetRelationshipResolver) Targets() *EntityRelationshipResolver {
+	return &EntityRelationshipResolver{
+		M: r.M.EntityRelationship,
 		S: r.S,
 		C: r.C,
 	}
@@ -564,17 +564,17 @@ func (r *AssetGroupRelationshipResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
 }
 
-func (r *AssetGroupRelationshipResolver) AssetGroup() *AssetGroupResolver {
+func (r *AssetGroupRelationshipResolver) SourceAssetGroup() *AssetGroupResolver {
 	return &AssetGroupResolver{
-		M: r.M.AssetGroup,
+		M: r.M.SourceAssetGroup,
 		S: r.S,
 		C: r.C,
 	}
 }
 
-func (r *AssetGroupRelationshipResolver) Asset() *AssetResolver {
-	return &AssetResolver{
-		M: r.M.Asset,
+func (r *AssetGroupRelationshipResolver) Targets() *EntityRelationshipResolver {
+	return &EntityRelationshipResolver{
+		M: r.M.EntityRelationship,
 		S: r.S,
 		C: r.C,
 	}

@@ -254,7 +254,7 @@ func CreateAreaRelationship(
 	request model.AreaRelationshipCreateRequest,
 ) (IAreaRelationship, error) {
 	cresp, err := createAreaRelationship(ctx, client, request.Token, request.SourceArea,
-		request.TargetArea, request.RelationshipType)
+		targets(request.Targets), request.RelationshipType)
 	if err != nil {
 		return nil, err
 	}
@@ -467,8 +467,8 @@ func CreateAreaGroupRelationship(
 	client graphql.Client,
 	request model.AreaGroupRelationshipCreateRequest,
 ) (IAreaGroupRelationship, error) {
-	cresp, err := createAreaGroupRelationship(ctx, client, request.Token, request.AreaGroup, request.Area,
-		request.RelationshipType)
+	cresp, err := createAreaGroupRelationship(ctx, client, request.Token, request.SourceAreaGroup,
+		targets(request.Targets), request.RelationshipType)
 	if err != nil {
 		return nil, err
 	}

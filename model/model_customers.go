@@ -109,20 +109,16 @@ type CustomerRelationshipTypeSearchResults struct {
 type CustomerRelationshipCreateRequest struct {
 	Token            string
 	SourceCustomer   string
-	TargetCustomer   string
 	RelationshipType string
+	Targets          EntityRelationshipCreateRequest
 	Metadata         *string
 }
 
 // Captures a relationship between customers.
 type CustomerRelationship struct {
-	gorm.Model
-	rdb.TokenReference
-	rdb.MetadataEntity
+	EntityRelationship
 	SourceCustomerId   uint
 	SourceCustomer     Customer
-	TargetCustomerId   uint
-	TargetCustomer     Customer
 	RelationshipTypeId uint
 	RelationshipType   CustomerRelationshipType
 }
@@ -200,24 +196,20 @@ type CustomerGroupRelationshipTypeSearchResults struct {
 
 // Data required to create a customer group relationship.
 type CustomerGroupRelationshipCreateRequest struct {
-	Token            string
-	CustomerGroup    string
-	Customer         string
-	RelationshipType string
-	Metadata         *string
+	Token               string
+	SourceCustomerGroup string
+	RelationshipType    string
+	Targets             EntityRelationshipCreateRequest
+	Metadata            *string
 }
 
 // Represents a customer-to-group relationship.
 type CustomerGroupRelationship struct {
-	gorm.Model
-	rdb.TokenReference
-	rdb.MetadataEntity
-	CustomerGroupId    uint
-	CustomerGroup      CustomerGroup
-	CustomerId         uint
-	Customer           Customer
-	RelationshipTypeId uint
-	RelationshipType   CustomerGroupRelationshipType
+	EntityRelationship
+	SourceCustomerGroupId uint
+	SourceCustomerGroup   CustomerGroup
+	RelationshipTypeId    uint
+	RelationshipType      CustomerGroupRelationshipType
 }
 
 // Search criteria for locating customer groups relationships.

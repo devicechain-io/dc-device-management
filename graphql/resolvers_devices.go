@@ -322,9 +322,9 @@ func (r *DeviceRelationshipResolver) SourceDevice() *DeviceResolver {
 	}
 }
 
-func (r *DeviceRelationshipResolver) TargetDevice() *DeviceResolver {
-	return &DeviceResolver{
-		M: r.M.TargetDevice,
+func (r *DeviceRelationshipResolver) Targets() *EntityRelationshipResolver {
+	return &EntityRelationshipResolver{
+		M: r.M.EntityRelationship,
 		S: r.S,
 		C: r.C,
 	}
@@ -569,17 +569,17 @@ func (r *DeviceGroupRelationshipResolver) Metadata() *string {
 	return util.MetadataStr(r.M.Metadata)
 }
 
-func (r *DeviceGroupRelationshipResolver) DeviceGroup() *DeviceGroupResolver {
+func (r *DeviceGroupRelationshipResolver) SourceDeviceGroup() *DeviceGroupResolver {
 	return &DeviceGroupResolver{
-		M: r.M.DeviceGroup,
+		M: r.M.SourceDeviceGroup,
 		S: r.S,
 		C: r.C,
 	}
 }
 
-func (r *DeviceGroupRelationshipResolver) Device() *DeviceResolver {
-	return &DeviceResolver{
-		M: r.M.Device,
+func (r *DeviceGroupRelationshipResolver) Targets() *EntityRelationshipResolver {
+	return &EntityRelationshipResolver{
+		M: r.M.EntityRelationship,
 		S: r.S,
 		C: r.C,
 	}

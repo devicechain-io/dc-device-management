@@ -38,7 +38,7 @@ type IAreaRelationship interface {
 	ITokenReference
 	IMetadataEntity
 	GetSourceArea() DefaultAreaRelationshipSourceArea
-	GetTargetArea() DefaultAreaRelationshipTargetArea
+	GetTargets() DefaultAreaRelationshipTargetsEntityRelationshipTargets
 	GetRelationshipType() DefaultAreaRelationshipRelationshipTypeAreaRelationshipType
 }
 
@@ -64,7 +64,7 @@ type IAreaGroupRelationship interface {
 	IModel
 	ITokenReference
 	IMetadataEntity
-	GetAreaGroup() DefaultAreaGroupRelationshipAreaGroup
-	GetArea() DefaultAreaGroupRelationshipArea
+	GetSourceAreaGroup() DefaultAreaGroupRelationshipSourceAreaGroup
+	GetTargets() DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets
 	GetRelationshipType() DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType
 }

@@ -59,10 +59,8 @@ fragment DefaultDeviceRelationship on DeviceRelationship {
     name
     description
   }
-  targetDevice {
-    token
-    name
-    description
+  targets {
+    ...DefaultRelationshipTargets
   }
   relationshipType {
     token
@@ -108,15 +106,13 @@ fragment DefaultDeviceGroupRelationship on DeviceGroupRelationship {
   updatedAt
   deletedAt
   token
-  deviceGroup {
+  sourceDeviceGroup {
     token
     name
     description
   }
-  device {
-    token
-    name
-    description
+  targets {
+    ...DefaultRelationshipTargets
   }
   relationshipType {
     token
@@ -227,12 +223,12 @@ query listDeviceRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
 }
 
 # Create device relationship and return identifiers.
-mutation createDeviceRelationship($token: String!, $sourceDevice: String!, $targetDevice: String!, $relationshipType: String!) {
+mutation createDeviceRelationship($token: String!, $sourceDevice: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
   createDeviceRelationship(
     request: {
       token: $token,
       sourceDevice: $sourceDevice
-      targetDevice: $targetDevice
+      targets: $targets
       relationshipType: $relationshipType
     }
   ) {
@@ -328,12 +324,12 @@ query listDeviceGroupRelationshipTypes($pageNumber: Int!, $pageSize: Int!) {
 }
 
 # Create device group relationship and return identifiers.
-mutation createDeviceGroupRelationship($token: String!, $deviceGroup: String!, $device: String!, $relationshipType: String!) {
+mutation createDeviceGroupRelationship($token: String!, $sourceDeviceGroup: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
   createDeviceGroupRelationship(
     request: {
       token: $token,
-      deviceGroup: $deviceGroup,
-      device: $device,
+      sourceDeviceGroup: $sourceDeviceGroup,
+      targets: $targets,
       relationshipType: $relationshipType
     }
   ) {

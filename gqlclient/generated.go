@@ -128,8 +128,8 @@ type DefaultAreaGroupRelationship struct {
 	UpdatedAt        string                                                                `json:"updatedAt"`
 	DeletedAt        string                                                                `json:"deletedAt"`
 	Token            string                                                                `json:"token"`
-	AreaGroup        DefaultAreaGroupRelationshipAreaGroup                                 `json:"areaGroup"`
-	Area             DefaultAreaGroupRelationshipArea                                      `json:"area"`
+	SourceAreaGroup  DefaultAreaGroupRelationshipSourceAreaGroup                           `json:"sourceAreaGroup"`
+	Targets          DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets          `json:"targets"`
 	RelationshipType DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType `json:"relationshipType"`
 	Metadata         string                                                                `json:"metadata"`
 }
@@ -149,13 +149,15 @@ func (v *DefaultAreaGroupRelationship) GetDeletedAt() string { return v.DeletedA
 // GetToken returns DefaultAreaGroupRelationship.Token, and is useful for accessing the field via an interface.
 func (v *DefaultAreaGroupRelationship) GetToken() string { return v.Token }
 
-// GetAreaGroup returns DefaultAreaGroupRelationship.AreaGroup, and is useful for accessing the field via an interface.
-func (v *DefaultAreaGroupRelationship) GetAreaGroup() DefaultAreaGroupRelationshipAreaGroup {
-	return v.AreaGroup
+// GetSourceAreaGroup returns DefaultAreaGroupRelationship.SourceAreaGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationship) GetSourceAreaGroup() DefaultAreaGroupRelationshipSourceAreaGroup {
+	return v.SourceAreaGroup
 }
 
-// GetArea returns DefaultAreaGroupRelationship.Area, and is useful for accessing the field via an interface.
-func (v *DefaultAreaGroupRelationship) GetArea() DefaultAreaGroupRelationshipArea { return v.Area }
+// GetTargets returns DefaultAreaGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationship) GetTargets() DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.Targets
+}
 
 // GetRelationshipType returns DefaultAreaGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
 func (v *DefaultAreaGroupRelationship) GetRelationshipType() DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType {
@@ -164,38 +166,6 @@ func (v *DefaultAreaGroupRelationship) GetRelationshipType() DefaultAreaGroupRel
 
 // GetMetadata returns DefaultAreaGroupRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *DefaultAreaGroupRelationship) GetMetadata() string { return v.Metadata }
-
-// DefaultAreaGroupRelationshipArea includes the requested fields of the GraphQL type Area.
-type DefaultAreaGroupRelationshipArea struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns DefaultAreaGroupRelationshipArea.Token, and is useful for accessing the field via an interface.
-func (v *DefaultAreaGroupRelationshipArea) GetToken() string { return v.Token }
-
-// GetName returns DefaultAreaGroupRelationshipArea.Name, and is useful for accessing the field via an interface.
-func (v *DefaultAreaGroupRelationshipArea) GetName() string { return v.Name }
-
-// GetDescription returns DefaultAreaGroupRelationshipArea.Description, and is useful for accessing the field via an interface.
-func (v *DefaultAreaGroupRelationshipArea) GetDescription() string { return v.Description }
-
-// DefaultAreaGroupRelationshipAreaGroup includes the requested fields of the GraphQL type AreaGroup.
-type DefaultAreaGroupRelationshipAreaGroup struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns DefaultAreaGroupRelationshipAreaGroup.Token, and is useful for accessing the field via an interface.
-func (v *DefaultAreaGroupRelationshipAreaGroup) GetToken() string { return v.Token }
-
-// GetName returns DefaultAreaGroupRelationshipAreaGroup.Name, and is useful for accessing the field via an interface.
-func (v *DefaultAreaGroupRelationshipAreaGroup) GetName() string { return v.Name }
-
-// GetDescription returns DefaultAreaGroupRelationshipAreaGroup.Description, and is useful for accessing the field via an interface.
-func (v *DefaultAreaGroupRelationshipAreaGroup) GetDescription() string { return v.Description }
 
 // DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType includes the requested fields of the GraphQL type AreaGroupRelationshipType.
 type DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType struct {
@@ -217,6 +187,132 @@ func (v *DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType) 
 // GetDescription returns DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType) GetDescription() string {
 	return v.Description
+}
+
+// DefaultAreaGroupRelationshipSourceAreaGroup includes the requested fields of the GraphQL type AreaGroup.
+type DefaultAreaGroupRelationshipSourceAreaGroup struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAreaGroupRelationshipSourceAreaGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipSourceAreaGroup) GetToken() string { return v.Token }
+
+// GetName returns DefaultAreaGroupRelationshipSourceAreaGroup.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipSourceAreaGroup) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAreaGroupRelationshipSourceAreaGroup.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipSourceAreaGroup) GetDescription() string { return v.Description }
+
+// DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets includes the requested fields of the GraphQL type EntityRelationshipTargets.
+type DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets struct {
+	DefaultRelationshipTargets `json:"-"`
+}
+
+// GetTargetDevice returns DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets.TargetDevice, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets) GetTargetDevice() DefaultRelationshipTargetsTargetDevice {
+	return v.DefaultRelationshipTargets.TargetDevice
+}
+
+// GetTargetDeviceGroup returns DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets.TargetDeviceGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets) GetTargetDeviceGroup() DefaultRelationshipTargetsTargetDeviceGroup {
+	return v.DefaultRelationshipTargets.TargetDeviceGroup
+}
+
+// GetTargetAsset returns DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets.TargetAsset, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets) GetTargetAsset() DefaultRelationshipTargetsTargetAsset {
+	return v.DefaultRelationshipTargets.TargetAsset
+}
+
+// GetTargetAssetGroup returns DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets.TargetAssetGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets) GetTargetAssetGroup() DefaultRelationshipTargetsTargetAssetGroup {
+	return v.DefaultRelationshipTargets.TargetAssetGroup
+}
+
+// GetTargetArea returns DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets.TargetArea, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets) GetTargetArea() DefaultRelationshipTargetsTargetArea {
+	return v.DefaultRelationshipTargets.TargetArea
+}
+
+// GetTargetAreaGroup returns DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets.TargetAreaGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets) GetTargetAreaGroup() DefaultRelationshipTargetsTargetAreaGroup {
+	return v.DefaultRelationshipTargets.TargetAreaGroup
+}
+
+// GetTargetCustomer returns DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets.TargetCustomer, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets) GetTargetCustomer() DefaultRelationshipTargetsTargetCustomer {
+	return v.DefaultRelationshipTargets.TargetCustomer
+}
+
+// GetTargetCustomerGroup returns DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets.TargetCustomerGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets) GetTargetCustomerGroup() DefaultRelationshipTargetsTargetCustomerGroup {
+	return v.DefaultRelationshipTargets.TargetCustomerGroup
+}
+
+func (v *DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultRelationshipTargets)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalDefaultAreaGroupRelationshipTargetsEntityRelationshipTargets struct {
+	TargetDevice DefaultRelationshipTargetsTargetDevice `json:"targetDevice"`
+
+	TargetDeviceGroup DefaultRelationshipTargetsTargetDeviceGroup `json:"targetDeviceGroup"`
+
+	TargetAsset DefaultRelationshipTargetsTargetAsset `json:"targetAsset"`
+
+	TargetAssetGroup DefaultRelationshipTargetsTargetAssetGroup `json:"targetAssetGroup"`
+
+	TargetArea DefaultRelationshipTargetsTargetArea `json:"targetArea"`
+
+	TargetAreaGroup DefaultRelationshipTargetsTargetAreaGroup `json:"targetAreaGroup"`
+
+	TargetCustomer DefaultRelationshipTargetsTargetCustomer `json:"targetCustomer"`
+
+	TargetCustomerGroup DefaultRelationshipTargetsTargetCustomerGroup `json:"targetCustomerGroup"`
+}
+
+func (v *DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets) __premarshalJSON() (*__premarshalDefaultAreaGroupRelationshipTargetsEntityRelationshipTargets, error) {
+	var retval __premarshalDefaultAreaGroupRelationshipTargetsEntityRelationshipTargets
+
+	retval.TargetDevice = v.DefaultRelationshipTargets.TargetDevice
+	retval.TargetDeviceGroup = v.DefaultRelationshipTargets.TargetDeviceGroup
+	retval.TargetAsset = v.DefaultRelationshipTargets.TargetAsset
+	retval.TargetAssetGroup = v.DefaultRelationshipTargets.TargetAssetGroup
+	retval.TargetArea = v.DefaultRelationshipTargets.TargetArea
+	retval.TargetAreaGroup = v.DefaultRelationshipTargets.TargetAreaGroup
+	retval.TargetCustomer = v.DefaultRelationshipTargets.TargetCustomer
+	retval.TargetCustomerGroup = v.DefaultRelationshipTargets.TargetCustomerGroup
+	return &retval, nil
 }
 
 // Content associated with area group relationship type.
@@ -263,7 +359,7 @@ type DefaultAreaRelationship struct {
 	DeletedAt        string                                                      `json:"deletedAt"`
 	Token            string                                                      `json:"token"`
 	SourceArea       DefaultAreaRelationshipSourceArea                           `json:"sourceArea"`
-	TargetArea       DefaultAreaRelationshipTargetArea                           `json:"targetArea"`
+	Targets          DefaultAreaRelationshipTargetsEntityRelationshipTargets     `json:"targets"`
 	RelationshipType DefaultAreaRelationshipRelationshipTypeAreaRelationshipType `json:"relationshipType"`
 	Metadata         string                                                      `json:"metadata"`
 }
@@ -288,9 +384,9 @@ func (v *DefaultAreaRelationship) GetSourceArea() DefaultAreaRelationshipSourceA
 	return v.SourceArea
 }
 
-// GetTargetArea returns DefaultAreaRelationship.TargetArea, and is useful for accessing the field via an interface.
-func (v *DefaultAreaRelationship) GetTargetArea() DefaultAreaRelationshipTargetArea {
-	return v.TargetArea
+// GetTargets returns DefaultAreaRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationship) GetTargets() DefaultAreaRelationshipTargetsEntityRelationshipTargets {
+	return v.Targets
 }
 
 // GetRelationshipType returns DefaultAreaRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -337,21 +433,115 @@ func (v *DefaultAreaRelationshipSourceArea) GetName() string { return v.Name }
 // GetDescription returns DefaultAreaRelationshipSourceArea.Description, and is useful for accessing the field via an interface.
 func (v *DefaultAreaRelationshipSourceArea) GetDescription() string { return v.Description }
 
-// DefaultAreaRelationshipTargetArea includes the requested fields of the GraphQL type Area.
-type DefaultAreaRelationshipTargetArea struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+// DefaultAreaRelationshipTargetsEntityRelationshipTargets includes the requested fields of the GraphQL type EntityRelationshipTargets.
+type DefaultAreaRelationshipTargetsEntityRelationshipTargets struct {
+	DefaultRelationshipTargets `json:"-"`
 }
 
-// GetToken returns DefaultAreaRelationshipTargetArea.Token, and is useful for accessing the field via an interface.
-func (v *DefaultAreaRelationshipTargetArea) GetToken() string { return v.Token }
+// GetTargetDevice returns DefaultAreaRelationshipTargetsEntityRelationshipTargets.TargetDevice, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipTargetsEntityRelationshipTargets) GetTargetDevice() DefaultRelationshipTargetsTargetDevice {
+	return v.DefaultRelationshipTargets.TargetDevice
+}
 
-// GetName returns DefaultAreaRelationshipTargetArea.Name, and is useful for accessing the field via an interface.
-func (v *DefaultAreaRelationshipTargetArea) GetName() string { return v.Name }
+// GetTargetDeviceGroup returns DefaultAreaRelationshipTargetsEntityRelationshipTargets.TargetDeviceGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipTargetsEntityRelationshipTargets) GetTargetDeviceGroup() DefaultRelationshipTargetsTargetDeviceGroup {
+	return v.DefaultRelationshipTargets.TargetDeviceGroup
+}
 
-// GetDescription returns DefaultAreaRelationshipTargetArea.Description, and is useful for accessing the field via an interface.
-func (v *DefaultAreaRelationshipTargetArea) GetDescription() string { return v.Description }
+// GetTargetAsset returns DefaultAreaRelationshipTargetsEntityRelationshipTargets.TargetAsset, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipTargetsEntityRelationshipTargets) GetTargetAsset() DefaultRelationshipTargetsTargetAsset {
+	return v.DefaultRelationshipTargets.TargetAsset
+}
+
+// GetTargetAssetGroup returns DefaultAreaRelationshipTargetsEntityRelationshipTargets.TargetAssetGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipTargetsEntityRelationshipTargets) GetTargetAssetGroup() DefaultRelationshipTargetsTargetAssetGroup {
+	return v.DefaultRelationshipTargets.TargetAssetGroup
+}
+
+// GetTargetArea returns DefaultAreaRelationshipTargetsEntityRelationshipTargets.TargetArea, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipTargetsEntityRelationshipTargets) GetTargetArea() DefaultRelationshipTargetsTargetArea {
+	return v.DefaultRelationshipTargets.TargetArea
+}
+
+// GetTargetAreaGroup returns DefaultAreaRelationshipTargetsEntityRelationshipTargets.TargetAreaGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipTargetsEntityRelationshipTargets) GetTargetAreaGroup() DefaultRelationshipTargetsTargetAreaGroup {
+	return v.DefaultRelationshipTargets.TargetAreaGroup
+}
+
+// GetTargetCustomer returns DefaultAreaRelationshipTargetsEntityRelationshipTargets.TargetCustomer, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipTargetsEntityRelationshipTargets) GetTargetCustomer() DefaultRelationshipTargetsTargetCustomer {
+	return v.DefaultRelationshipTargets.TargetCustomer
+}
+
+// GetTargetCustomerGroup returns DefaultAreaRelationshipTargetsEntityRelationshipTargets.TargetCustomerGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAreaRelationshipTargetsEntityRelationshipTargets) GetTargetCustomerGroup() DefaultRelationshipTargetsTargetCustomerGroup {
+	return v.DefaultRelationshipTargets.TargetCustomerGroup
+}
+
+func (v *DefaultAreaRelationshipTargetsEntityRelationshipTargets) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*DefaultAreaRelationshipTargetsEntityRelationshipTargets
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.DefaultAreaRelationshipTargetsEntityRelationshipTargets = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultRelationshipTargets)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalDefaultAreaRelationshipTargetsEntityRelationshipTargets struct {
+	TargetDevice DefaultRelationshipTargetsTargetDevice `json:"targetDevice"`
+
+	TargetDeviceGroup DefaultRelationshipTargetsTargetDeviceGroup `json:"targetDeviceGroup"`
+
+	TargetAsset DefaultRelationshipTargetsTargetAsset `json:"targetAsset"`
+
+	TargetAssetGroup DefaultRelationshipTargetsTargetAssetGroup `json:"targetAssetGroup"`
+
+	TargetArea DefaultRelationshipTargetsTargetArea `json:"targetArea"`
+
+	TargetAreaGroup DefaultRelationshipTargetsTargetAreaGroup `json:"targetAreaGroup"`
+
+	TargetCustomer DefaultRelationshipTargetsTargetCustomer `json:"targetCustomer"`
+
+	TargetCustomerGroup DefaultRelationshipTargetsTargetCustomerGroup `json:"targetCustomerGroup"`
+}
+
+func (v *DefaultAreaRelationshipTargetsEntityRelationshipTargets) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *DefaultAreaRelationshipTargetsEntityRelationshipTargets) __premarshalJSON() (*__premarshalDefaultAreaRelationshipTargetsEntityRelationshipTargets, error) {
+	var retval __premarshalDefaultAreaRelationshipTargetsEntityRelationshipTargets
+
+	retval.TargetDevice = v.DefaultRelationshipTargets.TargetDevice
+	retval.TargetDeviceGroup = v.DefaultRelationshipTargets.TargetDeviceGroup
+	retval.TargetAsset = v.DefaultRelationshipTargets.TargetAsset
+	retval.TargetAssetGroup = v.DefaultRelationshipTargets.TargetAssetGroup
+	retval.TargetArea = v.DefaultRelationshipTargets.TargetArea
+	retval.TargetAreaGroup = v.DefaultRelationshipTargets.TargetAreaGroup
+	retval.TargetCustomer = v.DefaultRelationshipTargets.TargetCustomer
+	retval.TargetCustomerGroup = v.DefaultRelationshipTargets.TargetCustomerGroup
+	return &retval, nil
+}
 
 // Content associated with area relationship type response.
 type DefaultAreaRelationshipType struct {
@@ -564,8 +754,8 @@ type DefaultAssetGroupRelationship struct {
 	UpdatedAt        string                                                                  `json:"updatedAt"`
 	DeletedAt        string                                                                  `json:"deletedAt"`
 	Token            string                                                                  `json:"token"`
-	AssetGroup       DefaultAssetGroupRelationshipAssetGroup                                 `json:"assetGroup"`
-	Asset            DefaultAssetGroupRelationshipAsset                                      `json:"asset"`
+	SourceAssetGroup DefaultAssetGroupRelationshipSourceAssetGroup                           `json:"sourceAssetGroup"`
+	Targets          DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets           `json:"targets"`
 	RelationshipType DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType `json:"relationshipType"`
 	Metadata         string                                                                  `json:"metadata"`
 }
@@ -585,13 +775,15 @@ func (v *DefaultAssetGroupRelationship) GetDeletedAt() string { return v.Deleted
 // GetToken returns DefaultAssetGroupRelationship.Token, and is useful for accessing the field via an interface.
 func (v *DefaultAssetGroupRelationship) GetToken() string { return v.Token }
 
-// GetAssetGroup returns DefaultAssetGroupRelationship.AssetGroup, and is useful for accessing the field via an interface.
-func (v *DefaultAssetGroupRelationship) GetAssetGroup() DefaultAssetGroupRelationshipAssetGroup {
-	return v.AssetGroup
+// GetSourceAssetGroup returns DefaultAssetGroupRelationship.SourceAssetGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationship) GetSourceAssetGroup() DefaultAssetGroupRelationshipSourceAssetGroup {
+	return v.SourceAssetGroup
 }
 
-// GetAsset returns DefaultAssetGroupRelationship.Asset, and is useful for accessing the field via an interface.
-func (v *DefaultAssetGroupRelationship) GetAsset() DefaultAssetGroupRelationshipAsset { return v.Asset }
+// GetTargets returns DefaultAssetGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationship) GetTargets() DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.Targets
+}
 
 // GetRelationshipType returns DefaultAssetGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
 func (v *DefaultAssetGroupRelationship) GetRelationshipType() DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType {
@@ -600,38 +792,6 @@ func (v *DefaultAssetGroupRelationship) GetRelationshipType() DefaultAssetGroupR
 
 // GetMetadata returns DefaultAssetGroupRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *DefaultAssetGroupRelationship) GetMetadata() string { return v.Metadata }
-
-// DefaultAssetGroupRelationshipAsset includes the requested fields of the GraphQL type Asset.
-type DefaultAssetGroupRelationshipAsset struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns DefaultAssetGroupRelationshipAsset.Token, and is useful for accessing the field via an interface.
-func (v *DefaultAssetGroupRelationshipAsset) GetToken() string { return v.Token }
-
-// GetName returns DefaultAssetGroupRelationshipAsset.Name, and is useful for accessing the field via an interface.
-func (v *DefaultAssetGroupRelationshipAsset) GetName() string { return v.Name }
-
-// GetDescription returns DefaultAssetGroupRelationshipAsset.Description, and is useful for accessing the field via an interface.
-func (v *DefaultAssetGroupRelationshipAsset) GetDescription() string { return v.Description }
-
-// DefaultAssetGroupRelationshipAssetGroup includes the requested fields of the GraphQL type AssetGroup.
-type DefaultAssetGroupRelationshipAssetGroup struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns DefaultAssetGroupRelationshipAssetGroup.Token, and is useful for accessing the field via an interface.
-func (v *DefaultAssetGroupRelationshipAssetGroup) GetToken() string { return v.Token }
-
-// GetName returns DefaultAssetGroupRelationshipAssetGroup.Name, and is useful for accessing the field via an interface.
-func (v *DefaultAssetGroupRelationshipAssetGroup) GetName() string { return v.Name }
-
-// GetDescription returns DefaultAssetGroupRelationshipAssetGroup.Description, and is useful for accessing the field via an interface.
-func (v *DefaultAssetGroupRelationshipAssetGroup) GetDescription() string { return v.Description }
 
 // DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType includes the requested fields of the GraphQL type AssetGroupRelationshipType.
 type DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType struct {
@@ -653,6 +813,132 @@ func (v *DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType
 // GetDescription returns DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType) GetDescription() string {
 	return v.Description
+}
+
+// DefaultAssetGroupRelationshipSourceAssetGroup includes the requested fields of the GraphQL type AssetGroup.
+type DefaultAssetGroupRelationshipSourceAssetGroup struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultAssetGroupRelationshipSourceAssetGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipSourceAssetGroup) GetToken() string { return v.Token }
+
+// GetName returns DefaultAssetGroupRelationshipSourceAssetGroup.Name, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipSourceAssetGroup) GetName() string { return v.Name }
+
+// GetDescription returns DefaultAssetGroupRelationshipSourceAssetGroup.Description, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipSourceAssetGroup) GetDescription() string { return v.Description }
+
+// DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets includes the requested fields of the GraphQL type EntityRelationshipTargets.
+type DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets struct {
+	DefaultRelationshipTargets `json:"-"`
+}
+
+// GetTargetDevice returns DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets.TargetDevice, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets) GetTargetDevice() DefaultRelationshipTargetsTargetDevice {
+	return v.DefaultRelationshipTargets.TargetDevice
+}
+
+// GetTargetDeviceGroup returns DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets.TargetDeviceGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets) GetTargetDeviceGroup() DefaultRelationshipTargetsTargetDeviceGroup {
+	return v.DefaultRelationshipTargets.TargetDeviceGroup
+}
+
+// GetTargetAsset returns DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets.TargetAsset, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets) GetTargetAsset() DefaultRelationshipTargetsTargetAsset {
+	return v.DefaultRelationshipTargets.TargetAsset
+}
+
+// GetTargetAssetGroup returns DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets.TargetAssetGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets) GetTargetAssetGroup() DefaultRelationshipTargetsTargetAssetGroup {
+	return v.DefaultRelationshipTargets.TargetAssetGroup
+}
+
+// GetTargetArea returns DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets.TargetArea, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets) GetTargetArea() DefaultRelationshipTargetsTargetArea {
+	return v.DefaultRelationshipTargets.TargetArea
+}
+
+// GetTargetAreaGroup returns DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets.TargetAreaGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets) GetTargetAreaGroup() DefaultRelationshipTargetsTargetAreaGroup {
+	return v.DefaultRelationshipTargets.TargetAreaGroup
+}
+
+// GetTargetCustomer returns DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets.TargetCustomer, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets) GetTargetCustomer() DefaultRelationshipTargetsTargetCustomer {
+	return v.DefaultRelationshipTargets.TargetCustomer
+}
+
+// GetTargetCustomerGroup returns DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets.TargetCustomerGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets) GetTargetCustomerGroup() DefaultRelationshipTargetsTargetCustomerGroup {
+	return v.DefaultRelationshipTargets.TargetCustomerGroup
+}
+
+func (v *DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultRelationshipTargets)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalDefaultAssetGroupRelationshipTargetsEntityRelationshipTargets struct {
+	TargetDevice DefaultRelationshipTargetsTargetDevice `json:"targetDevice"`
+
+	TargetDeviceGroup DefaultRelationshipTargetsTargetDeviceGroup `json:"targetDeviceGroup"`
+
+	TargetAsset DefaultRelationshipTargetsTargetAsset `json:"targetAsset"`
+
+	TargetAssetGroup DefaultRelationshipTargetsTargetAssetGroup `json:"targetAssetGroup"`
+
+	TargetArea DefaultRelationshipTargetsTargetArea `json:"targetArea"`
+
+	TargetAreaGroup DefaultRelationshipTargetsTargetAreaGroup `json:"targetAreaGroup"`
+
+	TargetCustomer DefaultRelationshipTargetsTargetCustomer `json:"targetCustomer"`
+
+	TargetCustomerGroup DefaultRelationshipTargetsTargetCustomerGroup `json:"targetCustomerGroup"`
+}
+
+func (v *DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets) __premarshalJSON() (*__premarshalDefaultAssetGroupRelationshipTargetsEntityRelationshipTargets, error) {
+	var retval __premarshalDefaultAssetGroupRelationshipTargetsEntityRelationshipTargets
+
+	retval.TargetDevice = v.DefaultRelationshipTargets.TargetDevice
+	retval.TargetDeviceGroup = v.DefaultRelationshipTargets.TargetDeviceGroup
+	retval.TargetAsset = v.DefaultRelationshipTargets.TargetAsset
+	retval.TargetAssetGroup = v.DefaultRelationshipTargets.TargetAssetGroup
+	retval.TargetArea = v.DefaultRelationshipTargets.TargetArea
+	retval.TargetAreaGroup = v.DefaultRelationshipTargets.TargetAreaGroup
+	retval.TargetCustomer = v.DefaultRelationshipTargets.TargetCustomer
+	retval.TargetCustomerGroup = v.DefaultRelationshipTargets.TargetCustomerGroup
+	return &retval, nil
 }
 
 // Content associated with asset group relationship type.
@@ -699,7 +985,7 @@ type DefaultAssetRelationship struct {
 	DeletedAt        string                                                        `json:"deletedAt"`
 	Token            string                                                        `json:"token"`
 	SourceAsset      DefaultAssetRelationshipSourceAsset                           `json:"sourceAsset"`
-	TargetAsset      DefaultAssetRelationshipTargetAsset                           `json:"targetAsset"`
+	Targets          DefaultAssetRelationshipTargetsEntityRelationshipTargets      `json:"targets"`
 	RelationshipType DefaultAssetRelationshipRelationshipTypeAssetRelationshipType `json:"relationshipType"`
 	Metadata         string                                                        `json:"metadata"`
 }
@@ -724,9 +1010,9 @@ func (v *DefaultAssetRelationship) GetSourceAsset() DefaultAssetRelationshipSour
 	return v.SourceAsset
 }
 
-// GetTargetAsset returns DefaultAssetRelationship.TargetAsset, and is useful for accessing the field via an interface.
-func (v *DefaultAssetRelationship) GetTargetAsset() DefaultAssetRelationshipTargetAsset {
-	return v.TargetAsset
+// GetTargets returns DefaultAssetRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationship) GetTargets() DefaultAssetRelationshipTargetsEntityRelationshipTargets {
+	return v.Targets
 }
 
 // GetRelationshipType returns DefaultAssetRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -775,21 +1061,115 @@ func (v *DefaultAssetRelationshipSourceAsset) GetName() string { return v.Name }
 // GetDescription returns DefaultAssetRelationshipSourceAsset.Description, and is useful for accessing the field via an interface.
 func (v *DefaultAssetRelationshipSourceAsset) GetDescription() string { return v.Description }
 
-// DefaultAssetRelationshipTargetAsset includes the requested fields of the GraphQL type Asset.
-type DefaultAssetRelationshipTargetAsset struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+// DefaultAssetRelationshipTargetsEntityRelationshipTargets includes the requested fields of the GraphQL type EntityRelationshipTargets.
+type DefaultAssetRelationshipTargetsEntityRelationshipTargets struct {
+	DefaultRelationshipTargets `json:"-"`
 }
 
-// GetToken returns DefaultAssetRelationshipTargetAsset.Token, and is useful for accessing the field via an interface.
-func (v *DefaultAssetRelationshipTargetAsset) GetToken() string { return v.Token }
+// GetTargetDevice returns DefaultAssetRelationshipTargetsEntityRelationshipTargets.TargetDevice, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipTargetsEntityRelationshipTargets) GetTargetDevice() DefaultRelationshipTargetsTargetDevice {
+	return v.DefaultRelationshipTargets.TargetDevice
+}
 
-// GetName returns DefaultAssetRelationshipTargetAsset.Name, and is useful for accessing the field via an interface.
-func (v *DefaultAssetRelationshipTargetAsset) GetName() string { return v.Name }
+// GetTargetDeviceGroup returns DefaultAssetRelationshipTargetsEntityRelationshipTargets.TargetDeviceGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipTargetsEntityRelationshipTargets) GetTargetDeviceGroup() DefaultRelationshipTargetsTargetDeviceGroup {
+	return v.DefaultRelationshipTargets.TargetDeviceGroup
+}
 
-// GetDescription returns DefaultAssetRelationshipTargetAsset.Description, and is useful for accessing the field via an interface.
-func (v *DefaultAssetRelationshipTargetAsset) GetDescription() string { return v.Description }
+// GetTargetAsset returns DefaultAssetRelationshipTargetsEntityRelationshipTargets.TargetAsset, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipTargetsEntityRelationshipTargets) GetTargetAsset() DefaultRelationshipTargetsTargetAsset {
+	return v.DefaultRelationshipTargets.TargetAsset
+}
+
+// GetTargetAssetGroup returns DefaultAssetRelationshipTargetsEntityRelationshipTargets.TargetAssetGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipTargetsEntityRelationshipTargets) GetTargetAssetGroup() DefaultRelationshipTargetsTargetAssetGroup {
+	return v.DefaultRelationshipTargets.TargetAssetGroup
+}
+
+// GetTargetArea returns DefaultAssetRelationshipTargetsEntityRelationshipTargets.TargetArea, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipTargetsEntityRelationshipTargets) GetTargetArea() DefaultRelationshipTargetsTargetArea {
+	return v.DefaultRelationshipTargets.TargetArea
+}
+
+// GetTargetAreaGroup returns DefaultAssetRelationshipTargetsEntityRelationshipTargets.TargetAreaGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipTargetsEntityRelationshipTargets) GetTargetAreaGroup() DefaultRelationshipTargetsTargetAreaGroup {
+	return v.DefaultRelationshipTargets.TargetAreaGroup
+}
+
+// GetTargetCustomer returns DefaultAssetRelationshipTargetsEntityRelationshipTargets.TargetCustomer, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipTargetsEntityRelationshipTargets) GetTargetCustomer() DefaultRelationshipTargetsTargetCustomer {
+	return v.DefaultRelationshipTargets.TargetCustomer
+}
+
+// GetTargetCustomerGroup returns DefaultAssetRelationshipTargetsEntityRelationshipTargets.TargetCustomerGroup, and is useful for accessing the field via an interface.
+func (v *DefaultAssetRelationshipTargetsEntityRelationshipTargets) GetTargetCustomerGroup() DefaultRelationshipTargetsTargetCustomerGroup {
+	return v.DefaultRelationshipTargets.TargetCustomerGroup
+}
+
+func (v *DefaultAssetRelationshipTargetsEntityRelationshipTargets) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*DefaultAssetRelationshipTargetsEntityRelationshipTargets
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.DefaultAssetRelationshipTargetsEntityRelationshipTargets = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultRelationshipTargets)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalDefaultAssetRelationshipTargetsEntityRelationshipTargets struct {
+	TargetDevice DefaultRelationshipTargetsTargetDevice `json:"targetDevice"`
+
+	TargetDeviceGroup DefaultRelationshipTargetsTargetDeviceGroup `json:"targetDeviceGroup"`
+
+	TargetAsset DefaultRelationshipTargetsTargetAsset `json:"targetAsset"`
+
+	TargetAssetGroup DefaultRelationshipTargetsTargetAssetGroup `json:"targetAssetGroup"`
+
+	TargetArea DefaultRelationshipTargetsTargetArea `json:"targetArea"`
+
+	TargetAreaGroup DefaultRelationshipTargetsTargetAreaGroup `json:"targetAreaGroup"`
+
+	TargetCustomer DefaultRelationshipTargetsTargetCustomer `json:"targetCustomer"`
+
+	TargetCustomerGroup DefaultRelationshipTargetsTargetCustomerGroup `json:"targetCustomerGroup"`
+}
+
+func (v *DefaultAssetRelationshipTargetsEntityRelationshipTargets) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *DefaultAssetRelationshipTargetsEntityRelationshipTargets) __premarshalJSON() (*__premarshalDefaultAssetRelationshipTargetsEntityRelationshipTargets, error) {
+	var retval __premarshalDefaultAssetRelationshipTargetsEntityRelationshipTargets
+
+	retval.TargetDevice = v.DefaultRelationshipTargets.TargetDevice
+	retval.TargetDeviceGroup = v.DefaultRelationshipTargets.TargetDeviceGroup
+	retval.TargetAsset = v.DefaultRelationshipTargets.TargetAsset
+	retval.TargetAssetGroup = v.DefaultRelationshipTargets.TargetAssetGroup
+	retval.TargetArea = v.DefaultRelationshipTargets.TargetArea
+	retval.TargetAreaGroup = v.DefaultRelationshipTargets.TargetAreaGroup
+	retval.TargetCustomer = v.DefaultRelationshipTargets.TargetCustomer
+	retval.TargetCustomerGroup = v.DefaultRelationshipTargets.TargetCustomerGroup
+	return &retval, nil
+}
 
 // Content associated with asset relationship type response.
 type DefaultAssetRelationshipType struct {
@@ -997,15 +1377,15 @@ func (v *DefaultCustomerGroup) GetMetadata() string { return v.Metadata }
 
 // Content associated with customer group relationship.
 type DefaultCustomerGroupRelationship struct {
-	Id               string                                                                        `json:"id"`
-	CreatedAt        string                                                                        `json:"createdAt"`
-	UpdatedAt        string                                                                        `json:"updatedAt"`
-	DeletedAt        string                                                                        `json:"deletedAt"`
-	Token            string                                                                        `json:"token"`
-	CustomerGroup    DefaultCustomerGroupRelationshipCustomerGroup                                 `json:"customerGroup"`
-	Customer         DefaultCustomerGroupRelationshipCustomer                                      `json:"customer"`
-	RelationshipType DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                        `json:"metadata"`
+	Id                  string                                                                        `json:"id"`
+	CreatedAt           string                                                                        `json:"createdAt"`
+	UpdatedAt           string                                                                        `json:"updatedAt"`
+	DeletedAt           string                                                                        `json:"deletedAt"`
+	Token               string                                                                        `json:"token"`
+	SourceCustomerGroup DefaultCustomerGroupRelationshipSourceCustomerGroup                           `json:"sourceCustomerGroup"`
+	Targets             DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets              `json:"targets"`
+	RelationshipType    DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType `json:"relationshipType"`
+	Metadata            string                                                                        `json:"metadata"`
 }
 
 // GetId returns DefaultCustomerGroupRelationship.Id, and is useful for accessing the field via an interface.
@@ -1023,14 +1403,14 @@ func (v *DefaultCustomerGroupRelationship) GetDeletedAt() string { return v.Dele
 // GetToken returns DefaultCustomerGroupRelationship.Token, and is useful for accessing the field via an interface.
 func (v *DefaultCustomerGroupRelationship) GetToken() string { return v.Token }
 
-// GetCustomerGroup returns DefaultCustomerGroupRelationship.CustomerGroup, and is useful for accessing the field via an interface.
-func (v *DefaultCustomerGroupRelationship) GetCustomerGroup() DefaultCustomerGroupRelationshipCustomerGroup {
-	return v.CustomerGroup
+// GetSourceCustomerGroup returns DefaultCustomerGroupRelationship.SourceCustomerGroup, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationship) GetSourceCustomerGroup() DefaultCustomerGroupRelationshipSourceCustomerGroup {
+	return v.SourceCustomerGroup
 }
 
-// GetCustomer returns DefaultCustomerGroupRelationship.Customer, and is useful for accessing the field via an interface.
-func (v *DefaultCustomerGroupRelationship) GetCustomer() DefaultCustomerGroupRelationshipCustomer {
-	return v.Customer
+// GetTargets returns DefaultCustomerGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationship) GetTargets() DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.Targets
 }
 
 // GetRelationshipType returns DefaultCustomerGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -1040,38 +1420,6 @@ func (v *DefaultCustomerGroupRelationship) GetRelationshipType() DefaultCustomer
 
 // GetMetadata returns DefaultCustomerGroupRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *DefaultCustomerGroupRelationship) GetMetadata() string { return v.Metadata }
-
-// DefaultCustomerGroupRelationshipCustomer includes the requested fields of the GraphQL type Customer.
-type DefaultCustomerGroupRelationshipCustomer struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns DefaultCustomerGroupRelationshipCustomer.Token, and is useful for accessing the field via an interface.
-func (v *DefaultCustomerGroupRelationshipCustomer) GetToken() string { return v.Token }
-
-// GetName returns DefaultCustomerGroupRelationshipCustomer.Name, and is useful for accessing the field via an interface.
-func (v *DefaultCustomerGroupRelationshipCustomer) GetName() string { return v.Name }
-
-// GetDescription returns DefaultCustomerGroupRelationshipCustomer.Description, and is useful for accessing the field via an interface.
-func (v *DefaultCustomerGroupRelationshipCustomer) GetDescription() string { return v.Description }
-
-// DefaultCustomerGroupRelationshipCustomerGroup includes the requested fields of the GraphQL type CustomerGroup.
-type DefaultCustomerGroupRelationshipCustomerGroup struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns DefaultCustomerGroupRelationshipCustomerGroup.Token, and is useful for accessing the field via an interface.
-func (v *DefaultCustomerGroupRelationshipCustomerGroup) GetToken() string { return v.Token }
-
-// GetName returns DefaultCustomerGroupRelationshipCustomerGroup.Name, and is useful for accessing the field via an interface.
-func (v *DefaultCustomerGroupRelationshipCustomerGroup) GetName() string { return v.Name }
-
-// GetDescription returns DefaultCustomerGroupRelationshipCustomerGroup.Description, and is useful for accessing the field via an interface.
-func (v *DefaultCustomerGroupRelationshipCustomerGroup) GetDescription() string { return v.Description }
 
 // DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType includes the requested fields of the GraphQL type CustomerGroupRelationshipType.
 type DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType struct {
@@ -1093,6 +1441,134 @@ func (v *DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationsh
 // GetDescription returns DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType) GetDescription() string {
 	return v.Description
+}
+
+// DefaultCustomerGroupRelationshipSourceCustomerGroup includes the requested fields of the GraphQL type CustomerGroup.
+type DefaultCustomerGroupRelationshipSourceCustomerGroup struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultCustomerGroupRelationshipSourceCustomerGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipSourceCustomerGroup) GetToken() string { return v.Token }
+
+// GetName returns DefaultCustomerGroupRelationshipSourceCustomerGroup.Name, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipSourceCustomerGroup) GetName() string { return v.Name }
+
+// GetDescription returns DefaultCustomerGroupRelationshipSourceCustomerGroup.Description, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipSourceCustomerGroup) GetDescription() string {
+	return v.Description
+}
+
+// DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets includes the requested fields of the GraphQL type EntityRelationshipTargets.
+type DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets struct {
+	DefaultRelationshipTargets `json:"-"`
+}
+
+// GetTargetDevice returns DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets.TargetDevice, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets) GetTargetDevice() DefaultRelationshipTargetsTargetDevice {
+	return v.DefaultRelationshipTargets.TargetDevice
+}
+
+// GetTargetDeviceGroup returns DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets.TargetDeviceGroup, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets) GetTargetDeviceGroup() DefaultRelationshipTargetsTargetDeviceGroup {
+	return v.DefaultRelationshipTargets.TargetDeviceGroup
+}
+
+// GetTargetAsset returns DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets.TargetAsset, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets) GetTargetAsset() DefaultRelationshipTargetsTargetAsset {
+	return v.DefaultRelationshipTargets.TargetAsset
+}
+
+// GetTargetAssetGroup returns DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets.TargetAssetGroup, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets) GetTargetAssetGroup() DefaultRelationshipTargetsTargetAssetGroup {
+	return v.DefaultRelationshipTargets.TargetAssetGroup
+}
+
+// GetTargetArea returns DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets.TargetArea, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets) GetTargetArea() DefaultRelationshipTargetsTargetArea {
+	return v.DefaultRelationshipTargets.TargetArea
+}
+
+// GetTargetAreaGroup returns DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets.TargetAreaGroup, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets) GetTargetAreaGroup() DefaultRelationshipTargetsTargetAreaGroup {
+	return v.DefaultRelationshipTargets.TargetAreaGroup
+}
+
+// GetTargetCustomer returns DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets.TargetCustomer, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets) GetTargetCustomer() DefaultRelationshipTargetsTargetCustomer {
+	return v.DefaultRelationshipTargets.TargetCustomer
+}
+
+// GetTargetCustomerGroup returns DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets.TargetCustomerGroup, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets) GetTargetCustomerGroup() DefaultRelationshipTargetsTargetCustomerGroup {
+	return v.DefaultRelationshipTargets.TargetCustomerGroup
+}
+
+func (v *DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultRelationshipTargets)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalDefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets struct {
+	TargetDevice DefaultRelationshipTargetsTargetDevice `json:"targetDevice"`
+
+	TargetDeviceGroup DefaultRelationshipTargetsTargetDeviceGroup `json:"targetDeviceGroup"`
+
+	TargetAsset DefaultRelationshipTargetsTargetAsset `json:"targetAsset"`
+
+	TargetAssetGroup DefaultRelationshipTargetsTargetAssetGroup `json:"targetAssetGroup"`
+
+	TargetArea DefaultRelationshipTargetsTargetArea `json:"targetArea"`
+
+	TargetAreaGroup DefaultRelationshipTargetsTargetAreaGroup `json:"targetAreaGroup"`
+
+	TargetCustomer DefaultRelationshipTargetsTargetCustomer `json:"targetCustomer"`
+
+	TargetCustomerGroup DefaultRelationshipTargetsTargetCustomerGroup `json:"targetCustomerGroup"`
+}
+
+func (v *DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets) __premarshalJSON() (*__premarshalDefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets, error) {
+	var retval __premarshalDefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets
+
+	retval.TargetDevice = v.DefaultRelationshipTargets.TargetDevice
+	retval.TargetDeviceGroup = v.DefaultRelationshipTargets.TargetDeviceGroup
+	retval.TargetAsset = v.DefaultRelationshipTargets.TargetAsset
+	retval.TargetAssetGroup = v.DefaultRelationshipTargets.TargetAssetGroup
+	retval.TargetArea = v.DefaultRelationshipTargets.TargetArea
+	retval.TargetAreaGroup = v.DefaultRelationshipTargets.TargetAreaGroup
+	retval.TargetCustomer = v.DefaultRelationshipTargets.TargetCustomer
+	retval.TargetCustomerGroup = v.DefaultRelationshipTargets.TargetCustomerGroup
+	return &retval, nil
 }
 
 // Content associated with customer group relationship type.
@@ -1139,7 +1615,7 @@ type DefaultCustomerRelationship struct {
 	DeletedAt        string                                                              `json:"deletedAt"`
 	Token            string                                                              `json:"token"`
 	SourceCustomer   DefaultCustomerRelationshipSourceCustomer                           `json:"sourceCustomer"`
-	TargetCustomer   DefaultCustomerRelationshipTargetCustomer                           `json:"targetCustomer"`
+	Targets          DefaultCustomerRelationshipTargetsEntityRelationshipTargets         `json:"targets"`
 	RelationshipType DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType `json:"relationshipType"`
 	Metadata         string                                                              `json:"metadata"`
 }
@@ -1164,9 +1640,9 @@ func (v *DefaultCustomerRelationship) GetSourceCustomer() DefaultCustomerRelatio
 	return v.SourceCustomer
 }
 
-// GetTargetCustomer returns DefaultCustomerRelationship.TargetCustomer, and is useful for accessing the field via an interface.
-func (v *DefaultCustomerRelationship) GetTargetCustomer() DefaultCustomerRelationshipTargetCustomer {
-	return v.TargetCustomer
+// GetTargets returns DefaultCustomerRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationship) GetTargets() DefaultCustomerRelationshipTargetsEntityRelationshipTargets {
+	return v.Targets
 }
 
 // GetRelationshipType returns DefaultCustomerRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -1215,21 +1691,115 @@ func (v *DefaultCustomerRelationshipSourceCustomer) GetName() string { return v.
 // GetDescription returns DefaultCustomerRelationshipSourceCustomer.Description, and is useful for accessing the field via an interface.
 func (v *DefaultCustomerRelationshipSourceCustomer) GetDescription() string { return v.Description }
 
-// DefaultCustomerRelationshipTargetCustomer includes the requested fields of the GraphQL type Customer.
-type DefaultCustomerRelationshipTargetCustomer struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+// DefaultCustomerRelationshipTargetsEntityRelationshipTargets includes the requested fields of the GraphQL type EntityRelationshipTargets.
+type DefaultCustomerRelationshipTargetsEntityRelationshipTargets struct {
+	DefaultRelationshipTargets `json:"-"`
 }
 
-// GetToken returns DefaultCustomerRelationshipTargetCustomer.Token, and is useful for accessing the field via an interface.
-func (v *DefaultCustomerRelationshipTargetCustomer) GetToken() string { return v.Token }
+// GetTargetDevice returns DefaultCustomerRelationshipTargetsEntityRelationshipTargets.TargetDevice, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipTargetsEntityRelationshipTargets) GetTargetDevice() DefaultRelationshipTargetsTargetDevice {
+	return v.DefaultRelationshipTargets.TargetDevice
+}
 
-// GetName returns DefaultCustomerRelationshipTargetCustomer.Name, and is useful for accessing the field via an interface.
-func (v *DefaultCustomerRelationshipTargetCustomer) GetName() string { return v.Name }
+// GetTargetDeviceGroup returns DefaultCustomerRelationshipTargetsEntityRelationshipTargets.TargetDeviceGroup, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipTargetsEntityRelationshipTargets) GetTargetDeviceGroup() DefaultRelationshipTargetsTargetDeviceGroup {
+	return v.DefaultRelationshipTargets.TargetDeviceGroup
+}
 
-// GetDescription returns DefaultCustomerRelationshipTargetCustomer.Description, and is useful for accessing the field via an interface.
-func (v *DefaultCustomerRelationshipTargetCustomer) GetDescription() string { return v.Description }
+// GetTargetAsset returns DefaultCustomerRelationshipTargetsEntityRelationshipTargets.TargetAsset, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipTargetsEntityRelationshipTargets) GetTargetAsset() DefaultRelationshipTargetsTargetAsset {
+	return v.DefaultRelationshipTargets.TargetAsset
+}
+
+// GetTargetAssetGroup returns DefaultCustomerRelationshipTargetsEntityRelationshipTargets.TargetAssetGroup, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipTargetsEntityRelationshipTargets) GetTargetAssetGroup() DefaultRelationshipTargetsTargetAssetGroup {
+	return v.DefaultRelationshipTargets.TargetAssetGroup
+}
+
+// GetTargetArea returns DefaultCustomerRelationshipTargetsEntityRelationshipTargets.TargetArea, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipTargetsEntityRelationshipTargets) GetTargetArea() DefaultRelationshipTargetsTargetArea {
+	return v.DefaultRelationshipTargets.TargetArea
+}
+
+// GetTargetAreaGroup returns DefaultCustomerRelationshipTargetsEntityRelationshipTargets.TargetAreaGroup, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipTargetsEntityRelationshipTargets) GetTargetAreaGroup() DefaultRelationshipTargetsTargetAreaGroup {
+	return v.DefaultRelationshipTargets.TargetAreaGroup
+}
+
+// GetTargetCustomer returns DefaultCustomerRelationshipTargetsEntityRelationshipTargets.TargetCustomer, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipTargetsEntityRelationshipTargets) GetTargetCustomer() DefaultRelationshipTargetsTargetCustomer {
+	return v.DefaultRelationshipTargets.TargetCustomer
+}
+
+// GetTargetCustomerGroup returns DefaultCustomerRelationshipTargetsEntityRelationshipTargets.TargetCustomerGroup, and is useful for accessing the field via an interface.
+func (v *DefaultCustomerRelationshipTargetsEntityRelationshipTargets) GetTargetCustomerGroup() DefaultRelationshipTargetsTargetCustomerGroup {
+	return v.DefaultRelationshipTargets.TargetCustomerGroup
+}
+
+func (v *DefaultCustomerRelationshipTargetsEntityRelationshipTargets) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*DefaultCustomerRelationshipTargetsEntityRelationshipTargets
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.DefaultCustomerRelationshipTargetsEntityRelationshipTargets = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultRelationshipTargets)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalDefaultCustomerRelationshipTargetsEntityRelationshipTargets struct {
+	TargetDevice DefaultRelationshipTargetsTargetDevice `json:"targetDevice"`
+
+	TargetDeviceGroup DefaultRelationshipTargetsTargetDeviceGroup `json:"targetDeviceGroup"`
+
+	TargetAsset DefaultRelationshipTargetsTargetAsset `json:"targetAsset"`
+
+	TargetAssetGroup DefaultRelationshipTargetsTargetAssetGroup `json:"targetAssetGroup"`
+
+	TargetArea DefaultRelationshipTargetsTargetArea `json:"targetArea"`
+
+	TargetAreaGroup DefaultRelationshipTargetsTargetAreaGroup `json:"targetAreaGroup"`
+
+	TargetCustomer DefaultRelationshipTargetsTargetCustomer `json:"targetCustomer"`
+
+	TargetCustomerGroup DefaultRelationshipTargetsTargetCustomerGroup `json:"targetCustomerGroup"`
+}
+
+func (v *DefaultCustomerRelationshipTargetsEntityRelationshipTargets) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *DefaultCustomerRelationshipTargetsEntityRelationshipTargets) __premarshalJSON() (*__premarshalDefaultCustomerRelationshipTargetsEntityRelationshipTargets, error) {
+	var retval __premarshalDefaultCustomerRelationshipTargetsEntityRelationshipTargets
+
+	retval.TargetDevice = v.DefaultRelationshipTargets.TargetDevice
+	retval.TargetDeviceGroup = v.DefaultRelationshipTargets.TargetDeviceGroup
+	retval.TargetAsset = v.DefaultRelationshipTargets.TargetAsset
+	retval.TargetAssetGroup = v.DefaultRelationshipTargets.TargetAssetGroup
+	retval.TargetArea = v.DefaultRelationshipTargets.TargetArea
+	retval.TargetAreaGroup = v.DefaultRelationshipTargets.TargetAreaGroup
+	retval.TargetCustomer = v.DefaultRelationshipTargets.TargetCustomer
+	retval.TargetCustomerGroup = v.DefaultRelationshipTargets.TargetCustomerGroup
+	return &retval, nil
+}
 
 // Content associated with customer relationship type response.
 type DefaultCustomerRelationshipType struct {
@@ -1451,15 +2021,15 @@ func (v *DefaultDeviceGroup) GetMetadata() string { return v.Metadata }
 
 // Content associated with a device group relationship.
 type DefaultDeviceGroupRelationship struct {
-	Id               string                                                                    `json:"id"`
-	CreatedAt        string                                                                    `json:"createdAt"`
-	UpdatedAt        string                                                                    `json:"updatedAt"`
-	DeletedAt        string                                                                    `json:"deletedAt"`
-	Token            string                                                                    `json:"token"`
-	DeviceGroup      DefaultDeviceGroupRelationshipDeviceGroup                                 `json:"deviceGroup"`
-	Device           DefaultDeviceGroupRelationshipDevice                                      `json:"device"`
-	RelationshipType DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType `json:"relationshipType"`
-	Metadata         string                                                                    `json:"metadata"`
+	Id                string                                                                    `json:"id"`
+	CreatedAt         string                                                                    `json:"createdAt"`
+	UpdatedAt         string                                                                    `json:"updatedAt"`
+	DeletedAt         string                                                                    `json:"deletedAt"`
+	Token             string                                                                    `json:"token"`
+	SourceDeviceGroup DefaultDeviceGroupRelationshipSourceDeviceGroup                           `json:"sourceDeviceGroup"`
+	Targets           DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets            `json:"targets"`
+	RelationshipType  DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType `json:"relationshipType"`
+	Metadata          string                                                                    `json:"metadata"`
 }
 
 // GetId returns DefaultDeviceGroupRelationship.Id, and is useful for accessing the field via an interface.
@@ -1477,14 +2047,14 @@ func (v *DefaultDeviceGroupRelationship) GetDeletedAt() string { return v.Delete
 // GetToken returns DefaultDeviceGroupRelationship.Token, and is useful for accessing the field via an interface.
 func (v *DefaultDeviceGroupRelationship) GetToken() string { return v.Token }
 
-// GetDeviceGroup returns DefaultDeviceGroupRelationship.DeviceGroup, and is useful for accessing the field via an interface.
-func (v *DefaultDeviceGroupRelationship) GetDeviceGroup() DefaultDeviceGroupRelationshipDeviceGroup {
-	return v.DeviceGroup
+// GetSourceDeviceGroup returns DefaultDeviceGroupRelationship.SourceDeviceGroup, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationship) GetSourceDeviceGroup() DefaultDeviceGroupRelationshipSourceDeviceGroup {
+	return v.SourceDeviceGroup
 }
 
-// GetDevice returns DefaultDeviceGroupRelationship.Device, and is useful for accessing the field via an interface.
-func (v *DefaultDeviceGroupRelationship) GetDevice() DefaultDeviceGroupRelationshipDevice {
-	return v.Device
+// GetTargets returns DefaultDeviceGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationship) GetTargets() DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.Targets
 }
 
 // GetRelationshipType returns DefaultDeviceGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -1494,38 +2064,6 @@ func (v *DefaultDeviceGroupRelationship) GetRelationshipType() DefaultDeviceGrou
 
 // GetMetadata returns DefaultDeviceGroupRelationship.Metadata, and is useful for accessing the field via an interface.
 func (v *DefaultDeviceGroupRelationship) GetMetadata() string { return v.Metadata }
-
-// DefaultDeviceGroupRelationshipDevice includes the requested fields of the GraphQL type Device.
-type DefaultDeviceGroupRelationshipDevice struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns DefaultDeviceGroupRelationshipDevice.Token, and is useful for accessing the field via an interface.
-func (v *DefaultDeviceGroupRelationshipDevice) GetToken() string { return v.Token }
-
-// GetName returns DefaultDeviceGroupRelationshipDevice.Name, and is useful for accessing the field via an interface.
-func (v *DefaultDeviceGroupRelationshipDevice) GetName() string { return v.Name }
-
-// GetDescription returns DefaultDeviceGroupRelationshipDevice.Description, and is useful for accessing the field via an interface.
-func (v *DefaultDeviceGroupRelationshipDevice) GetDescription() string { return v.Description }
-
-// DefaultDeviceGroupRelationshipDeviceGroup includes the requested fields of the GraphQL type DeviceGroup.
-type DefaultDeviceGroupRelationshipDeviceGroup struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
-// GetToken returns DefaultDeviceGroupRelationshipDeviceGroup.Token, and is useful for accessing the field via an interface.
-func (v *DefaultDeviceGroupRelationshipDeviceGroup) GetToken() string { return v.Token }
-
-// GetName returns DefaultDeviceGroupRelationshipDeviceGroup.Name, and is useful for accessing the field via an interface.
-func (v *DefaultDeviceGroupRelationshipDeviceGroup) GetName() string { return v.Name }
-
-// GetDescription returns DefaultDeviceGroupRelationshipDeviceGroup.Description, and is useful for accessing the field via an interface.
-func (v *DefaultDeviceGroupRelationshipDeviceGroup) GetDescription() string { return v.Description }
 
 // DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType includes the requested fields of the GraphQL type DeviceGroupRelationshipType.
 type DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType struct {
@@ -1547,6 +2085,134 @@ func (v *DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipTy
 // GetDescription returns DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType.Description, and is useful for accessing the field via an interface.
 func (v *DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType) GetDescription() string {
 	return v.Description
+}
+
+// DefaultDeviceGroupRelationshipSourceDeviceGroup includes the requested fields of the GraphQL type DeviceGroup.
+type DefaultDeviceGroupRelationshipSourceDeviceGroup struct {
+	Token       string `json:"token"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// GetToken returns DefaultDeviceGroupRelationshipSourceDeviceGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipSourceDeviceGroup) GetToken() string { return v.Token }
+
+// GetName returns DefaultDeviceGroupRelationshipSourceDeviceGroup.Name, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipSourceDeviceGroup) GetName() string { return v.Name }
+
+// GetDescription returns DefaultDeviceGroupRelationshipSourceDeviceGroup.Description, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipSourceDeviceGroup) GetDescription() string {
+	return v.Description
+}
+
+// DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets includes the requested fields of the GraphQL type EntityRelationshipTargets.
+type DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets struct {
+	DefaultRelationshipTargets `json:"-"`
+}
+
+// GetTargetDevice returns DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets.TargetDevice, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets) GetTargetDevice() DefaultRelationshipTargetsTargetDevice {
+	return v.DefaultRelationshipTargets.TargetDevice
+}
+
+// GetTargetDeviceGroup returns DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets.TargetDeviceGroup, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets) GetTargetDeviceGroup() DefaultRelationshipTargetsTargetDeviceGroup {
+	return v.DefaultRelationshipTargets.TargetDeviceGroup
+}
+
+// GetTargetAsset returns DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets.TargetAsset, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets) GetTargetAsset() DefaultRelationshipTargetsTargetAsset {
+	return v.DefaultRelationshipTargets.TargetAsset
+}
+
+// GetTargetAssetGroup returns DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets.TargetAssetGroup, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets) GetTargetAssetGroup() DefaultRelationshipTargetsTargetAssetGroup {
+	return v.DefaultRelationshipTargets.TargetAssetGroup
+}
+
+// GetTargetArea returns DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets.TargetArea, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets) GetTargetArea() DefaultRelationshipTargetsTargetArea {
+	return v.DefaultRelationshipTargets.TargetArea
+}
+
+// GetTargetAreaGroup returns DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets.TargetAreaGroup, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets) GetTargetAreaGroup() DefaultRelationshipTargetsTargetAreaGroup {
+	return v.DefaultRelationshipTargets.TargetAreaGroup
+}
+
+// GetTargetCustomer returns DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets.TargetCustomer, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets) GetTargetCustomer() DefaultRelationshipTargetsTargetCustomer {
+	return v.DefaultRelationshipTargets.TargetCustomer
+}
+
+// GetTargetCustomerGroup returns DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets.TargetCustomerGroup, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets) GetTargetCustomerGroup() DefaultRelationshipTargetsTargetCustomerGroup {
+	return v.DefaultRelationshipTargets.TargetCustomerGroup
+}
+
+func (v *DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultRelationshipTargets)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalDefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets struct {
+	TargetDevice DefaultRelationshipTargetsTargetDevice `json:"targetDevice"`
+
+	TargetDeviceGroup DefaultRelationshipTargetsTargetDeviceGroup `json:"targetDeviceGroup"`
+
+	TargetAsset DefaultRelationshipTargetsTargetAsset `json:"targetAsset"`
+
+	TargetAssetGroup DefaultRelationshipTargetsTargetAssetGroup `json:"targetAssetGroup"`
+
+	TargetArea DefaultRelationshipTargetsTargetArea `json:"targetArea"`
+
+	TargetAreaGroup DefaultRelationshipTargetsTargetAreaGroup `json:"targetAreaGroup"`
+
+	TargetCustomer DefaultRelationshipTargetsTargetCustomer `json:"targetCustomer"`
+
+	TargetCustomerGroup DefaultRelationshipTargetsTargetCustomerGroup `json:"targetCustomerGroup"`
+}
+
+func (v *DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets) __premarshalJSON() (*__premarshalDefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets, error) {
+	var retval __premarshalDefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets
+
+	retval.TargetDevice = v.DefaultRelationshipTargets.TargetDevice
+	retval.TargetDeviceGroup = v.DefaultRelationshipTargets.TargetDeviceGroup
+	retval.TargetAsset = v.DefaultRelationshipTargets.TargetAsset
+	retval.TargetAssetGroup = v.DefaultRelationshipTargets.TargetAssetGroup
+	retval.TargetArea = v.DefaultRelationshipTargets.TargetArea
+	retval.TargetAreaGroup = v.DefaultRelationshipTargets.TargetAreaGroup
+	retval.TargetCustomer = v.DefaultRelationshipTargets.TargetCustomer
+	retval.TargetCustomerGroup = v.DefaultRelationshipTargets.TargetCustomerGroup
+	return &retval, nil
 }
 
 // Content associated with a device group relationship type.
@@ -1593,7 +2259,7 @@ type DefaultDeviceRelationship struct {
 	DeletedAt        string                                                          `json:"deletedAt"`
 	Token            string                                                          `json:"token"`
 	SourceDevice     DefaultDeviceRelationshipSourceDevice                           `json:"sourceDevice"`
-	TargetDevice     DefaultDeviceRelationshipTargetDevice                           `json:"targetDevice"`
+	Targets          DefaultDeviceRelationshipTargetsEntityRelationshipTargets       `json:"targets"`
 	RelationshipType DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType `json:"relationshipType"`
 	Metadata         string                                                          `json:"metadata"`
 }
@@ -1618,9 +2284,9 @@ func (v *DefaultDeviceRelationship) GetSourceDevice() DefaultDeviceRelationshipS
 	return v.SourceDevice
 }
 
-// GetTargetDevice returns DefaultDeviceRelationship.TargetDevice, and is useful for accessing the field via an interface.
-func (v *DefaultDeviceRelationship) GetTargetDevice() DefaultDeviceRelationshipTargetDevice {
-	return v.TargetDevice
+// GetTargets returns DefaultDeviceRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationship) GetTargets() DefaultDeviceRelationshipTargetsEntityRelationshipTargets {
+	return v.Targets
 }
 
 // GetRelationshipType returns DefaultDeviceRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -1669,21 +2335,115 @@ func (v *DefaultDeviceRelationshipSourceDevice) GetName() string { return v.Name
 // GetDescription returns DefaultDeviceRelationshipSourceDevice.Description, and is useful for accessing the field via an interface.
 func (v *DefaultDeviceRelationshipSourceDevice) GetDescription() string { return v.Description }
 
-// DefaultDeviceRelationshipTargetDevice includes the requested fields of the GraphQL type Device.
-type DefaultDeviceRelationshipTargetDevice struct {
-	Token       string `json:"token"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+// DefaultDeviceRelationshipTargetsEntityRelationshipTargets includes the requested fields of the GraphQL type EntityRelationshipTargets.
+type DefaultDeviceRelationshipTargetsEntityRelationshipTargets struct {
+	DefaultRelationshipTargets `json:"-"`
 }
 
-// GetToken returns DefaultDeviceRelationshipTargetDevice.Token, and is useful for accessing the field via an interface.
-func (v *DefaultDeviceRelationshipTargetDevice) GetToken() string { return v.Token }
+// GetTargetDevice returns DefaultDeviceRelationshipTargetsEntityRelationshipTargets.TargetDevice, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipTargetsEntityRelationshipTargets) GetTargetDevice() DefaultRelationshipTargetsTargetDevice {
+	return v.DefaultRelationshipTargets.TargetDevice
+}
 
-// GetName returns DefaultDeviceRelationshipTargetDevice.Name, and is useful for accessing the field via an interface.
-func (v *DefaultDeviceRelationshipTargetDevice) GetName() string { return v.Name }
+// GetTargetDeviceGroup returns DefaultDeviceRelationshipTargetsEntityRelationshipTargets.TargetDeviceGroup, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipTargetsEntityRelationshipTargets) GetTargetDeviceGroup() DefaultRelationshipTargetsTargetDeviceGroup {
+	return v.DefaultRelationshipTargets.TargetDeviceGroup
+}
 
-// GetDescription returns DefaultDeviceRelationshipTargetDevice.Description, and is useful for accessing the field via an interface.
-func (v *DefaultDeviceRelationshipTargetDevice) GetDescription() string { return v.Description }
+// GetTargetAsset returns DefaultDeviceRelationshipTargetsEntityRelationshipTargets.TargetAsset, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipTargetsEntityRelationshipTargets) GetTargetAsset() DefaultRelationshipTargetsTargetAsset {
+	return v.DefaultRelationshipTargets.TargetAsset
+}
+
+// GetTargetAssetGroup returns DefaultDeviceRelationshipTargetsEntityRelationshipTargets.TargetAssetGroup, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipTargetsEntityRelationshipTargets) GetTargetAssetGroup() DefaultRelationshipTargetsTargetAssetGroup {
+	return v.DefaultRelationshipTargets.TargetAssetGroup
+}
+
+// GetTargetArea returns DefaultDeviceRelationshipTargetsEntityRelationshipTargets.TargetArea, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipTargetsEntityRelationshipTargets) GetTargetArea() DefaultRelationshipTargetsTargetArea {
+	return v.DefaultRelationshipTargets.TargetArea
+}
+
+// GetTargetAreaGroup returns DefaultDeviceRelationshipTargetsEntityRelationshipTargets.TargetAreaGroup, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipTargetsEntityRelationshipTargets) GetTargetAreaGroup() DefaultRelationshipTargetsTargetAreaGroup {
+	return v.DefaultRelationshipTargets.TargetAreaGroup
+}
+
+// GetTargetCustomer returns DefaultDeviceRelationshipTargetsEntityRelationshipTargets.TargetCustomer, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipTargetsEntityRelationshipTargets) GetTargetCustomer() DefaultRelationshipTargetsTargetCustomer {
+	return v.DefaultRelationshipTargets.TargetCustomer
+}
+
+// GetTargetCustomerGroup returns DefaultDeviceRelationshipTargetsEntityRelationshipTargets.TargetCustomerGroup, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipTargetsEntityRelationshipTargets) GetTargetCustomerGroup() DefaultRelationshipTargetsTargetCustomerGroup {
+	return v.DefaultRelationshipTargets.TargetCustomerGroup
+}
+
+func (v *DefaultDeviceRelationshipTargetsEntityRelationshipTargets) UnmarshalJSON(b []byte) error {
+
+	if string(b) == "null" {
+		return nil
+	}
+
+	var firstPass struct {
+		*DefaultDeviceRelationshipTargetsEntityRelationshipTargets
+		graphql.NoUnmarshalJSON
+	}
+	firstPass.DefaultDeviceRelationshipTargetsEntityRelationshipTargets = v
+
+	err := json.Unmarshal(b, &firstPass)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(
+		b, &v.DefaultRelationshipTargets)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type __premarshalDefaultDeviceRelationshipTargetsEntityRelationshipTargets struct {
+	TargetDevice DefaultRelationshipTargetsTargetDevice `json:"targetDevice"`
+
+	TargetDeviceGroup DefaultRelationshipTargetsTargetDeviceGroup `json:"targetDeviceGroup"`
+
+	TargetAsset DefaultRelationshipTargetsTargetAsset `json:"targetAsset"`
+
+	TargetAssetGroup DefaultRelationshipTargetsTargetAssetGroup `json:"targetAssetGroup"`
+
+	TargetArea DefaultRelationshipTargetsTargetArea `json:"targetArea"`
+
+	TargetAreaGroup DefaultRelationshipTargetsTargetAreaGroup `json:"targetAreaGroup"`
+
+	TargetCustomer DefaultRelationshipTargetsTargetCustomer `json:"targetCustomer"`
+
+	TargetCustomerGroup DefaultRelationshipTargetsTargetCustomerGroup `json:"targetCustomerGroup"`
+}
+
+func (v *DefaultDeviceRelationshipTargetsEntityRelationshipTargets) MarshalJSON() ([]byte, error) {
+	premarshaled, err := v.__premarshalJSON()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(premarshaled)
+}
+
+func (v *DefaultDeviceRelationshipTargetsEntityRelationshipTargets) __premarshalJSON() (*__premarshalDefaultDeviceRelationshipTargetsEntityRelationshipTargets, error) {
+	var retval __premarshalDefaultDeviceRelationshipTargetsEntityRelationshipTargets
+
+	retval.TargetDevice = v.DefaultRelationshipTargets.TargetDevice
+	retval.TargetDeviceGroup = v.DefaultRelationshipTargets.TargetDeviceGroup
+	retval.TargetAsset = v.DefaultRelationshipTargets.TargetAsset
+	retval.TargetAssetGroup = v.DefaultRelationshipTargets.TargetAssetGroup
+	retval.TargetArea = v.DefaultRelationshipTargets.TargetArea
+	retval.TargetAreaGroup = v.DefaultRelationshipTargets.TargetAreaGroup
+	retval.TargetCustomer = v.DefaultRelationshipTargets.TargetCustomer
+	retval.TargetCustomerGroup = v.DefaultRelationshipTargets.TargetCustomerGroup
+	return &retval, nil
+}
 
 // Content associated with a device relationship type response.
 type DefaultDeviceRelationshipType struct {
@@ -1793,6 +2553,165 @@ func (v *DefaultPagination) GetPageEnd() int { return v.PageEnd }
 // GetTotalRecords returns DefaultPagination.TotalRecords, and is useful for accessing the field via an interface.
 func (v *DefaultPagination) GetTotalRecords() int { return v.TotalRecords }
 
+// Content associated with relationship targets.
+type DefaultRelationshipTargets struct {
+	TargetDevice        DefaultRelationshipTargetsTargetDevice        `json:"targetDevice"`
+	TargetDeviceGroup   DefaultRelationshipTargetsTargetDeviceGroup   `json:"targetDeviceGroup"`
+	TargetAsset         DefaultRelationshipTargetsTargetAsset         `json:"targetAsset"`
+	TargetAssetGroup    DefaultRelationshipTargetsTargetAssetGroup    `json:"targetAssetGroup"`
+	TargetArea          DefaultRelationshipTargetsTargetArea          `json:"targetArea"`
+	TargetAreaGroup     DefaultRelationshipTargetsTargetAreaGroup     `json:"targetAreaGroup"`
+	TargetCustomer      DefaultRelationshipTargetsTargetCustomer      `json:"targetCustomer"`
+	TargetCustomerGroup DefaultRelationshipTargetsTargetCustomerGroup `json:"targetCustomerGroup"`
+}
+
+// GetTargetDevice returns DefaultRelationshipTargets.TargetDevice, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargets) GetTargetDevice() DefaultRelationshipTargetsTargetDevice {
+	return v.TargetDevice
+}
+
+// GetTargetDeviceGroup returns DefaultRelationshipTargets.TargetDeviceGroup, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargets) GetTargetDeviceGroup() DefaultRelationshipTargetsTargetDeviceGroup {
+	return v.TargetDeviceGroup
+}
+
+// GetTargetAsset returns DefaultRelationshipTargets.TargetAsset, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargets) GetTargetAsset() DefaultRelationshipTargetsTargetAsset {
+	return v.TargetAsset
+}
+
+// GetTargetAssetGroup returns DefaultRelationshipTargets.TargetAssetGroup, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargets) GetTargetAssetGroup() DefaultRelationshipTargetsTargetAssetGroup {
+	return v.TargetAssetGroup
+}
+
+// GetTargetArea returns DefaultRelationshipTargets.TargetArea, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargets) GetTargetArea() DefaultRelationshipTargetsTargetArea {
+	return v.TargetArea
+}
+
+// GetTargetAreaGroup returns DefaultRelationshipTargets.TargetAreaGroup, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargets) GetTargetAreaGroup() DefaultRelationshipTargetsTargetAreaGroup {
+	return v.TargetAreaGroup
+}
+
+// GetTargetCustomer returns DefaultRelationshipTargets.TargetCustomer, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargets) GetTargetCustomer() DefaultRelationshipTargetsTargetCustomer {
+	return v.TargetCustomer
+}
+
+// GetTargetCustomerGroup returns DefaultRelationshipTargets.TargetCustomerGroup, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargets) GetTargetCustomerGroup() DefaultRelationshipTargetsTargetCustomerGroup {
+	return v.TargetCustomerGroup
+}
+
+// DefaultRelationshipTargetsTargetArea includes the requested fields of the GraphQL type Area.
+type DefaultRelationshipTargetsTargetArea struct {
+	Token string `json:"token"`
+}
+
+// GetToken returns DefaultRelationshipTargetsTargetArea.Token, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargetsTargetArea) GetToken() string { return v.Token }
+
+// DefaultRelationshipTargetsTargetAreaGroup includes the requested fields of the GraphQL type AreaGroup.
+type DefaultRelationshipTargetsTargetAreaGroup struct {
+	Token string `json:"token"`
+}
+
+// GetToken returns DefaultRelationshipTargetsTargetAreaGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargetsTargetAreaGroup) GetToken() string { return v.Token }
+
+// DefaultRelationshipTargetsTargetAsset includes the requested fields of the GraphQL type Asset.
+type DefaultRelationshipTargetsTargetAsset struct {
+	Token string `json:"token"`
+}
+
+// GetToken returns DefaultRelationshipTargetsTargetAsset.Token, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargetsTargetAsset) GetToken() string { return v.Token }
+
+// DefaultRelationshipTargetsTargetAssetGroup includes the requested fields of the GraphQL type AssetGroup.
+type DefaultRelationshipTargetsTargetAssetGroup struct {
+	Token string `json:"token"`
+}
+
+// GetToken returns DefaultRelationshipTargetsTargetAssetGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargetsTargetAssetGroup) GetToken() string { return v.Token }
+
+// DefaultRelationshipTargetsTargetCustomer includes the requested fields of the GraphQL type Customer.
+type DefaultRelationshipTargetsTargetCustomer struct {
+	Token string `json:"token"`
+}
+
+// GetToken returns DefaultRelationshipTargetsTargetCustomer.Token, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargetsTargetCustomer) GetToken() string { return v.Token }
+
+// DefaultRelationshipTargetsTargetCustomerGroup includes the requested fields of the GraphQL type CustomerGroup.
+type DefaultRelationshipTargetsTargetCustomerGroup struct {
+	Token string `json:"token"`
+}
+
+// GetToken returns DefaultRelationshipTargetsTargetCustomerGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargetsTargetCustomerGroup) GetToken() string { return v.Token }
+
+// DefaultRelationshipTargetsTargetDevice includes the requested fields of the GraphQL type Device.
+type DefaultRelationshipTargetsTargetDevice struct {
+	Token string `json:"token"`
+}
+
+// GetToken returns DefaultRelationshipTargetsTargetDevice.Token, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargetsTargetDevice) GetToken() string { return v.Token }
+
+// DefaultRelationshipTargetsTargetDeviceGroup includes the requested fields of the GraphQL type DeviceGroup.
+type DefaultRelationshipTargetsTargetDeviceGroup struct {
+	Token string `json:"token"`
+}
+
+// GetToken returns DefaultRelationshipTargetsTargetDeviceGroup.Token, and is useful for accessing the field via an interface.
+func (v *DefaultRelationshipTargetsTargetDeviceGroup) GetToken() string { return v.Token }
+
+type EntityRelationshipTargetsCreateRequest struct {
+	TargetDevice        string `json:"targetDevice"`
+	TargetDeviceGroup   string `json:"targetDeviceGroup"`
+	TargetAsset         string `json:"targetAsset"`
+	TargetAssetGroup    string `json:"targetAssetGroup"`
+	TargetArea          string `json:"targetArea"`
+	TargetAreaGroup     string `json:"targetAreaGroup"`
+	TargetCustomer      string `json:"targetCustomer"`
+	TargetCustomerGroup string `json:"targetCustomerGroup"`
+}
+
+// GetTargetDevice returns EntityRelationshipTargetsCreateRequest.TargetDevice, and is useful for accessing the field via an interface.
+func (v *EntityRelationshipTargetsCreateRequest) GetTargetDevice() string { return v.TargetDevice }
+
+// GetTargetDeviceGroup returns EntityRelationshipTargetsCreateRequest.TargetDeviceGroup, and is useful for accessing the field via an interface.
+func (v *EntityRelationshipTargetsCreateRequest) GetTargetDeviceGroup() string {
+	return v.TargetDeviceGroup
+}
+
+// GetTargetAsset returns EntityRelationshipTargetsCreateRequest.TargetAsset, and is useful for accessing the field via an interface.
+func (v *EntityRelationshipTargetsCreateRequest) GetTargetAsset() string { return v.TargetAsset }
+
+// GetTargetAssetGroup returns EntityRelationshipTargetsCreateRequest.TargetAssetGroup, and is useful for accessing the field via an interface.
+func (v *EntityRelationshipTargetsCreateRequest) GetTargetAssetGroup() string {
+	return v.TargetAssetGroup
+}
+
+// GetTargetArea returns EntityRelationshipTargetsCreateRequest.TargetArea, and is useful for accessing the field via an interface.
+func (v *EntityRelationshipTargetsCreateRequest) GetTargetArea() string { return v.TargetArea }
+
+// GetTargetAreaGroup returns EntityRelationshipTargetsCreateRequest.TargetAreaGroup, and is useful for accessing the field via an interface.
+func (v *EntityRelationshipTargetsCreateRequest) GetTargetAreaGroup() string {
+	return v.TargetAreaGroup
+}
+
+// GetTargetCustomer returns EntityRelationshipTargetsCreateRequest.TargetCustomer, and is useful for accessing the field via an interface.
+func (v *EntityRelationshipTargetsCreateRequest) GetTargetCustomer() string { return v.TargetCustomer }
+
+// GetTargetCustomerGroup returns EntityRelationshipTargetsCreateRequest.TargetCustomerGroup, and is useful for accessing the field via an interface.
+func (v *EntityRelationshipTargetsCreateRequest) GetTargetCustomerGroup() string {
+	return v.TargetCustomerGroup
+}
+
 // __createAreaGroupInput is used internally by genqlient
 type __createAreaGroupInput struct {
 	Token           string `json:"token"`
@@ -1835,10 +2754,10 @@ func (v *__createAreaGroupInput) GetMetadata() string { return v.Metadata }
 
 // __createAreaGroupRelationshipInput is used internally by genqlient
 type __createAreaGroupRelationshipInput struct {
-	Token            string `json:"token"`
-	AreaGroup        string `json:"areaGroup"`
-	Area             string `json:"area"`
-	RelationshipType string `json:"relationshipType"`
+	Token            string                                 `json:"token"`
+	AreaGroup        string                                 `json:"areaGroup"`
+	Targets          EntityRelationshipTargetsCreateRequest `json:"targets"`
+	RelationshipType string                                 `json:"relationshipType"`
 }
 
 // GetToken returns __createAreaGroupRelationshipInput.Token, and is useful for accessing the field via an interface.
@@ -1847,8 +2766,10 @@ func (v *__createAreaGroupRelationshipInput) GetToken() string { return v.Token 
 // GetAreaGroup returns __createAreaGroupRelationshipInput.AreaGroup, and is useful for accessing the field via an interface.
 func (v *__createAreaGroupRelationshipInput) GetAreaGroup() string { return v.AreaGroup }
 
-// GetArea returns __createAreaGroupRelationshipInput.Area, and is useful for accessing the field via an interface.
-func (v *__createAreaGroupRelationshipInput) GetArea() string { return v.Area }
+// GetTargets returns __createAreaGroupRelationshipInput.Targets, and is useful for accessing the field via an interface.
+func (v *__createAreaGroupRelationshipInput) GetTargets() EntityRelationshipTargetsCreateRequest {
+	return v.Targets
+}
 
 // GetRelationshipType returns __createAreaGroupRelationshipInput.RelationshipType, and is useful for accessing the field via an interface.
 func (v *__createAreaGroupRelationshipInput) GetRelationshipType() string { return v.RelationshipType }
@@ -1899,10 +2820,10 @@ func (v *__createAreaInput) GetMetadata() string { return v.Metadata }
 
 // __createAreaRelationshipInput is used internally by genqlient
 type __createAreaRelationshipInput struct {
-	Token            string `json:"token"`
-	SourceArea       string `json:"sourceArea"`
-	TargetArea       string `json:"targetArea"`
-	RelationshipType string `json:"relationshipType"`
+	Token            string                                 `json:"token"`
+	SourceArea       string                                 `json:"sourceArea"`
+	Targets          EntityRelationshipTargetsCreateRequest `json:"targets"`
+	RelationshipType string                                 `json:"relationshipType"`
 }
 
 // GetToken returns __createAreaRelationshipInput.Token, and is useful for accessing the field via an interface.
@@ -1911,8 +2832,10 @@ func (v *__createAreaRelationshipInput) GetToken() string { return v.Token }
 // GetSourceArea returns __createAreaRelationshipInput.SourceArea, and is useful for accessing the field via an interface.
 func (v *__createAreaRelationshipInput) GetSourceArea() string { return v.SourceArea }
 
-// GetTargetArea returns __createAreaRelationshipInput.TargetArea, and is useful for accessing the field via an interface.
-func (v *__createAreaRelationshipInput) GetTargetArea() string { return v.TargetArea }
+// GetTargets returns __createAreaRelationshipInput.Targets, and is useful for accessing the field via an interface.
+func (v *__createAreaRelationshipInput) GetTargets() EntityRelationshipTargetsCreateRequest {
+	return v.Targets
+}
 
 // GetRelationshipType returns __createAreaRelationshipInput.RelationshipType, and is useful for accessing the field via an interface.
 func (v *__createAreaRelationshipInput) GetRelationshipType() string { return v.RelationshipType }
@@ -2019,10 +2942,10 @@ func (v *__createAssetGroupInput) GetMetadata() string { return v.Metadata }
 
 // __createAssetGroupRelationshipInput is used internally by genqlient
 type __createAssetGroupRelationshipInput struct {
-	Token            string `json:"token"`
-	AssetGroup       string `json:"assetGroup"`
-	Asset            string `json:"asset"`
-	RelationshipType string `json:"relationshipType"`
+	Token            string                                 `json:"token"`
+	AssetGroup       string                                 `json:"assetGroup"`
+	Targets          EntityRelationshipTargetsCreateRequest `json:"targets"`
+	RelationshipType string                                 `json:"relationshipType"`
 }
 
 // GetToken returns __createAssetGroupRelationshipInput.Token, and is useful for accessing the field via an interface.
@@ -2031,8 +2954,10 @@ func (v *__createAssetGroupRelationshipInput) GetToken() string { return v.Token
 // GetAssetGroup returns __createAssetGroupRelationshipInput.AssetGroup, and is useful for accessing the field via an interface.
 func (v *__createAssetGroupRelationshipInput) GetAssetGroup() string { return v.AssetGroup }
 
-// GetAsset returns __createAssetGroupRelationshipInput.Asset, and is useful for accessing the field via an interface.
-func (v *__createAssetGroupRelationshipInput) GetAsset() string { return v.Asset }
+// GetTargets returns __createAssetGroupRelationshipInput.Targets, and is useful for accessing the field via an interface.
+func (v *__createAssetGroupRelationshipInput) GetTargets() EntityRelationshipTargetsCreateRequest {
+	return v.Targets
+}
 
 // GetRelationshipType returns __createAssetGroupRelationshipInput.RelationshipType, and is useful for accessing the field via an interface.
 func (v *__createAssetGroupRelationshipInput) GetRelationshipType() string { return v.RelationshipType }
@@ -2083,10 +3008,10 @@ func (v *__createAssetInput) GetMetadata() string { return v.Metadata }
 
 // __createAssetRelationshipInput is used internally by genqlient
 type __createAssetRelationshipInput struct {
-	Token            string `json:"token"`
-	SourceAsset      string `json:"sourceAsset"`
-	TargetAsset      string `json:"targetAsset"`
-	RelationshipType string `json:"relationshipType"`
+	Token            string                                 `json:"token"`
+	SourceAsset      string                                 `json:"sourceAsset"`
+	Targets          EntityRelationshipTargetsCreateRequest `json:"targets"`
+	RelationshipType string                                 `json:"relationshipType"`
 }
 
 // GetToken returns __createAssetRelationshipInput.Token, and is useful for accessing the field via an interface.
@@ -2095,8 +3020,10 @@ func (v *__createAssetRelationshipInput) GetToken() string { return v.Token }
 // GetSourceAsset returns __createAssetRelationshipInput.SourceAsset, and is useful for accessing the field via an interface.
 func (v *__createAssetRelationshipInput) GetSourceAsset() string { return v.SourceAsset }
 
-// GetTargetAsset returns __createAssetRelationshipInput.TargetAsset, and is useful for accessing the field via an interface.
-func (v *__createAssetRelationshipInput) GetTargetAsset() string { return v.TargetAsset }
+// GetTargets returns __createAssetRelationshipInput.Targets, and is useful for accessing the field via an interface.
+func (v *__createAssetRelationshipInput) GetTargets() EntityRelationshipTargetsCreateRequest {
+	return v.Targets
+}
 
 // GetRelationshipType returns __createAssetRelationshipInput.RelationshipType, and is useful for accessing the field via an interface.
 func (v *__createAssetRelationshipInput) GetRelationshipType() string { return v.RelationshipType }
@@ -2203,10 +3130,10 @@ func (v *__createCustomerGroupInput) GetMetadata() string { return v.Metadata }
 
 // __createCustomerGroupRelationshipInput is used internally by genqlient
 type __createCustomerGroupRelationshipInput struct {
-	Token            string `json:"token"`
-	CustomerGroup    string `json:"customerGroup"`
-	Customer         string `json:"customer"`
-	RelationshipType string `json:"relationshipType"`
+	Token            string                                 `json:"token"`
+	CustomerGroup    string                                 `json:"customerGroup"`
+	Targets          EntityRelationshipTargetsCreateRequest `json:"targets"`
+	RelationshipType string                                 `json:"relationshipType"`
 }
 
 // GetToken returns __createCustomerGroupRelationshipInput.Token, and is useful for accessing the field via an interface.
@@ -2215,8 +3142,10 @@ func (v *__createCustomerGroupRelationshipInput) GetToken() string { return v.To
 // GetCustomerGroup returns __createCustomerGroupRelationshipInput.CustomerGroup, and is useful for accessing the field via an interface.
 func (v *__createCustomerGroupRelationshipInput) GetCustomerGroup() string { return v.CustomerGroup }
 
-// GetCustomer returns __createCustomerGroupRelationshipInput.Customer, and is useful for accessing the field via an interface.
-func (v *__createCustomerGroupRelationshipInput) GetCustomer() string { return v.Customer }
+// GetTargets returns __createCustomerGroupRelationshipInput.Targets, and is useful for accessing the field via an interface.
+func (v *__createCustomerGroupRelationshipInput) GetTargets() EntityRelationshipTargetsCreateRequest {
+	return v.Targets
+}
 
 // GetRelationshipType returns __createCustomerGroupRelationshipInput.RelationshipType, and is useful for accessing the field via an interface.
 func (v *__createCustomerGroupRelationshipInput) GetRelationshipType() string {
@@ -2269,10 +3198,10 @@ func (v *__createCustomerInput) GetMetadata() string { return v.Metadata }
 
 // __createCustomerRelationshipInput is used internally by genqlient
 type __createCustomerRelationshipInput struct {
-	Token            string `json:"token"`
-	SourceCustomer   string `json:"sourceCustomer"`
-	TargetCustomer   string `json:"targetCustomer"`
-	RelationshipType string `json:"relationshipType"`
+	Token            string                                 `json:"token"`
+	SourceCustomer   string                                 `json:"sourceCustomer"`
+	Targets          EntityRelationshipTargetsCreateRequest `json:"targets"`
+	RelationshipType string                                 `json:"relationshipType"`
 }
 
 // GetToken returns __createCustomerRelationshipInput.Token, and is useful for accessing the field via an interface.
@@ -2281,8 +3210,10 @@ func (v *__createCustomerRelationshipInput) GetToken() string { return v.Token }
 // GetSourceCustomer returns __createCustomerRelationshipInput.SourceCustomer, and is useful for accessing the field via an interface.
 func (v *__createCustomerRelationshipInput) GetSourceCustomer() string { return v.SourceCustomer }
 
-// GetTargetCustomer returns __createCustomerRelationshipInput.TargetCustomer, and is useful for accessing the field via an interface.
-func (v *__createCustomerRelationshipInput) GetTargetCustomer() string { return v.TargetCustomer }
+// GetTargets returns __createCustomerRelationshipInput.Targets, and is useful for accessing the field via an interface.
+func (v *__createCustomerRelationshipInput) GetTargets() EntityRelationshipTargetsCreateRequest {
+	return v.Targets
+}
 
 // GetRelationshipType returns __createCustomerRelationshipInput.RelationshipType, and is useful for accessing the field via an interface.
 func (v *__createCustomerRelationshipInput) GetRelationshipType() string { return v.RelationshipType }
@@ -2389,20 +3320,24 @@ func (v *__createDeviceGroupInput) GetMetadata() string { return v.Metadata }
 
 // __createDeviceGroupRelationshipInput is used internally by genqlient
 type __createDeviceGroupRelationshipInput struct {
-	Token            string `json:"token"`
-	DeviceGroup      string `json:"deviceGroup"`
-	Device           string `json:"device"`
-	RelationshipType string `json:"relationshipType"`
+	Token             string                                 `json:"token"`
+	SourceDeviceGroup string                                 `json:"sourceDeviceGroup"`
+	Targets           EntityRelationshipTargetsCreateRequest `json:"targets"`
+	RelationshipType  string                                 `json:"relationshipType"`
 }
 
 // GetToken returns __createDeviceGroupRelationshipInput.Token, and is useful for accessing the field via an interface.
 func (v *__createDeviceGroupRelationshipInput) GetToken() string { return v.Token }
 
-// GetDeviceGroup returns __createDeviceGroupRelationshipInput.DeviceGroup, and is useful for accessing the field via an interface.
-func (v *__createDeviceGroupRelationshipInput) GetDeviceGroup() string { return v.DeviceGroup }
+// GetSourceDeviceGroup returns __createDeviceGroupRelationshipInput.SourceDeviceGroup, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupRelationshipInput) GetSourceDeviceGroup() string {
+	return v.SourceDeviceGroup
+}
 
-// GetDevice returns __createDeviceGroupRelationshipInput.Device, and is useful for accessing the field via an interface.
-func (v *__createDeviceGroupRelationshipInput) GetDevice() string { return v.Device }
+// GetTargets returns __createDeviceGroupRelationshipInput.Targets, and is useful for accessing the field via an interface.
+func (v *__createDeviceGroupRelationshipInput) GetTargets() EntityRelationshipTargetsCreateRequest {
+	return v.Targets
+}
 
 // GetRelationshipType returns __createDeviceGroupRelationshipInput.RelationshipType, and is useful for accessing the field via an interface.
 func (v *__createDeviceGroupRelationshipInput) GetRelationshipType() string {
@@ -2455,10 +3390,10 @@ func (v *__createDeviceInput) GetMetadata() string { return v.Metadata }
 
 // __createDeviceRelationshipInput is used internally by genqlient
 type __createDeviceRelationshipInput struct {
-	Token            string `json:"token"`
-	SourceDevice     string `json:"sourceDevice"`
-	TargetDevice     string `json:"targetDevice"`
-	RelationshipType string `json:"relationshipType"`
+	Token            string                                 `json:"token"`
+	SourceDevice     string                                 `json:"sourceDevice"`
+	Targets          EntityRelationshipTargetsCreateRequest `json:"targets"`
+	RelationshipType string                                 `json:"relationshipType"`
 }
 
 // GetToken returns __createDeviceRelationshipInput.Token, and is useful for accessing the field via an interface.
@@ -2467,8 +3402,10 @@ func (v *__createDeviceRelationshipInput) GetToken() string { return v.Token }
 // GetSourceDevice returns __createDeviceRelationshipInput.SourceDevice, and is useful for accessing the field via an interface.
 func (v *__createDeviceRelationshipInput) GetSourceDevice() string { return v.SourceDevice }
 
-// GetTargetDevice returns __createDeviceRelationshipInput.TargetDevice, and is useful for accessing the field via an interface.
-func (v *__createDeviceRelationshipInput) GetTargetDevice() string { return v.TargetDevice }
+// GetTargets returns __createDeviceRelationshipInput.Targets, and is useful for accessing the field via an interface.
+func (v *__createDeviceRelationshipInput) GetTargets() EntityRelationshipTargetsCreateRequest {
+	return v.Targets
+}
 
 // GetRelationshipType returns __createDeviceRelationshipInput.RelationshipType, and is useful for accessing the field via an interface.
 func (v *__createDeviceRelationshipInput) GetRelationshipType() string { return v.RelationshipType }
@@ -3355,14 +4292,14 @@ func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetToken() stri
 	return v.DefaultAreaGroupRelationship.Token
 }
 
-// GetAreaGroup returns createAreaGroupRelationshipCreateAreaGroupRelationship.AreaGroup, and is useful for accessing the field via an interface.
-func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetAreaGroup() DefaultAreaGroupRelationshipAreaGroup {
-	return v.DefaultAreaGroupRelationship.AreaGroup
+// GetSourceAreaGroup returns createAreaGroupRelationshipCreateAreaGroupRelationship.SourceAreaGroup, and is useful for accessing the field via an interface.
+func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetSourceAreaGroup() DefaultAreaGroupRelationshipSourceAreaGroup {
+	return v.DefaultAreaGroupRelationship.SourceAreaGroup
 }
 
-// GetArea returns createAreaGroupRelationshipCreateAreaGroupRelationship.Area, and is useful for accessing the field via an interface.
-func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetArea() DefaultAreaGroupRelationshipArea {
-	return v.DefaultAreaGroupRelationship.Area
+// GetTargets returns createAreaGroupRelationshipCreateAreaGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) GetTargets() DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultAreaGroupRelationship.Targets
 }
 
 // GetRelationshipType returns createAreaGroupRelationshipCreateAreaGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -3411,9 +4348,9 @@ type __premarshalcreateAreaGroupRelationshipCreateAreaGroupRelationship struct {
 
 	Token string `json:"token"`
 
-	AreaGroup DefaultAreaGroupRelationshipAreaGroup `json:"areaGroup"`
+	SourceAreaGroup DefaultAreaGroupRelationshipSourceAreaGroup `json:"sourceAreaGroup"`
 
-	Area DefaultAreaGroupRelationshipArea `json:"area"`
+	Targets DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType `json:"relationshipType"`
 
@@ -3436,8 +4373,8 @@ func (v *createAreaGroupRelationshipCreateAreaGroupRelationship) __premarshalJSO
 	retval.UpdatedAt = v.DefaultAreaGroupRelationship.UpdatedAt
 	retval.DeletedAt = v.DefaultAreaGroupRelationship.DeletedAt
 	retval.Token = v.DefaultAreaGroupRelationship.Token
-	retval.AreaGroup = v.DefaultAreaGroupRelationship.AreaGroup
-	retval.Area = v.DefaultAreaGroupRelationship.Area
+	retval.SourceAreaGroup = v.DefaultAreaGroupRelationship.SourceAreaGroup
+	retval.Targets = v.DefaultAreaGroupRelationship.Targets
 	retval.RelationshipType = v.DefaultAreaGroupRelationship.RelationshipType
 	retval.Metadata = v.DefaultAreaGroupRelationship.Metadata
 	return &retval, nil
@@ -3618,9 +4555,9 @@ func (v *createAreaRelationshipCreateAreaRelationship) GetSourceArea() DefaultAr
 	return v.DefaultAreaRelationship.SourceArea
 }
 
-// GetTargetArea returns createAreaRelationshipCreateAreaRelationship.TargetArea, and is useful for accessing the field via an interface.
-func (v *createAreaRelationshipCreateAreaRelationship) GetTargetArea() DefaultAreaRelationshipTargetArea {
-	return v.DefaultAreaRelationship.TargetArea
+// GetTargets returns createAreaRelationshipCreateAreaRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *createAreaRelationshipCreateAreaRelationship) GetTargets() DefaultAreaRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultAreaRelationship.Targets
 }
 
 // GetRelationshipType returns createAreaRelationshipCreateAreaRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -3671,7 +4608,7 @@ type __premarshalcreateAreaRelationshipCreateAreaRelationship struct {
 
 	SourceArea DefaultAreaRelationshipSourceArea `json:"sourceArea"`
 
-	TargetArea DefaultAreaRelationshipTargetArea `json:"targetArea"`
+	Targets DefaultAreaRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultAreaRelationshipRelationshipTypeAreaRelationshipType `json:"relationshipType"`
 
@@ -3695,7 +4632,7 @@ func (v *createAreaRelationshipCreateAreaRelationship) __premarshalJSON() (*__pr
 	retval.DeletedAt = v.DefaultAreaRelationship.DeletedAt
 	retval.Token = v.DefaultAreaRelationship.Token
 	retval.SourceArea = v.DefaultAreaRelationship.SourceArea
-	retval.TargetArea = v.DefaultAreaRelationship.TargetArea
+	retval.Targets = v.DefaultAreaRelationship.Targets
 	retval.RelationshipType = v.DefaultAreaRelationship.RelationshipType
 	retval.Metadata = v.DefaultAreaRelationship.Metadata
 	return &retval, nil
@@ -4247,14 +5184,14 @@ func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetToken() st
 	return v.DefaultAssetGroupRelationship.Token
 }
 
-// GetAssetGroup returns createAssetGroupRelationshipCreateAssetGroupRelationship.AssetGroup, and is useful for accessing the field via an interface.
-func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetAssetGroup() DefaultAssetGroupRelationshipAssetGroup {
-	return v.DefaultAssetGroupRelationship.AssetGroup
+// GetSourceAssetGroup returns createAssetGroupRelationshipCreateAssetGroupRelationship.SourceAssetGroup, and is useful for accessing the field via an interface.
+func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetSourceAssetGroup() DefaultAssetGroupRelationshipSourceAssetGroup {
+	return v.DefaultAssetGroupRelationship.SourceAssetGroup
 }
 
-// GetAsset returns createAssetGroupRelationshipCreateAssetGroupRelationship.Asset, and is useful for accessing the field via an interface.
-func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetAsset() DefaultAssetGroupRelationshipAsset {
-	return v.DefaultAssetGroupRelationship.Asset
+// GetTargets returns createAssetGroupRelationshipCreateAssetGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) GetTargets() DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultAssetGroupRelationship.Targets
 }
 
 // GetRelationshipType returns createAssetGroupRelationshipCreateAssetGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -4303,9 +5240,9 @@ type __premarshalcreateAssetGroupRelationshipCreateAssetGroupRelationship struct
 
 	Token string `json:"token"`
 
-	AssetGroup DefaultAssetGroupRelationshipAssetGroup `json:"assetGroup"`
+	SourceAssetGroup DefaultAssetGroupRelationshipSourceAssetGroup `json:"sourceAssetGroup"`
 
-	Asset DefaultAssetGroupRelationshipAsset `json:"asset"`
+	Targets DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType `json:"relationshipType"`
 
@@ -4328,8 +5265,8 @@ func (v *createAssetGroupRelationshipCreateAssetGroupRelationship) __premarshalJ
 	retval.UpdatedAt = v.DefaultAssetGroupRelationship.UpdatedAt
 	retval.DeletedAt = v.DefaultAssetGroupRelationship.DeletedAt
 	retval.Token = v.DefaultAssetGroupRelationship.Token
-	retval.AssetGroup = v.DefaultAssetGroupRelationship.AssetGroup
-	retval.Asset = v.DefaultAssetGroupRelationship.Asset
+	retval.SourceAssetGroup = v.DefaultAssetGroupRelationship.SourceAssetGroup
+	retval.Targets = v.DefaultAssetGroupRelationship.Targets
 	retval.RelationshipType = v.DefaultAssetGroupRelationship.RelationshipType
 	retval.Metadata = v.DefaultAssetGroupRelationship.Metadata
 	return &retval, nil
@@ -4510,9 +5447,9 @@ func (v *createAssetRelationshipCreateAssetRelationship) GetSourceAsset() Defaul
 	return v.DefaultAssetRelationship.SourceAsset
 }
 
-// GetTargetAsset returns createAssetRelationshipCreateAssetRelationship.TargetAsset, and is useful for accessing the field via an interface.
-func (v *createAssetRelationshipCreateAssetRelationship) GetTargetAsset() DefaultAssetRelationshipTargetAsset {
-	return v.DefaultAssetRelationship.TargetAsset
+// GetTargets returns createAssetRelationshipCreateAssetRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *createAssetRelationshipCreateAssetRelationship) GetTargets() DefaultAssetRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultAssetRelationship.Targets
 }
 
 // GetRelationshipType returns createAssetRelationshipCreateAssetRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -4563,7 +5500,7 @@ type __premarshalcreateAssetRelationshipCreateAssetRelationship struct {
 
 	SourceAsset DefaultAssetRelationshipSourceAsset `json:"sourceAsset"`
 
-	TargetAsset DefaultAssetRelationshipTargetAsset `json:"targetAsset"`
+	Targets DefaultAssetRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultAssetRelationshipRelationshipTypeAssetRelationshipType `json:"relationshipType"`
 
@@ -4587,7 +5524,7 @@ func (v *createAssetRelationshipCreateAssetRelationship) __premarshalJSON() (*__
 	retval.DeletedAt = v.DefaultAssetRelationship.DeletedAt
 	retval.Token = v.DefaultAssetRelationship.Token
 	retval.SourceAsset = v.DefaultAssetRelationship.SourceAsset
-	retval.TargetAsset = v.DefaultAssetRelationship.TargetAsset
+	retval.Targets = v.DefaultAssetRelationship.Targets
 	retval.RelationshipType = v.DefaultAssetRelationship.RelationshipType
 	retval.Metadata = v.DefaultAssetRelationship.Metadata
 	return &retval, nil
@@ -5149,14 +6086,14 @@ func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) GetToke
 	return v.DefaultCustomerGroupRelationship.Token
 }
 
-// GetCustomerGroup returns createCustomerGroupRelationshipCreateCustomerGroupRelationship.CustomerGroup, and is useful for accessing the field via an interface.
-func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) GetCustomerGroup() DefaultCustomerGroupRelationshipCustomerGroup {
-	return v.DefaultCustomerGroupRelationship.CustomerGroup
+// GetSourceCustomerGroup returns createCustomerGroupRelationshipCreateCustomerGroupRelationship.SourceCustomerGroup, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) GetSourceCustomerGroup() DefaultCustomerGroupRelationshipSourceCustomerGroup {
+	return v.DefaultCustomerGroupRelationship.SourceCustomerGroup
 }
 
-// GetCustomer returns createCustomerGroupRelationshipCreateCustomerGroupRelationship.Customer, and is useful for accessing the field via an interface.
-func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) GetCustomer() DefaultCustomerGroupRelationshipCustomer {
-	return v.DefaultCustomerGroupRelationship.Customer
+// GetTargets returns createCustomerGroupRelationshipCreateCustomerGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) GetTargets() DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultCustomerGroupRelationship.Targets
 }
 
 // GetRelationshipType returns createCustomerGroupRelationshipCreateCustomerGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -5205,9 +6142,9 @@ type __premarshalcreateCustomerGroupRelationshipCreateCustomerGroupRelationship 
 
 	Token string `json:"token"`
 
-	CustomerGroup DefaultCustomerGroupRelationshipCustomerGroup `json:"customerGroup"`
+	SourceCustomerGroup DefaultCustomerGroupRelationshipSourceCustomerGroup `json:"sourceCustomerGroup"`
 
-	Customer DefaultCustomerGroupRelationshipCustomer `json:"customer"`
+	Targets DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType `json:"relationshipType"`
 
@@ -5230,8 +6167,8 @@ func (v *createCustomerGroupRelationshipCreateCustomerGroupRelationship) __prema
 	retval.UpdatedAt = v.DefaultCustomerGroupRelationship.UpdatedAt
 	retval.DeletedAt = v.DefaultCustomerGroupRelationship.DeletedAt
 	retval.Token = v.DefaultCustomerGroupRelationship.Token
-	retval.CustomerGroup = v.DefaultCustomerGroupRelationship.CustomerGroup
-	retval.Customer = v.DefaultCustomerGroupRelationship.Customer
+	retval.SourceCustomerGroup = v.DefaultCustomerGroupRelationship.SourceCustomerGroup
+	retval.Targets = v.DefaultCustomerGroupRelationship.Targets
 	retval.RelationshipType = v.DefaultCustomerGroupRelationship.RelationshipType
 	retval.Metadata = v.DefaultCustomerGroupRelationship.Metadata
 	return &retval, nil
@@ -5412,9 +6349,9 @@ func (v *createCustomerRelationshipCreateCustomerRelationship) GetSourceCustomer
 	return v.DefaultCustomerRelationship.SourceCustomer
 }
 
-// GetTargetCustomer returns createCustomerRelationshipCreateCustomerRelationship.TargetCustomer, and is useful for accessing the field via an interface.
-func (v *createCustomerRelationshipCreateCustomerRelationship) GetTargetCustomer() DefaultCustomerRelationshipTargetCustomer {
-	return v.DefaultCustomerRelationship.TargetCustomer
+// GetTargets returns createCustomerRelationshipCreateCustomerRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *createCustomerRelationshipCreateCustomerRelationship) GetTargets() DefaultCustomerRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultCustomerRelationship.Targets
 }
 
 // GetRelationshipType returns createCustomerRelationshipCreateCustomerRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -5465,7 +6402,7 @@ type __premarshalcreateCustomerRelationshipCreateCustomerRelationship struct {
 
 	SourceCustomer DefaultCustomerRelationshipSourceCustomer `json:"sourceCustomer"`
 
-	TargetCustomer DefaultCustomerRelationshipTargetCustomer `json:"targetCustomer"`
+	Targets DefaultCustomerRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType `json:"relationshipType"`
 
@@ -5489,7 +6426,7 @@ func (v *createCustomerRelationshipCreateCustomerRelationship) __premarshalJSON(
 	retval.DeletedAt = v.DefaultCustomerRelationship.DeletedAt
 	retval.Token = v.DefaultCustomerRelationship.Token
 	retval.SourceCustomer = v.DefaultCustomerRelationship.SourceCustomer
-	retval.TargetCustomer = v.DefaultCustomerRelationship.TargetCustomer
+	retval.Targets = v.DefaultCustomerRelationship.Targets
 	retval.RelationshipType = v.DefaultCustomerRelationship.RelationshipType
 	retval.Metadata = v.DefaultCustomerRelationship.Metadata
 	return &retval, nil
@@ -6069,14 +7006,14 @@ func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetToken() 
 	return v.DefaultDeviceGroupRelationship.Token
 }
 
-// GetDeviceGroup returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.DeviceGroup, and is useful for accessing the field via an interface.
-func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetDeviceGroup() DefaultDeviceGroupRelationshipDeviceGroup {
-	return v.DefaultDeviceGroupRelationship.DeviceGroup
+// GetSourceDeviceGroup returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.SourceDeviceGroup, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetSourceDeviceGroup() DefaultDeviceGroupRelationshipSourceDeviceGroup {
+	return v.DefaultDeviceGroupRelationship.SourceDeviceGroup
 }
 
-// GetDevice returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.Device, and is useful for accessing the field via an interface.
-func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetDevice() DefaultDeviceGroupRelationshipDevice {
-	return v.DefaultDeviceGroupRelationship.Device
+// GetTargets returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) GetTargets() DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultDeviceGroupRelationship.Targets
 }
 
 // GetRelationshipType returns createDeviceGroupRelationshipCreateDeviceGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -6125,9 +7062,9 @@ type __premarshalcreateDeviceGroupRelationshipCreateDeviceGroupRelationship stru
 
 	Token string `json:"token"`
 
-	DeviceGroup DefaultDeviceGroupRelationshipDeviceGroup `json:"deviceGroup"`
+	SourceDeviceGroup DefaultDeviceGroupRelationshipSourceDeviceGroup `json:"sourceDeviceGroup"`
 
-	Device DefaultDeviceGroupRelationshipDevice `json:"device"`
+	Targets DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType `json:"relationshipType"`
 
@@ -6150,8 +7087,8 @@ func (v *createDeviceGroupRelationshipCreateDeviceGroupRelationship) __premarsha
 	retval.UpdatedAt = v.DefaultDeviceGroupRelationship.UpdatedAt
 	retval.DeletedAt = v.DefaultDeviceGroupRelationship.DeletedAt
 	retval.Token = v.DefaultDeviceGroupRelationship.Token
-	retval.DeviceGroup = v.DefaultDeviceGroupRelationship.DeviceGroup
-	retval.Device = v.DefaultDeviceGroupRelationship.Device
+	retval.SourceDeviceGroup = v.DefaultDeviceGroupRelationship.SourceDeviceGroup
+	retval.Targets = v.DefaultDeviceGroupRelationship.Targets
 	retval.RelationshipType = v.DefaultDeviceGroupRelationship.RelationshipType
 	retval.Metadata = v.DefaultDeviceGroupRelationship.Metadata
 	return &retval, nil
@@ -6332,9 +7269,9 @@ func (v *createDeviceRelationshipCreateDeviceRelationship) GetSourceDevice() Def
 	return v.DefaultDeviceRelationship.SourceDevice
 }
 
-// GetTargetDevice returns createDeviceRelationshipCreateDeviceRelationship.TargetDevice, and is useful for accessing the field via an interface.
-func (v *createDeviceRelationshipCreateDeviceRelationship) GetTargetDevice() DefaultDeviceRelationshipTargetDevice {
-	return v.DefaultDeviceRelationship.TargetDevice
+// GetTargets returns createDeviceRelationshipCreateDeviceRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *createDeviceRelationshipCreateDeviceRelationship) GetTargets() DefaultDeviceRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultDeviceRelationship.Targets
 }
 
 // GetRelationshipType returns createDeviceRelationshipCreateDeviceRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -6385,7 +7322,7 @@ type __premarshalcreateDeviceRelationshipCreateDeviceRelationship struct {
 
 	SourceDevice DefaultDeviceRelationshipSourceDevice `json:"sourceDevice"`
 
-	TargetDevice DefaultDeviceRelationshipTargetDevice `json:"targetDevice"`
+	Targets DefaultDeviceRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType `json:"relationshipType"`
 
@@ -6409,7 +7346,7 @@ func (v *createDeviceRelationshipCreateDeviceRelationship) __premarshalJSON() (*
 	retval.DeletedAt = v.DefaultDeviceRelationship.DeletedAt
 	retval.Token = v.DefaultDeviceRelationship.Token
 	retval.SourceDevice = v.DefaultDeviceRelationship.SourceDevice
-	retval.TargetDevice = v.DefaultDeviceRelationship.TargetDevice
+	retval.Targets = v.DefaultDeviceRelationship.Targets
 	retval.RelationshipType = v.DefaultDeviceRelationship.RelationshipType
 	retval.Metadata = v.DefaultDeviceRelationship.Metadata
 	return &retval, nil
@@ -6851,14 +7788,14 @@ func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupR
 	return v.DefaultAreaGroupRelationship.Token
 }
 
-// GetAreaGroup returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship.AreaGroup, and is useful for accessing the field via an interface.
-func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetAreaGroup() DefaultAreaGroupRelationshipAreaGroup {
-	return v.DefaultAreaGroupRelationship.AreaGroup
+// GetSourceAreaGroup returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship.SourceAreaGroup, and is useful for accessing the field via an interface.
+func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetSourceAreaGroup() DefaultAreaGroupRelationshipSourceAreaGroup {
+	return v.DefaultAreaGroupRelationship.SourceAreaGroup
 }
 
-// GetArea returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship.Area, and is useful for accessing the field via an interface.
-func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetArea() DefaultAreaGroupRelationshipArea {
-	return v.DefaultAreaGroupRelationship.Area
+// GetTargets returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship) GetTargets() DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultAreaGroupRelationship.Targets
 }
 
 // GetRelationshipType returns getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -6907,9 +7844,9 @@ type __premarshalgetAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAr
 
 	Token string `json:"token"`
 
-	AreaGroup DefaultAreaGroupRelationshipAreaGroup `json:"areaGroup"`
+	SourceAreaGroup DefaultAreaGroupRelationshipSourceAreaGroup `json:"sourceAreaGroup"`
 
-	Area DefaultAreaGroupRelationshipArea `json:"area"`
+	Targets DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType `json:"relationshipType"`
 
@@ -6932,8 +7869,8 @@ func (v *getAreaGroupRelationshipsByTokenAreaGroupRelationshipsByTokenAreaGroupR
 	retval.UpdatedAt = v.DefaultAreaGroupRelationship.UpdatedAt
 	retval.DeletedAt = v.DefaultAreaGroupRelationship.DeletedAt
 	retval.Token = v.DefaultAreaGroupRelationship.Token
-	retval.AreaGroup = v.DefaultAreaGroupRelationship.AreaGroup
-	retval.Area = v.DefaultAreaGroupRelationship.Area
+	retval.SourceAreaGroup = v.DefaultAreaGroupRelationship.SourceAreaGroup
+	retval.Targets = v.DefaultAreaGroupRelationship.Targets
 	retval.RelationshipType = v.DefaultAreaGroupRelationship.RelationshipType
 	retval.Metadata = v.DefaultAreaGroupRelationship.Metadata
 	return &retval, nil
@@ -7262,9 +8199,9 @@ func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) Ge
 	return v.DefaultAreaRelationship.SourceArea
 }
 
-// GetTargetArea returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship.TargetArea, and is useful for accessing the field via an interface.
-func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) GetTargetArea() DefaultAreaRelationshipTargetArea {
-	return v.DefaultAreaRelationship.TargetArea
+// GetTargets returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) GetTargets() DefaultAreaRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultAreaRelationship.Targets
 }
 
 // GetRelationshipType returns getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -7315,7 +8252,7 @@ type __premarshalgetAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelation
 
 	SourceArea DefaultAreaRelationshipSourceArea `json:"sourceArea"`
 
-	TargetArea DefaultAreaRelationshipTargetArea `json:"targetArea"`
+	Targets DefaultAreaRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultAreaRelationshipRelationshipTypeAreaRelationshipType `json:"relationshipType"`
 
@@ -7339,7 +8276,7 @@ func (v *getAreaRelationshipsByTokenAreaRelationshipsByTokenAreaRelationship) __
 	retval.DeletedAt = v.DefaultAreaRelationship.DeletedAt
 	retval.Token = v.DefaultAreaRelationship.Token
 	retval.SourceArea = v.DefaultAreaRelationship.SourceArea
-	retval.TargetArea = v.DefaultAreaRelationship.TargetArea
+	retval.Targets = v.DefaultAreaRelationship.Targets
 	retval.RelationshipType = v.DefaultAreaRelationship.RelationshipType
 	retval.Metadata = v.DefaultAreaRelationship.Metadata
 	return &retval, nil
@@ -7771,14 +8708,14 @@ func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGro
 	return v.DefaultAssetGroupRelationship.Token
 }
 
-// GetAssetGroup returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship.AssetGroup, and is useful for accessing the field via an interface.
-func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetAssetGroup() DefaultAssetGroupRelationshipAssetGroup {
-	return v.DefaultAssetGroupRelationship.AssetGroup
+// GetSourceAssetGroup returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship.SourceAssetGroup, and is useful for accessing the field via an interface.
+func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetSourceAssetGroup() DefaultAssetGroupRelationshipSourceAssetGroup {
+	return v.DefaultAssetGroupRelationship.SourceAssetGroup
 }
 
-// GetAsset returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship.Asset, and is useful for accessing the field via an interface.
-func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetAsset() DefaultAssetGroupRelationshipAsset {
-	return v.DefaultAssetGroupRelationship.Asset
+// GetTargets returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship) GetTargets() DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultAssetGroupRelationship.Targets
 }
 
 // GetRelationshipType returns getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -7827,9 +8764,9 @@ type __premarshalgetAssetGroupRelationshipsByTokenAssetGroupRelationshipsByToken
 
 	Token string `json:"token"`
 
-	AssetGroup DefaultAssetGroupRelationshipAssetGroup `json:"assetGroup"`
+	SourceAssetGroup DefaultAssetGroupRelationshipSourceAssetGroup `json:"sourceAssetGroup"`
 
-	Asset DefaultAssetGroupRelationshipAsset `json:"asset"`
+	Targets DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType `json:"relationshipType"`
 
@@ -7852,8 +8789,8 @@ func (v *getAssetGroupRelationshipsByTokenAssetGroupRelationshipsByTokenAssetGro
 	retval.UpdatedAt = v.DefaultAssetGroupRelationship.UpdatedAt
 	retval.DeletedAt = v.DefaultAssetGroupRelationship.DeletedAt
 	retval.Token = v.DefaultAssetGroupRelationship.Token
-	retval.AssetGroup = v.DefaultAssetGroupRelationship.AssetGroup
-	retval.Asset = v.DefaultAssetGroupRelationship.Asset
+	retval.SourceAssetGroup = v.DefaultAssetGroupRelationship.SourceAssetGroup
+	retval.Targets = v.DefaultAssetGroupRelationship.Targets
 	retval.RelationshipType = v.DefaultAssetGroupRelationship.RelationshipType
 	retval.Metadata = v.DefaultAssetGroupRelationship.Metadata
 	return &retval, nil
@@ -8184,9 +9121,9 @@ func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship)
 	return v.DefaultAssetRelationship.SourceAsset
 }
 
-// GetTargetAsset returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship.TargetAsset, and is useful for accessing the field via an interface.
-func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) GetTargetAsset() DefaultAssetRelationshipTargetAsset {
-	return v.DefaultAssetRelationship.TargetAsset
+// GetTargets returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship) GetTargets() DefaultAssetRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultAssetRelationship.Targets
 }
 
 // GetRelationshipType returns getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -8237,7 +9174,7 @@ type __premarshalgetAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelat
 
 	SourceAsset DefaultAssetRelationshipSourceAsset `json:"sourceAsset"`
 
-	TargetAsset DefaultAssetRelationshipTargetAsset `json:"targetAsset"`
+	Targets DefaultAssetRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultAssetRelationshipRelationshipTypeAssetRelationshipType `json:"relationshipType"`
 
@@ -8261,7 +9198,7 @@ func (v *getAssetRelationshipsByTokenAssetRelationshipsByTokenAssetRelationship)
 	retval.DeletedAt = v.DefaultAssetRelationship.DeletedAt
 	retval.Token = v.DefaultAssetRelationship.Token
 	retval.SourceAsset = v.DefaultAssetRelationship.SourceAsset
-	retval.TargetAsset = v.DefaultAssetRelationship.TargetAsset
+	retval.Targets = v.DefaultAssetRelationship.Targets
 	retval.RelationshipType = v.DefaultAssetRelationship.RelationshipType
 	retval.Metadata = v.DefaultAssetRelationship.Metadata
 	return &retval, nil
@@ -8699,14 +9636,14 @@ func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCu
 	return v.DefaultCustomerGroupRelationship.Token
 }
 
-// GetCustomerGroup returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship.CustomerGroup, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetCustomerGroup() DefaultCustomerGroupRelationshipCustomerGroup {
-	return v.DefaultCustomerGroupRelationship.CustomerGroup
+// GetSourceCustomerGroup returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship.SourceCustomerGroup, and is useful for accessing the field via an interface.
+func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetSourceCustomerGroup() DefaultCustomerGroupRelationshipSourceCustomerGroup {
+	return v.DefaultCustomerGroupRelationship.SourceCustomerGroup
 }
 
-// GetCustomer returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship.Customer, and is useful for accessing the field via an interface.
-func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetCustomer() DefaultCustomerGroupRelationshipCustomer {
-	return v.DefaultCustomerGroupRelationship.Customer
+// GetTargets returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship) GetTargets() DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultCustomerGroupRelationship.Targets
 }
 
 // GetRelationshipType returns getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCustomerGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -8755,9 +9692,9 @@ type __premarshalgetCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsB
 
 	Token string `json:"token"`
 
-	CustomerGroup DefaultCustomerGroupRelationshipCustomerGroup `json:"customerGroup"`
+	SourceCustomerGroup DefaultCustomerGroupRelationshipSourceCustomerGroup `json:"sourceCustomerGroup"`
 
-	Customer DefaultCustomerGroupRelationshipCustomer `json:"customer"`
+	Targets DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType `json:"relationshipType"`
 
@@ -8780,8 +9717,8 @@ func (v *getCustomerGroupRelationshipsByTokenCustomerGroupRelationshipsByTokenCu
 	retval.UpdatedAt = v.DefaultCustomerGroupRelationship.UpdatedAt
 	retval.DeletedAt = v.DefaultCustomerGroupRelationship.DeletedAt
 	retval.Token = v.DefaultCustomerGroupRelationship.Token
-	retval.CustomerGroup = v.DefaultCustomerGroupRelationship.CustomerGroup
-	retval.Customer = v.DefaultCustomerGroupRelationship.Customer
+	retval.SourceCustomerGroup = v.DefaultCustomerGroupRelationship.SourceCustomerGroup
+	retval.Targets = v.DefaultCustomerGroupRelationship.Targets
 	retval.RelationshipType = v.DefaultCustomerGroupRelationship.RelationshipType
 	retval.Metadata = v.DefaultCustomerGroupRelationship.Metadata
 	return &retval, nil
@@ -9112,9 +10049,9 @@ func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRela
 	return v.DefaultCustomerRelationship.SourceCustomer
 }
 
-// GetTargetCustomer returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship.TargetCustomer, and is useful for accessing the field via an interface.
-func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) GetTargetCustomer() DefaultCustomerRelationshipTargetCustomer {
-	return v.DefaultCustomerRelationship.TargetCustomer
+// GetTargets returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship) GetTargets() DefaultCustomerRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultCustomerRelationship.Targets
 }
 
 // GetRelationshipType returns getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -9165,7 +10102,7 @@ type __premarshalgetCustomerRelationshipsByTokenCustomerRelationshipsByTokenCust
 
 	SourceCustomer DefaultCustomerRelationshipSourceCustomer `json:"sourceCustomer"`
 
-	TargetCustomer DefaultCustomerRelationshipTargetCustomer `json:"targetCustomer"`
+	Targets DefaultCustomerRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType `json:"relationshipType"`
 
@@ -9189,7 +10126,7 @@ func (v *getCustomerRelationshipsByTokenCustomerRelationshipsByTokenCustomerRela
 	retval.DeletedAt = v.DefaultCustomerRelationship.DeletedAt
 	retval.Token = v.DefaultCustomerRelationship.Token
 	retval.SourceCustomer = v.DefaultCustomerRelationship.SourceCustomer
-	retval.TargetCustomer = v.DefaultCustomerRelationship.TargetCustomer
+	retval.Targets = v.DefaultCustomerRelationship.Targets
 	retval.RelationshipType = v.DefaultCustomerRelationship.RelationshipType
 	retval.Metadata = v.DefaultCustomerRelationship.Metadata
 	return &retval, nil
@@ -9639,14 +10576,14 @@ func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDevice
 	return v.DefaultDeviceGroupRelationship.Token
 }
 
-// GetDeviceGroup returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship.DeviceGroup, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetDeviceGroup() DefaultDeviceGroupRelationshipDeviceGroup {
-	return v.DefaultDeviceGroupRelationship.DeviceGroup
+// GetSourceDeviceGroup returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship.SourceDeviceGroup, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetSourceDeviceGroup() DefaultDeviceGroupRelationshipSourceDeviceGroup {
+	return v.DefaultDeviceGroupRelationship.SourceDeviceGroup
 }
 
-// GetDevice returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship.Device, and is useful for accessing the field via an interface.
-func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetDevice() DefaultDeviceGroupRelationshipDevice {
-	return v.DefaultDeviceGroupRelationship.Device
+// GetTargets returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship) GetTargets() DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultDeviceGroupRelationship.Targets
 }
 
 // GetRelationshipType returns getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDeviceGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -9695,9 +10632,9 @@ type __premarshalgetDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTok
 
 	Token string `json:"token"`
 
-	DeviceGroup DefaultDeviceGroupRelationshipDeviceGroup `json:"deviceGroup"`
+	SourceDeviceGroup DefaultDeviceGroupRelationshipSourceDeviceGroup `json:"sourceDeviceGroup"`
 
-	Device DefaultDeviceGroupRelationshipDevice `json:"device"`
+	Targets DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType `json:"relationshipType"`
 
@@ -9720,8 +10657,8 @@ func (v *getDeviceGroupRelationshipsByTokenDeviceGroupRelationshipsByTokenDevice
 	retval.UpdatedAt = v.DefaultDeviceGroupRelationship.UpdatedAt
 	retval.DeletedAt = v.DefaultDeviceGroupRelationship.DeletedAt
 	retval.Token = v.DefaultDeviceGroupRelationship.Token
-	retval.DeviceGroup = v.DefaultDeviceGroupRelationship.DeviceGroup
-	retval.Device = v.DefaultDeviceGroupRelationship.Device
+	retval.SourceDeviceGroup = v.DefaultDeviceGroupRelationship.SourceDeviceGroup
+	retval.Targets = v.DefaultDeviceGroupRelationship.Targets
 	retval.RelationshipType = v.DefaultDeviceGroupRelationship.RelationshipType
 	retval.Metadata = v.DefaultDeviceGroupRelationship.Metadata
 	return &retval, nil
@@ -10052,9 +10989,9 @@ func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationsh
 	return v.DefaultDeviceRelationship.SourceDevice
 }
 
-// GetTargetDevice returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship.TargetDevice, and is useful for accessing the field via an interface.
-func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) GetTargetDevice() DefaultDeviceRelationshipTargetDevice {
-	return v.DefaultDeviceRelationship.TargetDevice
+// GetTargets returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship) GetTargets() DefaultDeviceRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultDeviceRelationship.Targets
 }
 
 // GetRelationshipType returns getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -10105,7 +11042,7 @@ type __premarshalgetDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRe
 
 	SourceDevice DefaultDeviceRelationshipSourceDevice `json:"sourceDevice"`
 
-	TargetDevice DefaultDeviceRelationshipTargetDevice `json:"targetDevice"`
+	Targets DefaultDeviceRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType `json:"relationshipType"`
 
@@ -10129,7 +11066,7 @@ func (v *getDeviceRelationshipsByTokenDeviceRelationshipsByTokenDeviceRelationsh
 	retval.DeletedAt = v.DefaultDeviceRelationship.DeletedAt
 	retval.Token = v.DefaultDeviceRelationship.Token
 	retval.SourceDevice = v.DefaultDeviceRelationship.SourceDevice
-	retval.TargetDevice = v.DefaultDeviceRelationship.TargetDevice
+	retval.Targets = v.DefaultDeviceRelationship.Targets
 	retval.RelationshipType = v.DefaultDeviceRelationship.RelationshipType
 	retval.Metadata = v.DefaultDeviceRelationship.Metadata
 	return &retval, nil
@@ -10755,14 +11692,14 @@ func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSe
 	return v.DefaultAreaGroupRelationship.Token
 }
 
-// GetAreaGroup returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship.AreaGroup, and is useful for accessing the field via an interface.
-func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetAreaGroup() DefaultAreaGroupRelationshipAreaGroup {
-	return v.DefaultAreaGroupRelationship.AreaGroup
+// GetSourceAreaGroup returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship.SourceAreaGroup, and is useful for accessing the field via an interface.
+func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetSourceAreaGroup() DefaultAreaGroupRelationshipSourceAreaGroup {
+	return v.DefaultAreaGroupRelationship.SourceAreaGroup
 }
 
-// GetArea returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship.Area, and is useful for accessing the field via an interface.
-func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetArea() DefaultAreaGroupRelationshipArea {
-	return v.DefaultAreaGroupRelationship.Area
+// GetTargets returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship) GetTargets() DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultAreaGroupRelationship.Targets
 }
 
 // GetRelationshipType returns listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSearchResultsResultsAreaGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -10811,9 +11748,9 @@ type __premarshallistAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelati
 
 	Token string `json:"token"`
 
-	AreaGroup DefaultAreaGroupRelationshipAreaGroup `json:"areaGroup"`
+	SourceAreaGroup DefaultAreaGroupRelationshipSourceAreaGroup `json:"sourceAreaGroup"`
 
-	Area DefaultAreaGroupRelationshipArea `json:"area"`
+	Targets DefaultAreaGroupRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultAreaGroupRelationshipRelationshipTypeAreaGroupRelationshipType `json:"relationshipType"`
 
@@ -10836,8 +11773,8 @@ func (v *listAreaGroupRelationshipsAreaGroupRelationshipsAreaGroupRelationshipSe
 	retval.UpdatedAt = v.DefaultAreaGroupRelationship.UpdatedAt
 	retval.DeletedAt = v.DefaultAreaGroupRelationship.DeletedAt
 	retval.Token = v.DefaultAreaGroupRelationship.Token
-	retval.AreaGroup = v.DefaultAreaGroupRelationship.AreaGroup
-	retval.Area = v.DefaultAreaGroupRelationship.Area
+	retval.SourceAreaGroup = v.DefaultAreaGroupRelationship.SourceAreaGroup
+	retval.Targets = v.DefaultAreaGroupRelationship.Targets
 	retval.RelationshipType = v.DefaultAreaGroupRelationship.RelationshipType
 	retval.Metadata = v.DefaultAreaGroupRelationship.Metadata
 	return &retval, nil
@@ -11426,9 +12363,9 @@ func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResu
 	return v.DefaultAreaRelationship.SourceArea
 }
 
-// GetTargetArea returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship.TargetArea, and is useful for accessing the field via an interface.
-func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) GetTargetArea() DefaultAreaRelationshipTargetArea {
-	return v.DefaultAreaRelationship.TargetArea
+// GetTargets returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship) GetTargets() DefaultAreaRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultAreaRelationship.Targets
 }
 
 // GetRelationshipType returns listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResultsAreaRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -11479,7 +12416,7 @@ type __premarshallistAreaRelationshipsAreaRelationshipsAreaRelationshipSearchRes
 
 	SourceArea DefaultAreaRelationshipSourceArea `json:"sourceArea"`
 
-	TargetArea DefaultAreaRelationshipTargetArea `json:"targetArea"`
+	Targets DefaultAreaRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultAreaRelationshipRelationshipTypeAreaRelationshipType `json:"relationshipType"`
 
@@ -11503,7 +12440,7 @@ func (v *listAreaRelationshipsAreaRelationshipsAreaRelationshipSearchResultsResu
 	retval.DeletedAt = v.DefaultAreaRelationship.DeletedAt
 	retval.Token = v.DefaultAreaRelationship.Token
 	retval.SourceArea = v.DefaultAreaRelationship.SourceArea
-	retval.TargetArea = v.DefaultAreaRelationship.TargetArea
+	retval.Targets = v.DefaultAreaRelationship.Targets
 	retval.RelationshipType = v.DefaultAreaRelationship.RelationshipType
 	retval.Metadata = v.DefaultAreaRelationship.Metadata
 	return &retval, nil
@@ -12293,14 +13230,14 @@ func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshi
 	return v.DefaultAssetGroupRelationship.Token
 }
 
-// GetAssetGroup returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship.AssetGroup, and is useful for accessing the field via an interface.
-func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetAssetGroup() DefaultAssetGroupRelationshipAssetGroup {
-	return v.DefaultAssetGroupRelationship.AssetGroup
+// GetSourceAssetGroup returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship.SourceAssetGroup, and is useful for accessing the field via an interface.
+func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetSourceAssetGroup() DefaultAssetGroupRelationshipSourceAssetGroup {
+	return v.DefaultAssetGroupRelationship.SourceAssetGroup
 }
 
-// GetAsset returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship.Asset, and is useful for accessing the field via an interface.
-func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetAsset() DefaultAssetGroupRelationshipAsset {
-	return v.DefaultAssetGroupRelationship.Asset
+// GetTargets returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship) GetTargets() DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultAssetGroupRelationship.Targets
 }
 
 // GetRelationshipType returns listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshipSearchResultsResultsAssetGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -12349,9 +13286,9 @@ type __premarshallistAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRel
 
 	Token string `json:"token"`
 
-	AssetGroup DefaultAssetGroupRelationshipAssetGroup `json:"assetGroup"`
+	SourceAssetGroup DefaultAssetGroupRelationshipSourceAssetGroup `json:"sourceAssetGroup"`
 
-	Asset DefaultAssetGroupRelationshipAsset `json:"asset"`
+	Targets DefaultAssetGroupRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultAssetGroupRelationshipRelationshipTypeAssetGroupRelationshipType `json:"relationshipType"`
 
@@ -12374,8 +13311,8 @@ func (v *listAssetGroupRelationshipsAssetGroupRelationshipsAssetGroupRelationshi
 	retval.UpdatedAt = v.DefaultAssetGroupRelationship.UpdatedAt
 	retval.DeletedAt = v.DefaultAssetGroupRelationship.DeletedAt
 	retval.Token = v.DefaultAssetGroupRelationship.Token
-	retval.AssetGroup = v.DefaultAssetGroupRelationship.AssetGroup
-	retval.Asset = v.DefaultAssetGroupRelationship.Asset
+	retval.SourceAssetGroup = v.DefaultAssetGroupRelationship.SourceAssetGroup
+	retval.Targets = v.DefaultAssetGroupRelationship.Targets
 	retval.RelationshipType = v.DefaultAssetGroupRelationship.RelationshipType
 	retval.Metadata = v.DefaultAssetGroupRelationship.Metadata
 	return &retval, nil
@@ -12964,9 +13901,9 @@ func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsR
 	return v.DefaultAssetRelationship.SourceAsset
 }
 
-// GetTargetAsset returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship.TargetAsset, and is useful for accessing the field via an interface.
-func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) GetTargetAsset() DefaultAssetRelationshipTargetAsset {
-	return v.DefaultAssetRelationship.TargetAsset
+// GetTargets returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship) GetTargets() DefaultAssetRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultAssetRelationship.Targets
 }
 
 // GetRelationshipType returns listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsResultsAssetRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -13017,7 +13954,7 @@ type __premarshallistAssetRelationshipsAssetRelationshipsAssetRelationshipSearch
 
 	SourceAsset DefaultAssetRelationshipSourceAsset `json:"sourceAsset"`
 
-	TargetAsset DefaultAssetRelationshipTargetAsset `json:"targetAsset"`
+	Targets DefaultAssetRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultAssetRelationshipRelationshipTypeAssetRelationshipType `json:"relationshipType"`
 
@@ -13041,7 +13978,7 @@ func (v *listAssetRelationshipsAssetRelationshipsAssetRelationshipSearchResultsR
 	retval.DeletedAt = v.DefaultAssetRelationship.DeletedAt
 	retval.Token = v.DefaultAssetRelationship.Token
 	retval.SourceAsset = v.DefaultAssetRelationship.SourceAsset
-	retval.TargetAsset = v.DefaultAssetRelationship.TargetAsset
+	retval.Targets = v.DefaultAssetRelationship.Targets
 	retval.RelationshipType = v.DefaultAssetRelationship.RelationshipType
 	retval.Metadata = v.DefaultAssetRelationship.Metadata
 	return &retval, nil
@@ -13833,14 +14770,14 @@ func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRe
 	return v.DefaultCustomerGroupRelationship.Token
 }
 
-// GetCustomerGroup returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship.CustomerGroup, and is useful for accessing the field via an interface.
-func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetCustomerGroup() DefaultCustomerGroupRelationshipCustomerGroup {
-	return v.DefaultCustomerGroupRelationship.CustomerGroup
+// GetSourceCustomerGroup returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship.SourceCustomerGroup, and is useful for accessing the field via an interface.
+func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetSourceCustomerGroup() DefaultCustomerGroupRelationshipSourceCustomerGroup {
+	return v.DefaultCustomerGroupRelationship.SourceCustomerGroup
 }
 
-// GetCustomer returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship.Customer, and is useful for accessing the field via an interface.
-func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetCustomer() DefaultCustomerGroupRelationshipCustomer {
-	return v.DefaultCustomerGroupRelationship.Customer
+// GetTargets returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship) GetTargets() DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultCustomerGroupRelationship.Targets
 }
 
 // GetRelationshipType returns listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRelationshipSearchResultsResultsCustomerGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -13889,9 +14826,9 @@ type __premarshallistCustomerGroupRelationshipsCustomerGroupRelationshipsCustome
 
 	Token string `json:"token"`
 
-	CustomerGroup DefaultCustomerGroupRelationshipCustomerGroup `json:"customerGroup"`
+	SourceCustomerGroup DefaultCustomerGroupRelationshipSourceCustomerGroup `json:"sourceCustomerGroup"`
 
-	Customer DefaultCustomerGroupRelationshipCustomer `json:"customer"`
+	Targets DefaultCustomerGroupRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultCustomerGroupRelationshipRelationshipTypeCustomerGroupRelationshipType `json:"relationshipType"`
 
@@ -13914,8 +14851,8 @@ func (v *listCustomerGroupRelationshipsCustomerGroupRelationshipsCustomerGroupRe
 	retval.UpdatedAt = v.DefaultCustomerGroupRelationship.UpdatedAt
 	retval.DeletedAt = v.DefaultCustomerGroupRelationship.DeletedAt
 	retval.Token = v.DefaultCustomerGroupRelationship.Token
-	retval.CustomerGroup = v.DefaultCustomerGroupRelationship.CustomerGroup
-	retval.Customer = v.DefaultCustomerGroupRelationship.Customer
+	retval.SourceCustomerGroup = v.DefaultCustomerGroupRelationship.SourceCustomerGroup
+	retval.Targets = v.DefaultCustomerGroupRelationship.Targets
 	retval.RelationshipType = v.DefaultCustomerGroupRelationship.RelationshipType
 	retval.Metadata = v.DefaultCustomerGroupRelationship.Metadata
 	return &retval, nil
@@ -14504,9 +15441,9 @@ func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearc
 	return v.DefaultCustomerRelationship.SourceCustomer
 }
 
-// GetTargetCustomer returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship.TargetCustomer, and is useful for accessing the field via an interface.
-func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) GetTargetCustomer() DefaultCustomerRelationshipTargetCustomer {
-	return v.DefaultCustomerRelationship.TargetCustomer
+// GetTargets returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship) GetTargets() DefaultCustomerRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultCustomerRelationship.Targets
 }
 
 // GetRelationshipType returns listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearchResultsResultsCustomerRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -14557,7 +15494,7 @@ type __premarshallistCustomerRelationshipsCustomerRelationshipsCustomerRelations
 
 	SourceCustomer DefaultCustomerRelationshipSourceCustomer `json:"sourceCustomer"`
 
-	TargetCustomer DefaultCustomerRelationshipTargetCustomer `json:"targetCustomer"`
+	Targets DefaultCustomerRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultCustomerRelationshipRelationshipTypeCustomerRelationshipType `json:"relationshipType"`
 
@@ -14581,7 +15518,7 @@ func (v *listCustomerRelationshipsCustomerRelationshipsCustomerRelationshipSearc
 	retval.DeletedAt = v.DefaultCustomerRelationship.DeletedAt
 	retval.Token = v.DefaultCustomerRelationship.Token
 	retval.SourceCustomer = v.DefaultCustomerRelationship.SourceCustomer
-	retval.TargetCustomer = v.DefaultCustomerRelationship.TargetCustomer
+	retval.Targets = v.DefaultCustomerRelationship.Targets
 	retval.RelationshipType = v.DefaultCustomerRelationship.RelationshipType
 	retval.Metadata = v.DefaultCustomerRelationship.Metadata
 	return &retval, nil
@@ -15379,14 +16316,14 @@ func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelation
 	return v.DefaultDeviceGroupRelationship.Token
 }
 
-// GetDeviceGroup returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.DeviceGroup, and is useful for accessing the field via an interface.
-func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetDeviceGroup() DefaultDeviceGroupRelationshipDeviceGroup {
-	return v.DefaultDeviceGroupRelationship.DeviceGroup
+// GetSourceDeviceGroup returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.SourceDeviceGroup, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetSourceDeviceGroup() DefaultDeviceGroupRelationshipSourceDeviceGroup {
+	return v.DefaultDeviceGroupRelationship.SourceDeviceGroup
 }
 
-// GetDevice returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.Device, and is useful for accessing the field via an interface.
-func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetDevice() DefaultDeviceGroupRelationshipDevice {
-	return v.DefaultDeviceGroupRelationship.Device
+// GetTargets returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship) GetTargets() DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultDeviceGroupRelationship.Targets
 }
 
 // GetRelationshipType returns listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelationshipSearchResultsResultsDeviceGroupRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -15435,9 +16372,9 @@ type __premarshallistDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroup
 
 	Token string `json:"token"`
 
-	DeviceGroup DefaultDeviceGroupRelationshipDeviceGroup `json:"deviceGroup"`
+	SourceDeviceGroup DefaultDeviceGroupRelationshipSourceDeviceGroup `json:"sourceDeviceGroup"`
 
-	Device DefaultDeviceGroupRelationshipDevice `json:"device"`
+	Targets DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType `json:"relationshipType"`
 
@@ -15460,8 +16397,8 @@ func (v *listDeviceGroupRelationshipsDeviceGroupRelationshipsDeviceGroupRelation
 	retval.UpdatedAt = v.DefaultDeviceGroupRelationship.UpdatedAt
 	retval.DeletedAt = v.DefaultDeviceGroupRelationship.DeletedAt
 	retval.Token = v.DefaultDeviceGroupRelationship.Token
-	retval.DeviceGroup = v.DefaultDeviceGroupRelationship.DeviceGroup
-	retval.Device = v.DefaultDeviceGroupRelationship.Device
+	retval.SourceDeviceGroup = v.DefaultDeviceGroupRelationship.SourceDeviceGroup
+	retval.Targets = v.DefaultDeviceGroupRelationship.Targets
 	retval.RelationshipType = v.DefaultDeviceGroupRelationship.RelationshipType
 	retval.Metadata = v.DefaultDeviceGroupRelationship.Metadata
 	return &retval, nil
@@ -16050,9 +16987,9 @@ func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResul
 	return v.DefaultDeviceRelationship.SourceDevice
 }
 
-// GetTargetDevice returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship.TargetDevice, and is useful for accessing the field via an interface.
-func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) GetTargetDevice() DefaultDeviceRelationshipTargetDevice {
-	return v.DefaultDeviceRelationship.TargetDevice
+// GetTargets returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship.Targets, and is useful for accessing the field via an interface.
+func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship) GetTargets() DefaultDeviceRelationshipTargetsEntityRelationshipTargets {
+	return v.DefaultDeviceRelationship.Targets
 }
 
 // GetRelationshipType returns listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResultsResultsDeviceRelationship.RelationshipType, and is useful for accessing the field via an interface.
@@ -16103,7 +17040,7 @@ type __premarshallistDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSea
 
 	SourceDevice DefaultDeviceRelationshipSourceDevice `json:"sourceDevice"`
 
-	TargetDevice DefaultDeviceRelationshipTargetDevice `json:"targetDevice"`
+	Targets DefaultDeviceRelationshipTargetsEntityRelationshipTargets `json:"targets"`
 
 	RelationshipType DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType `json:"relationshipType"`
 
@@ -16127,7 +17064,7 @@ func (v *listDeviceRelationshipsDeviceRelationshipsDeviceRelationshipSearchResul
 	retval.DeletedAt = v.DefaultDeviceRelationship.DeletedAt
 	retval.Token = v.DefaultDeviceRelationship.Token
 	retval.SourceDevice = v.DefaultDeviceRelationship.SourceDevice
-	retval.TargetDevice = v.DefaultDeviceRelationship.TargetDevice
+	retval.Targets = v.DefaultDeviceRelationship.Targets
 	retval.RelationshipType = v.DefaultDeviceRelationship.RelationshipType
 	retval.Metadata = v.DefaultDeviceRelationship.Metadata
 	return &retval, nil
@@ -16619,20 +17556,9 @@ func createArea(
 	description string,
 	metadata string,
 ) (*createAreaResponse, error) {
-	__input := __createAreaInput{
-		Token:         token,
-		AreaTypeToken: areaTypeToken,
-		Name:          name,
-		Description:   description,
-		Metadata:      metadata,
-	}
-	var err error
-
-	var retval createAreaResponse
-	err = client.MakeRequest(
-		ctx,
-		"createArea",
-		`
+	req := &graphql.Request{
+		OpName: "createArea",
+		Query: `
 mutation createArea ($token: String!, $areaTypeToken: String!, $name: String, $description: String, $metadata: String) {
 	createArea(request: {token:$token,areaTypeToken:$areaTypeToken,name:$name,description:$description,metadata:$metadata}) {
 		... DefaultArea
@@ -16654,10 +17580,26 @@ fragment DefaultArea on Area {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createAreaInput{
+			Token:         token,
+			AreaTypeToken: areaTypeToken,
+			Name:          name,
+			Description:   description,
+			Metadata:      metadata,
+		},
+	}
+	var err error
+
+	var data createAreaResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create area group and return identifiers.
@@ -16674,24 +17616,9 @@ func createAreaGroup(
 	borderColor string,
 	metadata string,
 ) (*createAreaGroupResponse, error) {
-	__input := __createAreaGroupInput{
-		Token:           token,
-		Name:            name,
-		Description:     description,
-		ImageUrl:        imageUrl,
-		Icon:            icon,
-		BackgroundColor: backgroundColor,
-		ForegroundColor: foregroundColor,
-		BorderColor:     borderColor,
-		Metadata:        metadata,
-	}
-	var err error
-
-	var retval createAreaGroupResponse
-	err = client.MakeRequest(
-		ctx,
-		"createAreaGroup",
-		`
+	req := &graphql.Request{
+		OpName: "createAreaGroup",
+		Query: `
 mutation createAreaGroup ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createAreaGroup(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
 		... DefaultAreaGroup
@@ -16713,10 +17640,30 @@ fragment DefaultAreaGroup on AreaGroup {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createAreaGroupInput{
+			Token:           token,
+			Name:            name,
+			Description:     description,
+			ImageUrl:        imageUrl,
+			Icon:            icon,
+			BackgroundColor: backgroundColor,
+			ForegroundColor: foregroundColor,
+			BorderColor:     borderColor,
+			Metadata:        metadata,
+		},
+	}
+	var err error
+
+	var data createAreaGroupResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create area group relationship and return identifiers.
@@ -16725,24 +17672,14 @@ func createAreaGroupRelationship(
 	client graphql.Client,
 	token string,
 	areaGroup string,
-	area string,
+	targets EntityRelationshipTargetsCreateRequest,
 	relationshipType string,
 ) (*createAreaGroupRelationshipResponse, error) {
-	__input := __createAreaGroupRelationshipInput{
-		Token:            token,
-		AreaGroup:        areaGroup,
-		Area:             area,
-		RelationshipType: relationshipType,
-	}
-	var err error
-
-	var retval createAreaGroupRelationshipResponse
-	err = client.MakeRequest(
-		ctx,
-		"createAreaGroupRelationship",
-		`
-mutation createAreaGroupRelationship ($token: String!, $areaGroup: String!, $area: String!, $relationshipType: String!) {
-	createAreaGroupRelationship(request: {token:$token,areaGroup:$areaGroup,area:$area,relationshipType:$relationshipType}) {
+	req := &graphql.Request{
+		OpName: "createAreaGroupRelationship",
+		Query: `
+mutation createAreaGroupRelationship ($token: String!, $areaGroup: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
+	createAreaGroupRelationship(request: {token:$token,sourceAreaGroup:$areaGroup,targets:$targets,relationshipType:$relationshipType}) {
 		... DefaultAreaGroupRelationship
 	}
 }
@@ -16752,15 +17689,13 @@ fragment DefaultAreaGroupRelationship on AreaGroupRelationship {
 	updatedAt
 	deletedAt
 	token
-	areaGroup {
+	sourceAreaGroup {
 		token
 		name
 		description
 	}
-	area {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -16769,11 +17704,52 @@ fragment DefaultAreaGroupRelationship on AreaGroupRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__createAreaGroupRelationshipInput{
+			Token:            token,
+			AreaGroup:        areaGroup,
+			Targets:          targets,
+			RelationshipType: relationshipType,
+		},
+	}
+	var err error
+
+	var data createAreaGroupRelationshipResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create area group relationship type and return identifiers.
@@ -16785,19 +17761,9 @@ func createAreaGroupRelationshipType(
 	description string,
 	metadata string,
 ) (*createAreaGroupRelationshipTypeResponse, error) {
-	__input := __createAreaGroupRelationshipTypeInput{
-		Token:       token,
-		Name:        name,
-		Description: description,
-		Metadata:    metadata,
-	}
-	var err error
-
-	var retval createAreaGroupRelationshipTypeResponse
-	err = client.MakeRequest(
-		ctx,
-		"createAreaGroupRelationshipType",
-		`
+	req := &graphql.Request{
+		OpName: "createAreaGroupRelationshipType",
+		Query: `
 mutation createAreaGroupRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createAreaGroupRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
 		... DefaultAreaGroupRelationshipType
@@ -16814,10 +17780,25 @@ fragment DefaultAreaGroupRelationshipType on AreaGroupRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createAreaGroupRelationshipTypeInput{
+			Token:       token,
+			Name:        name,
+			Description: description,
+			Metadata:    metadata,
+		},
+	}
+	var err error
+
+	var data createAreaGroupRelationshipTypeResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create area relationship and return identifiers.
@@ -16826,24 +17807,14 @@ func createAreaRelationship(
 	client graphql.Client,
 	token string,
 	sourceArea string,
-	targetArea string,
+	targets EntityRelationshipTargetsCreateRequest,
 	relationshipType string,
 ) (*createAreaRelationshipResponse, error) {
-	__input := __createAreaRelationshipInput{
-		Token:            token,
-		SourceArea:       sourceArea,
-		TargetArea:       targetArea,
-		RelationshipType: relationshipType,
-	}
-	var err error
-
-	var retval createAreaRelationshipResponse
-	err = client.MakeRequest(
-		ctx,
-		"createAreaRelationship",
-		`
-mutation createAreaRelationship ($token: String!, $sourceArea: String!, $targetArea: String!, $relationshipType: String!) {
-	createAreaRelationship(request: {token:$token,sourceArea:$sourceArea,targetArea:$targetArea,relationshipType:$relationshipType}) {
+	req := &graphql.Request{
+		OpName: "createAreaRelationship",
+		Query: `
+mutation createAreaRelationship ($token: String!, $sourceArea: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
+	createAreaRelationship(request: {token:$token,sourceArea:$sourceArea,targets:$targets,relationshipType:$relationshipType}) {
 		... DefaultAreaRelationship
 	}
 }
@@ -16858,10 +17829,8 @@ fragment DefaultAreaRelationship on AreaRelationship {
 		name
 		description
 	}
-	targetArea {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -16870,11 +17839,52 @@ fragment DefaultAreaRelationship on AreaRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__createAreaRelationshipInput{
+			Token:            token,
+			SourceArea:       sourceArea,
+			Targets:          targets,
+			RelationshipType: relationshipType,
+		},
+	}
+	var err error
+
+	var data createAreaRelationshipResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create area relationship type and return identifiers.
@@ -16886,19 +17896,9 @@ func createAreaRelationshipType(
 	description string,
 	metadata string,
 ) (*createAreaRelationshipTypeResponse, error) {
-	__input := __createAreaRelationshipTypeInput{
-		Token:       token,
-		Name:        name,
-		Description: description,
-		Metadata:    metadata,
-	}
-	var err error
-
-	var retval createAreaRelationshipTypeResponse
-	err = client.MakeRequest(
-		ctx,
-		"createAreaRelationshipType",
-		`
+	req := &graphql.Request{
+		OpName: "createAreaRelationshipType",
+		Query: `
 mutation createAreaRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createAreaRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
 		... DefaultAreaRelationshipType
@@ -16915,10 +17915,25 @@ fragment DefaultAreaRelationshipType on AreaRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createAreaRelationshipTypeInput{
+			Token:       token,
+			Name:        name,
+			Description: description,
+			Metadata:    metadata,
+		},
+	}
+	var err error
+
+	var data createAreaRelationshipTypeResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create area type and return identifiers.
@@ -16935,24 +17950,9 @@ func createAreaType(
 	borderColor string,
 	metadata string,
 ) (*createAreaTypeResponse, error) {
-	__input := __createAreaTypeInput{
-		Token:           token,
-		Name:            name,
-		Description:     description,
-		ImageUrl:        imageUrl,
-		Icon:            icon,
-		BackgroundColor: backgroundColor,
-		ForegroundColor: foregroundColor,
-		BorderColor:     borderColor,
-		Metadata:        metadata,
-	}
-	var err error
-
-	var retval createAreaTypeResponse
-	err = client.MakeRequest(
-		ctx,
-		"createAreaType",
-		`
+	req := &graphql.Request{
+		OpName: "createAreaType",
+		Query: `
 mutation createAreaType ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createAreaType(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
 		... DefaultAreaType
@@ -16974,10 +17974,30 @@ fragment DefaultAreaType on AreaType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createAreaTypeInput{
+			Token:           token,
+			Name:            name,
+			Description:     description,
+			ImageUrl:        imageUrl,
+			Icon:            icon,
+			BackgroundColor: backgroundColor,
+			ForegroundColor: foregroundColor,
+			BorderColor:     borderColor,
+			Metadata:        metadata,
+		},
+	}
+	var err error
+
+	var data createAreaTypeResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create asset and return identifiers.
@@ -16990,20 +18010,9 @@ func createAsset(
 	description string,
 	metadata string,
 ) (*createAssetResponse, error) {
-	__input := __createAssetInput{
-		Token:          token,
-		AssetTypeToken: assetTypeToken,
-		Name:           name,
-		Description:    description,
-		Metadata:       metadata,
-	}
-	var err error
-
-	var retval createAssetResponse
-	err = client.MakeRequest(
-		ctx,
-		"createAsset",
-		`
+	req := &graphql.Request{
+		OpName: "createAsset",
+		Query: `
 mutation createAsset ($token: String!, $assetTypeToken: String!, $name: String, $description: String, $metadata: String) {
 	createAsset(request: {token:$token,assetTypeToken:$assetTypeToken,name:$name,description:$description,metadata:$metadata}) {
 		... DefaultAsset
@@ -17025,10 +18034,26 @@ fragment DefaultAsset on Asset {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createAssetInput{
+			Token:          token,
+			AssetTypeToken: assetTypeToken,
+			Name:           name,
+			Description:    description,
+			Metadata:       metadata,
+		},
+	}
+	var err error
+
+	var data createAssetResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create asset group and return identifiers.
@@ -17045,24 +18070,9 @@ func createAssetGroup(
 	borderColor string,
 	metadata string,
 ) (*createAssetGroupResponse, error) {
-	__input := __createAssetGroupInput{
-		Token:           token,
-		Name:            name,
-		Description:     description,
-		ImageUrl:        imageUrl,
-		Icon:            icon,
-		BackgroundColor: backgroundColor,
-		ForegroundColor: foregroundColor,
-		BorderColor:     borderColor,
-		Metadata:        metadata,
-	}
-	var err error
-
-	var retval createAssetGroupResponse
-	err = client.MakeRequest(
-		ctx,
-		"createAssetGroup",
-		`
+	req := &graphql.Request{
+		OpName: "createAssetGroup",
+		Query: `
 mutation createAssetGroup ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createAssetGroup(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
 		... DefaultAssetGroup
@@ -17084,10 +18094,30 @@ fragment DefaultAssetGroup on AssetGroup {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createAssetGroupInput{
+			Token:           token,
+			Name:            name,
+			Description:     description,
+			ImageUrl:        imageUrl,
+			Icon:            icon,
+			BackgroundColor: backgroundColor,
+			ForegroundColor: foregroundColor,
+			BorderColor:     borderColor,
+			Metadata:        metadata,
+		},
+	}
+	var err error
+
+	var data createAssetGroupResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create asset group relationship and return identifiers.
@@ -17096,24 +18126,14 @@ func createAssetGroupRelationship(
 	client graphql.Client,
 	token string,
 	assetGroup string,
-	asset string,
+	targets EntityRelationshipTargetsCreateRequest,
 	relationshipType string,
 ) (*createAssetGroupRelationshipResponse, error) {
-	__input := __createAssetGroupRelationshipInput{
-		Token:            token,
-		AssetGroup:       assetGroup,
-		Asset:            asset,
-		RelationshipType: relationshipType,
-	}
-	var err error
-
-	var retval createAssetGroupRelationshipResponse
-	err = client.MakeRequest(
-		ctx,
-		"createAssetGroupRelationship",
-		`
-mutation createAssetGroupRelationship ($token: String!, $assetGroup: String!, $asset: String!, $relationshipType: String!) {
-	createAssetGroupRelationship(request: {token:$token,assetGroup:$assetGroup,asset:$asset,relationshipType:$relationshipType}) {
+	req := &graphql.Request{
+		OpName: "createAssetGroupRelationship",
+		Query: `
+mutation createAssetGroupRelationship ($token: String!, $assetGroup: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
+	createAssetGroupRelationship(request: {token:$token,sourceAssetGroup:$assetGroup,targets:$targets,relationshipType:$relationshipType}) {
 		... DefaultAssetGroupRelationship
 	}
 }
@@ -17123,15 +18143,13 @@ fragment DefaultAssetGroupRelationship on AssetGroupRelationship {
 	updatedAt
 	deletedAt
 	token
-	assetGroup {
+	sourceAssetGroup {
 		token
 		name
 		description
 	}
-	asset {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -17140,11 +18158,52 @@ fragment DefaultAssetGroupRelationship on AssetGroupRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__createAssetGroupRelationshipInput{
+			Token:            token,
+			AssetGroup:       assetGroup,
+			Targets:          targets,
+			RelationshipType: relationshipType,
+		},
+	}
+	var err error
+
+	var data createAssetGroupRelationshipResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create asset group relationship type and return identifiers.
@@ -17156,19 +18215,9 @@ func createAssetGroupRelationshipType(
 	description string,
 	metadata string,
 ) (*createAssetGroupRelationshipTypeResponse, error) {
-	__input := __createAssetGroupRelationshipTypeInput{
-		Token:       token,
-		Name:        name,
-		Description: description,
-		Metadata:    metadata,
-	}
-	var err error
-
-	var retval createAssetGroupRelationshipTypeResponse
-	err = client.MakeRequest(
-		ctx,
-		"createAssetGroupRelationshipType",
-		`
+	req := &graphql.Request{
+		OpName: "createAssetGroupRelationshipType",
+		Query: `
 mutation createAssetGroupRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createAssetGroupRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
 		... DefaultAssetGroupRelationshipType
@@ -17185,10 +18234,25 @@ fragment DefaultAssetGroupRelationshipType on AssetGroupRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createAssetGroupRelationshipTypeInput{
+			Token:       token,
+			Name:        name,
+			Description: description,
+			Metadata:    metadata,
+		},
+	}
+	var err error
+
+	var data createAssetGroupRelationshipTypeResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create asset relationship and return identifiers.
@@ -17197,24 +18261,14 @@ func createAssetRelationship(
 	client graphql.Client,
 	token string,
 	sourceAsset string,
-	targetAsset string,
+	targets EntityRelationshipTargetsCreateRequest,
 	relationshipType string,
 ) (*createAssetRelationshipResponse, error) {
-	__input := __createAssetRelationshipInput{
-		Token:            token,
-		SourceAsset:      sourceAsset,
-		TargetAsset:      targetAsset,
-		RelationshipType: relationshipType,
-	}
-	var err error
-
-	var retval createAssetRelationshipResponse
-	err = client.MakeRequest(
-		ctx,
-		"createAssetRelationship",
-		`
-mutation createAssetRelationship ($token: String!, $sourceAsset: String!, $targetAsset: String!, $relationshipType: String!) {
-	createAssetRelationship(request: {token:$token,sourceAsset:$sourceAsset,targetAsset:$targetAsset,relationshipType:$relationshipType}) {
+	req := &graphql.Request{
+		OpName: "createAssetRelationship",
+		Query: `
+mutation createAssetRelationship ($token: String!, $sourceAsset: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
+	createAssetRelationship(request: {token:$token,sourceAsset:$sourceAsset,targets:$targets,relationshipType:$relationshipType}) {
 		... DefaultAssetRelationship
 	}
 }
@@ -17229,10 +18283,8 @@ fragment DefaultAssetRelationship on AssetRelationship {
 		name
 		description
 	}
-	targetAsset {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -17241,11 +18293,52 @@ fragment DefaultAssetRelationship on AssetRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__createAssetRelationshipInput{
+			Token:            token,
+			SourceAsset:      sourceAsset,
+			Targets:          targets,
+			RelationshipType: relationshipType,
+		},
+	}
+	var err error
+
+	var data createAssetRelationshipResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create asset relationship type and return identifiers.
@@ -17257,19 +18350,9 @@ func createAssetRelationshipType(
 	description string,
 	metadata string,
 ) (*createAssetRelationshipTypeResponse, error) {
-	__input := __createAssetRelationshipTypeInput{
-		Token:       token,
-		Name:        name,
-		Description: description,
-		Metadata:    metadata,
-	}
-	var err error
-
-	var retval createAssetRelationshipTypeResponse
-	err = client.MakeRequest(
-		ctx,
-		"createAssetRelationshipType",
-		`
+	req := &graphql.Request{
+		OpName: "createAssetRelationshipType",
+		Query: `
 mutation createAssetRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createAssetRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
 		... DefaultAssetRelationshipType
@@ -17286,10 +18369,25 @@ fragment DefaultAssetRelationshipType on AssetRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createAssetRelationshipTypeInput{
+			Token:       token,
+			Name:        name,
+			Description: description,
+			Metadata:    metadata,
+		},
+	}
+	var err error
+
+	var data createAssetRelationshipTypeResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create asset type and return identifiers.
@@ -17306,24 +18404,9 @@ func createAssetType(
 	borderColor string,
 	metadata string,
 ) (*createAssetTypeResponse, error) {
-	__input := __createAssetTypeInput{
-		Token:           token,
-		Name:            name,
-		Description:     description,
-		ImageUrl:        imageUrl,
-		Icon:            icon,
-		BackgroundColor: backgroundColor,
-		ForegroundColor: foregroundColor,
-		BorderColor:     borderColor,
-		Metadata:        metadata,
-	}
-	var err error
-
-	var retval createAssetTypeResponse
-	err = client.MakeRequest(
-		ctx,
-		"createAssetType",
-		`
+	req := &graphql.Request{
+		OpName: "createAssetType",
+		Query: `
 mutation createAssetType ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createAssetType(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
 		... DefaultAssetType
@@ -17345,10 +18428,30 @@ fragment DefaultAssetType on AssetType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createAssetTypeInput{
+			Token:           token,
+			Name:            name,
+			Description:     description,
+			ImageUrl:        imageUrl,
+			Icon:            icon,
+			BackgroundColor: backgroundColor,
+			ForegroundColor: foregroundColor,
+			BorderColor:     borderColor,
+			Metadata:        metadata,
+		},
+	}
+	var err error
+
+	var data createAssetTypeResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create customer and return identifiers.
@@ -17361,20 +18464,9 @@ func createCustomer(
 	description string,
 	metadata string,
 ) (*createCustomerResponse, error) {
-	__input := __createCustomerInput{
-		Token:             token,
-		CustomerTypeToken: customerTypeToken,
-		Name:              name,
-		Description:       description,
-		Metadata:          metadata,
-	}
-	var err error
-
-	var retval createCustomerResponse
-	err = client.MakeRequest(
-		ctx,
-		"createCustomer",
-		`
+	req := &graphql.Request{
+		OpName: "createCustomer",
+		Query: `
 mutation createCustomer ($token: String!, $customerTypeToken: String!, $name: String, $description: String, $metadata: String) {
 	createCustomer(request: {token:$token,customerTypeToken:$customerTypeToken,name:$name,description:$description,metadata:$metadata}) {
 		... DefaultCustomer
@@ -17396,10 +18488,26 @@ fragment DefaultCustomer on Customer {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createCustomerInput{
+			Token:             token,
+			CustomerTypeToken: customerTypeToken,
+			Name:              name,
+			Description:       description,
+			Metadata:          metadata,
+		},
+	}
+	var err error
+
+	var data createCustomerResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create customer group and return identifiers.
@@ -17416,24 +18524,9 @@ func createCustomerGroup(
 	borderColor string,
 	metadata string,
 ) (*createCustomerGroupResponse, error) {
-	__input := __createCustomerGroupInput{
-		Token:           token,
-		Name:            name,
-		Description:     description,
-		ImageUrl:        imageUrl,
-		Icon:            icon,
-		BackgroundColor: backgroundColor,
-		ForegroundColor: foregroundColor,
-		BorderColor:     borderColor,
-		Metadata:        metadata,
-	}
-	var err error
-
-	var retval createCustomerGroupResponse
-	err = client.MakeRequest(
-		ctx,
-		"createCustomerGroup",
-		`
+	req := &graphql.Request{
+		OpName: "createCustomerGroup",
+		Query: `
 mutation createCustomerGroup ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createCustomerGroup(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
 		... DefaultCustomerGroup
@@ -17455,10 +18548,30 @@ fragment DefaultCustomerGroup on CustomerGroup {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createCustomerGroupInput{
+			Token:           token,
+			Name:            name,
+			Description:     description,
+			ImageUrl:        imageUrl,
+			Icon:            icon,
+			BackgroundColor: backgroundColor,
+			ForegroundColor: foregroundColor,
+			BorderColor:     borderColor,
+			Metadata:        metadata,
+		},
+	}
+	var err error
+
+	var data createCustomerGroupResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create customer group relationship and return identifiers.
@@ -17467,24 +18580,14 @@ func createCustomerGroupRelationship(
 	client graphql.Client,
 	token string,
 	customerGroup string,
-	customer string,
+	targets EntityRelationshipTargetsCreateRequest,
 	relationshipType string,
 ) (*createCustomerGroupRelationshipResponse, error) {
-	__input := __createCustomerGroupRelationshipInput{
-		Token:            token,
-		CustomerGroup:    customerGroup,
-		Customer:         customer,
-		RelationshipType: relationshipType,
-	}
-	var err error
-
-	var retval createCustomerGroupRelationshipResponse
-	err = client.MakeRequest(
-		ctx,
-		"createCustomerGroupRelationship",
-		`
-mutation createCustomerGroupRelationship ($token: String!, $customerGroup: String!, $customer: String!, $relationshipType: String!) {
-	createCustomerGroupRelationship(request: {token:$token,customerGroup:$customerGroup,customer:$customer,relationshipType:$relationshipType}) {
+	req := &graphql.Request{
+		OpName: "createCustomerGroupRelationship",
+		Query: `
+mutation createCustomerGroupRelationship ($token: String!, $customerGroup: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
+	createCustomerGroupRelationship(request: {token:$token,sourceCustomerGroup:$customerGroup,targets:$targets,relationshipType:$relationshipType}) {
 		... DefaultCustomerGroupRelationship
 	}
 }
@@ -17494,15 +18597,13 @@ fragment DefaultCustomerGroupRelationship on CustomerGroupRelationship {
 	updatedAt
 	deletedAt
 	token
-	customerGroup {
+	sourceCustomerGroup {
 		token
 		name
 		description
 	}
-	customer {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -17511,11 +18612,52 @@ fragment DefaultCustomerGroupRelationship on CustomerGroupRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__createCustomerGroupRelationshipInput{
+			Token:            token,
+			CustomerGroup:    customerGroup,
+			Targets:          targets,
+			RelationshipType: relationshipType,
+		},
+	}
+	var err error
+
+	var data createCustomerGroupRelationshipResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create customer group relationship type and return identifiers.
@@ -17527,19 +18669,9 @@ func createCustomerGroupRelationshipType(
 	description string,
 	metadata string,
 ) (*createCustomerGroupRelationshipTypeResponse, error) {
-	__input := __createCustomerGroupRelationshipTypeInput{
-		Token:       token,
-		Name:        name,
-		Description: description,
-		Metadata:    metadata,
-	}
-	var err error
-
-	var retval createCustomerGroupRelationshipTypeResponse
-	err = client.MakeRequest(
-		ctx,
-		"createCustomerGroupRelationshipType",
-		`
+	req := &graphql.Request{
+		OpName: "createCustomerGroupRelationshipType",
+		Query: `
 mutation createCustomerGroupRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createCustomerGroupRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
 		... DefaultCustomerGroupRelationshipType
@@ -17556,10 +18688,25 @@ fragment DefaultCustomerGroupRelationshipType on CustomerGroupRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createCustomerGroupRelationshipTypeInput{
+			Token:       token,
+			Name:        name,
+			Description: description,
+			Metadata:    metadata,
+		},
+	}
+	var err error
+
+	var data createCustomerGroupRelationshipTypeResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create customer relationship and return identifiers.
@@ -17568,24 +18715,14 @@ func createCustomerRelationship(
 	client graphql.Client,
 	token string,
 	sourceCustomer string,
-	targetCustomer string,
+	targets EntityRelationshipTargetsCreateRequest,
 	relationshipType string,
 ) (*createCustomerRelationshipResponse, error) {
-	__input := __createCustomerRelationshipInput{
-		Token:            token,
-		SourceCustomer:   sourceCustomer,
-		TargetCustomer:   targetCustomer,
-		RelationshipType: relationshipType,
-	}
-	var err error
-
-	var retval createCustomerRelationshipResponse
-	err = client.MakeRequest(
-		ctx,
-		"createCustomerRelationship",
-		`
-mutation createCustomerRelationship ($token: String!, $sourceCustomer: String!, $targetCustomer: String!, $relationshipType: String!) {
-	createCustomerRelationship(request: {token:$token,sourceCustomer:$sourceCustomer,targetCustomer:$targetCustomer,relationshipType:$relationshipType}) {
+	req := &graphql.Request{
+		OpName: "createCustomerRelationship",
+		Query: `
+mutation createCustomerRelationship ($token: String!, $sourceCustomer: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
+	createCustomerRelationship(request: {token:$token,sourceCustomer:$sourceCustomer,targets:$targets,relationshipType:$relationshipType}) {
 		... DefaultCustomerRelationship
 	}
 }
@@ -17600,10 +18737,8 @@ fragment DefaultCustomerRelationship on CustomerRelationship {
 		name
 		description
 	}
-	targetCustomer {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -17612,11 +18747,52 @@ fragment DefaultCustomerRelationship on CustomerRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__createCustomerRelationshipInput{
+			Token:            token,
+			SourceCustomer:   sourceCustomer,
+			Targets:          targets,
+			RelationshipType: relationshipType,
+		},
+	}
+	var err error
+
+	var data createCustomerRelationshipResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create customer relationship type and return identifiers.
@@ -17628,19 +18804,9 @@ func createCustomerRelationshipType(
 	description string,
 	metadata string,
 ) (*createCustomerRelationshipTypeResponse, error) {
-	__input := __createCustomerRelationshipTypeInput{
-		Token:       token,
-		Name:        name,
-		Description: description,
-		Metadata:    metadata,
-	}
-	var err error
-
-	var retval createCustomerRelationshipTypeResponse
-	err = client.MakeRequest(
-		ctx,
-		"createCustomerRelationshipType",
-		`
+	req := &graphql.Request{
+		OpName: "createCustomerRelationshipType",
+		Query: `
 mutation createCustomerRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createCustomerRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
 		... DefaultCustomerRelationshipType
@@ -17657,10 +18823,25 @@ fragment DefaultCustomerRelationshipType on CustomerRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createCustomerRelationshipTypeInput{
+			Token:       token,
+			Name:        name,
+			Description: description,
+			Metadata:    metadata,
+		},
+	}
+	var err error
+
+	var data createCustomerRelationshipTypeResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create customer type and return identifiers.
@@ -17677,24 +18858,9 @@ func createCustomerType(
 	borderColor string,
 	metadata string,
 ) (*createCustomerTypeResponse, error) {
-	__input := __createCustomerTypeInput{
-		Token:           token,
-		Name:            name,
-		Description:     description,
-		ImageUrl:        imageUrl,
-		Icon:            icon,
-		BackgroundColor: backgroundColor,
-		ForegroundColor: foregroundColor,
-		BorderColor:     borderColor,
-		Metadata:        metadata,
-	}
-	var err error
-
-	var retval createCustomerTypeResponse
-	err = client.MakeRequest(
-		ctx,
-		"createCustomerType",
-		`
+	req := &graphql.Request{
+		OpName: "createCustomerType",
+		Query: `
 mutation createCustomerType ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createCustomerType(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
 		... DefaultCustomerType
@@ -17716,10 +18882,30 @@ fragment DefaultCustomerType on CustomerType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createCustomerTypeInput{
+			Token:           token,
+			Name:            name,
+			Description:     description,
+			ImageUrl:        imageUrl,
+			Icon:            icon,
+			BackgroundColor: backgroundColor,
+			ForegroundColor: foregroundColor,
+			BorderColor:     borderColor,
+			Metadata:        metadata,
+		},
+	}
+	var err error
+
+	var data createCustomerTypeResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create device and return identifiers.
@@ -17732,20 +18918,9 @@ func createDevice(
 	description string,
 	metadata string,
 ) (*createDeviceResponse, error) {
-	__input := __createDeviceInput{
-		Token:           token,
-		DeviceTypeToken: deviceTypeToken,
-		Name:            name,
-		Description:     description,
-		Metadata:        metadata,
-	}
-	var err error
-
-	var retval createDeviceResponse
-	err = client.MakeRequest(
-		ctx,
-		"createDevice",
-		`
+	req := &graphql.Request{
+		OpName: "createDevice",
+		Query: `
 mutation createDevice ($token: String!, $deviceTypeToken: String!, $name: String, $description: String, $metadata: String) {
 	createDevice(request: {token:$token,deviceTypeToken:$deviceTypeToken,name:$name,description:$description,metadata:$metadata}) {
 		... DefaultDevice
@@ -17770,10 +18945,26 @@ fragment DefaultDevice on Device {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createDeviceInput{
+			Token:           token,
+			DeviceTypeToken: deviceTypeToken,
+			Name:            name,
+			Description:     description,
+			Metadata:        metadata,
+		},
+	}
+	var err error
+
+	var data createDeviceResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create device group and return identifiers.
@@ -17790,24 +18981,9 @@ func createDeviceGroup(
 	borderColor string,
 	metadata string,
 ) (*createDeviceGroupResponse, error) {
-	__input := __createDeviceGroupInput{
-		Token:           token,
-		Name:            name,
-		Description:     description,
-		ImageUrl:        imageUrl,
-		Icon:            icon,
-		BackgroundColor: backgroundColor,
-		ForegroundColor: foregroundColor,
-		BorderColor:     borderColor,
-		Metadata:        metadata,
-	}
-	var err error
-
-	var retval createDeviceGroupResponse
-	err = client.MakeRequest(
-		ctx,
-		"createDeviceGroup",
-		`
+	req := &graphql.Request{
+		OpName: "createDeviceGroup",
+		Query: `
 mutation createDeviceGroup ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createDeviceGroup(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
 		... DefaultDeviceGroup
@@ -17829,10 +19005,30 @@ fragment DefaultDeviceGroup on DeviceGroup {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createDeviceGroupInput{
+			Token:           token,
+			Name:            name,
+			Description:     description,
+			ImageUrl:        imageUrl,
+			Icon:            icon,
+			BackgroundColor: backgroundColor,
+			ForegroundColor: foregroundColor,
+			BorderColor:     borderColor,
+			Metadata:        metadata,
+		},
+	}
+	var err error
+
+	var data createDeviceGroupResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create device group relationship and return identifiers.
@@ -17840,25 +19036,15 @@ func createDeviceGroupRelationship(
 	ctx context.Context,
 	client graphql.Client,
 	token string,
-	deviceGroup string,
-	device string,
+	sourceDeviceGroup string,
+	targets EntityRelationshipTargetsCreateRequest,
 	relationshipType string,
 ) (*createDeviceGroupRelationshipResponse, error) {
-	__input := __createDeviceGroupRelationshipInput{
-		Token:            token,
-		DeviceGroup:      deviceGroup,
-		Device:           device,
-		RelationshipType: relationshipType,
-	}
-	var err error
-
-	var retval createDeviceGroupRelationshipResponse
-	err = client.MakeRequest(
-		ctx,
-		"createDeviceGroupRelationship",
-		`
-mutation createDeviceGroupRelationship ($token: String!, $deviceGroup: String!, $device: String!, $relationshipType: String!) {
-	createDeviceGroupRelationship(request: {token:$token,deviceGroup:$deviceGroup,device:$device,relationshipType:$relationshipType}) {
+	req := &graphql.Request{
+		OpName: "createDeviceGroupRelationship",
+		Query: `
+mutation createDeviceGroupRelationship ($token: String!, $sourceDeviceGroup: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
+	createDeviceGroupRelationship(request: {token:$token,sourceDeviceGroup:$sourceDeviceGroup,targets:$targets,relationshipType:$relationshipType}) {
 		... DefaultDeviceGroupRelationship
 	}
 }
@@ -17868,15 +19054,13 @@ fragment DefaultDeviceGroupRelationship on DeviceGroupRelationship {
 	updatedAt
 	deletedAt
 	token
-	deviceGroup {
+	sourceDeviceGroup {
 		token
 		name
 		description
 	}
-	device {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -17885,11 +19069,52 @@ fragment DefaultDeviceGroupRelationship on DeviceGroupRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__createDeviceGroupRelationshipInput{
+			Token:             token,
+			SourceDeviceGroup: sourceDeviceGroup,
+			Targets:           targets,
+			RelationshipType:  relationshipType,
+		},
+	}
+	var err error
+
+	var data createDeviceGroupRelationshipResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create device group relationship type and return identifiers.
@@ -17901,19 +19126,9 @@ func createDeviceGroupRelationshipType(
 	description string,
 	metadata string,
 ) (*createDeviceGroupRelationshipTypeResponse, error) {
-	__input := __createDeviceGroupRelationshipTypeInput{
-		Token:       token,
-		Name:        name,
-		Description: description,
-		Metadata:    metadata,
-	}
-	var err error
-
-	var retval createDeviceGroupRelationshipTypeResponse
-	err = client.MakeRequest(
-		ctx,
-		"createDeviceGroupRelationshipType",
-		`
+	req := &graphql.Request{
+		OpName: "createDeviceGroupRelationshipType",
+		Query: `
 mutation createDeviceGroupRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createDeviceGroupRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
 		... DefaultDeviceGroupRelationshipType
@@ -17930,10 +19145,25 @@ fragment DefaultDeviceGroupRelationshipType on DeviceGroupRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createDeviceGroupRelationshipTypeInput{
+			Token:       token,
+			Name:        name,
+			Description: description,
+			Metadata:    metadata,
+		},
+	}
+	var err error
+
+	var data createDeviceGroupRelationshipTypeResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create device relationship and return identifiers.
@@ -17942,24 +19172,14 @@ func createDeviceRelationship(
 	client graphql.Client,
 	token string,
 	sourceDevice string,
-	targetDevice string,
+	targets EntityRelationshipTargetsCreateRequest,
 	relationshipType string,
 ) (*createDeviceRelationshipResponse, error) {
-	__input := __createDeviceRelationshipInput{
-		Token:            token,
-		SourceDevice:     sourceDevice,
-		TargetDevice:     targetDevice,
-		RelationshipType: relationshipType,
-	}
-	var err error
-
-	var retval createDeviceRelationshipResponse
-	err = client.MakeRequest(
-		ctx,
-		"createDeviceRelationship",
-		`
-mutation createDeviceRelationship ($token: String!, $sourceDevice: String!, $targetDevice: String!, $relationshipType: String!) {
-	createDeviceRelationship(request: {token:$token,sourceDevice:$sourceDevice,targetDevice:$targetDevice,relationshipType:$relationshipType}) {
+	req := &graphql.Request{
+		OpName: "createDeviceRelationship",
+		Query: `
+mutation createDeviceRelationship ($token: String!, $sourceDevice: String!, $targets: EntityRelationshipTargetsCreateRequest!, $relationshipType: String!) {
+	createDeviceRelationship(request: {token:$token,sourceDevice:$sourceDevice,targets:$targets,relationshipType:$relationshipType}) {
 		... DefaultDeviceRelationship
 	}
 }
@@ -17974,10 +19194,8 @@ fragment DefaultDeviceRelationship on DeviceRelationship {
 		name
 		description
 	}
-	targetDevice {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -17986,11 +19204,52 @@ fragment DefaultDeviceRelationship on DeviceRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__createDeviceRelationshipInput{
+			Token:            token,
+			SourceDevice:     sourceDevice,
+			Targets:          targets,
+			RelationshipType: relationshipType,
+		},
+	}
+	var err error
+
+	var data createDeviceRelationshipResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create device relationship type and return identifiers.
@@ -18002,19 +19261,9 @@ func createDeviceRelationshipType(
 	description string,
 	metadata string,
 ) (*createDeviceRelationshipTypeResponse, error) {
-	__input := __createDeviceRelationshipTypeInput{
-		Token:       token,
-		Name:        name,
-		Description: description,
-		Metadata:    metadata,
-	}
-	var err error
-
-	var retval createDeviceRelationshipTypeResponse
-	err = client.MakeRequest(
-		ctx,
-		"createDeviceRelationshipType",
-		`
+	req := &graphql.Request{
+		OpName: "createDeviceRelationshipType",
+		Query: `
 mutation createDeviceRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
 	createDeviceRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
 		... DefaultDeviceRelationshipType
@@ -18031,10 +19280,25 @@ fragment DefaultDeviceRelationshipType on DeviceRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createDeviceRelationshipTypeInput{
+			Token:       token,
+			Name:        name,
+			Description: description,
+			Metadata:    metadata,
+		},
+	}
+	var err error
+
+	var data createDeviceRelationshipTypeResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Create device type and return identifiers.
@@ -18051,24 +19315,9 @@ func createDeviceType(
 	borderColor string,
 	metadata string,
 ) (*createDeviceTypeResponse, error) {
-	__input := __createDeviceTypeInput{
-		Token:           token,
-		Name:            name,
-		Description:     description,
-		ImageUrl:        imageUrl,
-		Icon:            icon,
-		BackgroundColor: backgroundColor,
-		ForegroundColor: foregroundColor,
-		BorderColor:     borderColor,
-		Metadata:        metadata,
-	}
-	var err error
-
-	var retval createDeviceTypeResponse
-	err = client.MakeRequest(
-		ctx,
-		"createDeviceType",
-		`
+	req := &graphql.Request{
+		OpName: "createDeviceType",
+		Query: `
 mutation createDeviceType ($token: String!, $name: String, $description: String, $imageUrl: String, $icon: String, $backgroundColor: String, $foregroundColor: String, $borderColor: String, $metadata: String) {
 	createDeviceType(request: {token:$token,name:$name,description:$description,imageUrl:$imageUrl,icon:$icon,backgroundColor:$backgroundColor,foregroundColor:$foregroundColor,borderColor:$borderColor,metadata:$metadata}) {
 		... DefaultDeviceType
@@ -18090,10 +19339,30 @@ fragment DefaultDeviceType on DeviceType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__createDeviceTypeInput{
+			Token:           token,
+			Name:            name,
+			Description:     description,
+			ImageUrl:        imageUrl,
+			Icon:            icon,
+			BackgroundColor: backgroundColor,
+			ForegroundColor: foregroundColor,
+			BorderColor:     borderColor,
+			Metadata:        metadata,
+		},
+	}
+	var err error
+
+	var data createDeviceTypeResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get area group relationship types by unique token.
@@ -18102,16 +19371,9 @@ func getAreaGroupRelationshipTypesByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getAreaGroupRelationshipTypesByTokenResponse, error) {
-	__input := __getAreaGroupRelationshipTypesByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getAreaGroupRelationshipTypesByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getAreaGroupRelationshipTypesByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getAreaGroupRelationshipTypesByToken",
+		Query: `
 query getAreaGroupRelationshipTypesByToken ($tokens: [String!]!) {
 	areaGroupRelationshipTypesByToken(tokens: $tokens) {
 		... DefaultAreaGroupRelationshipType
@@ -18128,10 +19390,22 @@ fragment DefaultAreaGroupRelationshipType on AreaGroupRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getAreaGroupRelationshipTypesByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getAreaGroupRelationshipTypesByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get area group relationships by unique tokens.
@@ -18140,16 +19414,9 @@ func getAreaGroupRelationshipsByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getAreaGroupRelationshipsByTokenResponse, error) {
-	__input := __getAreaGroupRelationshipsByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getAreaGroupRelationshipsByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getAreaGroupRelationshipsByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getAreaGroupRelationshipsByToken",
+		Query: `
 query getAreaGroupRelationshipsByToken ($tokens: [String!]!) {
 	areaGroupRelationshipsByToken(tokens: $tokens) {
 		... DefaultAreaGroupRelationship
@@ -18161,15 +19428,13 @@ fragment DefaultAreaGroupRelationship on AreaGroupRelationship {
 	updatedAt
 	deletedAt
 	token
-	areaGroup {
+	sourceAreaGroup {
 		token
 		name
 		description
 	}
-	area {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -18178,11 +19443,49 @@ fragment DefaultAreaGroupRelationship on AreaGroupRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__getAreaGroupRelationshipsByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getAreaGroupRelationshipsByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get area groups by unique tokens.
@@ -18191,16 +19494,9 @@ func getAreaGroupsByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getAreaGroupsByTokenResponse, error) {
-	__input := __getAreaGroupsByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getAreaGroupsByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getAreaGroupsByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getAreaGroupsByToken",
+		Query: `
 query getAreaGroupsByToken ($tokens: [String!]!) {
 	areaGroupsByToken(tokens: $tokens) {
 		... DefaultAreaGroup
@@ -18222,10 +19518,22 @@ fragment DefaultAreaGroup on AreaGroup {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getAreaGroupsByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getAreaGroupsByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get area relationship types by unique tokens.
@@ -18234,16 +19542,9 @@ func getAreaRelationshipTypesByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getAreaRelationshipTypesByTokenResponse, error) {
-	__input := __getAreaRelationshipTypesByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getAreaRelationshipTypesByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getAreaRelationshipTypesByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getAreaRelationshipTypesByToken",
+		Query: `
 query getAreaRelationshipTypesByToken ($tokens: [String!]!) {
 	areaRelationshipTypesByToken(tokens: $tokens) {
 		... DefaultAreaRelationshipType
@@ -18260,10 +19561,22 @@ fragment DefaultAreaRelationshipType on AreaRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getAreaRelationshipTypesByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getAreaRelationshipTypesByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get area relationships by unique tokens.
@@ -18272,16 +19585,9 @@ func getAreaRelationshipsByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getAreaRelationshipsByTokenResponse, error) {
-	__input := __getAreaRelationshipsByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getAreaRelationshipsByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getAreaRelationshipsByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getAreaRelationshipsByToken",
+		Query: `
 query getAreaRelationshipsByToken ($tokens: [String!]!) {
 	areaRelationshipsByToken(tokens: $tokens) {
 		... DefaultAreaRelationship
@@ -18298,10 +19604,8 @@ fragment DefaultAreaRelationship on AreaRelationship {
 		name
 		description
 	}
-	targetArea {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -18310,11 +19614,49 @@ fragment DefaultAreaRelationship on AreaRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__getAreaRelationshipsByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getAreaRelationshipsByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get area types by unique tokens.
@@ -18323,16 +19665,9 @@ func getAreaTypesByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getAreaTypesByTokenResponse, error) {
-	__input := __getAreaTypesByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getAreaTypesByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getAreaTypesByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getAreaTypesByToken",
+		Query: `
 query getAreaTypesByToken ($tokens: [String!]!) {
 	areaTypesByToken(tokens: $tokens) {
 		... DefaultAreaType
@@ -18354,10 +19689,22 @@ fragment DefaultAreaType on AreaType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getAreaTypesByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getAreaTypesByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get areas by unique tokens.
@@ -18366,16 +19713,9 @@ func getAreasByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getAreasByTokenResponse, error) {
-	__input := __getAreasByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getAreasByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getAreasByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getAreasByToken",
+		Query: `
 query getAreasByToken ($tokens: [String!]!) {
 	areasByToken(tokens: $tokens) {
 		... DefaultArea
@@ -18397,10 +19737,22 @@ fragment DefaultArea on Area {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getAreasByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getAreasByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get asset group relationship types by unique token.
@@ -18409,16 +19761,9 @@ func getAssetGroupRelationshipTypesByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getAssetGroupRelationshipTypesByTokenResponse, error) {
-	__input := __getAssetGroupRelationshipTypesByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getAssetGroupRelationshipTypesByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getAssetGroupRelationshipTypesByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getAssetGroupRelationshipTypesByToken",
+		Query: `
 query getAssetGroupRelationshipTypesByToken ($tokens: [String!]!) {
 	assetGroupRelationshipTypesByToken(tokens: $tokens) {
 		... DefaultAssetGroupRelationshipType
@@ -18435,10 +19780,22 @@ fragment DefaultAssetGroupRelationshipType on AssetGroupRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getAssetGroupRelationshipTypesByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getAssetGroupRelationshipTypesByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get asset group relationships by unique tokens.
@@ -18447,16 +19804,9 @@ func getAssetGroupRelationshipsByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getAssetGroupRelationshipsByTokenResponse, error) {
-	__input := __getAssetGroupRelationshipsByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getAssetGroupRelationshipsByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getAssetGroupRelationshipsByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getAssetGroupRelationshipsByToken",
+		Query: `
 query getAssetGroupRelationshipsByToken ($tokens: [String!]!) {
 	assetGroupRelationshipsByToken(tokens: $tokens) {
 		... DefaultAssetGroupRelationship
@@ -18468,15 +19818,13 @@ fragment DefaultAssetGroupRelationship on AssetGroupRelationship {
 	updatedAt
 	deletedAt
 	token
-	assetGroup {
+	sourceAssetGroup {
 		token
 		name
 		description
 	}
-	asset {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -18485,11 +19833,49 @@ fragment DefaultAssetGroupRelationship on AssetGroupRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__getAssetGroupRelationshipsByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getAssetGroupRelationshipsByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get asset groups by unique tokens.
@@ -18498,16 +19884,9 @@ func getAssetGroupsByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getAssetGroupsByTokenResponse, error) {
-	__input := __getAssetGroupsByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getAssetGroupsByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getAssetGroupsByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getAssetGroupsByToken",
+		Query: `
 query getAssetGroupsByToken ($tokens: [String!]!) {
 	assetGroupsByToken(tokens: $tokens) {
 		... DefaultAssetGroup
@@ -18529,10 +19908,22 @@ fragment DefaultAssetGroup on AssetGroup {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getAssetGroupsByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getAssetGroupsByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get asset relationship types by unique tokens.
@@ -18541,16 +19932,9 @@ func getAssetRelationshipTypesByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getAssetRelationshipTypesByTokenResponse, error) {
-	__input := __getAssetRelationshipTypesByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getAssetRelationshipTypesByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getAssetRelationshipTypesByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getAssetRelationshipTypesByToken",
+		Query: `
 query getAssetRelationshipTypesByToken ($tokens: [String!]!) {
 	assetRelationshipTypesByToken(tokens: $tokens) {
 		... DefaultAssetRelationshipType
@@ -18567,10 +19951,22 @@ fragment DefaultAssetRelationshipType on AssetRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getAssetRelationshipTypesByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getAssetRelationshipTypesByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get asset relationships by unique tokens.
@@ -18579,16 +19975,9 @@ func getAssetRelationshipsByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getAssetRelationshipsByTokenResponse, error) {
-	__input := __getAssetRelationshipsByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getAssetRelationshipsByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getAssetRelationshipsByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getAssetRelationshipsByToken",
+		Query: `
 query getAssetRelationshipsByToken ($tokens: [String!]!) {
 	assetRelationshipsByToken(tokens: $tokens) {
 		... DefaultAssetRelationship
@@ -18605,10 +19994,8 @@ fragment DefaultAssetRelationship on AssetRelationship {
 		name
 		description
 	}
-	targetAsset {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -18617,11 +20004,49 @@ fragment DefaultAssetRelationship on AssetRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__getAssetRelationshipsByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getAssetRelationshipsByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get asset types by unique tokens.
@@ -18630,16 +20055,9 @@ func getAssetTypesByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getAssetTypesByTokenResponse, error) {
-	__input := __getAssetTypesByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getAssetTypesByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getAssetTypesByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getAssetTypesByToken",
+		Query: `
 query getAssetTypesByToken ($tokens: [String!]!) {
 	assetTypesByToken(tokens: $tokens) {
 		... DefaultAssetType
@@ -18661,10 +20079,22 @@ fragment DefaultAssetType on AssetType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getAssetTypesByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getAssetTypesByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get assets by unique tokens.
@@ -18673,16 +20103,9 @@ func getAssetsByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getAssetsByTokenResponse, error) {
-	__input := __getAssetsByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getAssetsByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getAssetsByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getAssetsByToken",
+		Query: `
 query getAssetsByToken ($tokens: [String!]!) {
 	assetsByToken(tokens: $tokens) {
 		... DefaultAsset
@@ -18704,10 +20127,22 @@ fragment DefaultAsset on Asset {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getAssetsByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getAssetsByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get customer group relationship types by unique token.
@@ -18716,16 +20151,9 @@ func getCustomerGroupRelationshipTypesByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getCustomerGroupRelationshipTypesByTokenResponse, error) {
-	__input := __getCustomerGroupRelationshipTypesByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getCustomerGroupRelationshipTypesByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getCustomerGroupRelationshipTypesByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getCustomerGroupRelationshipTypesByToken",
+		Query: `
 query getCustomerGroupRelationshipTypesByToken ($tokens: [String!]!) {
 	customerGroupRelationshipTypesByToken(tokens: $tokens) {
 		... DefaultCustomerGroupRelationshipType
@@ -18742,10 +20170,22 @@ fragment DefaultCustomerGroupRelationshipType on CustomerGroupRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getCustomerGroupRelationshipTypesByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getCustomerGroupRelationshipTypesByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get customer group relationships by unique tokens.
@@ -18754,16 +20194,9 @@ func getCustomerGroupRelationshipsByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getCustomerGroupRelationshipsByTokenResponse, error) {
-	__input := __getCustomerGroupRelationshipsByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getCustomerGroupRelationshipsByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getCustomerGroupRelationshipsByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getCustomerGroupRelationshipsByToken",
+		Query: `
 query getCustomerGroupRelationshipsByToken ($tokens: [String!]!) {
 	customerGroupRelationshipsByToken(tokens: $tokens) {
 		... DefaultCustomerGroupRelationship
@@ -18775,15 +20208,13 @@ fragment DefaultCustomerGroupRelationship on CustomerGroupRelationship {
 	updatedAt
 	deletedAt
 	token
-	customerGroup {
+	sourceCustomerGroup {
 		token
 		name
 		description
 	}
-	customer {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -18792,11 +20223,49 @@ fragment DefaultCustomerGroupRelationship on CustomerGroupRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__getCustomerGroupRelationshipsByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getCustomerGroupRelationshipsByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get customer groups by unique tokens.
@@ -18805,16 +20274,9 @@ func getCustomerGroupsByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getCustomerGroupsByTokenResponse, error) {
-	__input := __getCustomerGroupsByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getCustomerGroupsByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getCustomerGroupsByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getCustomerGroupsByToken",
+		Query: `
 query getCustomerGroupsByToken ($tokens: [String!]!) {
 	customerGroupsByToken(tokens: $tokens) {
 		... DefaultCustomerGroup
@@ -18836,10 +20298,22 @@ fragment DefaultCustomerGroup on CustomerGroup {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getCustomerGroupsByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getCustomerGroupsByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get customer relationship types by unique tokens.
@@ -18848,16 +20322,9 @@ func getCustomerRelationshipTypesByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getCustomerRelationshipTypesByTokenResponse, error) {
-	__input := __getCustomerRelationshipTypesByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getCustomerRelationshipTypesByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getCustomerRelationshipTypesByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getCustomerRelationshipTypesByToken",
+		Query: `
 query getCustomerRelationshipTypesByToken ($tokens: [String!]!) {
 	customerRelationshipTypesByToken(tokens: $tokens) {
 		... DefaultCustomerRelationshipType
@@ -18874,10 +20341,22 @@ fragment DefaultCustomerRelationshipType on CustomerRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getCustomerRelationshipTypesByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getCustomerRelationshipTypesByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get customer relationships by unique tokens.
@@ -18886,16 +20365,9 @@ func getCustomerRelationshipsByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getCustomerRelationshipsByTokenResponse, error) {
-	__input := __getCustomerRelationshipsByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getCustomerRelationshipsByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getCustomerRelationshipsByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getCustomerRelationshipsByToken",
+		Query: `
 query getCustomerRelationshipsByToken ($tokens: [String!]!) {
 	customerRelationshipsByToken(tokens: $tokens) {
 		... DefaultCustomerRelationship
@@ -18912,10 +20384,8 @@ fragment DefaultCustomerRelationship on CustomerRelationship {
 		name
 		description
 	}
-	targetCustomer {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -18924,11 +20394,49 @@ fragment DefaultCustomerRelationship on CustomerRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__getCustomerRelationshipsByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getCustomerRelationshipsByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get customer types by unique tokens.
@@ -18937,16 +20445,9 @@ func getCustomerTypesByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getCustomerTypesByTokenResponse, error) {
-	__input := __getCustomerTypesByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getCustomerTypesByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getCustomerTypesByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getCustomerTypesByToken",
+		Query: `
 query getCustomerTypesByToken ($tokens: [String!]!) {
 	customerTypesByToken(tokens: $tokens) {
 		... DefaultCustomerType
@@ -18968,10 +20469,22 @@ fragment DefaultCustomerType on CustomerType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getCustomerTypesByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getCustomerTypesByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get customers by unique tokens.
@@ -18980,16 +20493,9 @@ func getCustomersByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getCustomersByTokenResponse, error) {
-	__input := __getCustomersByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getCustomersByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getCustomersByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getCustomersByToken",
+		Query: `
 query getCustomersByToken ($tokens: [String!]!) {
 	customersByToken(tokens: $tokens) {
 		... DefaultCustomer
@@ -19011,10 +20517,22 @@ fragment DefaultCustomer on Customer {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getCustomersByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getCustomersByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get device group relationship types by unique token.
@@ -19023,16 +20541,9 @@ func getDeviceGroupRelationshipTypesByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getDeviceGroupRelationshipTypesByTokenResponse, error) {
-	__input := __getDeviceGroupRelationshipTypesByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getDeviceGroupRelationshipTypesByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getDeviceGroupRelationshipTypesByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getDeviceGroupRelationshipTypesByToken",
+		Query: `
 query getDeviceGroupRelationshipTypesByToken ($tokens: [String!]!) {
 	deviceGroupRelationshipTypesByToken(tokens: $tokens) {
 		... DefaultDeviceGroupRelationshipType
@@ -19049,10 +20560,22 @@ fragment DefaultDeviceGroupRelationshipType on DeviceGroupRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getDeviceGroupRelationshipTypesByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getDeviceGroupRelationshipTypesByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get device group relationships by unique tokens.
@@ -19061,16 +20584,9 @@ func getDeviceGroupRelationshipsByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getDeviceGroupRelationshipsByTokenResponse, error) {
-	__input := __getDeviceGroupRelationshipsByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getDeviceGroupRelationshipsByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getDeviceGroupRelationshipsByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getDeviceGroupRelationshipsByToken",
+		Query: `
 query getDeviceGroupRelationshipsByToken ($tokens: [String!]!) {
 	deviceGroupRelationshipsByToken(tokens: $tokens) {
 		... DefaultDeviceGroupRelationship
@@ -19082,15 +20598,13 @@ fragment DefaultDeviceGroupRelationship on DeviceGroupRelationship {
 	updatedAt
 	deletedAt
 	token
-	deviceGroup {
+	sourceDeviceGroup {
 		token
 		name
 		description
 	}
-	device {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -19099,11 +20613,49 @@ fragment DefaultDeviceGroupRelationship on DeviceGroupRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__getDeviceGroupRelationshipsByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getDeviceGroupRelationshipsByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get device groups by unique tokens.
@@ -19112,16 +20664,9 @@ func getDeviceGroupsByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getDeviceGroupsByTokenResponse, error) {
-	__input := __getDeviceGroupsByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getDeviceGroupsByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getDeviceGroupsByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getDeviceGroupsByToken",
+		Query: `
 query getDeviceGroupsByToken ($tokens: [String!]!) {
 	deviceGroupsByToken(tokens: $tokens) {
 		... DefaultDeviceGroup
@@ -19143,10 +20688,22 @@ fragment DefaultDeviceGroup on DeviceGroup {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getDeviceGroupsByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getDeviceGroupsByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get device relationship types by unique tokens.
@@ -19155,16 +20712,9 @@ func getDeviceRelationshipTypesByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getDeviceRelationshipTypesByTokenResponse, error) {
-	__input := __getDeviceRelationshipTypesByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getDeviceRelationshipTypesByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getDeviceRelationshipTypesByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getDeviceRelationshipTypesByToken",
+		Query: `
 query getDeviceRelationshipTypesByToken ($tokens: [String!]!) {
 	deviceRelationshipTypesByToken(tokens: $tokens) {
 		... DefaultDeviceRelationshipType
@@ -19181,10 +20731,22 @@ fragment DefaultDeviceRelationshipType on DeviceRelationshipType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getDeviceRelationshipTypesByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getDeviceRelationshipTypesByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get device relationships by unique tokens.
@@ -19193,16 +20755,9 @@ func getDeviceRelationshipsByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getDeviceRelationshipsByTokenResponse, error) {
-	__input := __getDeviceRelationshipsByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getDeviceRelationshipsByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getDeviceRelationshipsByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getDeviceRelationshipsByToken",
+		Query: `
 query getDeviceRelationshipsByToken ($tokens: [String!]!) {
 	deviceRelationshipsByToken(tokens: $tokens) {
 		... DefaultDeviceRelationship
@@ -19219,10 +20774,8 @@ fragment DefaultDeviceRelationship on DeviceRelationship {
 		name
 		description
 	}
-	targetDevice {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -19231,11 +20784,49 @@ fragment DefaultDeviceRelationship on DeviceRelationship {
 	}
 	metadata
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__getDeviceRelationshipsByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getDeviceRelationshipsByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get device types by unique tokens.
@@ -19244,16 +20835,9 @@ func getDeviceTypesByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getDeviceTypesByTokenResponse, error) {
-	__input := __getDeviceTypesByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getDeviceTypesByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getDeviceTypesByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getDeviceTypesByToken",
+		Query: `
 query getDeviceTypesByToken ($tokens: [String!]!) {
 	deviceTypesByToken(tokens: $tokens) {
 		... DefaultDeviceType
@@ -19275,10 +20859,22 @@ fragment DefaultDeviceType on DeviceType {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getDeviceTypesByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getDeviceTypesByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // Get devices by unique tokens.
@@ -19287,16 +20883,9 @@ func getDevicesByToken(
 	client graphql.Client,
 	tokens []string,
 ) (*getDevicesByTokenResponse, error) {
-	__input := __getDevicesByTokenInput{
-		Tokens: tokens,
-	}
-	var err error
-
-	var retval getDevicesByTokenResponse
-	err = client.MakeRequest(
-		ctx,
-		"getDevicesByToken",
-		`
+	req := &graphql.Request{
+		OpName: "getDevicesByToken",
+		Query: `
 query getDevicesByToken ($tokens: [String!]!) {
 	devicesByToken(tokens: $tokens) {
 		... DefaultDevice
@@ -19321,10 +20910,22 @@ fragment DefaultDevice on Device {
 	metadata
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__getDevicesByTokenInput{
+			Tokens: tokens,
+		},
+	}
+	var err error
+
+	var data getDevicesByTokenResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List area group relationship types that match criteria.
@@ -19334,17 +20935,9 @@ func listAreaGroupRelationshipTypes(
 	pageNumber int,
 	pageSize int,
 ) (*listAreaGroupRelationshipTypesResponse, error) {
-	__input := __listAreaGroupRelationshipTypesInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listAreaGroupRelationshipTypesResponse
-	err = client.MakeRequest(
-		ctx,
-		"listAreaGroupRelationshipTypes",
-		`
+	req := &graphql.Request{
+		OpName: "listAreaGroupRelationshipTypes",
+		Query: `
 query listAreaGroupRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	areaGroupRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -19371,10 +20964,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listAreaGroupRelationshipTypesInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listAreaGroupRelationshipTypesResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List area group relationships that match criteria.
@@ -19384,17 +20990,9 @@ func listAreaGroupRelationships(
 	pageNumber int,
 	pageSize int,
 ) (*listAreaGroupRelationshipsResponse, error) {
-	__input := __listAreaGroupRelationshipsInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listAreaGroupRelationshipsResponse
-	err = client.MakeRequest(
-		ctx,
-		"listAreaGroupRelationships",
-		`
+	req := &graphql.Request{
+		OpName: "listAreaGroupRelationships",
+		Query: `
 query listAreaGroupRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	areaGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -19411,15 +21009,13 @@ fragment DefaultAreaGroupRelationship on AreaGroupRelationship {
 	updatedAt
 	deletedAt
 	token
-	areaGroup {
+	sourceAreaGroup {
 		token
 		name
 		description
 	}
-	area {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -19433,11 +21029,50 @@ fragment DefaultPagination on SearchResultsPagination {
 	pageEnd
 	totalRecords
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__listAreaGroupRelationshipsInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listAreaGroupRelationshipsResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List area groups that match criteria.
@@ -19447,17 +21082,9 @@ func listAreaGroups(
 	pageNumber int,
 	pageSize int,
 ) (*listAreaGroupsResponse, error) {
-	__input := __listAreaGroupsInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listAreaGroupsResponse
-	err = client.MakeRequest(
-		ctx,
-		"listAreaGroups",
-		`
+	req := &graphql.Request{
+		OpName: "listAreaGroups",
+		Query: `
 query listAreaGroups ($pageNumber: Int!, $pageSize: Int!) {
 	areaGroups(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -19489,10 +21116,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listAreaGroupsInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listAreaGroupsResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List area relationship types that match criteria.
@@ -19502,17 +21142,9 @@ func listAreaRelationshipTypes(
 	pageNumber int,
 	pageSize int,
 ) (*listAreaRelationshipTypesResponse, error) {
-	__input := __listAreaRelationshipTypesInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listAreaRelationshipTypesResponse
-	err = client.MakeRequest(
-		ctx,
-		"listAreaRelationshipTypes",
-		`
+	req := &graphql.Request{
+		OpName: "listAreaRelationshipTypes",
+		Query: `
 query listAreaRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	areaRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -19539,10 +21171,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listAreaRelationshipTypesInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listAreaRelationshipTypesResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List area relationships that match criteria.
@@ -19552,17 +21197,9 @@ func listAreaRelationships(
 	pageNumber int,
 	pageSize int,
 ) (*listAreaRelationshipsResponse, error) {
-	__input := __listAreaRelationshipsInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listAreaRelationshipsResponse
-	err = client.MakeRequest(
-		ctx,
-		"listAreaRelationships",
-		`
+	req := &graphql.Request{
+		OpName: "listAreaRelationships",
+		Query: `
 query listAreaRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	areaRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -19584,10 +21221,8 @@ fragment DefaultAreaRelationship on AreaRelationship {
 		name
 		description
 	}
-	targetArea {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -19601,11 +21236,50 @@ fragment DefaultPagination on SearchResultsPagination {
 	pageEnd
 	totalRecords
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__listAreaRelationshipsInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listAreaRelationshipsResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List area types that match criteria.
@@ -19615,17 +21289,9 @@ func listAreaTypes(
 	pageNumber int,
 	pageSize int,
 ) (*listAreaTypesResponse, error) {
-	__input := __listAreaTypesInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listAreaTypesResponse
-	err = client.MakeRequest(
-		ctx,
-		"listAreaTypes",
-		`
+	req := &graphql.Request{
+		OpName: "listAreaTypes",
+		Query: `
 query listAreaTypes ($pageNumber: Int!, $pageSize: Int!) {
 	areaTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -19657,10 +21323,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listAreaTypesInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listAreaTypesResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List areas that match criteria.
@@ -19670,17 +21349,9 @@ func listAreas(
 	pageNumber int,
 	pageSize int,
 ) (*listAreasResponse, error) {
-	__input := __listAreasInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listAreasResponse
-	err = client.MakeRequest(
-		ctx,
-		"listAreas",
-		`
+	req := &graphql.Request{
+		OpName: "listAreas",
+		Query: `
 query listAreas ($pageNumber: Int!, $pageSize: Int!) {
 	areas(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -19712,10 +21383,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listAreasInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listAreasResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List asset group relationship types that match criteria.
@@ -19725,17 +21409,9 @@ func listAssetGroupRelationshipTypes(
 	pageNumber int,
 	pageSize int,
 ) (*listAssetGroupRelationshipTypesResponse, error) {
-	__input := __listAssetGroupRelationshipTypesInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listAssetGroupRelationshipTypesResponse
-	err = client.MakeRequest(
-		ctx,
-		"listAssetGroupRelationshipTypes",
-		`
+	req := &graphql.Request{
+		OpName: "listAssetGroupRelationshipTypes",
+		Query: `
 query listAssetGroupRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	assetGroupRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -19762,10 +21438,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listAssetGroupRelationshipTypesInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listAssetGroupRelationshipTypesResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List asset group relationships that match criteria.
@@ -19775,17 +21464,9 @@ func listAssetGroupRelationships(
 	pageNumber int,
 	pageSize int,
 ) (*listAssetGroupRelationshipsResponse, error) {
-	__input := __listAssetGroupRelationshipsInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listAssetGroupRelationshipsResponse
-	err = client.MakeRequest(
-		ctx,
-		"listAssetGroupRelationships",
-		`
+	req := &graphql.Request{
+		OpName: "listAssetGroupRelationships",
+		Query: `
 query listAssetGroupRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	assetGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -19802,15 +21483,13 @@ fragment DefaultAssetGroupRelationship on AssetGroupRelationship {
 	updatedAt
 	deletedAt
 	token
-	assetGroup {
+	sourceAssetGroup {
 		token
 		name
 		description
 	}
-	asset {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -19824,11 +21503,50 @@ fragment DefaultPagination on SearchResultsPagination {
 	pageEnd
 	totalRecords
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__listAssetGroupRelationshipsInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listAssetGroupRelationshipsResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List asset groups that match criteria.
@@ -19838,17 +21556,9 @@ func listAssetGroups(
 	pageNumber int,
 	pageSize int,
 ) (*listAssetGroupsResponse, error) {
-	__input := __listAssetGroupsInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listAssetGroupsResponse
-	err = client.MakeRequest(
-		ctx,
-		"listAssetGroups",
-		`
+	req := &graphql.Request{
+		OpName: "listAssetGroups",
+		Query: `
 query listAssetGroups ($pageNumber: Int!, $pageSize: Int!) {
 	assetGroups(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -19880,10 +21590,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listAssetGroupsInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listAssetGroupsResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List asset relationship types that match criteria.
@@ -19893,17 +21616,9 @@ func listAssetRelationshipTypes(
 	pageNumber int,
 	pageSize int,
 ) (*listAssetRelationshipTypesResponse, error) {
-	__input := __listAssetRelationshipTypesInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listAssetRelationshipTypesResponse
-	err = client.MakeRequest(
-		ctx,
-		"listAssetRelationshipTypes",
-		`
+	req := &graphql.Request{
+		OpName: "listAssetRelationshipTypes",
+		Query: `
 query listAssetRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	assetRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -19930,10 +21645,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listAssetRelationshipTypesInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listAssetRelationshipTypesResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List asset relationships that match criteria.
@@ -19943,17 +21671,9 @@ func listAssetRelationships(
 	pageNumber int,
 	pageSize int,
 ) (*listAssetRelationshipsResponse, error) {
-	__input := __listAssetRelationshipsInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listAssetRelationshipsResponse
-	err = client.MakeRequest(
-		ctx,
-		"listAssetRelationships",
-		`
+	req := &graphql.Request{
+		OpName: "listAssetRelationships",
+		Query: `
 query listAssetRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	assetRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -19975,10 +21695,8 @@ fragment DefaultAssetRelationship on AssetRelationship {
 		name
 		description
 	}
-	targetAsset {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -19992,11 +21710,50 @@ fragment DefaultPagination on SearchResultsPagination {
 	pageEnd
 	totalRecords
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__listAssetRelationshipsInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listAssetRelationshipsResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List asset types that match criteria.
@@ -20006,17 +21763,9 @@ func listAssetTypes(
 	pageNumber int,
 	pageSize int,
 ) (*listAssetTypesResponse, error) {
-	__input := __listAssetTypesInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listAssetTypesResponse
-	err = client.MakeRequest(
-		ctx,
-		"listAssetTypes",
-		`
+	req := &graphql.Request{
+		OpName: "listAssetTypes",
+		Query: `
 query listAssetTypes ($pageNumber: Int!, $pageSize: Int!) {
 	assetTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20048,10 +21797,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listAssetTypesInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listAssetTypesResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List assets that match criteria.
@@ -20061,17 +21823,9 @@ func listAssets(
 	pageNumber int,
 	pageSize int,
 ) (*listAssetsResponse, error) {
-	__input := __listAssetsInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listAssetsResponse
-	err = client.MakeRequest(
-		ctx,
-		"listAssets",
-		`
+	req := &graphql.Request{
+		OpName: "listAssets",
+		Query: `
 query listAssets ($pageNumber: Int!, $pageSize: Int!) {
 	assets(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20103,10 +21857,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listAssetsInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listAssetsResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List customer group relationship types that match criteria.
@@ -20116,17 +21883,9 @@ func listCustomerGroupRelationshipTypes(
 	pageNumber int,
 	pageSize int,
 ) (*listCustomerGroupRelationshipTypesResponse, error) {
-	__input := __listCustomerGroupRelationshipTypesInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listCustomerGroupRelationshipTypesResponse
-	err = client.MakeRequest(
-		ctx,
-		"listCustomerGroupRelationshipTypes",
-		`
+	req := &graphql.Request{
+		OpName: "listCustomerGroupRelationshipTypes",
+		Query: `
 query listCustomerGroupRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	customerGroupRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20153,10 +21912,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listCustomerGroupRelationshipTypesInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listCustomerGroupRelationshipTypesResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List customer group relationships that match criteria.
@@ -20166,17 +21938,9 @@ func listCustomerGroupRelationships(
 	pageNumber int,
 	pageSize int,
 ) (*listCustomerGroupRelationshipsResponse, error) {
-	__input := __listCustomerGroupRelationshipsInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listCustomerGroupRelationshipsResponse
-	err = client.MakeRequest(
-		ctx,
-		"listCustomerGroupRelationships",
-		`
+	req := &graphql.Request{
+		OpName: "listCustomerGroupRelationships",
+		Query: `
 query listCustomerGroupRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	customerGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20193,15 +21957,13 @@ fragment DefaultCustomerGroupRelationship on CustomerGroupRelationship {
 	updatedAt
 	deletedAt
 	token
-	customerGroup {
+	sourceCustomerGroup {
 		token
 		name
 		description
 	}
-	customer {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -20215,11 +21977,50 @@ fragment DefaultPagination on SearchResultsPagination {
 	pageEnd
 	totalRecords
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__listCustomerGroupRelationshipsInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listCustomerGroupRelationshipsResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List customer groups that match criteria.
@@ -20229,17 +22030,9 @@ func listCustomerGroups(
 	pageNumber int,
 	pageSize int,
 ) (*listCustomerGroupsResponse, error) {
-	__input := __listCustomerGroupsInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listCustomerGroupsResponse
-	err = client.MakeRequest(
-		ctx,
-		"listCustomerGroups",
-		`
+	req := &graphql.Request{
+		OpName: "listCustomerGroups",
+		Query: `
 query listCustomerGroups ($pageNumber: Int!, $pageSize: Int!) {
 	customerGroups(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20271,10 +22064,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listCustomerGroupsInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listCustomerGroupsResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List customer relationship types that match criteria.
@@ -20284,17 +22090,9 @@ func listCustomerRelationshipTypes(
 	pageNumber int,
 	pageSize int,
 ) (*listCustomerRelationshipTypesResponse, error) {
-	__input := __listCustomerRelationshipTypesInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listCustomerRelationshipTypesResponse
-	err = client.MakeRequest(
-		ctx,
-		"listCustomerRelationshipTypes",
-		`
+	req := &graphql.Request{
+		OpName: "listCustomerRelationshipTypes",
+		Query: `
 query listCustomerRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	customerRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20321,10 +22119,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listCustomerRelationshipTypesInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listCustomerRelationshipTypesResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List customer relationships that match criteria.
@@ -20334,17 +22145,9 @@ func listCustomerRelationships(
 	pageNumber int,
 	pageSize int,
 ) (*listCustomerRelationshipsResponse, error) {
-	__input := __listCustomerRelationshipsInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listCustomerRelationshipsResponse
-	err = client.MakeRequest(
-		ctx,
-		"listCustomerRelationships",
-		`
+	req := &graphql.Request{
+		OpName: "listCustomerRelationships",
+		Query: `
 query listCustomerRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	customerRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20366,10 +22169,8 @@ fragment DefaultCustomerRelationship on CustomerRelationship {
 		name
 		description
 	}
-	targetCustomer {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -20383,11 +22184,50 @@ fragment DefaultPagination on SearchResultsPagination {
 	pageEnd
 	totalRecords
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__listCustomerRelationshipsInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listCustomerRelationshipsResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List customer types that match criteria.
@@ -20397,17 +22237,9 @@ func listCustomerTypes(
 	pageNumber int,
 	pageSize int,
 ) (*listCustomerTypesResponse, error) {
-	__input := __listCustomerTypesInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listCustomerTypesResponse
-	err = client.MakeRequest(
-		ctx,
-		"listCustomerTypes",
-		`
+	req := &graphql.Request{
+		OpName: "listCustomerTypes",
+		Query: `
 query listCustomerTypes ($pageNumber: Int!, $pageSize: Int!) {
 	customerTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20439,10 +22271,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listCustomerTypesInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listCustomerTypesResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List customers that match criteria.
@@ -20452,17 +22297,9 @@ func listCustomers(
 	pageNumber int,
 	pageSize int,
 ) (*listCustomersResponse, error) {
-	__input := __listCustomersInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listCustomersResponse
-	err = client.MakeRequest(
-		ctx,
-		"listCustomers",
-		`
+	req := &graphql.Request{
+		OpName: "listCustomers",
+		Query: `
 query listCustomers ($pageNumber: Int!, $pageSize: Int!) {
 	customers(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20494,10 +22331,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listCustomersInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listCustomersResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List device group relationship types that match criteria.
@@ -20507,17 +22357,9 @@ func listDeviceGroupRelationshipTypes(
 	pageNumber int,
 	pageSize int,
 ) (*listDeviceGroupRelationshipTypesResponse, error) {
-	__input := __listDeviceGroupRelationshipTypesInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listDeviceGroupRelationshipTypesResponse
-	err = client.MakeRequest(
-		ctx,
-		"listDeviceGroupRelationshipTypes",
-		`
+	req := &graphql.Request{
+		OpName: "listDeviceGroupRelationshipTypes",
+		Query: `
 query listDeviceGroupRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	deviceGroupRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20544,10 +22386,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listDeviceGroupRelationshipTypesInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listDeviceGroupRelationshipTypesResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List device group relationships that match criteria.
@@ -20557,17 +22412,9 @@ func listDeviceGroupRelationships(
 	pageNumber int,
 	pageSize int,
 ) (*listDeviceGroupRelationshipsResponse, error) {
-	__input := __listDeviceGroupRelationshipsInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listDeviceGroupRelationshipsResponse
-	err = client.MakeRequest(
-		ctx,
-		"listDeviceGroupRelationships",
-		`
+	req := &graphql.Request{
+		OpName: "listDeviceGroupRelationships",
+		Query: `
 query listDeviceGroupRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	deviceGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20584,15 +22431,13 @@ fragment DefaultDeviceGroupRelationship on DeviceGroupRelationship {
 	updatedAt
 	deletedAt
 	token
-	deviceGroup {
+	sourceDeviceGroup {
 		token
 		name
 		description
 	}
-	device {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -20606,11 +22451,50 @@ fragment DefaultPagination on SearchResultsPagination {
 	pageEnd
 	totalRecords
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__listDeviceGroupRelationshipsInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listDeviceGroupRelationshipsResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List device groups that match criteria.
@@ -20620,17 +22504,9 @@ func listDeviceGroups(
 	pageNumber int,
 	pageSize int,
 ) (*listDeviceGroupsResponse, error) {
-	__input := __listDeviceGroupsInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listDeviceGroupsResponse
-	err = client.MakeRequest(
-		ctx,
-		"listDeviceGroups",
-		`
+	req := &graphql.Request{
+		OpName: "listDeviceGroups",
+		Query: `
 query listDeviceGroups ($pageNumber: Int!, $pageSize: Int!) {
 	deviceGroups(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20662,10 +22538,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listDeviceGroupsInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listDeviceGroupsResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List device relationship types that match criteria.
@@ -20675,17 +22564,9 @@ func listDeviceRelationshipTypes(
 	pageNumber int,
 	pageSize int,
 ) (*listDeviceRelationshipTypesResponse, error) {
-	__input := __listDeviceRelationshipTypesInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listDeviceRelationshipTypesResponse
-	err = client.MakeRequest(
-		ctx,
-		"listDeviceRelationshipTypes",
-		`
+	req := &graphql.Request{
+		OpName: "listDeviceRelationshipTypes",
+		Query: `
 query listDeviceRelationshipTypes ($pageNumber: Int!, $pageSize: Int!) {
 	deviceRelationshipTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20712,10 +22593,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listDeviceRelationshipTypesInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listDeviceRelationshipTypesResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List device relationships that match criteria.
@@ -20725,17 +22619,9 @@ func listDeviceRelationships(
 	pageNumber int,
 	pageSize int,
 ) (*listDeviceRelationshipsResponse, error) {
-	__input := __listDeviceRelationshipsInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listDeviceRelationshipsResponse
-	err = client.MakeRequest(
-		ctx,
-		"listDeviceRelationships",
-		`
+	req := &graphql.Request{
+		OpName: "listDeviceRelationships",
+		Query: `
 query listDeviceRelationships ($pageNumber: Int!, $pageSize: Int!) {
 	deviceRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20757,10 +22643,8 @@ fragment DefaultDeviceRelationship on DeviceRelationship {
 		name
 		description
 	}
-	targetDevice {
-		token
-		name
-		description
+	targets {
+		... DefaultRelationshipTargets
 	}
 	relationshipType {
 		token
@@ -20774,11 +22658,50 @@ fragment DefaultPagination on SearchResultsPagination {
 	pageEnd
 	totalRecords
 }
+fragment DefaultRelationshipTargets on EntityRelationshipTargets {
+	targetDevice {
+		token
+	}
+	targetDeviceGroup {
+		token
+	}
+	targetAsset {
+		token
+	}
+	targetAssetGroup {
+		token
+	}
+	targetArea {
+		token
+	}
+	targetAreaGroup {
+		token
+	}
+	targetCustomer {
+		token
+	}
+	targetCustomerGroup {
+		token
+	}
+}
 `,
-		&retval,
-		&__input,
+		Variables: &__listDeviceRelationshipsInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listDeviceRelationshipsResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List device types that match criteria.
@@ -20788,17 +22711,9 @@ func listDeviceTypes(
 	pageNumber int,
 	pageSize int,
 ) (*listDeviceTypesResponse, error) {
-	__input := __listDeviceTypesInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listDeviceTypesResponse
-	err = client.MakeRequest(
-		ctx,
-		"listDeviceTypes",
-		`
+	req := &graphql.Request{
+		OpName: "listDeviceTypes",
+		Query: `
 query listDeviceTypes ($pageNumber: Int!, $pageSize: Int!) {
 	deviceTypes(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20830,10 +22745,23 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listDeviceTypesInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listDeviceTypesResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }
 
 // List devices that match criteria.
@@ -20843,17 +22771,9 @@ func listDevices(
 	pageNumber int,
 	pageSize int,
 ) (*listDevicesResponse, error) {
-	__input := __listDevicesInput{
-		PageNumber: pageNumber,
-		PageSize:   pageSize,
-	}
-	var err error
-
-	var retval listDevicesResponse
-	err = client.MakeRequest(
-		ctx,
-		"listDevices",
-		`
+	req := &graphql.Request{
+		OpName: "listDevices",
+		Query: `
 query listDevices ($pageNumber: Int!, $pageSize: Int!) {
 	devices(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
 		results {
@@ -20888,8 +22808,21 @@ fragment DefaultPagination on SearchResultsPagination {
 	totalRecords
 }
 `,
-		&retval,
-		&__input,
+		Variables: &__listDevicesInput{
+			PageNumber: pageNumber,
+			PageSize:   pageSize,
+		},
+	}
+	var err error
+
+	var data listDevicesResponse
+	resp := &graphql.Response{Data: &data}
+
+	err = client.MakeRequest(
+		ctx,
+		req,
+		resp,
 	)
-	return &retval, err
+
+	return &data, err
 }

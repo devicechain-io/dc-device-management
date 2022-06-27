@@ -38,7 +38,7 @@ type IDeviceRelationship interface {
 	ITokenReference
 	IMetadataEntity
 	GetSourceDevice() DefaultDeviceRelationshipSourceDevice
-	GetTargetDevice() DefaultDeviceRelationshipTargetDevice
+	GetTargets() DefaultDeviceRelationshipTargetsEntityRelationshipTargets
 	GetRelationshipType() DefaultDeviceRelationshipRelationshipTypeDeviceRelationshipType
 }
 
@@ -64,7 +64,7 @@ type IDeviceGroupRelationship interface {
 	IModel
 	ITokenReference
 	IMetadataEntity
-	GetDeviceGroup() DefaultDeviceGroupRelationshipDeviceGroup
-	GetDevice() DefaultDeviceGroupRelationshipDevice
+	GetSourceDeviceGroup() DefaultDeviceGroupRelationshipSourceDeviceGroup
+	GetTargets() DefaultDeviceGroupRelationshipTargetsEntityRelationshipTargets
 	GetRelationshipType() DefaultDeviceGroupRelationshipRelationshipTypeDeviceGroupRelationshipType
 }

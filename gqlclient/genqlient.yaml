@@ -7,6 +7,7 @@ operations:
 - ./genqlient-customers.graphql
 generated: generated.go
 package: gqlclient
+optional: value
 bindings:
   DateTime:
     type: time.Time

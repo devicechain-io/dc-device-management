@@ -3,7 +3,7 @@ module github.com/devicechain-io/dc-device-management
 go 1.17
 
 require (
-	github.com/Khan/genqlient v0.4.0
+	github.com/Khan/genqlient v0.5.0
 	github.com/devicechain-io/dc-event-sources v0.0.0
 	github.com/devicechain-io/dc-k8s v0.0.0
 	github.com/devicechain-io/dc-microservice v0.0.0
@@ -72,7 +72,7 @@ require (
 	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/stretchr/objx v0.4.0 // indirect
-	github.com/vektah/gqlparser/v2 v2.3.1 // indirect
+	github.com/vektah/gqlparser/v2 v2.4.5 // indirect
 	github.com/vmihailenco/go-tinylfu v0.2.2 // indirect
 	github.com/vmihailenco/msgpack/v5 v5.3.5 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
