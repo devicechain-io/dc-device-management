@@ -126,6 +126,8 @@ type AreaRelationship struct {
 // Search criteria for locating area relationships.
 type AreaRelationshipSearchCriteria struct {
 	rdb.Pagination
+	SourceArea       *string
+	RelationshipType *string
 }
 
 // Results for area relationship search.
@@ -215,6 +217,8 @@ type AreaGroupRelationship struct {
 // Search criteria for locating area groups relationships.
 type AreaGroupRelationshipSearchCriteria struct {
 	rdb.Pagination
+	SourceAreaGroup  *string
+	RelationshipType *string
 }
 
 // Results for area group relationship search.

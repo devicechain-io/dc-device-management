@@ -314,6 +314,8 @@ type DeviceGroupRelationship implements Model {
 input DeviceGroupRelationshipSearchCriteria {
     pageNumber: Int!
     pageSize: Int!
+    sourceDeviceGroup: String
+    relationshipType: String
 }
 
 # Search results returned from device group relationship query.
@@ -457,6 +459,8 @@ type AssetRelationship implements Model {
 input AssetRelationshipSearchCriteria {
     pageNumber: Int!
     pageSize: Int!
+    sourceAsset: String
+    relationshipType: String
 }
 
 # Search results returned from asset relationships query.
@@ -565,6 +569,8 @@ type AssetGroupRelationship implements Model {
 input AssetGroupRelationshipSearchCriteria {
     pageNumber: Int!
     pageSize: Int!
+    sourceAssetGroup: String
+    relationshipType: String
 }
 
 # Search results returned from asset group relationships query.
@@ -708,6 +714,8 @@ type CustomerRelationship implements Model & MetadataEntity {
 input CustomerRelationshipSearchCriteria {
     pageNumber: Int!
     pageSize: Int!
+    sourceCustomer: String
+    relationshipType: String
 }
 
 # Search results returned from customer relationship query.
@@ -816,6 +824,8 @@ type CustomerGroupRelationship implements Model {
 input CustomerGroupRelationshipSearchCriteria {
     pageNumber: Int!
     pageSize: Int!
+    sourceCustomerGroup: String
+    relationshipType: String
 }
 
 # Search results returned from customer group relationship query.
@@ -959,6 +969,8 @@ type AreaRelationship implements Model {
 input AreaRelationshipSearchCriteria {
     pageNumber: Int!
     pageSize: Int!
+    sourceArea: String
+    relationshipType: String
 }
 
 # Search results returned from area relationships query.
@@ -1067,6 +1079,8 @@ type AreaGroupRelationship implements Model {
 input AreaGroupRelationshipSearchCriteria {
     pageNumber: Int!
     pageSize: Int!
+    sourceAreaGroup: String
+    relationshipType: String
 }
 
 # Search results returned from area group relationships query.

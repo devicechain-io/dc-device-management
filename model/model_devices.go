@@ -220,6 +220,8 @@ type DeviceGroupRelationship struct {
 // Search criteria for locating device groups relationships.
 type DeviceGroupRelationshipSearchCriteria struct {
 	rdb.Pagination
+	SourceDeviceGroup *string
+	RelationshipType  *string
 }
 
 // Results for device group relationship search.

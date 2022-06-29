@@ -126,6 +126,8 @@ type AssetRelationship struct {
 // Search criteria for locating asset relationships.
 type AssetRelationshipSearchCriteria struct {
 	rdb.Pagination
+	SourceAsset      *string
+	RelationshipType *string
 }
 
 // Results for asset relationship search.
@@ -216,6 +218,8 @@ type AssetGroupRelationship struct {
 // Search criteria for locating asset group relationships.
 type AssetGroupRelationshipSearchCriteria struct {
 	rdb.Pagination
+	SourceAssetGroup *string
+	RelationshipType *string
 }
 
 // Results for asset group relationship search.

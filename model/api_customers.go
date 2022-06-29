@@ -380,7 +380,17 @@ func (api *Api) CustomerRelationshipsByToken(ctx context.Context, tokens []strin
 func (api *Api) CustomerRelationships(ctx context.Context,
 	criteria CustomerRelationshipSearchCriteria) (*CustomerRelationshipSearchResults, error) {
 	results := make([]CustomerRelationship, 0)
-	db, pag := api.RDB.ListOf(&CustomerRelationship{}, nil, criteria.Pagination)
+	db, pag := api.RDB.ListOf(&CustomerRelationship{}, func(result *gorm.DB) *gorm.DB {
+		if criteria.SourceCustomer != nil {
+			result = result.Where("source_customer_id = (?)",
+				api.RDB.Database.Model(&Customer{}).Select("id").Where("token = ?", criteria.SourceCustomer))
+		}
+		if criteria.RelationshipType != nil {
+			result = result.Where("relationship_type_id = (?)",
+				api.RDB.Database.Model(&CustomerRelationshipType{}).Select("id").Where("token = ?", criteria.RelationshipType))
+		}
+		return result
+	}, criteria.Pagination)
 	db.Preload("SourceCustomer").Preload("RelationshipType")
 	db = preloadRelationshipTargets(db)
 	db.Find(&results)
@@ -642,7 +652,17 @@ func (api *Api) CustomerGroupRelationshipsByToken(ctx context.Context, tokens []
 func (api *Api) CustomerGroupRelationships(ctx context.Context,
 	criteria CustomerGroupRelationshipSearchCriteria) (*CustomerGroupRelationshipSearchResults, error) {
 	results := make([]CustomerGroupRelationship, 0)
-	db, pag := api.RDB.ListOf(&CustomerGroupRelationship{}, nil, criteria.Pagination)
+	db, pag := api.RDB.ListOf(&CustomerGroupRelationship{}, func(result *gorm.DB) *gorm.DB {
+		if criteria.SourceCustomerGroup != nil {
+			result = result.Where("source_customer_group_id = (?)",
+				api.RDB.Database.Model(&CustomerGroup{}).Select("id").Where("token = ?", criteria.SourceCustomerGroup))
+		}
+		if criteria.RelationshipType != nil {
+			result = result.Where("relationship_type_id = (?)",
+				api.RDB.Database.Model(&CustomerGroupRelationshipType{}).Select("id").Where("token = ?", criteria.RelationshipType))
+		}
+		return result
+	}, criteria.Pagination)
 	db.Preload("SourceCustomerGroup").Preload("RelationshipType")
 	db = preloadRelationshipTargets(db)
 	db.Find(&results)

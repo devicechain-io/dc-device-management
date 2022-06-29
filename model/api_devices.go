@@ -382,16 +382,21 @@ func (api *Api) DeviceRelationshipsByToken(ctx context.Context, tokens []string)
 func (api *Api) DeviceRelationships(ctx context.Context,
 	criteria DeviceRelationshipSearchCriteria) (*DeviceRelationshipSearchResults, error) {
 	results := make([]DeviceRelationship, 0)
-	db, pag := api.RDB.ListOf(&DeviceRelationship{}, nil, criteria.Pagination)
-	if criteria.SourceDevice != nil {
-		db.Where("source_device_id = (select id from devices where token = ?)", criteria.SourceDevice)
-	}
-	if criteria.RelationshipType != nil {
-		db.Where("relationship_type_id = (select id from device_relationship_types where token = ?)", criteria.SourceDevice)
-	}
-	if criteria.Tracked != nil {
-		db.Where("relationship_type_id in (select id from device_relationship_types where tracked = ?)", criteria.Tracked)
-	}
+	db, pag := api.RDB.ListOf(&DeviceRelationship{}, func(result *gorm.DB) *gorm.DB {
+		if criteria.SourceDevice != nil {
+			result = result.Where("source_device_id = (?)",
+				api.RDB.Database.Model(&Device{}).Select("id").Where("token = ?", criteria.SourceDevice))
+		}
+		if criteria.RelationshipType != nil {
+			result = result.Where("relationship_type_id = (?)",
+				api.RDB.Database.Model(&DeviceRelationshipType{}).Select("id").Where("token = ?", criteria.RelationshipType))
+		}
+		if criteria.Tracked != nil {
+			result = result.Where("relationship_type_id in (?)",
+				api.RDB.Database.Model(&DeviceRelationshipType{}).Select("id").Where("tracked = ?", criteria.Tracked))
+		}
+		return result
+	}, criteria.Pagination)
 	db.Preload("SourceDevice").Preload("RelationshipType")
 	db = preloadRelationshipTargets(db)
 	db.Find(&results)
@@ -654,7 +659,17 @@ func (api *Api) DeviceGroupRelationshipsByToken(ctx context.Context, tokens []st
 func (api *Api) DeviceGroupRelationships(ctx context.Context,
 	criteria DeviceGroupRelationshipSearchCriteria) (*DeviceGroupRelationshipSearchResults, error) {
 	results := make([]DeviceGroupRelationship, 0)
-	db, pag := api.RDB.ListOf(&DeviceGroupRelationship{}, nil, criteria.Pagination)
+	db, pag := api.RDB.ListOf(&DeviceGroupRelationship{}, func(result *gorm.DB) *gorm.DB {
+		if criteria.SourceDeviceGroup != nil {
+			result = result.Where("source_device_group_id = (?)",
+				api.RDB.Database.Model(&DeviceGroup{}).Select("id").Where("token = ?", criteria.SourceDeviceGroup))
+		}
+		if criteria.RelationshipType != nil {
+			result = result.Where("relationship_type_id = (?)",
+				api.RDB.Database.Model(&DeviceGroupRelationshipType{}).Select("id").Where("token = ?", criteria.RelationshipType))
+		}
+		return result
+	}, criteria.Pagination)
 	db.Preload("SourceDeviceGroup").Preload("RelationshipType")
 	db = preloadRelationshipTargets(db)
 	db.Find(&results)

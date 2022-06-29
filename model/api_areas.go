@@ -380,7 +380,17 @@ func (api *Api) AreaRelationshipsByToken(ctx context.Context, tokens []string) (
 func (api *Api) AreaRelationships(ctx context.Context,
 	criteria AreaRelationshipSearchCriteria) (*AreaRelationshipSearchResults, error) {
 	results := make([]AreaRelationship, 0)
-	db, pag := api.RDB.ListOf(&AreaRelationship{}, nil, criteria.Pagination)
+	db, pag := api.RDB.ListOf(&AreaRelationship{}, func(result *gorm.DB) *gorm.DB {
+		if criteria.SourceArea != nil {
+			result = result.Where("source_area_id = (?)",
+				api.RDB.Database.Model(&Area{}).Select("id").Where("token = ?", criteria.SourceArea))
+		}
+		if criteria.RelationshipType != nil {
+			result = result.Where("relationship_type_id = (?)",
+				api.RDB.Database.Model(&AreaRelationshipType{}).Select("id").Where("token = ?", criteria.RelationshipType))
+		}
+		return result
+	}, criteria.Pagination)
 	db.Preload("SourceArea").Preload("RelationshipType")
 	db = preloadRelationshipTargets(db)
 	db.Find(&results)
@@ -643,7 +653,17 @@ func (api *Api) AreaGroupRelationshipsByToken(ctx context.Context, tokens []stri
 func (api *Api) AreaGroupRelationships(ctx context.Context,
 	criteria AreaGroupRelationshipSearchCriteria) (*AreaGroupRelationshipSearchResults, error) {
 	results := make([]AreaGroupRelationship, 0)
-	db, pag := api.RDB.ListOf(&AreaGroupRelationship{}, nil, criteria.Pagination)
+	db, pag := api.RDB.ListOf(&AreaGroupRelationship{}, func(result *gorm.DB) *gorm.DB {
+		if criteria.SourceAreaGroup != nil {
+			result = result.Where("source_area_group_id = (?)",
+				api.RDB.Database.Model(&AreaGroup{}).Select("id").Where("token = ?", criteria.SourceAreaGroup))
+		}
+		if criteria.RelationshipType != nil {
+			result = result.Where("relationship_type_id = (?)",
+				api.RDB.Database.Model(&AreaGroupRelationshipType{}).Select("id").Where("token = ?", criteria.RelationshipType))
+		}
+		return result
+	}, criteria.Pagination)
 	db.Preload("SourceAreaGroup").Preload("RelationshipType")
 	db = preloadRelationshipTargets(db)
 	db.Find(&results)

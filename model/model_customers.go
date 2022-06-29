@@ -126,6 +126,8 @@ type CustomerRelationship struct {
 // Search criteria for locating customer relationships.
 type CustomerRelationshipSearchCriteria struct {
 	rdb.Pagination
+	SourceCustomer   *string
+	RelationshipType *string
 }
 
 // Results for customer relationship search.
@@ -215,6 +217,8 @@ type CustomerGroupRelationship struct {
 // Search criteria for locating customer groups relationships.
 type CustomerGroupRelationshipSearchCriteria struct {
 	rdb.Pagination
+	SourceCustomerGroup *string
+	RelationshipType    *string
 }
 
 // Results for customer group relationship search.

@@ -380,7 +380,17 @@ func (api *Api) AssetRelationshipsByToken(ctx context.Context, tokens []string) 
 func (api *Api) AssetRelationships(ctx context.Context,
 	criteria AssetRelationshipSearchCriteria) (*AssetRelationshipSearchResults, error) {
 	results := make([]AssetRelationship, 0)
-	db, pag := api.RDB.ListOf(&AssetRelationship{}, nil, criteria.Pagination)
+	db, pag := api.RDB.ListOf(&AssetRelationship{}, func(result *gorm.DB) *gorm.DB {
+		if criteria.SourceAsset != nil {
+			result = result.Where("source_asset_id = (?)",
+				api.RDB.Database.Model(&Asset{}).Select("id").Where("token = ?", criteria.SourceAsset))
+		}
+		if criteria.RelationshipType != nil {
+			result = result.Where("relationship_type_id = (?)",
+				api.RDB.Database.Model(&AssetRelationshipType{}).Select("id").Where("token = ?", criteria.RelationshipType))
+		}
+		return result
+	}, criteria.Pagination)
 	db.Preload("SourceAsset").Preload("RelationshipType")
 	db = preloadRelationshipTargets(db)
 	db.Find(&results)
@@ -643,7 +653,17 @@ func (api *Api) AssetGroupRelationshipsByToken(ctx context.Context, tokens []str
 func (api *Api) AssetGroupRelationships(ctx context.Context,
 	criteria AssetGroupRelationshipSearchCriteria) (*AssetGroupRelationshipSearchResults, error) {
 	results := make([]AssetGroupRelationship, 0)
-	db, pag := api.RDB.ListOf(&AssetGroupRelationship{}, nil, criteria.Pagination)
+	db, pag := api.RDB.ListOf(&AssetGroupRelationship{}, func(result *gorm.DB) *gorm.DB {
+		if criteria.SourceAssetGroup != nil {
+			result = result.Where("source_asset_group_id = (?)",
+				api.RDB.Database.Model(&AssetGroup{}).Select("id").Where("token = ?", criteria.SourceAssetGroup))
+		}
+		if criteria.RelationshipType != nil {
+			result = result.Where("relationship_type_id = (?)",
+				api.RDB.Database.Model(&AssetGroupRelationshipType{}).Select("id").Where("token = ?", criteria.RelationshipType))
+		}
+		return result
+	}, criteria.Pagination)
 	db.Preload("SourceAssetGroup").Preload("RelationshipType")
 	db = preloadRelationshipTargets(db)
 	db.Find(&results)
