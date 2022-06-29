@@ -30,7 +30,6 @@ func NewInitialSchema() *gormigrate.Migration {
 		Migrate: func(tx *gorm.DB) error {
 			return tx.AutoMigrate(&v1.Device{}, &v1.DeviceType{}, &v1.DeviceRelationshipType{}, &v1.DeviceRelationship{},
 				&v1.DeviceGroup{}, &v1.DeviceGroupRelationshipType{}, &v1.DeviceGroupRelationship{},
-				&v1.DeviceAssignmentStatus{}, &v1.DeviceAssignment{},
 
 				&v1.AssetType{}, &v1.Asset{}, &v1.AssetRelationshipType{}, &v1.AssetRelationship{}, &v1.AssetGroup{},
 				&v1.AssetGroupRelationshipType{}, &v1.AssetGroupRelationship{},
@@ -43,8 +42,7 @@ func NewInitialSchema() *gormigrate.Migration {
 		},
 		Rollback: func(tx *gorm.DB) error {
 			err := dropTables(tx, []string{"devices", "device_types", "device_relationship_types", "device_relationships",
-				"device_groups", "device_group_relationship_types", "device_group_relationships", "device_assignment_statuses",
-				"device_assignments"})
+				"device_groups", "device_group_relationship_types", "device_group_relationships"})
 			if err != nil {
 				return err
 			}

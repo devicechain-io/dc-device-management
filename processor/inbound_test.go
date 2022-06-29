@@ -106,21 +106,22 @@ func (suite *InboundEventsProcessorTestSuite) TestInvalidEvent() {
 
 // Build a new assignment event.
 func buildNewAssignmentEvent() *model.UnresolvedEvent {
-	dgroup := "Primary"
-	asset := "CAR-123"
-	agroup := "Cars"
-	assn := &model.UnresolvedNewAssignmentPayload{
-		DeactivateExisting: false,
-		DeviceGroup:        &dgroup,
-		Asset:              &asset,
-		AssetGroup:         &agroup,
+	dreltype := "controls"
+	dgroup := "primary"
+	asset := "car123"
+	agroup := "cars"
+	assn := &model.UnresolvedNewRelationshipPayload{
+		DeviceRelationshipType: dreltype,
+		TargetDeviceGroup:      &dgroup,
+		TargetAsset:            &asset,
+		TargetAssetGroup:       &agroup,
 	}
 	altid := "alternateId"
 	event := &model.UnresolvedEvent{
 		Source:    "mysource",
 		AltId:     &altid,
 		Device:    "TEST-123",
-		EventType: model.NewAssignment,
+		EventType: model.NewRelationship,
 		Payload:   assn,
 	}
 	return event
@@ -224,44 +225,6 @@ func buildDevice() *dmodel.Device {
 	return device
 }
 
-// Build a device assignment.
-func buildAssignment() *dmodel.DeviceAssignment {
-	dgrp := uint(2)
-	asset := uint(3)
-	agrp := uint(4)
-	cust := uint(5)
-	cgrp := uint(6)
-	area := uint(7)
-	argrp := uint(8)
-	assn := &dmodel.DeviceAssignment{
-		Model: gorm.Model{
-			ID:        1,
-			CreatedAt: time.Now(),
-			UpdatedAt: time.Now(),
-		},
-		TokenReference: rdb.TokenReference{
-			Token: "assn1",
-		},
-		DeviceId:        1,
-		DeviceGroupId:   &dgrp,
-		AssetId:         &asset,
-		AssetGroupId:    &agrp,
-		CustomerId:      &cust,
-		CustomerGroupId: &cgrp,
-		AreaId:          &area,
-		AreaGroupId:     &argrp,
-	}
-	return assn
-}
-
-// Build an array of device assignments.
-func buildAssignments() []dmodel.DeviceAssignment {
-	assn := buildAssignment()
-	result := make([]dmodel.DeviceAssignment, 0)
-	result = append(result, *assn)
-	return result
-}
-
 // Test valid location event.
 func (suite *InboundEventsProcessorTestSuite) TestUnresolvableLocationsEvent() {
 	loc := buildLocationsEvent()
@@ -292,8 +255,6 @@ func (suite *InboundEventsProcessorTestSuite) SuccessEventFlowFor(msg kafka.Mess
 	suite.Inbound.Mock.On("ReadMessage", mock.Anything).Return(msg, nil)
 	suite.Resolved.Mock.On("WriteMessages", mock.Anything, mock.Anything).Return(nil)
 	suite.API.Mock.On("DeviceByToken", mock.Anything, mock.Anything).Return(buildDevice(), nil)
-	suite.API.Mock.On("ActiveDeviceAssignmentsForDevice", mock.Anything, mock.Anything).Return(buildAssignments(), nil)
-	suite.API.Mock.On("CreateDeviceAssignment", mock.Anything, mock.Anything).Return(buildAssignment(), nil)
 
 	// Send message and wait for event to be processed by resolver.
 	ctx := context.Background()

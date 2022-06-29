@@ -12,7 +12,6 @@ enum FailureReason {
     Invalid = 1; // Event was not able to be parsed
     ApiCallFailed = 2; // API call required for resolution failed
     DeviceNotFound = 3; // Device token could not be resolved to a device
-    NoActiveDeviceAssignments = 4; // Device had no active assignments
 }
 
 /**
@@ -32,33 +31,35 @@ message PFailedEvent {
  message PResolvedEvent {
 	string source = 1;
 	optional string alt_id = 2;
-	uint64 device_id = 3;
-	uint64 assignment_id = 4;
-	optional uint64 device_group_id = 5;
-	optional uint64 customer_id = 6;
-	optional uint64 customer_group_id = 7;
-	optional uint64 area_id = 8;
-	optional uint64 area_group_id = 9;
-	optional uint64 asset_id = 10;
-	optional uint64 asset_group_id = 11;
-    string occurred_time = 12;
-    string processed_time = 13;
-    int64 event_type = 14;
-    bytes payload = 15;
+	uint64 source_device_id = 3;
+	uint64 device_relationship_id = 4;
+	optional uint64 target_device_id = 5;
+	optional uint64 target_device_group_id = 6;
+	optional uint64 target_customer_id = 7;
+	optional uint64 target_customer_group_id = 8;
+	optional uint64 target_area_id = 9;
+	optional uint64 target_area_group_id = 10;
+	optional uint64 target_asset_id = 11;
+	optional uint64 target_asset_group_id = 12;
+    string occurred_time = 13;
+    string processed_time = 14;
+    int64 event_type = 15;
+    bytes payload = 16;
 }
 
 /**
- * Payload for resolved device assignment request.
+ * Payload for resolved new relationship request.
  */
- message PResolvedNewAssignmentPayload {
-	uint64 assignment_id = 1;
-    optional uint64 device_group = 2;
-    optional uint64 asset = 3;
-    optional uint64 asset_group = 4;
-    optional uint64 customer = 5;
-    optional uint64 customer_group = 6;
-    optional uint64 area = 7;
-    optional uint64 area_group = 8;
+ message PResolvedNewRelationshipPayload {
+	uint64 device_relationship_type_id = 1;
+    optional uint64 target_device_id = 2;
+    optional uint64 target_device_group_id = 3;
+    optional uint64 target_asset_id = 4;
+    optional uint64 target_asset_group_id = 5;
+    optional uint64 target_customer_id = 6;
+    optional uint64 target_customer_group_id = 7;
+    optional uint64 target_area_id = 8;
+    optional uint64 target_area_group_id = 9;
 }
 
 /**

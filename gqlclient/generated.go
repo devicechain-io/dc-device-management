@@ -1899,16 +1899,15 @@ func (v *DefaultCustomerType) GetMetadata() *string { return v.Metadata }
 
 // Content associated with a device response.
 type DefaultDevice struct {
-	Id                string                                           `json:"id"`
-	CreatedAt         *string                                          `json:"createdAt"`
-	UpdatedAt         *string                                          `json:"updatedAt"`
-	DeletedAt         *string                                          `json:"deletedAt"`
-	Token             string                                           `json:"token"`
-	Name              *string                                          `json:"name"`
-	Description       *string                                          `json:"description"`
-	DeviceType        DefaultDeviceDeviceType                          `json:"deviceType"`
-	ActiveAssignments []DefaultDeviceActiveAssignmentsDeviceAssignment `json:"activeAssignments"`
-	Metadata          *string                                          `json:"metadata"`
+	Id          string                  `json:"id"`
+	CreatedAt   *string                 `json:"createdAt"`
+	UpdatedAt   *string                 `json:"updatedAt"`
+	DeletedAt   *string                 `json:"deletedAt"`
+	Token       string                  `json:"token"`
+	Name        *string                 `json:"name"`
+	Description *string                 `json:"description"`
+	DeviceType  DefaultDeviceDeviceType `json:"deviceType"`
+	Metadata    *string                 `json:"metadata"`
 }
 
 // GetId returns DefaultDevice.Id, and is useful for accessing the field via an interface.
@@ -1935,21 +1934,8 @@ func (v *DefaultDevice) GetDescription() *string { return v.Description }
 // GetDeviceType returns DefaultDevice.DeviceType, and is useful for accessing the field via an interface.
 func (v *DefaultDevice) GetDeviceType() DefaultDeviceDeviceType { return v.DeviceType }
 
-// GetActiveAssignments returns DefaultDevice.ActiveAssignments, and is useful for accessing the field via an interface.
-func (v *DefaultDevice) GetActiveAssignments() []DefaultDeviceActiveAssignmentsDeviceAssignment {
-	return v.ActiveAssignments
-}
-
 // GetMetadata returns DefaultDevice.Metadata, and is useful for accessing the field via an interface.
 func (v *DefaultDevice) GetMetadata() *string { return v.Metadata }
-
-// DefaultDeviceActiveAssignmentsDeviceAssignment includes the requested fields of the GraphQL type DeviceAssignment.
-type DefaultDeviceActiveAssignmentsDeviceAssignment struct {
-	Token string `json:"token"`
-}
-
-// GetToken returns DefaultDeviceActiveAssignmentsDeviceAssignment.Token, and is useful for accessing the field via an interface.
-func (v *DefaultDeviceActiveAssignmentsDeviceAssignment) GetToken() string { return v.Token }
 
 // DefaultDeviceDeviceType includes the requested fields of the GraphQL type DeviceType.
 type DefaultDeviceDeviceType struct {
@@ -2459,6 +2445,7 @@ type DefaultDeviceRelationshipType struct {
 	Name        *string `json:"name"`
 	Description *string `json:"description"`
 	Metadata    *string `json:"metadata"`
+	Tracked     bool    `json:"tracked"`
 }
 
 // GetId returns DefaultDeviceRelationshipType.Id, and is useful for accessing the field via an interface.
@@ -2484,6 +2471,9 @@ func (v *DefaultDeviceRelationshipType) GetDescription() *string { return v.Desc
 
 // GetMetadata returns DefaultDeviceRelationshipType.Metadata, and is useful for accessing the field via an interface.
 func (v *DefaultDeviceRelationshipType) GetMetadata() *string { return v.Metadata }
+
+// GetTracked returns DefaultDeviceRelationshipType.Tracked, and is useful for accessing the field via an interface.
+func (v *DefaultDeviceRelationshipType) GetTracked() bool { return v.Tracked }
 
 // Content associated with a device type response.
 type DefaultDeviceType struct {
@@ -3420,6 +3410,7 @@ type __createDeviceRelationshipTypeInput struct {
 	Name        *string `json:"name"`
 	Description *string `json:"description"`
 	Metadata    *string `json:"metadata"`
+	Tracked     bool    `json:"tracked"`
 }
 
 // GetToken returns __createDeviceRelationshipTypeInput.Token, and is useful for accessing the field via an interface.
@@ -3433,6 +3424,9 @@ func (v *__createDeviceRelationshipTypeInput) GetDescription() *string { return 
 
 // GetMetadata returns __createDeviceRelationshipTypeInput.Metadata, and is useful for accessing the field via an interface.
 func (v *__createDeviceRelationshipTypeInput) GetMetadata() *string { return v.Metadata }
+
+// GetTracked returns __createDeviceRelationshipTypeInput.Tracked, and is useful for accessing the field via an interface.
+func (v *__createDeviceRelationshipTypeInput) GetTracked() bool { return v.Tracked }
 
 // __createDeviceTypeInput is used internally by genqlient
 type __createDeviceTypeInput struct {
@@ -6763,11 +6757,6 @@ func (v *createDeviceCreateDevice) GetDeviceType() DefaultDeviceDeviceType {
 	return v.DefaultDevice.DeviceType
 }
 
-// GetActiveAssignments returns createDeviceCreateDevice.ActiveAssignments, and is useful for accessing the field via an interface.
-func (v *createDeviceCreateDevice) GetActiveAssignments() []DefaultDeviceActiveAssignmentsDeviceAssignment {
-	return v.DefaultDevice.ActiveAssignments
-}
-
 // GetMetadata returns createDeviceCreateDevice.Metadata, and is useful for accessing the field via an interface.
 func (v *createDeviceCreateDevice) GetMetadata() *string { return v.DefaultDevice.Metadata }
 
@@ -6813,8 +6802,6 @@ type __premarshalcreateDeviceCreateDevice struct {
 
 	DeviceType DefaultDeviceDeviceType `json:"deviceType"`
 
-	ActiveAssignments []DefaultDeviceActiveAssignmentsDeviceAssignment `json:"activeAssignments"`
-
 	Metadata *string `json:"metadata"`
 }
 
@@ -6837,7 +6824,6 @@ func (v *createDeviceCreateDevice) __premarshalJSON() (*__premarshalcreateDevice
 	retval.Name = v.DefaultDevice.Name
 	retval.Description = v.DefaultDevice.Description
 	retval.DeviceType = v.DefaultDevice.DeviceType
-	retval.ActiveAssignments = v.DefaultDevice.ActiveAssignments
 	retval.Metadata = v.DefaultDevice.Metadata
 	return &retval, nil
 }
@@ -7415,6 +7401,11 @@ func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) GetMetadata()
 	return v.DefaultDeviceRelationshipType.Metadata
 }
 
+// GetTracked returns createDeviceRelationshipTypeCreateDeviceRelationshipType.Tracked, and is useful for accessing the field via an interface.
+func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) GetTracked() bool {
+	return v.DefaultDeviceRelationshipType.Tracked
+}
+
 func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) UnmarshalJSON(b []byte) error {
 
 	if string(b) == "null" {
@@ -7456,6 +7447,8 @@ type __premarshalcreateDeviceRelationshipTypeCreateDeviceRelationshipType struct
 	Description *string `json:"description"`
 
 	Metadata *string `json:"metadata"`
+
+	Tracked bool `json:"tracked"`
 }
 
 func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) MarshalJSON() ([]byte, error) {
@@ -7477,6 +7470,7 @@ func (v *createDeviceRelationshipTypeCreateDeviceRelationshipType) __premarshalJ
 	retval.Name = v.DefaultDeviceRelationshipType.Name
 	retval.Description = v.DefaultDeviceRelationshipType.Description
 	retval.Metadata = v.DefaultDeviceRelationshipType.Metadata
+	retval.Tracked = v.DefaultDeviceRelationshipType.Tracked
 	return &retval, nil
 }
 
@@ -10893,6 +10887,11 @@ func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRe
 	return v.DefaultDeviceRelationshipType.Metadata
 }
 
+// GetTracked returns getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType.Tracked, and is useful for accessing the field via an interface.
+func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType) GetTracked() bool {
+	return v.DefaultDeviceRelationshipType.Tracked
+}
+
 func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType) UnmarshalJSON(b []byte) error {
 
 	if string(b) == "null" {
@@ -10934,6 +10933,8 @@ type __premarshalgetDeviceRelationshipTypesByTokenDeviceRelationshipTypesByToken
 	Description *string `json:"description"`
 
 	Metadata *string `json:"metadata"`
+
+	Tracked bool `json:"tracked"`
 }
 
 func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRelationshipType) MarshalJSON() ([]byte, error) {
@@ -10955,6 +10956,7 @@ func (v *getDeviceRelationshipTypesByTokenDeviceRelationshipTypesByTokenDeviceRe
 	retval.Name = v.DefaultDeviceRelationshipType.Name
 	retval.Description = v.DefaultDeviceRelationshipType.Description
 	retval.Metadata = v.DefaultDeviceRelationshipType.Metadata
+	retval.Tracked = v.DefaultDeviceRelationshipType.Tracked
 	return &retval, nil
 }
 
@@ -11295,11 +11297,6 @@ func (v *getDevicesByTokenDevicesByTokenDevice) GetDeviceType() DefaultDeviceDev
 	return v.DefaultDevice.DeviceType
 }
 
-// GetActiveAssignments returns getDevicesByTokenDevicesByTokenDevice.ActiveAssignments, and is useful for accessing the field via an interface.
-func (v *getDevicesByTokenDevicesByTokenDevice) GetActiveAssignments() []DefaultDeviceActiveAssignmentsDeviceAssignment {
-	return v.DefaultDevice.ActiveAssignments
-}
-
 // GetMetadata returns getDevicesByTokenDevicesByTokenDevice.Metadata, and is useful for accessing the field via an interface.
 func (v *getDevicesByTokenDevicesByTokenDevice) GetMetadata() *string {
 	return v.DefaultDevice.Metadata
@@ -11347,8 +11344,6 @@ type __premarshalgetDevicesByTokenDevicesByTokenDevice struct {
 
 	DeviceType DefaultDeviceDeviceType `json:"deviceType"`
 
-	ActiveAssignments []DefaultDeviceActiveAssignmentsDeviceAssignment `json:"activeAssignments"`
-
 	Metadata *string `json:"metadata"`
 }
 
@@ -11371,7 +11366,6 @@ func (v *getDevicesByTokenDevicesByTokenDevice) __premarshalJSON() (*__premarsha
 	retval.Name = v.DefaultDevice.Name
 	retval.Description = v.DefaultDevice.Description
 	retval.DeviceType = v.DefaultDevice.DeviceType
-	retval.ActiveAssignments = v.DefaultDevice.ActiveAssignments
 	retval.Metadata = v.DefaultDevice.Metadata
 	return &retval, nil
 }
@@ -16809,6 +16803,11 @@ func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTyp
 	return v.DefaultDeviceRelationshipType.Metadata
 }
 
+// GetTracked returns listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType.Tracked, and is useful for accessing the field via an interface.
+func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType) GetTracked() bool {
+	return v.DefaultDeviceRelationshipType.Tracked
+}
+
 func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType) UnmarshalJSON(b []byte) error {
 
 	if string(b) == "null" {
@@ -16850,6 +16849,8 @@ type __premarshallistDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelatio
 	Description *string `json:"description"`
 
 	Metadata *string `json:"metadata"`
+
+	Tracked bool `json:"tracked"`
 }
 
 func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTypeSearchResultsResultsDeviceRelationshipType) MarshalJSON() ([]byte, error) {
@@ -16871,6 +16872,7 @@ func (v *listDeviceRelationshipTypesDeviceRelationshipTypesDeviceRelationshipTyp
 	retval.Name = v.DefaultDeviceRelationshipType.Name
 	retval.Description = v.DefaultDeviceRelationshipType.Description
 	retval.Metadata = v.DefaultDeviceRelationshipType.Metadata
+	retval.Tracked = v.DefaultDeviceRelationshipType.Tracked
 	return &retval, nil
 }
 
@@ -17475,11 +17477,6 @@ func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetDeviceType() Def
 	return v.DefaultDevice.DeviceType
 }
 
-// GetActiveAssignments returns listDevicesDevicesDeviceSearchResultsResultsDevice.ActiveAssignments, and is useful for accessing the field via an interface.
-func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetActiveAssignments() []DefaultDeviceActiveAssignmentsDeviceAssignment {
-	return v.DefaultDevice.ActiveAssignments
-}
-
 // GetMetadata returns listDevicesDevicesDeviceSearchResultsResultsDevice.Metadata, and is useful for accessing the field via an interface.
 func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) GetMetadata() *string {
 	return v.DefaultDevice.Metadata
@@ -17527,8 +17524,6 @@ type __premarshallistDevicesDevicesDeviceSearchResultsResultsDevice struct {
 
 	DeviceType DefaultDeviceDeviceType `json:"deviceType"`
 
-	ActiveAssignments []DefaultDeviceActiveAssignmentsDeviceAssignment `json:"activeAssignments"`
-
 	Metadata *string `json:"metadata"`
 }
 
@@ -17551,7 +17546,6 @@ func (v *listDevicesDevicesDeviceSearchResultsResultsDevice) __premarshalJSON() 
 	retval.Name = v.DefaultDevice.Name
 	retval.Description = v.DefaultDevice.Description
 	retval.DeviceType = v.DefaultDevice.DeviceType
-	retval.ActiveAssignments = v.DefaultDevice.ActiveAssignments
 	retval.Metadata = v.DefaultDevice.Metadata
 	return &retval, nil
 }
@@ -18957,9 +18951,6 @@ fragment DefaultDevice on Device {
 		name
 		description
 	}
-	activeAssignments {
-		token
-	}
 	metadata
 }
 `,
@@ -19278,12 +19269,13 @@ func createDeviceRelationshipType(
 	name *string,
 	description *string,
 	metadata *string,
+	tracked bool,
 ) (*createDeviceRelationshipTypeResponse, error) {
 	req := &graphql.Request{
 		OpName: "createDeviceRelationshipType",
 		Query: `
-mutation createDeviceRelationshipType ($token: String!, $name: String, $description: String, $metadata: String) {
-	createDeviceRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata}) {
+mutation createDeviceRelationshipType ($token: String!, $name: String, $description: String, $metadata: String, $tracked: Boolean!) {
+	createDeviceRelationshipType(request: {token:$token,name:$name,description:$description,metadata:$metadata,tracked:$tracked}) {
 		... DefaultDeviceRelationshipType
 	}
 }
@@ -19296,6 +19288,7 @@ fragment DefaultDeviceRelationshipType on DeviceRelationshipType {
 	name
 	description
 	metadata
+	tracked
 }
 `,
 		Variables: &__createDeviceRelationshipTypeInput{
@@ -19303,6 +19296,7 @@ fragment DefaultDeviceRelationshipType on DeviceRelationshipType {
 			Name:        name,
 			Description: description,
 			Metadata:    metadata,
+			Tracked:     tracked,
 		},
 	}
 	var err error
@@ -20747,6 +20741,7 @@ fragment DefaultDeviceRelationshipType on DeviceRelationshipType {
 	name
 	description
 	metadata
+	tracked
 }
 `,
 		Variables: &__getDeviceRelationshipTypesByTokenInput{
@@ -20921,9 +20916,6 @@ fragment DefaultDevice on Device {
 		token
 		name
 		description
-	}
-	activeAssignments {
-		token
 	}
 	metadata
 }
@@ -22604,6 +22596,7 @@ fragment DefaultDeviceRelationshipType on DeviceRelationshipType {
 	name
 	description
 	metadata
+	tracked
 }
 fragment DefaultPagination on SearchResultsPagination {
 	pageStart
@@ -22814,9 +22807,6 @@ fragment DefaultDevice on Device {
 		token
 		name
 		description
-	}
-	activeAssignments {
-		token
 	}
 	metadata
 }

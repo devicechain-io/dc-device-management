@@ -67,13 +67,23 @@ func (api *MockApi) Devices(ctx context.Context, criteria model.DeviceSearchCrit
 	return args.Get(0).(*model.DeviceSearchResults), args.Error(1)
 }
 
-func (api *MockApi) CreateDeviceAssignment(ctx context.Context,
-	request *model.DeviceAssignmentCreateRequest) (*model.DeviceAssignment, error) {
+func (api *MockApi) DeviceRelationshipsById(ctx context.Context, ids []uint) ([]*model.DeviceRelationship, error) {
 	args := api.Mock.Called()
-	return args.Get(0).(*model.DeviceAssignment), args.Error(1)
+	return args.Get(0).([]*model.DeviceRelationship), args.Error(1)
 }
 
-func (api *MockApi) ActiveDeviceAssignmentsForDevice(ctx context.Context, id uint) ([]model.DeviceAssignment, error) {
+func (api *MockApi) DeviceRelationshipsByToken(ctx context.Context, tokens []string) ([]*model.DeviceRelationship, error) {
 	args := api.Mock.Called()
-	return args.Get(0).([]model.DeviceAssignment), args.Error(1)
+	return args.Get(0).([]*model.DeviceRelationship), args.Error(1)
+}
+
+func (api *MockApi) DeviceRelationships(ctx context.Context,
+	criteria model.DeviceRelationshipSearchCriteria) (*model.DeviceRelationshipSearchResults, error) {
+	args := api.Mock.Called()
+	return args.Get(0).(*model.DeviceRelationshipSearchResults), args.Error(1)
+}
+
+func (api *MockApi) CreateDeviceRelationship(ctx context.Context, request *model.DeviceRelationshipCreateRequest) (*model.DeviceRelationship, error) {
+	args := api.Mock.Called()
+	return args.Get(0).(*model.DeviceRelationship), args.Error(1)
 }

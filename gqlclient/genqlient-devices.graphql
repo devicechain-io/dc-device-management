@@ -29,9 +29,6 @@ fragment DefaultDevice on Device {
     name
     description
   }
-  activeAssignments {
-    token
-  }
   metadata
 }
 
@@ -45,6 +42,7 @@ fragment DefaultDeviceRelationshipType on DeviceRelationshipType {
   name
   description
   metadata
+  tracked
 }
 
 # Content associated with a device relationship response.
@@ -192,12 +190,13 @@ query listDevices($pageNumber: Int!, $pageSize: Int!) {
 }
 
 # Create device relationship type and return identifiers.
-mutation createDeviceRelationshipType($token: String!, $name: String, $description: String, $metadata: String) {
+mutation createDeviceRelationshipType($token: String!, $name: String, $description: String, $metadata: String, $tracked: Boolean!) {
   createDeviceRelationshipType(request: { 
     token: $token,
     name: $name,
     description: $description,
-    metadata: $metadata
+    metadata: $metadata,
+    tracked: $tracked
   }) {
     ...DefaultDeviceRelationshipType
   }

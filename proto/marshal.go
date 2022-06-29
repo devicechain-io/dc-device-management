@@ -55,17 +55,18 @@ func UnmarshalFailedEvent(encoded []byte) (*model.FailedEvent, error) {
 	return event, nil
 }
 
-// Marshal payload for a locations event.
-func MarshalPayloadForNewAssignmentEvent(payload *model.ResolvedNewAssignmentPayload) ([]byte, error) {
-	pbpayload := &PResolvedNewAssignmentPayload{
-		AssignmentId:  payload.AssignmentId,
-		DeviceGroup:   payload.DeviceGroup,
-		Asset:         payload.Asset,
-		AssetGroup:    payload.AssetGroup,
-		Customer:      payload.Customer,
-		CustomerGroup: payload.CustomerGroup,
-		Area:          payload.Area,
-		AreaGroup:     payload.AreaGroup,
+// Marshal payload for a new relationship event.
+func MarshalPayloadForNewRelationshipEvent(payload *model.ResolvedNewRelationshipPayload) ([]byte, error) {
+	pbpayload := &PResolvedNewRelationshipPayload{
+		DeviceRelationshipTypeId: payload.DeviceRelationshipTypeId,
+		TargetDeviceId:           payload.TargetDeviceId,
+		TargetDeviceGroupId:      payload.TargetDeviceGroupId,
+		TargetAssetId:            payload.TargetAssetId,
+		TargetAssetGroupId:       payload.TargetAssetGroupId,
+		TargetCustomerId:         payload.TargetCustomerId,
+		TargetCustomerGroupId:    payload.TargetCustomerGroupId,
+		TargetAreaId:             payload.TargetAreaId,
+		TargetAreaGroupId:        payload.TargetAreaGroupId,
 	}
 
 	bytes, err := proto.Marshal(pbpayload)
@@ -140,22 +141,23 @@ func MarshalPayloadForAlertsEvent(payload *model.ResolvedAlertsPayload) ([]byte,
 	return bytes, nil
 }
 
-// Unmarshal a payload into a new assignment event.
-func UnmarshalPayloadForNewAssignmentEvent(encoded []byte) (*model.ResolvedNewAssignmentPayload, error) {
-	pbpayload := &PResolvedNewAssignmentPayload{}
+// Unmarshal a payload into a new relationship event.
+func UnmarshalPayloadForNewRelationshipEvent(encoded []byte) (*model.ResolvedNewRelationshipPayload, error) {
+	pbpayload := &PResolvedNewRelationshipPayload{}
 	err := proto.Unmarshal(encoded, pbpayload)
 	if err != nil {
 		return nil, err
 	}
-	payload := &model.ResolvedNewAssignmentPayload{
-		AssignmentId:  pbpayload.AssignmentId,
-		DeviceGroup:   pbpayload.DeviceGroup,
-		Asset:         pbpayload.Asset,
-		AssetGroup:    pbpayload.AssetGroup,
-		Customer:      pbpayload.Customer,
-		CustomerGroup: pbpayload.CustomerGroup,
-		Area:          pbpayload.Area,
-		AreaGroup:     pbpayload.AreaGroup,
+	payload := &model.ResolvedNewRelationshipPayload{
+		DeviceRelationshipTypeId: pbpayload.DeviceRelationshipTypeId,
+		TargetDeviceId:           pbpayload.TargetDeviceId,
+		TargetDeviceGroupId:      pbpayload.TargetDeviceGroupId,
+		TargetAssetId:            pbpayload.TargetAssetId,
+		TargetAssetGroupId:       pbpayload.TargetAssetGroupId,
+		TargetCustomerId:         pbpayload.TargetCustomerId,
+		TargetCustomerGroupId:    pbpayload.TargetCustomerGroupId,
+		TargetAreaId:             pbpayload.TargetAreaId,
+		TargetAreaGroupId:        pbpayload.TargetAreaGroupId,
 	}
 
 	return payload, nil
@@ -238,9 +240,9 @@ func UnmarshalPayloadForAlertsEvent(encoded []byte) (*model.ResolvedAlertsPayloa
 // Marshal unresolved payload based on event type.
 func MarshalResolvedPayload(etype esmodel.EventType, payload interface{}) ([]byte, error) {
 	switch etype {
-	case esmodel.NewAssignment:
-		if rnapayload, ok := payload.(*model.ResolvedNewAssignmentPayload); ok {
-			return MarshalPayloadForNewAssignmentEvent(rnapayload)
+	case esmodel.NewRelationship:
+		if rnapayload, ok := payload.(*model.ResolvedNewRelationshipPayload); ok {
+			return MarshalPayloadForNewRelationshipEvent(rnapayload)
 		}
 		return nil, fmt.Errorf("invalid new assignment payload: %+v", payload)
 	case esmodel.Location:
@@ -266,8 +268,8 @@ func MarshalResolvedPayload(etype esmodel.EventType, payload interface{}) ([]byt
 // Unmarshal unresolved payload based on event type.
 func UnmarshalResolvedPayload(etype esmodel.EventType, payload []byte) (interface{}, error) {
 	switch etype {
-	case esmodel.NewAssignment:
-		return UnmarshalPayloadForNewAssignmentEvent(payload)
+	case esmodel.NewRelationship:
+		return UnmarshalPayloadForNewRelationshipEvent(payload)
 	case esmodel.Location:
 		return UnmarshalPayloadForLocationsEvent(payload)
 	case esmodel.Measurement:
@@ -289,19 +291,20 @@ func MarshalResolvedEvent(event *model.ResolvedEvent) ([]byte, error) {
 
 	// Encode protobuf event.
 	pbevent := &PResolvedEvent{
-		Source:          event.Source,
-		AltId:           event.AltId,
-		AssignmentId:    uint64(event.AssignmentId),
-		DeviceId:        uint64(event.DeviceId),
-		DeviceGroupId:   util.NullUint64Of(event.DeviceGroupId),
-		AssetId:         util.NullUint64Of(event.AssetId),
-		AssetGroupId:    util.NullUint64Of(event.AssetGroupId),
-		CustomerId:      util.NullUint64Of(event.CustomerId),
-		CustomerGroupId: util.NullUint64Of(event.CustomerGroupId),
-		AreaId:          util.NullUint64Of(event.AreaId),
-		AreaGroupId:     util.NullUint64Of(event.AreaGroupId),
-		EventType:       int64(event.EventType),
-		Payload:         pybytes,
+		Source:                event.Source,
+		AltId:                 event.AltId,
+		DeviceRelationshipId:  uint64(event.DeviceRelationshipId),
+		SourceDeviceId:        uint64(event.SourceDeviceId),
+		TargetDeviceId:        util.NullUint64Of(event.TargetDeviceId),
+		TargetDeviceGroupId:   util.NullUint64Of(event.TargetDeviceGroupId),
+		TargetAssetId:         util.NullUint64Of(event.TargetAssetId),
+		TargetAssetGroupId:    util.NullUint64Of(event.TargetAssetGroupId),
+		TargetCustomerId:      util.NullUint64Of(event.TargetCustomerId),
+		TargetCustomerGroupId: util.NullUint64Of(event.TargetCustomerGroupId),
+		TargetAreaId:          util.NullUint64Of(event.TargetAreaId),
+		TargetAreaGroupId:     util.NullUint64Of(event.TargetAreaGroupId),
+		EventType:             int64(event.EventType),
+		Payload:               pybytes,
 	}
 
 	// Marshal event to bytes.
@@ -329,19 +332,20 @@ func UnmarshalResolvedEvent(encoded []byte) (*model.ResolvedEvent, error) {
 	}
 
 	event := &model.ResolvedEvent{
-		Source:          pbevent.Source,
-		AltId:           pbevent.AltId,
-		AssignmentId:    uint(pbevent.AssignmentId),
-		DeviceId:        uint(pbevent.DeviceId),
-		DeviceGroupId:   util.NullUintOf(pbevent.DeviceGroupId),
-		AssetId:         util.NullUintOf(pbevent.AssetId),
-		AssetGroupId:    util.NullUintOf(pbevent.AssetGroupId),
-		CustomerId:      util.NullUintOf(pbevent.CustomerId),
-		CustomerGroupId: util.NullUintOf(pbevent.CustomerGroupId),
-		AreaId:          util.NullUintOf(pbevent.AreaId),
-		AreaGroupId:     util.NullUintOf(pbevent.AreaGroupId),
-		EventType:       esmodel.EventType(pbevent.EventType),
-		Payload:         payload,
+		Source:                pbevent.Source,
+		AltId:                 pbevent.AltId,
+		DeviceRelationshipId:  uint(pbevent.DeviceRelationshipId),
+		SourceDeviceId:        uint(pbevent.SourceDeviceId),
+		TargetDeviceId:        util.NullUintOf(pbevent.TargetDeviceId),
+		TargetDeviceGroupId:   util.NullUintOf(pbevent.TargetDeviceGroupId),
+		TargetAssetId:         util.NullUintOf(pbevent.TargetAssetId),
+		TargetAssetGroupId:    util.NullUintOf(pbevent.TargetAssetGroupId),
+		TargetCustomerId:      util.NullUintOf(pbevent.TargetCustomerId),
+		TargetCustomerGroupId: util.NullUintOf(pbevent.TargetCustomerGroupId),
+		TargetAreaId:          util.NullUintOf(pbevent.TargetAreaId),
+		TargetAreaGroupId:     util.NullUintOf(pbevent.TargetAreaGroupId),
+		EventType:             esmodel.EventType(pbevent.EventType),
+		Payload:               payload,
 	}
 
 	return event, nil

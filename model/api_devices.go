@@ -231,6 +231,7 @@ func (api *Api) CreateDeviceRelationshipType(ctx context.Context, request *Devic
 		MetadataEntity: rdb.MetadataEntity{
 			Metadata: rdb.MetadataStrOf(request.Metadata),
 		},
+		Tracked: request.Tracked,
 	}
 	result := api.RDB.Database.Create(created)
 	if result.Error != nil {
@@ -255,6 +256,7 @@ func (api *Api) UpdateDeviceRelationshipType(ctx context.Context, token string,
 	updated.Name = rdb.NullStrOf(request.Name)
 	updated.Description = rdb.NullStrOf(request.Description)
 	updated.Metadata = rdb.MetadataStrOf(request.Metadata)
+	updated.Tracked = request.Tracked
 
 	result := api.RDB.Database.Save(updated)
 	if result.Error != nil {
@@ -381,6 +383,15 @@ func (api *Api) DeviceRelationships(ctx context.Context,
 	criteria DeviceRelationshipSearchCriteria) (*DeviceRelationshipSearchResults, error) {
 	results := make([]DeviceRelationship, 0)
 	db, pag := api.RDB.ListOf(&DeviceRelationship{}, nil, criteria.Pagination)
+	if criteria.SourceDevice != nil {
+		db.Where("source_device_id = (select id from devices where token = ?)", criteria.SourceDevice)
+	}
+	if criteria.RelationshipType != nil {
+		db.Where("relationship_type_id = (select id from device_relationship_types where token = ?)", criteria.SourceDevice)
+	}
+	if criteria.Tracked != nil {
+		db.Where("relationship_type_id in (select id from device_relationship_types where tracked = ?)", criteria.Tracked)
+	}
 	db.Preload("SourceDevice").Preload("RelationshipType")
 	db = preloadRelationshipTargets(db)
 	db.Find(&results)

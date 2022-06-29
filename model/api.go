@@ -35,7 +35,9 @@ type DeviceManagementApi interface {
 	DevicesByToken(ctx context.Context, tokens []string) ([]*Device, error)
 	Devices(ctx context.Context, criteria DeviceSearchCriteria) (*DeviceSearchResults, error)
 
-	// Device assignments.
-	CreateDeviceAssignment(ctx context.Context, request *DeviceAssignmentCreateRequest) (*DeviceAssignment, error)
-	ActiveDeviceAssignmentsForDevice(ctx context.Context, id uint) ([]DeviceAssignment, error)
+	// Device relationships.
+	DeviceRelationshipsById(ctx context.Context, ids []uint) ([]*DeviceRelationship, error)
+	DeviceRelationshipsByToken(ctx context.Context, tokens []string) ([]*DeviceRelationship, error)
+	DeviceRelationships(ctx context.Context, criteria DeviceRelationshipSearchCriteria) (*DeviceRelationshipSearchResults, error)
+	CreateDeviceRelationship(ctx context.Context, request *DeviceRelationshipCreateRequest) (*DeviceRelationship, error)
 }

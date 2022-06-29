@@ -115,7 +115,7 @@ func (iproc *InboundEventsProcessor) ProcessResolvedEvent(ctx context.Context) b
 			log.Error().Err(err).Msg("unable to marshal resolved event to protobuf")
 		} else {
 			msg := kafka.Message{
-				Key:   []byte(strconv.FormatInt(int64(resolved.DeviceId), 10)),
+				Key:   []byte(strconv.FormatInt(int64(resolved.SourceDeviceId), 10)),
 				Value: bytes,
 			}
 			err = iproc.ResolvedEventsWriter.WriteMessages(ctx, msg)

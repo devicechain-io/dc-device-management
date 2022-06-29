@@ -64,8 +64,6 @@ type Device struct {
 
 	DeviceTypeId uint
 	DeviceType   *DeviceType
-
-	Assignments []DeviceAssignment
 }
 
 // Search criteria for locating devices.
@@ -86,6 +84,7 @@ type DeviceRelationshipTypeCreateRequest struct {
 	Name        *string
 	Description *string
 	Metadata    *string
+	Tracked     bool
 }
 
 // Metadata indicating a relationship between devices.
@@ -94,6 +93,7 @@ type DeviceRelationshipType struct {
 	rdb.TokenReference
 	rdb.NamedEntity
 	rdb.MetadataEntity
+	Tracked bool
 }
 
 // Search criteria for locating device relationship types.
@@ -128,6 +128,9 @@ type DeviceRelationship struct {
 // Search criteria for locating device relationships.
 type DeviceRelationshipSearchCriteria struct {
 	rdb.Pagination
+	SourceDevice     *string
+	RelationshipType *string
+	Tracked          *bool
 }
 
 // Results for device relationship search.

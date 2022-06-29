@@ -12,16 +12,17 @@ import (
 	esmodel "github.com/devicechain-io/dc-event-sources/model"
 )
 
-// Payload with resolved assignment info.
-type ResolvedNewAssignmentPayload struct {
-	AssignmentId  uint64
-	DeviceGroup   *uint64
-	Asset         *uint64
-	AssetGroup    *uint64
-	Customer      *uint64
-	CustomerGroup *uint64
-	Area          *uint64
-	AreaGroup     *uint64
+// Payload with resolved device relationship info.
+type ResolvedNewRelationshipPayload struct {
+	DeviceRelationshipTypeId uint64
+	TargetDeviceId           *uint64
+	TargetDeviceGroupId      *uint64
+	TargetAssetId            *uint64
+	TargetAssetGroupId       *uint64
+	TargetCustomerId         *uint64
+	TargetCustomerGroupId    *uint64
+	TargetAreaId             *uint64
+	TargetAreaGroupId        *uint64
 }
 
 // Entry with resolved location information.
@@ -69,23 +70,24 @@ type ResolvedAlertsPayload struct {
 	Entries []ResolvedAlertEntry
 }
 
-// Event with token references resolved and info from assignment merged.
+// Event with token references resolved and info from device relationship merged.
 type ResolvedEvent struct {
-	Source          string
-	AltId           *string
-	DeviceId        uint
-	AssignmentId    uint
-	DeviceGroupId   *uint
-	CustomerId      *uint
-	CustomerGroupId *uint
-	AreaId          *uint
-	AreaGroupId     *uint
-	AssetId         *uint
-	AssetGroupId    *uint
-	OccurredTime    time.Time
-	ProcessedTime   time.Time
-	EventType       esmodel.EventType
-	Payload         interface{}
+	Source                string
+	AltId                 *string
+	SourceDeviceId        uint
+	DeviceRelationshipId  uint
+	TargetDeviceId        *uint
+	TargetDeviceGroupId   *uint
+	TargetCustomerId      *uint
+	TargetCustomerGroupId *uint
+	TargetAreaId          *uint
+	TargetAreaGroupId     *uint
+	TargetAssetId         *uint
+	TargetAssetGroupId    *uint
+	OccurredTime          time.Time
+	ProcessedTime         time.Time
+	EventType             esmodel.EventType
+	Payload               interface{}
 }
 
 // Captures failure information for events that could not be processed.

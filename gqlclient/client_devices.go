@@ -183,7 +183,7 @@ func CreateDeviceRelationshipType(
 	request model.DeviceRelationshipTypeCreateRequest,
 ) (IDeviceRelationshipType, error) {
 	cresp, err := createDeviceRelationshipType(ctx, client, request.Token, request.Name,
-		request.Description, request.Metadata)
+		request.Description, request.Metadata, request.Tracked)
 	if err != nil {
 		return nil, err
 	}

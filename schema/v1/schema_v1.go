@@ -54,8 +54,6 @@ type Device struct {
 
 	DeviceTypeId uint
 	DeviceType   *DeviceType
-
-	Assignments []DeviceAssignment
 }
 
 // Metadata indicating a relationship between devices.
@@ -64,6 +62,7 @@ type DeviceRelationshipType struct {
 	rdb.TokenReference
 	rdb.NamedEntity
 	rdb.MetadataEntity
+	Tracked bool
 }
 
 // Captures a relationship between devices.
@@ -348,38 +347,4 @@ type CustomerGroupRelationship struct {
 	SourceCustomerGroup   CustomerGroup
 	RelationshipTypeId    uint
 	RelationshipType      CustomerGroupRelationshipType
-}
-
-// Allows status to be associated with a device assignment.
-type DeviceAssignmentStatus struct {
-	gorm.Model
-	rdb.TokenReference
-	rdb.NamedEntity
-	rdb.MetadataEntity
-}
-
-// Provides context for device.
-type DeviceAssignment struct {
-	gorm.Model
-	rdb.TokenReference
-	rdb.MetadataEntity
-	DeviceId                 uint
-	Device                   Device
-	DeviceGroupId            *uint
-	DeviceGroup              *DeviceGroup
-	AssetId                  *uint
-	Asset                    *Asset
-	AssetGroupId             *uint
-	AssetGroup               *AssetGroup
-	CustomerId               *uint
-	Customer                 *Customer
-	CustomerGroupId          *uint
-	CustomerGroup            *CustomerGroup
-	AreaId                   *uint
-	Area                     *Area
-	AreaGroupId              *uint
-	AreaGroup                *AreaGroup
-	DeviceAssignmentStatusId *uint
-	DeviceAssignmentStatus   *DeviceAssignmentStatus
-	Active                   bool
 }
