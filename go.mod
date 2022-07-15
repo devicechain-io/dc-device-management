@@ -4,9 +4,9 @@ go 1.17
 
 require (
 	github.com/Khan/genqlient v0.5.0
-	github.com/devicechain-io/dc-event-sources v0.0.0
-	github.com/devicechain-io/dc-k8s v0.0.0
-	github.com/devicechain-io/dc-microservice v0.0.0
+	github.com/devicechain-io/dc-event-sources v0.0.1
+	github.com/devicechain-io/dc-k8s v0.0.1
+	github.com/devicechain-io/dc-microservice v0.0.1
 	github.com/go-gormigrate/gormigrate/v2 v2.0.1
 	github.com/google/uuid v1.3.0
 	github.com/graph-gophers/graphql-go v1.4.0
@@ -104,9 +104,3 @@ require (
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.1 // indirect
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
-
-replace github.com/devicechain-io/dc-event-sources v0.0.0 => ../dc-event-sources
-
-replace github.com/devicechain-io/dc-k8s v0.0.0 => ../dc-k8s
-
-replace github.com/devicechain-io/dc-microservice v0.0.0 => ../dc-microservice

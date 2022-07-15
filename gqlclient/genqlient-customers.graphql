@@ -241,8 +241,12 @@ query getCustomerRelationshipsByToken($tokens: [String!]!) {
 }
 
 # List customer relationships that match criteria.
-query listCustomerRelationships($pageNumber: Int!, $pageSize: Int!) {
-  customerRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+query listCustomerRelationships($pageNumber: Int!, $pageSize: Int!, $sourceCustomer: String, $relationshipType: String) {
+  customerRelationships(criteria: { 
+    pageNumber: $pageNumber, 
+    pageSize: $pageSize,
+    sourceCustomer: $sourceCustomer,
+    relationshipType: $relationshipType }) {
     results {
       ...DefaultCustomerRelationship
     }
@@ -342,8 +346,12 @@ query getCustomerGroupRelationshipsByToken($tokens: [String!]!) {
 }
 
 # List customer group relationships that match criteria.
-query listCustomerGroupRelationships($pageNumber: Int!, $pageSize: Int!) {
-  customerGroupRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+query listCustomerGroupRelationships($pageNumber: Int!, $pageSize: Int!, $sourceCustomerGroup: String, $relationshipType: String) {
+  customerGroupRelationships(criteria: { 
+    pageNumber: $pageNumber, 
+    pageSize: $pageSize,
+    sourceCustomerGroup: $sourceCustomerGroup,
+    relationshipType: $relationshipType }) {
     results {
       ...DefaultCustomerGroupRelationship
     }

@@ -241,8 +241,12 @@ query getAreaRelationshipsByToken($tokens: [String!]!) {
 }
 
 # List area relationships that match criteria.
-query listAreaRelationships($pageNumber: Int!, $pageSize: Int!) {
-  areaRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+query listAreaRelationships($pageNumber: Int!, $pageSize: Int!, $sourceArea: String, $relationshipType: String) {
+  areaRelationships(criteria: { 
+    pageNumber: $pageNumber, 
+    pageSize: $pageSize, 
+    sourceArea: $sourceArea, 
+    relationshipType: $relationshipType }) {
     results {
       ...DefaultAreaRelationship
     }
@@ -342,8 +346,12 @@ query getAreaGroupRelationshipsByToken($tokens: [String!]!) {
 }
 
 # List area group relationships that match criteria.
-query listAreaGroupRelationships($pageNumber: Int!, $pageSize: Int!) {
-  areaGroupRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+query listAreaGroupRelationships($pageNumber: Int!, $pageSize: Int!, $sourceAreaGroup: String, $relationshipType: String) {
+  areaGroupRelationships(criteria: { 
+    pageNumber: $pageNumber, 
+    pageSize: $pageSize, 
+    sourceAreaGroup: $sourceAreaGroup, 
+    relationshipType: $relationshipType }) {
     results {
       ...DefaultAreaGroupRelationship
     }

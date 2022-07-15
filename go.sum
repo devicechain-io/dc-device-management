@@ -176,6 +176,12 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/denisenkom/go-mssqldb v0.12.0 h1:VtrkII767ttSPNRfFekePK3sctr+joXgO58stqQbtUA=
 github.com/denisenkom/go-mssqldb v0.12.0/go.mod h1:iiK0YP1ZeepvmBQk/QpLEhhTNJgfzrpArPY/aFvc9yU=
+github.com/devicechain-io/dc-event-sources v0.0.1 h1:318dFTtVjsuMzf5VyFMTZTbq1Zm+T93OhJRysuyx9ws=
+github.com/devicechain-io/dc-event-sources v0.0.1/go.mod h1:tbDOYohxMDI0MertEhbSreAM9flOc4lsGB4sONf5QxE=
+github.com/devicechain-io/dc-k8s v0.0.1 h1:N9U/cI6tEOxtu6iZ2X8JZey+2Pif1ZimqArYx6xzTXY=
+github.com/devicechain-io/dc-k8s v0.0.1/go.mod h1:7KOfmFBBm5v8BF6C07SoI6mVHU9iGxHEZo52qupZndE=
+github.com/devicechain-io/dc-microservice v0.0.1 h1:xwDg+Ejk8yCOlr7H15UyjNIY7Dd2pQX0wxWKAiptN+8=
+github.com/devicechain-io/dc-microservice v0.0.1/go.mod h1:0XIaLR0apiUTnR35d8Gab2MGsA/syiOCUGnR60A7BH4=
 github.com/dgrijalva/jwt-go v3.2.0+incompatible/go.mod h1:E3ru+11k8xSBh+hMPgOLZmtrrCbhqsmaPHjLKYnJCaQ=
 github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f h1:lO4WD4F/rVNCu3HqELle0jiPLLBs70cWOduZpkS1E78=
 github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f/go.mod h1:cuUVRXasLTGF7a8hSLbxyZXjz+1KgoB3wDUb6vlszIc=

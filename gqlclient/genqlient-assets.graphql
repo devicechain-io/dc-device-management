@@ -241,8 +241,12 @@ query getAssetRelationshipsByToken($tokens: [String!]!) {
 }
 
 # List asset relationships that match criteria.
-query listAssetRelationships($pageNumber: Int!, $pageSize: Int!) {
-  assetRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+query listAssetRelationships($pageNumber: Int!, $pageSize: Int!, $sourceAsset: String, $relationshipType: String) {
+  assetRelationships(criteria: { 
+    pageNumber: $pageNumber, 
+    pageSize: $pageSize, 
+    sourceAsset: $sourceAsset, 
+    relationshipType: $relationshipType }) {
     results {
       ...DefaultAssetRelationship
     }
@@ -342,8 +346,12 @@ query getAssetGroupRelationshipsByToken($tokens: [String!]!) {
 }
 
 # List asset group relationships that match criteria.
-query listAssetGroupRelationships($pageNumber: Int!, $pageSize: Int!) {
-  assetGroupRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+query listAssetGroupRelationships($pageNumber: Int!, $pageSize: Int!, $sourceAssetGroup: String, $relationshipType: String) {
+  assetGroupRelationships(criteria: { 
+    pageNumber: $pageNumber, 
+    pageSize: $pageSize, 
+    sourceAssetGroup: $sourceAssetGroup, 
+    relationshipType: $relationshipType }) {
     results {
       ...DefaultAssetGroupRelationship
     }

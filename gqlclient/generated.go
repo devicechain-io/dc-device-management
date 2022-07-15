@@ -3706,8 +3706,10 @@ func (v *__listAreaGroupRelationshipTypesInput) GetPageSize() int { return v.Pag
 
 // __listAreaGroupRelationshipsInput is used internally by genqlient
 type __listAreaGroupRelationshipsInput struct {
-	PageNumber int `json:"pageNumber"`
-	PageSize   int `json:"pageSize"`
+	PageNumber       int     `json:"pageNumber"`
+	PageSize         int     `json:"pageSize"`
+	SourceAreaGroup  *string `json:"sourceAreaGroup"`
+	RelationshipType *string `json:"relationshipType"`
 }
 
 // GetPageNumber returns __listAreaGroupRelationshipsInput.PageNumber, and is useful for accessing the field via an interface.
@@ -3715,6 +3717,12 @@ func (v *__listAreaGroupRelationshipsInput) GetPageNumber() int { return v.PageN
 
 // GetPageSize returns __listAreaGroupRelationshipsInput.PageSize, and is useful for accessing the field via an interface.
 func (v *__listAreaGroupRelationshipsInput) GetPageSize() int { return v.PageSize }
+
+// GetSourceAreaGroup returns __listAreaGroupRelationshipsInput.SourceAreaGroup, and is useful for accessing the field via an interface.
+func (v *__listAreaGroupRelationshipsInput) GetSourceAreaGroup() *string { return v.SourceAreaGroup }
+
+// GetRelationshipType returns __listAreaGroupRelationshipsInput.RelationshipType, and is useful for accessing the field via an interface.
+func (v *__listAreaGroupRelationshipsInput) GetRelationshipType() *string { return v.RelationshipType }
 
 // __listAreaGroupsInput is used internally by genqlient
 type __listAreaGroupsInput struct {
@@ -3742,8 +3750,10 @@ func (v *__listAreaRelationshipTypesInput) GetPageSize() int { return v.PageSize
 
 // __listAreaRelationshipsInput is used internally by genqlient
 type __listAreaRelationshipsInput struct {
-	PageNumber int `json:"pageNumber"`
-	PageSize   int `json:"pageSize"`
+	PageNumber       int     `json:"pageNumber"`
+	PageSize         int     `json:"pageSize"`
+	SourceArea       *string `json:"sourceArea"`
+	RelationshipType *string `json:"relationshipType"`
 }
 
 // GetPageNumber returns __listAreaRelationshipsInput.PageNumber, and is useful for accessing the field via an interface.
@@ -3751,6 +3761,12 @@ func (v *__listAreaRelationshipsInput) GetPageNumber() int { return v.PageNumber
 
 // GetPageSize returns __listAreaRelationshipsInput.PageSize, and is useful for accessing the field via an interface.
 func (v *__listAreaRelationshipsInput) GetPageSize() int { return v.PageSize }
+
+// GetSourceArea returns __listAreaRelationshipsInput.SourceArea, and is useful for accessing the field via an interface.
+func (v *__listAreaRelationshipsInput) GetSourceArea() *string { return v.SourceArea }
+
+// GetRelationshipType returns __listAreaRelationshipsInput.RelationshipType, and is useful for accessing the field via an interface.
+func (v *__listAreaRelationshipsInput) GetRelationshipType() *string { return v.RelationshipType }
 
 // __listAreaTypesInput is used internally by genqlient
 type __listAreaTypesInput struct {
@@ -3790,8 +3806,10 @@ func (v *__listAssetGroupRelationshipTypesInput) GetPageSize() int { return v.Pa
 
 // __listAssetGroupRelationshipsInput is used internally by genqlient
 type __listAssetGroupRelationshipsInput struct {
-	PageNumber int `json:"pageNumber"`
-	PageSize   int `json:"pageSize"`
+	PageNumber       int     `json:"pageNumber"`
+	PageSize         int     `json:"pageSize"`
+	SourceAssetGroup *string `json:"sourceAssetGroup"`
+	RelationshipType *string `json:"relationshipType"`
 }
 
 // GetPageNumber returns __listAssetGroupRelationshipsInput.PageNumber, and is useful for accessing the field via an interface.
@@ -3799,6 +3817,12 @@ func (v *__listAssetGroupRelationshipsInput) GetPageNumber() int { return v.Page
 
 // GetPageSize returns __listAssetGroupRelationshipsInput.PageSize, and is useful for accessing the field via an interface.
 func (v *__listAssetGroupRelationshipsInput) GetPageSize() int { return v.PageSize }
+
+// GetSourceAssetGroup returns __listAssetGroupRelationshipsInput.SourceAssetGroup, and is useful for accessing the field via an interface.
+func (v *__listAssetGroupRelationshipsInput) GetSourceAssetGroup() *string { return v.SourceAssetGroup }
+
+// GetRelationshipType returns __listAssetGroupRelationshipsInput.RelationshipType, and is useful for accessing the field via an interface.
+func (v *__listAssetGroupRelationshipsInput) GetRelationshipType() *string { return v.RelationshipType }
 
 // __listAssetGroupsInput is used internally by genqlient
 type __listAssetGroupsInput struct {
@@ -3826,8 +3850,10 @@ func (v *__listAssetRelationshipTypesInput) GetPageSize() int { return v.PageSiz
 
 // __listAssetRelationshipsInput is used internally by genqlient
 type __listAssetRelationshipsInput struct {
-	PageNumber int `json:"pageNumber"`
-	PageSize   int `json:"pageSize"`
+	PageNumber       int     `json:"pageNumber"`
+	PageSize         int     `json:"pageSize"`
+	SourceAsset      *string `json:"sourceAsset"`
+	RelationshipType *string `json:"relationshipType"`
 }
 
 // GetPageNumber returns __listAssetRelationshipsInput.PageNumber, and is useful for accessing the field via an interface.
@@ -3835,6 +3861,12 @@ func (v *__listAssetRelationshipsInput) GetPageNumber() int { return v.PageNumbe
 
 // GetPageSize returns __listAssetRelationshipsInput.PageSize, and is useful for accessing the field via an interface.
 func (v *__listAssetRelationshipsInput) GetPageSize() int { return v.PageSize }
+
+// GetSourceAsset returns __listAssetRelationshipsInput.SourceAsset, and is useful for accessing the field via an interface.
+func (v *__listAssetRelationshipsInput) GetSourceAsset() *string { return v.SourceAsset }
+
+// GetRelationshipType returns __listAssetRelationshipsInput.RelationshipType, and is useful for accessing the field via an interface.
+func (v *__listAssetRelationshipsInput) GetRelationshipType() *string { return v.RelationshipType }
 
 // __listAssetTypesInput is used internally by genqlient
 type __listAssetTypesInput struct {
@@ -3874,8 +3906,10 @@ func (v *__listCustomerGroupRelationshipTypesInput) GetPageSize() int { return v
 
 // __listCustomerGroupRelationshipsInput is used internally by genqlient
 type __listCustomerGroupRelationshipsInput struct {
-	PageNumber int `json:"pageNumber"`
-	PageSize   int `json:"pageSize"`
+	PageNumber          int     `json:"pageNumber"`
+	PageSize            int     `json:"pageSize"`
+	SourceCustomerGroup *string `json:"sourceCustomerGroup"`
+	RelationshipType    *string `json:"relationshipType"`
 }
 
 // GetPageNumber returns __listCustomerGroupRelationshipsInput.PageNumber, and is useful for accessing the field via an interface.
@@ -3883,6 +3917,16 @@ func (v *__listCustomerGroupRelationshipsInput) GetPageNumber() int { return v.P
 
 // GetPageSize returns __listCustomerGroupRelationshipsInput.PageSize, and is useful for accessing the field via an interface.
 func (v *__listCustomerGroupRelationshipsInput) GetPageSize() int { return v.PageSize }
+
+// GetSourceCustomerGroup returns __listCustomerGroupRelationshipsInput.SourceCustomerGroup, and is useful for accessing the field via an interface.
+func (v *__listCustomerGroupRelationshipsInput) GetSourceCustomerGroup() *string {
+	return v.SourceCustomerGroup
+}
+
+// GetRelationshipType returns __listCustomerGroupRelationshipsInput.RelationshipType, and is useful for accessing the field via an interface.
+func (v *__listCustomerGroupRelationshipsInput) GetRelationshipType() *string {
+	return v.RelationshipType
+}
 
 // __listCustomerGroupsInput is used internally by genqlient
 type __listCustomerGroupsInput struct {
@@ -3910,8 +3954,10 @@ func (v *__listCustomerRelationshipTypesInput) GetPageSize() int { return v.Page
 
 // __listCustomerRelationshipsInput is used internally by genqlient
 type __listCustomerRelationshipsInput struct {
-	PageNumber int `json:"pageNumber"`
-	PageSize   int `json:"pageSize"`
+	PageNumber       int     `json:"pageNumber"`
+	PageSize         int     `json:"pageSize"`
+	SourceCustomer   *string `json:"sourceCustomer"`
+	RelationshipType *string `json:"relationshipType"`
 }
 
 // GetPageNumber returns __listCustomerRelationshipsInput.PageNumber, and is useful for accessing the field via an interface.
@@ -3919,6 +3965,12 @@ func (v *__listCustomerRelationshipsInput) GetPageNumber() int { return v.PageNu
 
 // GetPageSize returns __listCustomerRelationshipsInput.PageSize, and is useful for accessing the field via an interface.
 func (v *__listCustomerRelationshipsInput) GetPageSize() int { return v.PageSize }
+
+// GetSourceCustomer returns __listCustomerRelationshipsInput.SourceCustomer, and is useful for accessing the field via an interface.
+func (v *__listCustomerRelationshipsInput) GetSourceCustomer() *string { return v.SourceCustomer }
+
+// GetRelationshipType returns __listCustomerRelationshipsInput.RelationshipType, and is useful for accessing the field via an interface.
+func (v *__listCustomerRelationshipsInput) GetRelationshipType() *string { return v.RelationshipType }
 
 // __listCustomerTypesInput is used internally by genqlient
 type __listCustomerTypesInput struct {
@@ -3958,8 +4010,10 @@ func (v *__listDeviceGroupRelationshipTypesInput) GetPageSize() int { return v.P
 
 // __listDeviceGroupRelationshipsInput is used internally by genqlient
 type __listDeviceGroupRelationshipsInput struct {
-	PageNumber int `json:"pageNumber"`
-	PageSize   int `json:"pageSize"`
+	PageNumber        int     `json:"pageNumber"`
+	PageSize          int     `json:"pageSize"`
+	SourceDeviceGroup *string `json:"sourceDeviceGroup"`
+	RelationshipType  *string `json:"relationshipType"`
 }
 
 // GetPageNumber returns __listDeviceGroupRelationshipsInput.PageNumber, and is useful for accessing the field via an interface.
@@ -3967,6 +4021,16 @@ func (v *__listDeviceGroupRelationshipsInput) GetPageNumber() int { return v.Pag
 
 // GetPageSize returns __listDeviceGroupRelationshipsInput.PageSize, and is useful for accessing the field via an interface.
 func (v *__listDeviceGroupRelationshipsInput) GetPageSize() int { return v.PageSize }
+
+// GetSourceDeviceGroup returns __listDeviceGroupRelationshipsInput.SourceDeviceGroup, and is useful for accessing the field via an interface.
+func (v *__listDeviceGroupRelationshipsInput) GetSourceDeviceGroup() *string {
+	return v.SourceDeviceGroup
+}
+
+// GetRelationshipType returns __listDeviceGroupRelationshipsInput.RelationshipType, and is useful for accessing the field via an interface.
+func (v *__listDeviceGroupRelationshipsInput) GetRelationshipType() *string {
+	return v.RelationshipType
+}
 
 // __listDeviceGroupsInput is used internally by genqlient
 type __listDeviceGroupsInput struct {
@@ -3994,8 +4058,11 @@ func (v *__listDeviceRelationshipTypesInput) GetPageSize() int { return v.PageSi
 
 // __listDeviceRelationshipsInput is used internally by genqlient
 type __listDeviceRelationshipsInput struct {
-	PageNumber int `json:"pageNumber"`
-	PageSize   int `json:"pageSize"`
+	PageNumber       int     `json:"pageNumber"`
+	PageSize         int     `json:"pageSize"`
+	SourceDevice     *string `json:"sourceDevice"`
+	RelationshipType *string `json:"relationshipType"`
+	Tracked          *bool   `json:"tracked"`
 }
 
 // GetPageNumber returns __listDeviceRelationshipsInput.PageNumber, and is useful for accessing the field via an interface.
@@ -4003,6 +4070,15 @@ func (v *__listDeviceRelationshipsInput) GetPageNumber() int { return v.PageNumb
 
 // GetPageSize returns __listDeviceRelationshipsInput.PageSize, and is useful for accessing the field via an interface.
 func (v *__listDeviceRelationshipsInput) GetPageSize() int { return v.PageSize }
+
+// GetSourceDevice returns __listDeviceRelationshipsInput.SourceDevice, and is useful for accessing the field via an interface.
+func (v *__listDeviceRelationshipsInput) GetSourceDevice() *string { return v.SourceDevice }
+
+// GetRelationshipType returns __listDeviceRelationshipsInput.RelationshipType, and is useful for accessing the field via an interface.
+func (v *__listDeviceRelationshipsInput) GetRelationshipType() *string { return v.RelationshipType }
+
+// GetTracked returns __listDeviceRelationshipsInput.Tracked, and is useful for accessing the field via an interface.
+func (v *__listDeviceRelationshipsInput) GetTracked() *bool { return v.Tracked }
 
 // __listDeviceTypesInput is used internally by genqlient
 type __listDeviceTypesInput struct {
@@ -20999,12 +21075,14 @@ func listAreaGroupRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
+	sourceAreaGroup *string,
+	relationshipType *string,
 ) (*listAreaGroupRelationshipsResponse, error) {
 	req := &graphql.Request{
 		OpName: "listAreaGroupRelationships",
 		Query: `
-query listAreaGroupRelationships ($pageNumber: Int!, $pageSize: Int!) {
-	areaGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
+query listAreaGroupRelationships ($pageNumber: Int!, $pageSize: Int!, $sourceAreaGroup: String, $relationshipType: String) {
+	areaGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize,sourceAreaGroup:$sourceAreaGroup,relationshipType:$relationshipType}) {
 		results {
 			... DefaultAreaGroupRelationship
 		}
@@ -21067,8 +21145,10 @@ fragment DefaultRelationshipTargets on EntityRelationshipTargets {
 }
 `,
 		Variables: &__listAreaGroupRelationshipsInput{
-			PageNumber: pageNumber,
-			PageSize:   pageSize,
+			PageNumber:       pageNumber,
+			PageSize:         pageSize,
+			SourceAreaGroup:  sourceAreaGroup,
+			RelationshipType: relationshipType,
 		},
 	}
 	var err error
@@ -21206,12 +21286,14 @@ func listAreaRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
+	sourceArea *string,
+	relationshipType *string,
 ) (*listAreaRelationshipsResponse, error) {
 	req := &graphql.Request{
 		OpName: "listAreaRelationships",
 		Query: `
-query listAreaRelationships ($pageNumber: Int!, $pageSize: Int!) {
-	areaRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
+query listAreaRelationships ($pageNumber: Int!, $pageSize: Int!, $sourceArea: String, $relationshipType: String) {
+	areaRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize,sourceArea:$sourceArea,relationshipType:$relationshipType}) {
 		results {
 			... DefaultAreaRelationship
 		}
@@ -21274,8 +21356,10 @@ fragment DefaultRelationshipTargets on EntityRelationshipTargets {
 }
 `,
 		Variables: &__listAreaRelationshipsInput{
-			PageNumber: pageNumber,
-			PageSize:   pageSize,
+			PageNumber:       pageNumber,
+			PageSize:         pageSize,
+			SourceArea:       sourceArea,
+			RelationshipType: relationshipType,
 		},
 	}
 	var err error
@@ -21473,12 +21557,14 @@ func listAssetGroupRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
+	sourceAssetGroup *string,
+	relationshipType *string,
 ) (*listAssetGroupRelationshipsResponse, error) {
 	req := &graphql.Request{
 		OpName: "listAssetGroupRelationships",
 		Query: `
-query listAssetGroupRelationships ($pageNumber: Int!, $pageSize: Int!) {
-	assetGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
+query listAssetGroupRelationships ($pageNumber: Int!, $pageSize: Int!, $sourceAssetGroup: String, $relationshipType: String) {
+	assetGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize,sourceAssetGroup:$sourceAssetGroup,relationshipType:$relationshipType}) {
 		results {
 			... DefaultAssetGroupRelationship
 		}
@@ -21541,8 +21627,10 @@ fragment DefaultRelationshipTargets on EntityRelationshipTargets {
 }
 `,
 		Variables: &__listAssetGroupRelationshipsInput{
-			PageNumber: pageNumber,
-			PageSize:   pageSize,
+			PageNumber:       pageNumber,
+			PageSize:         pageSize,
+			SourceAssetGroup: sourceAssetGroup,
+			RelationshipType: relationshipType,
 		},
 	}
 	var err error
@@ -21680,12 +21768,14 @@ func listAssetRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
+	sourceAsset *string,
+	relationshipType *string,
 ) (*listAssetRelationshipsResponse, error) {
 	req := &graphql.Request{
 		OpName: "listAssetRelationships",
 		Query: `
-query listAssetRelationships ($pageNumber: Int!, $pageSize: Int!) {
-	assetRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
+query listAssetRelationships ($pageNumber: Int!, $pageSize: Int!, $sourceAsset: String, $relationshipType: String) {
+	assetRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize,sourceAsset:$sourceAsset,relationshipType:$relationshipType}) {
 		results {
 			... DefaultAssetRelationship
 		}
@@ -21748,8 +21838,10 @@ fragment DefaultRelationshipTargets on EntityRelationshipTargets {
 }
 `,
 		Variables: &__listAssetRelationshipsInput{
-			PageNumber: pageNumber,
-			PageSize:   pageSize,
+			PageNumber:       pageNumber,
+			PageSize:         pageSize,
+			SourceAsset:      sourceAsset,
+			RelationshipType: relationshipType,
 		},
 	}
 	var err error
@@ -21947,12 +22039,14 @@ func listCustomerGroupRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
+	sourceCustomerGroup *string,
+	relationshipType *string,
 ) (*listCustomerGroupRelationshipsResponse, error) {
 	req := &graphql.Request{
 		OpName: "listCustomerGroupRelationships",
 		Query: `
-query listCustomerGroupRelationships ($pageNumber: Int!, $pageSize: Int!) {
-	customerGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
+query listCustomerGroupRelationships ($pageNumber: Int!, $pageSize: Int!, $sourceCustomerGroup: String, $relationshipType: String) {
+	customerGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize,sourceCustomerGroup:$sourceCustomerGroup,relationshipType:$relationshipType}) {
 		results {
 			... DefaultCustomerGroupRelationship
 		}
@@ -22015,8 +22109,10 @@ fragment DefaultRelationshipTargets on EntityRelationshipTargets {
 }
 `,
 		Variables: &__listCustomerGroupRelationshipsInput{
-			PageNumber: pageNumber,
-			PageSize:   pageSize,
+			PageNumber:          pageNumber,
+			PageSize:            pageSize,
+			SourceCustomerGroup: sourceCustomerGroup,
+			RelationshipType:    relationshipType,
 		},
 	}
 	var err error
@@ -22154,12 +22250,14 @@ func listCustomerRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
+	sourceCustomer *string,
+	relationshipType *string,
 ) (*listCustomerRelationshipsResponse, error) {
 	req := &graphql.Request{
 		OpName: "listCustomerRelationships",
 		Query: `
-query listCustomerRelationships ($pageNumber: Int!, $pageSize: Int!) {
-	customerRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
+query listCustomerRelationships ($pageNumber: Int!, $pageSize: Int!, $sourceCustomer: String, $relationshipType: String) {
+	customerRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize,sourceCustomer:$sourceCustomer,relationshipType:$relationshipType}) {
 		results {
 			... DefaultCustomerRelationship
 		}
@@ -22222,8 +22320,10 @@ fragment DefaultRelationshipTargets on EntityRelationshipTargets {
 }
 `,
 		Variables: &__listCustomerRelationshipsInput{
-			PageNumber: pageNumber,
-			PageSize:   pageSize,
+			PageNumber:       pageNumber,
+			PageSize:         pageSize,
+			SourceCustomer:   sourceCustomer,
+			RelationshipType: relationshipType,
 		},
 	}
 	var err error
@@ -22421,12 +22521,14 @@ func listDeviceGroupRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
+	sourceDeviceGroup *string,
+	relationshipType *string,
 ) (*listDeviceGroupRelationshipsResponse, error) {
 	req := &graphql.Request{
 		OpName: "listDeviceGroupRelationships",
 		Query: `
-query listDeviceGroupRelationships ($pageNumber: Int!, $pageSize: Int!) {
-	deviceGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
+query listDeviceGroupRelationships ($pageNumber: Int!, $pageSize: Int!, $sourceDeviceGroup: String, $relationshipType: String) {
+	deviceGroupRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize,sourceDeviceGroup:$sourceDeviceGroup,relationshipType:$relationshipType}) {
 		results {
 			... DefaultDeviceGroupRelationship
 		}
@@ -22489,8 +22591,10 @@ fragment DefaultRelationshipTargets on EntityRelationshipTargets {
 }
 `,
 		Variables: &__listDeviceGroupRelationshipsInput{
-			PageNumber: pageNumber,
-			PageSize:   pageSize,
+			PageNumber:        pageNumber,
+			PageSize:          pageSize,
+			SourceDeviceGroup: sourceDeviceGroup,
+			RelationshipType:  relationshipType,
 		},
 	}
 	var err error
@@ -22629,12 +22733,15 @@ func listDeviceRelationships(
 	client graphql.Client,
 	pageNumber int,
 	pageSize int,
+	sourceDevice *string,
+	relationshipType *string,
+	tracked *bool,
 ) (*listDeviceRelationshipsResponse, error) {
 	req := &graphql.Request{
 		OpName: "listDeviceRelationships",
 		Query: `
-query listDeviceRelationships ($pageNumber: Int!, $pageSize: Int!) {
-	deviceRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize}) {
+query listDeviceRelationships ($pageNumber: Int!, $pageSize: Int!, $sourceDevice: String, $relationshipType: String, $tracked: Boolean) {
+	deviceRelationships(criteria: {pageNumber:$pageNumber,pageSize:$pageSize,sourceDevice:$sourceDevice,relationshipType:$relationshipType,tracked:$tracked}) {
 		results {
 			... DefaultDeviceRelationship
 		}
@@ -22697,8 +22804,11 @@ fragment DefaultRelationshipTargets on EntityRelationshipTargets {
 }
 `,
 		Variables: &__listDeviceRelationshipsInput{
-			PageNumber: pageNumber,
-			PageSize:   pageSize,
+			PageNumber:       pageNumber,
+			PageSize:         pageSize,
+			SourceDevice:     sourceDevice,
+			RelationshipType: relationshipType,
+			Tracked:          tracked,
 		},
 	}
 	var err error

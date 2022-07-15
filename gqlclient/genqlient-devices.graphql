@@ -243,8 +243,13 @@ query getDeviceRelationshipsByToken($tokens: [String!]!) {
 }
 
 # List device relationships that match criteria.
-query listDeviceRelationships($pageNumber: Int!, $pageSize: Int!) {
-  deviceRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+query listDeviceRelationships($pageNumber: Int!, $pageSize: Int!, $sourceDevice: String, $relationshipType: String, $tracked: Boolean) {
+  deviceRelationships(criteria: { 
+    pageNumber: $pageNumber, 
+    pageSize: $pageSize,
+    sourceDevice: $sourceDevice,
+    relationshipType: $relationshipType,
+    tracked: $tracked }) {
     results {
       ...DefaultDeviceRelationship
     }
@@ -344,8 +349,12 @@ query getDeviceGroupRelationshipsByToken($tokens: [String!]!) {
 }
 
 # List device group relationships that match criteria.
-query listDeviceGroupRelationships($pageNumber: Int!, $pageSize: Int!) {
-  deviceGroupRelationships(criteria: { pageNumber: $pageNumber, pageSize: $pageSize }) {
+query listDeviceGroupRelationships($pageNumber: Int!, $pageSize: Int!, $sourceDeviceGroup: String, $relationshipType: String) {
+  deviceGroupRelationships(criteria: { 
+    pageNumber: $pageNumber, 
+    pageSize: $pageSize,
+    sourceDeviceGroup: $sourceDeviceGroup,
+    relationshipType: $relationshipType }) {
     results {
       ...DefaultDeviceGroupRelationship
     }
